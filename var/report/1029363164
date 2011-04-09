@@ -1,0 +1,9 @@
+a:5:{i:0;s:207:"Error in file: "/Applications/MAMP/htdocs/magento/app/code/core/Mage/Rating/sql/rating_setup/mysql4-install-0.7.0.php" - SQLSTATE[42S01]: Base table or view already exists: 1050 Table 'rating' already exists";i:1;s:1020:"#0 /Applications/MAMP/htdocs/magento/app/code/core/Mage/Core/Model/Resource/Setup.php(390): Mage::exception('Mage_Core', 'Error in file: ...')
+#1 /Applications/MAMP/htdocs/magento/app/code/core/Mage/Core/Model/Resource/Setup.php(276): Mage_Core_Model_Resource_Setup->_modifyResourceDb('install', '', '0.7.2')
+#2 /Applications/MAMP/htdocs/magento/app/code/core/Mage/Core/Model/Resource/Setup.php(240): Mage_Core_Model_Resource_Setup->_installResourceDb('0.7.2')
+#3 /Applications/MAMP/htdocs/magento/app/code/core/Mage/Core/Model/Resource/Setup.php(161): Mage_Core_Model_Resource_Setup->applyUpdates()
+#4 /Applications/MAMP/htdocs/magento/app/code/core/Mage/Core/Model/App.php(399): Mage_Core_Model_Resource_Setup::applyAllUpdates()
+#5 /Applications/MAMP/htdocs/magento/app/code/core/Mage/Core/Model/App.php(329): Mage_Core_Model_App->_initModules()
+#6 /Applications/MAMP/htdocs/magento/app/Mage.php(627): Mage_Core_Model_App->run(Array)
+#7 /Applications/MAMP/htdocs/magento/index.php(80): Mage::run('', 'store')
+#8 {main}";s:3:"url";s:37:"/index.php/install/wizard/configPost/";s:11:"script_name";s:10:"/index.php";s:4:"skin";s:7:"default";}
