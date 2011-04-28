@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Rooja
+ *
+ * Custom Page
+ *
+ */
+-->
+<config>
+    <modules>
+        <AM_Page>
+            <active>true</active>
+            <codePool>local</codePool>
+        </AM_Page>
+    </modules>
+</config>
