@@ -9,6 +9,7 @@
 <!--[if lt IE 7]> <script src="_js/IE7.js" type="text/javascript"></script><![endif]--> 
 <!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+<script type="text/javascript" src="_js/jquery.masonry.min.js"></script>
 <script type="text/javascript" src="http://use.typekit.com/egn2yyl.js"></script>
 <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 

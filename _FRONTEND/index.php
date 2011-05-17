@@ -7,45 +7,45 @@
 
 <section id="liveSales">
 	<div class="container">
-		<article class="homeSale size2 fl">
+		<article class="homeSale size2 fl masonry">
 			<img src="_images/photos/home/1.jpg" alt="Sale Name">
 			<h2>Curanotir Ferm</h2>
 		</article>
-		<article class="homeSale size2 fl">
-			<img src="_images/photos/home/2.jpg" alt="Sale Name">
-			<h2>Mauris Pelle</h2>
-		</article>
-		<article class="homeSale size3 fl">
-			<img src="_images/photos/home/3.jpg" alt="Sale Name">
-			<h2>Lorem Ipsum</h2>
-		</article>
-		<article class="homeSale size3 fl">
-			<img src="_images/photos/home/4.jpg" alt="Sale Name">
-			<h2>Lorem Ipsum dolor sit amet</h2>
-		</article>
-		<article class="homeSale size2 fl">
-			<img src="_images/photos/home/5.jpg" alt="Sale Name">
-			<h2>Ullamcorper</h2>
-		</article>
-		<article class="homeSale size3 fl">
-			<img src="_images/photos/home/6.jpg" alt="Sale Name">
-			<h2>Condimentum Odio</h2>
-		</article>
-		<article class="homeSale size3 fl">
+		<article class="homeSale size3 fl masonry">
 			<img src="_images/photos/home/7.jpg" alt="Sale Name">
 			<h2>Lorem Ipsum</h2>
 		</article>
-		<aside class="homeAd fl">
-			<h3><a href="#">Invite a Friend</a></h2>
+		<article class="homeSale size3 fl masonry">
+			<img src="_images/photos/home/6.jpg" alt="Sale Name">
+			<h2>Condimentum Odio</h2>
+		</article>
+		<article class="homeAd fl masonry">
+			<h3><a href="#">Invite a Friend</a></h3>
 			<p>Share what&rsquo;s in with your friends on Facebook! Invite a friend and receive $25 to spend on Rooja!</p>
-		</aside>
-		<article class="homeSale size1 fl">
+		</article>		
+		<article class="homeSale size3 fl masonry">
+			<img src="_images/photos/home/3.jpg" alt="Sale Name">
+			<h2>Lorem Ipsum</h2>
+		</article>
+		<article class="homeSale size2 fl masonry">
+			<img src="_images/photos/home/5.jpg" alt="Sale Name">
+			<h2>Ullamcorper</h2>
+		</article>
+		<article class="homeSale size2 fl masonry">
+			<img src="_images/photos/home/9.jpg" alt="Sale Name">
+			<h2>Pellentesque</h2>
+		</article>
+		<article class="homeSale size1 fl masonry">
 			<img src="_images/photos/home/8.jpg" alt="Sale Name">
 			<h2>Class Apten</h2>
 		</article>
-		<article class="homeSale size2 fl">
-			<img src="_images/photos/home/9.jpg" alt="Sale Name">
-			<h2>Pellentesque</h2>
+		<article class="homeSale size2 fl masonry">
+			<img src="_images/photos/home/2.jpg" alt="Sale Name">
+			<h2>Mauris Pelle</h2>
+		</article>
+		<article class="homeSale size3 fl masonry">
+			<img src="_images/photos/home/4.jpg" alt="Sale Name">
+			<h2>Lorem Ipsum dolor sit amet</h2>
 		</article>
 	</div>
 </section>
@@ -115,5 +115,22 @@
 		
 	</div>
 </section>
+<script>
+    $(function(){
+		
+      $('#liveSales .container').masonry({
+        singleMode: true,
+        columnWidth: 240,
+        resizeable: true,
+        animate: true,
+        animationOptions: {
+        		duration: 750,
+        	    easing: 'linear',
+        	    queue: false
+        }, 
+        itemSelector: '.masonry'
+      });
 
+    });
+  </script>
 <?php require('_footer.php'); ?>
