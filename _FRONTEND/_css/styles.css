@@ -53,53 +53,66 @@ body{
 #mainNav{
 	float: left;
 	width: 400px;
-	margin: 15px 0px 10px 140px;
+	margin: 0px 0px 0px 140px;
 }
 #mainNav ul li{
-	float: left;
+	display: inline-block;
 	margin-right: 25px;
-	height: 5px;
-	padding: 10px 20px 10px 0px;
-	background: url("../_images/icons/arrow-nav-dark.png") no-repeat right 8px;
+	height: 40px;
+	padding: 10px 20px 10px 15px;
+	background: url("../_images/icons/arrow-nav-dark.png") no-repeat scroll 90% 50%;
 	font-family: "ltc-bodoni-175-1","ltc-bodoni-175-2", Helvetica, Arial;
 }
 #mainNav ul li:hover{
-	background: url("../_images/icons/arrow-nav-white.png") no-repeat right 8px;
+	background: url("../_images/icons/arrow-nav-white.png") no-repeat  scroll 90% 50%;
 	background-color: #220f26;
+	padding-left: 15px;
 }
-#mainNav ul li ul{
+#mainNav ul li div{
 	display:none;
+	width: 120px;
 }
-#mainNav ul li:hover ul {
+#mainNav ul li:hover div {
 	display: block;
 	position: absolute;
-	float: left;
-	background: #220f26;
 	font-size: 1.4em;
-	z-index: 10;
-	width: 140px;
+	z-index: 15;
+	width: 135px;
 	top: 60px;
 	color:#fff;
 	text-decoration: none;
+	margin-left: -15px;
+	background: #220f26;
 }
-#mainNav ul li:hover ul li{
+#mainNav ul li:hover div ul{
+	border-top: solid 1px #431f4c;
+}
+#mainNav ul li:hover div ul li{
+	display: block;
 	background-image: none;
 	text-transform: uppercase;
 	color: #ab8fb2;
-	padding: 10px;
+	height: 10px;
+	width: 100px;
 }
-#mainNav ul li:hover ul li a{
+#mainNav ul li:hover div ul li a{
 	text-transform: none;
 	font-size: 0.857em;
 	color: #fff;
 	font-family: Ariel;
 	font-weight: normal;
 }
+#mainNav ul li:hover ul li:hover{
+	background-color: #431f4c;
+	cursor: pointer;
+}
 #mainNav ul li a{
 	font-size: 1.4em;
 	font-weight: bold;
 	color: #fff;
 	text-transform: uppercase;
+	position: relative;
+	top: 43%;
 }
 #accountLinks{
 	float: left;
@@ -120,6 +133,28 @@ ul#myAccount li a{
 }
 ul#myAccount li ul {
 	display: none;
+}
+ul#myAccount li:hover ul {
+	display: block;
+	position: absolute;
+	width:  85px;
+	background: #220f26;
+	top:  35px;
+	z-index: 15;
+}
+ul#myAccount li:hover ul li{
+	display: inline-block;
+	font-size: 1.0em;
+	z-index: 15;
+	color:#fff;
+	padding: 10px 5px;
+	text-decoration: none;
+	background-image: none;
+	width: 75px;
+}
+ul#myAccount li:hover ul li:hover{
+	background-color: #431f4c;
+	cursor: pointer;
 }
 #myBag{
 	display: block;

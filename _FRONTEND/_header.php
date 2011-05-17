@@ -22,6 +22,7 @@
 	<nav id="mainNav">
 		<ul>
 			<li><a href="#" title="">Women</a>
+	    		<div>
 	    		<ul>
 	    			<li>New Sales</li>
 					<li><a href="#">Hyden Yoo</a></li>
@@ -30,16 +31,32 @@
 					<li><a href="#">BOSS</a></li>
 					<li><a href="#">Marc Jacobs</a></li>
 					<li><a href="#">AG</a></li>
-	    		</ul>
-	    		<ul>
+				</ul>
+				<ul>
 	    			<li>Ending Soon</li>
 					<li><a href="#">Flight 101</a></li>
 					<li><a href="#">Swatch</a></li>
 					<li><a href="#">Abercrombie</a></li>
 					<li><a href="#">7 for All Mankind</a></li>
 	    		</ul>
+	    		</div>
 	    	</li>
-			<li><a href="#" title="">Men</a></li>
+			<li><a href="#" title="">Men</a>
+				<div>
+				<ul>
+					<li>New Sales</li>
+					<li><a href="#">Hyden Yoo</a></li>
+					<li><a href="#">True Religion</a></li>
+				</ul>
+				<ul>	
+					<li>Ending Soon</li>
+					<li><a href="#">Flight 101</a></li>
+					<li><a href="#">Swatch</a></li>
+					<li><a href="#">Abercrombie</a></li>
+					<li><a href="#">7 for All Mankind</a></li>
+				</ul>
+				</div>
+			</li>
 			<li><a href="#" title="">Travel</a></li>
 	    </ul>
 	</nav>
