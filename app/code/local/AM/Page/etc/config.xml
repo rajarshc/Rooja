@@ -39,6 +39,11 @@
                     <template>page/lockdown.phtml</template>
                     <layout_handle>lockeddown</layout_handle>
                 </lockeddown>
+				<homepage module="page" translate="label">
+                    <label>Homepage</label>
+                    <template>page/homepage.phtml</template>
+                    <layout_handle>homepage</layout_handle>
+                </homepage>
             </layouts>
         </page>
     </global>

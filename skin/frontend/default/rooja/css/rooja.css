@@ -91,7 +91,7 @@ body{
 }
 
 #logo a{
-	background-image: url(../_images/rooja-logo.png);
+	background-image: url(../images/rooja-logo.png);
 	width: 107px; height: 60px;
 	float: left;
 }
@@ -106,11 +106,11 @@ body{
 	margin-right: 25px;
 	height: 40px;
 	padding: 10px 20px 10px 15px;
-	background: url("../_images/icons/arrow-nav-dark.png") no-repeat scroll 90% 50%;
+	background: url("../images/icons/arrow-nav-dark.png") no-repeat scroll 90% 50%;
 	font-family: "ltc-bodoni-175-1","ltc-bodoni-175-2", Helvetica, Arial;
 }
 #mainNav ul li:hover{
-	background: url("../_images/icons/arrow-nav-white.png") no-repeat  scroll 90% 50%;
+	background: url("../images/icons/arrow-nav-white.png") no-repeat  scroll 90% 50%;
 	background-color: #220f26;
 	padding-left: 15px;
 }
@@ -169,7 +169,7 @@ ul#myAccount li{
 	float: left;
 	height: 5px;
 	padding: 10px 20px 10px 0px;
-	background: url("../_images/icons/arrow-nav-white.png") no-repeat right 8px;
+	background: url("../images/icons/arrow-nav-white.png") no-repeat right 8px;
 }
 ul#myAccount li a{
 	text-transform: none;
@@ -209,7 +209,7 @@ ul#myAccount li:hover ul li:hover{
 	height: 5px;
 	margin-left: 10px;
 	padding: 10px 0px 10px 20px;
-	background: url("../_images/icons/bag.png") no-repeat 10px 4px;
+	background: url("../images/icons/bag.png") no-repeat 10px 4px;
 	text-indent: 30px;
 	color: #fff;
 	font-size: 1.2em;
@@ -218,13 +218,13 @@ ul#myAccount li:hover ul li:hover{
 
 /* ~~~~~ FOOTER ~~~~~ */
 
-#mainFooter{width:100%;background:url(../_images/bgs/footer-diag.png) repeat;padding:30px 0;color:#fff;overflow:hidden;}
+#mainFooter{width:100%;background:url(../images/bgs/footer-diag.png) repeat;padding:30px 0;color:#fff;overflow:hidden;}
 #mainFooter a{color:#fff;text-decoration:underline;}
 #mainFooter h4{text-transform:uppercase;font-size:1.4em;margin-bottom:20px;}
 #mainFooter ul li{font-size:1.2em;line-height:1.67em;}
 #mainFooter ul#socialLinks, #mainFooter ul#socialLinks a, #copyrightInfo, #copyrightInfo a{color:#c7b299;}
 #mainFooter ul#socialLinks img{vertical-align:middle;margin:5px 5px 5px 0;}
-#twitter_update_list{padding:12px;background:url(../_images/bgs/twitter-diag.png) repeat;margin-bottom:8px;}
+#twitter_update_list{padding:12px;background:url(../images/bgs/twitter-diag.png) repeat;margin-bottom:8px;}
 #copyrightInfo {margin-top:-50px;}
 #copyrightInfo a{text-decoration:none;}
 
@@ -242,15 +242,15 @@ p.question{margin:0;font-weight:bold;color:#431f4c;}
 
 
 /* ~~~~~ HOME ~~~~~ */
-#liveSales{background:url(../_images/bgs/black-diag.png) repeat;overflow:hidden;padding:30px 0;}
+#liveSales{background:url(../images/bgs/black-diag.png) repeat;overflow:hidden;padding:30px 0;}
 
 .homeSale, .homeAd{position:relative;overflow:hidden;width:236px;margin-bottom:4px;margin-right:4px;}
 .size1{height:353px;}
 .size2{height:238px;}
 .size3{height:123px;}
 
-.homeSale h2{color:#fff;font-size:2em;padding:15px 10px;display:block;width:222px;background:url(../_images/bgs/purp-opacity-photo-diag.png) repeat;position:absolute;bottom:0px;z-index:10;}
-.homeAd{background:url(../_images/bgs/orange-diag.png) repeat;padding: 10px;width:217px;height:  103px;color:#fff;}
+.homeSale h2{color:#fff;font-size:2em;padding:15px 10px;display:block;width:222px;background:url(../images/bgs/purp-opacity-photo-diag.png) repeat;position:absolute;bottom:0px;z-index:10;}
+.homeAd{background:url(../images/bgs/orange-diag.png) repeat;padding: 10px;width:217px;height:  103px;color:#fff;}
 .homeAd h3 a{text-transform:uppercase;font-size:14px;text-decoration:underline;margin-bottom:5px;color:#fff;font-weight:normal;}
 .homeAd p{margin-bottom:0px;}
 
@@ -281,18 +281,18 @@ p.question{margin:0;font-weight:bold;color:#431f4c;}
 #filterSale select{width:100%;font-size:1.4em;margin-bottom:10px;}
 #filterSale a{text-decoration:underline;color:#949494;font-size:1.2em;float:right;margin-top:12px;}
 .sideAd{background-color:#d68533;padding:15px 10px;margin-top:5px;}
-.sideAd p{font-weight:bold;color:#fff;margin:0;background:url(../_images/icons/rupee-icon.png) no-repeat left center;padding-left:28px;}
+.sideAd p{font-weight:bold;color:#fff;margin:0;background:url(../images/icons/rupee-icon.png) no-repeat left center;padding-left:28px;}
 
 .product{width:230px;height:230px;overflow:hidden;position:relative;margin-bottom:20px;}
 .product img{position:relative;}
-.product .productCore{position:relative;bottom:50px;height:38px;left:0;z-index:10;padding:6px 10px;background:url(../_images/bgs/purp-opacity-photo-diag.png) repeat;}
-.product .productCore.soldOut{background-image:url(../_images/bgs/pink-diag.png);}
-.product .productCore h2.productName{display:none;color:#fff;padding:6px 10px;background:url(../_images/bgs/purp-opacity-photo-diag.png) repeat;text-align:right;}
-.productCore .numLikes{float:left;margin-top:10px;background:url(../_images/icons/thumbs-up.png) no-repeat top left;padding-left:28px;height:20px;line-height:20px;font-size:1.2em;color:#fff;}
+.product .productCore{position:relative;bottom:50px;height:38px;left:0;z-index:10;padding:6px 10px;background:url(../images/bgs/purp-opacity-photo-diag.png) repeat;}
+.product .productCore.soldOut{background-image:url(../images/bgs/pink-diag.png);}
+.product .productCore h2.productName{display:none;color:#fff;padding:6px 10px;background:url(../images/bgs/purp-opacity-photo-diag.png) repeat;text-align:right;}
+.productCore .numLikes{float:left;margin-top:10px;background:url(../images/icons/thumbs-up.png) no-repeat top left;padding-left:28px;height:20px;line-height:20px;font-size:1.2em;color:#fff;}
 .productCore .price{float:right;text-align:right;width:140px;font-family:"ltc-bodoni-175-1","ltc-bodoni-175-2", georgia, serif;color:#b4adb3;font-size:1.4em;text-decoration:line-through;margin-bottom:0;}
 .productCore .price .livePrice{font-size:1.71em;display:block; text-decoration:none;color:#fff;}
 .productCore.soldOut .price{text-decoration:none;}
-.numLeft{background:url(../_images/icons/limited-items-left.png) no-repeat top left;z-index:10;height:40px;width:42px;padding:13px 11px 0 0;display:block;position:absolute;top:0px;right:0px;color:#fff;font-weight:bold;font-size:1.6em;text-align:right;}
+.numLeft{background:url(../images/icons/limited-items-left.png) no-repeat top left;z-index:10;height:40px;width:42px;padding:13px 11px 0 0;display:block;position:absolute;top:0px;right:0px;color:#fff;font-weight:bold;font-size:1.6em;text-align:right;}
 
 /* ~~~~~ PRODUCT DETAILS ~~~~~ */
 
@@ -302,7 +302,7 @@ h2#saleDetails{color:#c60;margin:22px 0 5px;}
 #productBreakdown li a{color:#666;}
 
 #likeThis{background-color:#431f4c;padding:8px 11px;font-weight:bold;color:#fff;line-height:34px;height:34px;}
-#likeBtn{background-image:url(../_images/icons/like-btn.png);width:62px;height:34px;}
+#likeBtn{background-image:url(../images/icons/like-btn.png);width:62px;height:34px;}
 
 #productOptions{
     margin-top:10px;
@@ -318,25 +318,25 @@ h2#saleDetails{color:#c60;margin:22px 0 5px;}
 #colors li a, #sizes li a{display:block;float:left;margin-right:5px;border:1px solid #000;}
 #colors li a{width:14px;height:14px;}
 #sizes li a{width:25px;height:19px;background-color:#bcbcbc;text-align:center;font-size:1.1em;color:#808080;border-color:#a1a1a1;line-height:19px;}
-.sizeChart{color:#555;margin-top:5px;text-decoration:underline;background:url(../_images/icons/size-chart.png) no-repeat center left;padding-left:16px;height:12px;line-height:12px;}
+.sizeChart{color:#555;margin-top:5px;text-decoration:underline;background:url(../images/icons/size-chart.png) no-repeat center left;padding-left:16px;height:12px;line-height:12px;}
 #qty{width:35px;height:24px;border:1px solid #9d9d9d;text-align:center;color:#595959;font-size:1.2em;margin-right:10px;}
 #productOptions label{color:#595959;}
 
-#addToBagBtn{background-image:url(../_images/icons/add-to-bag.png);width:230px;height:50px;margin-top:5px;}
+#addToBagBtn{background-image:url(../images/icons/add-to-bag.png);width:230px;height:50px;margin-top:5px;}
 #estimatedShippingDate{width:230px;padding:8px 0;text-align:center;background-color:#6f989d;color:#2b3536;margin:0;}
 
 #prevNextLinks{margin:5px 0 0;}
 #prevProduct, #nextProduct, #prevProduct img, #nextProduct img{position:relative;}
-#prevProduct p, #nextProduct p{position:absolute;z-index:10;top:0;left:0;height:75px;display:block;background:url(../_images/bgs/gray-opacity-photo-diag.png) repeat;font-family:"ltc-bodoni-175-1","ltc-bodoni-175-2", georgia, serif;line-height:75px;text-align:center;font-size:2.4em;color:#fff;}
+#prevProduct p, #nextProduct p{position:absolute;z-index:10;top:0;left:0;height:75px;display:block;background:url(../images/bgs/gray-opacity-photo-diag.png) repeat;font-family:"ltc-bodoni-175-1","ltc-bodoni-175-2", georgia, serif;line-height:75px;text-align:center;font-size:2.4em;color:#fff;}
 #prevProduct p{width:75px;}
 #nextProduct p{width:150px;}
 
-#commentsRelated{background:url(../_images/bgs/black-diag.png) repeat;overflow:hidden;margin-top:25px;padding:30px 0;}
+#commentsRelated{background:url(../images/bgs/black-diag.png) repeat;overflow:hidden;margin-top:25px;padding:30px 0;}
 #commentsRelated h3{color:#fff;margin-bottom:22px;}
 
 #related ul li{display:inline;}
 #related ul li a{position:relative;float:left;display:block;margin:0 5px 5px 0px;}
-#related ul li span.numLikes{position:absolute;z-index:10;bottom:0;right:0;background:url(../_images/bgs/purp-opacity-photo-diag.png) repeat;padding:6px 10px; color:#fff;font-size:1.2em;}
+#related ul li span.numLikes{position:absolute;z-index:10;bottom:0;right:0;background:url(../images/bgs/purp-opacity-photo-diag.png) repeat;padding:6px 10px; color:#fff;font-size:1.2em;}
 #related ul li span.numLikes img{margin-right:3px;}
 
 /* ~~~~~ Typography ~~~~~ */
@@ -351,10 +351,10 @@ h4{font-size:1.6em;font-family:"ltc-bodoni-175-1","ltc-bodoni-175-2", georgia, s
 p {font-size: 1.2em;line-height:1.4em;margin-bottom:20px;}
 p.saleEnding{color:#cc6600;margin-bottom:10px;}
 
-.backTo{margin:18px 0 10px;text-decoration:underline;font-size:1.2em;padding-left:18px;background:url(../_images/icons/back-arrow.png) no-repeat top left;height:14px;line-height:14px;display:block;}
+.backTo{margin:18px 0 10px;text-decoration:underline;font-size:1.2em;padding-left:18px;background:url(../images/icons/back-arrow.png) no-repeat top left;height:14px;line-height:14px;display:block;}
 .needAssistance{background-color:#cc6600;color:#fff;padding:5px;margin:10px 0;font-size:1.2em;height:20px;display:block;line-height:20px;}
 .needAssistance img{vertical-align:middle;}
-.backToTop{text-decoration:underline;color:#858585;font-size:1.2em;padding-left:18px;background:url(../_images/icons/back-to-top.png) no-repeat top left;height:20px;line-height:20px;display:block;}
+.backToTop{text-decoration:underline;color:#858585;font-size:1.2em;padding-left:18px;background:url(../images/icons/back-to-top.png) no-repeat top left;height:20px;line-height:20px;display:block;}
 
 /* ~~~~~ FORM STYLES ~~~~~ */
 input{border:none;outline:none;}

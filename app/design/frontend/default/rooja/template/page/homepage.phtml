@@ -1,0 +1,182 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+/**
+ * Template for Mage_Page_Block_Html
+ */
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->getLang() ?>" lang="<?php echo $this->getLang() ?>">
+<head>
+<?php echo $this->getChildHtml('head') ?>
+</head>
+<?php /* AM EDIT - Redirect to Login Page */ ?>
+<?php Mage::getSingleton('customer/session')->setBeforeAuthUrl($this->getRequest()->getRequestUri());  //save requested URL for later redirection
+if(!Mage::getSingleton('customer/session')->isLoggedIn()) {  // if not logged in
+    header("Status: 301");
+    header('Location: '.$this->getUrl('customer/account/login')) ;  // send to the login page
+    exit; 
+} ?>
+<body<?php echo $this->getBodyClass()?' class="'.$this->getBodyClass().'"':'' ?>>
+<?php echo $this->getChildHtml('after_body_start') ?>
+    <?php echo $this->getChildHtml('global_notices') ?>
+        <?php echo $this->getChildHtml('header') ?>
+<section id="liveSales">
+	<div class="container">
+		<article class="homeSale size2 fl masonry">
+			<img src="<?php echo $this->getSkinUrl('images/photos/home/1.jpg') ?>" alt="Sale Name">
+			<h2>Curanotir Ferm</h2>
+		</article>
+		<article class="homeSale size3 fl masonry">
+			<img src="<?php echo $this->getSkinUrl('images/photos/home/7.jpg') ?>" alt="Sale Name">
+			<h2>Lorem Ipsum</h2>
+		</article>
+		<article class="homeSale size3 fl masonry">
+			<img src="<?php echo $this->getSkinUrl('images/photos/home/6.jpg') ?>" alt="Sale Name">
+			<h2>Condimentum Odio</h2>
+		</article>
+		<article class="homeAd fl masonry">
+			<h3><a href="#">Invite a Friend</a></h3>
+			<p>Share what&rsquo;s in with your friends on Facebook! Invite a friend and receive $25 to spend on Rooja!</p>
+		</article>		
+		<article class="homeSale size3 fl masonry">
+			<img src="<?php echo $this->getSkinUrl('images/photos/home/3.jpg') ?>" alt="Sale Name">
+			<h2>Lorem Ipsum</h2>
+		</article>
+		<article class="homeSale size2 fl masonry">
+			<img src="<?php echo $this->getSkinUrl('images/photos/home/5.jpg') ?>" alt="Sale Name">
+			<h2>Ullamcorper</h2>
+		</article>
+		<article class="homeSale size2 fl masonry">
+			<img src="<?php echo $this->getSkinUrl('images/photos/home/9.jpg') ?>" alt="Sale Name">
+			<h2>Pellentesque</h2>
+		</article>
+		<article class="homeSale size1 fl masonry">
+			<img src="<?php echo $this->getSkinUrl('images/photos/home/8.jpg') ?>" alt="Sale Name">
+			<h2>Class Apten</h2>
+		</article>
+		<article class="homeSale size2 fl masonry">
+			<img src="<?php echo $this->getSkinUrl('images/photos/home/2.jpg') ?>" alt="Sale Name">
+			<h2>Mauris Pelle</h2>
+		</article>
+		<article class="homeSale size3 fl masonry">
+			<img src="<?php echo $this->getSkinUrl('images/photos/home/4.jpg') ?>" alt="Sale Name">
+			<h2>Lorem Ipsum dolor sit amet</h2>
+		</article>
+	</div>
+</section>
+<section id="extraSales">
+	<div class="container">
+		<section id="endingSoon" class="col3 fl">
+			<h2>Sales Ending Soon</h2>
+			<article class="saleDetails fl">
+				<a href="sales.php"><img src="<?php echo $this->getSkinUrl('images/photos/home/ending-soon-1.jpg') ?>" alt="Sale Name"></a>
+				<h3><a href="sales.php">Swiss Legend Watches</a></h3>
+				<p>March 3rd at 8:00pm</p>
+			</article>
+			<article class="saleDetails fl noMargin">
+				<a href="sales.php"><img src="<?php echo $this->getSkinUrl('images/photos/home/ending-soon-2.jpg') ?>" alt="Sale Name"></a>
+				<h3><a href="sales.php">Gucci Galore</a></h3>
+				<p>March 3rd at 8:00pm</p>
+			</article>
+			<article class="saleDetails fl">
+				<a href="sales.php"><img src="<?php echo $this->getSkinUrl('images/photos/home/ending-soon-3.jpg') ?>" alt="Sale Name"></a>
+				<h3><a href="sales.php">Italian Fashion Week</a></h3>
+				<p>March 3rd at 8:00pm</p>
+			</article>
+			<article class="saleDetails fl noMargin">
+				<a href="sales.php"><img src="<?php echo $this->getSkinUrl('images/photos/home/ending-soon-4.jpg') ?>" alt="Sale Name"></a>
+				<h3><a href="sales.php">Handbag Shop</a></h3>
+				<p>March 3rd at 8:00pm</p>
+			</article>
+		</section>
+		
+		<section id="upcomingSales" class="col1 fr noMargin">
+			<h2>Upcoming</h2>
+			<article class="upcomingDate">
+				<h4>March 16</h4>
+				<ul>
+					<li>Martin &amp; Osa</li>
+					<li>Facconable</li>
+					<li>Ray Ban</li>
+					<li>Prada</li>
+				</ul>
+			</article>
+			<article class="upcomingDate noMargin">
+				<h4>March 17</h4>
+				<ul>
+					<li>Martin &amp; Osa</li>
+					<li>Facconable</li>
+					<li>Ray Ban</li>
+				</ul>
+			</article>
+			<article class="upcomingDate">
+				<h4>March 18</h4>
+				<ul>
+					<li>Burberry</li>
+					<li>Gucci</li>
+					<li>Louis Vuitton</li>
+				</ul>
+			</article>
+			<article class="upcomingDate noMargin">
+				<h4>March 19</h4>
+				<ul>
+					<li>Jack Spade</li>
+					<li>Kate Spade</li>
+					<li>Fendi</li>
+					<li>GStar Raw</li>
+				</ul>
+			</article>
+		</section>
+		
+	</div>
+</section>
+<script>
+    $(function(){
+		
+      $('#liveSales .container').masonry({
+        singleMode: true,
+        columnWidth: 240,
+        resizeable: true,
+        animate: true,
+        animationOptions: {
+        		duration: 750,
+        	    easing: 'linear',
+        	    queue: false
+        }, 
+        itemSelector: '.masonry'
+      });
+
+    });
+  </script>
+
+
+        <?php echo $this->getChildHtml('footer') ?>
+        <?php echo $this->getChildHtml('before_body_end') ?>
+<?php echo $this->getAbsoluteFooter() ?>
+</body>
+</html>
