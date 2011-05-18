@@ -32,7 +32,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->getLang() ?>" lang="<?php echo $this->getLang() ?>">
 <head>
-<?php echo $this->getChildHtml('head') ?>
+    <?php echo $this->getChildHtml('head') ?>
 </head>
 <?php /* AM EDIT - Redirect to Login Page */ ?>
 <?php Mage::getSingleton('customer/session')->setBeforeAuthUrl($this->getRequest()->getRequestUri());  //save requested URL for later redirection
@@ -41,24 +41,13 @@ if(!Mage::getSingleton('customer/session')->isLoggedIn()) {  // if not logged in
     header('Location: '.$this->getUrl('customer/account/login')) ;  // send to the login page
     exit; 
 } ?>
-<body<?php echo $this->getBodyClass()?' class="'.$this->getBodyClass().'"':'' ?>>
-<?php echo $this->getChildHtml('after_body_start') ?>
-<div class="wrapper">
-    <?php echo $this->getChildHtml('global_notices') ?>
-    <div class="page">
-        <div class="main-container col2-right-layout">
-            <div class="main">
-                <?php echo $this->getChildHtml('breadcrumbs') ?>
-                <div class="col-main">
-                    <?php echo $this->getChildHtml('global_messages') ?>
-                    <?php echo $this->getChildHtml('content') ?>
-                </div>
-                <div class="col-right sidebar"><?php echo $this->getChildHtml('right') ?></div>
-            </div>
-        </div>
+<body class="page-empty <?php echo $this->getBodyClass()?$this->getBodyClass():'' ?>">
+    <div>
+        <?php echo $this->getChildHtml('after_body_start') ?>
+        <?php echo $this->getChildHtml('global_messages') ?>
+        <?php echo $this->getChildHtml('content') ?>
         <?php echo $this->getChildHtml('before_body_end') ?>
+        <?php echo $this->getAbsoluteFooter() ?>
     </div>
-</div>
-<?php echo $this->getAbsoluteFooter() ?>
 </body>
 </html>

@@ -34,7 +34,7 @@
 <head>
 <?php echo $this->getChildHtml('head') ?>
 </head>
-
+<?php /* AM EDIT - Redirect to Login Page */ ?>
 <?php Mage::getSingleton('customer/session')->setBeforeAuthUrl($this->getRequest()->getRequestUri());  //save requested URL for later redirection
 if(!Mage::getSingleton('customer/session')->isLoggedIn()) {  // if not logged in
     header("Status: 301");
