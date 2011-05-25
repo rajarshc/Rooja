@@ -1,0 +1,74 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+/**
+ * Product list template
+ *
+ * @see Mage_Catalog_Block_Product_List
+ */
+?>
+<?php
+    $_productCollection=$this->getLoadedProductCollection();
+    $_helper = $this->helper('catalog/output');
+    $cards = array('size1','size2','size3');
+?>
+
+<?php if(!$_productCollection->count()): ?>
+<?php else: ?>
+    <?php $_collectionSize = $_productCollection->count() ?>
+    <?php $_columnCount = $this->getColumnCount(); ?>
+    <?php $i=0; foreach ($_productCollection as $_product): ?>
+    
+    <?php $category = array();
+        $cat_ids = $_product->getCategoryIds();
+        $cat = new Mage_Catalog_Model_Category();
+        foreach ($cat_ids as $cid)
+        {
+            $cat->load($cid);
+            $cat_data = $cat->_data;
+            $category[] = array(
+                'name' => $cat_data['name'],
+                'url_key' => $cat_data['url_key'],
+				'my_meta' => $cat_data['my_meta']
+                );
+        }
+		//var_dump($cat_data)
+        ?>
+            <article class="homeSale <?php echo $cards[array_rand($cards)]; ?> fl masonry">
+                <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image'); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" /></a>
+                <h2><?php echo $cat_data['name']; ?></h2>
+            </article>
+        <?php if ($i%$_columnCount==0 || $i==$_collectionSize): ?>
+        <?php endif ?>
+        <?php endforeach ?>
+		<article class="homeAd fl masonry">
+			<h3><a href="#">Invite a Friend</a></h3>
+			<p>Share what&rsquo;s in with your friends on Facebook! Invite a friend and receive $25 to spend on Rooja!</p>
+		</article>		
+
+<?php endif; ?>
+
