@@ -285,7 +285,7 @@ p.question{margin:0;font-weight:bold;color:#431f4c;}
 
 .product{width:230px;height:230px;overflow:hidden;position:relative;margin-bottom:20px;}
 .product img{position:relative;}
-.product .productCore{position:relative;bottom:50px;height:38px;left:0;z-index:10;padding:6px 10px;background:url(../images/bgs/purp-opacity-photo-diag.png) repeat;}
+.product .productCore{background: url("../images/bgs/purp-opacity-photo-diag.png") repeat scroll 0 0 transparent;bottom: 0;height: 38px;left: 0;padding: 6px 10px;position: absolute;width: 210px;z-index: 10;}
 .product .productCore.soldOut{background-image:url(../images/bgs/pink-diag.png);}
 .product .productCore h2.productName{display:none;color:#fff;padding:6px 10px;background:url(../images/bgs/purp-opacity-photo-diag.png) repeat;text-align:right;}
 .productCore .numLikes{float:left;margin-top:10px;background:url(../images/icons/thumbs-up.png) no-repeat top left;padding-left:28px;height:20px;line-height:20px;font-size:1.2em;color:#fff;}

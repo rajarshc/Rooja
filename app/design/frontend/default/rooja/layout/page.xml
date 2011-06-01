@@ -32,7 +32,7 @@ Default layout, loads most of the pages
 
     <default translate="label" module="page">
         <label>All Pages</label>
-        <block type="page/html" name="root" output="toHtml" template="page/3columns.phtml">
+        <block type="page/html" name="root" output="toHtml" template="page/1column.phtml">
 
             <block type="page/html_head" name="head" as="head">
                 <action method="addJs"><script>prototype/prototype.js</script></action>
@@ -83,6 +83,8 @@ Default layout, loads most of the pages
             <block type="core/text_list" name="left" as="left" translate="label">
                 <label>Left Column</label>
             </block>
+
+			<block type="core/text_list" name="sort" as="sort"/>
 
             <block type="core/messages" name="global_messages" as="global_messages"/>
             <block type="core/messages" name="messages" as="messages"/>

@@ -46,64 +46,15 @@ if(!Mage::getSingleton('customer/session')->isLoggedIn()) {  // if not logged in
     <?php echo $this->getChildHtml('global_notices') ?>
         <?php echo $this->getChildHtml('header') ?>
 
-
-
-
 <section id="liveSales">
 	<div class="container">
-
-                    <?php echo $this->getChildHtml('content') ?>
-
-		<?php /*
-		<article class="homeSale size2 fl masonry">
-			<img src="<?php echo $this->getSkinUrl('images/photos/home/1.jpg') ?>" alt="Sale Name">
-			<h2>Curanotir Ferm</h2>
-		</article>
-		<article class="homeSale size3 fl masonry">
-			<img src="<?php echo $this->getSkinUrl('images/photos/home/7.jpg') ?>" alt="Sale Name">
-			<h2>Lorem Ipsum</h2>
-		</article>
-		<article class="homeSale size3 fl masonry">
-			<img src="<?php echo $this->getSkinUrl('images/photos/home/6.jpg') ?>" alt="Sale Name">
-			<h2>Condimentum Odio</h2>
-		</article>
-		<article class="homeAd fl masonry">
-			<h3><a href="#">Invite a Friend</a></h3>
-			<p>Share what&rsquo;s in with your friends on Facebook! Invite a friend and receive $25 to spend on Rooja!</p>
-		</article>		
-		<article class="homeSale size3 fl masonry">
-			<img src="<?php echo $this->getSkinUrl('images/photos/home/3.jpg') ?>" alt="Sale Name">
-			<h2>Lorem Ipsum</h2>
-		</article>
-		<article class="homeSale size2 fl masonry">
-			<img src="<?php echo $this->getSkinUrl('images/photos/home/5.jpg') ?>" alt="Sale Name">
-			<h2>Ullamcorper</h2>
-		</article>
-		<article class="homeSale size2 fl masonry">
-			<img src="<?php echo $this->getSkinUrl('images/photos/home/9.jpg') ?>" alt="Sale Name">
-			<h2>Pellentesque</h2>
-		</article>
-		<article class="homeSale size1 fl masonry">
-			<img src="<?php echo $this->getSkinUrl('images/photos/home/8.jpg') ?>" alt="Sale Name">
-			<h2>Class Apten</h2>
-		</article>
-		<article class="homeSale size2 fl masonry">
-			<img src="<?php echo $this->getSkinUrl('images/photos/home/2.jpg') ?>" alt="Sale Name">
-			<h2>Mauris Pelle</h2>
-		</article>
-		<article class="homeSale size3 fl masonry">
-			<img src="<?php echo $this->getSkinUrl('images/photos/home/4.jpg') ?>" alt="Sale Name">
-			<h2>Lorem Ipsum dolor sit amet</h2>
-		</article>
-		*/ ?>
+		<?php echo $this->getChildHtml('content') ?>
 	</div>
 </section>
 <section id="extraSales">
 	<div class="container">
 		<section id="endingSoon" class="col3 fl">
 			<h2>Sales Ending Soon</h2>
-
-
 <?php 
 $i = 1;
 $categories = Mage::helper('catalog/category')->getStoreCategories();
@@ -126,7 +77,7 @@ foreach ($categories as $_category){
 						}
 						echo '<a href="'. $c->getURL() .'"><img src="/media/catalog/category/'. $c->getImage() .'"></a>';
 						echo '<h3><a href="'. $c->getURL() .'">' . $c->getName() . '</a></h3>';
-						echo '<p>'. date('M jS \a\t g:ia', strtotime($enddate)).'</p>';
+						echo '<p>'. date('M jS \a\t g:ia', strtotime($enddate)) .'</p>';
 						echo '</article>';
 						$i++;
 					}
@@ -137,38 +88,8 @@ foreach ($categories as $_category){
 }
 ?>
 </section>
-<?php /*
-
-
-
-			<article class="saleDetails fl">
-				<a href="sales.php"><img src="<?php echo $this->getSkinUrl('images/photos/home/ending-soon-1.jpg') ?>" alt="Sale Name"></a>
-				<h3><a href="sales.php">Swiss Legend Watches</a></h3>
-				<p>March 3rd at 8:00pm</p>
-			</article>
-			<article class="saleDetails fl noMargin">
-				<a href="sales.php"><img src="<?php echo $this->getSkinUrl('images/photos/home/ending-soon-2.jpg') ?>" alt="Sale Name"></a>
-				<h3><a href="sales.php">Gucci Galore</a></h3>
-				<p>March 3rd at 8:00pm</p>
-			</article>
-			<article class="saleDetails fl">
-				<a href="sales.php"><img src="<?php echo $this->getSkinUrl('images/photos/home/ending-soon-3.jpg') ?>" alt="Sale Name"></a>
-				<h3><a href="sales.php">Italian Fashion Week</a></h3>
-				<p>March 3rd at 8:00pm</p>
-			</article>
-			<article class="saleDetails fl noMargin">
-				<a href="sales.php"><img src="<?php echo $this->getSkinUrl('images/photos/home/ending-soon-4.jpg') ?>" alt="Sale Name"></a>
-				<h3><a href="sales.php">Handbag Shop</a></h3>
-				<p>March 3rd at 8:00pm</p>
-			</article>
-		</section>
-*/ ?>		
 		<section id="upcomingSales" class="col1 fr noMargin">
 			<h2>Upcoming</h2>
-
-
-
-
 <?php 
 $i = 1;
 $sortedArrayByDates = array();
@@ -207,9 +128,7 @@ foreach ($sortedArrayByDates as $date => $array)
     $i++;
 }
 ?>
-
 		</section>
-		
 	</div>
 </section>
 <script>
@@ -230,8 +149,6 @@ foreach ($sortedArrayByDates as $date => $array)
 
     });
   </script>
-
-
         <?php echo $this->getChildHtml('footer') ?>
         <?php echo $this->getChildHtml('before_body_end') ?>
 <?php echo $this->getAbsoluteFooter() ?>

@@ -52,8 +52,53 @@
 
 <header id="mainHeader">
 	<div class="container">
-	<h2 id="logo"><a href="index.php" class="tr">Rooja Fashion</a></h2>
+	<h2 id="logo"><a href="/index.php" class="tr">Rooja Fashion</a></h2>
 	<nav id="mainNav">
+<ul>
+<?php 
+$i = 1;
+$categories = Mage::helper('catalog/category')->getStoreCategories();
+$fivedays = date('y-m-d', strtotime("+5 days"));
+foreach ($categories as $_category){
+    if($_category->hasChildren()){
+    echo '<li><a href="'.$_category->getURL().'">' . $_category->getName() . '</a>';
+    echo '<div><ul><li>New Sales</li>';
+        $_category->getId(); // category id
+        foreach($_category->getChildren() as $subcategory){
+		$c = Mage::getModel('catalog/category')->load($subcategory->getId());
+            if($c->getIsActive()){ // check if category is active
+				if (!$c->getSale_start_date() == null) {
+	                $startdate = date('y-m-d', strtotime($c->getSale_start_date())) . ' ' . $c->getSale_start_time() . ':00';
+					$enddate = date('y-m-d', strtotime($c->getSale_end_date())) . ' ' . $c->getSale_end_time() . ':00';
+					//var_dump($c);
+					if ($enddate < $fivedays) {
+						echo '<li><a href="'. $c->getURL() .'">' . $c->getName() . '</a></li>';
+						$i++;
+					}
+				}
+            }
+        }
+        echo '</ul><ul><li>Ending Soon</li>';
+        foreach($_category->getChildren() as $subcategory){
+		$c = Mage::getModel('catalog/category')->load($subcategory->getId());
+            if($c->getIsActive()){ // check if category is active
+				if (!$c->getSale_start_date() == null) {
+	                $startdate = date('y-m-d', strtotime($c->getSale_start_date())) . ' ' . $c->getSale_start_time() . ':00';
+					$enddate = date('y-m-d', strtotime($c->getSale_end_date())) . ' ' . $c->getSale_end_time() . ':00';
+					//var_dump($c);
+					if ($enddate > $fivedays) {
+						echo '<li><a href="'. $c->getURL() .'">' . $c->getName() . '</a></li>';
+						$i++;
+					}
+				}
+            }
+        }
+	echo '</div></li>';
+    }
+}
+?>
+</ul>
+<?php /*
 		<ul>
 			<li><a href="#" title="">Women</a>
 	    		<div>
@@ -92,21 +137,25 @@
 				</div>
 			</li>
 			<li><a href="#" title="">Travel</a></li>
-	    </ul>
+	    </ul> */ ?>
 	</nav>
+
+<?php $session = Mage::getSingleton('customer/session');
+if($session->isLoggedIn()) {$customer = $session->getCustomer();}
+?>
 	
 	<aside id="accountLinks">
 		<ul id="myAccount">
-			<li><a href="#" title="">Welcome Skot</a>
+			<li><a href="#" title="">Welcome <?php echo $customer->getFirstname(); ?></a>
 				<ul>
-					<li><a href="#" title="">My Account</a></li>
+					<li><a href="/customer/account" title="">My Account</a></li>
 					<li><a href="#" title="">Invite a Friend</a></li>
-					<li><a href="#" title="">Sign Out</a></li>
+					<li><a href="/customer/account/logout" title="">Sign Out</a></li>
 				</ul>
 			</li>
 		</ul>
-		
-		<a href="#" id="myBag">My Bag (2)</a>
+		<?php $cart_count = Mage::getSingleton('checkout/cart')->getSummaryQty(); ?>
+		<a href="/checkout/cart" id="myBag">My Bag (<?php if($cart_count == 0) echo '0'; else echo $cart_count; ?>)</a>
 	</aside>
 	</div>
 </header><!--End Header-->

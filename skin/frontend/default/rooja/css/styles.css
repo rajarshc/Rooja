@@ -94,12 +94,12 @@ ul,ol         { list-style:none; }
 .page-empty { background:#fff; padding:20px; text-align:left; }
 .page-popup { padding:20px; text-align:left; }
 .main-container {}
-.main { margin:10px 0; }
+.main { }
 
 /* Base Columns */
-.col-left { float:left; width:230px; border:1px solid #ddd; padding:5px 5px 0; }
-.col-main { float:left; width:736px; border:1px solid #ddd; padding:5px; }
-.col-right { float:right; width:230px; border:1px solid #ddd; padding:5px 5px 0; }
+.col-left { float:left; width:230px; }
+.col-main { float:left; width:736px; }
+.col-right { float:right; width:230px; }
 
 /* 1 Column Layout */
 .col1-layout .col-main { float:none; width:auto; }

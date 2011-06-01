@@ -1,0 +1,82 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+    //control the way that the layered navigation attributes present themselves
+    //either dropdown list or default methd (ordered list)
+    $attributeName = $this->getName();
+    $itemcountthreshold = 0; // you can change this
+    $itemcount = $this->getItemsCount();
+    $displayitemcount = false; //set to true/false to display item count in brackets
+    
+    
+    if($itemcount > $itemcountthreshold){
+        $attributeName = "Overthreshold";
+        $new_attributeName = $this->getName();
+        //echo $new_attributeName;
+    }
+
+    if(!function_exists("_displayOrderedlist")){
+        function _displayOrderedlist($atts,$displayitemcount){
+            echo '<ol>';
+            foreach($atts->getItems() as $_item){
+                echo '<li><a href="'.$_item->getUrl().'">'.$_item->getLabel().'</a>';
+                if($displayitemcount){
+                    echo ' ('.$_item->getCount().')';
+                }
+                echo '</li>';
+            }
+            echo '</ol>';
+        }
+    }
+    if(!function_exists("_displayDropdown")){
+        function _displayDropdown($atts,$displayitemcount,$new_attributeName){
+            echo '<select id="layered-select" class="select" name="layered-select" onchange="if (this.selectedIndex > 0) location.href=this[this.selectedIndex].value;">';
+            echo '<option selected="selected">'.$new_attributeName.'</option>';
+            foreach ($atts->getItems() as $_item){
+                echo '<option value="'.$_item->getUrl().'">';
+                echo $_item->getLabel();
+                if($displayitemcount){
+                    echo ' ('.$_item->getCount().')';
+                }
+                echo '</option>';
+            }
+            echo '</select>';
+        }
+    }
+    
+    switch ($attributeName) {
+        case 'Shoe Size':
+        case 'Overthreshold':
+            _displayDropdown($this,$displayitemcount,$new_attributeName);
+            break;
+    
+        default:
+            _displayOrderedlist($this,$displayitemcount);
+            break;
+    }    
+    
+?>

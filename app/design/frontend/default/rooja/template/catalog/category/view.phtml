@@ -1,0 +1,88 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+/**
+ * Category view template
+ *
+ * @see Mage_Catalog_Block_Category_View
+ */
+?>
+<?php
+    $_helper    = $this->helper('catalog/output');
+    $_category  = $this->getCurrentCategory();
+    $_imgHtml   = '';
+    if ($_imgUrl = $_category->getImageUrl()) {
+        $_imgHtml = '<p class="category-image"><img src="'.$_imgUrl.'" alt="'.$this->htmlEscape($_category->getName()).'" title="'.$this->htmlEscape($_category->getName()).'" /></p>';
+        $_imgHtml = $_helper->categoryAttribute($_category, $_imgHtml, 'image');
+    }
+?>
+
+<section id="saleDetails">
+	<div class="container">
+		<a href="home.php" class="backTo fl" title="Back to Home">Back to home</a>
+		<a href="#" class="needAssistance fr" title="Need Assitance? Talk to a live rep" class="fr"><img src="<?php echo $this->getSkinUrl('images/icons/question-mark.png'); ?>" alt="Question mark icon"> Need Assistance</a>
+		
+	<section id="saleInfo" class="col1 fl clear">
+		<h1><?php echo $_helper->categoryAttribute($_category, $_category->getName(), 'name') ?></h1>
+		
+		<?php $enddate = date('y-m-d', strtotime($_category->getSale_end_date())) . ' ' . $_category->getSale_end_time() . ':00'; ?>
+		<?php if (!$enddate == null) {
+		echo '<p class="saleEnding">This sale ends ' . date('F jS \a\t g:ia', strtotime($enddate));
+		} ?>
+		<?php //var_export($_category); ?>
+		<?php if($_description=$this->getCurrentCategory()->getDescription()): ?>
+			<p><?php echo $_helper->categoryAttribute($_category, $_description, 'description') ?></p>
+	    <?php endif; ?>
+
+		<div class="shareThis">
+			<p>Share this sale with your friends</p>
+			<a href="#"><img src="<?php echo $this->getSkinUrl('images/icons/facebook-blue-24.png'); ?>" alt="facebook icon"></a>
+			<a href="#"><img src="<?php echo $this->getSkinUrl('images/icons/twitter-teal-24.png'); ?>" alt="twitter icon"></a>
+			<a href="#"><img src="<?php echo $this->getSkinUrl('images/icons/email-24.png'); ?>" alt="facebook icon"></a>
+		</div>
+		
+		<aside id="filterSale">
+			<h3>Find it Fast</h3>
+			<?php echo $this->getChildHtml('sorting') ?>
+			<form>
+			<input type="submit" id="filterSaleBtn" name="filterSaleBtn" value="Search" class="submitBtn">
+			<a href="<?php echo $this->getClearUrl() ?>">Clear Filters</a>
+			</form>
+			
+		</aside>
+		
+		<figure id="inviteFriends" class="sideAd">
+			<p>Invite 10 friends to Rooja and get free shipping for life</p>
+		</figure>
+	</section>
+	
+
+    <?php echo $this->getProductListHtml() ?>
+	<a href="#" class="backToTop fr">Back to Top</a>
+	<br class="clear">
+	</div>
+</section>
