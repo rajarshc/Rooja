@@ -43,7 +43,7 @@
 
 <section id="saleDetails">
 	<div class="container">
-		<a href="home.php" class="backTo fl" title="Back to Home">Back to home</a>
+		<a href="/" class="backTo fl" title="Back to Home">Back to home</a>
 		<a href="#" class="needAssistance fr" title="Need Assitance? Talk to a live rep" class="fr"><img src="<?php echo $this->getSkinUrl('images/icons/question-mark.png'); ?>" alt="Question mark icon"> Need Assistance</a>
 		
 	<section id="saleInfo" class="col1 fl clear">
@@ -65,15 +65,7 @@
 			<a href="#"><img src="<?php echo $this->getSkinUrl('images/icons/email-24.png'); ?>" alt="facebook icon"></a>
 		</div>
 		
-		<aside id="filterSale">
-			<h3>Find it Fast</h3>
-			<?php echo $this->getChildHtml('sorting') ?>
-			<form>
-			<input type="submit" id="filterSaleBtn" name="filterSaleBtn" value="Search" class="submitBtn">
-			<a href="<?php echo $this->getClearUrl() ?>">Clear Filters</a>
-			</form>
-			
-		</aside>
+		<?php echo $this->getChildHtml('sorting') ?>
 		
 		<figure id="inviteFriends" class="sideAd">
 			<p>Invite 10 friends to Rooja and get free shipping for life</p>

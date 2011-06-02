@@ -32,6 +32,9 @@
  */
 ?>
 <?php if($this->canShowBlock()): ?>
+		<aside id="filterSale">
+			<h3>Find it Fast</h3>
+
         <?php echo $this->getStateHtml() ?>
         <?php if($this->canShowOptions()): ?>
                 <?php $_filters = $this->getFilters() ?>
@@ -42,4 +45,7 @@
                 <?php endforeach; ?>
             <script type="text/javascript">decorateDataList('narrow-by-list')</script>
         <?php endif; ?>
+
+		</aside>
+
 <?php endif; ?>

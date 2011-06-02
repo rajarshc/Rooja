@@ -24,24 +24,18 @@
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 ?>
-<?php
-/**
- * Category layered navigation state
- *
- * @see Mage_Catalog_Block_Layer_State
- */
-?>
-<?php $_filters = $this->getActiveFilters() ?>
-<?php if(!empty($_filters)): ?>
-	<ul>
-    <?php foreach ($_filters as $_filter): ?>
-            <li><a href="<?php echo $_filter->getRemoveUrl() ?>" title="<?php echo $this->__('Remove This Item') ?>" class="btn-remove"><?php echo $this->__('Remove This Item') ?></a>
-            <span class="label"><?php echo $this->__($_filter->getName()) ?>: 
-            <?php echo $this->stripTags($_filter->getLabel()) ?></span>
-            </li>
-    <?php endforeach; ?>
-    </ul>
-			<a href="<?php echo $this->getClearUrl() ?>">Clear Filters</a>
-			<div class="clear"></div>
-
-<?php endif; ?>
+<?php $_helper = $this->helper('catalog/output'); ?>
+<?php $_product = $this->getProduct(); ?>
+<?php //var_export($_product); ?>
+<?php $buttonTitle = $this->__('Add to Cart'); ?>
+<?php if($_product->isSaleable()) { ?>
+        <?php if(!$_product->isGrouped()): ?>
+        <input type="text" name="qty" id="qty" maxlength="12" value="1" title="<?php echo $this->__('Qty') ?>" class="input-text qty" />
+        <label for="qty"><?php echo $this->__('Quantity') ?></label>
+        <?php endif; ?>
+				</section>
+					<a href="" class="tr" id="addToBagBtn" onclick="productAddToCartForm.submit(this)"></a>
+					<p id="estimatedShippingDate">Estimated to ship on <?php echo date('F jS', strtotime($_helper->productAttribute($_product, $_product->getEstimate_ship_date(), 'estimate_ship_date'))); ?></p>
+<?php } else { ?>
+				</section>
+<?php } ?>

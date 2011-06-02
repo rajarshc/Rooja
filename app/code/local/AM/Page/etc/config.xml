@@ -44,6 +44,11 @@
                     <template>page/homepage.phtml</template>
                     <layout_handle>homepage</layout_handle>
                 </homepage>
+				<product module="page" translate="label">
+                    <label>Product</label>
+                    <template>page/product.phtml</template>
+                    <layout_handle>product</layout_handle>
+                </product>
             </layouts>
         </page>
     </global>

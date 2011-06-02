@@ -37,26 +37,28 @@
     $_helper = $this->helper('catalog/output');
 ?> 
 <?php if(!$_productCollection->count()): ?>
+<section id="saleProducts" class="col3 fl">
+
 <p class="note-msg"><?php echo $this->__('There are no products matching the selection.') ?></p>
+</section>
 <?php else: ?>
 <section id="saleProducts" class="col3 fl">
-    <?php $_collectionSize = $_productCollection->count() ?>
-    <?php $_columnCount = $this->getColumnCount(); ?>
-    <?php $i=0; foreach ($_productCollection as $_product): ?>
+    <?php $i=1; foreach ($_productCollection as $_product): ?>
 	<?php //var_export($_product); ?>
-        <?php if ($i++%$_columnCount==0): ?>
-        <?php endif ?>
 		<article class="product col1 fl <?php if ($i % 3 == 0){ echo 'noMargin'; } ?>">
+		<?php $stock_count = (int) Mage::getModel('cataloginventory/stock_item')->loadByProduct($_product)->getQty();
+if ($stock_count <= 2 && $stock_count > 0) {
+echo '<span class="numLeft">'.$stock_count.'</span>';
+} ?>
+			
 			<a href="<?php echo $_product->getProductUrl() ?>"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image'); ?>" width="230" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" /></a>
-			<article class="productCore">
+			<article class="productCore<?php if(!$_product->isSaleable()){ echo ' soldOut'; } ?>">
 				<span class="numLikes">121</span>
 				<p class="price"><span class="livePrice">$<?php echo number_format($_product->getPrice(), 2) ?></span> Sold Out</p>
 				<h2 class="productName"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h2>
 			</article>
 		</article>
-        <?php if ($i%$_columnCount==0 || $i==$_collectionSize): ?>
-        <?php endif ?>
+		<?php $i++; ?>
         <?php endforeach ?>
-        <script type="text/javascript">decorateGeneric($$('ul.products-grid'), ['odd','even','first','last'])</script>
 </section>
 <?php endif; ?>

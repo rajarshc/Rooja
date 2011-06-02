@@ -271,15 +271,14 @@ p.question{margin:0;font-weight:bold;color:#431f4c;}
 /* ~~~~~ SALES  ~~~~~ */
 #saleInfo{padding-top:25px;}
 #saleInfo h1{margin-bottom:20px;}
-#filterSale{
-    margin-top:25px;
-    padding:15px 10px;
-    background-color:#e1e1e1;
-}
+#filterSale{position: relative;margin-top:25px;padding:15px 10px 25px;background-color:#e1e1e1;}
 .shareThis p{margin-bottom:10px;}
 .shareThis img{margin-left:5px;}
 #filterSale select{width:100%;font-size:1.4em;margin-bottom:10px;}
-#filterSale a{text-decoration:underline;color:#949494;font-size:1.2em;float:right;margin-top:12px;}
+#filterSale a {text-decoration:underline;color:#949494;font-size:1.2em;float:left;margin-top:12px;position: absolute;bottom: 15px;}
+#filterSale a.btn-remove {float: left;position: relative;margin: 3px 8px 0 0;bottom: 0;font-size: 14px;}
+#filterSale ul li {min-height: 25px;line-height: 18px;}
+#filterSale ul li span {font-size: 14px;}
 .sideAd{background-color:#d68533;padding:15px 10px;margin-top:5px;}
 .sideAd p{font-weight:bold;color:#fff;margin:0;background:url(../images/icons/rupee-icon.png) no-repeat left center;padding-left:28px;}
 
@@ -312,6 +311,7 @@ h2#saleDetails{color:#c60;margin:22px 0 5px;}
 #productOptions p.startingPrice{color:#666;margin-bottom:6px;}
 #productOptions p.currentPrice{color:#431f4c;}
 #productOptions p.currentPrice span{font-family:"ltc-bodoni-175-1","ltc-bodoni-175-2", georgia, serif;font-size:1.67em;}
+#productInfo {min-height: 400px;}
 
 #colors, #sizes{clear:both;display:block;margin-bottom:10px;overflow:hidden;width:140px;}
 #colors li, #sizes li{display:inline;}
@@ -327,7 +327,7 @@ h2#saleDetails{color:#c60;margin:22px 0 5px;}
 
 #prevNextLinks{margin:5px 0 0;}
 #prevProduct, #nextProduct, #prevProduct img, #nextProduct img{position:relative;}
-#prevProduct p, #nextProduct p{position:absolute;z-index:10;top:0;left:0;height:75px;display:block;background:url(../images/bgs/gray-opacity-photo-diag.png) repeat;font-family:"ltc-bodoni-175-1","ltc-bodoni-175-2", georgia, serif;line-height:75px;text-align:center;font-size:2.4em;color:#fff;}
+#prevProduct p, #nextProduct p{position:absolute;z-index:10;top:0;left:0;height:75px;display:block;background:url(../images/bgs/gray-opacity-photo-diag.png) repeat;font-family:"ltc-bodoni-175-1","ltc-bodoni-175-2", georgia, serif;line-height:75px;text-align:center;font-size:2.4em;color:#fff;position: relative;}
 #prevProduct p{width:75px;}
 #nextProduct p{width:150px;}
 
