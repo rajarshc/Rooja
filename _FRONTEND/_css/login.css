@@ -1,0 +1,135 @@
+
+/* ~~~~~ LOGIN ~~~~~ */
+
+html {
+        background: url(../_images/splash/bg.jpg) no-repeat top left fixed #000;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+}
+body{
+	font-family: helvetica, arial, sans-serif;
+	font-size: .625em;
+	background:;
+	color:#ddd;
+}
+
+#notifyWrapper div.wrapper, #aboutWrapper div.wrapper{
+    width:380px;
+    padding:15px;
+    background:#51315c;
+    background:rgba(81,49,92,.9);
+    margin:50px auto 0;
+}
+
+h1#logo{
+    background-image:url(../_images/splash/rooja-logo.png);
+    width:179px;height:85px;
+    margin:0 auto 12px;
+}
+#highlight{
+    background-image:url(../_images/splash/about-blurb.png);
+    width:330px;height:68px;
+    margin:0 auto 15px;
+}
+#members{
+    background-image:url(../_images/splash/members.png);
+    width:103px;height:16px;
+    float:left;
+    margin:0 20px 15px 0;
+}
+#forgetPass{margin-top:0px;text-decoration:underline;color:#c7becc;}
+
+#signUp{
+    background-image:url(../_images/splash/sign-up.png);
+    width:84px;height:16px;
+    margin-bottom:15px;
+}
+
+form{
+    border-bottom:5px solid #3b2243;
+    overflow:hidden;
+    margin-bottom:20px;
+    clear:both;
+}
+
+input{
+    background-color:#684e70;
+    color:#2e1a33;
+    font-size:1.4em;
+    width:360px;
+    padding:10px;
+    margin:0 0 10px;
+    cursor:auto;
+    border:none;outline:none;
+}
+form input#loginBtn{
+    background:url(../_images/splash/login-btn.png) no-repeat top left;
+    width:99px;height:39px;
+    float:right;
+    cursor:pointer;
+}
+#fBConnect{
+    background:url(../_images/splash/facebook-btn.png);
+    width:162px;height:22px;
+    float:left;
+    margin-top:10px;
+    cursor:pointer;
+}
+
+#tellMeMore{
+    background-image:url(../_images/splash/join-now-btn.png);
+    width:382px;height:39px;
+    margin-bottom:15px;
+}
+
+
+
+#brands{
+   background:#3e2647;
+   padding:25px 15px 0px;
+   width:380px;
+   overflow:hidden;
+   margin:0 auto 0px;
+}
+
+#brands ul li{display:inline;position:relative;padding:0px 45px 25px 0;float:left;}
+#brands ul li.last{padding-right:0;}
+#brands ul li.bot{padding-bottom:0;}
+#brands ul li img{vertical-align:middle;}
+
+#brands ul li.two{
+    padding-right:35px;
+}
+#brands ul li.four{
+    padding-left:25px;
+}
+
+#brands ul li.five{
+    padding-left:35px;
+    padding-right:61px;
+}
+#brands ul li.nine{
+    padding-left:3px;
+    padding-right:67px;
+}
+/* ~~~~~ Typography ~~~~~ */
+
+a {text-decoration:none; color:#fff;}
+a:hover {color:#ab8fb2;}
+a.selected{color:;}
+h1 {font-size: ; color:  ; margin-bottom: ; font-weight:bold;}
+h2 {font-size: 1.8em; color:  ; margin-bottom: ; font-weight:bold;}
+h3 {font-size: 1.5em; font-weight: bold; color:  ; margin: ;}
+p {font-size:1.3em;line-height:1.5em;margin-bottom:16px;}
+
+/* UTILITY CLASSES */
+.fl {float: left;}
+.fr {float: right;}
+.cl {clear: left;}
+.cr {clear: right;}
+.clear {clear: both;}
+em{font-style:italic;}
+strong{font-weight:bold;}
+.tr{text-indent:-9999px;display:block;background:no-repeat top left;}
