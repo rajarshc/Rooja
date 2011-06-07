@@ -1,0 +1,83 @@
+/**
+ * MageParts
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * @category   MageParts
+ * @package    skin_default
+ * @copyright  Copyright (c) 2009 MageParts (http://www.mageparts.com/)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+ 
+.grid-update-available-no {
+	background-image:none;
+}
+
+.grid-update-available-yes {
+	width:14px;
+	height:14px;
+	background:url(i/notify_icon.gif) no-repeat;
+}
+
+.head-cem-licenses { 
+	background-image:url(../images/fam_page_white.gif); 
+}
+
+
+.icon-head.head-adminhtml-packages {
+	background-image:url(i/extension_icon.gif);
+}
+
+.icon-head.head-adminhtml-packages-install {
+	background-image:url(i/package_add_icon.gif);
+}
+
+.icon-head.head-adminhtml-lost-key {
+	background-image:url(i/lost_key_icon.gif);
+}
+
+#cem_licenses_tabs .tab-item-link,
+#cem_licenses_tabs .tab-item-link.active span {
+	background-position:5px 50%;
+	background-repeat:no-repeat;
+}
+
+#cem_licenses_tabs_lost_cem_section.tab-item-link,
+#cem_licenses_tabs_lost_license_section.tab-item-link,
+#cem_licenses_tabs_lost_cem_section.tab-item-link.active span,
+#cem_licenses_tabs_lost_license_section.tab-item-link.active span {
+	background-image:url(i/lost_key_icon.gif);
+}
+
+#cem_licenses_tabs span.changed,
+#cem_licenses_tabs span.error {
+	background-image:none;
+}
+
+#cem_licenses_tabs .tab-item-link span {
+	padding-left:25px;
+}
+
+span.powered {
+	font-size: 9px;
+	font-style: italic;
+	margin-left: 10px;
+}
+
+#cem_licenses_tabs_lost_cem_section.tab-item-link.active span span.changed,
+#cem_licenses_tabs_lost_license_section.tab-item-link.active span span.changed {
+	background:none;
+}
+
+#cem_licenses_tabs_lost_cem_section.tab-item-link.active span span.error,
+#cem_licenses_tabs_lost_license_section.tab-item-link.active span span.error {
+	background:none;
+}

@@ -1,0 +1,156 @@
+<?php
+/**
+ * MageParts
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * @category   MageParts
+ * @package    design_default
+ * @copyright  Copyright (c) 2009 MageParts (http://www.mageparts.com/)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+?>
+
+<style type="text/css">
+	#content .content-header {
+		display:none;
+	}
+</style>
+
+<div class="content-header" style="display:block;">
+	<table cellspacing="0">
+	    <tr>
+	        <td><h3 class="icon-head head-adminhtml-lost-key">Recover Lost CEM Key</h3></td>
+	        <td class="form-buttons">
+	        	<?php echo $this->getLostCemKeyButtonHtml(); ?>
+				<?php echo $this->getBackButtonHtml(); ?>
+	        </td>
+	    </tr>
+	</table>
+</div>
+
+<div class="entry-edit">
+	<div class="entry-edit-head">
+		<h4 class="icon-head head-edit-form fieldset-legend"><?php echo Mage::helper('cem')->__('General Information'); ?></h4>
+	</div>
+	
+	<div class="fieldset fieldset-wide">
+		<table class="form-list">
+			<tbody>
+				<tr>
+					<td class="label"><label><?php echo Mage::helper('cem')->__('Service URL'); ?></label></td>
+					<td class="value">
+						<input type="text"id="cem_service_url" value="" />
+					</td>
+				</tr>
+				<tr>
+					<td class="label"><label><?php echo Mage::helper('cem')->__('CEM Key'); ?></label></td>
+					<td class="value">
+						<input type="text" id="cem_key" value="" />
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+
+var lostCem = {
+
+	/**
+	 * Install package
+	 */
+	install : function()
+	{
+		var serviceUrl 	= $('cem_service_url').value;
+		var cemKey		= $('cem_key').value;
+		
+		if(serviceUrl.blank()) {
+			alert("<?php echo Mage::helper('cem')->__("Please provide a valid service url") ?>");
+			return;
+		}
+		
+		if(cemKey.blank()) {
+			new Ajax.Request(
+		        '<?php echo $this->getUrl('*/adminhtml_licenses/requestLostCemKey'); ?>',
+		        {
+		            method		: 'POST',
+		            parameters	: '?service_url=' + serviceUrl,
+		            onSuccess 	: function(o){
+		            	try {
+		            		if(o.responseText) {
+		            			if(o.responseText==='SUCCESS') {
+		            				alert("<?php echo Mage::helper('cem')->__("The CEM key has been sent to your email inbox (%s). Please insert the CEM key into the 'Cem Key' field and click the 'OK' button once more to install the CEM key and all of its associated software.",Mage::getStoreConfig('system/cem/email')) ?>");
+		            			}
+		            			else {
+		            				alert(o.responseText);
+		            			}
+		            		}
+		            	}
+		            	catch (e2) {
+		            		alert("<?php echo Mage::helper('cem')->__("An unknown error has occurred, the requested action was interrupted") ?>");
+		            	}
+		            },
+		            onFailure 	: function(o) {
+		            	try {
+				            console.log(o.statusText);
+				        } catch (e2) {
+				            alert(o.statusText);
+				        }
+		            }
+		        }
+		    );
+		}
+		else {
+			new Ajax.Request(
+		        '<?php echo $this->getUrl('*/adminhtml_licenses/installCemKey'); ?>',
+		        {
+		            method		: 'POST',
+		            parameters	: '?service_url=' + serviceUrl + '&cem_key=' + cemKey,
+		            onSuccess 	: function(o){
+		            	try {
+		            		if(o.responseText) {
+		            			if(o.responseText.substr(0,7)==='SUCCESS') {
+		            				var failedInstallations = o.responseText.substr(8);
+		            				if(!failedInstallations.blank()) {
+		            					alert("<?php echo Mage::helper('cem')->__("The requested CEM key was successfully installed. The following extensions could not be automatically installed on your system:") ?> " + failedInstallations + "\n\n<?php echo Mage::helper('cem')->__("Any unknown errors were most likely caused by insufficient writing permission. The extensions which failed to be installed will have to be installed manually, we appologize for your inconvenience.") ?> ");
+		            				}
+		            				else {
+		            					alert("<?php echo Mage::helper('cem')->__("The requested CEM key was successfully installed along with all associated extensions found on service") ?> " + serviceUrl);
+		            				}
+		            			}
+		            			else {
+		            				alert(o.responseText);
+		            			}
+		            		}
+		            	}
+		            	catch (e2) {
+		            		alert("<?php echo Mage::helper('cem')->__("An unknown error has occurred, the requested action was interrupted") ?>");
+		            	}
+		            },
+		            onFailure 	: function(o) {
+		            	try {
+				            console.log(o.statusText);
+				        } catch (e2) {
+				            alert(o.statusText);
+				        }
+		            }
+		        }
+		    );
+		}
+	}
+	
+}
+
+//]]>
+</script>

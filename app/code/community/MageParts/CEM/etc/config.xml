@@ -1,0 +1,171 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * MageParts
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * @category   MageParts
+ * @package    MageParts_CEM
+ * @copyright  Copyright (c) 2009 MageParts (http://www.mageparts.com/)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+-->
+<config>
+    <modules>
+        <MageParts_CEM>
+            <version>1.0.0</version>
+        </MageParts_CEM>
+    </modules>
+    
+    <global>
+        <models>
+            <cem>
+                <class>MageParts_CEM_Model</class>
+                <resourceModel>cem_mysql4</resourceModel>
+            </cem>
+            <cem_mysql4>
+            	<class>MageParts_CEM_Model_Mysql4</class>
+            	<entities>
+            		<packages>
+            			<table>cem_packages</table>
+            		</packages>
+            		<services>
+            			<table>cem_services</table>
+            		</services>
+            		<service_keys>
+            			<table>cem_service_keys</table>
+            		</service_keys>
+            		<licenses>
+            			<table>cem_licenses</table>
+            		</licenses>
+            	</entities>
+            </cem_mysql4>
+        </models>
+        <helpers>
+        	<cem>
+        		<class>MageParts_CEM_Helper</class>
+        	</cem>
+        </helpers>
+        <blocks>
+        	<cem>
+        		<class>MageParts_CEM_Block</class>
+        	</cem>
+        </blocks>
+        <resources>
+            <cem_setup>
+                <setup>
+                    <module>MageParts_CEM</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </cem_setup>
+            <cem_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </cem_write>
+            <cem_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </cem_read>
+        </resources>
+    </global>
+    
+    <adminhtml>     
+        <translate>
+            <modules>
+                <MageParts_CEM>
+                    <files>
+                        <default>MageParts_CEM.csv</default>
+                    </files>
+                </MageParts_CEM>
+            </modules>
+        </translate>
+        
+         <menu>
+         	<system>
+         		<children>
+         			<extensions>
+         				<children>
+				            <cem module="cem">
+				                <title>Commercial Extension Manager</title>
+				                <action>cem/adminhtml_packages</action>
+				                <sort_order>999</sort_order>
+				            </cem>
+						</children>
+					</extensions>
+				</children>
+			</system>
+        </menu>
+        
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                            	<extensions>
+                            		<children>
+			                            <cem translate="title">
+			                                <title>Commercial Extension Manager</title>
+			                                <sort_order>999</sort_order>
+			                            </cem>
+			                		</children>
+			                	</extensions>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+        
+        <layout>
+            <updates>
+                <cem>
+                    <file>cem.xml</file>
+                </cem>
+            </updates>
+        </layout>
+    </adminhtml>
+    
+    <admin>
+    	<routers>
+    		<cem>
+    			<use>admin</use>
+    			<args>
+    				<module>MageParts_CEM</module>
+    				<frontName>cem</frontName>
+    			</args>
+    		</cem>
+    	</routers>
+    </admin>
+    
+    <default>
+    	<system>
+    		<cem>
+				<frequency>24</frequency>
+				<email></email>
+    		</cem>
+    	</system>
+    </default>
+    
+    <crontab>
+        <jobs>
+            <cem_auto_update>
+                <schedule><cron_expr>* * * * *</cron_expr></schedule>
+                <run><model>cem/observer::checkUpdate</model></run>
+            </cem_auto_update>
+        </jobs>
+    </crontab>
+</config>

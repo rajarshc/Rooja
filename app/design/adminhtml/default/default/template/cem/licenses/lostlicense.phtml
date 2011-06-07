@@ -1,0 +1,112 @@
+<?php
+/**
+ * MageParts
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * @category   MageParts
+ * @package    design_default
+ * @copyright  Copyright (c) 2009 MageParts (http://www.mageparts.com/)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+?>
+
+<style type="text/css">
+	#content .content-header {
+		display:none;
+	}
+</style>
+
+<div class="content-header" style="display:block;">
+	<table cellspacing="0">
+	    <tr>
+	        <td><h3 class="icon-head head-adminhtml-lost-key">Recover Lost License Key</h3></td>
+	        <td class="form-buttons">
+				<?php echo $this->getLostLicenseKeyButtonHtml(); ?>
+				<?php echo $this->getBackButtonHtml(); ?>
+	        </td>
+	    </tr>
+	</table>
+</div>
+
+<div class="entry-edit">
+	<div class="entry-edit-head">
+		<h4 class="icon-head head-edit-form fieldset-legend"><?php echo Mage::helper('cem')->__('General Information'); ?></h4>
+	</div>
+	
+	<div class="fieldset fieldset-wide">
+		<table class="form-list">
+			<tbody>
+				<tr>
+					<td class="label"><label><?php echo Mage::helper('cem')->__('Service URL'); ?></label></td>
+					<td class="value">
+						<input type="text"id="license_service_url" value="" />
+					</td>
+				</tr>
+				<tr>
+					<td class="label"><label><?php echo Mage::helper('cem')->__('Module Identifier'); ?></label></td>
+					<td class="value">
+						<input type="text" id="module_identifier" value="" />
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+
+var lostLicenses = {
+
+	/**
+	 * Install package
+	 */
+	install : function()
+	{
+		var serviceUrl = $('license_service_url').value;
+		var moduleIdentifier = $('module_identifier').value;
+		
+		new Ajax.Request(
+	        '<?php echo $this->getUrl('*/adminhtml_licenses/requestLostLicenseKey'); ?>',
+	        {
+	            method		: 'POST',
+	            parameters	: '?service_url=' + serviceUrl + '&module_identifier=' + moduleIdentifier,
+	            onSuccess 	: function(o){
+	            	try {
+	            		if(o.responseText) {
+	            			if(o.responseText==='SUCCESS') {
+	            				alert("<?php echo Mage::helper('cem')->__("The license key has been sent to your email inbox (%s).",Mage::getStoreConfig('system/cem/email')) ?>");
+	            			}
+	            			else {
+	            				alert(o.responseText);
+	            			}
+	            		}
+	            	}
+	            	catch (e2) {
+	            		alert("<?php echo Mage::helper('cem')->__("An unknown error has occurred, the requested action was interrupted") ?>");
+	            	}
+	            },
+	            onFailure 	: function(o) {
+	            	try {
+			            console.log(o.statusText);
+			        } catch (e2) {
+			            alert(o.statusText);
+			        }
+	            }
+	        }
+	    );
+	}
+	
+}
+
+//]]>
+</script>

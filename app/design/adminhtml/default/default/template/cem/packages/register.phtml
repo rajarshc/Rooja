@@ -1,0 +1,121 @@
+<?php
+/**
+ * MageParts
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * @category   MageParts
+ * @package    design_default
+ * @copyright  Copyright (c) 2009 MageParts (http://www.mageparts.com/)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+?>
+
+<style type="text/css">
+	.middle .content-header {
+		display:none;
+	}
+	
+	.regform {
+		margin:50px auto;
+		width:500px;
+		border:1px solid #c0c0c0;
+		padding:40px;
+	}
+</style>
+
+<?php if(floatval(Mage::getVersion())<1.2): ?>
+<div class="regform">
+	<p>Your Magento version is <b><?php echo Mage::getVersion() ?></b>. In versions prior to <b>1.2.0</b> you will have to fill out your registration email manually before you can use the CEM extension.</p>
+	
+	<br />
+	
+	<p>1. Go to <b>System &rarr; Configuration</b> and click on the <b>System</b> tab under the group <b>Advanced</b> at the bottom of the left-hand list.</p>
+	<p>2. Click on the <b>CEM</b> section to expand it.</p>
+	<p>3. Now fill out your email address in the corresponding field.</p>
+	<p>4. Save the configuration.</p>
+	<p>5. Clear your cache.</p>
+	
+	<br />
+	
+	<p><b><u>Please note</u></b></p>
+	<p>The email address you provide here will be used when you need to recover lost CEM and license keys. Be sure to remember the email address you assign here, you will need to enter the same one if you ever reinstall your webshop in order to recover your license keys and reinstall your commercial extensions.</p>
+	
+	<br />
+	
+	If you require further assistance we refer you to the <a href="http://www.mageparts.com/mageparts-cem-user-guide#c_3" target="_blank">CEM documentation chapter 3</a>.</p>
+</div>
+<?php else: ?>
+<div class="regform">
+	<p>In order to use the Commercial Extension Manager you will need to enter an email address which will be associated with all your license keys. If you would ever need to reinstall your Magento shop this email can be used to recover all your license keys, so please be sure to enter a <b><u>valid</u></b> email address.</p>
+
+	<br />
+	
+	<p><b>Please note:</b> if you are reinstalling your Magento shop or the CEM extension you will need to enter the same email address as you used on your previous installation in order to recover your CEM and license keys.</p>
+	
+	<br />
+	<br />
+	
+	<table>
+		<tr>
+			<td><p>Email</p></td>
+			<td><input type="text" id="email" /></td>
+		</tr>
+	</table>
+	
+	<br />
+	
+	<button class="scalable save" onclick="registerCem();"><span><?php echo Mage::helper('cem')->__('Register') ?></span></button>
+</div>
+
+<script type="text/javascript">
+		
+	
+	/**
+	 * Register CEM
+	 */
+	function registerCem()
+	{
+		var email = $('email').value;
+
+		new Ajax.Request(
+	        '<?php echo $this->getUrl('*/*/setCemEmail'); ?>',
+	        {
+	            method		: 'POST',
+	            parameters	: '?email=' + email,
+	            onSuccess 	: function(o){
+	            	try {
+	            		if(o.responseText) {
+	            			if(o.responseText==='SUCCESS') {
+	            				alert('CEM has now been registered and is ready for use');
+	            				location.reload();
+	            			}
+	            			else {
+	            				alert(o.responseText);
+	            			}
+	            		}
+	            	}
+	            	catch (e2) {
+	            		alert("<?php echo Mage::helper('cem')->__("An unknown error has occurred, please contact MageParts and notify us of your issue") ?>");
+	            	}
+	            },
+	            onFailure 	: function(o) {
+	            	try {
+			            console.log(o.statusText);
+			        } catch (e2) {
+			            alert(o.statusText);
+			        }
+	            }
+	        }
+	    );
+	}
+</script>
+<?php endif; ?>
