@@ -48,13 +48,6 @@ Default layout, loads most of the pages
         <reference name="top.menu">
             <block type="catalog/navigation" name="catalog.topnav" template="catalog/navigation/top.phtml"/>
         </reference>
-        <reference name="left">
-            <block type="core/template" name="left.permanent.callout" template="callouts/left_col.phtml">
-                <action method="setImgSrc"><src>images/media/col_left_callout.jpg</src></action>
-                <action method="setImgAlt" translate="alt" module="catalog"><alt>Our customer service is available 24/7. Call us at (555) 555-0123.</alt></action>
-                <action method="setLinkUrl"><url>checkout/cart</url></action>
-            </block>
-        </reference>
         <reference name="right">
             <block type="catalog/product_compare_sidebar" before="cart_sidebar" name="catalog.compare.sidebar" template="catalog/product/compare/sidebar.phtml"/>
             <block type="core/template" name="right.permanent.callout" template="callouts/right_col.phtml">
@@ -243,9 +236,9 @@ Product view
                 <block type="catalog/product_view" name="product.info.options.wrapper.bottom" as="product_options_wrapper_bottom" template="catalog/product/view/options/wrapper/bottom.phtml" translate="label">
                     <label>Bottom Block Options Wrapper</label>
                     <action method="insert"><block>product.tierprices</block></action>
-                    <block type="catalog/product_view" name="product.clone_prices" as="prices" template="catalog/product/view/price_clone.phtml"/>
+                    <!--block type="catalog/product_view" name="product.clone_prices" as="prices" template="catalog/product/view/price_clone.phtml"/-->
                     <action method="append"><block>product.info.addtocart</block></action>
-                    <action method="append"><block>product.info.addto</block></action>
+                    <!--action method="append"><block>product.info.addto</block></action-->
                 </block>
 
                 <block type="core/template_facade" name="product.info.container1" as="container1">

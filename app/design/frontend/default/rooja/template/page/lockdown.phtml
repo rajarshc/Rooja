@@ -32,26 +32,37 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->getLang() ?>" lang="<?php echo $this->getLang() ?>">
 <head>
-<?php echo $this->getChildHtml('head') ?>
+<?php echo $this->getChildHtml('lockdownhead') ?>
+<script type="text/javascript">
+  var _kmq = _kmq || [];
+  function _kms(u){
+    setTimeout(function(){
+      var s = document.createElement('script'); var f = document.getElementsByTagName('script')[0]; s.type = 'text/javascript'; s.async = true;
+      s.src = u; f.parentNode.insertBefore(s, f);
+    }, 1);
+  }
+  _kms('//i.kissmetrics.com/i.js');_kms('//doug1izaerwt3.cloudfront.net/90e261dfe8177c022fecc9c459eb2c4e1a6fc4d0.1.js');
+</script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-22154361-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
 </head>
-<body<?php echo $this->getBodyClass()?' class="'.$this->getBodyClass().'"':'' ?>>
+<body class="">
 <?php echo $this->getChildHtml('after_body_start') ?>
-<div class="wrapper">
-    <?php echo $this->getChildHtml('global_notices') ?>
-    <div class="page">
-        <div class="main-container col2-right-layout">
-            <div class="main">
-                <?php echo $this->getChildHtml('breadcrumbs') ?>
-                <div class="col-main">
-                    <?php echo $this->getChildHtml('global_messages') ?>
-                    <?php echo $this->getChildHtml('content') ?>
-                </div>
-                <div class="col-right sidebar"><?php echo $this->getChildHtml('right') ?></div>
-            </div>
-        </div>
-        <?php echo $this->getChildHtml('before_body_end') ?>
-    </div>
-</div>
+	<?php echo $this->getChildHtml('global_notices') ?>
+	<?php echo $this->getChildHtml('global_messages') ?>
+	<?php echo $this->getChildHtml('content') ?>
+	<?php echo $this->getChildHtml('before_body_end') ?>
 <?php echo $this->getAbsoluteFooter() ?>
 </body>
 </html>

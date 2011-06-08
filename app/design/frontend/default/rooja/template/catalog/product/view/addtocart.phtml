@@ -35,7 +35,9 @@
         <?php endif; ?>
 				</section>
 					<a href="" class="tr" id="addToBagBtn" onclick="productAddToCartForm.submit(this)"></a>
+					<?php if (!$_product->getEstimate_ship_date() == null){ ?>
 					<p id="estimatedShippingDate">Estimated to ship on <?php echo date('F jS', strtotime($_helper->productAttribute($_product, $_product->getEstimate_ship_date(), 'estimate_ship_date'))); ?></p>
+					<?php } ?>
 <?php } else { ?>
 				</section>
 <?php } ?>

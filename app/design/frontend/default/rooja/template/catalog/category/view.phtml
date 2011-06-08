@@ -40,6 +40,16 @@
         $_imgHtml = $_helper->categoryAttribute($_category, $_imgHtml, 'image');
     }
 ?>
+<?php $expired = 0; ?>
+
+<?php $enddate = strtotime(date('y-m-d', strtotime($_category->getSale_end_date())) . ' ' . $_category->getSale_end_time() . ':00'); 
+$today = strtotime(date('y-m-d H:i:s'));
+if ($enddate > $today) {
+$expired = 1;
+}
+
+?>
+
 
 <section id="saleDetails">
 	<div class="container">
@@ -48,10 +58,12 @@
 		
 	<section id="saleInfo" class="col1 fl clear">
 		<h1><?php echo $_helper->categoryAttribute($_category, $_category->getName(), 'name') ?></h1>
-		
-		<?php $enddate = date('y-m-d', strtotime($_category->getSale_end_date())) . ' ' . $_category->getSale_end_time() . ':00'; ?>
 		<?php if (!$enddate == null) {
-		echo '<p class="saleEnding">This sale ends ' . date('F jS \a\t g:ia', strtotime($enddate));
+				if ($expired == 1) { 
+		echo '<p class="saleEnding">This sale ends ' . date('F jS \a\t g:ia', $enddate);
+		} else { 
+		echo '<p class="saleEnding">This sale has expired!</p>';
+		}
 		} ?>
 		<?php //var_export($_category); ?>
 		<?php if($_description=$this->getCurrentCategory()->getDescription()): ?>

@@ -54,7 +54,8 @@ echo '<span class="numLeft">'.$stock_count.'</span>';
 			<a href="<?php echo $_product->getProductUrl() ?>"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image'); ?>" width="230" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" /></a>
 			<article class="productCore<?php if(!$_product->isSaleable()){ echo ' soldOut'; } ?>">
 				<span class="numLikes">121</span>
-				<p class="price"><span class="livePrice">$<?php echo number_format($_product->getPrice(), 2) ?></span> Sold Out</p>
+				<p class="price"><span class="livePrice">$<?php echo number_format($_product->getSpecialPrice(), 2) ?></span><span> 
+				<?php if(!$_product->isSaleable()){ echo 'Sold Out'; } else { echo '$' . number_format($_product->getPrice(), 2); } ?></span></p>
 				<h2 class="productName"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h2>
 			</article>
 		</article>

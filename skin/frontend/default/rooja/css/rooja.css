@@ -1,49 +1,3 @@
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, font, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td, header, section, footer,
-aside, nav, article, figure {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	outline: 0;
-	font-weight: inherit;
-	font-style: inherit;
-	vertical-align: baseline;
-}
-
-body {
-	line-height: 1;
-}
-ul {
-	list-style: none;
-}
-/* tables still need 'cellspacing="0"' in the markup */
-table {
-	border-collapse: separate;
-	border-spacing: 0;
-}
-caption, th, td {
-	text-align: left;
-	font-weight: normal;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: "";
-}
-blockquote, q {
-	quotes: "" "";
-}
-/* HTML5 tags */
-header, section, footer,
-aside, nav, article, figure {
-	display: block;
-}
-
 @charset "UTF-8";
 /*
 Designed and developed by philosophie llc
@@ -249,7 +203,7 @@ p.question{margin:0;font-weight:bold;color:#431f4c;}
 .size2{height:238px;}
 .size3{height:123px;}
 
-.homeSale h2{color:#fff;font-size:2em;padding:15px 10px;display:block;width:222px;background:url(../images/bgs/purp-opacity-photo-diag.png) repeat;position:absolute;bottom:0px;z-index:10;}
+.homeSale h2{color:#fff !important;font-size:2em;padding:15px 10px;display:block;width:222px;background:url(../images/bgs/purp-opacity-photo-diag.png) repeat;position:absolute;bottom:0px;z-index:10;margin: 0;}
 .homeAd{background:url(../images/bgs/orange-diag.png) repeat;padding: 10px;width:217px;height:  103px;color:#fff;}
 .homeAd h3 a{text-transform:uppercase;font-size:14px;text-decoration:underline;margin-bottom:5px;color:#fff;font-weight:normal;}
 .homeAd p{margin-bottom:0px;}
@@ -263,7 +217,7 @@ p.question{margin:0;font-weight:bold;color:#431f4c;}
 .saleDetails p{color:#c60;}
 
 #upcomingSales{padding:12px 8px;background-color:#d1dddf;color:#555;margin-top:54px;width:214px;}
-#upcomingSales h2{text-transform:uppercase;margin-bottom:25px;}
+#upcomingSales h2{color:#555;text-transform:uppercase;margin-bottom:25px;}
 .upcomingDate{width:96px;float:left;margin-right:20px;height:130px;}
 .upcomingDate h4{padding-bottom:8px;border-bottom:1px solid #555;margin-bottom:8px;}
 .upcomingDate ul li{font-size:1.3em;padding-bottom:2px;line-height:1.1em;}
@@ -288,9 +242,12 @@ p.question{margin:0;font-weight:bold;color:#431f4c;}
 .product .productCore.soldOut{background-image:url(../images/bgs/pink-diag.png);}
 .product .productCore h2.productName{display:none;color:#fff;padding:6px 10px;background:url(../images/bgs/purp-opacity-photo-diag.png) repeat;text-align:right;}
 .productCore .numLikes{float:left;margin-top:10px;background:url(../images/icons/thumbs-up.png) no-repeat top left;padding-left:28px;height:20px;line-height:20px;font-size:1.2em;color:#fff;}
-.productCore .price{float:right;text-align:right;width:140px;font-family:"ltc-bodoni-175-1","ltc-bodoni-175-2", georgia, serif;color:#b4adb3;font-size:1.4em;text-decoration:line-through;margin-bottom:0;}
-.productCore .price .livePrice{font-size:1.71em;display:block; text-decoration:none;color:#fff;}
+.productCore .price{float:right;text-align:right;width:140px;font-family:"ltc-bodoni-175-1","ltc-bodoni-175-2", georgia, serif;color:#b4adb3;font-size:1.4em;margin-bottom:0;}
+.productCore .price span.livePrice{font-size:1.71em;display:block; color:#fff;text-decoration: none;}
+.productCore .price span {text-decoration:line-through;}
 .productCore.soldOut .price{text-decoration:none;}
+.productCore.soldOut .price span {text-decoration:none;}
+
 .numLeft{background:url(../images/icons/limited-items-left.png) no-repeat top left;z-index:10;height:40px;width:42px;padding:13px 11px 0 0;display:block;position:absolute;top:0px;right:0px;color:#fff;font-weight:bold;font-size:1.6em;text-align:right;}
 
 /* ~~~~~ PRODUCT DETAILS ~~~~~ */
@@ -325,17 +282,20 @@ h2#saleDetails{color:#c60;margin:22px 0 5px;}
 #addToBagBtn{background-image:url(../images/icons/add-to-bag.png);width:230px;height:50px;margin-top:5px;}
 #estimatedShippingDate{width:230px;padding:8px 0;text-align:center;background-color:#6f989d;color:#2b3536;margin:0;}
 
-#prevNextLinks{margin:5px 0 0;}
-#prevProduct, #nextProduct, #prevProduct img, #nextProduct img{position:relative;}
-#prevProduct p, #nextProduct p{position:absolute;z-index:10;top:0;left:0;height:75px;display:block;background:url(../images/bgs/gray-opacity-photo-diag.png) repeat;font-family:"ltc-bodoni-175-1","ltc-bodoni-175-2", georgia, serif;line-height:75px;text-align:center;font-size:2.4em;color:#fff;position: relative;}
+#prevNextLinks{margin:5px 0 0;position: absolute;width: 80px;}
+#prevProduct, #nextProduct {position:relative;}
+#prevProduct .contain, #nextProduct .contain {height: 75px;overflow: hidden;position: absolute;}
+#prevProduct img {max-width: 75px;}
+#nextProduct img {max-width: 150px;}
+#prevProduct p, #nextProduct p{position:absolute;z-index:10;top:0;left:0;height:75px;display:block;background:url(../images/bgs/gray-opacity-photo-diag.png) repeat;font-family:"ltc-bodoni-175-1","ltc-bodoni-175-2", georgia, serif;line-height:75px;text-align:center;font-size:2.4em;color:#fff;position: absolute;}
 #prevProduct p{width:75px;}
-#nextProduct p{width:150px;}
+#nextProduct p{width:150px;float: right;}
 
 #commentsRelated{background:url(../images/bgs/black-diag.png) repeat;overflow:hidden;margin-top:25px;padding:30px 0;}
 #commentsRelated h3{color:#fff;margin-bottom:22px;}
 
 #related ul li{display:inline;}
-#related ul li a{position:relative;float:left;display:block;margin:0 5px 5px 0px;}
+#related ul li a{position:relative;float:left;display:block;margin:0 5px 5px 0px;max-height: 114px;overflow: hidden;}
 #related ul li span.numLikes{position:absolute;z-index:10;bottom:0;right:0;background:url(../images/bgs/purp-opacity-photo-diag.png) repeat;padding:6px 10px; color:#fff;font-size:1.2em;}
 #related ul li span.numLikes img{margin-right:3px;}
 
@@ -406,3 +366,11 @@ font:bold 12px "Lucida Grande";
 content: " (PDF)";
 }
 a[href$=".doc"]:after {content: " (DOC)";}
+
+/* Addition styles from AM */
+.product-options {background-color: #F6F6F6;
+    border: 1px solid #DDDDDD;
+    margin: 10px 0;
+    padding: 10px 10px 0;
+    }
+.product-options p.required {padding: 0;}
