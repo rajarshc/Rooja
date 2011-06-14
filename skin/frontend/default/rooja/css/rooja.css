@@ -70,7 +70,7 @@ body{
 	padding-left: 15px;
 }
 #mainNav ul li div{
-	display:none;
+	/*display:none;*/
 	width: 120px;
 }
 #mainNav ul li:hover div {
@@ -93,8 +93,10 @@ body{
 	background-image: none;
 	text-transform: uppercase;
 	color: #ab8fb2;
-	height: 10px;
 	width: 100px;
+	margin:0;
+	height:auto;
+	padding:0;
 }
 #mainNav ul li:hover div ul li a{
 	text-transform: none;
@@ -104,6 +106,9 @@ body{
 	font-weight: normal;
 	line-height:1.2em;
 	display:block;
+}
+#mainNav ul li:hover ul li:hover{
+	background-color: transparent;
 }
 #mainNav ul li:hover ul li a:hover{
 	background-color: #431f4c;
