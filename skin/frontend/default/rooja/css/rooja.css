@@ -110,8 +110,10 @@ body{
 	display:block;
 	padding:5px 15px;
 }
-#mainNav ul liul li:hover{
+#mainNav ul li ul li:hover{
 	background-color: transparent;
+	background-image: none;
+	padding:0;
 }
 #mainNav ul li ul li a:hover{
 	background-color: #431f4c;
