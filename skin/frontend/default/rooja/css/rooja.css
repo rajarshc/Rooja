@@ -60,7 +60,7 @@ body{
 	display: inline-block;
 	margin-right: 25px;
 	height: 50px;
-	padding: 10px 20px 10px 15px;
+	padding: 10px 25px 10px 15px;
 	background: url("../images/icons/arrow-nav-dark.png") no-repeat scroll 90% 50%;
 	font-family: "ltc-bodoni-175-1","ltc-bodoni-175-2", Helvetica, Arial;
 }
@@ -103,6 +103,7 @@ body{
 	font-family: Arial;
 	font-weight: normal;
 	line-height:1.2em;
+	display:block;
 }
 #mainNav ul li:hover ul li a:hover{
 	background-color: #431f4c;
