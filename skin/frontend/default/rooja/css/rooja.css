@@ -87,8 +87,6 @@ body{
 }
 #mainNav ul li:hover div ul{
 	border-top: solid 1px #431f4c;
-	padding-top:10px;
-	margin-top:10px;
 }
 #mainNav ul li:hover div ul li{
 	display: block;
@@ -106,7 +104,7 @@ body{
 	font-weight: normal;
 	line-height:1.2em;
 }
-#mainNav ul li:hover ul li:hover{
+#mainNav ul li:hover ul li a:hover{
 	background-color: #431f4c;
 	cursor: pointer;
 }
