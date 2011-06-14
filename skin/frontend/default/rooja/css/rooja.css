@@ -62,7 +62,6 @@ body{
 	height: 50px;
 	padding: 10px 25px 10px 15px;
 	background: url("../images/icons/arrow-nav-dark.png") no-repeat scroll 90% 50%;
-	font-family: "ltc-bodoni-175-1","ltc-bodoni-175-2", Helvetica, Arial;
 }
 #mainNav ul li:hover{
 	background: url("../images/icons/arrow-nav-white.png") no-repeat  scroll 90% 50%;
@@ -71,10 +70,6 @@ body{
 }
 #mainNav ul li div{
 	display:none;
-	width: 120px;
-}
-#mainNav ul li:hover div {
-	display: block;
 	position: absolute;
 	font-size: 1.4em;
 	z-index: 15;
@@ -85,20 +80,27 @@ body{
 	margin-left: -15px;
 	background: #220f26;
 }
-#mainNav ul li:hover div ul{
-	border-top: solid 1px #431f4c;
+#mainNav ul li:hover div {
+	display: block;	
 }
-#mainNav ul li:hover div ul li{
+#mainNav ul li div ul{
+	border-top: solid 1px #431f4c;
+	padding-top:10px;
+}
+#mainNav ul li div ul li{
 	display: block;
 	background-image: none;
-	text-transform: uppercase;
-	color: #ab8fb2;
-	width: 100px;
 	margin:0;
 	height:auto;
 	padding:0;
 }
-#mainNav ul li:hover div ul li a{
+#mainNav ul li div ul li.navSectTitle{
+    text-transform: uppercase;
+	color: #ab8fb2;
+	padding:5px 15px;
+	font-family: "ltc-bodoni-175-1","ltc-bodoni-175-2", georgia, serif;
+}
+#mainNav ul li div ul li a{
 	text-transform: none;
 	font-size: 0.857em;
 	color: #fff;
@@ -106,13 +108,13 @@ body{
 	font-weight: normal;
 	line-height:1.2em;
 	display:block;
+	padding:5px 15px;
 }
-#mainNav ul li:hover ul li:hover{
+#mainNav ul liul li:hover{
 	background-color: transparent;
 }
-#mainNav ul li:hover ul li a:hover{
+#mainNav ul li ul li a:hover{
 	background-color: #431f4c;
-	cursor: pointer;
 }
 #mainNav ul li a{
 	font-size: 1.4em;
@@ -121,6 +123,7 @@ body{
 	text-transform: uppercase;
 	position: relative;
 	top: 43%;
+	font-family: "ltc-bodoni-175-1","ltc-bodoni-175-2", georgia, serif;
 }
 #accountLinks{
 	float: right;
