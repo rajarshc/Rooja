@@ -192,7 +192,7 @@ ul#myAccount li:hover ul li:hover{
 #mainFooter ul#socialLinks, #mainFooter ul#socialLinks a, #copyrightInfo, #copyrightInfo a{color:#c7b299;}
 #mainFooter ul#socialLinks img{vertical-align:middle;margin:5px 5px 5px 0;}
 #twitter_update_list{padding:12px;background:url(../images/bgs/twitter-diag.png) repeat;margin-bottom:8px;}
-#copyrightInfo {margin-top:-10px;}
+#copyrightInfo {margin-top:-50px;}
 #copyrightInfo a{text-decoration:none;}
 
 /* ~~~~~ PAGE ~~~~~ */
