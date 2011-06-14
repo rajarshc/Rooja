@@ -62,7 +62,7 @@ $fivedays = date('y-m-d', strtotime("+5 days"));
 foreach ($categories as $_category){
     if($_category->hasChildren()){
     echo '<li><a href="'.$_category->getURL().'">' . $_category->getName() . '</a>';
-    echo '<div><ul><li>New Sales</li>';
+    echo '<div><ul><li class="navSectTitle">New Sales</li>';
         $_category->getId(); // category id
         foreach($_category->getChildren() as $subcategory){
 		$c = Mage::getModel('catalog/category')->load($subcategory->getId());
@@ -78,7 +78,7 @@ foreach ($categories as $_category){
 				}
             }
         }
-        echo '</ul><ul><li>Ending Soon</li>';
+        echo '</ul><ul><li class="navSectTitle">Ending Soon</li>';
         foreach($_category->getChildren() as $subcategory){
 		$c = Mage::getModel('catalog/category')->load($subcategory->getId());
             if($c->getIsActive()){ // check if category is active
