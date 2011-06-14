@@ -74,7 +74,7 @@ body{
 	font-size: 1.4em;
 	z-index: 15;
 	width: 135px;
-	top: 60px;
+	top: 70px;
 	color:#fff;
 	text-decoration: none;
 	margin-left: -15px;
@@ -99,6 +99,7 @@ body{
 	color: #ab8fb2;
 	padding:5px 15px;
 	font-family: "ltc-bodoni-175-1","ltc-bodoni-175-2", georgia, serif;
+	margin-bottom:10px;
 }
 #mainNav ul li div ul li a{
 	text-transform: none;
