@@ -1,0 +1,53 @@
+A.sliderHandle
+{
+	background: url("../../images/rewards/slider/slider_handle.gif") no-repeat;
+	height: 17px;
+	width: 11px;
+	position: absolute;
+	cursor: pointer;
+	border: none;
+	z-index: 100;
+}
+.sliderRail
+{
+	position: relative;
+	background: url("../../images/rewards/slider/slider_rail.gif") repeat-x;
+	height: 17px;
+	position: relative;
+	width: 192px;
+	margin-top: 16px;
+}
+.sliderCaption
+{
+	margin-bottom: 12px;
+	margin-left: 12px;
+	margin-top: 10px;
+	width: 128px;
+}
+.slider
+{
+	margin-bottom: 6px;
+}
+.sliderHandle-sliding
+{
+	cursor: e-resize;
+}
+.sliderRail-sliding
+{
+	cursor: e-resize;
+}
+.cartSlider_caption
+{
+	position: relative;
+	text-align: center;
+	top: -4px;
+}
+.cartSlider_cell
+{
+	width: 16px;
+	height: 38px;
+}
+.cartSlider .sliderRail
+{
+	width: 222px;
+}

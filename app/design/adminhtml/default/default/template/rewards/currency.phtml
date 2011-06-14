@@ -1,0 +1,41 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * @category   design_default
+ * @package    Mage
+ * @copyright  Copyright (c) 2008 Irubin Consulting Inc. DBA Varien (http://www.varien.com)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+?>
+<div class="content-header rewards-currency-grid-header">
+    <table cellspacing="0">
+        <tr>
+            <td style="width:50%;"><h3 class="icon-head head-manage-currency stadmin-page-head"><?php echo $this->__('Point Currencies') ?></h3></td>
+            <td class="a-right">
+            	<?php echo Mage::getBlockSingleton('rewards/manage_widget_loyalty')->toHtml(); ?>
+                <?php echo $this->getAddNewButtonHtml() ?>
+            </td>
+        </tr>
+    </table>
+</div>
+<?php echo $this->getStoreSwitcherHtml() ?>
+
+<div class="rewards-currency-grid">
+    <?php echo $this->getGridHtml() ?>
+</div>
+<div class="rewards-currency-footer-msg">
+    <a href="http://www.SweetToothRewards.com/wiki/index.php/Customizing_The_Appearance_of_Points">
+    	<?php echo $this->__("Did you know that you can customize your Sweet Tooth points currency from the theme as well in more detail?") ?>
+    </a>
+</div>

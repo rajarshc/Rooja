@@ -1,0 +1,67 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/LICENSE-M1.txt
+ *
+ * @category   AW
+ * @package    AW_Rma
+ * @copyright  Copyright (c) 2010 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/LICENSE-M1.txt
+ */
+?>
+
+<div class="awrma-account">
+    <div class="page-title title-buttons">
+        <h1><?php echo $this->__('RMA') ?></h1>
+        <a class="link-awrma-newrma" href="<?php echo $this->getUrl('awrma/customer_rma/new') ?>"><?php echo $this->__('Request New RMA') ?></a>
+    </div>
+    <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+    <?php if($this->getRmaEntitiesCollection()->getSize()) : ?>
+    <?php echo $this->getChildHtml('pager'); ?>
+    <table class="data-table" id="my-rmas-table">
+        <col width="1" />
+        <col width="1" />
+        <col width="1" />
+        <col />
+        <col width ="1"/>
+        <thead>
+            <tr>
+                <th><?php echo $this->__('Date') ?></th>
+                <th><?php echo $this->__('ID') ?></th>
+                <th><?php echo $this->__('Order #') ?></th>
+                <th><?php echo $this->__('Status') ?></th>
+                <th>&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php foreach($this->getRmaEntitiesCollection() as $item) : ?>
+            <tr>
+                <td><?php echo $this->formatDate($item->getCreatedAt()) ?></td>
+                <td><?php echo $item->getTextId() ?></td>
+                <td>#<?php echo $item->getOrderId() ?></td>
+                <td><?php echo $item->getStatusName() ?></td>
+                <td>
+                    <span class="nobr">
+                        <a href="<?php echo $this->getUrl('awrma/customer_rma/view', array('id' => $item->getId())) ?>" class="link-awrma-bold"><?php echo $this->__('View Request') ?></a>
+                        <?php if($item->getIsActive()) : ?>
+                        <span class="separator">|</span>
+                        <a class="link-awrma" href="<?php echo $this->getUrl('awrma/customer_rma/cancel', array('id' => $item->getId())) ?>" onclick="return confirm('<?php echo $this->__('Are you sure you would like to cancel this RMA?') ?>')" class="link-awrma-cancel"><?php echo $this->__('Cancel') ?></a>
+                        <?php endif; ?>
+                    </span>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+    <?php echo $this->getChildHtml('pager'); ?>
+    <script type="text/javascript">decorateTable('my-rmas-table')</script>
+    <?php else : ?>
+    <p><?php echo $this->__('You have no RMA requests'); ?></p>
+    <?php endif; ?>
+</div>

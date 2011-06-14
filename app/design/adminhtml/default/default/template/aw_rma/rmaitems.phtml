@@ -1,0 +1,56 @@
+<?php
+
+/**
+* aheadWorks Co.
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the EULA
+* that is bundled with this package in the file LICENSE.txt.
+* It is also available through the world-wide-web at this URL:
+* http://ecommerce.aheadworks.com/LICENSE-M1.txt
+*
+* @category   AW
+* @package    AW_Rma
+* @copyright  Copyright (c) 2010 aheadWorks Co. (http://www.aheadworks.com)
+* @license    http://ecommerce.aheadworks.com/LICENSE-M1.txt
+*/
+?>
+<?php if ($this->getOrder()) : ?>
+<h4><?php echo $this->__('Items RMA Requested for') ?></h4>
+<div class="grid">
+    <table class="data border" cellpadding="0" cellspacing="0">
+        <col />
+        <col width="1" />
+        <col width="1" />
+        <thead>
+            <tr class="headings">
+                <th><?php echo $this->__('Product Name') ?></th>
+                <th><?php echo $this->__('SKU') ?></th>
+                <th><?php echo $this->__('Qty') ?></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php $requestedItems = $this->getRmaRequest()->getOrderItems() ?>
+            <?php foreach($this->getOrder()->getItemsCollection() as $item) : ?>
+            <?php if(in_array($item->getId(), array_keys($requestedItems))) : ?>
+            <tr>
+                <td><?php echo $item->getName() ?></td>
+                <td><span class="nobr"><?php echo $item->getSku() ?></span></td>
+                <td>
+                    <?php if(Mage::helper('awrma/config')->getAllowPerOrderRMA()) : ?>
+                    <input type="text" name="orderitems[<?php echo $item->getId() ?>]" id="orderitem-count<?php echo $item->getId() ?>" value="<?php echo $requestedItems[$item->getId()] ?>" class="awrma-items-count" />
+                    <input type="hidden" id="orderitem-count<?php echo $item->getId() ?>-maxcount" value="<?php echo $requestedItems[$item->getId()] ?>" />
+                    <?php else : ?>
+                    <?php echo $requestedItems[$item->getId()] ?>
+                    <?php endif; ?>
+                </td>
+            </tr>
+            <?php endif ?>
+            <?php endforeach ?>
+        </tbody>
+    </table>
+</div>
+<?php else : ?>
+<?php echo $this->__('Couldn\'t load order') ?>
+<?php endif ?>

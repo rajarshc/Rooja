@@ -1,0 +1,61 @@
+
+.stadmin-menu_main {
+	background-image:url("../images/st_micro_icon.png") !important;
+	background-position:0 7px !important;
+	background-repeat:no-repeat !important;
+	padding-left:22px !important;
+	padding-right:0 !important;
+	width:100% !important;
+}
+
+h3.head-manage-promo-quote-redemptions, 
+h3.head-manage-promo-quote-redemptions, 
+h3.head-manage-promo-catalog-redemptions, 
+h3.head-manage-special, 
+h3.head-manage-promo-quote-distributions, 
+h3.head-manage-promo-catalog-distributions, 
+h3.head-manage-currency,
+h3.head-manage-referrals,
+h3.head-manage-transfer-other,
+h3.head-manage-transfer-distribution,
+h3.head-manage-transfer-redemption,
+h3.head-manage-transfer,
+h3.head-manage-customer-points,
+h3.head-manage-promo-quote,
+h3.head-manage-promo-catalog
+{
+	background-image:url("../images/st_micro_icon.png");
+	background-position:0 2px;
+	background-repeat:no-repeat;
+	color:#EA5091;
+	padding-left:22px;
+	padding-right:0;
+}
+
+.tabs.config-tabs span.stadmin-config_menu {
+	padding: 0;
+	background-image:url("../images/st_micro_icon.png");
+	background-position:0 2px;
+	background-repeat:no-repeat;
+	color:#EA5091;
+	padding-left:22px;
+	padding-right:0;
+}
+
+.content-header h3 span.stadmin-config_menu {
+	background-image:url("../images/st_micro_icon.png");
+	background-position:0 2px;
+	background-repeat:no-repeat;
+	color:#EA5091;
+	padding-left:22px;
+	padding-right:0;	
+}
+
+.rewards-currency-footer-msg {
+	margin-top: 24px;
+    font-style: italic;
+}
+.entry-edit .rewards-currency-footer-msg {
+    text-align: left;
+}
+

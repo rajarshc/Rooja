@@ -1,0 +1,149 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+        <reference name="footer_links">
+            <block type="awrma/customer_footerlinkadder" name="awrma.customer.footerlinkadder" as="awrma_footerlinkadder">
+                <action method="addLink"></action>
+            </block>
+        </reference>
+    </default>
+
+    <customer_account>
+        <reference name="customer_account_navigation">
+            <block type="awrma/customer_accountlink" name="awrma.customer.account.checker" as="awrma_customer_account_checker">
+                <action method="addLink"></action>
+            </block>
+        </reference>
+    </customer_account>
+
+    <awrma_customer_rma_list>
+        <update handle="customer_account" />
+        <reference name="head">
+            <action method="addCss"><stylesheet>aw_rma/css/rma.css</stylesheet></action>
+        </reference>
+        <reference name="content">
+            <block type="awrma/customer_dashboard" name="awrma.customer.account.dashboard" as="awrma_customer_account_dashboard" />
+            <block type="awrma/customer_backlink" name="awrma.customer.account.link.back" template="aw_rma/customer/backlink.phtml">
+                <action method="setBackLink"><link>customer/account</link></action>
+            </block>
+        </reference>
+    </awrma_customer_rma_list>
+
+    <awrma_customer_rma_new>
+        <update handle="customer_account" />
+        <reference name="head">
+            <action method="addJs"><script>aw_rma.js</script></action>
+            <action method="addCss"><stylesheet>aw_rma/css/rma.css</stylesheet></action>
+        </reference>
+        <reference name="content">
+            <block type="awrma/customer_new" name="awrma.customer.account.new" as="awrma_customer_account_new">
+                <action method="setGuestMode"><mode>0</mode></action>
+            </block>
+            <block type="awrma/customer_backlink" name="awrma.customer.account.link.back" template="aw_rma/customer/backlink.phtml">
+                <action method="setBackLink"><link>awrma/customer_rma/list</link></action>
+            </block>
+        </reference>
+    </awrma_customer_rma_new>
+
+    <awrma_customer_rma_printlabel>
+        <update handle="customer_account" />
+        <reference name="head">
+            <action method="addCss"><stylesheet>aw_rma/css/rma.css</stylesheet></action>
+        </reference>
+        <reference name="content">
+            <block type="awrma/customer_printlabel" name="awrma.customer.account.printlabel" as="awrma_customer_account_printlabel">
+                <action method="setGuestMode"><mode>0</mode></action>
+            </block>
+            <block type="awrma/customer_backlink" name="awrma.customer.account.link.back" template="aw_rma/customer/backlink.phtml">
+                <action method="setBackLink"><link>awrma/customer_rma/view</link><mode>1</mode></action>
+            </block>
+        </reference>
+    </awrma_customer_rma_printlabel>
+
+    <awrma_customer_rma_printform>
+        <update handle="print" />
+        <reference name="content">
+            <block type="awrma/customer_printform" name="awrma.customer.account.printform" template="aw_rma/customer/printform.phtml" />
+        </reference>
+    </awrma_customer_rma_printform>
+
+    <awrma_guest_rma_printlabel>
+        <update handle="awrma_guest" />
+        <reference name="content">
+            <block type="awrma/customer_printlabel" name="awrma.customer.account.printlabel" as="awrma_customer_account_printlabel">
+                <action method="setGuestMode"><mode>1</mode></action>
+            </block>
+            <block type="awrma/customer_backlink" name="awrma.customer.account.link.back" template="aw_rma/customer/backlink.phtml">
+                <action method="setBackLink"><link>awrma/guest_rma/view</link><mode>1</mode></action>
+            </block>
+        </reference>
+    </awrma_guest_rma_printlabel>
+
+    <awrma_guest_rma_printform>
+        <update handle="print" />
+        <reference name="content">
+            <block type="awrma/customer_printform" name="awrma.customer.account.printform" template="aw_rma/customer/printform.phtml" />
+        </reference>
+    </awrma_guest_rma_printform>
+
+    <awrma_customer_rma_view>
+        <update handle="customer_account" />
+        <reference name="head">
+            <action method="addJs"><script>aw_rma.js</script></action>
+            <action method="addCss"><stylesheet>aw_rma/css/rma.css</stylesheet></action>
+        </reference>
+        <reference name="content">
+            <block type="awrma/customer_view" name="awrma.customer.account.view" as="awrma_customer_account_view" />
+            <block type="awrma/customer_backlink" name="awrma.customer.account.link.back" template="aw_rma/customer/backlink.phtml">
+                <action method="setBackLink"><link>awrma/customer_rma/list</link></action>
+            </block>
+        </reference>
+    </awrma_customer_rma_view>
+
+    <awrma_guest>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+    </awrma_guest>
+
+    <awrma_guest_rma_index>
+        <update handle="awrma_guest" />
+        <reference name="content">
+            <block type="awrma/guest_orderdetails" name="awrma.orderdetails.guestform" />
+        </reference>
+    </awrma_guest_rma_index>
+
+    <awrma_guest_rma_new>
+        <update handle="awrma_guest" />
+        <reference name="head">
+            <action method="addJs"><script>aw_rma.js</script></action>
+            <action method="addCss"><stylesheet>aw_rma/css/rma.css</stylesheet></action>
+        </reference>
+        <reference name="content">
+            <block type="awrma/customer_new" name="awrma.orderdetails.newform">
+                <action method="setGuestMode"><mode>1</mode></action>
+            </block>
+            <block type="awrma/customer_backlink" name="awrma.customer.account.link.back" template="aw_rma/customer/backlink.phtml">
+                <action method="setBackLink"><link>awrma/guest_rma/index</link></action>
+            </block>
+        </reference>
+    </awrma_guest_rma_new>
+
+    <awrma_guest_rma_view>
+        <update handle="awrma_guest" />
+        <reference name="head">
+            <action method="addJs"><script>aw_rma.js</script></action>
+            <action method="addCss"><stylesheet>aw_rma/css/rma.css</stylesheet></action>
+        </reference>
+        <reference name="content">
+            <block type="awrma/customer_view" name="awrma.guest.view" as="awrma_guest_new">
+                <action method="setGuestMode"><mode>1</mode></action>
+            </block>
+        </reference>
+    </awrma_guest_rma_view>
+
+    <!-- Email layout handles -->
+    <awrma_email_request_item>
+        <block type="core/template" name="items" template="aw_rma/email/requestitems.phtml" />
+    </awrma_email_request_item>
+</layout>

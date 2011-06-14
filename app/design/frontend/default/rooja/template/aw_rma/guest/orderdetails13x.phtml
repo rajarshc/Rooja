@@ -1,0 +1,48 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/LICENSE-M1.txt
+ *
+ * @category   AW
+ * @package    AW_Rma
+ * @copyright  Copyright (c) 2010 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/LICENSE-M1.txt
+ */
+?>
+
+<div class="page-head button-level">
+    <h3><?php echo $this->__('Request RMA') ?></h3>
+</div>
+<div id="messages">
+    <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+</div>
+<form action="<?php echo $this->getUrl('awrma/guest_rma/checkorder') ?>" method="post" id="awrma-new-form">
+    <fieldset class="group-select">
+        <h4 class="legend"><?php echo $this->__('Order Information') ?></h4>
+        <ul>
+            <li>
+                <div class="input-box">
+                    <label for="awrma-orderid"><?php echo $this->__('Order Id') ?><span class="required">*</span></label>
+                    <input type="text" name="orderid" id="awrma-orderid" class="input-text required-entry" />
+                </div>
+                <div class="input-box">
+                    <label for="awrma-email"><?php echo $this->__('E-mail') ?><span class="required">*</span></label>
+                    <input type="text" name="email" id="awrma-email" class="input-text required-entry" />
+                </div>
+            </li>
+        </ul>
+    </fieldset>
+    <div class="button-set">
+        <p class="required"><?php echo $this->__('* Required Fields') ?></p>
+        <button type="submit" title="<?php echo $this->__('Submit Request') ?>" class="form-button" id="awrma-new-submit"><span><?php echo $this->__('Submit Request') ?></span></button>
+    </div>
+</form>
+<script type="text/javascript">
+    var awrmaNewForm = new VarienForm('awrma-new-form');
+</script>

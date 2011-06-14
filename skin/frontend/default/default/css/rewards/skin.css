@@ -1,0 +1,320 @@
+/**
+* We tried to list as many classes in this sheet as we could
+* but it's more than likely we missed a bunch.
+**/
+.rewards-special-review-summary
+{
+	margin-top: 12px;
+	font-size: 8pt;
+}
+.rewards-customer-sidebar
+{
+}
+.rewards-customer-sidebar .block-content
+{
+	padding-left: 9px;
+	font-size: 11px;
+	padding-bottom: 6px;
+	padding-top: 7px;
+	padding-right: 9px;
+}
+.rewards-checkout-cart-before_total-head
+{
+}
+.rewards-checkout-cart-points-head
+{
+	width: 80px;
+}
+.item-points-header-redeemed, .item-points-header-earned
+{
+	color: rgb(30, 126, 200);
+	font-weight: bold;
+	cursor: pointer;
+}
+.item-points-list-redeemed, .item-points-list-earned
+{
+}
+.item-points-block
+{
+	font-size: 8pt;
+}
+.item-no-points-caption
+{
+	font-style: italic;
+}
+.points-checkout-onepage-sidebox
+{
+}
+.points-checkout-onepage-sidebox .points-checkout-onepage-sidebox-header
+{
+}
+.points-checkout-onepage-sidebox .points-checkout-onepage-sidebox-header
+{
+	background-color: #D0DCE1;
+}
+.points-checkout-onepage-sidebox
+{
+	background-color: #EEEEEE;
+	border: 1px solid #B7B7B7;
+	margin-bottom: 11px;
+	padding-left: 0px;
+}
+.points-checkout-onepage-sidebox .points-checkout-onepage-sidebox-content
+{
+	padding: 6px;
+}
+.points-checkout-onepage-sidebox H4.points-checkout-onepage-sidebox-header
+{
+	list-style: none;
+}
+.points-checkout-onepage-sidebox .points-checkout-onepage-sidebox-header
+{
+	background-color: #D0DCE1;
+}
+.points-checkout-onepage-sidebox .points-checkout-onepage-sidebox-header H4
+{
+	float: left;
+	color: #5E8AB4;
+	font-size: 13px;
+	margin-top: 2px;
+}
+.points-checkout-onepage-sidebox .points-checkout-onepage-sidebox-header
+{
+	background-color: #D0DCE1;
+	float: left;
+	width: 184px;
+}
+.points-checkout-onepage-sidebox .points-checkout-onepage-sidebox-header
+{
+	background-color: #D0DCE1;
+	padding: 2px 0px 0px 9px;
+	border-bottom: 1px solid #AFAFAF;
+	font-size: 10pt;
+}
+.points-checkout-onepage-sidebox .onepage-sidebox-header
+{
+}
+.points-checkout-onepage-sidebox .onepage-sidebox-content
+{
+}
+.mypoints-page-head
+{
+}
+.mypoints-sendfriend
+{
+	float: left;
+	width: 45%;
+	height: 260px;
+}
+.shopping-cart-collaterals .rewards-cart-box H4
+{
+	min-height: 16px;
+	color: #E26703;
+	background-repeat: no-repeat;
+	background-position: 0 0;
+	padding: 1px 0 1px 21px;
+	text-transform: uppercase;
+	background-image: url(../../images/icon_asterick.gif);
+	padding-left: 23px;
+}
+.rewards-customer-index .mypoints-sendfriend TD
+{
+	padding: 2px 2px 4px 0;
+}
+.shopping-cart-collaterals .rewards-cart-box
+{
+	padding: 12px 15px 15px;
+}
+.rewards-cart-box .applied-redemptions
+{
+	margin-bottom: 10px;
+}
+.rewards-cart-box .applied-redemptions
+{
+	margin-bottom: 10px;
+}
+.rewards-cart-box .distributions
+{
+	margin-bottom: 10px;
+}
+.rewards-cart-box .no_extra_points
+{
+	font-style: italic;
+}
+.rewards-cart-box
+{
+	margin-top: 0px;
+	margin-bottom: 20px;
+	float: left;
+	text-align: left;
+	width: 100%;
+}
+.mypoints-redeemcatalog
+{
+	vertical-align: middle;
+	float: right;
+	width: 45%;
+	height: 260px;
+}
+/*@nelkaake Thursday May 27, 2010 : Added*/
+.mypoints-redeemcatalog .head
+{
+	text-align: left;
+}
+.mypoints-redeemcatalog .listing
+{
+	font-size: 8pt;
+	height: 230px;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+.mypoints-redeemcatalog .noproducts
+{
+/*font-size:8pt;*/
+	font-style: italic;
+	margin-top: 30px;
+	text-align: center;
+}
+.mypoints-transfers
+{
+}
+.mypoints-transfers .content TABLE TBODY
+{
+	height: 200px;
+	overflow-x: hidden;
+}
+.mypoints-transfers H2
+{
+	margin-top: 12px;
+}
+.mypoints-summary
+{
+	padding-bottom: 20px;
+	padding-top: 2px;
+}
+.mypoints-summary .usable-points
+{
+	margin-bottom: 6px;
+}
+.mypoints-summary .pending-points
+{
+}
+.mypoints-summary .onhold-points
+{
+	margin-bottom: 12px;
+}
+.mypoints-summary .msg
+{
+}
+.points-summary-emphasize
+{
+	font-weight: bold;
+}
+.cart-points-total_spent
+{
+}
+.cart-points-total_spent .warning
+{
+	color: #FF0000;
+	font-size: 8pt;
+}
+.cart-points-total_spent .caption, .cart-points-total_earned .caption
+{
+	font-weight: bold;
+}
+.cart-points-total_item_discounts .rendering_area
+{
+	font-weight: bold;
+}
+.rewards-customer-sidebar .warning
+{
+	color: #FF0000;
+	font-size: 8pt;
+}
+.rewards-customer-sidebar .to_spend
+{
+}
+.rewards-customer-sidebar .remaining
+{
+}
+.rewards-customer-sidebar .balance
+{
+}
+.rewards-customer-sidebar .notice
+{
+	color: #444444;
+}
+.mypoints-transfers
+{
+	width: 100%;
+}
+.mypoints-transfers .data-table
+{
+}
+.mypoints-transfers .content
+{
+	padding: 0;
+}
+.points-prediction
+{
+	margin-top: 12px;
+	font-size: 8pt;
+	width: 100%;
+}
+.points-prediction .as_low_as
+{
+	width: 100%;
+}
+.points-prediction .earnable
+{
+}
+.order-points-earned .caption
+{
+}
+.order-points-earned .amount, .order-points-spent .amount, .order-print-points-earned .amount, .order-print-points-spent .amount
+{
+	font-size: 7pt;
+}
+.product-view-points
+{
+}
+.product-view-points .redeem_section
+{
+}
+.product-view-points .distri_section
+{
+}
+.product-view-points .distri_section .you_will_earn
+{
+}
+.product-view-points .distri_section .points_image
+{
+}
+.product-view-points
+{
+}
+.points-special-header
+{
+	color: #FFFFFF;
+}
+.points-multishipping-warning
+{
+}
+.points-checkout-onepage-sidebox .change-points-usage
+{
+	float: left;
+	margin-right: 7px;
+	margin-left: 10px;
+	border-left: 1px solid #A7A7A7;
+	padding-left: 8px;
+	font-weight: bold;
+}
+
+
+.cart-points-total_spent .points-amount {
+	min-width: 100px;
+}
+
+.cart-points-spending_warnings .notice {
+	font-size: 8pt;
+}

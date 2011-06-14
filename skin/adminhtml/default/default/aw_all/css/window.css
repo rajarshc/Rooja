@@ -1,0 +1,63 @@
+#aw_notif{
+	
+	z-index:100000000;
+	position:absolute;
+	top:300px;
+	padding:0px ; 
+	
+	left:50%; 
+	border:4px solid #f3bf8f; 
+	border-top-width:0px;
+	margin:auto; 
+	background:#fdf4eb;
+}
+#aw_notif .head h3{
+	margin-left:12px;
+	font-size:1.1em;
+	margin-bottom:0px;
+	margin-top:0.2em;
+	font-weight:bold;
+	float:left;
+}
+#aw_notif .head{
+	background:#f3bf8f;
+	height:23px;
+	
+}
+#aw_notif .content{
+	padding:20px;
+	background:url(../images/info.gif) no-repeat 20px 30px;
+	
+}	
+#aw_notif .head .close{
+	display:block;
+	float:right;
+	background:url(../images/window/btn-close.gif) no-repeat top left;
+	padding-left:28px;
+	height:19px;
+	margin-top:2px;
+	font-size:11px;
+	font-weight:normal;
+}
+	
+#aw_notif .value label{
+	
+}
+
+#awall_extensions a img{
+	vertical-align:middle; margin-right:3px;
+}
+
+#aw_notif .form-list td.label label{
+	width:130px;
+	margin-left:45px;
+	text-align:right;
+	
+}
+
+.adminhtml-system-config-edit #awall_extensions .label label{
+	width:auto;
+	white-space:nowrap;
+}
+
+

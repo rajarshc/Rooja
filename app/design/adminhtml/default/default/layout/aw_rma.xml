@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <awrma_adminhtml_types_list>
+        <reference name="content">
+            <block type="awrma/adminhtml_types" name="awrma.adminhtml.types" />
+        </reference>
+    </awrma_adminhtml_types_list>
+
+    <awrma_adminhtml_status_list>
+        <reference name="content">
+            <block type="awrma/adminhtml_status" name="awrma.adminhtml.status" />
+        </reference>
+    </awrma_adminhtml_status_list>
+
+    <awrma_adminhtml_rma_list>
+        <reference name="content">
+            <block type="awrma/adminhtml_rma" name="awrma.adminhtml.rma" />
+        </reference>
+    </awrma_adminhtml_rma_list>
+
+    <awrma_adminhtml_rma_listpending>
+        <reference name="content">
+            <block type="awrma/adminhtml_pendingrma" name="awrma.adminhtml.rma" />
+        </reference>
+    </awrma_adminhtml_rma_listpending>
+
+    <awrma_adminhtml_rma_edit>
+        <reference name="head">
+            <action method="addCss"><stylesheet>aw_rma/css/rma.css</stylesheet></action>
+            <action method="addJs"><script>aw_rma.js</script></action>
+        </reference>
+    </awrma_adminhtml_rma_edit>
+    <awrma_adminhtml_rma_new>
+        <reference name="head">
+            <action method="addCss"><stylesheet>aw_rma/css/rma.css</stylesheet></action>
+        </reference>
+    </awrma_adminhtml_rma_new>
+	 <adminhtml_sales_order_view>
+        <reference name="sales_order_tabs">
+			<block type="awrma/adminhtml_sales_order_view_tabs_requests" name="awrma_requests"/>
+            <action method="addTab"><name>Requests</name><block>awrma_requests</block></action>
+        </reference>
+     </adminhtml_sales_order_view>
+</layout>

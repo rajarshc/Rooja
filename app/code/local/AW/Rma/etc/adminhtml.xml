@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <translate>
+        <modules>
+            <AW_Rma>
+                <files>
+                    <default>AW_Rma.csv</default>
+                </files>
+            </AW_Rma>
+        </modules>
+    </translate>
+
+    <menu>
+        <sales>
+            <children>
+                <awrma module="awrma">
+                    <title>RMA</title>
+                    <sort_order>180</sort_order>
+                    <children>
+                        <list module="awrma">
+                            <title>All RMA</title>
+                            <sort_order>10</sort_order>
+                            <action>awrma/adminhtml_rma/list</action>
+                        </list>
+
+                        <listpending module="awrma">
+                            <title>Pending Requests</title>
+                            <sort_order>20</sort_order>
+                            <action>awrma/adminhtml_rma/listpending</action>
+                        </listpending>
+
+                        <status module="awrma">
+                            <title>Manage Statuses</title>
+                            <sort_order>30</sort_order>
+                            <action>awrma/adminhtml_status/list</action>
+                        </status>
+
+                        <types module="awrma">
+                            <title>Manage Types</title>
+                            <sort_order>40</sort_order>
+                            <action>awrma/adminhtml_types/list</action>
+                        </types>
+
+                        <settings module="awrma">
+                            <title>Settings</title>
+                            <sort_order>50</sort_order>
+                            <action>adminhtml/system_config/edit/section/awrma</action>
+                        </settings>
+                    </children>
+                </awrma>
+            </children>
+        </sales>
+    </menu>
+
+    <layout>
+        <updates>
+            <awrma module="awrma">
+                <file>aw_rma.xml</file>
+            </awrma>
+        </updates>
+    </layout>
+
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <sales>
+                        <children>
+                            <awrma>
+                                <title>RMA Module</title>
+                                <sort_order>180</sort_order>
+                                <children>
+                                    <list>
+                                        <title>All RMA</title>
+                                        <sort_order>10</sort_order>
+                                    </list>
+                                    <listpending>
+                                        <title>Pending RMA</title>
+                                        <sort_order>20</sort_order>
+                                    </listpending>
+                                    <status>
+                                        <title>Status Management</title>
+                                        <sort_order>30</sort_order>
+                                    </status>
+                                    <types>
+                                        <title>Types Management</title>
+                                        <sort_order>40</sort_order>
+                                    </types>
+                                    <settings>
+                                        <title>Quick Link to extension Settings</title>
+                                        <sort_order>50</sort_order>
+                                    </settings>
+                                </children>
+                            </awrma>
+                        </children>
+                    </sales>
+
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <awrma>
+                                        <title>AheadWorks RMA Section</title>
+                                    </awrma>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>    
+</config>

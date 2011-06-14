@@ -1,0 +1,109 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/LICENSE-M1.txt
+ *
+ * @category   AW
+ * @package    AW_Rma
+ * @copyright  Copyright (c) 2010 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/LICENSE-M1.txt
+ */
+?>
+<?php if($this->getRmaRequest() && $this->getFormData()) : ?>
+<?php $rmaRequest = $this->getRmaRequest() ?>
+<style type="text/css">
+    .awrma-left-column {
+        width: 50%;
+        float: left;
+    }
+    .awrma-right-column {
+        width: 50%;
+        float: right;
+    }
+    .awrma-line {
+        border-bottom: dotted 1px #000;
+    }
+    .awrma-table td {
+        padding-right: 7px;
+    }
+</style>
+<h1><?php echo $this->__('RMA').' '.$rmaRequest->getTextId() ?></h1>
+<p><?php echo $this->__('Date:') ?> <?php echo $this->formatDate($rmaRequest->getCreatedAt()) ?></p>
+<p class="awrma-line"></p>
+<div class="awrma-left-column">
+    <h2><?php echo $this->__('Return Address') ?></h2>
+    <p>
+        <?php echo $this->getFormData()->getFirstname() ?> <?php echo $this->getFormData()->getLastname() ?><br />
+        <?php if($this->getFormData()->getCompany()) : ?><?php echo $this->getFormData()->getCompany() ?><br /><?php endif ?>
+        <?php foreach($this->getFormData()->getStreetaddress() as $address) : ?>
+        <?php if($address) : ?><?php echo $address ?><br /><?php endif ?>
+        <?php endforeach ?>
+        <?php echo $this->getFormData()->getCity() ?><?php if($this->getFormData()->getStateprovince() || $this->getRegionName()) : ?>, <?php endif ?><?php echo $this->getFormData()->getStateprovince() != '' ? $this->getFormData()->getStateprovince() : $this->getRegionName() ?>, <?php echo $this->getFormData()->getPostcode() ?><br />
+        <?php echo $this->getCountryName() ?><br />
+        <?php echo $this->getFormData()->getTelephone() ?><?php if($this->getFormData()->getFax()) : ?>, <?php echo $this->getFormData()->getFax() ?><?php endif ?>
+    </p>
+</div>
+<div class="awrma-right-column">
+    <h2><?php echo $this->__('Details') ?></h2>
+    <table border="0" class="awrma-table">
+        <tr valign="top">
+            <td><?php echo $this->__('Order:') ?></td>
+            <td>#<?php echo $rmaRequest->getOrderId() ?></td>
+        </tr>
+        <?php if($rmaRequest->getRequestType()) : ?>
+        <tr valign="top">
+            <td><?php echo $this->__('Request Type:') ?></td>
+            <td><?php echo $rmaRequest->getRequestTypeName() ?></td>
+        </tr>
+        <?php endif ?>
+        <tr valign="top">
+            <td><?php echo $this->__('Package Opened:') ?></td>
+            <td><?php echo $rmaRequest->getPackageOpenedLabel() ?></td>
+        </tr>
+        <tr valign="top">
+            <td><?php echo $this->__('Approvement Code:') ?></td>
+            <td><?php echo $rmaRequest->getApprovementCode() ?></td>
+        </tr>
+    </table>
+</div>
+<div style="clear: both"></div>
+<?php if($this->getFormData()->getAdditionalinfo()) : ?>
+<p><?php echo $this->htmlEscape($this->getFormData()->getAdditionalinfo()) ?></p>
+<?php endif ?>
+<h2><?php echo $this->__('Items RMA Requested for') ?></h2>
+<?php $_order = $rmaRequest->getOrder() ?>
+<table id="awrma-requested-items" class="data-table" cellspacing="0">
+    <col />
+    <col width="1" />
+    <col width="1"/>
+    <thead>
+        <tr>
+            <th><?php echo $this->__('Product Name') ?></th>
+            <th><?php echo $this->__('SKU') ?></th>
+            <th><?php echo $this->__('Qty') ?></th>
+        </tr>
+    </thead>
+    <tbody>
+    <?php $_requestedItems = $rmaRequest->getOrderItems(); ?>
+    <?php foreach($_order->getItemsCollection() as $_item) : ?>
+        <?php if(in_array($_item->getId(), array_keys($_requestedItems))) : ?>
+        <tr>
+            <td><?php echo $_item->getName() ?></td>
+            <td><span class="nobr"><?php echo $_item->getSku() ?></span></td>
+            <td><?php echo $_requestedItems[$_item->getId()] ?></td>
+        </tr>
+        <?php endif; ?>
+    <?php endforeach; ?>
+    </tbody>
+</table>
+<?php endif ?>
+<script type="text/javascript">
+    decorateTable('awrma-requested-items');
+    window.print();
+</script>

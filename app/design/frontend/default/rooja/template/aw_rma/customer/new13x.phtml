@@ -1,0 +1,122 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/LICENSE-M1.txt
+ *
+ * @category   AW
+ * @package    AW_Rma
+ * @copyright  Copyright (c) 2010 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/LICENSE-M1.txt
+ */
+?>
+
+<?php $_formData = $this->getFormData() ?>
+<div class="awrma-account">
+    <div class="page-head button-level">
+        <h3><?php echo $this->__('Request RMA') ?></h3>
+    </div>
+    <div id="messages">
+        <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+    </div>
+    <?php if($this->getGuestMode() || $this->getCustomerOrders()->getSize()) : ?>
+    <form action="<?php echo $this->getGuestMode() ? $this->getUrl('awrma/guest_rma/save') : $this->getUrl('awrma/customer_rma/save') ?>" method="post" id="awrma-new-form">
+        <?php echo $this->getBlockHtml('formkey')?>
+        <fieldset class="group-select">
+            <h4 class="legend"><?php echo $this->__('Request Information') ?></h4>
+            <ul>
+                <li>
+                    <label for="order"><?php echo $this->__('Order') ?><span class="required">*</span></label><br />
+                    <select type="select" name="order" id="awrma-order" title="<?php echo $this->__('Order') ?>" class="awrma-m13x-input-wide validate-select required-entry" defaultvalue="">
+                        <option value=""><?php echo $this->__('Please select order') ?></option>
+                        <?php foreach($this->getCustomerOrders() as $order) : ?>
+                        <option value="<?php echo $order->getIncrementId(); ?>" <?php if(isset($_formData['order']) && $_formData['order'] == $order->getIncrementId()) : ?>selected="selected"<?php endif; ?>>
+                            <?php echo '#'.$order->getIncrementId().', '.$this->formatDate($order->getCreatedAtStoreDate()).', '.$order->formatPrice($order->getGrandTotal()) ?>
+                        </option>
+                        <?php endforeach; ?>
+                    </select>
+                </li>
+                <li>
+                    <label for="awrma-items-ordered-table"><?php echo $this->__('Items Ordered') ?></label><br />
+                    <table class="data-table awrma-m13x-input-wide" id="awrma-items-ordered-table" name="items" cellspacing="0">
+                        <thead id="awrma-items-head">
+                            <tr>
+                                <?php if(Mage::helper('awrma/config')->getAllowPerOrderRMA()) : ?><th></th><?php endif; ?>
+                                <th><?php echo $this->__('Product Name') ?></th>
+                                <th><?php echo $this->__('SKU') ?></th>
+                                <th><?php echo $this->__('Qty') ?></th>
+                            </tr>
+                            <tr id="awrma-items-noorder" style="display: none;">
+                                <td colspan="4"><?php echo $this->__('No order selected') ?></td>
+                            </tr>
+                            <tr id="awrma-items-noitems" style="display: none;">
+                                <td colspan="4"><?php echo $this->__('No items selected') ?></td>
+                            </tr>
+                            <tr id="awrma-items-loading" style="display: none;">
+                                <td colspan="4"><img src="<?php echo $this->getSkinUrl('aw_rma/images/ajax-loader.gif') ?>" /></td>
+                            </tr>
+                            <tr id="awrma-items-error" style="display: none;">
+                                <td colspan="4"><?php echo $this->__('Some error occurs. Please, try again to select order') ?></td>
+                            </tr>
+                        </thead>
+                        <tbody id="awrma-items">
+                            <tr>
+                                <td colspan="4"><?php echo $this->__('No order selected') ?></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+                <li>
+                    <div class="input-box">
+                        <label for="awrma-packageopened"><?php echo $this->__('Package Opened') ?></label><br />
+                        <select type="select" name="packageopened" id="awrma-packageopened" title="<?php echo $this->__('Package Opened') ?>">
+                            <?php $_itemSelected = isset($_formData['packageopened']) ? $_formData['packageopened'] : Mage::getModel('awrma/source_packageopened')->getDefaultValue(); ?>
+                            <?php foreach(Mage::getModel('awrma/source_packageopened')->toOptionArray() as $_item) : ?>
+                            <option value="<?php echo $_item['value'] ?>" <?php if($_itemSelected == $_item['value']) : ?>selected="selected" <?php endif; ?>><?php echo $_item['label'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <?php $_types = $this->getRequestTypes() ?>
+                    <?php if($_types->getSize()) : ?>
+                    <div class="input-box">
+                        <label for="awrma-request-type"><?php echo $this->__('Request Type') ?><span class="required">*</span></label>
+                        <?php $_itemSelected = isset($_formData['requesttype']) ? $_formData['requesttype'] : '' ?>
+                        <select type="select" name="requesttype" id="awrma-request-type" title="<?php echo $this->__('Request Type') ?>" class="validate-select required-entry">
+                            <?php foreach($_types as $_item) : ?>
+                            <option value="<?php echo $_item->getId() ?>" <?php if($_item->getId() == $_itemSelected) : ?>selected="selected" <?php endif; ?>><?php echo $_item->getName() ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <?php endif ?>
+                </li>
+                <li>
+                    <label for="awrma-additional-info"><?php echo $this->__('Additional Information') ?></label><br />
+                    <textarea rows="7" name="additionalinfo" class="awrma-m13x-input-wide" id="awrma-additional-info"><?php if(isset($_formData['additionalinfo'])) echo $_formData['additionalinfo'] ?></textarea>
+                </li>
+            </ul>
+        </fieldset>
+        <div class="button-set">
+            <p class="required"><?php echo $this->__('* Required Fields') ?></p>
+            <button type="submit" title="<?php echo $this->__('Submit Request') ?>" class="form-button" id="awrma-new-submit"><span><?php echo $this->__('Submit Request') ?></span></button>
+        </div>
+    </form>
+    <script type="text/javascript">
+    //<![CDATA[
+        var awrmaNewForm = new VarienForm('awrma-new-form', true);
+        var ordersControl = new AWRMAOrdersControl(this, awrmaNewForm, "<?php echo $this->getGuestMode() ? $this->getUrl('awrma/guest_rma/getitemsfororder') : $this->getUrl('awrma/customer_rma/getitemsfororder') ?>");
+        $('awrma-order').observe('change', ordersControl.orderChanged.bind(ordersControl));
+        <?php if( isset($_formData['order'])) : ?>
+        ordersControl.orderChanged();
+        ordersControl.syncItems(<?php echo $this->getFormData(TRUE) ?>);
+        <?php endif; ?>
+    //]]>
+    </script>
+    <?php else : ?>
+    <p><?php echo $this->__('You have no orders to request RMA'); ?></p>
+    <?php endif; ?>
+</div>

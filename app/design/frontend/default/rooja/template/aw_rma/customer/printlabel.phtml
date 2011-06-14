@@ -1,0 +1,144 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/LICENSE-M1.txt
+ *
+ * @category   AW
+ * @package    AW_Rma
+ * @copyright  Copyright (c) 2010 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/LICENSE-M1.txt
+ */
+?>
+
+<div id="messages">
+    <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+</div>
+<?php if ($this->getRmaRequest()) : ?>
+<?php $rmaRequest = $this->getRmaRequest() ?>
+<script type="text/javascript">countryRegions = <?php echo $this->helper('directory')->getRegionJson() ?></script>
+<div class="page-title title-buttons">
+    <h1><?php echo $this->getRmaRequest()->getTextId() ?> &ndash; <?php echo $rmaRequest->getStatusName() ?></h1>
+</div>
+<?php $_formData = $this->getFormData() ?>
+<form action="<?php echo $this->getFormPostUrl() ?>" method="post" id="awrma-printlabel-form" target="_blank">
+    <?php echo $this->getBlockHtml('formkey')?>
+    <div class="fieldset">
+        <h2 class="legend"><?php echo $this->__('Contact Information') ?></h2>
+        <ul class="form-list">
+            <li class="fields">
+                <div class="field">
+                    <label for="awrma-firstname" class="required"><em>*</em><?php echo $this->__('First Name') ?></label>
+                    <div class="input-box">
+                        <input type="text" id="awrma-firstname" name="printlabel[firstname]" class="input-text required-entry" value="<?php echo $_formData->getFirstname() ?>" />
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="awrma-lastname" class="required"><em>*</em><?php echo $this->__('Last Name') ?></label>
+                    <div class="input-box">
+                        <input type="text" id="awrma-lastname" name="printlabel[lastname]" class="input-text required-entry" value="<?php echo $_formData->getLastname() ?>" />
+                    </div>
+                </div>
+            </li>
+            <li class="wide">
+                <label for="awrma-company"><?php echo $this->__('Company') ?></label>
+                <div class="input-box">
+                    <input type="text" id="awrma-company" class="input-text" name="printlabel[company]" value="<?php echo $_formData->getCompany() ?>" />
+                </div>
+            </li>
+            <li class="fields">
+                <div class="field">
+                    <label for="awrma-telephone" class="required"><em>*</em><?php echo $this->__('Telephone') ?></label>
+                    <div class="input-box">
+                        <input type="text" id="awrma-telephone" name="printlabel[telephone]" class="input-text required-entry" value="<?php echo $_formData->getTelephone() ?>" />
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="awrma-fax"><?php echo $this->__('Fax') ?></label>
+                    <div class="input-box">
+                        <input type="text" id="awrma-fax" name="printlabel[fax]" class="input-text" value="<?php echo $_formData->getFax() ?>" />
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="fieldset">
+        <h2 class="legend"><?php echo $this->__('Return Address') ?></h2>
+        <?php $_addresses = $_formData->getStreetaddress() ?>
+        <ul class="form-list">
+            <li class="wide">
+                <label for="awrma-streetaddress1" class="required"><em>*</em><?php echo $this->__('Street Address') ?></label>
+                <div class="input-box">
+                    <input type="text" id="awrma-streetaddress1" class="input-text required-entry" name="printlabel[streetaddress][]" value="<?php echo isset($_addresses[0]) ? $_addresses[0] : '' ?>" />
+                </div>
+            </li>
+            <?php for ($_i=2, $_n=$this->helper('customer/address')->getStreetLines(); $_i<=$_n; $_i++): ?>
+            <li class="wide">
+                <div class="input-box">
+                    <input type="text" id="awrma-streetaddress<?php echo $_i ?>" class="input-text" name="printlabel[streetaddress][]" value="<?php echo isset($_addresses[$_i-1]) ? $_addresses[$_i-1] : '' ?>" />
+                </div>
+            </li>
+            <?php endfor ?>
+             <li class="fields">
+                <div class="field">
+                    <label for="awrma-city" class="required"><em>*</em><?php echo $this->__('City') ?></label>
+                    <div class="input-box">
+                        <input type="text" id="awrma-city" name="printlabel[city]" class="input-text required-entry" value="<?php echo $_formData->getCity() ?>" />
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="awrma-stateprovince"><?php echo $this->__('State/Province') ?></label>
+                    <div class="input-box">
+                        <select id="awrma_stateprovince_id" name="printlabel[stateprovince_id]" class="validate-select" style="display:none;">
+                            <option value=""><?php echo $this->__('Please select region, state or province') ?></option>
+                        </select>
+                        <script type="text/javascript">
+                        //<![CDATA[
+                            $('awrma_stateprovince_id').setAttribute('defaultValue',  "<?php echo $_formData->getStateprovinceId() ?>");
+                        //]]>
+                        </script>
+                        <input type="text" id="awrma-stateprovince" name="printlabel[stateprovince]" class="input-text" style="display:none;" value="<?php echo $_formData->getStateprovince() ?>" />
+                    </div>
+                </div>
+            </li>
+            <li class="fields">
+                <div class="field">
+                    <label for="awrma-postcode" class="required"><em>*</em><?php echo $this->__('Zip/Postal Code') ?></label>
+                    <div class="input-box">
+                        <input type="text" name="printlabel[postcode]" id="awrma-postcode" class="input-text validate-zip-international required-entry" value="<?php echo $_formData->getPostcode() ?>" />
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="awrma-country_id" class="required"><em>*</em><?php echo $this->__('Country') ?></label>
+                    <div class="input-box">
+                        <?php echo $this->getCountryHtmlSelect('shipping', $_formData->getCountryId()) ?>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="fieldset">
+        <h2 class="legend"><?php echo $this->__('Additional Information') ?></h2>
+        <ul class="form-list">
+            <li class="wide">
+                <div class="input-box">
+                    <textarea name="printlabel[additionalinfo]" id="awrma-additional-info"><?php echo $_formData->getAdditionalinfo() ?></textarea>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="buttons-set">
+        <p class="required"><?php echo $this->__('* Required Fields') ?></p>
+        <button type="submit" title="<?php echo $this->__('Submit Request') ?>" class="button" id="awrma-printlabel-submit"><span><span><?php echo $this->__('Print Label') ?></span></span></button>
+    </div>
+</form>
+<script type="text/javascript">
+    var awrmaPrintLabelForm = new VarienForm('awrma-printlabel-form', true);
+    var regionUpdater = new RegionUpdater('awrma_country_id', 'awrma-stateprovince', 'awrma_stateprovince_id', countryRegions, undefined, 'awrma-postcode');
+</script>
+<?php endif ?>

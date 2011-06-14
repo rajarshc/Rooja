@@ -1,0 +1,52 @@
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/LICENSE-M1.txt
+ *
+ * @category   AW
+ * @package    AW_Rma
+ * @copyright  Copyright (c) 2010 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/LICENSE-M1.txt
+ */
+
+ #add_comment .form-list, #admin_notes_container .form-list {
+     width: 100%;
+}
+#add_comment .form-list td.value, #admin_notes_container .form-list td.value {
+    width: auto !important;
+}
+#comment_text, #admin_notes {
+    width: 80% !important;
+}
+#comments_list_container .form-list {
+    width: 80%;
+}
+#comments_list_container td.label {
+    display: none;
+}
+#comments_list_container td.value {
+    width: auto !important;
+}
+
+ul.awrma-comments-list {
+    list-style-image: url('../images/comment.png');
+    list-style-position: inside;
+}
+ul.awrma-comments-list li {
+    border-top: dotted 1px #AAA;
+    padding: 10px 0px;
+}
+ul.awrma-comments-list li>div {
+    margin-left: 30px;
+}
+ul.awrma-comments-list li>strong {
+    font-size: 14px;
+}
+
+/*for order and user suggest*/
+.awrma-tip{color:#999;font-style:italic;}

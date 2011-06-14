@@ -1,0 +1,69 @@
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/LICENSE-M1.txt
+ *
+ * @category   AW
+ * @package    AW_Rma
+ * @copyright  Copyright (c) 2010 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/LICENSE-M1.txt
+ */
+
+ #awrma-items-loading td {
+     text-align: center;
+}
+
+#awrma-items-error td {
+    text-align: center;
+    color: #F33;
+}
+#awrma-items .input-text {
+    width: 100px !important;
+}
+#awrma-items .a-right {
+    width: 100px !important;
+}
+
+ul.awrma-comments-list {
+    margin-top: 20px;
+    list-style-image: url('../images/comment.png');
+    list-style-position: inside;
+}
+ul.awrma-comments-list li {
+    border-top: dotted 1px #333;
+    padding: 10px 0px;
+}
+ul.awrma-comments-list li>div {
+    margin-left: 30px;
+}
+
+.link-awrma,
+.link-awrma-newrma,
+.link-awrma-cancel,
+.link-awrma-printlabel,
+.link-awrma-confirmsend {
+    color: #DC6809;
+    font-weight: bold;
+}
+.link-awrma-bold {
+    font-weight: bold;
+}
+.link-awrma-inactive {
+    color: #777 !important;
+}
+
+.awrma-m13x-input-wide {
+    width: 525px !important;
+}
+.awrma-m13x-btn-remove {
+    background-image: url("../images/btn_trash.gif");
+    display: block;
+    width: 16px;
+    height: 16px;
+    font-size: 0;
+}

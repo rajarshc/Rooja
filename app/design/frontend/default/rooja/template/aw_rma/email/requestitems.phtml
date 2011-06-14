@@ -1,0 +1,44 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/LICENSE-M1.txt
+ *
+ * @category   AW
+ * @package    AW_Rma
+ * @copyright  Copyright (c) 2010 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/LICENSE-M1.txt
+ */
+?>
+<table border="1" class="awrma-datatable">
+    <thead style="font-size: -2px;">
+        <tr>
+            <th><?php echo $this->__('Name') ?></th>
+            <th><?php echo $this->__('SKU') ?></th>
+            <th><?php echo $this->__('Count') ?></th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php if($this->getRmaRequest()) : ?>
+        <?php $_requestedItems = $this->getRmaRequest()->getOrderItems(); ?>
+        <?php foreach($this->getRmaRequest()->getOrder()->getItemsCollection() as $_item) : ?>
+        <?php if(isset($_requestedItems[$_item->getId()])) : ?>
+        <tr>
+            <td><?php echo $_item->getName() ?></td>
+            <td><span class="nobr"><?php echo $_item->getSku() ?></span></td>
+            <td align="center"><?php echo $_requestedItems[$_item->getId()] ?></td>
+        </tr>
+        <?php endif ?>
+        <?php endforeach ?>
+        <?php else : ?>
+        <tr>
+            <td colspan="3"><?php echo $this->__('No items requested') ?></td>
+        </tr>
+        <?php endif ?>
+    </tbody>
+</table>

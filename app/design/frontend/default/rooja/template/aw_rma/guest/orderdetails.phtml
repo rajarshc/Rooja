@@ -1,0 +1,51 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/LICENSE-M1.txt
+ *
+ * @category   AW
+ * @package    AW_Rma
+ * @copyright  Copyright (c) 2010 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/LICENSE-M1.txt
+ */
+?>
+<div class="page-title title-buttons">
+    <h1><?php echo $this->__('Request RMA') ?></h1>
+</div>
+<div id="messages">
+    <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+</div>
+<form action="<?php echo $this->getUrl('awrma/guest_rma/checkorder') ?>" method="post" id="awrma-new-form">
+    <div class="fieldset">
+        <h2 class="legend"><?php echo $this->__('Order Information') ?></h2>
+        <ul class="form-list">
+            <li class="fields">
+                <div class="field">
+                    <label for="awrma-orderid" class="required"><em>*</em><?php echo $this->__('Order Id') ?></label>
+                    <div class="input-box">
+                        <input type="text" name="orderid" id="awrma-orderid" class="input-text required-entry" />
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="awrma-email" class="required"><em>*</em><?php echo $this->__('E-mail') ?></label>
+                    <div class="input-box">
+                        <input type="text" name="email" id="awrma-email" class="input-text required-entry" />
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="buttons-set">
+        <p class="required"><?php echo $this->__('* Required Fields') ?></p>
+        <button type="submit" title="<?php echo $this->__('Submit Request') ?>" class="button" id="awrma-new-submit"><span><span><?php echo $this->__('Submit Request') ?></span></span></button>
+    </div>
+</form>
+<script type="text/javascript">
+    var awrmaNewForm = new VarienForm('awrma-new-form');
+</script>

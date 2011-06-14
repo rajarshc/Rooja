@@ -1,0 +1,10 @@
+/* This will be used on the catalog pages */
+
+.rewards-mini-icon-holder {
+    padding-right: 6px; 
+    width: 16px; /* //@nelkaake Thursday March 11, 2010 09:41:44 PM : changed to px */
+    vertical-align: bottom; 
+    height: 25px;
+}
+
+.points-prediction .free_with_points { } /*@nelkaake Added to catalog listing page 3/12/2010 2:13:43 PM */
