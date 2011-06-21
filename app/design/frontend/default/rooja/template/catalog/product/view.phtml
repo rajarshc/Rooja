@@ -105,7 +105,9 @@ if (!$categoryIds == null){
 				<section id="reverseAuction">
 					
 					<p id="likeThis">154 people like this item <a href="#" id="likeBtn" class="tr fr">Like this item</a></p>
-					
+					<?php echo 'rl_floor:' . $_helper->productAttribute($_product, $_product->getRl_floor(), 'rl_floor') ?>
+					<?php echo 'rl_inc:' . $_helper->productAttribute($_product, $_product->getRl_inc(), 'rl_inc') ?>
+					<?php echo 'rl_price:' . $_helper->productAttribute($_product, $_product->getRl_price(), 'rl_price') ?>
 					<figure id="likeDetails" class="sideAd">
 						<p>Want to see the price drop? Like this item!</p>
 					</figure>

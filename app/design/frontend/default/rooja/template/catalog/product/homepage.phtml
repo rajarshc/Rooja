@@ -59,7 +59,7 @@
 		//var_dump($cat_data)
         ?>
             <article class="homeSale <?php echo $cards[array_rand($cards)]; ?> fl masonry">
-                <a href="<?php echo $_product->getProductUrl() ?>" title="View sale details for: <?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image'); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" width="236px" /></a>
+                <a href="<?php echo $cat_data['url_key']; ?>" title="View sale details for: <?php echo $cat_data['name']; ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image'); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" width="236px" /></a>
                 <h2><?php echo $cat_data['name']; ?></h2>
             </article>
         <?php if ($i%$_columnCount==0 || $i==$_collectionSize): ?>

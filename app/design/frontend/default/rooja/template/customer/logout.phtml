@@ -24,6 +24,7 @@
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 ?>
+
 <div id="notifyWrapper">
 <div class="wrapper">
 <header id="mainHeader">
@@ -31,13 +32,8 @@
 	<p id="highlight" class="tr">Apparel and accessories from leading International and Indian designers at prices you just can’t get in the stores</p>
 </header><!--End Header-->
 <section id="content" class="body">
-        <h2 class="legend"><?php echo $this->__('Retrieve your password here') ?></h2>
-        <p><?php echo $this->__('Please enter your email below and we will send you a new password.') ?></p>
-<form action="<?php echo $this->getUrl('*/*/forgotpasswordpost') ?>" method="post" id="form-validate">
-                    <input type="text" name="email" alt="email" id="email_address" class="input-text required-entry validate-email" value="<?php echo $this->htmlEscape($this->getEmailValue()) ?>" />
-		<input type="submit" id="submitBtn" value="Submit" name="submitBtn">
-	</form>
-	
+    <h1><?php echo Mage::helper('customer')->__('You are now logged out') ?></h1>
+<p><?php echo Mage::helper('customer')->__('You have logged out and will be redirected to our homepage in 5 seconds.') ?></p>
 		
 </section><!--End Content-->
 </div>
@@ -52,6 +48,6 @@
 
 <script type="text/javascript">
 //<![CDATA[
-    var dataForm = new VarienForm('form-validate', true);
+    setTimeout(function(){ location.href = '<?php echo $this->getUrl() ?>'},5000);
 //]]>
 </script>

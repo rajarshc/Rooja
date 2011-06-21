@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+ 
+<config>
+    <modules>
+        <Rbanh_Dev>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Rbanh_Dev>
+    </modules>
+</config>
