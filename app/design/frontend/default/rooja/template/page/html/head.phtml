@@ -29,18 +29,6 @@
 <meta name="description" content="<?php echo htmlspecialchars($this->getDescription()) ?>" />
 <meta name="keywords" content="<?php echo htmlspecialchars($this->getKeywords()) ?>" />
 <meta name="robots" content="<?php echo htmlspecialchars($this->getRobots()) ?>" />
-<!--start Facebook Open Graph Protocol-->
-<?php if (Mage::registry('current_product')) : ?>
-<meta property="og:image" content="<?php echo Mage::helper('catalog/image')->init(Mage::registry('current_product'), 'small_image')->resize(100,100);?>" />
-<meta property="og:title" content="<?php echo Mage::registry('current_product')->getMetaTitle()?>" /> 
-<meta property="og:description" content="<?php echo Mage::registry('current_product')->getDescription()?>" /> 
-<meta property="og:type" content="product"/>
-<meta property="og:url" content="<?php echo $this->helper('core/url')->getCurrentUrl(); ?>"/>
-<meta property="og:site_name" content="Rooja"/>
-<meta property="fb:admins" content="USER_ID"/>
-<?php endif;?> 
-<!--end Facebook Open Graph Protocol-->
-
 <link rel="icon" href="<?php echo $this->getFaviconFile(); ?>" type="image/x-icon" />
 <link rel="shortcut icon" href="<?php echo $this->getFaviconFile(); ?>" type="image/x-icon" />
 <!--[if lt IE 7]>
@@ -56,3 +44,15 @@
 <?php echo $this->getChildHtml() ?>
 <?php echo $this->helper('core/js')->getTranslatorScript() ?>
 <?php echo $this->getIncludes() ?>
+
+<!--start Facebook Open Graph Protocol-->
+<?php if (Mage::registry('current_product')) : ?>
+<meta property="og:image" content="<?php echo Mage::helper('catalog/image')->init(Mage::registry('current_product'), 'small_image')->resize(100,100);?>" />
+<meta property="og:title" content="<?php echo Mage::registry('current_product')->getMetaTitle()?>" /> 
+<meta property="og:description" content="<?php echo Mage::registry('current_product')->getDescription()?>" /> 
+<meta property="og:type" content="product"/>
+<meta property="og:url" content="<?php echo $this->helper('core/url')->getCurrentUrl(); ?>"/>
+<meta property="og:site_name" content="Rooja"/>
+<meta property="fb:admins" content="USER_ID"/>
+<?php endif;?> 
+<!--end Facebook Open Graph Protocol-->
