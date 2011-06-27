@@ -150,6 +150,8 @@ ul#myAccount li ul {
 	background: #220f26;
 	top:  35px;
 	z-index: 15;
+	width: 135px;
+	top: 70px;
 }
 ul#myAccount li:hover ul {display: block;}
 
