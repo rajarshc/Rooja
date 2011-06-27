@@ -160,12 +160,16 @@ ul#myAccount li ul li{
 	font-size: 1.0em;
 	z-index: 15;
 	color:#fff;
-	padding: 10px 5px;
 	text-decoration: none;
 	background-image: none;
 	width: 75px;
 }
-ul#myAccount li ul li:hover{
+ul#myAccount li ul li a{
+    line-height:1.3em;
+	display:block;
+	padding:8px 15px;
+}
+ul#myAccount li ul li a:hover{
 	background-color: #431f4c;
 	cursor: pointer;
 }
