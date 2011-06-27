@@ -146,17 +146,15 @@ ul#myAccount li a{
 }
 ul#myAccount li ul {
 	display: none;
-}
-ul#myAccount li:hover ul {
-	display: block;
 	position: absolute;
-	width:  85px;
 	background: #220f26;
 	top:  35px;
 	z-index: 15;
 }
-ul#myAccount li:hover ul li{
-	display: inline-block;
+ul#myAccount li:hover ul {display: block;}
+
+ul#myAccount li ul li{
+	display: block;
 	font-size: 1.0em;
 	z-index: 15;
 	color:#fff;
@@ -165,7 +163,7 @@ ul#myAccount li:hover ul li{
 	background-image: none;
 	width: 75px;
 }
-ul#myAccount li:hover ul li:hover{
+ul#myAccount li ul li:hover{
 	background-color: #431f4c;
 	cursor: pointer;
 }
