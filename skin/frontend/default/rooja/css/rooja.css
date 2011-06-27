@@ -129,13 +129,13 @@ body{
 }
 #accountLinks{
 	float: right;
-	margin: 15px 0px 10px 10px;
+	margin: 15px 0px 0px 10px;
 }
 ul#myAccount{float:left;}
 ul#myAccount li{
 	float: left;
 	height: 30px;
-	padding: 10px 20px 10px 0px;
+	padding: 10px 20px 30px 0px;
 	background: url("../images/icons/arrow-nav-white.png") no-repeat right 8px;
 }
 ul#myAccount li a{
@@ -148,7 +148,6 @@ ul#myAccount li ul {
 	display: none;
 	position: absolute;
 	background: #220f26;
-	top:  35px;
 	z-index: 15;
 	width: 135px;
 	top: 70px;
@@ -160,13 +159,16 @@ ul#myAccount li ul li{
 	font-size: 1.0em;
 	z-index: 15;
 	color:#fff;
+	height:auto;
 	text-decoration: none;
 	background-image: none;
+	padding:0;
 }
 ul#myAccount li ul li a{
     line-height:1.3em;
 	display:block;
 	padding:8px 15px;
+	width:105px;
 }
 ul#myAccount li ul li a:hover{
 	background-color: #431f4c;
