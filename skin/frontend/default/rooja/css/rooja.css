@@ -134,7 +134,7 @@ body{
 ul#myAccount{float:left;}
 ul#myAccount li{
 	float: left;
-	height: 5px;
+	height: 30px;
 	padding: 10px 20px 10px 0px;
 	background: url("../images/icons/arrow-nav-white.png") no-repeat right 8px;
 }
@@ -162,7 +162,6 @@ ul#myAccount li ul li{
 	color:#fff;
 	text-decoration: none;
 	background-image: none;
-	width: 75px;
 }
 ul#myAccount li ul li a{
     line-height:1.3em;
