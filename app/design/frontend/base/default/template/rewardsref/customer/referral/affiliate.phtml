@@ -1,0 +1,39 @@
+<?php if ($this->showReferralUrl() || $this->showReferralCode() || $this->showReferralEmail()): ?>
+    <fieldset class="group-select my_referrals-urlcode_group">
+        <h4 class="legend"><?php echo $this->__('Referral Codes and URL'); ?></h4>
+
+        <ul>
+            <?php if ($this->showReferralUrl()): ?>
+                <li>
+                    <div class="urlcode-input-box">
+                        <label for="referral_url"><?php echo $this->__('Your Referral URL') ?></label><br />
+                        <input type="text" readonly name="referral_url" value="<?php echo $this->getReferralUrl(); ?>" 
+                               title="<?php echo $this->__('Your Referral URL') ?>" class="input-text" id="referral_url" />
+                    </div>
+                    <BR />
+                    <div class="urlcode_comment"><?php echo $this->__("Referrals that access this URL are connected as referrals once they signup or place an order."); ?></div>
+                </li>
+            <?php endif; ?>
+            <?php if ($this->showReferralCode()): ?>
+                <li>
+                    <div class="urlcode-input-box">
+                        <label for="referral_url"><?php echo $this->__('Your Referral Code') ?></label><br />
+                        <input type="text" readonly name="referral_code" value="<?php echo $this->getReferralCode(); ?>" 
+                               title="<?php echo $this->__('Your Referral Code') ?>" class="input-text" id="referral_code" /> <BR />
+                    </div> <BR />
+                    <div class="urlcode_comment"><?php echo $this->__(" Referrals should enter the code at checkout or signup."); ?></div>
+                </li>
+            <?php endif; ?>
+            <?php if ($this->showReferralEmail()): ?>
+                <li>
+                    <div class="urlcode-input-box">
+                        <label for="referral_url"><?php echo $this->__('Your Referral Email') ?></label><br />
+                        <input type="text" readonly name="referral_email" value="<?php echo $this->getReferralEmail(); ?>" 
+                               title="<?php echo $this->__('Your Referral Email') ?>" class="input-text" id="referral_email" /> <BR />
+                    </div> <BR />
+                    <div class="urlcode_comment"><?php echo $this->__("Referrals should enter your e-mail address at checkout or signup."); ?></div>
+                </li>
+            <?php endif; ?>
+        </ul>
+    </fieldset>
+<?php endif; ?>

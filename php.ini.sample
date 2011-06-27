@@ -3,7 +3,7 @@
 
 ; adjust memory limit
 
-memory_limit = 64M
+memory_limit = 256M
 
 max_execution_time = 18000
 
@@ -32,3 +32,4 @@ zend.ze1_compatibility_mode = off
 ; and disables mcrypt if this line is missing in local php.ini
 
 extension=mcrypt.so
+extension=php_curl.dll

@@ -1,0 +1,22 @@
+/* @nelkaake Added on Saturday June 26, 2010:  */
+.my_referrals-urlcode_group div.urlcode-input-box { width:100%; float: left; }
+.my_referrals-urlcode_group .urlcode-input-box input { width:100%; }
+.my_referrals-urlcode_group .urlcode_comment { font-size:8pt; font-style:italic; }
+/*css by Anjan*/
+.rewardsref-customer-index .page-head{ border-bottom: 1px solid #CCCCCC; margin: 0 0 25px;}
+.rewardsref-customer-index .page-head h3{font-size:1.7em !important;font-weight:normal!important;margin:0;text-align:left;text-transform:none!important;}
+.rewardsref-customer-index .group-select { background: none repeat scroll 0 0 #FBFAF6;border: 1px solid #BBAFA0;margin: 28px 0;padding: 22px 25px 12px;}
+.rewardsref-customer-index .group-select .legend { background: none repeat scroll 0 0 #F9F3E3;border: 1px solid #F19900;color: #E76200;float: left;font-size: 1.1em;
+font-weight: bold;margin-top: -33px;padding: 0 8px;}
+.rewardsref-customer-index .group-select ul li { padding: 4px 8px;}
+.rewardsref-customer-index .group-select ul li .input-box { float: left;width: 275px;}
+.rewardsref-customer-index .group-select ul li label{ font-weight:bold;}
+.rewardsref-customer-index .group-select ul li input[type=text]{ width:100%;}
+.rewardsref-customer-index .group-select ul li .input-box input[type=text]{ width:250px;}
+.rewardsref-customer-index .group-select ul li textarea{ width:525px;}
+.rewardsref-customer-index .group-select .button-set {border-top: 1px solid #E4E4E4;clear: both;margin-top: 0em;padding-top: 8px;text-align: right;}
+
+
+
+
+

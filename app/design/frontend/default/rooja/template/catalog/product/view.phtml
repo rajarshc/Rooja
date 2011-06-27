@@ -95,6 +95,36 @@ if (!$categoryIds == null){
 				
 				<div class="shareThis">
 					<p>Share this sale with your friends</p>
+					<p><fb:like title="testing"></fb:like></p>
+					
+					<script type="text/javascript">
+						jQuery.noConflict();
+						jQuery(document).ready(function() {
+							//alert('hi');
+							//jQuery('head').append( 'XXXX' );
+
+						});
+						window.fbAsyncInit = function() {
+					       FB.init({appId: '173637846031428', status: true, cookie: true,
+					                xfbml: true});
+					       FB.Event.subscribe('edge.create', function(response) {
+					             // do something with response
+					            // alert('hi master');
+					             // ajax the price
+					             
+					             // if not empty, update the price.
+					       });
+					     };
+					     (function() {
+					       var e = document.createElement('script');
+					       e.type = 'text/javascript';
+					       e.src = document.location.protocol +
+					         '//connect.facebook.net/en_US/all.js';
+					       e.async = true;
+					       document.getElementById('fb-root').appendChild(e);
+					     }());
+					</script>
+					
 					<a href="#"><img src="<?php echo $this->getSkinUrl('images/icons/facebook-blue-24.png'); ?>" alt="facebook icon"></a>
 					<a href="#"><img src="<?php echo $this->getSkinUrl('images/icons/twitter-teal-24.png'); ?>" alt="twitter icon"></a>
 					<a href="#"><img src="<?php echo $this->getSkinUrl('images/icons/email-24.png'); ?>" alt="facebook icon"></a>
@@ -105,7 +135,9 @@ if (!$categoryIds == null){
 				<section id="reverseAuction">
 					
 					<p id="likeThis">154 people like this item <a href="#" id="likeBtn" class="tr fr">Like this item</a></p>
-					
+					<?php echo 'rl_floor:' . $_helper->productAttribute($_product, $_product->getRl_floor(), 'rl_floor') ?>
+					<?php echo 'rl_inc:' . $_helper->productAttribute($_product, $_product->getRl_inc(), 'rl_inc') ?>
+					<?php echo 'rl_price:' . $_helper->productAttribute($_product, $_product->getRl_price(), 'rl_price') ?>
 					<figure id="likeDetails" class="sideAd">
 						<p>Want to see the price drop? Like this item!</p>
 					</figure>

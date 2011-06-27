@@ -1,0 +1,36 @@
+
+
+<?php if($this->showHistory()): ?>
+    <h2><?php echo $this->__("Referrals"); ?></h2>
+    <?php $_referred = $this->getReferred();?>
+    <?php if($_referred->getSize()): ?>
+    <?php echo $this->getPagerHtml() ?>
+    <table cellspacing="0" class="data-table" id="referred-friends-table">
+        <thead>
+            <tr>
+                <?php ?><th><?php echo $this->__('Full Name') ?></th><?php ?>
+                <th><?php echo $this->__('Email') ?></th>
+                <!--<th><?php echo $this->__('Registered?') ?></th>-->
+                <th><?php echo $this->__('Status') ?></th>
+                <th><?php echo $this->__('Accumulated Earnings') ?></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php $_odd = ''; ?>
+            <?php foreach ($_referred as $_friend): ?>
+                <tr>
+                    <?php ?><td><?php echo $_friend->getReferralName() ?></td><?php ?>
+                    <td><?php echo $_friend->getReferralEmail() ?></td>
+                    <!--<td><?php echo $_friend->getReferralChildId() ? $this->__('yes') : $this->__('no') ?></td>-->
+                    <td class="a-left"><?php echo $this->getStatusCaption( (int)($_friend->getReferralStatus()) ); ?></td>
+                    <td><?php echo $this->getAccumulatedReferralPoints($_friend); ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+    <?php echo $this->getPagerHtml() ?>
+    <script type="text/javascript">decorateTable('referred-friends-table')</script>
+    <?php else: ?>
+        <p><?php echo $this->__("You don't have any referrals yet."); ?></p>
+    <?php endif ?>
+<?php endif ?>

@@ -1,0 +1,29 @@
+
+<?php if($this->showPreferences()): ?>
+<!-- BEGIN referral preferences fieldset -->
+<form action="<?php echo $this->getUrl('rewardsref/customer/savePref/') ?>" method="post" id="form-validate">
+<fieldset class="group-select my_referrals-urlcode_group">
+    <h4 class="legend"><?php echo $this->__('Referral Preferences'); ?></h4>
+    <p></p>
+    <ul>
+        <li>
+            <div class="urlcode-checkbox">
+                <input type="checkbox" name="rewardsref_notify_on_referral" 
+                        <?php if($this->getCustomer()->getRewardsrefNotifyOnReferral()): ?>checked="checked" <?php endif; ?>
+                        value="1" 
+                        title="<?php echo $this->__('Notify me when I earn points from my referral') ?>" 
+                        class="checkbox" id="rewardsref_notify_on_referral" />
+                <label for="rewardsref_notify_on_referral"><?php echo $this->__('Notify me when I earn points from my referral') ?></label>
+            </div>
+        </li>
+    </ul>
+    <div class="button-set" style="margin-top:0px">
+    	<button type="submit" title="<?php echo $this->__('Save Preferences') ?>" class="button">
+    		<span><span><?php echo $this->__('Save Preferences') ?></span></span>
+    	</button>
+    </div>
+</fieldset>
+</form>
+<!-- END referral preferences fieldset -->
+
+<?php endif ?>

@@ -1,0 +1,3 @@
+<?php $transfer = $this->getTransfer(); ?>
+<?php $referred_customer = Mage::getModel('rewards/customer')->load($transfer->getReferenceId()); ?>
+<td><a href="mailto:<?php echo $referred_customer->getEmail() ?>"><?php echo $referred_customer->getName(); ?></a></td>

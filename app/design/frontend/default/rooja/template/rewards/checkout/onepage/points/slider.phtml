@@ -1,0 +1,55 @@
+
+<div class="cartSlider" id="onepage_points_slider">
+    <?php echo $this->getChildHtml('points_slider'); ?>
+</div>
+<script type="text/javascript">
+    var slider_ajax_timeout = false;
+    var slider_ajax_timeout_delay = 500;
+    var last_slider_ajax_request = false;
+    function updateTotalsDueToSpendings(new_spending_amount) {
+        showLoading();
+        hideTotalsDisplays();
+        if(last_slider_ajax_request) {
+            last_slider_ajax_request.options.onSuccess = function(t) { /* do nothing because a new request has started */}
+        }
+        last_slider_ajax_request = new Ajax.Request(
+        '<?php echo $this->getUrl("rewards/checkout_onepage/updatePointsSpending"); ?>', 
+        {
+            parameters: { points_spending: new_spending_amount  },
+            onSuccess: function(t) { hideLoading(); updateGrandTotal(t);} 
+        }
+    );
+    }
+    /**
+     * Sets the value in the input box and what is displayed to the user.
+     * @param val
+     * @return
+     */
+    RedemptionSlider.prototype.setExternalValue = function(val) {
+        var pts = val*this.points_per_use;
+        if(pts == 1) {
+            this.sliderCaption.innerHTML = CAPTION_YOU_WILL_SPEND + ": " + CAPTION_ONE_POINT.replace("%s", val);
+        } else {
+            this.sliderCaption.innerHTML = CAPTION_YOU_WILL_SPEND + ": " + CAPTION_MULTIPLE_POINTS.replace("%s", val);
+        }
+        if(this.sliderValuebox.value != this.getUses()) {
+            this.sliderValuebox.value = this.getUses();
+            if(slider_ajax_timeout) {
+                clearTimeout(slider_ajax_timeout);
+            }
+            slider_ajax_timeout = setTimeout("updateTotalsDueToSpendings("+pts+")", slider_ajax_timeout_delay);
+            if(rSlider.isMaxed()) {
+                $('use_all_points').checked = true;
+            } else {
+                $('use_all_points').checked = false;
+            }
+            // TODO also update giant cart points block if it's there
+        }
+    }
+
+    function toggleUseAllPoints(checked) {
+        if(checked) {
+            rSlider.maximize();
+        }
+    }
+</script>

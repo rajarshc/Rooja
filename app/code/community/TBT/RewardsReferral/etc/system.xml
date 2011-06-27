@@ -1,0 +1,201 @@
+
+<config>
+    <sections>
+        <rewards translate="label" module="rewardsref">
+            <groups>
+                <referral translate="label">
+                    <label>Referral Program</label>
+                    <sort_order>70</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <notice translate="label">
+                            <label>Extension Developed By WWW.WDCA.CA</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>rewardsref/system_html</frontend_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </notice> 
+                        <referral_show translate="label comment">
+                            <label>Show referral link</label>
+                            <comment><![CDATA[Show or hide the My Referrals link show in the customer My Account section.]]>
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </referral_show>
+                        <subscription_email_template translate="label">
+                            <label><![CDATA[Invitation E-mail template]]>
+                            </label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </subscription_email_template>    
+                        <subscription_email_use_sender_email translate="label comment">
+                            <label><![CDATA[Send referral invitation e-mails with the sender's email]]>
+                            </label>     
+                            <comment><![CDATA[If set to NO the transactional e-mail sender settings will be used. This can be set to NO to reduce the number of e-mails that get marked as spam.]]>
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>25</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </subscription_email_use_sender_email>
+                        <confirmation_email_template translate="label comment">
+                            <label><![CDATA[Notification E-mail Template]]>
+                            </label>
+                            <comment><![CDATA[When a customer refers another customer, the person who referred the new customer will receive this e-mail.]]>
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </confirmation_email_template>       
+                        <show_in_onepage_checkout translate="label comment">
+                            <label>Show in onepage checkout</label>
+                            <comment><![CDATA[Show the referral e-mail/code box in the onepage checkout registration section.]]>
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </show_in_onepage_checkout>
+                        <show_in_register translate="label comment">
+                            <label>Show in create account page</label>
+                            <comment><![CDATA[Show the referral e-mail/code box in the new account creation page.]]>
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </show_in_register>
+                        <show_referral_email translate="label comment">
+                            <label>Enable refer by e-mail</label>
+                            <comment><![CDATA[Enable referring other customers by e-mail address.]]>
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </show_referral_email>
+                        <show_referral_code translate="label comment">
+                            <label>Enable refer by code</label>
+                            <comment><![CDATA[Enable referring other customers by referral code.]]>
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </show_referral_code>
+                        <show_referral_url translate="label comment">
+                            <label>Enable refer by URL</label>
+                            <comment><![CDATA[Enable referring other customers by referral url.]]>
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>80</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </show_referral_url>
+                        <show_invite_form translate="label comment">
+                            <label>Show invite customer form</label>
+                            <comment><![CDATA[Show the invite new customer form in the customer's My Referrals section.]]>
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </show_invite_form>
+                        <show_preferences translate="label comment">
+                            <label>Show prefererences section</label>
+                            <comment><![CDATA[Show the prefererences section in the customer's My Referrals section.]]>
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </show_preferences>
+                        <show_history translate="label comment">
+                            <label>Show referral history</label>
+                            <comment><![CDATA[Show referral history in the customer's My Referrals section.]]>
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>110</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </show_history>
+                        <affiliate_redirect_url translate="label comment">
+                            <label>Affiliate Redirect Path</label>
+                            <frontend_type>text</frontend_type>
+                            <comment><![CDATA[This is the URL or path that Sweet Tooth will redirect the visitor to after it registers the referral into the session. The default value is blank, which redirects the visitor to the home page.]]>
+                            </comment>
+                            <sort_order>120</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </affiliate_redirect_url> 
+                    </fields>
+                </referral>
+                <transferComments>
+                    <fields>
+                        <referralSignup translate="label comment">
+                            <label><![CDATA[Points earned because a referral signed up]]>
+                            </label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>130</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </referralSignup>
+                        <referralFirstOrder translate="label comment">
+                            <label><![CDATA[Points earned because a referral made his/her first order]]>
+                            </label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>140</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </referralFirstOrder>
+                        <referralOrder translate="label comment">
+                            <label><![CDATA[Points earned as a percentage of a referral's order]]>
+                            </label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>150</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </referralOrder>
+                    </fields>
+                </transferComments>
+            </groups>
+        </rewards>
+    </sections>
+</config>

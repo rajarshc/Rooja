@@ -47,7 +47,7 @@
 	<?php //var_export($_product); ?>
 		<article class="product col1 fl <?php if ($i % 3 == 0){ echo 'noMargin'; } ?>">
 		<?php $stock_count = (int) Mage::getModel('cataloginventory/stock_item')->loadByProduct($_product)->getQty();
-if ($stock_count <= 2 && $stock_count > 0) {
+if ($stock_count <= 5 && $stock_count > 0) {
 echo '<span class="numLeft">'.$stock_count.'</span>';
 } ?>
 			

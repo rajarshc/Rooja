@@ -1,0 +1,85 @@
+<?php
+$cant_use_points = (($this->getMinSpendablePoints() == $this->getMaxSpendablePoints()) && $this->getMinSpendablePoints() == 0);
+?>
+
+<?php if($this->hasCartPointsData()): ?>
+<div class="discount-codes box rewards-box-spend-minicart discount">
+    <div class="rewards-box-spend-header">
+        <h2><?php echo $this->__('Spend your points'); ?></h2>
+    </div>
+    <div class="box-content">
+<?php if($this->needsLogin()): ?>
+    <span class="no_points_to_spend">
+        <?php
+            $msg = $this->__("You need to [[log-in]] to use your points."); 
+            echo str_replace(  "[[", "<a href='".$this->getUrl('customer/account/login')."'>", str_replace("]]", "</a>", $msg)  ); 
+        ?>
+    </span>
+<?php else: ?>
+    <?php if($this->showPointsSlider()): ?>
+    <!-- Cart Slider -->
+        <?php if($this->hasNonDbpsCartRules()): ?>
+            <h5 class="minicart-slider-header"><?php echo $this->__('Choose how many points to spend'); ?>: </h5>
+        <?php endif; ?>
+        <?php if($this->customerHasUsablePoints() && !$cant_use_points): ?>
+            <div class="cartSlider">
+                <?php echo $this->getChildHtml('points_slider'); ?>
+            </div>
+            <input type="checkbox" name="use_all_points" id="use_all_points" onclick="toggleUseAllPoints(this.checked)"/>&nbsp;
+            <label for="use_all_points"><?php echo $this->__('Maximize my discount with points'); ?></label>
+        <?php else: ?>
+            <?php if($cant_use_points): ?>
+                <span class="points_slider_msg"><?php echo $this->__("You can't spend any more points in this cart."); ?></span>
+            <?php elseif($this->customerIsLoggedIn()): ?>
+                <span class="no_points_to_spend"><?php echo $this->__("You don't currently have any points to spend."); ?></span>
+            <?php else: ?>
+                <span class="no_points_to_spend"><?php echo $this->__("You need to log-in to spend points."); ?></span>
+            <?php endif; ?>
+        <?php endif; ?>
+    <?php endif; ?>
+    
+    <?php if($this->hasNonDbpsCartRules()): /* has non "discount_by_points_spent" (slider) rules: */?>
+    <!-- All other rules -->
+    	   	<?php $redemption_list = $this->collectShoppingCartRedemptions($this->getQuote()); ?>
+            <div class="more-ways-to-spend <?php if($this->showPointsSlider()): ?> more-ways-to-spend-also<?php endif; ?>" >
+                <?php if($this->showPointsSlider()): ?>
+                    <h5 class="more-ways-to-spend-header"><?php echo $this->__('More ways to spend points'); ?>: </h5>
+                <?php endif; ?>
+                <!-- Applied Rule Listing -->
+                <?php foreach ($redemption_list['sorted_applied'] as $redemption):?>
+                <?php if($redemption['is_dbps']) continue; ?>
+                    <div class="cart_redemption_item">
+                        <input type="checkbox" name="applied_cart_rule[]" id="applied_cart_rule[]" 
+                                value="<?php echo (string)$redemption['rule_id']; ?>" onclick="toggleCartRule(this)" checked="checked"/>&nbsp;
+                        <label for="applied_cart_rule[]">
+                        	<?php if(isset($redemption['caption']) && !empty($redemption['caption'])): ?>
+                        		<?php echo $redemption['caption']; ?>
+                        	<?php else: ?>
+                            	<?php echo $this->__('Spend <b>%s</b>, Get <b>%s</b>', $redemption['points_cost'], $redemption['action_str']) ?>
+							<?php endif; ?>
+                        </label>
+                    </div>
+                <?php endforeach;?>
+                
+                <!-- Applicable Rule Listing -->
+                <?php foreach ($redemption_list['sorted_applicable'] as $redemption):?>
+                <?php if($redemption['is_dbps']) continue; ?>
+                    <div class="cart_redemption_item">
+                        <input type="checkbox" name="applicable_cart_rule[]" id="applicable_cart_rule[]" 
+                                value="<?php echo (string)$redemption['rule_id']; ?>" onclick="toggleCartRule(this)" />&nbsp;
+                        <label for="applicable_cart_rule[]">
+                        	<?php if(isset($redemption['caption']) && !empty($redemption['caption'])): ?>
+                        		<?php echo $redemption['caption']; ?>
+                        	<?php else: ?>
+                            	<?php echo $this->__('Spend <b>%s</b>, Get <b>%s</b>', $redemption['points_cost'], $redemption['action_str']) ?>
+                        	<?php endif; ?>
+                        </label>
+                    </div>
+                <?php endforeach;?>
+            </div>
+    <?php endif; ?>
+<?php endif; ?>        
+    </div>
+<?php echo $this->getChildHtml('minicart_js'); ?>
+</div>
+<?php endif; ?>
