@@ -1,0 +1,75 @@
+
+<script type="text/javascript">
+
+    // Other PHP content ///////////////
+    var currency_map  = <?php echo $this->getCurrencyMapJson(); ?>;
+
+    function feignPriceChange() {
+    
+    }
+
+</script>
+
+<div class="slider" onmouseup="sliderNotSliding()">
+    <table cellspacing="0" cellpadding="0">
+        <tbody>
+            <tr>
+                <td style="vertical-align:middle" class="btn-slider-reduce-points-container">
+                    <img class="btn-slider-reduce-points" alt="<?php echo $this->__('Spend one point less'); ?>" 
+                         src="<?php echo $this->getSkinUrl('images/rewards/slider/decr_points.gif'); ?>" 
+                         id="slider_reduce_points"
+                         onclick="rSlider.decr()" 
+                         style="position:relative; top:5px;" />
+                </td>
+                <td>
+                    <div class="sliderRail" id="sliderRail">
+                        <a style="left: 0%;" class="sliderHandle ui-slider-handle ui-state-default" id="sliderHandle"
+                           onmousedown="sliderSliding()"  
+                           onmouseup="sliderNotSliding()"></a>
+                    </div>
+                </td>
+                <td style="vertical-align: middle" class="btn-slider-reduce-points-container">
+                    <img class="btn-slider-increase-points" 
+                         alt="<?php echo $this->__('Spend one point more'); ?>" 
+                         src="<?php echo $this->getSkinUrl('images/rewards/slider/incr_points.gif'); ?>" 
+                         id="slider_reduce_points"
+                         onclick="rSlider.incr()" 
+                         style="position:relative; top:5px;" />
+                </td>
+                <td valign="top" class="cartSlider_cell">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div id="sliderCaption" class="cartSlider_caption">
+    </div>
+    <input type="hidden" name="redemption_uses" id="redemption_rule_uses"/>
+</div>
+<div align="center" id="payment-please-wait" class="rewards-opc-please-wait">
+    <img src="<?php echo $this->getSkinUrl('images/rewards/loading/loading1.gif') ?>" class="v-middle" alt="" /> &nbsp; 
+    <?php echo $this->__('Updating Points Information...') ?> &nbsp;
+</div>
+<script type="text/javascript">
+    document.observe("dom:loaded", function() {
+        var min_spendable = <?php echo (string) $this->getMinSpendablePoints(); ?>;
+        var max_spendable = <?php echo (string) $this->getMaxSpendablePoints(); ?>;
+        var step = <?php echo (string) $this->getPointsStep(); ?>;
+        var current_value = <?php echo (string) $this->getCurrentSpendingPoints(); ?>;
+        
+        rSlider = new RedemptionSlider('sliderHandle', 'sliderRail', 'sliderCaption', 'redemption_rule_uses');
+        rSlider.regenerateSlider(min_spendable, max_spendable, step, current_value);//min, max, step, initial_value
+        rSlider.setExternalValue(current_value);
+    });
+
+    // Functions for changing the cursor on the slider
+    function sliderSliding() {
+        $('sliderRail').addClassName('sliderRail-sliding'); 
+        $('sliderHandle').addClassName('sliderHandle-sliding');
+    }
+
+    function sliderNotSliding() {
+        $('sliderRail').removeClassName('sliderRail-sliding'); 
+        $('sliderHandle').removeClassName('sliderHandle-sliding');
+    }
+</script>
+

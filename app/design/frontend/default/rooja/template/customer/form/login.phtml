@@ -44,12 +44,10 @@
 	<form action="<?php echo $this->getPostActionUrl() ?>" method="post" id="login-form">
         <input type="text" name="login[username]" value="<?php echo $this->htmlEscape($this->getUsername()) ?>" id="email" class="input-text required-entry validate-email" title="<?php echo $this->__('Email Address') ?>" />
 		<input type="password" name="login[password]" class="input-text required-entry validate-password" id="pass" title="<?php echo $this->__('Password') ?>" />
-		<input type="button" id="fBConnect" name="fBConnect" class="tr">
+				<button id="fBConnect" rel="facebook-connect" type="button" title="<?php echo $this->__('Connect with Facebook') ?>" class="button"></button>
+
 		<input type="submit" id="loginBtn" name="loginBtn" class="tr">
 	</form>
-	<?php /* commenting out till facebook button works */ ?>
-	<button rel=Ófacebook-connectÓ class=Óform-buttonÓ type=ÓsubmitÓ><span>Connect with Facebook</span></button>
-<a rel=Ófacebook-connectÓ>Connect with Facebook</a>
 	<h2 id="signUp" class="tr">Sign Up</h2>
 	<a href="/customer/account/create" id="tellMeMore" class="tr">Don&rsquo;t have an account? Join Now.</a>
 	

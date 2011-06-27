@@ -76,6 +76,7 @@ form input#loginBtn{
     float:left;
     margin-top:10px;
     cursor:pointer;
+    border: none;
 }
 
 #tellMeMore{

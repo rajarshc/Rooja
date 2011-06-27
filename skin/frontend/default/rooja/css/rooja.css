@@ -387,3 +387,5 @@ a[href$=".doc"]:after {content: " (DOC)";}
     padding: 10px 10px 0;
     }
 .product-options p.required {padding: 0;}
+.input-box {position: relative;}
+.discount .buttons-set {position: absolute;right:0;float: right;top:0;}

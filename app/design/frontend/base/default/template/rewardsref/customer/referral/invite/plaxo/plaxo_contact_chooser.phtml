@@ -1,0 +1,26 @@
+<?php
+$baseurlpath = (string) preg_replace('/\/index\/$/', '', $_SERVER['REQUEST_URI']);
+$plaxocb = "{$baseurlpath}/plaxocb";
+//$plaxocb = $_SERVER['REQUEST_URI'] . '../plaxocb'; //might fail on some servers that block ../
+?>
+
+<!--
+<script type="text/javascript" src="https://www.plaxo.com/css/m/js/util.js"></script>
+<script type="text/javascript" src="https://www.plaxo.com/css/m/js/basic.js"></script>
+<script type="text/javascript" src="https://www.plaxo.com/css/m/js/abc_launcher.js"></script>
+-->
+
+
+<script type="text/javascript">
+    // OPTIONAL: do something after the new data has been populated in textarea
+    function onABCommComplete() { }
+</script>
+
+
+<div class="rewardsref_plaxo_link_section">
+    <a title="<?php echo $this->__('Import contacts from sources yahoo, gmail, outlook, etc') ?>"
+       	href="#" onclick="showPlaxoABChooser('recipient_list', '<?php echo $plaxocb ?>'); return false"  class="rewardsref_plaxo_link">
+           <span class="rewardsref_plaxo_link_caption"><?php echo $this->__('Import contacts') ?></span>
+           <span class="rewardsref_plaxo_link_img"><img src="<?php echo $this->getSkinUrl('images/rewardsref/plaxo_options.png'); ?>" /></span>
+    </a>
+</div>

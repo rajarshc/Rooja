@@ -1,0 +1,273 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <TBT_RewardsReferral>
+            <version>3.0.0.1</version>
+        </TBT_RewardsReferral>
+    </modules>
+    <admin>
+        <routers>
+            <rewardsrefadmin>
+                <use>admin</use>
+                <args>
+                    <module>TBT_RewardsReferral</module>
+                    <frontName>rewardsrefadmin</frontName>
+                </args>
+            </rewardsrefadmin>
+        </routers>
+    </admin>
+    <frontend>
+        <routers>
+            <rewardsref>
+                <use>standard</use>
+                <args>
+                    <module>TBT_RewardsReferral</module>
+                    <frontName>rewardsref</frontName>
+                </args>
+            </rewardsref>
+        </routers>
+        <layout>
+            <updates>
+                <rewardsref>
+                    <file>rewardsref.xml</file>
+                </rewardsref>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <TBT_RewardsReferral>
+                    <files>
+                        <default>TBT_RewardsReferral.csv</default>
+                    </files>
+                </TBT_RewardsReferral>
+            </modules>
+        </translate>
+        
+        <events>
+            <checkout_onepage_controller_success_action>
+                <observers>
+                    <rewardsref_recordOrderPoints>
+                        <type>singleton</type>
+                        <class>rewardsref/observer_refer</class>
+                        <method>recordPointsForOrderEvent</method>
+                    </rewardsref_recordOrderPoints>
+                </observers>
+            </checkout_onepage_controller_success_action>
+            <rewards_new_customer_create>
+                <observers>
+                    <rewardsref_recordRegisterPoints>
+                        <type>singleton</type>
+                        <class>rewardsref/observer_refer</class>
+                        <method>recordPointsUponRegistration</method>
+                    </rewardsref_recordRegisterPoints>
+                </observers>
+            </rewards_new_customer_create>
+        </events>
+    </frontend>
+    <global>
+        <events>
+            <controller_action_predispatch_customer_account_createpost>
+                <observers>
+                    <rewardsref_before_createaccount>
+                        <type>singleton</type>
+                        <class>rewardsref/observer_createaccount</class>
+                        <method>beforeCreate</method>
+                    </rewardsref_before_createaccount>
+                </observers>
+            </controller_action_predispatch_customer_account_createpost>
+            <controller_action_predispatch_checkout_onepage_saveBilling>
+                <observers>
+                    <rewardsref_before_onepage_billingsave>
+                        <type>singleton</type>
+                        <class>rewardsref/observer_createaccount</class>
+                        <method>beforeSaveBilling</method>
+                    </rewardsref_before_onepage_billingsave>
+                </observers>
+            </controller_action_predispatch_checkout_onepage_saveBilling>
+        </events>
+    </global>
+	
+    <adminhtml>
+        <translate>
+            <modules>
+                <TBT_RewardsReferral>
+                    <files>
+                        <default>TBT_RewardsReferral.csv</default>
+                    </files>
+                </TBT_RewardsReferral>
+            </modules>
+        </translate>
+        <layout>
+            <updates>
+                <rewardsref>
+                    <file>rewardsref.xml</file>
+                </rewardsref>
+            </updates>
+        </layout>
+        <menu>
+            <rewards translate="title" module="rewardsref">
+                <children>
+                    <referrals translate="title" module="rewardsref">
+                        <title>Customer Referrals</title>
+                        <sort_order>50</sort_order>
+                        <action>rewardsrefadmin/manage_referrals</action>
+                    </referrals>
+                </children>
+            </rewards>
+        </menu>
+        <acl>
+            <resources>
+                <all>
+                    <title>Allow Everything</title>
+                </all>
+                <admin>
+                    <children>
+                        <rewards module="rewardsref" translate="title">
+                            <children>
+                                <referrals module="rewardsref" translate="title">
+                                    <title>Customer Referrals</title>
+                                    <sort_order>50</sort_order>
+                                </referrals>
+                            </children>
+                        </rewards>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+    </adminhtml>   
+    
+    <global>
+        <models>
+            <rewardsref>
+                <class>TBT_RewardsReferral_Model</class>
+                <resourceModel>rewardsref_mysql4</resourceModel>
+            </rewardsref>
+            <rewardsref_mysql4>
+                <class>TBT_RewardsReferral_Model_Mysql4</class>
+                <entities>
+                    <rewardsref_referral>
+                        <table>rewardsref_referral</table><!-- AVOID using this method! -->
+                    </rewardsref_referral>
+                    <referral>
+                        <table>rewardsref_referral</table>
+                    </referral>
+                </entities>
+            </rewardsref_mysql4>
+        </models>
+        
+        <resources>
+            <rewardsref_setup>
+                <setup>
+                    <module>TBT_RewardsReferral</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </rewardsref_setup>
+            <rewardsref_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </rewardsref_write>
+            <rewardsref_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </rewardsref_read>
+        </resources>
+        <blocks>
+            <rewardsref>
+                <class>TBT_RewardsReferral_Block</class>
+            </rewardsref>                
+        </blocks>
+        <helpers>
+            <rewardsref>
+                <class>TBT_RewardsReferral_Helper</class>
+            </rewardsref>
+        </helpers>
+        
+        <template>
+            <email> 
+                <rewards_referral_subscription_email_template translate="label"	module="rewardsref">
+                    <label>Customer Referral Invitation</label>
+                    <file>rewardsref/referral_subscribe.html</file>
+                    <type>html</type>
+                </rewards_referral_subscription_email_template>
+                <rewards_referral_confirmation_email_template translate="label"	module="rewardsref">
+                    <label>Customer Referral New Earnings Notification</label>
+                    <file>rewardsref/referral_confirm.html</file>
+                    <type>html</type>
+                </rewards_referral_confirmation_email_template>
+            </email>
+        </template>
+        
+    </global>
+	
+    <rewards>
+        <special>
+            <referral_signup>
+                <config>rewardsref/special_signup</config>
+            </referral_signup>
+            <referral_firstorder>
+                <config>rewardsref/special_firstorder</config>
+            </referral_firstorder>
+            <referral_order>
+                <config>rewardsref/special_order</config>
+            </referral_order>
+        </special>
+        <transfer>
+            <reference>
+                <referral>rewardsref/transfer_reference_referral</referral>
+            </reference>
+            <reason>
+                <referral_signup>rewardsref/transfer_reason_signup</referral_signup>
+                <referral_firstorder>rewardsref/transfer_reason_firstorder</referral_firstorder>
+                <referral_order>rewardsref/transfer_reason_order</referral_order>
+            </reason>
+        </transfer>
+    </rewards>     
+    
+    
+    <frontend>
+        <enterprise>
+            <websiterestriction>
+                <full_action_names>
+                    <generic>
+                        <rewardsref_index_refer/>
+                        <rewardsref_index_getCurrentRefEmail/>
+                    </generic>
+                </full_action_names>
+            </websiterestriction>
+        </enterprise>    
+    </frontend>
+    
+    <default>
+        <rewards>
+            <referral>
+                <referral_show>1</referral_show>
+                <subscription_email_template>rewards_referral_subscription_email_template</subscription_email_template>
+                <subscription_email_identity>support</subscription_email_identity>
+                <subscription_email_use_sender_email>1</subscription_email_use_sender_email>
+                <confirmation_email_template>rewards_referral_subscription_email_template</confirmation_email_template>
+                <confirmation_email_identity>support</confirmation_email_identity>
+                
+                <show_in_onepage_checkout>1</show_in_onepage_checkout>
+                <show_in_register>1</show_in_register>
+                
+                <show_referral_email>1</show_referral_email>
+                <show_referral_code>1</show_referral_code>
+                <show_referral_url>1</show_referral_url>
+                <show_invite_form>1</show_invite_form>
+                <show_preferences>1</show_preferences>
+                <show_history>1</show_history>
+                
+                <affiliate_redirect_url></affiliate_redirect_url>
+            </referral>
+            <transferComments>
+                <referralSignup>A referred customer signed up to the site.</referralSignup>
+                <referralFirstOrder>A referred customer made a first order.</referralFirstOrder>
+                <referralOrder>Commission received from an order that a referred customer made.</referralOrder>
+            </transferComments>
+        </rewards>
+    </default>
+</config>

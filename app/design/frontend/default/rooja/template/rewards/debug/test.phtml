@@ -1,0 +1,85 @@
+<?php
+?>
+
+<BR />
+<BR />
+<a href="#" onclick="beginTests()"> Begin All Tests</a>
+<BR />
+<div id="status_signal"></div>
+<div id="test_cases">
+	<div id="prepareCart1" action="prepareCart1" controller="debug_promo_quote_general"><a href='#' onclick='redoTest(this)'>prepareCart1</a></div>
+	<div id="assertZeroPoints" action="assertZeroPoints" controller="debug_promo_quote_general"><a href='#' onclick='redoTest(this)'>assertZeroPoints</a></div>
+	<div id="assert100Points" action="assert100Points" controller="debug_promo_quote_general"assert100Points></div>
+	<div id="assertFullDiscount" action="assertFullDiscount" controller="debug_promo_quote_general"><a href='#' onclick='redoTest(this)'>assertFullDiscount</a></div>
+</div>
+<script type="text/javascript">
+var baseUrl = '<?php echo $this->getUrl("*/") ?>';
+function beginTests() {
+		
+	var test_cases = [];
+	$('test_cases').childElements().each(function(i){
+		test_cases.push(i);
+		i.innerHTML = ('');
+	})
+	
+	for(i=0; i<test_cases.length; i++) {
+		var elem = test_cases[i];
+		var next = (i == (test_cases.length -1)) ? '' : test_cases[i+1].getAttribute('id');
+		doTest(elem, next);
+	}
+	
+	
+}
+
+function doTest(elem, next) {
+	var eid = elem.getAttribute('id');
+	
+	var action = elem.getAttribute('action');
+	var controller = elem.getAttribute('controller');
+	var url = baseUrl + controller + "/" + action;
+
+	queueAjaxUpdate(eid, url, next);
+	ajaxClear(next);
+}
+
+function redoTest(link_elem) {
+    doTest(link_elem.up(), '');
+}
+
+function queueAjaxUpdate(eid, url, next) {
+	new Ajax.Updater(eid, url, {
+		asynchronous: false,
+		onCreate: function(i) {
+			$('status_signal').update("Running test case "+ eid + "...");
+		},
+		onComplete: function(i) {
+			if(next == '') {
+				$('status_signal').update("done running test cases.");
+			} else {
+				$('status_signal').update("done running "+ eid + ", preparing for next test case...");
+			}
+		}
+	} );
+}
+
+function ajaxClear(next) {
+	var eid = 'clearing_signal';
+	var action = 'clear';
+	var controller = 'debug_promo_quote_general';
+	var url = baseUrl + controller + "/" + action;
+	new Ajax.Updater("clearing_signal", url, {
+		asynchronous: false,
+		onCreate: function(i) {
+			if(next == '') {
+				$('status_signal').update("Clearing for the last time...");
+			} else {
+				$('status_signal').update("Clearing and preparing for "+ next +"...");
+			}
+		},
+		onComplete: function(i) {
+			$('status_signal').update("Done all test cases.");
+		}
+	} );
+}
+</script>
+

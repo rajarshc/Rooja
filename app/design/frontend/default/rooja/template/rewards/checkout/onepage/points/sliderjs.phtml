@@ -1,0 +1,69 @@
+
+<script type="text/javascript">
+    function updateGrandTotal(transport) {
+        checkout.reloadProgressBlock();
+        var r = transport.responseText;
+        $('checkout-review-load').innerHTML = r;
+        hideLoading();
+    }
+    var update_waiting_elem_id = 'rewards-spending-please-wait';
+    function showLoading() {
+        $(update_waiting_elem_id).show();
+    }
+    function hideLoading() {
+        $(update_waiting_elem_id).hide();
+    }
+    
+    function hideTotalsDisplays() {
+        if($('review-grand_total')) {
+            $('review-grand_total').innerHTML = "...";
+        }
+        if($('review-discount_total')) {
+            $('review-discount_total').innerHTML = "...";
+        }
+        if($$('td.cart-points-total_earned span.price').length) {
+            if($$('td.cart-points-total_earned span.price')[0].parentNode!= null) {
+                $$('td.cart-points-total_earned span.price')[0].parentNode.innerHTML = "...";
+            }
+        }
+        if($$('td.cart-points-total_spent span.price').length) {
+            if($$('td.cart-points-total_spent span.price')[0].parentNode!= null) {
+                $$('td.cart-points-total_spent span.price')[0].parentNode.innerHTML = "...";
+            }
+        }
+    }
+    var has_regenerated_points_slider = false;
+    var slider_needs_refresh = false;
+    var slider_refresh_url = '<?php echo $this->getUrl("rewards/checkout_onepage/getSliderContent"); ?>';
+    function showPointsSlider() {
+        openRedeemPointsTip();
+        if(slider_needs_refresh) {
+            showLoading();
+            new Ajax.Updater('onepage_points_slider', slider_refresh_url, {
+                onComplete: function(t) {
+                    rSlider = new RedemptionSlider('sliderHandle', 'sliderRail', 'sliderCaption', 'redemption_rule_uses');
+                    rSlider.regenerateSlider(min_spendable, max_spendable, step, current_value); 
+                    rSlider.setExternalValue(current_value);
+                    hideLoading();
+                    slider_needs_refresh = false;
+                }
+            });
+            return false;
+        } 
+        if(!has_regenerated_points_slider) {
+            if($('rewards_review_slider').visible()) {
+                rSlider.regenerateSlider(min_spendable, max_spendable, step, current_value);
+            }
+            has_regenerated_points_slider = true;
+        }
+    }
+    
+    document.observe("dom:loaded", function() {
+        $$('dl.shipment-methods input[type=radio]').each(function(el){
+            $(el).observe("change", function(e){
+                slider_needs_refresh = true;
+            });
+        }, this);
+    });
+    
+</script>

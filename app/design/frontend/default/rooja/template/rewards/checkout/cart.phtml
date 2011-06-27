@@ -1,0 +1,163 @@
+<?php
+/**
+ * WDCA - Sweet Tooth
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the WDCA SWEET TOOTH POINTS AND REWARDS 
+ * License, which extends the Open Software License (OSL 3.0).
+ * The Sweet Tooth License is available at this URL: 
+ *      http://www.wdca.ca/solutions_page_sweettooth/Sweet_Tooth_License.php
+ * The Open Software License is available at this URL: 
+ *      http://opensource.org/licenses/osl-3.0.php
+ * 
+ * DISCLAIMER
+ * 
+ * By adding to, editing, or in any way modifying this code, WDCA is 
+ * not held liable for any inconsistencies or abnormalities in the 
+ * behaviour of this code. 
+ * By adding to, editing, or in any way modifying this code, the Licensee
+ * terminates any agreement of support offered by WDCA, outlined in the 
+ * provided Sweet Tooth License. 
+ * Upon discovery of modified code in the process of support, the Licensee 
+ * is still held accountable for any and all billable time WDCA spent 
+ * during the support process.
+ * WDCA does not guarantee compatibility with any other framework extension. 
+ * WDCA is not responsbile for any inconsistencies or abnormalities in the
+ * behaviour of this code if caused by other framework extension.
+ * If you did not receive a copy of the license, please send an email to 
+ * contact@wdca.ca or call 1-888-699-WDCA(9322), so we can send you a copy 
+ * immediately.
+ * 
+ * @category   [TBT]
+ * @package    [TBT_Rewards]
+ * @copyright  Copyright (c) 2009 Web Development Canada (http://www.wdca.ca)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+/**
+ * Checkout Cart
+ * 
+ * @deprecated THIS TEMPLATE IS NO LONGER USED.  SEE cartmini.phtml instead.  
+ *
+ * @category   TBT
+ * @package    TBT_Rewards
+ * @author     WDCA Sweet Tooth Team <contact@wdca.ca>
+ */
+?>
+<?php if ($this->hasCartPointsData()): ?>
+    <div class="box rewards-cart-box">
+        <h4><?php echo $this->__('Use Your Rewards Points!') ?></h4>
+        <?php $redemption_list = $this->collectShoppingCartRedemptions($this->getQuote()); ?>
+
+        <?php if ($this->hasAppliedRedemptionData()): ?>
+            <div class="applied-redemptions">
+                <!-- Section 1: Applied redemptions -->
+                <h5><?php echo $this->__('Your redemptions:') ?></h5>
+                <?php if (sizeof($redemption_list['applied']) > 0): ?>
+                    <table width="100%">
+                        <tbody>
+                            <?php foreach ($redemption_list['applied'] as $rid => $redemption): ?>
+                                <tr>
+                                    <td width="50%" class="rule_name">
+                                        <?php echo $redemption['name']; ?>
+                                    </td>
+                                    <td width="25%" align="right" class="rule_points">
+                                        <?php if (Mage::helper('rewards/transfer')->getSalesRule($rid)->getPointsAction() == 'discount_by_points_spent'): ?>
+                                        <?php else: ?>
+                                            <?php
+                                            echo $this->getRedeemPointsStr($redemption['amount'], $redemption['currency'], true);
+                                            ?>
+                                        <?php endif; ?>
+                                    </td>
+                                    <td width="25%">
+                                        <?php /* @nelkaake 16/01/2010 6:20:18 PM points redemption coupon autoapply */ ?>
+                                        <?php if (!Mage::helper('rewards/transfer')->getSalesRule($rid)->getCouponCode()): ?>
+                                            <?php if (Mage::helper('rewards/transfer')->getSalesRule($rid)->getPointsAction() != 'discount_by_points_spent'): ?>
+                                                <?php echo $this->genRuleCtrlImg($rid, false, true); ?>
+                                            <?php endif; ?>
+                                        <?php endif; ?>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                <?php else: ?>
+                    <div class="no_extra_points">
+                        <?php echo $this->__('You have applied no redemptions to this cart.') ?>
+                    </div>
+                <?php endif ?>
+            </div>
+        <?php endif; ?>
+
+
+        <?php if ($this->hasApplicableRedemptionData()): ?>
+            <!-- Section 2: Applicable Redemptions -->
+            <div  class="applicable-redemptions">
+                <h5><?php echo $this->__('More ways to redeem:') ?></h5>
+                <?php if ($this->hasApplicableRedemptionData()): ?>
+                    <table width="100%">
+                        <tbody>
+                            <?php foreach ($redemption_list['applicable'] as $rid => $redemption): ?>
+                                <tr>
+                                    <td width="50%" class="rule_name"><?php echo $redemption['name']; ?></td>
+                                    <td width="25%" align="right" class="rule_points">
+                                        <?php
+                                        echo $this->getRedeemPointsStr($redemption['amount'], $redemption['currency'], false);
+                                        ?>
+                                    </td>
+                                    <td width="25%">
+                                        <?php
+                                        // This will stop the customer from logging in 
+                                        if ($this->isCustomerLoggedIn()) {
+                                            $callback = "true";
+                                        } else {
+                                            $callback = "confirm('" . $this->__('You must be logged in to redeem points. To proceed to the log-in page press OK.') . "')";
+                                        }
+                                        echo $this->genRuleCtrlImg($rid, true, true, 0, 0, $callback);
+                                        ?>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                <?php else: ?>
+                    <div class="no_extra_points">
+                        <?php echo $this->__('You cannot spend more points on this cart.') ?>
+                    </div>
+                <?php endif ?>
+            </div>
+        <?php endif; ?>
+
+
+        <?php if ($this->hasCartDistributions()): ?>
+            <!-- Section 3: Distributions -->
+            <div class="distributions">
+                <h5><?php echo $this->__('Points you will earn:') ?></h5>
+                <?php if ($this->hasCartDistributions()): ?>
+                    <?php $total_cart_points_to_earn = $this->updateShoppingCartPoints($this->getQuote()) ?>
+                    <table width="100%">
+                        <tbody>
+                            <?php foreach ($total_cart_points_to_earn as $points): ?>
+                                <tr>
+                                    <td width="50%" class="rule_name">
+                                        <?php echo $points['rule_name']; ?>
+                                    </td>
+                                    <td width="25%" align="right" class="rule_points">
+                                        <?php
+                                        echo $this->getRedeemPointsStr($points['amount'], $points['currency'], true);
+                                        ?>
+                                    </td>
+                                    <td width="25%"> </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                <?php else: ?>
+                    <div class="no_extra_points"><?php echo $this->__('No extra points to earn on this cart.') ?></div>
+                <?php endif ?>
+            </div>
+        <?php endif; ?>
+
+    </div>
+<?php endif; ?>
+

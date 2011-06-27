@@ -1,0 +1,69 @@
+<?php if ($this->showSendReferralForm()): ?>
+<div class="rewardsref_myreferrals_multireferral_section">
+    <form action="<?php echo $this->getUrl('rewardsref/customer/invites/') ?>" method="post" id="form-validates">
+        <?php if ($this->hasPredictedSignupPoints()): ?>
+    		<div class="rewardsref_myreferrals_multireferral_predictpoints rewardsref_myreferrals_multireferral_predictpoints_signup">
+                <?php echo $this->__("You could earn up to %s when your referral signs up.", $this->getPredictedSignupPoints()); ?>
+            </div>
+        <?php endif; ?>
+        <?php if ($this->hasPredictedFirstOrderPoints()): ?>
+    		<div class="rewardsref_myreferrals_multireferral_predictpoints rewardsref_myreferrals_multireferral_predictpoints_firstorder">
+                <?php echo $this->__("You could earn up to %s when your referral makes their first order.", $this->getPredictedFirstOrderPoints()); ?>
+            </div>
+        <?php endif; ?>
+
+        <fieldset class="group-select" style="margin-bottom: 0px;">
+            <h4 class="legend"><?php echo $this->__('Send Invitations') ?></h4>
+            <div class="input-box" >
+                <label for="to"><?php echo $this->__('To') ?></label>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td style="width: 50%">
+                                <textarea name="contacts" id="recipient_list" class="rewardsref_recipient_list" rows="7"></textarea>
+                                <br/>
+                                <?php echo $this->getChildHtml('plaxo_contact_chooser'); ?>
+                            </td>
+                            <td>
+                            	<div class="rewardsref_invite_field_format">
+                                    <p class="comment">
+                                        <?php echo $this->__('To reduce the chance that your message is marked as spam, please follow this format:'); ?>
+                                        <BR /><b>&quot;contact name&quot; &lt;email@address.com&gt;</b>
+                                    </p>
+                                    <p class="comment">
+                                        <?php echo $this->__('Example contact list:'); ?><br/>
+                                        &quot;fullname&quot; &lt;email@test.ca&gt;, my@friend.com<br/> 
+                                        email@address.com, another@friend.com, me@test.ca
+                                    </p>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br/>
+            </div>
+
+            <div class="input-box" style="display:none;" >
+                <label for="subject"><?php echo $this->__('Subject (Optional)') ?></label>
+                <textarea name="subject" id="subject" class="required-entry textarea" style="width:100%;" rows="1" cols="80" title="<?php echo $this->__('Subject') ?>"  ></textarea>
+            </div>
+
+            <div class="input-box">
+                <label for="message"><?php echo $this->__('Message (Optional)') ?> </label>
+                <textarea name="message" id="message" class="required-entry textarea" style="width:100%;" rows="4" cols="80" title="<?php echo $this->__('Short Message') ?>"  ></textarea>
+            </div>
+
+            <div class="button-set" style="margin-top:0px">
+                <!--<a href="<?php echo $this->getBackUrl() ?>" class="left">&laquo; <?php echo $this->__('Back') ?></a>-->
+                <button type="submit" title="<?php echo $this->__('Send Invitiation(s)') ?>" class="button"><span><span><?php echo $this->__('Send Invitiation(s)') ?></span></span></button>
+            </div>
+            
+        </fieldset>
+    </form>
+
+    <script type="text/javascript">
+        var dataForm = new VarienForm('form-validate', true);
+    </script>
+
+</div>
+<?php endif; ?>
