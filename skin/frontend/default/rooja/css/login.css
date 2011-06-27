@@ -40,6 +40,7 @@ h1#logo{
     margin:0 20px 15px 0;
 }
 #forgetPass{margin-top:0px;text-decoration:underline;color:#c7becc;}
+#forgetPass:hover{color:#fff;}
 
 #signUp{
     background-image:url(../images/splash/sign-up.png);

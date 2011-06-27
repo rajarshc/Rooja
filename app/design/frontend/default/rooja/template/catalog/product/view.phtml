@@ -84,12 +84,12 @@ if (!$categoryIds == null){
 			<section id="productInfo" class="col1 fl">
 				<h1><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>
 				<ul id="productBreakdown">
-					<li><a href="#">Details</a></li>
-					<li><a href="#">Shipping &amp; Returns</a></li>
+					<li><a href="#" id="detailsTab" class="selected">Details</a></li>
+					<li><a href="#" id="shippingTab">Shipping &amp; Returns</a></li>
 				</ul>
 			<?php if ($_product->getDescription()):?>
-				<p class="details"><?php echo $_helper->productAttribute($_product, nl2br($_product->getDescription()), 'short_description') ?></p>
-				<p class="shipping"><?php echo $_helper->productAttribute($_product, nl2br($_product->getShippingReturns()), 'shipping_returns') ?></p>
+				<article class="details"><?php echo $_helper->productAttribute($_product, nl2br($_product->getDescription()), 'short_description') ?></article>
+				<article class="shipping"><?php echo $_helper->productAttribute($_product, nl2br($_product->getShippingReturns()), 'shipping_returns') ?></article>
             <?php endif;?>
 
 				
@@ -285,3 +285,14 @@ if (!$categoryIds == null){
 		<br class="clear">
 	</div>
 </section>
+
+<script type="text/javascript">
+		$(document).ready(function() {
+			$("a#detailsTab").click(
+				 function() {$(".shipping").hide(); $(".details").show(); $("#detailsTab").addClass('selected'); $("#shippingTab").removeClass('selected');}
+			);
+			$("a#shippingTab").click(
+				 function() {$(".shipping").show();$(".details").hide(); $("#detailsTab").removeClass('selected'); $("#shippingTab").addClass('selected');}
+			);
+			
+</script>

@@ -316,6 +316,9 @@ h2#saleDetails{color:#c60;margin:22px 0 5px;}
 #related ul li span.numLikes{position:absolute;z-index:10;bottom:0;right:0;background:url(../images/bgs/purp-opacity-photo-diag.png) repeat;padding:6px 10px; color:#fff;font-size:1.2em;}
 #related ul li span.numLikes img{margin-right:3px;}
 
+.shipping{display:none;}
+.details{display:block;margin:15px 0 0;}
+
 /* ~~~~~ Typography ~~~~~ */
 
 a {text-decoration:none; color:#000;}
