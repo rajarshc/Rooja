@@ -29,9 +29,9 @@ h1#logo{
     margin:0 auto 12px;
 }
 #highlight{
-    background-image:url(../images/splash/about-blurb.png);
-    width:330px;height:68px;
-    margin:0 auto 15px;
+    background-image:url(../images/splash/about-blurb2.png);
+     width:300px;height:35px;
+     margin:0 auto 38px;
 }
 #members{
     background-image:url(../images/splash/members.png);
