@@ -1,6 +1,6 @@
-// script.aculo.us slider.js v1.8.2, Tue Nov 18 18:30:58 +0100 2008
+// script.aculo.us slider.js v1.9.0, Thu Dec 23 16:54:48 -0500 2010
 
-// Copyright (c) 2005-2008 Marty Haught, Thomas Fuchs
+// Copyright (c) 2005-2010 Marty Haught, Thomas Fuchs
 //
 // script.aculo.us is freely distributable under the terms of an MIT-style license.
 // For details, see the script.aculo.us web site: http://script.aculo.us/
@@ -83,8 +83,7 @@ Control.Slider = Class.create({
 
     this.track.observe("mousedown", this.eventMouseDown);
     document.observe("mouseup", this.eventMouseUp);
-    $(this.track.parentNode.parentNode).observe("mousemove", this.eventMouseMove);
-
+    document.observe("mousemove", this.eventMouseMove);
 
     this.initialized = true;
   },
@@ -92,14 +91,13 @@ Control.Slider = Class.create({
     var slider = this;
     Event.stopObserving(this.track, "mousedown", this.eventMouseDown);
     Event.stopObserving(document, "mouseup", this.eventMouseUp);
-    Event.stopObserving(this.track.parentNode.parentNode, "mousemove", this.eventMouseMove);
+    Event.stopObserving(document, "mousemove", this.eventMouseMove);
     this.handles.each( function(h) {
       Event.stopObserving(h, "mousedown", slider.eventMouseDown);
     });
   },
   setDisabled: function(){
     this.disabled = true;
-    this.track.parentNode.className = this.track.parentNode.className + ' disabled';
   },
   setEnabled: function(){
     this.disabled = false;
@@ -211,12 +209,12 @@ Control.Slider = Class.create({
         var pointer  = [Event.pointerX(event), Event.pointerY(event)];
         var track = handle;
         if (track==this.track) {
-          var offsets  = Position.cumulativeOffset(this.track);
+          var offsets  = this.track.cumulativeOffset();
           this.event = event;
           this.setValue(this.translateToValue(
            (this.isVertical() ? pointer[1]-offsets[1] : pointer[0]-offsets[0])-(this.handleLength/2)
           ));
-          var offsets  = Position.cumulativeOffset(this.activeHandle);
+          var offsets  = this.activeHandle.cumulativeOffset();
           this.offsetX = (pointer[0] - offsets[0]);
           this.offsetY = (pointer[1] - offsets[1]);
         } else {
@@ -229,7 +227,7 @@ Control.Slider = Class.create({
             this.activeHandleIdx = this.handles.indexOf(this.activeHandle);
             this.updateStyles();
 
-            var offsets  = Position.cumulativeOffset(this.activeHandle);
+            var offsets  = this.activeHandle.cumulativeOffset();
             this.offsetX = (pointer[0] - offsets[0]);
             this.offsetY = (pointer[1] - offsets[1]);
           }
@@ -248,7 +246,7 @@ Control.Slider = Class.create({
   },
   draw: function(event) {
     var pointer = [Event.pointerX(event), Event.pointerY(event)];
-    var offsets = Position.cumulativeOffset(this.track);
+    var offsets = this.track.cumulativeOffset();
     pointer[0] -= this.offsetX + offsets[0];
     pointer[1] -= this.offsetY + offsets[1];
     this.event = event;
