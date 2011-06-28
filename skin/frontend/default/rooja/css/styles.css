@@ -53,7 +53,7 @@ caption,th,td { vertical-align:top; text-align:left; font-weight:normal; }
 
 /* Content */
 strong        { font-weight:bold; }
-address       { font-style:normal; }
+address       { font-style:normal; line-height: 12px;}
 cite          { font-style:normal; }
 q,
 blockquote    { quotes:none; }
@@ -142,7 +142,6 @@ ul,ol         { list-style:none; }
 .right {float: right;}
 .left {float: left;}
 
-.dashboard .box-content {border: 1px 0 0 0 solid #000;}
 /* ======================================================================================= */
 
 
@@ -1122,12 +1121,14 @@ tr.summary-details-excluded { font-style:italic; }
 .dashboard .welcome-msg {}
 
 .dashboard h1 {color: #431F4C;}
+.dashboard h2 {color: #431F4C; padding: 10px 0;}
 
 /* Block: Recent Orders */
 .dashboard .box-recent { margin:10px 0; }
 
 /* Block: Account Information */
 .dashboard .box-info {}
+.d-account {border: 1px 0 0 0 solid #000;}
 
 /* Block: Reviews */
 .dashboard .box-reviews .number { float:left; font-size:10px; font-weight:bold; line-height:1; color:#fff; margin:3px -20px 0 0; padding:2px 3px; background:#ddd; }
