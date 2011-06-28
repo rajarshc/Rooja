@@ -1207,6 +1207,8 @@ tr.summary-details-excluded { font-style:italic; }
 
 fieldset .page-invite {background:#c8d7da;}
 fieldset .email-invite {background:#e0e0e0;}
+input .invite-input {height: 40px;}
+button .invite-button {height: 40px; color: #fff; font-size:14px; padding: 0px 10px;}
 
 /* ======================================================================================= */
 
