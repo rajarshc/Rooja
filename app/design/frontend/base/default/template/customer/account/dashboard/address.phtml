@@ -33,11 +33,11 @@
         <div class="box-content">
 	
 			<div class="half-col">	                
-				<div class="col-1">
+				<div class="col-1 third">
 					<p><?php echo $this->__('Billing') ?></p>
 				</div>
 
-                <div class="col-2">
+                <div class="col-2 twothird">
 	                <address>
 	                    <?php echo $this->getPrimaryBillingAddressHtml() ?><br />
 	                    <a href="<?php echo $this->getPrimaryBillingAddressEditUrl() ?>"><?php echo $this->__('Edit Address') ?></a>
@@ -46,11 +46,11 @@
 			</div>
 
 			<div class="half-col">
-				<div class="col-1">
+				<div class="col-1 third">
                 	<p><?php echo $this->__('Shipping') ?></p>
 				</div>
-			
-				<div class="col-2">
+				
+				<div class="col-2 twothird">
 	                <address>
 	                    <?php echo $this->getPrimaryShippingAddressHtml() ?><br />
 	                    <a href="<?php echo $this->getPrimaryShippingAddressEditUrl() ?>"><?php echo $this->__('Edit Address') ?></a>

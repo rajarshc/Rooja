@@ -133,6 +133,9 @@ ul,ol         { list-style:none; }
 .half-col .col-1{width: 49%; float: left;}
 .half-col .col-2{width: 49%; float: right;}
 
+.third {width: 33%;}
+.twothird {width: 66%;}
+
 /* ======================================================================================= */
 
 
