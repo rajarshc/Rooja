@@ -1201,6 +1201,13 @@ tr.summary-details-excluded { font-style:italic; }
 .product-review .ratings-table { margin:0 0 10px; }
 .product-review dt { font-weight:bold; }
 .product-review dd { font-size:13px; margin:5px 0 0; }
+
+
+/********** Invite a Friend */
+
+fieldset .page-invite {background:#c8d7da;}
+fieldset .email-invite {background:#e0e0e0;}
+
 /* ======================================================================================= */
 
 
