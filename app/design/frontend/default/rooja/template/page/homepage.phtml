@@ -64,18 +64,20 @@ foreach ($categories as $_category){
         foreach($_category->getChildren() as $subcategory){
 		$c = Mage::getModel('catalog/category')->load($subcategory->getId());
             if($c->getIsActive()){ // check if category is active
-				$fivedays = date('y-m-d', strtotime("+5 days"));
+				$fivedays = date('y-m-d H:G:00', strtotime("+5 days"));
+				$today = date('y-m-d H:G:00');
 				if (!$c->getSale_start_date() == null) {
 	                $startdate = date('y-m-d', strtotime($c->getSale_start_date())) . ' ' . $c->getSale_start_time() . ':00';
 					$enddate = date('y-m-d', strtotime($c->getSale_end_date())) . ' ' . $c->getSale_end_time() . ':00';
+
 					//var_dump($c);
-					if ($enddate < $fivedays) {
+					if ($enddate > $today && $enddate < $fivedays) {
 						if ($i % 2 == 0){
 						echo '<article class="saleDetails fl noMargin">';
 						} else {
 						echo '<article class="saleDetails fl">';
 						}
-						echo '<a href="'. $c->getURL() .'"><img src="/media/catalog/category/'. $c->getImage() .'"></a>';
+						echo '<a href="'. $c->getURL() .'"><span><img src="/media/catalog/category/'. $c->getImage() .'"></span></a>';
 						echo '<h3><a href="'. $c->getURL() .'">' . $c->getName() . '</a></h3>';
 						echo '<p>'. date('M jS \a\t g:ia', strtotime($enddate)) .'</p>';
 						echo '</article>';
@@ -99,9 +101,10 @@ foreach ($categories as $_category){
 		foreach($_category->getChildren() as $subcategory){
 			$c = Mage::getModel('catalog/category')->load($subcategory->getId());
 			if (!$c->getSale_start_date() == null) {
-				$fivedays = date('y-m-d', strtotime("+5 days"));
-				$enddate = date('y-m-d', strtotime($c->getSale_start_date()));
-				if ($enddate > $fivedays) {
+				$fivedays = date('y-m-d H:G:00', strtotime("+5 days"));
+				$today = date('y-m-d H:G:00');
+				$enddate = date('y-m-d', strtotime($c->getSale_end_date())) . ' ' . $c->getSale_end_time() . ':00';
+				if ($enddate > $today ) {
 					$sortedArrayByDates[strtotime($c->getSale_start_date())][] = $c->getName();
 				}
 			}

@@ -31,18 +31,20 @@
  * @see Mage_Catalog_Block_Product_List
  */
 ?>
+
 <?php
     $_productCollection=$this->getLoadedProductCollection();
     $_helper = $this->helper('catalog/output');
     $cards = array('size1','size2','size3');
 ?>
-
+<?php $i=0; ?>
+<?php $sortbycategory = array(); ?>
 <?php if(!$_productCollection->count()): ?>
 <?php else: ?>
     <?php $_collectionSize = $_productCollection->count() ?>
     <?php $_columnCount = $this->getColumnCount(); ?>
-    <?php $i=0; foreach ($_productCollection as $_product): ?>
-    
+    <?php foreach ($_productCollection as $_product): ?>
+    <?php if ($i < 7) { //limit to 7 products ?>
     <?php $category = array();
         $cat_ids = $_product->getCategoryIds();
         $cat = new Mage_Catalog_Model_Category();
@@ -54,17 +56,24 @@
                 'name' => $cat_data['name'],
                 'url_key' => $cat_data['url_key'],
                 'url_path' => $cat_data['url_path'],
+                'parent_id' => $cat_data['parent_id'],
 				'my_meta' => $cat_data['my_meta']
                 );
         }
 		//var_dump($cat_data);
         ?>
-            <article class="homeSale <?php echo $cards[array_rand($cards)]; ?> fl masonry">
-                <a href="<?php echo $cat_data['url_path']; ?>" title="View sale details for: <?php echo $cat_data['name']; ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image'); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" width="236px" /></a>
+            <article class="homeSale size2 fl masonry">
+                <a href="
+                <?php if ($cat_data['parent_id'] == '3') { echo '/women/'; }
+                elseif ($cat_data['parent_id'] == '4') { echo '/men/'; }
+                elseif ($cat_data['parent_id'] == '5') { echo '/travel/'; }
+                echo $cat_data['url_key'] . '.html'; ?>
+                " title="View sale details for: <?php echo $cat_data['name']; ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image'); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" width="236px" /></a>
                 <h2><?php echo $cat_data['name']; ?></h2>
             </article>
-        <?php if ($i%$_columnCount==0 || $i==$_collectionSize): ?>
-        <?php endif ?>
+		<?php $i++; ?>
+        <?php } ?>
+
         <?php endforeach ?>
 		<article class="homeAd fl masonry">
 			<h3><a href="#">Invite a Friend</a></h3>
