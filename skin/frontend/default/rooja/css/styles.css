@@ -1106,6 +1106,8 @@ tr.summary-details-excluded { font-style:italic; }
 .dashboard {}
 .dashboard .welcome-msg {}
 
+.dashboard h1 {color: #431F4C;}
+
 /* Block: Recent Orders */
 .dashboard .box-recent { margin:10px 0; }
 
