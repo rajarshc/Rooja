@@ -287,13 +287,13 @@ if (!$categoryIds == null){
 </section>
 
 <script type="text/javascript">
-	
-			$("a#detailsTab").click(
-				 function() {$(".shipping").hide(); $(".details").show(); $("#detailsTab").addClass('selected'); $("#shippingTab").removeClass('selected');}
+	jQuery(document).ready(function(){
+			jQuery("a#detailsTab").click(
+				 function() {jQuery(".shipping").hide(); jQuery(".details").show(); jQuery("#detailsTab").addClass('selected'); jQuery("#shippingTab").removeClass('selected');}
 			);
-			$("a#shippingTab").click(
-				 function() {$(".shipping").show();$(".details").hide(); $("#detailsTab").removeClass('selected'); $("#shippingTab").addClass('selected');}
+			jQuery("a#shippingTab").click(
+				 function() {jQuery(".shipping").show();jQuery(".details").hide(); jQuery("#detailsTab").removeClass('selected'); jQuery("#shippingTab").addClass('selected');}
 			);
-	
+	 });
 			
 </script>
