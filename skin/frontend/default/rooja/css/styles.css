@@ -1205,6 +1205,10 @@ tr.summary-details-excluded { font-style:italic; }
 
 /********** Invite a Friend */
 
+fieldset .page-invite h3  {
+	font:16px arial bold #3c474b;
+}
+
 fieldset .page-invite {background:#c8d7da;}
 fieldset .email-invite {background:#e0e0e0;}
 .invite-input input {height: 40px;}
