@@ -27,18 +27,16 @@
  */
 
 ?>
-<section class="col1-set">
-    <section class="col-1">
-        <section class="box">
-            <section class="box-title">
-                <a href="<?php echo $this->getUrl('customer/account/edit') ?>"><?php echo $this->__('Edit') ?></a>
-            </section>
-            <section class="box-content">
-                <p>
-                    <?php echo $this->htmlEscape($this->getCustomer()->getName()) ?><br />
-                    <?php echo $this->htmlEscape($this->getCustomer()->getEmail()) ?><br />
-                </p>
-            </section>
-        </section>
-    </section>
-</section>
+<div class="half-col left">
+   <div class="box">
+       <div class="box-title">
+           <a href="<?php echo $this->getUrl('customer/account/edit') ?>"><?php echo $this->__('Edit') ?></a>
+       </div>
+       <div class="box-content">
+           <p>
+               <?php echo $this->htmlEscape($this->getCustomer()->getName()) ?><br />
+               <?php echo $this->htmlEscape($this->getCustomer()->getEmail()) ?><br />
+           </p>
+       </div>
+   </div>
+</div>
