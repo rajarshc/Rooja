@@ -88,8 +88,8 @@ if (!$categoryIds == null){
 					<li><a href="#" id="shippingTab">Shipping &amp; Returns</a></li>
 				</ul>
 			<?php if ($_product->getDescription()):?>
-				<article class="details"><?php echo $_helper->productAttribute($_product, nl2br($_product->getDescription()), 'short_description') ?></article>
-				<article class="shipping"><?php echo $_helper->productAttribute($_product, nl2br($_product->getShippingReturns()), 'shipping_returns') ?></article>
+				<article class="details"><p><?php echo $_helper->productAttribute($_product, nl2br($_product->getDescription()), 'short_description') ?></p></article>
+				<article class="shipping"><p><?php echo $_helper->productAttribute($_product, nl2br($_product->getShippingReturns()), 'shipping_returns') ?></p></article>
             <?php endif;?>
 
 				
