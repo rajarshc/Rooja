@@ -29,9 +29,9 @@
 
 <div class="half-col left">
     <div class="box">
+		            <a class="editable right" href="<?php echo $this->getAddressBookUrl() ?>"><?php echo $this->__('Manage') ?></a>
         <div class="box-content">
 	            <h2><?php echo $this->__('Address Book') ?></h2>
-	            <a class="editable right" href="<?php echo $this->getAddressBookUrl() ?>"><?php echo $this->__('Manage') ?></a>
 			<div class="half-col left">	                
 				<div class="col-1 third">
 					<p><strong><?php echo $this->__('Billing') ?></strong></p>
@@ -39,7 +39,7 @@
 
                 <div class="col-2 twothird">
 	                <address>
-	                    <?php echo $this->getPrimaryBillingAddressHtml() ?><br />
+	                    <p><?php echo $this->getPrimaryBillingAddressHtml() ?></p><br />
 	                </address>
 				</div>
 			</div>
@@ -53,7 +53,7 @@
 				
 				<div class="col-2 twothird">
 	                <address>
-	                    <?php echo $this->getPrimaryShippingAddressHtml() ?><br />
+	                    <p><?php echo $this->getPrimaryShippingAddressHtml() ?></p><br />
 	                </address>
 				</div>
 			</div> 	
