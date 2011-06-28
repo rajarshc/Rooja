@@ -533,7 +533,7 @@ tr.summary-details-excluded { font-style:italic; }
 .mini-products-list .product-details h4 { font-size:1em; font-weight:bold; margin:0; }
 
 /* Block: Account */
-.block-account a{ font-size:14px;}
+.block-account a{ font-size:12px;}
 
 /* Block: Currency Switcher */
 .block-currency {}
