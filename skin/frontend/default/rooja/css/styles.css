@@ -128,6 +128,11 @@ ul,ol         { list-style:none; }
 .col4-set .col-2 { float:left; width:23.5%; margin:0 2%; }
 .col4-set .col-3 { float:left; width:23.5%; }
 .col4-set .col-4 { float:right; width:23.5%; }
+
+.half-col {width: 50%; float: left;}
+.half-col .col-1{width: 49%; float: left;}
+.half-col .col-2{width: 49%; float: right;}
+
 /* ======================================================================================= */
 
 
@@ -1122,7 +1127,6 @@ tr.summary-details-excluded { font-style:italic; }
 .dashboard .box-tags .number { float:left; font-size:10px; font-weight:bold; line-height:1; color:#fff; margin:3px -20px 0 0; padding:2px 3px; background:#ddd; }
 .dashboard .box-tags .details { margin-left:20px; }
 
-.half-wrapper {width: 50%; float: left;}
 /********** Dashboard > */
 
 /* Address Book */
