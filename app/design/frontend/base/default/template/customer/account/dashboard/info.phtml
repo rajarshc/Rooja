@@ -28,7 +28,7 @@
 
 ?>
 <div class="half-col d-account">
-           <a href="<?php echo $this->getUrl('customer/account/edit') ?>"><?php echo $this->__('Edit') ?></a>
+           <a class="editable right" href="<?php echo $this->getUrl('customer/account/edit') ?>"><?php echo $this->__('Edit') ?></a>
        <div class="box-content">
            <p>
                <?php echo $this->htmlEscape($this->getCustomer()->getName()) ?><br />
