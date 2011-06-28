@@ -27,16 +27,12 @@
  */
 
 ?>
-<div class="half-col left">
-   <div class="box">
-       <div class="box-title">
+<div class="half-col">
            <a href="<?php echo $this->getUrl('customer/account/edit') ?>"><?php echo $this->__('Edit') ?></a>
-       </div>
        <div class="box-content">
            <p>
                <?php echo $this->htmlEscape($this->getCustomer()->getName()) ?><br />
                <?php echo $this->htmlEscape($this->getCustomer()->getEmail()) ?><br />
            </p>
        </div>
-   </div>
 </div>
