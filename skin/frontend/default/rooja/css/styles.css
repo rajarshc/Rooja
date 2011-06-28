@@ -1119,6 +1119,7 @@ tr.summary-details-excluded { font-style:italic; }
 /********** < Dashboard */
 .dashboard {}
 .dashboard .welcome-msg {}
+#help {margin-top:-20px;}
 
 .dashboard h1 {color: #431F4C;}
 .dashboard h2 {color: #431F4C; padding: 10px 0;}
