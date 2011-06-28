@@ -130,13 +130,12 @@ ul,ol         { list-style:none; }
 .col4-set .col-4 { float:right; width:23.5%; }
 
 .half-col {width: 50%; float: left;}
-.half-col .col-1{width: 49%; float: left;}
-.half-col .col-2{width: 49%; float: right;}
+.half-col .col-1{width: 15%; float: left;}
+.half-col .col-2{width: 85%; float: right;}
 
-.third {width: 20%;}
-.twothird {width: 80%;}
 .clear {clear:both;}
 
+.dashboard .box-content {border: 1px 0 0 0 solid #000;}
 /* ======================================================================================= */
 
 
