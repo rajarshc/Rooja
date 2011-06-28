@@ -129,7 +129,7 @@ ul,ol         { list-style:none; }
 .col4-set .col-3 { float:left; width:23.5%; }
 .col4-set .col-4 { float:right; width:23.5%; }
 
-.half-col {width: 50%; float: left;}
+.half-col {width: 50%;}
 .half-col .col-1{float: left;}
 .half-col .col-2{float: right;}
 
@@ -139,6 +139,8 @@ ul,ol         { list-style:none; }
 
 
 .clear {clear:both;}
+.right {float: right;}
+.left {float: left;}
 
 .dashboard .box-content {border: 1px 0 0 0 solid #000;}
 /* ======================================================================================= */
