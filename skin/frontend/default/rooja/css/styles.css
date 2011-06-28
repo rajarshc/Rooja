@@ -1128,7 +1128,7 @@ tr.summary-details-excluded { font-style:italic; }
 
 /* Block: Account Information */
 .dashboard .box-info {}
-.d-account {border-top: 1px solid #000;}
+.d-account {border-bottom: 1px solid #000;}
 .editable {text-decoration:underline;}
 
 /* Block: Reviews */
