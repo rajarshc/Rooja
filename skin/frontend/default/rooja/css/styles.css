@@ -1207,8 +1207,9 @@ tr.summary-details-excluded { font-style:italic; }
 
 /********** Invite a Friend */
 
-h3 .page-invite-head  {
-	font:16px arial bold #3c474b;
+h3.page-invite-head  {
+	font: 16px arial #3c474b;
+	font-weight:bold;
 }
 
 fieldset .page-invite {background:#c8d7da;}
