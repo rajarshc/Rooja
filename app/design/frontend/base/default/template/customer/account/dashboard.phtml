@@ -38,7 +38,22 @@
     <?php echo $this->getChildHtml('top') ?>
 
 	<?php echo $this->getChildHtml('affiliate'); ?>
+	<div class="page-invite half-col right">
+		<fieldset>
+				<h3 class="page-invite-head">Invite your Friends to Join Rooja!</h3>
+				<legend><p>Copy this link and share to receive Rooja credits!</p></legend>
 
+			       <input class="invite-input" type="text" value="<?php echo $this->getReferralUrl(); ?>" />
+			               <input class="invite-button" type="submit" title="send" value="Copy" />
+
+							<div class="addthis_toolbox addthis_default_style" addthis:url="<?php echo $this->getReferralUrl(); ?>">
+							<a class="addthis_button_facebook"><img src="<?php echo $this->getSkinUrl('images/icons/facebook-blue-24.png'); ?>" alt="facebook icon"></a>
+							<a class="addthis_button_twitter"><img src="<?php echo $this->getSkinUrl('images/icons/twitter-teal-24.png'); ?>" alt="twitter icon"></a>
+							</div>
+							<script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>			
+				<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=philosophie"></script>
+		</fieldset>
+	</div>
     <div class="half-col  d-account">
 	           <a class="editable right" href="<?php echo $this->getUrl('customer/account/edit') ?>"><?php echo $this->__('Edit') ?></a>
         <div class="box-head">
