@@ -329,6 +329,8 @@ h2#saleDetails{color:#c60;margin:22px 0 5px;}
 .more-views{display:block;}
 .more-views ul li{float:left;margin-right:10px;}
 
+#gallery .product-image-zoom{position:relative;}
+
 /* ~~~~~ Typography ~~~~~ */
 
 a {text-decoration:none; color:#000;}
