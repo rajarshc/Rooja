@@ -1,5 +1,4 @@
 <?php if ($this->showSendReferralForm()): ?>
-<div class="rewardsref_myreferrals_multireferral_section">
     <form action="<?php echo $this->getUrl('rewardsref/customer/invites/') ?>" method="post" id="form-validates">
         <?php if ($this->hasPredictedSignupPoints()): ?>
     		<div class="rewardsref_myreferrals_multireferral_predictpoints rewardsref_myreferrals_multireferral_predictpoints_signup">
@@ -67,5 +66,4 @@
         var dataForm = new VarienForm('form-validate', true);
     </script>
 
-</div>
 <?php endif; ?>
