@@ -142,8 +142,6 @@ ul,ol         { list-style:none; }
 .right {float: right;}
 .left {float: left;}
 
-.valign {float:left; padding-right: 1em;}
-
 /* ======================================================================================= */
 
 
@@ -1210,10 +1208,16 @@ tr.summary-details-excluded { font-style:italic; }
 h3.page-invite-head  {font-family: arial; font-size: 16px; color: #3c474b; font-weight:bold;}
 
 referrals h1 { color: #431F4C;}
-fieldset .page-invite {background:#c8d7da;}
+.ref-forms {background:#e0e0e0;}
 fieldset .email-invite {background:#e0e0e0;}
+
+.page-invite {background:#c8d7da;}
+
+
+
 .invite-input input {height: 40px;}
 .invite-button input{height: 40px; color: #fff; font-size:14px; padding: 0px 10px;}
+
 
 /* ======================================================================================= */
 
