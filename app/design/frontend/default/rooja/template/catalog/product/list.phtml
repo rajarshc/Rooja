@@ -66,10 +66,10 @@ echo '<span class="numLeft">'.$stock_count.'</span>';
 <script type="text/javascript">
 	jQuery(document).ready(function(){
 		jQuery(".product").hover(function () {
-		    jQuery(this).addClass("hover");
+		    jQuery(this).children('.productName').addClass("hover");
 		  }, 
 		  function () {
-		    jQuery(this).removeClass("hover");
+		    jQuery(this).children('.productName').removeClass("hover");
 		  });
 	 });
 			
