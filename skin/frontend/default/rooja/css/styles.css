@@ -135,7 +135,7 @@ ul,ol         { list-style:none; }
 
 .third {width:36%;}
 .twothird {width: 62%;}
-
+.twothird col{width: 60%; padding:10px;}
 
 
 .clear {clear:both;}
@@ -1216,8 +1216,13 @@ fieldset .email-invite {background:#e0e0e0;}
 
 .page-invite {background:#c8d7da;}
 
+<<<<<<< HEAD
+input.invite-input {height: 40px; width: 250px;}
+input.invite-button{height: 40px; color: #fff; font-size:14px; padding: 0px 10px; background: #868686;}
+=======
 input.invite-input {height: 36px;line-height:36px;padding:0px 8px;width:265px;}
 input.invite-button{height: 36px; color: #fff; font-size:14px; padding: 0px 10px; background: #868686;}
+>>>>>>> f306147ee91b4b9c64b77e31dac67a70a75c680b
 
 .addthis_default_style {padding: 10px 0;}
 
