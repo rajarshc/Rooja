@@ -37,6 +37,7 @@
     <?php echo $this->getChildHtml('hello') ?>
     <?php echo $this->getChildHtml('top') ?>
 
+<<<<<<< HEAD
 	<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
 	<?php $_orders = $this->getOrders(); ?>
 	<div class="page-title">
@@ -88,6 +89,9 @@
 	    <p><?php echo $this->__('You have placed no orders.'); ?></p>
 	<?php endif ?>
 
+=======
+	<?php echo $this->getChildHtml('affiliate'); ?>
+>>>>>>> f306147ee91b4b9c64b77e31dac67a70a75c680b
 	<div class="page-invite half-col right">
 		<fieldset>
 				<h3 class="page-invite-head">Invite your Friends to Join Rooja!</h3>
@@ -96,7 +100,7 @@
 			       <input class="invite-input" type="text" value="<?php echo $this->getReferralUrl(); ?>" />
 			               <input class="invite-button" type="submit" title="send" value="Copy" />
 
-							<div class="addthis_toolbox addthis_default_style">
+							<div class="addthis_toolbox addthis_default_style" addthis:url="<?php echo $this->getReferralUrl(); ?>">
 							<a class="addthis_button_facebook"><img src="<?php echo $this->getSkinUrl('images/icons/facebook-blue-24.png'); ?>" alt="facebook icon"></a>
 							<a class="addthis_button_twitter"><img src="<?php echo $this->getSkinUrl('images/icons/twitter-teal-24.png'); ?>" alt="twitter icon"></a>
 							</div>
@@ -107,7 +111,6 @@
 		<a class="right" href="/rewardsref/customer/index/">Your Invitations</a>
 		
 	</div>
-
     <div class="half-col  d-account">
 	           <a class="editable right" href="<?php echo $this->getUrl('customer/account/edit') ?>"><?php echo $this->__('Edit') ?></a>
         <div class="box-head">

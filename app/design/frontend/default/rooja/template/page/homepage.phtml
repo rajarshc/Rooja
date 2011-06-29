@@ -104,7 +104,7 @@ foreach ($categories as $_category){
 				$fivedays = date('y-m-d H:G:00', strtotime("+5 days"));
 				$today = date('y-m-d H:G:00');
 				$enddate = date('y-m-d', strtotime($c->getSale_end_date())) . ' ' . $c->getSale_end_time() . ':00';
-				if ($enddate > $today ) {
+				if ($enddate > $today && $enddate > $fivedays) {
 					$sortedArrayByDates[strtotime($c->getSale_start_date())][] = $c->getName();
 				}
 			}

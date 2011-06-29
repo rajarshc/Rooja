@@ -90,11 +90,12 @@ if (!$categoryIds == null){
 			<?php if ($_product->getDescription()):?>
 				<article class="details"><p><?php echo $_helper->productAttribute($_product, nl2br($_product->getDescription()), 'short_description') ?></p></article>
 				<article class="shipping"><p><?php echo $_helper->productAttribute($_product, nl2br($_product->getShippingReturns()), 'shipping_returns') ?></p></article>
-            <?php endif;?>
+            <?php endif; ?>
 
 				
 				<div class="shareThis">
 					<p>Share this sale with your friends</p>
+					<?php /* To be finalized
 					<p><fb:like title="testing"></fb:like></p>
 					
 					<script type="text/javascript">
@@ -102,7 +103,8 @@ if (!$categoryIds == null){
 						jQuery(document).ready(function() {
 							//alert('hi');
 							//jQuery('head').append( 'XXXX' );
-
+							
+							
 						});
 						window.fbAsyncInit = function() {
 					       FB.init({appId: '173637846031428', status: true, cookie: true,
@@ -111,7 +113,17 @@ if (!$categoryIds == null){
 					             // do something with response
 					            // alert('hi master');
 					             // ajax the price
-					             
+					             jQuery.ajax({
+					               type:     "POST",
+					               url:      "/rbanh?id=<?php echo $_product->getId(); ?>&url=<?php echo urlencode($_SERVER['REQUEST_URI']); ?>",
+					               dataType: "html",
+					               success: function(x){
+					                 alert('price is now set to: ' + x);
+					               },
+					               error: function(x){
+					                 alert('error: ' + x)
+					               }
+					            });
 					             // if not empty, update the price.
 					       });
 					     };
@@ -124,7 +136,7 @@ if (!$categoryIds == null){
 					       document.getElementById('fb-root').appendChild(e);
 					     }());
 					</script>
-					
+					*/ ?>
 					<!-- AddThis Button BEGIN -->
 					<div class="addthis_toolbox addthis_default_style">
 					<a class="addthis_button_facebook"><img src="<?php echo $this->getSkinUrl('images/icons/facebook-blue-24.png'); ?>" alt="facebook icon"></a>
@@ -141,9 +153,12 @@ if (!$categoryIds == null){
 				<section id="reverseAuction">
 					
 					<p id="likeThis">154 people like this item <a href="#" id="likeBtn" class="tr fr">Like this item</a></p>
+										<?php /* To be finalized
+
 					<?php echo 'rl_floor:' . $_helper->productAttribute($_product, $_product->getRl_floor(), 'rl_floor') ?>
 					<?php echo 'rl_inc:' . $_helper->productAttribute($_product, $_product->getRl_inc(), 'rl_inc') ?>
 					<?php echo 'rl_price:' . $_helper->productAttribute($_product, $_product->getRl_price(), 'rl_price') ?>
+					*/ ?>
 					<figure id="likeDetails" class="sideAd">
 						<p>Want to see the price drop? Like this item!</p>
 					</figure>
@@ -274,7 +289,9 @@ if (!$categoryIds == null){
 	<div class="container">
 		<section id="comments" class="col2 fl">
 			<h3>What people are saying...</h3>
+			<?php /*
 <div id="fb-root"></div><script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:comments href="<?php echo $currentUrl = $this->helper('core/url')->getCurrentUrl();?>" num_posts="2" width="460" colorscheme="dark"></fb:comments>
+*/ ?>
 		</section>
 		<section id="related" class="col2 fl noMargin">
 			<h3>You might also like</h3>
@@ -289,10 +306,10 @@ if (!$categoryIds == null){
 <script type="text/javascript">
 	jQuery(document).ready(function(){
 			jQuery("a#detailsTab").click(
-				 function() {jQuery(".shipping").hide(); jQuery(".details").show(); jQuery("#detailsTab").addClass('selected'); jQuery("#shippingTab").removeClass('selected');}
+				 function() {jQuery(".shipping").hide(); jQuery(".details").show(); jQuery("#detailsTab").addClass('selected'); jQuery("#shippingTab").removeClass('selected');return false;}
 			);
 			jQuery("a#shippingTab").click(
-				 function() {jQuery(".shipping").show();jQuery(".details").hide(); jQuery("#detailsTab").removeClass('selected'); jQuery("#shippingTab").addClass('selected');}
+				 function() {jQuery(".shipping").show();jQuery(".details").hide(); jQuery("#detailsTab").removeClass('selected'); jQuery("#shippingTab").addClass('selected');return false;}
 			);
 	 });
 			

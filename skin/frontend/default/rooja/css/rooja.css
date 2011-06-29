@@ -134,7 +134,7 @@ body{
 ul#myAccount{float:left;}
 ul#myAccount li{
 	float: left;
-	padding: 10px 20px 27px 0px;
+	padding: 10px 20px 29px 0px;
 	background: url("../images/icons/arrow-nav-white.png") no-repeat right 8px;
 }
 ul#myAccount li a{
@@ -196,7 +196,7 @@ ul#myAccount li ul li a:hover{
 #mainFooter ul#socialLinks, #mainFooter ul#socialLinks a, #copyrightInfo, #copyrightInfo a{color:#c7b299;}
 #mainFooter ul#socialLinks img{vertical-align:middle;margin:5px 5px 5px 0;}
 #twitter_update_list{padding:12px;background:url(../images/bgs/twitter-diag.png) repeat;margin-bottom:8px;}
-#copyrightInfo {margin-top:-50px;}
+#copyrightInfo {margin-top:-20px;}
 #copyrightInfo a{text-decoration:none;}
 
 /* ~~~~~ PAGE ~~~~~ */
@@ -211,6 +211,8 @@ p.question{margin:0;font-weight:bold;color:#431f4c;}
 #tocLinks{font-size:1.2em;line-height:2em;}
 #tocLinks a{text-decoration:underline;}
 
+.main{padding-bottom:20px;}
+
 
 /* ~~~~~ HOME ~~~~~ */
 #liveSales{background:url(../images/bgs/black-diag.png) repeat;overflow:hidden;padding:30px 0;}
@@ -218,10 +220,10 @@ p.question{margin:0;font-weight:bold;color:#431f4c;}
 .homeSale, .homeAd{position:relative;overflow:hidden;width:236px;margin-bottom:4px;margin-right:4px;}
 .size1{height:353px;}
 .size2{height:238px;}
-.size3{height:123px;}
+.size3{height:119px;}
 
 .homeSale h2{color:#fff !important;font-size:2em;padding:15px 10px;display:block;width:222px;background:url(../images/bgs/purp-opacity-photo-diag.png) repeat;position:absolute;bottom:0px;z-index:10;margin: 0;}
-.homeAd{background:url(../images/bgs/orange-diag.png) repeat;padding: 10px;width:217px;height:  103px;color:#fff;}
+.homeAd{background:url(../images/bgs/orange-diag.png) repeat;padding: 10px;width:217px;height:  95px;color:#fff;}
 .homeAd h3 a{text-transform:uppercase;font-size:14px;text-decoration:underline;margin-bottom:5px;color:#fff;font-weight:normal;}
 .homeAd p{margin-bottom:0px;}
 
@@ -257,7 +259,7 @@ p.question{margin:0;font-weight:bold;color:#431f4c;}
 .product img{position:relative;}
 .product .productCore{background: url("../images/bgs/purp-opacity-photo-diag.png") repeat scroll 0 0 transparent;bottom: 0;height: 38px;left: 0;padding: 6px 10px;position: absolute;width: 210px;z-index: 10;}
 .product .productCore.soldOut{background-image:url(../images/bgs/pink-diag.png);}
-.product .productCore .productName{display:none;color:#fff;padding:6px 10px;background:url(../images/bgs/purp-opacity-photo-diag.png) repeat;text-align:right;}
+.product .productCore .productName{display:none;color:#fff;padding:6px 10px;background:url(../images/bgs/gray-opacity-photo-diag.png) repeat;text-align:right;position:absolute;bottom:40px;width:210px;margin-left:-10px;}
 .productCore .numLikes{float:left;margin-top:10px;background:url(../images/icons/thumbs-up.png) no-repeat top left;padding-left:28px;height:20px;line-height:20px;font-size:1.2em;color:#fff;}
 .productCore .price{float:right;text-align:right;width:140px;font-family:"ltc-bodoni-175-1","ltc-bodoni-175-2", georgia, serif;color:#b4adb3;font-size:1.4em;margin-bottom:0;}
 .productCore .price span.livePrice{font-size:1.71em;display:block; color:#fff;text-decoration: none;}
@@ -296,7 +298,7 @@ h2#saleDetails{color:#c60;margin:22px 0 5px;}
 #qty{width:35px;height:24px;border:1px solid #9d9d9d;text-align:center;color:#595959;font-size:1.2em;margin-right:10px;}
 #productOptions label{color:#595959;}
 
-#addToBagBtn{background-image:url(../images/icons/add-to-bag.png);width:230px;height:50px;margin-top:5px;}
+#addToBagBtn{background-image:url(../images/icons/add-to-bag.png);width:230px;height:50px;margin-top:5px;border:none;cursor:pointer;}
 #estimatedShippingDate{width:230px;padding:8px 0;text-align:center;background-color:#6f989d;color:#2b3536;margin:0;}
 
 #prevNextLinks{margin:5px 0 0;position: absolute;width: 80px;}
@@ -318,6 +320,9 @@ h2#saleDetails{color:#c60;margin:22px 0 5px;}
 
 .shipping{display:none;}
 .details{display:block;margin:15px 0 0;}
+
+.more-views{display:block;}
+.more-views ul li{float:left;margin-right:10px;}
 
 /* ~~~~~ Typography ~~~~~ */
 
