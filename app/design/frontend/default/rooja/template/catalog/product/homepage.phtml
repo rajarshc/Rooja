@@ -47,8 +47,13 @@ foreach ($categories as $_category){
 	                $startdate = date('y-m-d', strtotime($c->getSale_start_date())) . ' ' . $c->getSale_start_time() . ':00';
 					$enddate = date('y-m-d', strtotime($c->getSale_end_date())) . ' ' . $c->getSale_end_time() . ':00';
 					if (($enddate > $today && $enddate < $fivedays) || ($enddate > $today && $enddate > $fivedays)) {
-						if ($i < 7) {
-				//var_export($c);
+						if($i == 3){
+							?>
+							<article class="homeAd fl masonry">
+								<h3><a href="/rewardsref/customer/index/">Invite a Friend</a></h3>
+								<p>Share what&rsquo;s in with your friends on Facebook! Invite a friend and receive $25 to spend on Rooja!</p>
+							</article>
+						<?php }if ($i < 7) {
              ?>
              
              <article class="homeSale size2 fl masonry">
@@ -57,10 +62,7 @@ foreach ($categories as $_category){
             </article>
 				<?php $i++; }}}}} ?>
 				<?php }} ?>
-						<article class="homeAd fl masonry">
-			<h3><a href="#">Invite a Friend</a></h3>
-			<p>Share what&rsquo;s in with your friends on Facebook! Invite a friend and receive $25 to spend on Rooja!</p>
-		</article>		
+			
 
 <?php
     /* $_productCollection=$this->getLoadedProductCollection();
