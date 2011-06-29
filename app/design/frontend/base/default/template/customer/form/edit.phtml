@@ -25,6 +25,11 @@
  */
 ?>
 <div class="page-title">
+	
+	   <p class="required"><?php echo $this->__('* Required Fields') ?></p>
+     <button type="submit" title="<?php echo $this->__('Save') ?>" class="button"><span><span><?php echo $this->__('Save') ?></span></span></button>
+
+
     <h1><?php echo $this->__('Edit Account Information') ?></h1>
 </div>
 <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
@@ -80,10 +85,6 @@
                     <div class="input-box">
                         <input type="password" title="<?php echo $this->__('Confirm New Password') ?>" class="input-text validate-cpassword" name="confirmation" id="confirmation" />
                     </div>
-
-					   <p class="required"><?php echo $this->__('* Required Fields') ?></p>
-				        <button type="submit" title="<?php echo $this->__('Save') ?>" class="button"><span><span><?php echo $this->__('Save') ?></span></span></button>
-				
                 </div>
             </li>
         </ul>
