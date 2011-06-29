@@ -12,6 +12,9 @@ class Rbanh_Dev_IndexController extends Mage_Core_Controller_Front_Action
     	if (empty($id)) return;
     	if (empty($url)) return;
         
+        // handle the decode
+        $url = 'http://'.urldecode($url);
+        
         // fetch magento vars
         $product = Mage::getModel('catalog/product')
 			->setCurrentStore(1)
@@ -29,13 +32,22 @@ class Rbanh_Dev_IndexController extends Mage_Core_Controller_Front_Action
 		// fetch facebook likes
 		$likes = $this->fetch_facebook_data($url);
 		
+		// error with FB server
+		if ($likes === false) return;
+		
+		// increment the like, since you just liked it
+		$likes++;
+		
         // update product price, if needed
         if (($rl_inc * $likes) < $rl_floor)
         {
         	$new_price = floatval($special_price - ($rl_inc * $likes));
-        	$this->update_price($id, $new_price);
+        	$re = $this->update_price($id, $new_price);
         	
-        	return $new_price;
+        	//var_export($re);
+        	echo $new_price;
+        	
+        	return;
         }
         else
         {
@@ -44,6 +56,13 @@ class Rbanh_Dev_IndexController extends Mage_Core_Controller_Front_Action
         
     }
     
+    // http://site.com/index.php/rbanh/index/test/
+    /*public function testAction()
+    {
+    	$url = 'http://rooja.actsofphilosophie.com/women/gucci-galore/hip-trench-coat.html';
+    	var_export($this->fetch_facebook_data($url));
+    }*/
+    
     // get FB data
     private function fetch_facebook_data($product_url)
     {
@@ -51,11 +70,14 @@ class Rbanh_Dev_IndexController extends Mage_Core_Controller_Front_Action
        	
     	$url = "http://api.facebook.com/method/fql.query?query=".urlencode($sql);
     	
-    	$result = file_get_contents($url);
+    	$result = new SimpleXMLElement(file_get_contents($url));
     	
-    	if (empty($result)) return;
-    	
-    	return $result;
+    	//var_export(current($result->link_stat->like_count));
+   		
+       	if (isset($result->link_stat))
+    		return current($result->link_stat->like_count);
+    		
+    	return false;
     }
     
     // update price
@@ -66,7 +88,7 @@ class Rbanh_Dev_IndexController extends Mage_Core_Controller_Front_Action
 		    ->load($id);
 		
 		// note: the 3rd param is the store id
-		$product->addAttributeUpdate('rl_price', $price, 1);
+		return $product->addAttributeUpdate('rl_price', $price, 1);
     }
  
 }
