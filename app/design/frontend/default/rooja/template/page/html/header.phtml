@@ -83,7 +83,7 @@ foreach ($categories as $_category){
 				}
             }
         }
-        echo '</ul>';
+        echo '</ul><ul>';
         $j = 1;
         foreach($_category->getChildren() as $subcategory){
 		$c = Mage::getModel('catalog/category')->load($subcategory->getId());
@@ -94,7 +94,7 @@ foreach ($categories as $_category){
 					//var_dump($c);
 					if ($enddate > $today && $enddate < $fivedays) {
 						if ($j == 1) {
-							echo '<ul><li class="navSectTitle">Ending Soon</li>';
+							echo '<li class="navSectTitle">Ending Soon</li>';
 							echo '<li><a href="'. $c->getURL() .'">' . $c->getName() . '</a></li>';
 						} else {
 							echo '<li><a href="'. $c->getURL() .'">' . $c->getName() . '</a></li>';
