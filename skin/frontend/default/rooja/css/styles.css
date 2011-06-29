@@ -129,12 +129,12 @@ ul,ol         { list-style:none; }
 .col4-set .col-3 { float:left; width:23.5%; }
 .col4-set .col-4 { float:right; width:23.5%; }
 
-.half-col {width: 45%; padding:15px;}
+.half-col {width: 44%; padding:13px;}
 .half-col .col-1{float: left;}
 .half-col .col-2{float: right;}
 
-.third {width:33%;}
-.twothird {width: 66%;}
+.third {width:36%;}
+.twothird {width: 62%;}
 
 
 
@@ -1213,11 +1213,10 @@ fieldset .email-invite {background:#e0e0e0;}
 
 .page-invite {background:#c8d7da;}
 
+input.invite-input {height: 40px;}
+input.invite-button{height: 40px; color: #fff; font-size:14px; padding: 0px 10px; background: #868686;}
 
-
-.invite-input input {height: 40px;}
-.invite-button input{height: 40px; color: #fff; font-size:14px; padding: 0px 10px;}
-
+.addthis_default_style {padding: 10px 0;}
 
 /* ======================================================================================= */
 
