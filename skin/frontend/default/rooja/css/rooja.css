@@ -330,7 +330,7 @@ h2#saleDetails{color:#c60;margin:22px 0 5px;}
 .more-views ul li{float:left;margin-right:10px;}
 
 #gallery .product-image-zoom{position:relative;width:480px;height:640px;overflow:hidden;}
-#gallery .product-image-zoom img{position:relative;top:0;left:0;}
+#gallery .product-image-zoom img{position:absolute;top:0;left:0;}
 
 /* ~~~~~ Typography ~~~~~ */
 
