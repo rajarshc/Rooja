@@ -1215,8 +1215,8 @@ fieldset .email-invite {background:#e0e0e0;}
 
 
 
-.invite-input input {height: 40px;}
-.invite-button input{height: 40px; color: #fff; font-size:14px; padding: 0px 10px;}
+input.invite-input {height: 40px;}
+input.invite-button{height: 40px; color: #fff; font-size:14px; padding: 0px 10px;}
 
 
 /* ======================================================================================= */

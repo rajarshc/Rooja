@@ -1,7 +1,7 @@
 
 
 <?php if($this->showHistory()): ?>
-    <h2><?php echo $this->__("Referrals"); ?></h2>
+    <h3 class="page-invite-head"><?php echo $this->__("Referrals"); ?></h3>
     <?php $_referred = $this->getReferred();?>
     <?php if($_referred->getSize()): ?>
     <?php echo $this->getPagerHtml() ?>
