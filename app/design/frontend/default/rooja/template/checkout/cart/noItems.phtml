@@ -24,6 +24,7 @@
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 ?>
+<div class="container">
 <div class="page-title">
     <h1><?php echo $this->__('Shopping Cart is Empty') ?></h1>
 </div>
@@ -31,4 +32,5 @@
     <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
     <p><?php echo $this->__('You have no items in your shopping cart.') ?></p>
     <p><?php echo $this->__('Click <a href="%s">here</a> to continue shopping.', $this->getContinueShoppingUrl()) ?></p>
+</div>
 </div>
