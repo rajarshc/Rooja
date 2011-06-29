@@ -179,9 +179,9 @@ p.control input.radio { margin-right:6px; }
 /* Grouped fields */
 /*.form-list { width:535px; margin:0 auto; overflow:hidden; }*/
 .form-list li { margin:0 0 8px; line-height: 20px;font-size: 14px;}
-.form-list label { float:left; color:#111; font-weight:bold; position:relative; z-index:0; }
+.form-list label { text-align:left; color:#111; font-weight:bold; position:relative; z-index:0; }
 .form-list label.required {}
-.form-list label.required em { float:right; font-style:normal; color:#eb340a; position:absolute; top:0; right:-8px; }
+.form-list label.required em { float:right; font-style:normal; color:#d68536; position:absolute; top:0; right:-8px; }
 .form-list li.control label { float:none; }
 .form-list li.control input.radio,
 .form-list li.control input.checkbox { margin-right:6px; }
@@ -275,7 +275,7 @@ p.control input.radio { margin-right:6px; }
 .validation-advice { clear:both; min-height:13px; margin:3px 0 0; padding-left:17px; font-size:10px; line-height:13px; background:url(../images/validation_advice_bg.gif) 2px 1px no-repeat; color:#f00; }
 .validation-failed { border:1px dashed #f00 !important; background:#faebe7 !important; }
 .validation-passed {}
-p.required { font-size:10px; text-align:right; color:#f00; }
+p.required { font-size:10px; text-align:right; color:#d68536; }
 /* Expiration date and CVV number validation fix */
 .v-fix { float:left; }
 .v-fix .validation-advice { display:block; width:12em; margin-right:-12em; position:relative; }
@@ -514,7 +514,7 @@ tr.summary-details-excluded { font-style:italic; }
 .block .block-title strong span {}
 .block .block-title a { text-decoration:none !important; }
 .block .block-subtitle { font-size:13px; font-weight:bold; }
-.block .block-content { padding:10px; }
+.block .block-content { /*padding:10px;*/ }
 .block .block-content li.item { padding:5px 0; }
 .block .block-content li a {text-decoration: underline;}
 .block .btn-remove,
@@ -1066,9 +1066,9 @@ tr.summary-details-excluded { font-style:italic; }
 .opc .buttons-set.disabled button.button { display:none; }
 .opc .buttons-set .please-wait { height:21px; line-height:21px; }
 
-.opc .step-title { background-color:#431f4b; padding:15px 15px; text-align:right; }
+.opc .step-title { background-color:#645967; padding:8px 15px; text-align:right; }
 .opc .step-title .number { float:left; line-height:22px; margin-right:5px; }
-.opc .step-title h2 { color:#fff;float:left; }
+.opc .step-title h2 { color:#fff;text-align:left;font-size:2em; }
 .opc .step-title a { display:none; float:right; }
 
 .opc .allow .step-title { cursor:pointer; }
@@ -1085,6 +1085,8 @@ tr.summary-details-excluded { font-style:italic; }
 .opc .order-review .authentication {}
 .opc .order-review .warning-message {}
 
+.form-list input.input-text{height:42px;line-height:42px;color:#999;}
+
 /* Multiple Addresses Checkout */
 .checkout-progress { padding:0 50px; margin:10px 0; }
 .checkout-progress li { float:left; width:20%; border-top:5px solid #ccc; text-align:center; color:#ccc; }
@@ -1099,7 +1101,7 @@ tr.summary-details-excluded { font-style:italic; }
 #checkout-progress-wrapper .block {border: none;}
 #checkout-progress-wrapper .block-title {color:#431f4b;border: none;font-size:20px;margin: 0 0 10px;font-family:"ltc-bodoni-175-1","ltc-bodoni-175-2", georgia, serif;font-weight:normal;}
 #checkout-progress-wrapper .block-content {line-height: 20px;font-size: 14px;}
-.block-progress dt {background-color:#645967;color: #fff;padding: 5px 10px;}
+.block-progress dt {background-color:#645967;color: #fff;padding: 5px 10px;margin-bottom:1px;}
 .block-progress dt .complete{background: #431f4b;}
 /* ======================================================================================= */
 
