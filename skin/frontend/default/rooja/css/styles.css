@@ -305,9 +305,7 @@ p.required { font-size:10px; text-align:right; color:#d68536; }
 .breadcrumbs li { display:inline; }
 
 /* Page Heading */
-.page-title { padding:0 0 5px; margin:0 0 10px; }
-.page-title h1,
-.page-title h2 { font-size:24px; color:#000; }
+
 .page-title .separator { margin:0 3px; }
 .page-title .link-rss { float:right; }
 .title-buttons { text-align:right; }
