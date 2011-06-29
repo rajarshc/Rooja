@@ -1209,6 +1209,7 @@ tr.summary-details-excluded { font-style:italic; }
 
 h3.page-invite-head  {font-family: arial; font-size: 16px; color: #3c474b; font-weight:bold;}
 
+referrals h2 { color: #431F4C;}
 fieldset .page-invite {background:#c8d7da;}
 fieldset .email-invite {background:#e0e0e0;}
 .invite-input input {height: 40px;}
