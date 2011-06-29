@@ -34,8 +34,10 @@
         <h1><?php echo $this->__('My Dashboard') ?></h1>
     </div>
     <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+	<?php echo $this->getToolbarBlock()->setTemplate('sales/order/history.phtml')->toHtml(); ?>
     <?php echo $this->getChildHtml('hello') ?>
     <?php echo $this->getChildHtml('top') ?>
+
 
 	<?php $_orders = $this->getOrders(); ?>
 	<div class="page-title">
