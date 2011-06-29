@@ -129,7 +129,7 @@ ul,ol         { list-style:none; }
 .col4-set .col-3 { float:left; width:23.5%; }
 .col4-set .col-4 { float:right; width:23.5%; }
 
-.half-col {width: 46%; padding:13px;}
+.half-col {width: 46%; /*padding:13px;*/}
 .half-col .col-1{float: left;}
 .half-col .col-2{float: right;}
 
@@ -199,6 +199,7 @@ p.control input.radio { margin-right:6px; }
 .form-list li.additional-row { border-top:1px solid #ccc; margin-top:10px; padding-top:7px; }
 .form-list li.additional-row .btn-remove { float:right; margin:5px 0 0; }
 .form-list .input-range input.input-text { width:74px; }
+.input-box label{font-size:12px;margin:5px 0;}
 /* Customer */
 .form-list .customer-name-prefix .input-box,
 .form-list .customer-name-suffix .input-box,
@@ -533,7 +534,8 @@ tr.summary-details-excluded { font-style:italic; }
 .mini-products-list .product-details h4 { font-size:1em; font-weight:bold; margin:0; }
 
 /* Block: Account */
-.block-account a{ font-size:12px;}
+.block-content li {font-size:12px;}
+
 
 /* Block: Currency Switcher */
 .block-currency {}
@@ -1143,6 +1145,9 @@ tr.summary-details-excluded { font-style:italic; }
 .dashboard .box-tags .number { float:left; font-size:10px; font-weight:bold; line-height:1; color:#fff; margin:3px -20px 0 0; padding:2px 3px; background:#ddd; }
 .dashboard .box-tags .details { margin-left:20px; }
 
+.block-account{line-height:20px;}
+#pageContent .my-account h2{margin-top:0;}
+
 /********** Dashboard > */
 
 /* Address Book */
@@ -1208,16 +1213,15 @@ tr.summary-details-excluded { font-style:italic; }
 
 /********** Invite a Friend */
 
-h3.page-invite-head  {font-family: arial; font-size: 16px; color: #3c474b; font-weight:bold;}
+h3.page-invite-head  {/*font-family: arial; font-size: 16px; color: #3c474b; font-weight:bold;*/margin-top:15px;}
 
 referrals h1 { color: #431F4C;}
-.ref-form {background:#e0e0e0;}
+.ref-form {background:#e0e0e0;padding:15px 12px;}
 fieldset .email-invite {background:#e0e0e0;}
 
-.page-invite {background:#c8d7da;}
+.page-invite {background:#c8d7da;padding:15px 12px;}
 
-
-input.invite-input {height: 36px;line-height:36px;padding:0px 8px;width:263px;}
+input.invite-input {height: 36px;line-height:36px;padding:0px 8px;width:260px;}
 input.invite-button{height: 36px; color: #fff; font-size:14px; padding: 0px 10px; background: #868686;}
 
 .addthis_default_style {padding: 10px 0;}
