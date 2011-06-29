@@ -142,6 +142,8 @@ ul,ol         { list-style:none; }
 .right {float: right;}
 .left {float: left;}
 
+.valign {float:left; padding-right: 1em;}
+
 /* ======================================================================================= */
 
 
