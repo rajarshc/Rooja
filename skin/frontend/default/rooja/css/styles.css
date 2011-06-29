@@ -179,7 +179,7 @@ p.control input.radio { margin-right:6px; }
 /* Grouped fields */
 /*.form-list { width:535px; margin:0 auto; overflow:hidden; }*/
 .form-list li { margin:0 0 8px; line-height: 20px;font-size: 14px;}
-.form-list label { text-align:left; color:#111; font-weight:bold; position:relative; z-index:0; }
+.form-list label { text-align:left; color:#999; position:relative; z-index:0; }
 .form-list label.required {}
 .form-list label.required em { float:right; font-style:normal; color:#d68536; position:absolute; top:0; right:-8px; }
 .form-list li.control label { float:none; }
