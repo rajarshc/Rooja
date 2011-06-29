@@ -220,10 +220,10 @@ p.question{margin:0;font-weight:bold;color:#431f4c;}
 .homeSale, .homeAd{position:relative;overflow:hidden;width:236px;margin-bottom:4px;margin-right:4px;}
 .size1{height:353px;}
 .size2{height:238px;}
-.size3{height:123px;}
+.size3{height:119px;}
 
 .homeSale h2{color:#fff !important;font-size:2em;padding:15px 10px;display:block;width:222px;background:url(../images/bgs/purp-opacity-photo-diag.png) repeat;position:absolute;bottom:0px;z-index:10;margin: 0;}
-.homeAd{background:url(../images/bgs/orange-diag.png) repeat;padding: 10px;width:217px;height:  103px;color:#fff;}
+.homeAd{background:url(../images/bgs/orange-diag.png) repeat;padding: 10px;width:217px;height:  95px;color:#fff;}
 .homeAd h3 a{text-transform:uppercase;font-size:14px;text-decoration:underline;margin-bottom:5px;color:#fff;font-weight:normal;}
 .homeAd p{margin-bottom:0px;}
 
