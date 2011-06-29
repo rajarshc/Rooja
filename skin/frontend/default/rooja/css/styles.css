@@ -37,7 +37,7 @@ a:hover       { text-decoration:none; }
 /* Headings */
 h1            { font-size:20px; font-weight:normal; line-height:1.15; }
 h2            { font-size:18px; font-weight:normal; line-height:1.25; }
-h3            { font-size:16px; font-weight:bold; }
+h3            { font-size:16px; font-weight:bold; color: #3c474b;}
 h4            { font-size:14px; font-weight:bold; }
 h5            { font-size:12px; font-weight:bold; }
 h6            { font-size:11px; font-weight:bold; }
@@ -1211,7 +1211,7 @@ tr.summary-details-excluded { font-style:italic; }
 
 /********** Invite a Friend */
 
-h3.page-invite-head  {/*font-family: arial; font-size: 16px; color: #3c474b; font-weight:bold;*/margin-top:15px;}
+h3.page-invite-head  {/*font-family: arial; font-size: 16px; font-weight:bold;*/margin-top:15px;}
 
 referrals h1 { color: #431F4C;}
 .ref-form {background:#e0e0e0;padding:15px 12px;}
