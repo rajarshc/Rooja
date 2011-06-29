@@ -1218,7 +1218,7 @@ referrals h1 { color: #431F4C;}
 .ref-form {background:#e0e0e0;}
 fieldset .email-invite {background:#e0e0e0;}
 
-.page-invite {background:#c8d7da;}
+.page-invite {background:#c8d7da;padding:12px;}
 
 <<<<<<< HEAD
 input.invite-input {height: 40px; width: 250px;}
