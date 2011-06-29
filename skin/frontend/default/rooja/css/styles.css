@@ -129,9 +129,9 @@ ul,ol         { list-style:none; }
 .col4-set .col-3 { float:left; width:23.5%; }
 .col4-set .col-4 { float:right; width:23.5%; }
 
-.half-col {width: 45%;}
-.half-col .col-1{float: left; padding:0 10px;}
-.half-col .col-2{float: right; padding:0 10px;}
+.half-col {width: 45%; margin:15px;}
+.half-col .col-1{float: left;}
+.half-col .col-2{float: right;}
 
 .third {width:33%;}
 .twothird {width: 66%;}
