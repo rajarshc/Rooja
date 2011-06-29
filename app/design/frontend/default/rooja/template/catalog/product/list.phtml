@@ -56,7 +56,7 @@ echo '<span class="numLeft">'.$stock_count.'</span>';
 				<span class="numLikes">121</span>
 				<p class="price"><span class="livePrice">$<?php echo number_format($_product->getSpecialPrice(), 2) ?></span><span> 
 				<?php if(!$_product->isSaleable()){ echo 'Sold Out'; } else { echo '$' . number_format($_product->getPrice(), 2); } ?></span></p>
-				<h2 class="productName"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h2>
+				<div class="productName"><h2><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h2></div>
 			</article>
 		</article>
 		<?php $i++; ?>

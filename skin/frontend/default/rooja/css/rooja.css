@@ -6,7 +6,7 @@ Client:
 Project: Website 1.0
 Designers: Emerson Taymor and Skot Carruth
 
-� all work is an act of philosophie
+ all work is an act of philosophie
 
 ===COLOR SCHEME===
 
@@ -257,7 +257,7 @@ p.question{margin:0;font-weight:bold;color:#431f4c;}
 .product img{position:relative;}
 .product .productCore{background: url("../images/bgs/purp-opacity-photo-diag.png") repeat scroll 0 0 transparent;bottom: 0;height: 38px;left: 0;padding: 6px 10px;position: absolute;width: 210px;z-index: 10;}
 .product .productCore.soldOut{background-image:url(../images/bgs/pink-diag.png);}
-.product .productCore h2.productName{display:none;color:#fff;padding:6px 10px;background:url(../images/bgs/purp-opacity-photo-diag.png) repeat;text-align:right;}
+.product .productCore .productName{display:none;color:#fff;padding:6px 10px;background:url(../images/bgs/purp-opacity-photo-diag.png) repeat;text-align:right;}
 .productCore .numLikes{float:left;margin-top:10px;background:url(../images/icons/thumbs-up.png) no-repeat top left;padding-left:28px;height:20px;line-height:20px;font-size:1.2em;color:#fff;}
 .productCore .price{float:right;text-align:right;width:140px;font-family:"ltc-bodoni-175-1","ltc-bodoni-175-2", georgia, serif;color:#b4adb3;font-size:1.4em;margin-bottom:0;}
 .productCore .price span.livePrice{font-size:1.71em;display:block; color:#fff;text-decoration: none;}
