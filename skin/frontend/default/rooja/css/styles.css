@@ -1213,7 +1213,7 @@ tr.summary-details-excluded { font-style:italic; }
 
 /********** Invite a Friend */
 
-h3.page-invite-head  {font-family: arial; font-size: 16px; color: #3c474b; font-weight:bold;}
+h3.page-invite-head  {/*font-family: arial; font-size: 16px; color: #3c474b; font-weight:bold;*/margin-top:15px;}
 
 referrals h1 { color: #431F4C;}
 .ref-form {background:#e0e0e0;padding:15px 12px;}
