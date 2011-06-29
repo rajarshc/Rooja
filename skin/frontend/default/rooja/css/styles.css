@@ -129,7 +129,7 @@ ul,ol         { list-style:none; }
 .col4-set .col-3 { float:left; width:23.5%; }
 .col4-set .col-4 { float:right; width:23.5%; }
 
-.half-col {width: 46%; padding:13px;}
+.half-col {width: 46%; /*padding:13px;*/}
 .half-col .col-1{float: left;}
 .half-col .col-2{float: right;}
 
@@ -533,7 +533,8 @@ tr.summary-details-excluded { font-style:italic; }
 .mini-products-list .product-details h4 { font-size:1em; font-weight:bold; margin:0; }
 
 /* Block: Account */
-.block-account a{ font-size:12px;}
+.block-content li {font-size:12px;}
+
 
 /* Block: Currency Switcher */
 .block-currency {}
@@ -1144,6 +1145,7 @@ tr.summary-details-excluded { font-style:italic; }
 .dashboard .box-tags .details { margin-left:20px; }
 
 .block-account{line-height:20px;}
+#pageContent .my-account h2{margin-top:0;}
 
 /********** Dashboard > */
 
