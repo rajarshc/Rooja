@@ -207,6 +207,8 @@ ul#myAccount li ul li a:hover{
     /*#pageContent{margin-top:-30px;}*/
     #pageContent{margin-top:20px;}
 
+#pageContent .std ul{font-size:1.2em;line-height:1.4em;display:circle outside;margin-left:20px;}
+#pageContent .std  ul li{padding-bottom:3px;}
 p.question{margin:0;font-weight:bold;color:#431f4c;}
 #tocLinks{font-size:1.2em;line-height:2em;}
 #tocLinks a{text-decoration:underline;}
