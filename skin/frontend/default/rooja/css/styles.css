@@ -293,11 +293,11 @@ p.required { font-size:10px; text-align:right; color:#d68536; }
 .error-msg,
 .success-msg,
 .note-msg,
-.notice-msg { border-style:solid !important; border-width:1px !important; background-position:10px 9px !important; background-repeat:no-repeat !important; min-height:24px !important; padding:8px 8px 8px 32px !important; font-size:11px !important; font-weight:bold !important; }
-.error-msg { border-color:#f16048; background-color:#faebe7; background-image:url(../images/i_msg-error.gif); color:#df280a; }
-.success-msg { border-color:#446423; background-color:#eff5ea; background-image:url(../images/i_msg-success.gif); color:#3d6611; }
+.notice-msg {padding:5px;font-size:1.2em;font-weight:bold;}
+.error-msg { background-color:#CC6600; color:#fff; }
+.success-msg { background-color:#645967;  color:#fff; }
 .note-msg,
-.notice-msg { border-color:#fcd344; background-color:#fafaec; background-image:url(../images/i_msg-note.gif); color:#3d6611; }
+.notice-msg { background-color:#431F4C;  color:#fff; }
 
 /* BreadCrumbs */
 .breadcrumbs { padding:10px; margin:0 0 10px; border:1px solid #ddd; }

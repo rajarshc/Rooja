@@ -306,10 +306,10 @@ if (!$categoryIds == null){
 <script type="text/javascript">
 	jQuery(document).ready(function(){
 			jQuery("a#detailsTab").click(
-				 function() {jQuery(".shipping").hide(); jQuery(".details").show(); jQuery("#detailsTab").addClass('selected'); jQuery("#shippingTab").removeClass('selected');}
+				 function() {jQuery(".shipping").hide(); jQuery(".details").show(); jQuery("#detailsTab").addClass('selected'); jQuery("#shippingTab").removeClass('selected');return false;}
 			);
 			jQuery("a#shippingTab").click(
-				 function() {jQuery(".shipping").show();jQuery(".details").hide(); jQuery("#detailsTab").removeClass('selected'); jQuery("#shippingTab").addClass('selected');}
+				 function() {jQuery(".shipping").show();jQuery(".details").hide(); jQuery("#detailsTab").removeClass('selected'); jQuery("#shippingTab").addClass('selected');return false;}
 			);
 	 });
 			
