@@ -58,6 +58,10 @@
                 <input type="checkbox" name="change_password" id="change_password" value="1" onclick="setPasswordForm(this.checked)" title="<?php echo $this->__('Change Password') ?>"<?php if($this->getCustomer()->getChangePassword()==1): ?> checked="checked"<?php endif; ?> class="checkbox" /><label for="change_password"><?php echo $this->__('Change Password') ?></label>
             </li>
         </ul>
+
+		   <p class="required"><?php echo $this->__('* Required Fields') ?></p>
+	     <button type="submit" title="<?php echo $this->__('Save') ?>" class="button"><span><span><?php echo $this->__('Save') ?></span></span></button>
+
     </div>
     <div class="fieldset" style="display:none;">
         <h2 class="legend"><?php echo $this->__('Change Password') ?></h2>
@@ -83,8 +87,6 @@
                 </div>
             </li>
         </ul>
-        <p class="required"><?php echo $this->__('* Required Fields') ?></p>
-        <button type="submit" title="<?php echo $this->__('Save') ?>" class="button"><span><span><?php echo $this->__('Save') ?></span></span></button>
     </div>
 </form>
 <script type="text/javascript">
