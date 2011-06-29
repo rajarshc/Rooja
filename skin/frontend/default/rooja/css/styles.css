@@ -1085,7 +1085,8 @@ tr.summary-details-excluded { font-style:italic; }
 .opc .order-review .authentication {}
 .opc .order-review .warning-message {}
 
-.form-list input.input-text{height:42px;line-height:42px;color:#999;}
+.form-list input.input-text{height:36px;line-height:36px;color:#999;padding:0px 15px;width:236px;}
+.block-progress h2{font-size:2em;color:#431f4b;margin-bottom:5px;}
 
 /* Multiple Addresses Checkout */
 .checkout-progress { padding:0 50px; margin:10px 0; }
