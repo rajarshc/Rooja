@@ -62,4 +62,17 @@ echo '<span class="numLeft">'.$stock_count.'</span>';
 		<?php $i++; ?>
         <?php endforeach ?>
 </section>
+
+<script type="text/javascript">
+	jQuery(document).ready(function(){
+		jQuery(".product").hover(function () {
+		    $(this).child('.productName').show();
+		  }, 
+		  function () {
+		    $(this).child('.productName').hide();
+		  });
+	 });
+			
+</script>
+
 <?php endif; ?>
