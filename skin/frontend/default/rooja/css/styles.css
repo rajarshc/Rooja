@@ -1068,7 +1068,7 @@ tr.summary-details-excluded { font-style:italic; }
 
 .opc .step-title { background-color:#645967; padding:8px 15px; text-align:right; }
 .opc .step-title .number { float:left; line-height:22px; margin-right:5px; }
-.opc .step-title h2 { color:#fff;text-align:left;font-size:2em; }
+.opc .step-title h2 { color:#fff;text-align:left;font-size:2em; margin:0;}
 .opc .step-title a { display:none; float:right; }
 
 .opc .allow .step-title { cursor:pointer; }
