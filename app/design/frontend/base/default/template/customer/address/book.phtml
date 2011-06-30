@@ -31,7 +31,7 @@
  */
 ?>
 
-<div class="page-invite half-col right">
+<div class="half-col right">
 	<h3><?php echo $this->__('Additional Address Entries') ?></h3>
 	<ol>
 	<?php if($_pAddsses = $this->getAdditionalAddresses()): ?>
@@ -68,7 +68,7 @@
 	               <address><p>
 	                    <?php echo $this->getAddressHtml(Mage::getSingleton('customer/session')->getCustomer()->getAddressById($_pAddsses)) ?>
 	                </p></address>
-					<br/>
+
 						<a href="<?php echo $this->getAddressEditUrl(Mage::getSingleton('customer/session')->getCustomer()->getAddressById($_pAddsses)) ?>"><?php echo $this->__('Change Billing Address') ?></a>
 	
 				 <?php else: ?>
@@ -89,7 +89,7 @@
 				
 				<div class="col-2 twothird">
 	                <address>
-	                    <p><?php echo $this->getAddressHtml(Mage::getSingleton('customer/session')->getCustomer()->getAddressById($_pAddsses)) ?></p><br /><a href="<?php echo $this->getAddressEditUrl(Mage::getSingleton('customer/session')->getCustomer()->getAddressById($_pAddsses)) ?>"><?php echo $this->__('Change Shipping Address') ?></a>
+	                    <p><?php echo $this->getAddressHtml(Mage::getSingleton('customer/session')->getCustomer()->getAddressById($_pAddsses)) ?></p><a href="<?php echo $this->getAddressEditUrl(Mage::getSingleton('customer/session')->getCustomer()->getAddressById($_pAddsses)) ?>"><?php echo $this->__('Change Shipping Address') ?></a>
 	                </address>
 	
 			        <?php else: ?>
