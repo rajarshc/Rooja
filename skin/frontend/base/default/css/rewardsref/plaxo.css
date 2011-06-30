@@ -3,8 +3,8 @@
     height: 20px;
     width: 165px;
     display: block;
-    float: left;
     padding-top: 4px;
+    margin-bottom:10px;
 }
 
 .rewardsref_plaxo_link_section {
@@ -22,8 +22,10 @@
 .rewardsref_recipient_list {
     width: 95%;
     height: 110px;
+    margin-top:10px;
 }
 
 .rewardsref_myreferrals_multireferral_section label {
     font-weight: bold;
 }
+.referrals #message{margin-top:10px;padding:8px;width:319px !important;}

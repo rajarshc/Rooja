@@ -34,7 +34,13 @@
 <?php if($this->getItemCount()): ?>
 	<ul>
     <?php foreach ($this->getItems() as $_item): ?>
-        <li><a href="<?php echo $_item->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_item->getName()) ?>"><img src="<?php echo $this->helper('catalog/image')->init($_item, 'thumbnail')->resize(114); ?>" width="114" height="114" alt="<?php echo $this->htmlEscape($_item->getName()) ?>" /><span class="numLikes"><img src="<?php echo $this->getSkinUrl('images/icons/thumbs-up.png'); ?>" alt="Thumbs Up icon"> 40</span></a></li>
+        <li><a href="<?php echo $_item->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_item->getName()) ?>"><img src="<?php echo $this->helper('catalog/image')->init($_item, 'thumbnail')->resize(114); ?>" width="114" height="114" alt="<?php echo $this->htmlEscape($_item->getName()) ?>" /><span class="numLikes"><img src="<?php echo $this->getSkinUrl('images/icons/thumbs-up.png'); ?>" alt="Thumbs Up icon"> <?php $source_url = $_item->getProductUrl();
+$url = "http://api.facebook.com/restserver.php?method=links.getStats&urls=".urlencode($source_url);
+$xml = file_get_contents($url);
+$xml = simplexml_load_string($xml);
+echo $likes = $xml->link_stat->like_count;
+?>
+</span></a></li>
     <?php endforeach; ?>
     </ul>
     

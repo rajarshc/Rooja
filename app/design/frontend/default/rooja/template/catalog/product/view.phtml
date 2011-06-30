@@ -60,7 +60,6 @@ if (!$categoryIds == null){
 <section id="saleDetails">
 	<div class="container">
 <div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
-
 		<?php if (!$categoryIds == null){ ?>
 			<?php if ($expired == 1) { ?>
 				<h2 id="saleDetails"><?php echo $currentcategory->getName(); ?> ends <?php echo date('F jS \a\t g:ia', $enddate); ?></h2>
@@ -95,48 +94,7 @@ if (!$categoryIds == null){
 				
 				<div class="shareThis">
 					<p>Share this sale with your friends</p>
-					<?php /* To be finalized
-					<p><fb:like title="testing"></fb:like></p>
 					
-					<script type="text/javascript">
-						jQuery.noConflict();
-						jQuery(document).ready(function() {
-							//alert('hi');
-							//jQuery('head').append( 'XXXX' );
-							
-							
-						});
-						window.fbAsyncInit = function() {
-					       FB.init({appId: '173637846031428', status: true, cookie: true,
-					                xfbml: true});
-					       FB.Event.subscribe('edge.create', function(response) {
-					             // do something with response
-					            // alert('hi master');
-					             // ajax the price
-					             jQuery.ajax({
-					               type:     "POST",
-					               url:      "/rbanh?id=<?php echo $_product->getId(); ?>&url=<?php echo urlencode($_SERVER['REQUEST_URI']); ?>",
-					               dataType: "html",
-					               success: function(x){
-					                 alert('price is now set to: ' + x);
-					               },
-					               error: function(x){
-					                 alert('error: ' + x)
-					               }
-					            });
-					             // if not empty, update the price.
-					       });
-					     };
-					     (function() {
-					       var e = document.createElement('script');
-					       e.type = 'text/javascript';
-					       e.src = document.location.protocol +
-					         '//connect.facebook.net/en_US/all.js';
-					       e.async = true;
-					       document.getElementById('fb-root').appendChild(e);
-					     }());
-					</script>
-					*/ ?>
 					<!-- AddThis Button BEGIN -->
 					<div class="addthis_toolbox addthis_default_style" addthis:title="<?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?>" addthis:description="Like my pick? Visit Rooja.com now and get access to top designer brands at upto 60% off retail. The website requires membership. Good news: membership is free. :)">
 					<a class="addthis_button_facebook"><img src="<?php echo $this->getSkinUrl('images/icons/facebook-blue-24.png'); ?>" alt="facebook icon"></a>
@@ -159,7 +117,53 @@ if (!$categoryIds == null){
 			<section id="purchaseProduct" class="col1 fl noMargin">
 				<section id="reverseAuction">
 					
-					<p id="likeThis">154 people like this item <a href="#" id="likeBtn" class="tr fr">Like this item</a></p>
+					<p id="likeThis">
+					
+					<fb:like layout="button_count" width="80" style="margin:3px 0 0;float:right" title="testing"></fb:like>
+					
+					<script type="text/javascript">
+						jQuery.noConflict();
+						window.fbAsyncInit = function() {
+					       FB.init({appId: '173637846031428', status: true, cookie: true,
+					                xfbml: true});
+					       FB.Event.subscribe('edge.create', function(response) {
+					             // do something with response
+					            // alert('hi master');
+					             // ajax the price
+					             jQuery.ajax({
+					               type:     "POST",
+					               url:      "/rbanh?id=<?php echo $_product->getId(); ?>&url=<?php echo urlencode($_SERVER['REQUEST_URI']); ?>",
+					               dataType: "html",
+					               success: function(x){
+					                 //alert('price is now set to: ' + x);
+					               },
+					               error: function(x){
+					                 //alert('error: ' + x)
+					               }
+					            });
+					             // if not empty, update the price.
+					       });
+					     };
+					     (function() {
+					       var e = document.createElement('script');
+					       e.type = 'text/javascript';
+					       e.src = document.location.protocol +
+					         '//connect.facebook.net/en_US/all.js';
+					       e.async = true;
+					       document.getElementById('fb-root').appendChild(e);
+					     }());
+					</script>
+					
+					<?php
+					$source_url = $this->helper('core/url')->getCurrentUrl();
+$url = "http://api.facebook.com/restserver.php?method=links.getStats&urls=".urlencode($source_url);
+$xml = file_get_contents($url);
+$xml = simplexml_load_string($xml);
+echo $likes = $xml->link_stat->like_count;
+?> people like this item
+					<?php /* hidding this 
+					<a href="#" id="likeBtn" class="tr fr">Like this item</a></p>
+					*/ ?>
 										<?php /* To be finalized
 
 					<?php echo 'rl_floor:' . $_helper->productAttribute($_product, $_product->getRl_floor(), 'rl_floor') ?>
@@ -172,7 +176,11 @@ if (!$categoryIds == null){
 				</section>
 				<section id="productOptions">
 					<p class="startingPrice">Starting Price: <strike>$<?php echo number_format($_product->getPrice(), 2) ?></strike></p>
-					<p class="currentPrice">Current Price: <span>$<?php echo number_format($_product->getSpecialprice(), 2) ?></span></p>
+					<p class="currentPrice">Current Price: <span>
+					<?php $fbprice = $_helper->productAttribute($_product, $_product->getRl_price(), 'rl_price'); ?>
+					<?php if (!$fbprice == null) { ?>
+					<?php echo '$' . $fbprice; } else { ?>
+					<?php echo '$' . number_format($_product->getSpecialprice(), 2); } ?></span></p>
 					<a href="#" class="sizeChart fr">Size Chart</a>
 
 					<br class="clear">
@@ -296,9 +304,7 @@ if (!$categoryIds == null){
 	<div class="container">
 		<section id="comments" class="col2 fl">
 			<h3>What people are saying...</h3>
-			<?php /*
 <div id="fb-root"></div><script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:comments href="<?php echo $currentUrl = $this->helper('core/url')->getCurrentUrl();?>" num_posts="2" width="460" colorscheme="dark"></fb:comments>
-*/ ?>
 		</section>
 		<section id="related" class="col2 fl noMargin">
 			<h3>You might also like</h3>

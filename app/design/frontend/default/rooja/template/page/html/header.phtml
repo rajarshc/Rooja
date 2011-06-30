@@ -56,6 +56,7 @@
 <ul>
 <?php 
 $i = 1;
+$j = 1;
 $categories = Mage::helper('catalog/category')->getStoreCategories();
 $fivedays = date('y-m-d H:G:00', strtotime("+5 days"));
 $today = date('y-m-d H:G:00');
@@ -71,7 +72,7 @@ foreach ($categories as $_category){
 	                $startdate = date('y-m-d', strtotime($c->getSale_start_date())) . ' ' . $c->getSale_start_time() . ':00';
 					$enddate = date('y-m-d', strtotime($c->getSale_end_date())) . ' ' . $c->getSale_end_time() . ':00';
 					//var_dump($c);
-					if ($enddate > $today && $enddate > $fivedays) {
+					if ($enddate > $today && $enddate > $fivedays && $startdate < $fivedays) {
 						if ($i == 1) {
 							echo '<li class="navSectTitle">New Sales</li>';
 							echo '<li><a href="'. $c->getURL() .'">' . $c->getName() . '</a></li>';
@@ -82,9 +83,11 @@ foreach ($categories as $_category){
 					}
 				}
             }
+
         }
+        					$i=1;
+
         echo '</ul><ul>';
-        $j = 1;
         foreach($_category->getChildren() as $subcategory){
 		$c = Mage::getModel('catalog/category')->load($subcategory->getId());
             if($c->getIsActive()){ // check if category is active
@@ -104,6 +107,8 @@ foreach ($categories as $_category){
 				}
             }
         }
+					$j=1;
+
 	echo '</ul></div></li>';
     }
 }
