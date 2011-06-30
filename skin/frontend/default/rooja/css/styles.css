@@ -1214,7 +1214,7 @@ tr.summary-details-excluded { font-style:italic; }
 
 /********** Invite a Friend */
 
-h3.page-invite-head  {/*font-family: arial; font-size: 16px; font-weight:bold;*/margin-top:15px;}
+h3.page-invite-head  {color: #000; margin-top:15px;}
 
 referrals h1 { color: #431F4C;}
 .ref-form {background:#e0e0e0;padding:15px 12px;}
@@ -1226,6 +1226,8 @@ input.invite-input {height: 36px;line-height:36px;padding:0px 8px;width:250px;}
 input.invite-button{height: 36px; color: #fff; font-size:14px; padding: 0px 10px; background: #868686;}
 
 .addthis_default_style {padding: 10px 0;}
+
+.inputbox .label, .addthis_toolbox  {padding: 10px 0;}
 
 /* ======================================================================================= */
 
