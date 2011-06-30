@@ -114,49 +114,11 @@ foreach ($categories as $_category){
 }
 ?>
 </ul>
-<?php /*
-		<ul>
-			<li><a href="#" title="">Women</a>
-	    		<div>
-	    		<ul>
-	    			<li>New Sales</li>
-					<li><a href="#">Hyden Yoo</a></li>
-					<li><a href="#">True Religion</a></li>
-					<li><a href="#">Dockers</a></li>
-					<li><a href="#">BOSS</a></li>
-					<li><a href="#">Marc Jacobs</a></li>
-					<li><a href="#">AG</a></li>
-				</ul>
-				<ul>
-	    			<li>Ending Soon</li>
-					<li><a href="#">Flight 101</a></li>
-					<li><a href="#">Swatch</a></li>
-					<li><a href="#">Abercrombie</a></li>
-					<li><a href="#">7 for All Mankind</a></li>
-	    		</ul>
-	    		</div>
-	    	</li>
-			<li><a href="#" title="">Men</a>
-				<div>
-				<ul>
-					<li>New Sales</li>
-					<li><a href="#">Hyden Yoo</a></li>
-					<li><a href="#">True Religion</a></li>
-				</ul>
-				<ul>	
-					<li>Ending Soon</li>
-					<li><a href="#">Flight 101</a></li>
-					<li><a href="#">Swatch</a></li>
-					<li><a href="#">Abercrombie</a></li>
-					<li><a href="#">7 for All Mankind</a></li>
-				</ul>
-				</div>
-			</li>
-			<li><a href="#" title="">Travel</a></li>
-	    </ul> */ ?>
-	</nav>
-
+</nav>
+	<?php if(isset($_SERVER['HTTP_USER_AGENT'])){$agent = $_SERVER['HTTP_USER_AGENT'];}?>
+	<?php if($agent =="facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)"){}else{ ?>
 <?php $session = Mage::getSingleton('customer/session');
+
 if($session->isLoggedIn()) {$customer = $session->getCustomer();}
 ?>
 	
@@ -173,5 +135,6 @@ if($session->isLoggedIn()) {$customer = $session->getCustomer();}
 		<?php $cart_count = Mage::getSingleton('checkout/cart')->getSummaryQty(); ?>
 		<a href="/checkout/cart" id="myBag">My Bag (<?php if($cart_count == 0) echo '0'; else echo $cart_count; ?>)</a>
 	</aside>
+	<?php } ?>
 	</div>
 </header><!--End Header-->
