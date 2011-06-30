@@ -32,12 +32,10 @@
 ?>
 <div class="page-title title-buttons">
     <h1><?php echo $this->__('Address Book') ?></h1>
-    <button type="button" title="<?php echo $this->__('Add New Address') ?>" class="button" onclick="window.location='<?php echo $this->getAddAddressUrl() ?>';"><span><span><?php echo $this->__('Add New Address') ?></span></span></button>
 </div>
 <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
 <div class="col2-set addresses-list">
     <div class="col-1 addresses-primary">
-        <h2><?php echo $this->__('Default Addresses') ?></h2>
         <ol>
         <?php if($_pAddsses = Mage::getSingleton('customer/session')->getCustomer()->getDefaultBilling()): ?>
             <li class="item">
@@ -71,7 +69,7 @@
         </ol>
     </div>
     <div class="col-2 addresses-additional">
-        <h2><?php echo $this->__('Additional Address Entries') ?></h2>
+        <h3><?php echo $this->__('Additional Address Entries') ?></h3>
         <ol>
         <?php if($_pAddsses = $this->getAdditionalAddresses()): ?>
             <?php foreach($_pAddsses as $_address): ?>
@@ -86,6 +84,7 @@
             <li class="item empty">
                 <p><?php echo $this->__('You have no additional address entries in your address book.') ?></p>
             </li>
+<button type="button" title="<?php echo $this->__('Add New Address') ?>" class="button" onclick="window.location='<?php echo $this->getAddAddressUrl() ?>';"><span><span><?php echo $this->__('Add New Address') ?></span></span></button>
         <?php endif ?>
         </ol>
     </div>
