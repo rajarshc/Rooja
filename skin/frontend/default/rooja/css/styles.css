@@ -1075,7 +1075,7 @@ tr.summary-details-excluded { font-style:italic; }
 /*.opc .allow .step-title a { display:block; }*/
 
 .opc .active {}
-.opc .active .step-title { background-color:#431f4b; cursor:default; }
+.opc .active .step-title {color:#431f4b; cursor:default; }
 /*.opc .active .step-title a { display:none; }*/
 
 .opc .step { margin: 10px 0; background:#e0e0e0;border-top:1px solid #ddd; padding:10px; position:relative; }
