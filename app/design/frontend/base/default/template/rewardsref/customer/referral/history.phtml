@@ -4,7 +4,6 @@
     <h3 class="page-invite-head"><?php echo $this->__("Referrals"); ?></h3>
     <?php $_referred = $this->getReferred();?>
     <?php if($_referred->getSize()): ?>
-    <?php echo $this->getPagerHtml() ?>
     <table cellspacing="0" class="data-table" id="referred-friends-table">
         <thead>
             <tr>
