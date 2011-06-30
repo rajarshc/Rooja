@@ -135,7 +135,7 @@ ul,ol         { list-style:none; }
 
 .third {width:36%;}
 .twothird {width: 62%;}
-.twothird col{width: 60%; padding:10px;}
+.twothird-col{width: 60%; padding:10px;}
 
 
 .clear {clear:both;}
@@ -270,7 +270,7 @@ p.control input.radio { margin-right:6px; }
 .buttons-set-order {}
 
 .fieldset { /*border:1px solid #ddd; background:#fefefe; padding:22px 25px 12px 33px; margin:28px 0; */}
-.fieldset .legend { /*float:left; font-weight:bold; font-size:13px; border:1px solid #fefefe; background:#dedede; color:#333; margin:-33px 0 0 -10px; padding:0 8px; position:relative; */}
+.fieldset .legend { font-size:1.6em;font-family:"ltc-bodoni-175-1","ltc-bodoni-175-2", georgia, serif;font-weight:normal; text-transform:uppercase; padding: 10px 0;}
 
 /* Form Validation */
 .validation-advice { clear:both; min-height:13px; margin:3px 0 0; padding-left:17px; font-size:10px; line-height:13px; background:url(../images/validation_advice_bg.gif) 2px 1px no-repeat; color:#f00; }
@@ -1133,7 +1133,7 @@ tr.summary-details-excluded { font-style:italic; }
 /* Block: Account Information */
 .dashboard .box-info {}
 .d-account {border-bottom: 1px solid #000;}
-.editable {text-decoration:underline; font-size:1.2em; margin-top:5px;}
+.editable {text-decoration:underline; font-size:1.2em; margin-top:10px;}
 
 /* Block: Reviews */
 .dashboard .box-reviews .number { float:left; font-size:10px; font-weight:bold; line-height:1; color:#fff; margin:3px -20px 0 0; padding:2px 3px; background:#ddd; }
@@ -1219,6 +1219,7 @@ h3.page-invite-head  {color: #000; margin-top:15px;}
 referrals h1 { color: #431F4C;}
 .ref-form {background:#e0e0e0;padding:15px 12px;}
 fieldset .email-invite {background:#e0e0e0;}
+fielset h4{padding: 10px 0 25px;}
 
 .page-invite {background:#c8d7da;padding:15px 12px;}
 

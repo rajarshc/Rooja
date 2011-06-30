@@ -58,7 +58,7 @@
         <div class="box-content">
 	            <h2><?php echo $this->__('Address Book') ?></h2>
 				<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
-			<div class="twothird left">	                
+			<div class="twothird-col left">	                
 				<div class="col-1 third">
 				  <?php if($_pAddsses = Mage::getSingleton('customer/session')->getCustomer()->getDefaultBilling()): ?>
 					<p><strong><?php echo $this->__('Default Billing') ?></strong></p>
