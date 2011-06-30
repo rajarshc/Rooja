@@ -56,13 +56,13 @@ jQuery(function($){
 </script>
 
 <!--start Facebook Open Graph Protocol-->
-<?php /* if (Mage::registry('current_product')) : ?>
+<?php  if (Mage::registry('current_product')) : ?>
 <meta property="og:image" content="<?php echo Mage::helper('catalog/image')->init(Mage::registry('current_product'), 'small_image')->resize(100,100);?>" />
-<meta property="og:title" content="<?php echo Mage::registry('current_product')->getMetaTitle()?>" /> 
+<meta property="og:title" content="<?php echo Mage::registry('current_product')->getName()?>" /> 
 <meta property="og:description" content="<?php echo Mage::registry('current_product')->getDescription()?>" /> 
 <meta property="og:type" content="product"/>
 <meta property="og:url" content="<?php echo $this->helper('core/url')->getCurrentUrl(); ?>"/>
 <meta property="og:site_name" content="Rooja"/>
-<meta property="fb:admins" content="USER_ID"/>
-<?php endif; */ ?> 
+<meta property="fb:app_id" content="173637846031428"/>
+<?php endif; ?> 
 <!--end Facebook Open Graph Protocol-->
