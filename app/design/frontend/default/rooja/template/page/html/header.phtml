@@ -157,7 +157,7 @@ foreach ($categories as $_category){
 	</nav>
 
 <?php $session = Mage::getSingleton('customer/session');
-if($agent =="facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)"){echo '<h1>Hi Facebook</h1>'}else{
+if($agent =="facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)"){echo '<h1>Hi Facebook</h1>';}else{
 if($session->isLoggedIn()) {$customer = $session->getCustomer();}
 ?>
 	
