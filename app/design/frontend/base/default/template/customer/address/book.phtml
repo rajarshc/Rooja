@@ -30,6 +30,7 @@
  * @var $test Mage_Customer_Block_Address_Book
  */
 ?>
+
 <div class="page-invite half-col right">
 	<h3><?php echo $this->__('Additional Address Entries') ?></h3>
 	<ol>
@@ -56,9 +57,10 @@
     <div class="box">
         <div class="box-content">
 	            <h2><?php echo $this->__('Address Book') ?></h2>
+				<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
 			<div class="twothird left">	                
 				<div class="col-1 third">
-				<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+				  <?php if($_pAddsses = Mage::getSingleton('customer/session')->getCustomer()->getDefaultBilling()): ?>
 					<p><strong><?php echo $this->__('Default Billing') ?></strong></p>
 				</div>
 
@@ -71,7 +73,7 @@
 	
 				 <?php else: ?>
 			            <li class="item">
-			                <h3><?php echo $this->__('Default Billing Address') ?></h3>
+			                <h3><?php echo $this->__('Default Billing') ?></h3>
 			                <?php echo $this->__('You have no default billing address in your address book.') ?>
 			            </li>
 			        <?php endif ?>
@@ -92,7 +94,7 @@
 	
 			        <?php else: ?>
 			            <li class="item empty">
-			                <h3><?php echo $this->__('Default Shipping Address') ?></h3>
+			                <h3><?php echo $this->__('Default Shipping') ?></h3>
 			                <p><?php echo $this->__('You have no default shipping address in your address book.') ?></p>
 			            </li>
 			        <?php endif ?>
