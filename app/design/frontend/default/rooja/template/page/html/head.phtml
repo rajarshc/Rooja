@@ -54,7 +54,9 @@ jQuery(function($){
 // Use Prototype with $(...)
  $('id').hide();
 </script>
-
+<meta property="og:image" content="http://rooja.com/_images/rooja-logo-fb.png"/>
+<meta property="og:site_name" content="Rooja"/>
+<meta property="og:description" content="Apparel and accessories from leading International and Indian designers at prices you just can&rsquo;t get in the stores."/>
 <!--start Facebook Open Graph Protocol-->
 <?php  if (Mage::registry('current_product')) : ?>
 <meta property="og:image" content="<?php echo Mage::helper('catalog/image')->init(Mage::registry('current_product'), 'small_image')->resize(100,100);?>" />
