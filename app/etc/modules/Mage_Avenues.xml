@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Mage_Avenues>
+            <active>true</active>
+            <codePool>core</codePool>
+            <depends>
+                <Mage_Payment/>
+            </depends>
+        </Mage_Avenues>
+    </modules>
+</config>
