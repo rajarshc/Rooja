@@ -341,7 +341,7 @@ p.required { font-size:10px; text-align:right; color:#d68536; }
 .toolbar-bottom {}
 
 /* Data Table */
-.data-table { width:100%; }
+.data-table { width:100%; font-size:12px;}
 .data-table th { padding:5px;/* border:1px solid #ddd;*/ font-weight:bold; white-space:nowrap; }
 .data-table td { padding:5px; /*border:1px solid #ddd;*/ }
 .data-table thead { background-color:#f2f2f2; }
@@ -1066,7 +1066,7 @@ tr.summary-details-excluded { font-style:italic; }
 .opc .buttons-set.disabled button.button { display:none; }
 .opc .buttons-set .please-wait { height:21px; line-height:21px; }
 
-.opc .step-title { background-color:#645967; padding:8px 15px; text-align:right; }
+.opc .step-title {/* background-color:#645967;*/ padding:8px 15px; text-align:right; }
 .opc .step-title .number { float:left; line-height:22px; margin-right:5px; }
 .opc .step-title h2 { color:#fff;text-align:left;font-size:2em; margin:0;}
 .opc .step-title a { display:none; float:right; }
@@ -1092,6 +1092,8 @@ tr.summary-details-excluded { font-style:italic; }
 .checkout-progress { padding:0 50px; margin:10px 0; }
 .checkout-progress li { float:left; width:20%; border-top:5px solid #ccc; text-align:center; color:#ccc; }
 .checkout-progress li.active { border-top-color:#000; color:#000; }
+
+.block-progress address {font-size: 12px;line-height: 16px;}
 
 .multiple-checkout { position:relative; }
 .multiple-checkout .tool-tip { top:50%; margin-top:-120px; right:10px; }
