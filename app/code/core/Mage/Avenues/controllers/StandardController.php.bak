@@ -1,0 +1,248 @@
+<?php
+
+class Mage_avenues_StandardController extends Mage_Core_Controller_Front_Action
+{
+    
+    protected $_order;
+
+    
+    public function getDebug ()
+    {
+        return Mage::getSingleton('avenues/config')->getDebug();
+    }
+
+   
+    public function getOrder ()
+    {
+        if ($this->_order == null) {
+            $session = Mage::getSingleton('checkout/session');
+            $this->_order = Mage::getModel('sales/order');
+            $this->_order->loadByIncrementId($session->getLastRealOrderId());
+        }
+        return $this->_order;
+    }
+
+    
+    public function redirectAction()
+    {
+        $session = Mage::getSingleton('checkout/session');
+        $session->setavenuesStandardQuoteId($session->getQuoteId());
+
+        $order = $this->getOrder();
+
+        if (!$order->getId()) {
+            $this->norouteAction();
+            return;
+        }
+
+        $order->addStatusToHistory(
+            $order->getStatus(),
+            Mage::helper('avenues')->__('Customer was redirected to avenues')
+        );
+        $order->save();
+
+        $this->getResponse()
+            ->setBody($this->getLayout()
+                ->createBlock('avenues/standard_redirect')
+                ->setOrder($order)
+                ->toHtml());
+
+        $session->unsQuoteId();
+    }
+
+	public function successAction()
+	{
+		$response = $this->getRequest()->getPost();
+		
+		if(isset($response["Merchant_Id"])) $Merchant_Id=$response["Merchant_Id"];
+		if(isset($response["Amount"])) $Amount= $response["Amount"];
+		if(isset($response["Order_Id"])) $Order_Id=$response["Order_Id"];
+		if(isset($response["Merchant_Param"])) $Merchant_Param= $response["Merchant_Param"];
+		if(isset($response["Checksum"])) $Checksum= $response["Checksum"];
+		if(isset($response["AuthDesc"])) $AuthDesc=$response["AuthDesc"];
+		
+		$Checksum = $this->verifychecksum($Merchant_Id,$Order_Id,$Amount,$AuthDesc,$Checksum,$workingkey);
+		if($Checksum=="true" && $AuthDesc=="N")
+		{
+			$this->cancelAction();
+			return false;
+			
+		}
+		else if ($Checksum=="true" && $AuthDesc=="B" )
+		{
+			$this->cancelAction();
+			return false;
+		}
+		else if ($Checksum == 'false')
+		{
+			$this->cancelAction();
+			return false;
+		}
+		
+		$session = Mage::getSingleton('checkout/session');
+        $session->setQuoteId($session->getavenuesStandardQuoteId());
+        $session->unsavenuesStandardQuoteId();
+
+        $order = $this->getOrder();
+
+        if (!$order->getId()) {
+            $this->norouteAction();
+            return;
+        }
+
+        $order->addStatusToHistory(
+            $order->getStatus(),
+            Mage::helper('avenues')->__('Customer successfully returned from avenues')
+        );
+        
+	    $order->save();
+        $this->_redirect('checkout/onepage/success');
+
+		
+	}
+   
+    public function notifyAction ()
+    {
+        $postData = $this->getRequest()->getPost();
+
+        if (!count($postData)) {
+            $this->norouteAction();
+            return;
+        }
+
+        if ($this->getDebug()) {
+            $debug = Mage::getModel('avenues/api_debug');
+            if (isset($postData['cs2']) && $postData['cs2'] > 0) {
+                $debug->setId($postData['cs2']);
+            }
+            $debug->setResponseBody(print_r($postData,1))->save();
+        }
+
+        $order = Mage::getModel('sales/order');
+        $order->loadByIncrementId(Mage::helper('core')->decrypt($postData['cs1']));
+        if ($order->getId()) {
+            $result = $order->getPayment()->getMethodInstance()->setOrder($order)->validateResponse($postData);
+
+            if ($result instanceof Exception) {
+                if ($order->getId()) {
+                    $order->addStatusToHistory(
+                        $order->getStatus(),
+                        $result->getMessage()
+                    );
+                    $order->cancel();
+                }
+                Mage::throwException($result->getMessage());
+                return;
+            }
+
+            $order->sendNewOrderEmail();
+
+            $order->getPayment()->getMethodInstance()->setTransactionId($postData['transaction_id']);
+
+            if ($this->saveInvoice($order)) {
+                $order->setState(Mage_Sales_Model_Order::STATE_PROCESSING, true);
+            }
+            $order->save();
+        }
+    }
+
+   
+    protected function saveInvoice (Mage_Sales_Model_Order $order)
+    {
+        if ($order->canInvoice()) {
+            $invoice = $order->prepareInvoice();
+            $invoice->register()->capture();
+            Mage::getModel('core/resource_transaction')
+               ->addObject($invoice)
+               ->addObject($invoice->getOrder())
+               ->save();
+            return true;
+        }
+
+        return false;
+    }
+
+
+function verifychecksum($MerchantId,$OrderId,$Amount,$AuthDesc,$CheckSum,$WorkingKey)
+{
+//	echo 'Merchant: ' .$MerchantId . 'Order Id ' . $OrderId . 'Amount: ' . $Amount . 'Auth: ' . $AuthDesc . 'checksum:' . $CheckSum . 'Work: ' . $WorkingKey ;
+	$str = "$MerchantId|$OrderId|$Amount|$AuthDesc|ggc8qmloe2girdb7yljmzrv36aohrahs";
+	$adler = 1;
+	$adler = $this->adler32($adler,$str);
+	if($adler == $CheckSum) {
+		return 'true';
+	}
+	else {
+		return 'false';
+	}
+}
+
+function adler32($adler , $str)
+{
+	$BASE =  65521 ;
+
+	$s1 = $adler & 0xffff ;
+	$s2 = ($adler >> 16) & 0xffff;
+	for($i = 0 ; $i < strlen($str) ; $i++)
+	{
+		$s1 = ($s1 + Ord($str[$i])) % $BASE ;
+		$s2 = ($s2 + $s1) % $BASE ;
+			//echo "s1 : $s1 <BR> s2 : $s2 <BR>";
+
+	}
+	return $this->leftshift($s2 , 16) + $s1;
+}
+
+function leftshift($str , $num)
+{
+
+	$str = DecBin($str);
+
+	for( $i = 0 ; $i < (64 - strlen($str)) ; $i++)
+		$str = "0".$str ;
+
+	for($i = 0 ; $i < $num ; $i++) 
+	{
+		$str = $str."0";
+		$str = substr($str , 1 ) ;
+		//echo "str : $str <BR>";
+	}
+	return $this->cdec($str) ;
+}
+
+function cdec($num)
+{
+
+	for ($n = 0 ; $n < strlen($num) ; $n++)
+	{
+	   $temp = $num[$n] ;
+	   $dec =  $dec + $temp*pow(2 , strlen($num) - $n - 1);
+	}
+
+	return $dec;
+}
+
+    public function cancelAction()
+    {
+        $session = Mage::getSingleton('checkout/session');
+        $session->setQuoteId($session->getavenuesStandardQuoteId());
+
+        // cancel order
+        if ($session->getLastRealOrderId()) {
+            $order = Mage::getModel('sales/order')->loadByIncrementId($session->getLastRealOrderId());
+            if ($order->getId()) {
+                $order->cancel()->save();
+            }
+        }
+
+        /*we are calling getCcavenuepayStandardQuoteId with true parameter, the session object will reset the session if parameter is true.
+        so we don't need to manually unset the session*/
+        //$session->unsCcavenuepayStandardQuoteId();
+
+        //need to save quote as active again if the user click on cacanl payment from Ccavenuepay
+        //Mage::getSingleton('checkout/session')->getQuote()->setIsActive(true)->save();
+        //and then redirect to checkout one page
+		 Mage::getSingleton('checkout/session')->addError("Thank you for shopping with us. However the transaction has been declined");
+		$this->_redirect('checkout/cart');
+    }
+}
