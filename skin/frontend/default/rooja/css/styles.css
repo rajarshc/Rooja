@@ -342,8 +342,8 @@ p.required { font-size:10px; text-align:right; color:#d68536; }
 
 /* Data Table */
 .data-table { width:100%; }
-.data-table th { padding:5px; border:1px solid #ddd; font-weight:bold; white-space:nowrap; }
-.data-table td { padding:5px; border:1px solid #ddd; }
+.data-table th { padding:5px;/* border:1px solid #ddd;*/ font-weight:bold; white-space:nowrap; }
+.data-table td { padding:5px; /*border:1px solid #ddd;*/ }
 .data-table thead { background-color:#f2f2f2; }
 .data-table tbody {}
 .data-table tfoot {}
@@ -1230,7 +1230,7 @@ input.invite-button{height: 36px; color: #fff; font-size:14px; padding: 0px 10px
 
 .inputbox .label, .addthis_toolbox  {padding: 10px 0;}
 
-#referred-friends-table {background:#e2e2e2; border:0px;}
+#referred-friends-table {background:#fff; border:0px;}
 
 /* ======================================================================================= */
 
