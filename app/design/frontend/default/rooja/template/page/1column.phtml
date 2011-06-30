@@ -35,8 +35,12 @@
 <?php echo $this->getChildHtml('head') ?>
 </head>
 <?php /* AM EDIT - Redirect to Login Page */ ?>
+<?php if(isset($_SERVER['HTTP_USER_AGENT'])){
+    $agent = $_SERVER['HTTP_USER_AGENT'];
+}
+?>
 <?php Mage::getSingleton('customer/session')->setBeforeAuthUrl($this->getRequest()->getRequestUri());  //save requested URL for later redirection
-if(!Mage::getSingleton('customer/session')->isLoggedIn()) {  // if not logged in
+if(!Mage::getSingleton('customer/session')->isLoggedIn() ) {  // if not logged in
     header("Status: 301");
     header('Location: '.$this->getUrl('customer/account/login')) ;  // send to the login page
     exit; 
