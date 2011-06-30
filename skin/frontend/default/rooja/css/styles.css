@@ -1124,8 +1124,8 @@ tr.summary-details-excluded { font-style:italic; }
 .dashboard .welcome-msg {}
 #help {margin-top:-20px;}
 
-.dashboard h1 {color: #431F4C;}
-.dashboard h2 {color: #431F4C; padding: 10px 0;}
+.dashboard h1 {color: #431F4C; font-size: 24px;}
+.dashboard h2 {color: #431F4C; padding: 10px 0; font-size: 24px;}
 
 /* Block: Recent Orders */
 .dashboard .box-recent { margin:10px 0; }
@@ -1133,7 +1133,7 @@ tr.summary-details-excluded { font-style:italic; }
 /* Block: Account Information */
 .dashboard .box-info {}
 .d-account {border-bottom: 1px solid #000;}
-.editable {text-decoration:underline; font-size:1.2em;}
+.editable {text-decoration:underline; font-size:1.2em; margin-top:5px;}
 
 /* Block: Reviews */
 .dashboard .box-reviews .number { float:left; font-size:10px; font-weight:bold; line-height:1; color:#fff; margin:3px -20px 0 0; padding:2px 3px; background:#ddd; }
