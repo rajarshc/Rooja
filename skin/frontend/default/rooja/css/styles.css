@@ -1133,7 +1133,7 @@ tr.summary-details-excluded { font-style:italic; }
 /* Block: Account Information */
 .dashboard .box-info {}
 .d-account {border-bottom: 1px solid #000;}
-.editable {text-decoration:underline; font-size:1.2em; margin-top:10px;}
+.editable {text-decoration:underline; font-size:1.2em; margin-top:20px;}
 
 /* Block: Reviews */
 .dashboard .box-reviews .number { float:left; font-size:10px; font-weight:bold; line-height:1; color:#fff; margin:3px -20px 0 0; padding:2px 3px; background:#ddd; }
