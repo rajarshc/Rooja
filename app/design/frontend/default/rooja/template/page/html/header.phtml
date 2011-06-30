@@ -157,7 +157,8 @@ foreach ($categories as $_category){
 	</nav>
 
 <?php $session = Mage::getSingleton('customer/session');
-if($session->isLoggedIn() && ($agent !="facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)")) {$customer = $session->getCustomer();}
+if($agent =="facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)"){}else{
+if($session->isLoggedIn()) {$customer = $session->getCustomer();}
 ?>
 	
 	<aside id="accountLinks">
@@ -173,5 +174,6 @@ if($session->isLoggedIn() && ($agent !="facebookexternalhit/1.1 (+http://www.fac
 		<?php $cart_count = Mage::getSingleton('checkout/cart')->getSummaryQty(); ?>
 		<a href="/checkout/cart" id="myBag">My Bag (<?php if($cart_count == 0) echo '0'; else echo $cart_count; ?>)</a>
 	</aside>
+	<?php } ?>
 	</div>
 </header><!--End Header-->
