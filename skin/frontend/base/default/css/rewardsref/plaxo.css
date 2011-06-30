@@ -3,7 +3,6 @@
     height: 20px;
     width: 165px;
     display: block;
-    float: left;
     padding-top: 4px;
 }
 
@@ -22,8 +21,10 @@
 .rewardsref_recipient_list {
     width: 95%;
     height: 110px;
+    margin-top:10px;
 }
 
 .rewardsref_myreferrals_multireferral_section label {
     font-weight: bold;
 }
+#message{margin-top:10px;}
