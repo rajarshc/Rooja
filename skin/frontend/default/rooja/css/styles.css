@@ -913,7 +913,7 @@ tr.summary-details-excluded { font-style:italic; }
 
 
 /* Shopping Cart ========AM EDIT========================================================== */
-.cart, .checkout, .checkout-onepage-index .container {width: 980px;margin: 40px auto;overflow:hidden;}
+.cart, .checkout {width: 980px;margin: 20px auto;overflow:hidden;}
 .cart h1 {font-size: 28px;color: #431f4c;margin: 5px 0 0;}
 .cart h2.product-name {font-family: inherit;}
 .cart .needAssistance {margin: 0 0 10px;}
