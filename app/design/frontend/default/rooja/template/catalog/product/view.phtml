@@ -120,8 +120,7 @@ if (!$categoryIds == null){
 				<section id="reverseAuction">
 					
 					<p id="likeThis">
-					
-					<fb:like layout="button_count" width="80" style="margin:3px 0 0;float:right" title="testing"></fb:like>
+					<fb:like layout="button_count" width="60" style="margin:3px 0 0;float:right" title="testing"></fb:like>
 					<script type="text/javascript">
 						jQuery.noConflict();
 						window.fbAsyncInit = function() {
@@ -167,7 +166,7 @@ $url = "http://api.facebook.com/restserver.php?method=links.getStats&urls=".urle
 $xml = file_get_contents($url);
 $xml = simplexml_load_string($xml);
 echo '<span>' . $likes = $xml->link_stat->like_count . '</span>';
-?> people like this item
+?> people like this</p>
 					<?php /* hidding this 
 					<a href="#" id="likeBtn" class="tr fr">Like this item</a></p>
 					*/ ?>
