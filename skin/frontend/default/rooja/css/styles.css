@@ -348,13 +348,13 @@ p.required { font-size:10px; text-align:right; color:#d68536; }
 .data-table { width:100%; font-size:12px;}
 .data-table th { padding:5px;/* border:1px solid #ddd;*/ font-weight:bold; white-space:nowrap; }
 .data-table td { padding:5px; /*border:1px solid #ddd;*/ }
-.data-table thead { background-color:#f2f2f2; }
+.data-table thead { /*background-color:#f2f2f2;*/ }
 .data-table tbody {}
 .data-table tfoot {}
 .data-table tr.first {}
 .data-table tr.last {}
 .data-table tr.odd {}
-.data-table tr.even { background-color:#f6f6f6; }
+.data-table tr.even { /*background-color:#f6f6f6;*/ }
 .data-table tbody.odd {}
 .data-table tbody.odd td { border-width:0 1px; }
 .data-table tbody.even { background-color:#f6f6f6; }
@@ -934,8 +934,8 @@ tr.summary-details-excluded { font-style:italic; }
 .shipping .form-list input.input-text {width: auto;float: right;}
 .container h2 {color: #fff;margin: 0 0 10px;}
 .container .std h2 {color: #000;}
-form#discount-coupon-form .discount h2, .shipping h2, .sp-methods dt  {font-size:14px;margin: 0 0 10px;font-family:"ltc-bodoni-175-1","ltc-bodoni-175-2", georgia, serif;font-weight:normal;text-transform: uppercase;}
-.sp-methods dt {font-size: 18px;}
+form#discount-coupon-form .discount h2, .shipping h2  {font-size:14px;margin: 0 0 10px;font-family:"ltc-bodoni-175-1","ltc-bodoni-175-2", georgia, serif;font-weight:normal;text-transform: uppercase;}
+.sp-methods dt {font-size: 14px; text-transform:none; font-family: helvetica, arial, sans-serif;}
 .sp-methods dd {margin: 10px 0;line-height: 25px;}
 .sp-methods {margin: 20px 0 5px;font-size: 14px;}
 .discount input, .shipping input {width: 140px;height: 40px;line-height:40px;padding: 0;}
@@ -952,6 +952,8 @@ form#discount-coupon-form .discount h2, .shipping h2, .sp-methods dt  {font-size
 .cart .title-buttons .checkout-types li { float:left; margin:0 0 5px 5px; }
 .cart .checkout-types .paypal-or { margin:0 8px; line-height:2.3; }
 .cart .totals .checkout-types .paypal-or { clear:both; display:block; padding:3px 55px 8px 0; line-height:1.0; font-size:11px; }
+
+
 
 /* Shopping Cart Table */
 .cart-table .item-msg { font-size:10px; }
@@ -995,7 +997,7 @@ form#discount-coupon-form .discount h2, .shipping h2, .sp-methods dt  {font-size
 /* Checkout ============================================================================== */
 /********** < Common Checkout Styles */
 /* Shipping and Payment methods */
-.sp-methods dt { font-weight:normal; }
+.sp-methods dt { font-weight:normal; font-family: helvetica, arial, sans-serif; font-size: 12px; }
 .sp-methods .price { font-weight:bold; }
 .sp-methods .form-list { padding-left:20px; }
 .sp-methods select.month { width:150px; margin-right:10px; }
@@ -1086,6 +1088,7 @@ form#discount-coupon-form .discount h2, .shipping h2, .sp-methods dt  {font-size
 .opc .step .tool-tip { right:10px; }
 
 .opc .order-review {}
+.order-review h3 {font-size:14px;}
 .opc .order-review .authentication {}
 .opc .order-review .warning-message {}
 
