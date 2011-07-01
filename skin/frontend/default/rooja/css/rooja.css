@@ -110,6 +110,7 @@ body{
 	line-height:1.3em;
 	display:block;
 	padding:8px 15px;
+	top:auto;
 }
 #mainNav ul li ul li:hover{
 	background-color: transparent;

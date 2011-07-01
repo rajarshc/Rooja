@@ -24,19 +24,21 @@
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 ?>
-<div class="page-title">
-    <h1><?php echo $this->__('Your order has been received') ?></h1>
-</div>
-<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
-<h2 class="sub-title"><?php echo $this->__('Thank you for your purchase!') ?></h2>
 
+<h1>Order Submitted</h1>
+
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+
+<section id="thankYouMsg" class="fl col3">
 <?php if ($this->getOrderId()):?>
 <?php if ($this->getCanViewOrder()) :?>
     <p><?php echo $this->__('Your order # is: %s.', sprintf('<a href="%s">%s</a>', $this->escapeHtml($this->getViewOrderUrl()), $this->escapeHtml($this->getOrderId()))) ?></p>
 <?php  else :?>
     <p><?php echo $this->__('Your order # is: %s.', $this->escapeHtml($this->getOrderId())) ?></p>
 <?php endif;?>
-    <p><?php echo $this->__('You will receive an order confirmation email with details of your order and a link to track its progress.') ?></p>
+	<p>Thanks for your purchase! We&#x27;ve received your order and will email you with a confirmation when it ships.</p>
+
+	<p>If you have any questions or there is an error in your order, please <a href="/contacts">Contact Us</a></p>
 <?php if ($this->getCanViewOrder() && $this->getCanPrintOrder()) :?>
     <p>
         <?php echo $this->__('Click <a href="%s" onclick="this.target=\'_blank\'">here to print</a> a copy of your order confirmation.', $this->getPrintUrl()) ?>
@@ -44,21 +46,80 @@
     </p>
 <?php endif;?>
 <?php endif;?>
+<button type="button" class="button" title="Return Home" onclick="window.location='/'">Return Home</button>
+</section>
 
-<?php if ($this->getAgreementRefId()): ?>
-    <p><?php echo $this->__('Your billing agreement # is: %s.', sprintf('<a href="%s">%s</a>', $this->escapeHtml($this->getAgreementUrl()), $this->escapeHtml($this->getAgreementRefId())))?></p>
-<?php endif;?>
+<section id="sharePurchase" class="fr col1">
+	<h3>Share Your Purchase!</h3>
+	<p>Let your friends know you scored some sweet loot on Rooja!  Encourage them to sign up and earn a $10 credit with every friend.</p>
+	<!-- AddThis Button BEGIN -->
+	<div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+	<a class="addthis_button_facebook"></a>
+	<a class="addthis_button_twitter"></a>
+	<a class="addthis_button_email"></a>
+	<a class="addthis_button_google"></a>
+	<a class="addthis_bubble_style"></a>
+	</div>
+	<script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+	<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=philosophie"></script>
+	<!-- AddThis Button END -->
+</section>
 
-<?php if ($profiles = $this->getRecurringProfiles()):?>
-<p><?php echo $this->__('Your recurring payment profiles:'); ?></p>
-<ul class="disc">
-<?php foreach($profiles as $profile):?>
-<?php $profileIdHtml = ($this->getCanViewProfiles() ? sprintf('<a href="%s">%s</a>', $this->escapeHtml($this->getProfileUrl($profile)), $this->escapeHtml($this->getObjectData($profile, 'reference_id'))) : $this->escapeHtml($this->getObjectData($profile, 'reference_id')));?>
-    <li><?php echo $this->__('Payment profile # %s: "%s".', $profileIdHtml, $this->escapeHtml($this->getObjectData($profile, 'schedule_description')))?></li>
-<?php endforeach;?>
-</ul>
-<?php endif;?>
+<?php $_order = $this->getOrder() ?>
 
-<div class="buttons-set">
-    <button type="button" class="button" title="<?php echo $this->__('Continue Shopping') ?>" onclick="window.location='<?php echo $this->getUrl() ?>'"><span><span><?php echo $this->__('Continue Shopping') ?></span></span></button>
+<p class="order-date"><?php echo $this->__('Order Date: %s', $this->formatDate($_order->getCreatedAtStoreDate(), 'long')) ?></p>
+<div class="col2-set">
+    <?php if (!$_order->getIsVirtual()): ?>
+    <div class="col-1">
+        <h2><?php echo $this->__('Shipping Address') ?></h2>
+        <address><?php echo $_order->getShippingAddress()->format('html') ?></address>
+    </div>
+    <div class="col-2">
+    <?php else: ?>
+    <div class="col-1">
+    <?php endif; ?>
+        <h2><?php echo $this->__('Billing Address') ?></h2>
+        <address><?php echo $_order->getBillingAddress()->format('html') ?></address>
+    </div>
+<?php if (!$_order->getIsVirtual()): ?>
 </div>
+<div class="col2-set">
+    <div class="col-1">
+        <h2><?php echo $this->__('Shipping Method') ?></h2>
+         <?php echo $_order->getShippingDescription() ?>
+    </div>
+<?php endif; ?>
+    <div class="col-2">
+        <h2><?php echo $this->__('Payment Method') ?></h2>
+        <?php echo $this->getPaymentInfoHtml() ?>
+    </div>
+</div>
+<h2><?php echo $this->__('Items Ordered') ?></h2>
+<table class="data-table" id="my-orders-table">
+    <col />
+    <col width="1" />
+    <col width="1" />
+    <col width="1" />
+    <col width="1" />
+    <thead>
+        <tr>
+            <th><?php echo $this->__('Product Name') ?></th>
+            <th><?php echo $this->__('SKU') ?></th>
+            <th class="a-right"><?php echo $this->__('Price') ?></th>
+            <th class="a-center"><?php echo $this->__('Qty') ?></th>
+            <th class="a-right"><?php echo $this->__('Subtotal') ?></th>
+        </tr>
+    </thead>
+    <tfoot>
+        <?php echo $this->getChildHtml('order_totals') ?>
+    </tfoot>
+    <?php $_items = $_order->getItemsCollection(); ?>
+    <?php $_count = $_items->count(); ?>
+    <?php foreach ($_items as $_item): ?>
+    <?php if ($_item->getParentItem()) continue; ?>
+    <tbody>
+        <?php echo $this->getItemHtml($_item) ?>
+    </tbody>
+        <?php endforeach; ?>
+</table>
+    

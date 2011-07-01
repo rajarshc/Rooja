@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<!--config>
+<config>
     <modules>
         <AW_All>
             <active>true</active>

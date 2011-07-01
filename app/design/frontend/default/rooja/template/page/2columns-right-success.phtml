@@ -49,13 +49,12 @@ if(!Mage::getSingleton('customer/session')->isLoggedIn() && ($agent !="facebooke
 <?php echo $this->getChildHtml('after_body_start') ?>
 <?php echo $this->getChildHtml('global_notices') ?>
     <?php echo $this->getChildHtml('header') ?>
-<section>
+<section id="successPg">
 <div class="container">		
-      	<section id="pageContent" class="col3 fl">
+      
         	<?php echo $this->getChildHtml('global_messages') ?>
          	<?php echo $this->getChildHtml('content') ?>
-		</section>
-		<section class="col1 fr"><?php echo $this->getChildHtml('right') ?></section>
+	
 </div>
 </section>
         <?php echo $this->getChildHtml('footer') ?>
