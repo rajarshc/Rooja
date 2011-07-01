@@ -1026,7 +1026,8 @@ form#discount-coupon-form .discount h2, .shipping h2  {font-size:14px;margin: 0 
 
 /* Gift Messages */
 .gift-messages {}
-.gift-messages-form { border:1px solid #ddd; background-color:#f5f5f5; }
+.gift-messages h3 {font-size:14px; font-family: helvetica, arial, sans-serif;}
+.gift-messages-form { }
 .gift-messages-form { position:relative; }
 .gift-messages-form label { float:none !important; position:static !important; }
 .gift-messages-form h4 {}
