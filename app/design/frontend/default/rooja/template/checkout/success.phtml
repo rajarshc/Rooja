@@ -39,7 +39,6 @@
 	<p>Thanks for your purchase! We&#x27;ve received your order and will email you with a confirmation when it ships.</p>
 
 	<p>If you have any questions or there is an error in your order, please <a href="/contacts">Contact Us</a></p>
-    <p><?php echo $this->__('You will receive an order confirmation email with details of your order and a link to track its progress.') ?></p>
 <?php if ($this->getCanViewOrder() && $this->getCanPrintOrder()) :?>
     <p>
         <?php echo $this->__('Click <a href="%s" onclick="this.target=\'_blank\'">here to print</a> a copy of your order confirmation.', $this->getPrintUrl()) ?>
@@ -66,7 +65,14 @@
 	<!-- AddThis Button END -->
 </section>
 
+<?php
+$lastOrder = Mage::getModel('sales/order')->load(Mage::getSingleton('checkout/session')->getLastOrderId());
+echo $billingAddress = $lastOrder->getBillingAdress();
+echo $shippingAddress = $lastOrder->getShippingAdress();
 
-<?php var_dump(get_class(Mage::getModel('sales/order')->load($orderIdx)));
-var_dump(get_class_methods(get_class(Mage::getModel('sales/order')->load($orderIdx))));?>
+?>
+<?php /*$_order = Mage::getModel('sales/order')->load($orderIdx);
+get_class_methods(get_class(Mage::getModel('sales/order')->load($orderIdx));*/
+
+?>
     
