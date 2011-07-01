@@ -1065,12 +1065,12 @@ tr.summary-details-excluded { font-style:italic; }
 .block-progress dd.complete { padding: 5px 15px;background: #E0E0E0;  }
 
 .opc { border-bottom:1px solid #ddd; position:relative; }
-.opc li.section { border:1px solid #ddd; border-bottom:0; }
+.opc li.section { border:1px solid #fff; border-bottom:0; }
 
 .opc .buttons-set.disabled button.button { display:none; }
 .opc .buttons-set .please-wait { height:21px; line-height:21px; }
 
-.opc .step-title {/* background-color:#645967;*/ padding:8px 15px; text-align:right; }
+.opc .step-title { background-color:#645967; padding:8px 15px; text-align:right; }
 .opc .step-title .number { float:left; line-height:22px; margin-right:5px; }
 .opc .step-title h2 { color:#fff;text-align:left;font-size:2em; margin:0;}
 .opc .step-title a { display:none; float:right; }
@@ -1079,7 +1079,7 @@ tr.summary-details-excluded { font-style:italic; }
 /*.opc .allow .step-title a { display:block; }*/
 
 .opc .active {}
-.opc .active .step-title {color:#431f4b; cursor:default; }
+.opc .active .step-title {background-color:#431f4b; cursor:default; }
 /*.opc .active .step-title a { display:none; }*/
 
 .opc .step { margin: 10px 0; background:#e0e0e0;border-top:1px solid #ddd; padding:10px; position:relative; }
@@ -1108,7 +1108,7 @@ tr.summary-details-excluded { font-style:italic; }
 #checkout-progress-wrapper .block {border: none;}
 #checkout-progress-wrapper .block-title {color:#431f4b;border: none;font-size:20px;margin: 0 0 10px;font-family:"ltc-bodoni-175-1","ltc-bodoni-175-2", georgia, serif;font-weight:normal;}
 #checkout-progress-wrapper .block-content {line-height: 20px;font-size: 14px;}
-.block-progress dt {background-color:#645967;color: #fff;padding: 5px 10px;margin-bottom:1px;}
+.block-progress dt {background-color:#645967;color: #fff;padding: 5px 10px;margin-bottom:1px; font-size: 12px;}
 .block-progress dt .complete{background: #431f4b; font-size: 12px;}
 /* ======================================================================================= */
 
