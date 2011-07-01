@@ -300,7 +300,7 @@ One page checkout main layout
     <checkout_onepage_index translate="label">
         <label>One Page Checkout</label>
         <!-- Mage_Checkout -->
-        <remove name="right"/>
+        <remove name="left"/>
 
         <reference name="root">
             <action method="setTemplate"><template>page/2columns-right.phtml</template></action>
