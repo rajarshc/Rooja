@@ -300,12 +300,12 @@ One page checkout main layout
     <checkout_onepage_index translate="label">
         <label>One Page Checkout</label>
         <!-- Mage_Checkout -->
-        <remove name="right"/>
+        <remove name="left"/>
 
         <reference name="root">
-            <action method="setTemplate"><template>page/2columns-left.phtml</template></action>
+            <action method="setTemplate"><template>page/2columns-right.phtml</template></action>
         </reference>
-        <reference name="left">
+        <reference name="right">
             <action method="unsetChildren"></action>
             <block type="page/html_wrapper" name="checkout.progress.wrapper" translate="label">
                 <label>Checkout Progress Wrapper</label>
