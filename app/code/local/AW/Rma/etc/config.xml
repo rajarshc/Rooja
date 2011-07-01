@@ -1,0 +1,312 @@
+<?xml version="1.0"?>
+<config>
+
+    <modules>
+        <AW_Rma>
+            <version>1.1.0</version><platform>ce</platform>
+        </AW_Rma>
+    </modules>
+
+    <frontend>
+        <translate>
+            <modules>
+                <AW_Rma>
+                    <files>
+                        <default>AW_Rma.csv</default>
+                    </files>
+                </AW_Rma>
+            </modules>
+        </translate>
+
+        <routers>
+            <awrma>
+                <use>standard</use>
+                <args>
+                    <module>AW_Rma</module>
+                    <frontName>rma</frontName>
+                </args>
+            </awrma>
+        </routers>
+
+        <layout>
+            <updates>
+                <awrma module="awrma">
+                    <file>aw_rma.xml</file>
+                </awrma>
+            </updates>
+        </layout>
+
+        <events>
+            <customer_login>
+                <observers>
+                    <awrma>
+                        <type>singleton</type>
+                        <class>awrma/observer</class>
+                        <method>removeSessionData</method>
+                    </awrma>
+                </observers>
+            </customer_login>
+
+            <customer_logout>
+                <observers>
+                    <awrma>
+                        <type>singleton</type>
+                        <class>awrma/observer</class>
+                        <method>removeSessionData</method>
+                    </awrma>
+                </observers>
+            </customer_logout>
+
+            <controller_action_layout_render_before>
+                <observers>
+                    <awrma>
+                        <type>singleton</type>
+                        <class>awrma/observer</class>
+                        <method>setOrderInfoTemplate</method>
+                    </awrma>
+                </observers>
+            </controller_action_layout_render_before>
+        </events>
+    </frontend>
+
+    <admin>
+        <routers>
+            <awrma>
+                <use>admin</use>
+                <args>
+                    <module>AW_Rma</module>
+                    <frontName>rma</frontName>
+                </args>
+            </awrma>
+        </routers>
+    </admin>
+
+    <adminhtml>
+        <translate>
+            <modules>
+                <AW_Rma>
+                    <files>
+                        <default>AW_Rma.csv</default>
+                    </files>
+                </AW_Rma>
+            </modules>
+        </translate>
+        
+        <menu>
+            <sales>
+                <children>
+                    <awrma module="awrma">
+                        <title>RMA</title>
+                        <sort_order>180</sort_order>
+                        <children>
+                            <list module="awrma">
+                                <title>All RMA</title>
+                                <sort_order>10</sort_order>
+                                <action>awrma/adminhtml_rma/list</action>
+                            </list>
+
+                            <listpending module="awrma">
+                                <title>Pending Requests</title>
+                                <sort_order>20</sort_order>
+                                <action>awrma/adminhtml_rma/listpending</action>
+                            </listpending>
+
+                            <status module="awrma">
+                                <title>Manage Statuses</title>
+                                <sort_order>30</sort_order>
+                                <action>awrma/adminhtml_status/list</action>
+                            </status>
+
+                            <types module="awrma">
+                                <title>Manage Types</title>
+                                <sort_order>40</sort_order>
+                                <action>awrma/adminhtml_types/list</action>
+                            </types>
+
+                            <settings module="awrma">
+                                <title>Settings</title>
+                                <sort_order>50</sort_order>
+                                <action>adminhtml/system_config/edit/section/awrma</action>
+                            </settings>
+                        </children>
+                    </awrma>
+                </children>
+            </sales>
+        </menu>
+
+        <layout>
+            <updates>
+                <awrma module="awrma">
+                    <file>aw_rma.xml</file>
+                </awrma>
+            </updates>
+        </layout>
+
+        <acl>
+            <resources>
+                <all>
+                    <title>Allow Everything</title>
+                </all>
+                <admin>
+                    <children>
+                        <sales>
+                            <children>
+                                <awrma>
+                                    <title>RMA Module</title>
+                                    <sort_order>180</sort_order>
+                                    <children>
+                                        <list>
+                                            <title>All RMA</title>
+                                            <sort_order>10</sort_order>
+                                        </list>
+                                        <listpending>
+                                            <title>Pending RMA</title>
+                                            <sort_order>20</sort_order>
+                                        </listpending>
+                                        <status>
+                                            <title>Status Management</title>
+                                            <sort_order>30</sort_order>
+                                        </status>
+                                        <types>
+                                            <title>Types Management</title>
+                                            <sort_order>40</sort_order>
+                                        </types>
+                                        <settings>
+                                            <title>Quick Link to extension Settings</title>
+                                            <sort_order>50</sort_order>
+                                        </settings>
+                                    </children>
+                                </awrma>
+                            </children>
+                        </sales>
+
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <awrma>
+                                            <title>AheadWorks RMA Section</title>
+                                        </awrma>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+    </adminhtml>
+
+    <global>
+
+        <models>
+            <awrma>
+                <class>AW_Rma_Model</class>
+                <resourceModel>awrma_mysql4</resourceModel>
+            </awrma>
+
+            <awrma_mysql4>
+                <class>AW_Rma_Model_Mysql4</class>
+                <entities>
+                    <entity>
+                        <table>aw_rma_entity</table>
+                    </entity>
+
+                    <entity_comments>
+                        <table>aw_rma_entity_comments</table>
+                    </entity_comments>
+
+                    <entity_types>
+                        <table>aw_rma_entity_types</table>
+                    </entity_types>
+
+                    <entity_status>
+                        <table>aw_rma_entity_status</table>
+                    </entity_status>
+                </entities>
+            </awrma_mysql4>
+        </models>
+
+        <helpers>
+            <awrma>
+                <class>AW_Rma_Helper</class>
+            </awrma>
+        </helpers>
+
+        <template>
+            <email>
+                <awrma_templates_customer_base_template translate="label" module="awrma">
+                    <label>AW RMA Base template for customer</label>
+                    <file>awrma/basecustomer.html</file>
+                    <type>html</type>
+                </awrma_templates_customer_base_template>
+
+                <awrma_templates_admin_base_template translate="label" module="awrma">
+                    <label>AW RMA Base template for admin</label>
+                    <file>awrma/baseadmin.html</file>
+                    <type>html</type>
+                </awrma_templates_admin_base_template>
+            </email>
+        </template>
+
+        <resources>
+            <awrma_setup>
+                <setup>
+                    <module>AW_Rma</module>
+                </setup>
+
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </awrma_setup>
+
+            <awrma_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </awrma_write>
+
+            <awrma_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </awrma_read>
+        </resources>
+
+        <blocks>
+            <awrma>
+                <class>AW_Rma_Block</class>
+            </awrma>
+        </blocks>
+    </global>
+
+    <default>
+        <awrma>
+            <general>
+                <daysafterordercompletion>30</daysafterordercompletion>
+                <allowanonymous>1</allowanonymous>
+                <printlabel>1</printlabel>
+                <perorderrma>1</perorderrma>
+                <requireconfirmsend>1</requireconfirmsend>
+                <confirmsendingtext><![CDATA[Having clicked "Yes", you won't be able to cancel RMA or make any changes.
+Please ensure that:
+1. You have included the RMA Label inside the package
+2. You have sent the package to the RMA department]]></confirmsendingtext>
+                <rejectedext><![CDATA[php,phtml]]></rejectedext>
+                <maxsize>2048</maxsize>
+            </general>
+
+            <contacts>
+                <displayname>Customer Service</displayname>
+                <enableemails>all</enableemails>
+            </contacts>
+
+            <templates>
+                <sender>general</sender>
+                <customer_base_template>awrma_templates_customer_base_template</customer_base_template>
+                <admin_base_template>awrma_templates_admin_base_template</admin_base_template>
+            </templates>
+        </awrma>
+    </default>
+
+</config>

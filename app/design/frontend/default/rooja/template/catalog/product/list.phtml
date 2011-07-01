@@ -33,7 +33,7 @@
  */
 ?>
 <?php
-    $_productCollection=$this->getLoadedProductCollection();
+    $_productCollection=$this->addAttribute('rl_price')->getLoadedProductCollection();
     $_helper = $this->helper('catalog/output');
 ?> 
 <?php if(!$_productCollection->count()): ?>
@@ -44,6 +44,8 @@
 <?php else: ?>
 <section id="saleProducts" class="col3 fl">
     <?php $i=1; foreach ($_productCollection as $_product): ?>
+	<?php $fbprice = $_helper->productAttribute($_product, $_product->getRl_price(), 'rl_price'); ?>
+	<?php //echo $fbprice; ?>
 	<?php //var_export($_product); ?>
 		<article class="product col1 fl <?php if ($i % 3 == 0){ echo 'noMargin'; } ?>">
 		<?php $stock_count = (int) Mage::getModel('cataloginventory/stock_item')->loadByProduct($_product)->getQty();
@@ -63,7 +65,12 @@ echo $likes = $xml->link_stat->like_count;
 ?>
 				
 				</span>
-				<p class="price"><span class="livePrice">$<?php echo number_format($_product->getSpecialPrice(), 2) ?></span><span> 
+				<p class="price"><span class="livePrice">
+				<?php if (!$fbprice == null) { ?>
+					<?php echo '$' . number_format($fbprice, 2); } else { ?>
+					<?php echo '$' . number_format($_product->getSpecialprice(), 2); } ?>
+				
+				</span><span> 
 				<?php if(!$_product->isSaleable()){ echo 'Sold Out'; } else { echo '$' . number_format($_product->getPrice(), 2); } ?></span></p>
 				<h2 class="productName"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h2>
 			</article>

@@ -13,7 +13,7 @@ class Rbanh_Dev_IndexController extends Mage_Core_Controller_Front_Action
     	if (empty($url)) return;
         
         // handle the decode
-        $url = 'http://'.urldecode($url);
+        $url = 'http://'.$_SERVER['HTTP_HOST'].$url;
         
         // fetch magento vars
         $product = Mage::getModel('catalog/product')
@@ -31,12 +31,12 @@ class Rbanh_Dev_IndexController extends Mage_Core_Controller_Front_Action
 		
 		// fetch facebook likes
 		$likes = $this->fetch_facebook_data($url);
-		
+		//var_export($url);
 		// error with FB server
 		if ($likes === false) return;
 		
 		// increment the like, since you just liked it
-		$likes++;
+		//$likes++;
 		
         // update product price, if needed
         if (($rl_inc * $likes) < $rl_floor)
@@ -57,11 +57,11 @@ class Rbanh_Dev_IndexController extends Mage_Core_Controller_Front_Action
     }
     
     // http://site.com/index.php/rbanh/index/test/
-    /*public function testAction()
-    {
-    	$url = 'http://rooja.actsofphilosophie.com/women/gucci-galore/hip-trench-coat.html';
-    	var_export($this->fetch_facebook_data($url));
-    }*/
+    //public function testAction()
+    //{
+   // 	$url = 'http://rooja.actsofphilosophie.com/women/victoria-s-secret-collection/leopard-panties.html';
+   // 	var_export($this->fetch_facebook_data($url));
+   // }
     
     // get FB data
     private function fetch_facebook_data($product_url)
