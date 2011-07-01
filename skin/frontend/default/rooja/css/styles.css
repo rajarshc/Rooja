@@ -294,7 +294,7 @@ p.required { font-size:10px; text-align:right; color:#d68536; }
 .error-msg,
 .success-msg,
 .note-msg,
-.notice-msg {padding:5px;font-size:1.2em;font-weight:bold;}
+.notice-msg {padding:8px;font-size:1.2em;font-weight:bold;}
 .error-msg { background-color:#CC6600; color:#fff; }
 .success-msg { background-color:#645967;  color:#fff; }
 .note-msg,
