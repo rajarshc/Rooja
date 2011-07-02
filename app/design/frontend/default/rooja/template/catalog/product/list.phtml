@@ -90,18 +90,18 @@ echo $likes = $xml->link_stat->like_count;
 <script type="text/javascript"> 
 jQuery(function() {
  
-    var $sidebar   = jQuery("#saleInfo"),
-        $window    = jQuery(window),
+    var jQuery(sidebar)   = jQuery("#saleInfo"),
+        jQuery(window)    = jQuery(window),
         offset     = jQuery(sidebar).offset(),
 		maxHeight = jQuery(document).height() - 400,
  
-    $window.scroll(function() {
+    jQuery(window).scroll(function() {
       
-		if ($window.scrollTop() > maxHeight) {
-	            $sidebar.css({'position': 'absolute', 'top': maxHeight-85});
+		if (jQuery(window).scrollTop() > maxHeight) {
+	            jQuery(sidebar).css({'position': 'absolute', 'top': maxHeight-85});
 	    }
 		else{
-				$sidebar.css({'position': 'fixed', 'top': '60px'});
+				jQuery(sidebar).css({'position': 'fixed', 'top': '60px'});
 			}
     });
  
