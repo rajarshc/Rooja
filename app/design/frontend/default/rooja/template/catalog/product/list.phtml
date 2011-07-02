@@ -87,24 +87,4 @@ echo $likes = $xml->link_stat->like_count;
 	 });
 			
 </script>
-<script type="text/javascript"> 
-jQuery(function() {
- 
-    var jQuery(sidebar)   = jQuery("#saleInfo"),
-        jQuery(window)    = jQuery(window),
-        offset     = jQuery(sidebar).offset(),
-		maxHeight = jQuery(document).height() - 400,
- 
-    jQuery(window).scroll(function() {
-      
-		if (jQuery(window).scrollTop() > maxHeight) {
-	            jQuery(sidebar).css({'position': 'absolute', 'top': maxHeight-85});
-	    }
-		else{
-				jQuery(sidebar).css({'position': 'fixed', 'top': '60px'});
-			}
-    });
- 
-});
-</script>
 <?php endif; ?>
