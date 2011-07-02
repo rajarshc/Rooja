@@ -184,8 +184,8 @@ echo '<span>' . $likes = $xml->link_stat->like_count . '</span>';
 					<p class="startingPrice">Starting Price: <strike>$<?php echo number_format($_product->getPrice(), 2) ?></strike></p>
 					<p class="currentPrice">Current Price:<span>
 					<?php if (!$fbprice == null) { ?>
-					<?php echo '$<span>' . $fbprice; } else { ?>
-					<?php echo '$<span>' . number_format($_product->getSpecialprice(), 2); } ?></span></p>
+					<?php echo '$' . $fbprice; } else { ?>
+					<?php echo '$' . number_format($_product->getSpecialprice(), 2); } ?></span></p>
 					<a href="#" class="sizeChart fr">Size Chart</a>
 
 					<br class="clear">
