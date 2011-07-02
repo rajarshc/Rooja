@@ -162,6 +162,7 @@ button.button::-moz-focus-inner { padding:0; border:0; } /* FF Fix */
 button.button { -webkit-border-fit:lines; } /* <- Safari & Google Chrome Fix */
 button.button { overflow:visible; width:auto; border:0; padding:0; margin:5px 0; background:transparent; cursor:pointer; }
 button.button span, #continueShoppingBtn { float:left; height:40px; background:#431f4c; padding:0 0 0 8px; font:normal 12px/40px Arial, Helvetica, sans-serif; text-align:center; white-space:nowrap; color:#fff; }
+#continueShoppingBtn {padding:0 15px;}
 button.button span span { background-position:100% 0; padding:0 12px 0 4px; }
 button.disabled {}
 button.disabled span {}
