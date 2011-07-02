@@ -25,12 +25,12 @@
  */
 ?>
 <div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
-<div class="page-title">
+
     <h1><?php echo Mage::helper('contacts')->__('Contact Us') ?></h1>
-</div>
+
 <form action="<?php echo $this->getFormAction(); ?>" id="contactForm" method="post">
     <div class="fieldset">
-        <h2 class="legend"><?php echo Mage::helper('contacts')->__('Contact Information') ?></h2>
+       
         <ul class="form-list">
             <li class="fields">
                 <div class="field">
@@ -60,11 +60,11 @@
             </li>
         </ul>
     </div>
-    <div class="buttons-set">
-        <p class="required"><?php echo Mage::helper('contacts')->__('* Required Fields') ?></p>
+  
+        <p class="required">* Required Fields</p>
         <input type="text" name="hideit" id="hideit" value="" style="display:none !important;" />
         <button type="submit" title="<?php echo Mage::helper('contacts')->__('Submit') ?>" class="button"><span><span><?php echo Mage::helper('contacts')->__('Submit') ?></span></span></button>
-    </div>
+
 </form>
 <script type="text/javascript">
 //<![CDATA[
