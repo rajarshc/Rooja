@@ -915,9 +915,9 @@ tr.summary-details-excluded { font-style:italic; }
 
 
 /* Shopping Cart ========AM EDIT========================================================== */
-.cart, .checkout {width: 980px;margin: 20px auto;overflow:hidden;}
+.cart, .checkout {width: 980px;margin: 20px auto 35px;overflow:hidden;}
 .cart h1 {font-size: 28px;color: #431f4c;margin: 5px 0 0;}
-.emptyCart h1{margin:20px 0 40px;}
+.emptyCart h1{margin:20px 0 20px;}
 .cart h2.product-name {font-family: inherit;}
 .cart .needAssistance {margin: 0 0 10px;}
 .cart .data-table {border: none;background: #e2e2e2;font-size: 14px;line-height: 20px;}
