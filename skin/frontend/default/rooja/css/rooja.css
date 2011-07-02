@@ -293,7 +293,7 @@ h2#saleDetails{color:#c60;margin:22px 0 5px;}
     padding:15px 10px;
     background-color:#e1e1e1;
 }
-#productOptions p.startingPrice{color:#666;margin-bottom:6px;}
+#productOptions p.startingPrice{color:#666;margin-bottom:8px;}
 #productOptions p.currentPrice{color:#431f4c;}
 #productOptions p.currentPrice span{font-family:"ltc-bodoni-175-1","ltc-bodoni-175-2", georgia, serif;font-size:2em;}
 #productInfo {min-height: 400px;}
@@ -304,8 +304,8 @@ h2#saleDetails{color:#c60;margin:22px 0 5px;}
 #colors li a{width:14px;height:14px;}
 #sizes li a{width:25px;height:19px;background-color:#bcbcbc;text-align:center;font-size:1.1em;color:#808080;border-color:#a1a1a1;line-height:19px;}
 .sizeChart{color:#555;margin-top:5px;text-decoration:underline;background:url(../images/icons/size-chart.png) no-repeat center left;padding-left:16px;height:12px;line-height:12px;}
-#qty{width:35px;height:24px;border:1px solid #9d9d9d;text-align:center;color:#595959;font-size:1.2em;margin-right:10px;}
-#productOptions label{color:#595959;}
+#qty{width:35px;height:24px;border:1px solid #9d9d9d;text-align:center;color:#595959;font-size:1.2em;margin-right:5px;}
+#productOptions label{color:#595959;font-size:1.2em;}
 
 #addToBagBtn{background-image:url(../images/icons/add-to-bag.png);width:230px;height:50px;margin-top:5px;border:none;cursor:pointer;}
 #estimatedShippingDate{width:230px;padding:8px 0;text-align:center;background-color:#6f989d;color:#2b3536;margin:0;}
