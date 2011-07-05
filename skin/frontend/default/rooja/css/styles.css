@@ -1116,7 +1116,9 @@ form#discount-coupon-form .discount h2, .shipping h2  {font-size:14px;margin: 0 
 #checkout-progress-wrapper .block-title {color:#431f4b;border: none;font-size:20px;margin: 0 0 10px;font-family:"ltc-bodoni-175-1","ltc-bodoni-175-2", georgia, serif;font-weight:normal;}
 #checkout-progress-wrapper .block-content {line-height: 20px;font-size: 14px;}
 .block-progress dt {background-color:#645967;color: #fff;padding: 5px 10px;margin-bottom:1px; font-size: 12px;}
-.block-progress dt .complete, .complete p, .block-progress dd {background: #431f4b; font-size: 12px;}
+.block-progress dt .complete, .block-progress dd {background: #431f4b; font-size: 12px;}
+.complete p {font-size:12px;}
+h3 .product-name {font-family:helvetica, arial, sans-serif; font-size:12px;}
 /* ======================================================================================= */
 
 
