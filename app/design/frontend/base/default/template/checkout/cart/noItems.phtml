@@ -33,36 +33,3 @@
     <p><?php echo $this->__('Get <a href="%s">shopping!</a>', $this->getContinueShoppingUrl()) ?></p>
 </div>
 
-<?php 
-$i = 0;
-$categories = Mage::helper('catalog/category')->getStoreCategories();
-foreach ($categories as $_category){
-    if($_category->hasChildren()){
-        $_category->getId(); // category id
-        foreach($_category->getChildren() as $subcategory){
-		$c = Mage::getModel('catalog/category')->load($subcategory->getId());
-            if($c->getIsActive()){ // check if category is active
-				$fivedays = date('y-m-d H:G:00', strtotime("+5 days"));
-				$today = date('y-m-d H:G:00');
-				if (!$c->getSale_start_date() == null) {
-	                $startdate = date('y-m-d', strtotime($c->getSale_start_date())) . ' ' . $c->getSale_start_time() . ':00';
-					$enddate = date('y-m-d', strtotime($c->getSale_end_date())) . ' ' . $c->getSale_end_time() . ':00';
-					if (($enddate > $today && $enddate < $fivedays && $startdate < $fivedays) || ($enddate > $today && $enddate > $fivedays && $startdate < $fivedays)) {
-						if($i == 3){
-							?>
-							<article class="homeAd fl masonry">
-								<h3><a href="/rewardsref/customer/index/">Invite a Friend</a></h3>
-								<p>Share what&rsquo;s in with your friends on Facebook! Invite a friend and receive $25 to spend on Rooja!</p>
-							</article>
-							<article class="homeSale size3 fl masonry">
-				                <a href="<?php echo  $c->getURL() ?>" title="View sale details for: <?php echo $c->getName(); ?>" class="product-image"><img src="/media/catalog/category/<?php echo $c->getThumbnail(); ?>" alt="" width="236px" /></a>
-				                <h2><?php echo $c->getName(); ?></h2>
-				            </article>
-						<?php } else{ ?>
-             
-             <article class="homeSale size2 fl masonry">
-                <a href="<?php echo  $c->getURL() ?>" title="View sale details for: <?php echo $c->getName(); ?>" class="product-image"><img src="/media/catalog/category/<?php echo $c->getThumbnail(); ?>" alt="" width="236px" /></a>
-                <h2><?php echo $c->getName(); ?></h2>
-            </article>
-				<?php } $i++; }}}}  }} ?>
-
