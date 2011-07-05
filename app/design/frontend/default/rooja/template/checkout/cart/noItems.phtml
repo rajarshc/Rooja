@@ -25,12 +25,11 @@
  */
 ?>
 <div class="container">
-<div class="page-title">
-    <h1><?php echo $this->__('Shopping Cart is Empty') ?></h1>
-</div>
-<div class="cart-empty">
+	<section class="cart emptyCart">
+    <h1>Shopping Cart is Empty</h1>
+
     <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
     <p><?php echo $this->__('You have no items in your shopping cart.') ?></p>
-    <p><?php echo $this->__('Click <a href="%s">here</a> to continue shopping.', $this->getContinueShoppingUrl()) ?></p>
-</div>
+    <?php echo $this->__('<a href="%s" id="continueShoppingBtn">Click here to continue shopping</a>', $this->getContinueShoppingUrl()) ?>
+	</section>
 </div>
