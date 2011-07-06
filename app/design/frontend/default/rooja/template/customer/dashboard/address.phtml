@@ -24,27 +24,36 @@
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 ?>
-<div class="col2-set">
+
+<div class="half-col left">
     <div class="box">
-        <div class="box-title">
-            <h3><?php echo $this->__('Address Book') ?></h3>
-            <a href="<?php echo $this->getAddressBookUrl() ?>"><?php echo $this->__('Manage Addresses') ?></a>
-        </div>
+		            <a class="editable right" href="<?php echo $this->getAddressBookUrl() ?>"><?php echo $this->__('Manage') ?></a>
         <div class="box-content">
-            <div class="col-1">
-                <h4><?php echo $this->__('Default Billing Address') ?></h4>
-                <address>
-                    <?php echo $this->getPrimaryBillingAddressHtml() ?><br />
-                    <a href="<?php echo $this->getPrimaryBillingAddressEditUrl() ?>"><?php echo $this->__('Edit Address') ?></a>
-                </address>
-            </div>
-            <div class="col-2">
-                <h4><?php echo $this->__('Default Shipping Address') ?></h4>
-                <address>
-                    <?php echo $this->getPrimaryShippingAddressHtml() ?><br />
-                    <a href="<?php echo $this->getPrimaryShippingAddressEditUrl() ?>"><?php echo $this->__('Edit Address') ?></a>
-                </address>
-            </div>
+	            <h2><?php echo $this->__('Address Book') ?></h2>
+			<div class="left">	                
+				<div class="col-1 third">
+					<p><strong><?php echo $this->__('Billing') ?></strong></p>
+				</div>
+
+                <div class="col-2 twothird">
+	                <address>
+	                    <p><?php echo $this->getPrimaryBillingAddressHtml() ?></p><br />
+	                </address>
+				</div>
+			</div>
+			
+			<div class="left">
+				<div class="col-1 third">
+                	<p><strong><?php echo $this->__('Shipping') ?></strong></p>
+				</div>
+				
+				<div class="col-2 twothird">
+	                <address>
+	                    <p><?php echo $this->getPrimaryShippingAddressHtml() ?></p><br />
+	                </address>
+				</div>
+			</div> 	
+			
         </div>
     </div>
 </div>
