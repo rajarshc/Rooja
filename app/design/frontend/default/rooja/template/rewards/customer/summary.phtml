@@ -45,9 +45,9 @@
 ?>
 <div class="points">	
 		<strong><?php echo $this->__('Points Summary'); ?></strong>
- 		<p><?php echo $this->__('You have %s in your account.', $this->getCustomerPointsSummary()); ?></p>
+ 		<?php echo $this->__('You have %s in your account.', $this->getCustomerPointsSummary()); ?>
     	    <?php if($this->getDaysUntilExpiry()): ?>
-    	       <p><?php echo $this->__('Your points balance will expire in %s days.', $this->getDaysUntilExpiry()); ?></p>
+    	       <?php echo $this->__('Your points balance will expire in %s days.', $this->getDaysUntilExpiry()); ?>
     	    <?php endif; ?>
 
 	    <?php if($this->hasPendingPoints()): ?>
