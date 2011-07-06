@@ -34,7 +34,9 @@
     <?php echo $this->getChildHtml('hello') ?>
 	<?php echo $this->getChildHtml('recentorders') ?>
 
-<div class="half-col right">
+<div class="half-col right">	
+	<?php echo $this->getChildHtml('affiliate') ?>
+	
 	<?php /*WDCA CODE BEGINS*/?>
 	<?php if(!Mage::getStoreConfigFlag('advanced/modules_disable_output/TBT_Rewards') 
 				&& Mage::getConfig()->getModuleConfig('TBT_Rewards')->is('active', 'true')) : ?>
@@ -42,8 +44,6 @@
 		<br />
 	<?php endif;?>
 	<?php /*WDCA CODE ENDS*/?>
-	
-	<?php echo $this->getChildHtml('affiliate') ?>
 </div>
 		
     <div class="half-col d-account">
