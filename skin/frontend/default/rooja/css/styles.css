@@ -1227,6 +1227,10 @@ h3 .product-name {font-family:helvetica, arial, sans-serif; font-size:12px;}
 .product-review dt { font-weight:bold; }
 .product-review dd { font-size:13px; margin:5px 0 0; }
 
+/********** Referrals & Points */
+.points {
+	font-size:12px;
+}
 
 /********** Invite a Friend */
 

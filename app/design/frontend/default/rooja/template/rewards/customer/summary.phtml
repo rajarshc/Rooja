@@ -43,12 +43,11 @@
  * @author     WDCA Sweet Tooth Team <contact@wdca.ca>
  */
 ?>
-	
+<div class="points">	
 		<strong><?php echo $this->__('Points Summary'); ?></strong>
-	
-  <?php echo $this->__('You have %s in your account.', $this->getCustomerPointsSummary()); ?>
+ 		<p><?php echo $this->__('You have %s in your account.', $this->getCustomerPointsSummary()); ?></p>
     	    <?php if($this->getDaysUntilExpiry()): ?>
-    	       <?php echo $this->__('Your points balance will expire in %s days.', $this->getDaysUntilExpiry()); ?>
+    	       <p><?php echo $this->__('Your points balance will expire in %s days.', $this->getDaysUntilExpiry()); ?></p>
     	    <?php endif; ?>
 
 	    <?php if($this->hasPendingPoints()): ?>
@@ -63,4 +62,4 @@
 	<?php if ($this->doShowRewardsLink()): ?>
 		<a href="<?php echo $this->getUrl('rewards/customer'); ?>"><?php echo $this->__('Visit My Points & Rewards Section') ?></a>
 	<?php endif; ?>
-
+</div>
