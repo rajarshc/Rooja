@@ -66,6 +66,7 @@ sup           { font-size:1em; vertical-align:top; }
 ul,ol         { list-style:none; }
 
 /* Tools */
+.small		  {height: 100px;}
 .hidden       { display:block !important; border:0 !important; margin:0 !important; padding:0 !important; font-size:0 !important; line-height:0 !important; width:0 !important; height:0 !important; overflow:hidden !important; }
 .nobr         { white-space:nowrap !important; }
 .wrap         { white-space:normal !important; }
