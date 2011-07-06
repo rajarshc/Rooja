@@ -61,7 +61,7 @@
 <?php if(trim(Mage::registry('current_category')->getImageUrl()=="")): ?>
 <meta property="og:image" content="http://rooja.com/_images/rooja-logo-fb.png"/>
 <?php else: ?>
-<meta property="og:image" content="<?php echo trim(Mage::registry('current_category')->getThumbnail())?>"/>
+<meta property="og:image" content="<?php echo trim(Mage::registry('current_category')->getImageUrl())?>"/>
 <?php endif; ?>
 <?php endif; ?>
 <?php endif; ?>
