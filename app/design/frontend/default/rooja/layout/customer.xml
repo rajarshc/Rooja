@@ -230,8 +230,7 @@ Customer account home dashboard layout
 				<block type="sales/order_recent" name="customer_account_dashboard_top" as="recentorders" template="sales/order/recent.phtml"/>
                 <block type="core/template" name="customer_account_dashboard_top" as="top" />
                 <block type="customer/account_dashboard_info" name="customer_account_dashboard_info" as="info" template="customer/account/dashboard/info.phtml"/>
-				
-				<block type="customer/account_dashboard_info" name="customer_account_dashboard_info" as="info" template="customer/account/dashboard/info.phtml"/>
+			
                 <block type="rewardsref/customer_referral_abstract" name="affiliate" as="affiliate" template="rewardsref/customer/referral/affiliate.phtml"/>
 
                 <block type="customer/account_dashboard_address" name="customer_account_dashboard_address" as="address" template="customer/account/dashboard/address.phtml"/>
