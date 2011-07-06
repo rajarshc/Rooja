@@ -1229,13 +1229,12 @@ h3 .product-name {font-family:helvetica, arial, sans-serif; font-size:12px;}
 
 /********** Referrals & Points */
 .points {
-	font-size:11px;
+	font-size:12px;
 	padding:20px 0;
 }
 
 .reward-link {
 	text-decoration: underline;
-	font-size:11px;
 }
 
 /********** Invite a Friend */
