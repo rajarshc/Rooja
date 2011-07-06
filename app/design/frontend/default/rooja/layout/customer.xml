@@ -225,7 +225,7 @@ Customer account home dashboard layout
             <action method="setTemplate"><template>page/2columns-left.phtml</template></action>
         </reference>
         <reference name="my.account.wrapper">
-            <block type="customer/account_dashboard" name="customer_account_dashboard" template="customer/account/dashboard.phtml"/>
+            <block type="customer/account_dashboard" name="customer_account_dashboard" template="customer/account/dashboard.phtml">
                 <block type="customer/account_dashboard_hello" name="customer_account_dashboard_hello" as="hello" template="customer/account/dashboard/hello.phtml"/>
 				<block type="sales/order_recent" name="customer_account_dashboard_top" as="recentorders" template="sales/order/recent.phtml"/>
                 <block type="core/template" name="customer_account_dashboard_top" as="top" />
