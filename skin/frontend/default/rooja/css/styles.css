@@ -328,7 +328,7 @@ p.required { font-size:10px; text-align:right; color:#d68536; margin-bottom:0px;
 
 /* Pager */
 .pager {  padding:5px; margin:5px 0; text-align:center; }
-.pager .amount { float:left; }
+.pager .amount { float:left;margin-bottom:0; }
 .pager .limiter { float:right; }
 .pager .pages { margin:0 135px; }
 .pager .pages ol { display:inline; }
@@ -349,7 +349,7 @@ p.required { font-size:10px; text-align:right; color:#d68536; margin-bottom:0px;
 
 /* Data Table */
 
-#my-orders-table {background: #e0e0e0; padding: 12px;margin-top: 15px;line-height: 17px;}
+#my-orders-table {background: #e0e0e0; padding: 12px;margin: 15px 0;line-height: 17px;}
 
 .data-table { width:100%; font-size:12px;}
 .data-table th { padding:5px;/* border:1px solid #ddd;*/ font-weight:bold; white-space:nowrap; }
