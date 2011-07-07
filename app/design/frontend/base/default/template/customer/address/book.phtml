@@ -58,13 +58,13 @@
         <div class="box-content">
 	            <h2><?php echo $this->__('Address Book') ?></h2>
 				<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
-			<div class="twothird-col left">	                
+			<div class="">	                
 				<div class="col-1 third">
 				  <?php if($_pAddsses = Mage::getSingleton('customer/session')->getCustomer()->getDefaultBilling()): ?>
-					<p><strong><?php echo $this->__('Default Billing') ?></strong></p>
+					<p>Default Billing</p>
 				</div>
 
-                <div class="col-2 twothird">
+                <div class="">
 	               <address><p>
 	                    <?php echo $this->getAddressHtml(Mage::getSingleton('customer/session')->getCustomer()->getAddressById($_pAddsses)) ?>
 	                </p></address>
@@ -72,9 +72,9 @@
 						<a href="<?php echo $this->getAddressEditUrl(Mage::getSingleton('customer/session')->getCustomer()->getAddressById($_pAddsses)) ?>"><?php echo $this->__('Change Billing Address') ?></a>
 	
 				 <?php else: ?>
-			            <li class="item">
-			                <h3><?php echo $this->__('Default Billing') ?></h3>
-			                <?php echo $this->__('You have no default billing address in your address book.') ?>
+			            <li class="item empty">
+			                <h3>Default Billing</h3>
+			                <p>You have no default billing address in your address book.</p>
 			            </li>
 			        <?php endif ?>
 
@@ -82,10 +82,10 @@
 			</div>
 			
 			<div class="clear"></div>
-			<div class="twothird-col left">
+			<div class="">
 				<div class="col-1 third">
 				        <?php if($_pAddsses = Mage::getSingleton('customer/session')->getCustomer()->getDefaultShipping()): ?>
-                	<p><strong><?php echo $this->__('Default Shipping') ?></strong></p>
+                	<p><strong>Default Shipping</p>
 				</div>
 				
 				<div class="col-2 twothird">
@@ -95,8 +95,8 @@
 	
 			        <?php else: ?>
 			            <li class="item empty">
-			                <h3><?php echo $this->__('Default Shipping') ?></h3>
-			                <p><?php echo $this->__('You have no default shipping address in your address book.') ?></p>
+			                <h3>Default Shipping</h3>
+			                <p>You have no default shipping address in your address book.</p>
 			            </li>
 			        <?php endif ?>
 				</div>
