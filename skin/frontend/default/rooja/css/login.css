@@ -90,32 +90,16 @@ form input#loginBtn{
 
 #brands{
    background:#3e2647;
-   padding:25px 15px 0px;
+   padding:25px 15px;
    width:380px;
    overflow:hidden;
    margin:0 auto 0px;
 }
 
-#brands ul li{display:inline;position:relative;padding:0px 45px 25px 0;float:left;}
-#brands ul li.last{padding-right:0;}
-#brands ul li.bot{padding-bottom:0;}
-#brands ul li img{vertical-align:middle;}
+#brands .brandCol{display:block;width:126px;text-align:center;}
+#brands .brandCol img{vertical-align:middle;}
 
-#brands ul li.two{
-    padding-right:35px;
-}
-#brands ul li.four{
-    padding-left:25px;
-}
 
-#brands ul li.five{
-    padding-left:35px;
-    padding-right:61px;
-}
-#brands ul li.nine{
-    padding-left:3px;
-    padding-right:67px;
-}
 /* ~~~~~ Typography ~~~~~ */
 
 a {text-decoration:none; color:#fff;}

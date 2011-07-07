@@ -56,6 +56,16 @@
   })();
 
 </script>
+<script type="text/javascript">
+		jQuery(document).ready(function() {
+			jQuery('#slideshow').slideshow({
+				timeout: 2000,
+				type: 'random',
+			});
+
+	       });
+</script>
+
 </head>
 <body class="">
 <?php echo $this->getChildHtml('after_body_start') ?>
