@@ -43,27 +43,23 @@
  * @author     WDCA Sweet Tooth Team <contact@wdca.ca>
  */
 ?>
-<div class="account-box ad-reviews mypoints-summary">
-
-	<div class="head head-alt2">
-		<h4 class="title"><?php echo $this->__('Points Summary'); ?></h4>
-	</div>
-    <div class="usable-points"><?php echo $this->__('You have %s in your account.', $this->getCustomerPointsSummary()); ?>
+<div class="points">	
+		<strong><?php echo $this->__('Points Summary'); ?></strong><br>
+ 		<?php echo $this->__('You have %s in your account.', $this->getCustomerPointsSummary()); ?>
     	    <?php if($this->getDaysUntilExpiry()): ?>
-    	       <div class="expiry-points"><?php echo $this->__('Your points balance will expire in %s days.', $this->getDaysUntilExpiry()); ?></div>
+    	       <?php echo $this->__('Your points balance will expire in %s days.', $this->getDaysUntilExpiry()); ?>
     	    <?php endif; ?>
-        </div>
+
 	    <?php if($this->hasPendingPoints()): ?>
-       <div class="pending-points"><?php echo $this->__('%s are pending approval.', $this->getCustomerPendingPointsSummary()); ?></div>
+			<?php echo $this->__('%s are pending approval.', $this->getCustomerPendingPointsSummary()); ?>
     <?php endif; ?>
     <?php if($this->hasOnHoldPoints()): ?>
-       <div class="onhold-points"><?php echo $this->__('%s are on hold.', $this->getCustomerOnHoldPointsSummary()); ?></div>
+       <?php echo $this->__('%s are on hold.', $this->getCustomerOnHoldPointsSummary()); ?>
     <?php endif; ?>
-    	<div class="msg">
+    
     		<?php echo $this->getSummaryMsg() /* this can be customized completely by modifying the display config option or by just removing this line and adding your own content.*/ ?>
-    	</div>
-	<?php if ($this->doShowRewardsLink()): ?>
-		<a href="<?php echo $this->getUrl('rewards/customer'); ?>"><?php echo $this->__('Visit My Points & Rewards Section') ?></a>
+    
+	<?php if ($this->doShowRewardsLink()): ?><br/><br/>
+		<a class="reward-link" href="<?php echo $this->getUrl('rewards/customer'); ?>"><?php echo $this->__('View Your Rewards') ?></a>
 	<?php endif; ?>
 </div>
-

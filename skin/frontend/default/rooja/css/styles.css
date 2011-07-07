@@ -66,6 +66,7 @@ sup           { font-size:1em; vertical-align:top; }
 ul,ol         { list-style:none; }
 
 /* Tools */
+.small		  {height: 100px;}
 .hidden       { display:block !important; border:0 !important; margin:0 !important; padding:0 !important; font-size:0 !important; line-height:0 !important; width:0 !important; height:0 !important; overflow:hidden !important; }
 .nobr         { white-space:nowrap !important; }
 .wrap         { white-space:normal !important; }
@@ -278,7 +279,7 @@ p.control input.radio { margin-right:6px; }
 .validation-advice { clear:both; min-height:13px; margin:3px 0 0; padding-left:17px; font-size:10px; line-height:13px; background:url(../images/validation_advice_bg.gif) 2px 1px no-repeat; color:#f00; }
 .validation-failed { border:1px dashed #f00 !important; background:#faebe7 !important; }
 .validation-passed {}
-p.required { font-size:10px; text-align:right; color:#d68536; }
+p.required { font-size:10px; text-align:right; color:#d68536; margin-bottom:0px; }
 /* Expiration date and CVV number validation fix */
 .v-fix { float:left; }
 .v-fix .validation-advice { display:block; width:12em; margin-right:-12em; position:relative; }
@@ -347,6 +348,9 @@ p.required { font-size:10px; text-align:right; color:#d68536; }
 .toolbar-bottom {}
 
 /* Data Table */
+
+#my-orders-table {background: #e0e0e0; padding: 12px;margin-top: 15px;line-height: 17px;}
+
 .data-table { width:100%; font-size:12px;}
 .data-table th { padding:5px;/* border:1px solid #ddd;*/ font-weight:bold; white-space:nowrap; }
 .data-table td { padding:5px; /*border:1px solid #ddd;*/ }
@@ -1226,6 +1230,18 @@ h3 .product-name {font-family:helvetica, arial, sans-serif; font-size:12px;}
 .product-review dt { font-weight:bold; }
 .product-review dd { font-size:13px; margin:5px 0 0; }
 
+/********** Referrals & Points */
+.points {
+	font-size:12px;
+	padding:20px 0;
+	line-height: 15px;
+}
+
+.reward-link {
+	text-decoration: underline;
+}
+
+
 
 /********** Invite a Friend */
 
@@ -1236,9 +1252,9 @@ referrals h1 { color: #431F4C;}
 fieldset .email-invite {background:#e0e0e0;}
 fielset h4{padding: 10px 0 25px;}
 
-.page-invite {background:#c8d7da;padding:15px 12px;}
+.page-invite {background:#c8d7da;padding:15px 12px; margin-top: 25px;}
 
-input.invite-input {height: 36px;line-height:36px;padding:0px 8px;width:250px;}
+input.invite-input {height: 36px;line-height:36px;padding:0px 8px;width:236px;}
 input.invite-button{height: 36px; color: #fff; font-size:14px; padding: 0px 10px; background: #868686;}
 
 .addthis_default_style {padding: 10px 0;}
