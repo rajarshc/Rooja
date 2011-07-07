@@ -1263,6 +1263,11 @@ input.invite-button{height: 36px; color: #fff; font-size:14px; padding: 0px 10px
 
 #referred-friends-table {background:#fff; border:0px;}
 
+/********** Address Page */
+
+.addressBoxPg{margin:10px 0 10px;}
+.addressBoxPg a{font-size:1.2em;font-weight:bold;color:#C60;}
+
 /* ======================================================================================= */
 
 
