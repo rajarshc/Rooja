@@ -43,7 +43,7 @@
     <?php endif ?>
 </div>
 <?php echo $this->getStatusHistoryRssUrl($_order) ?>
-<dl class="order-info">
+<?php /*<dl class="order-info">
     <dt><?php echo $this->__('About This Order:') ?></dt>
     <dd>
         <?php $_links = $this->getLinks(); ?>
@@ -58,28 +58,28 @@
         </ul>
         <script type="text/javascript">decorateGeneric($('order-info-tabs').select('LI'),['first','last']);</script>
     </dd>
-</dl>
+</dl>*/ ?>
 <p class="order-date"><?php echo $this->__('Order Date: %s', $this->formatDate($_order->getCreatedAtStoreDate(), 'long')) ?></p>
 <?php if (!$_order->getIsVirtual()): ?>
 <div class="col2-set order-info-box">
     <div class="col-1">
         <div class="box">
             <div class="box-title">
-                <h2><?php echo $this->__('Shipping Address') ?></h2>
+                <h3>Shipping Address</h3>
             </div>
             <div class="box-content">
-                <address><?php echo $_order->getShippingAddress()->format('html') ?></address>
+                <address><p><?php echo $_order->getShippingAddress()->format('html') ?></p></address>
             </div>
         </div>
     </div>
     <div class="col-2">
         <div class="box">
             <div class="box-title">
-                <h2><?php echo $this->__('Shipping Method') ?><?php /* | <a href="#"><?php echo $this->__('Track Order') ?></a>*/ ?></h2>
+                <h3>Shipping Address<?php /* | <a href="#"><?php echo $this->__('Track Order') ?></a>*/ ?></h3>
             </div>
             <div class="box-content">
                 <?php if ($_order->getShippingDescription()): ?>
-                    <?php echo $_order->getShippingDescription() ?>
+                    <p><?php echo $_order->getShippingDescription() ?></p>
                 <?php else: ?>
                     <p><?php echo $this->helper('sales')->__('No shipping information available'); ?></p>
                 <?php endif; ?>
@@ -92,17 +92,17 @@
     <div class="col-1">
         <div class="box">
             <div class="box-title">
-                <h2><?php echo $this->__('Billing Address') ?></h2>
+                <h3>Billing Address</h3>
             </div>
             <div class="box-content">
-                <address><?php echo $_order->getBillingAddress()->format('html') ?></address>
+                <address><p><?php echo $_order->getBillingAddress()->format('html') ?></p></address>
             </div>
         </div>
     </div>
     <div class="col-2">
         <div class="box box-payment">
             <div class="box-title">
-                <h2><?php echo $this->__('Payment Method') ?></h2>
+                <h3>Payment Method</h3>
             </div>
             <div class="box-content">
                 <?php echo $this->getPaymentInfoHtml() ?>
