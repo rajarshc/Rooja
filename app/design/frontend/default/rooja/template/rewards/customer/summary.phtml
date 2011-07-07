@@ -45,7 +45,7 @@
 ?>
 <div class="points">	
 		<h3>Points Summary</h3>
- 		<?php echo $this->__('You have %s in your account.', $this->getCustomerPointsSummary()); ?>
+ 		<p><?php echo $this->__('You have %s in your account.', $this->getCustomerPointsSummary()); ?>
     	    <?php if($this->getDaysUntilExpiry()): ?>
     	       <?php echo $this->__('Your points balance will expire in %s days.', $this->getDaysUntilExpiry()); ?>
     	    <?php endif; ?>
@@ -58,8 +58,9 @@
     <?php endif; ?>
     
     		<?php echo $this->getSummaryMsg() /* this can be customized completely by modifying the display config option or by just removing this line and adding your own content.*/ ?>
+</p>
     
 	<?php if ($this->doShowRewardsLink()): ?><br/><br/>
-		<a class="reward-link" href="<?php echo $this->getUrl('rewards/customer'); ?>"><?php echo $this->__('View Your Rewards') ?></a>
+		<p><a class="reward-link" href="<?php echo $this->getUrl('rewards/customer'); ?>"><?php echo $this->__('View Your Rewards') ?></a></p>
 	<?php endif; ?>
 </div>
