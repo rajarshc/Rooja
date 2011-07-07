@@ -327,7 +327,7 @@ p.required { font-size:10px; text-align:right; color:#d68536; margin-bottom:0px;
 .sub-title { clear:both; }
 
 /* Pager */
-.pager { border:1px solid #ddd; padding:5px; margin:5px 0; text-align:center; }
+.pager {  padding:5px; margin:5px 0; text-align:center; }
 .pager .amount { float:left; }
 .pager .limiter { float:right; }
 .pager .pages { margin:0 135px; }
