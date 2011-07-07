@@ -349,7 +349,7 @@ p.required { font-size:10px; text-align:right; color:#d68536; margin-bottom:0px;
 
 /* Data Table */
 
-#my-orders-table .data-table {background: #e0e0e0; padding: 12px;margin-top: 15px;line-height: 17px;}
+#my-orders-table {background: #e0e0e0; padding: 12px;margin-top: 15px;line-height: 17px;}
 
 .data-table { width:100%; font-size:12px;}
 .data-table th { padding:5px;/* border:1px solid #ddd;*/ font-weight:bold; white-space:nowrap; }
@@ -1254,7 +1254,7 @@ fielset h4{padding: 10px 0 25px;}
 
 .page-invite {background:#c8d7da;padding:15px 12px; margin-top: 25px;}
 
-input.invite-input {height: 36px;line-height:36px;padding:0px 8px;width:250px;}
+input.invite-input {height: 36px;line-height:36px;padding:0px 8px;width:236px;}
 input.invite-button{height: 36px; color: #fff; font-size:14px; padding: 0px 10px; background: #868686;}
 
 .addthis_default_style {padding: 10px 0;}
