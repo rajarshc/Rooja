@@ -44,14 +44,14 @@
  */
 ?>
 <div class="points">	
-		<strong><?php echo $this->__('Points Summary'); ?></strong>
- 		<?php echo $this->__('You have %s in your account.', $this->getCustomerPointsSummary()); ?><br>
+		<strong><?php echo $this->__('Points Summary'); ?></strong><br>
+ 		<?php echo $this->__('You have %s in your account.', $this->getCustomerPointsSummary()); ?>
     	    <?php if($this->getDaysUntilExpiry()): ?>
     	       <?php echo $this->__('Your points balance will expire in %s days.', $this->getDaysUntilExpiry()); ?>
     	    <?php endif; ?>
 
 	    <?php if($this->hasPendingPoints()): ?>
-			<?php echo $this->__('%s are pending approval.', $this->getCustomerPendingPointsSummary()); ?><br>
+			<?php echo $this->__('%s are pending approval.', $this->getCustomerPendingPointsSummary()); ?>
     <?php endif; ?>
     <?php if($this->hasOnHoldPoints()): ?>
        <?php echo $this->__('%s are on hold.', $this->getCustomerOnHoldPointsSummary()); ?>
@@ -59,7 +59,7 @@
     
     		<?php echo $this->getSummaryMsg() /* this can be customized completely by modifying the display config option or by just removing this line and adding your own content.*/ ?>
     
-	<?php if ($this->doShowRewardsLink()): ?><br>
+	<?php if ($this->doShowRewardsLink()): ?>
 		<a class="reward-link" href="<?php echo $this->getUrl('rewards/customer'); ?>"><?php echo $this->__('View Your Rewards') ?></a>
 	<?php endif; ?>
 </div>
