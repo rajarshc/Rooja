@@ -94,10 +94,14 @@ form input#loginBtn{
    width:380px;
    overflow:hidden;
    margin:0 auto 0px;
+   position:relative;
 }
 
-#brands .brandCol{display:block;width:126px;text-align:center;}
+#brands .brandCol{display:block;width:126px;text-align:center;position:relative;}
 #brands .brandCol img{vertical-align:middle;}
+
+#brandCol2{left:126px;}
+#brandCol3{left:252px;}
 
 
 /* ~~~~~ Typography ~~~~~ */
