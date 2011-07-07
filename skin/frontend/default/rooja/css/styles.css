@@ -887,7 +887,7 @@ tr.summary-details-excluded { font-style:italic; }
 
 
 /* Content Styles ================================================================= */
-.product-name { font-size:1em; font-weight:normal; }
+.product-name, .staticContent h3.product-name { font-size:1em; font-weight:normal; }
 .product-name a {}
 
 /* Product Tags */
