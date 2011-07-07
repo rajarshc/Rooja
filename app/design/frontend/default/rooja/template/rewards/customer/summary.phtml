@@ -59,7 +59,7 @@
     
     		<?php echo $this->getSummaryMsg() /* this can be customized completely by modifying the display config option or by just removing this line and adding your own content.*/ ?>
     
-	<?php if ($this->doShowRewardsLink()): ?>
+	<?php if ($this->doShowRewardsLink()): ?><br/>
 		<a class="reward-link" href="<?php echo $this->getUrl('rewards/customer'); ?>"><?php echo $this->__('View Your Rewards') ?></a>
 	<?php endif; ?>
 </div>
