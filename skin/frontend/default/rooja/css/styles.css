@@ -1231,11 +1231,14 @@ h3 .product-name {font-family:helvetica, arial, sans-serif; font-size:12px;}
 .points {
 	font-size:12px;
 	padding:20px 0;
+	line-height: 15px;
 }
 
 .reward-link {
 	text-decoration: underline;
 }
+
+
 
 /********** Invite a Friend */
 
