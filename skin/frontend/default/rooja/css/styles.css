@@ -1265,7 +1265,7 @@ input.invite-button{height: 36px; color: #fff; font-size:14px; padding: 0px 10px
 
 /********** Address Page */
 
-.addressBoxPg{margin:10px 0 10px;}
+.addressBoxPg{margin:10px 0 10px;overflow:hidden;}
 .addressBoxPg a{font-size:1.2em;font-weight:bold;color:#C60;}
 
 /* ======================================================================================= */
