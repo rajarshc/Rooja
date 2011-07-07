@@ -349,7 +349,7 @@ p.required { font-size:10px; text-align:right; color:#d68536; margin-bottom:0px;
 
 /* Data Table */
 
-#data-table .data-table {background: #e0e0e0;}
+#my-orders-table .data-table {background: #e0e0e0; padding: 12px;margin-top: 15px;line-height: 17px;}
 
 .data-table { width:100%; font-size:12px;}
 .data-table th { padding:5px;/* border:1px solid #ddd;*/ font-weight:bold; white-space:nowrap; }
