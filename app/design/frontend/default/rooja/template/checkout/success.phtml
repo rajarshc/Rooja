@@ -46,7 +46,7 @@
     </p>
 <?php endif;?>
 <?php endif;?>
-<button type="button" class="button" id="`continueShoppingBtn" title="Return Home" onclick="window.location='/'">Return Home</button>
+<button type="button" class="button" id="continueShoppingBtn" title="Return Home" onclick="window.location='/'">Return Home</button>
 </section>
 
 <section id="sharePurchase" class="fr col1">
@@ -67,7 +67,7 @@
 
 <?php $_order = $this->getOrder() ?>
 
-<!-- <p class="order-date"><?php //echo $this->__('Order Date: %s', $this->formatDate($_order->getCreatedAtStoreDate(), 'long')) ?></p> -->
+<p class="order-date"><?php echo $this->__('Order Date: %s', $this->formatDate($_order->getCreatedAtStoreDate(), 'long')) ?></p>
 <div class="col2-set">
     <?php if (!$_order->getIsVirtual()): ?>
     <div class="col-1">
