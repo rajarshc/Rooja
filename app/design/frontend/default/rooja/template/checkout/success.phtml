@@ -25,7 +25,7 @@
  */
 ?>
 
-<h1>Order Submitted</h1>
+<h1 class="submitted">Order Submitted</h1>
 
 <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
 
@@ -46,7 +46,7 @@
     </p>
 <?php endif;?>
 <?php endif;?>
-<button type="button" class="button" title="Return Home" onclick="window.location='/'">Return Home</button>
+<button type="button" class="button" id="`continueShoppingBtn" title="Return Home" onclick="window.location='/'">Return Home</button>
 </section>
 
 <section id="sharePurchase" class="fr col1">
