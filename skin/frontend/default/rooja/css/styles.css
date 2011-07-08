@@ -858,6 +858,7 @@ tr.summary-details-excluded { font-style:italic; }
 .product-options-bottom .price-box { margin:10px 0; }
 
 h1.submitted {padding-top: 40px;}
+#sharePurchase h3 {margin-top:-20px;}
 
 /* Grouped Product */
 .product-view .grouped-items-table {}
