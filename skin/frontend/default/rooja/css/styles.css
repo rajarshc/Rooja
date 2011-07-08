@@ -857,6 +857,8 @@ tr.summary-details-excluded { font-style:italic; }
 .product-options-bottom { padding:10px; border:1px solid #ddd; border-top:0; }
 .product-options-bottom .price-box { margin:10px 0; }
 
+h1.submitted {padding-top: 40px;}
+
 /* Grouped Product */
 .product-view .grouped-items-table {}
 
