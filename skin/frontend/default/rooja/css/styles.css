@@ -858,8 +858,8 @@ tr.summary-details-excluded { font-style:italic; }
 .product-options-bottom .price-box { margin:10px 0; }
 
 h1.submitted {padding-top: 40px;}
-#sharePurchase h3 {margin-top:-20px;}
-
+#sharePurchase h3 {margin-top:10px;}
+#thankYouMsg {padding-bottom: 40px;}
 /* Grouped Product */
 .product-view .grouped-items-table {}
 
@@ -1257,7 +1257,7 @@ fieldset .email-invite {background:#e0e0e0;}
 fielset h4{padding: 10px 0 25px;}
 
 .page-invite {background:#c8d7da;padding:15px 12px; margin-top: 25px;}
-.share-purchase {background:#c8d7da;padding:15px 12px; margin-top: -200px;}
+.share-purchase {background:#c8d7da;padding:15px 12px; margin-top: -250px;}
 
 input.invite-input {height: 36px;line-height:36px;padding:0px 8px;width:236px;}
 input.invite-button{height: 36px; color: #fff; font-size:14px; padding: 0px 10px; background: #868686;}
