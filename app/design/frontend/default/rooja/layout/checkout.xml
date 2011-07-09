@@ -420,17 +420,10 @@ One page checkout order review block
             <action method="setTemplate"><template>page/2columns-right-success.phtml</template></action>
         </reference>
         <reference name="content">
-            <block type="checkout/onepage_success" name="checkout.success" template="checkout/success.phtml">
-	                <action method="addItemRender"><type>default</type><block>sales/order_item_renderer_default</block><template>sales/order/items/renderer/default.phtml</template></action>
-	                <action method="addItemRender"><type>grouped</type><block>sales/order_item_renderer_grouped</block><template>sales/order/items/renderer/default.phtml</template></action>
-	                <block type="sales/order_totals" name="order_totals" template="sales/order/totals.phtml">
-	                    <action method="setLabelProperties"><value>colspan="4" class="a-right"</value></action>
-	                    <action method="setValueProperties"><value>class="last a-right"</value></action>
-	                    <block type="tax/sales_order_tax" name="tax" template="tax/order/tax.phtml">
-	                        <action method="setIsPlaneMode"><value>1</value></action>
-	                    </block>
-	                </block>
-	            </block>
+            <block type="checkout/onepage_success" name="checkout.success" template="checkout/success.phtml"/>
+        </reference>
+      <reference name="checkout.success">
+            <block type="sales/order_info" name="sales.order.info" template="sales/order/info.phtml"/>
         </reference>
     </checkout_onepage_success>
     <checkout_onepage_failure translate="label">

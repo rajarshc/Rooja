@@ -65,6 +65,12 @@
 	<!-- AddThis Button END -->
 </section>
 
+
+<?php $order = Mage::getModel('sales/order')->load($this->getOrderId());
+echo $order->getPayment()->getMethod(); ?>
+
+
+
 <?php $_order = $this->getOrder() ?>
 
 <p class="order-date"><?php echo $this->__('Order Date: %s', $this->formatDate($_order->getCreatedAtStoreDate(), 'long')) ?></p>
