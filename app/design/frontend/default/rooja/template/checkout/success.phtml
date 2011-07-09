@@ -29,7 +29,7 @@
 
 <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
 
-<section id="thankYouMsg" class="fl col3">
+<section id="thankYouMsg" class="fl col3 share-purchase">
 <?php if ($this->getOrderId()):?>
 <?php if ($this->getCanViewOrder()) :?>
     <h4><?php echo $this->__('Your order # is: %s.', sprintf('<a href="%s">%s</a>', $this->escapeHtml($this->getViewOrderUrl()), $this->escapeHtml($this->getOrderId()))) ?></h4>

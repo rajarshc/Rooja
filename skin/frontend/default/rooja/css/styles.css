@@ -1252,11 +1252,12 @@ h3 .product-name {font-family:helvetica, arial, sans-serif; font-size:12px;}
 h3.page-invite-head  {color: #000; margin-top:15px;}
 
 referrals h1 { color: #431F4C;}
-.ref-form {background:#e0e0e0;padding:15px 12px;margin-top:25px;}
+.ref-form {background:#e0e0e0;padding:15px 12px;margin-top:10px;}
 fieldset .email-invite {background:#e0e0e0;}
 fielset h4{padding: 10px 0 25px;}
 
 .page-invite {background:#c8d7da;padding:15px 12px; margin-top: 25px;}
+.share-purchase {background:#c8d7da;padding:15px 12px; margin-top: -200px;}
 
 input.invite-input {height: 36px;line-height:36px;padding:0px 8px;width:236px;}
 input.invite-button{height: 36px; color: #fff; font-size:14px; padding: 0px 10px; background: #868686;}
