@@ -25,14 +25,14 @@
  */
 ?>
 
-<h1>Order Submitted</h1>
+<h1 class="submitted">Order Submitted</h1>
 
 <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
 
-<section id="thankYouMsg" class="fl col3">
+<section id="thankYouMsg" class="fl col3 share-purchase">
 <?php if ($this->getOrderId()):?>
 <?php if ($this->getCanViewOrder()) :?>
-    <p><?php echo $this->__('Your order # is: %s.', sprintf('<a href="%s">%s</a>', $this->escapeHtml($this->getViewOrderUrl()), $this->escapeHtml($this->getOrderId()))) ?></p>
+    <h4><?php echo $this->__('Your order # is: %s.', sprintf('<a href="%s">%s</a>', $this->escapeHtml($this->getViewOrderUrl()), $this->escapeHtml($this->getOrderId()))) ?></h4>
 <?php  else :?>
     <p><?php echo $this->__('Your order # is: %s.', $this->escapeHtml($this->getOrderId())) ?></p>
 <?php endif;?>
@@ -46,7 +46,7 @@
     </p>
 <?php endif;?>
 <?php endif;?>
-<button type="button" class="button" title="Return Home" onclick="window.location='/'">Return Home</button>
+<button type="button" class="button" id="continueShoppingBtn" title="Return Home" onclick="window.location='/'">Return Home</button>
 </section>
 
 <section id="sharePurchase" class="fr col1">
@@ -64,62 +64,3 @@
 	<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=philosophie"></script>
 	<!-- AddThis Button END -->
 </section>
-
-<?php $_order = $this->getOrder() ?>
-
-<p class="order-date"><?php echo $this->__('Order Date: %s', $this->formatDate($_order->getCreatedAtStoreDate(), 'long')) ?></p>
-<div class="col2-set">
-    <?php if (!$_order->getIsVirtual()): ?>
-    <div class="col-1">
-        <h2><?php echo $this->__('Shipping Address') ?></h2>
-        <address><?php echo $_order->getShippingAddress()->format('html') ?></address>
-    </div>
-    <div class="col-2">
-    <?php else: ?>
-    <div class="col-1">
-    <?php endif; ?>
-        <h2><?php echo $this->__('Billing Address') ?></h2>
-        <address><?php echo $_order->getBillingAddress()->format('html') ?></address>
-    </div>
-<?php if (!$_order->getIsVirtual()): ?>
-</div>
-<div class="col2-set">
-    <div class="col-1">
-        <h2><?php echo $this->__('Shipping Method') ?></h2>
-         <?php echo $_order->getShippingDescription() ?>
-    </div>
-<?php endif; ?>
-    <div class="col-2">
-        <h2><?php echo $this->__('Payment Method') ?></h2>
-        <?php echo $this->getPaymentInfoHtml() ?>
-    </div>
-</div>
-<h2><?php echo $this->__('Items Ordered') ?></h2>
-<table class="data-table" id="my-orders-table">
-    <col />
-    <col width="1" />
-    <col width="1" />
-    <col width="1" />
-    <col width="1" />
-    <thead>
-        <tr>
-            <th><?php echo $this->__('Product Name') ?></th>
-            <th><?php echo $this->__('SKU') ?></th>
-            <th class="a-right"><?php echo $this->__('Price') ?></th>
-            <th class="a-center"><?php echo $this->__('Qty') ?></th>
-            <th class="a-right"><?php echo $this->__('Subtotal') ?></th>
-        </tr>
-    </thead>
-    <tfoot>
-        <?php echo $this->getChildHtml('order_totals') ?>
-    </tfoot>
-    <?php $_items = $_order->getItemsCollection(); ?>
-    <?php $_count = $_items->count(); ?>
-    <?php foreach ($_items as $_item): ?>
-    <?php if ($_item->getParentItem()) continue; ?>
-    <tbody>
-        <?php echo $this->getItemHtml($_item) ?>
-    </tbody>
-        <?php endforeach; ?>
-</table>
-    
