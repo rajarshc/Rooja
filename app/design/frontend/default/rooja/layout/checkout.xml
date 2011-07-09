@@ -422,9 +422,6 @@ One page checkout order review block
         <reference name="content">
             <block type="checkout/onepage_success" name="checkout.success" template="checkout/success.phtml"/>
         </reference>
-      <reference name="checkout.success">
-            <block type="sales/order_info" name="sales.order.info" template="sales/order/info.phtml"/>
-        </reference>
     </checkout_onepage_success>
     <checkout_onepage_failure translate="label">
         <label>One Page Checkout Failure</label>
