@@ -353,6 +353,7 @@ p.saleEnding{color:#cc6600;margin-bottom:10px;}
 
 .backTo{margin:18px 0 10px;text-decoration:underline;font-size:1.2em;padding-left:18px;background:url(../images/icons/back-arrow.png) no-repeat top left;height:14px;line-height:14px;display:block;}
 .needAssistance{background-color:#cc6600;color:#fff;padding:5px;margin:10px 0;font-size:1.2em;height:20px;display:block;line-height:20px;}
+#saleDetails .needAssistance{margin:0;}
 .needAssistance img{vertical-align:middle;}
 .backToTop{text-decoration:underline;color:#858585;font-size:1.2em;padding-left:18px;background:url(../images/icons/back-to-top.png) no-repeat top left;height:20px;line-height:20px;display:block;}
 
