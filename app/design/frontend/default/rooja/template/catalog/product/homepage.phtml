@@ -49,10 +49,10 @@ foreach ($categories as $_category){
 					if (($enddate > $today && $enddate < $fivedays && $startdate < $fivedays) || ($enddate > $today && $enddate > $fivedays && $startdate < $fivedays)) {
 						if($i == 3){
 							?>
-							<article class="homeAd fl masonry">
+							<article class="homeAd2 fl masonry">
 								<a href="/rewardsref/customer/index/"><img src="<?php echo $this->getSkinUrl('images/graphics/spreadthelove.jpg'); ?>" alt="Invite Friends and get cash" /></a>
 							</article>
-							<article class="homeSale size3 fl masonry">
+							<article class="homeSale size2 fl masonry">
 				                <a href="<?php echo  $c->getURL() ?>" title="View sale details for: <?php echo $c->getName(); ?>" class="product-image"><img src="/media/catalog/category/<?php echo $c->getThumbnail(); ?>" alt="" width="236px" /></a>
 				                <h2><?php echo $c->getName(); ?></h2>
 								<?php echo '<p>'. date('M jS \a\t g:ia', strtotime($enddate)) .'</p>';?>
