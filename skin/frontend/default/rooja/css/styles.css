@@ -525,7 +525,7 @@ tr.summary-details-excluded { font-style:italic; }
 .block .block-subtitle { font-size:13px; font-weight:bold; }
 .block .block-content { /*padding:10px;*/ }
 .block .block-content li.item { padding:5px 0; }
-.block .block-content li a {text-decoration: underline;}
+.block .block-content li a {}
 .block .btn-remove,
 .block .btn-edit { float:right;}
 .block .actions { text-align:right; }
