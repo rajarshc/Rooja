@@ -3,8 +3,8 @@
 			<h3 class="page-invite-head">Invite your Friends to Join Rooja!</h3>
 			<p>Copy this link and share to receive Rooja credits!</p>
 	        
-		       <input class="invite-input" type="text" value="<?php echo $this->getReferralUrl(); ?>" />
-		               <input class="invite-button" type="submit" title="send" value="Copy" />
+		       <input class="invite-input" id="referralLink" type="text" value="<?php echo $this->getReferralUrl(); ?>" />
+		               <input class="invite-button" id="copyBtn" type="submit" title="send" value="Copy" />
 	
 						<div class="addthis_toolbox addthis_default_style" addthis:url="<?php echo $this->getReferralUrl(); ?>">
 						<a class="addthis_button_facebook"><img src="<?php echo $this->getSkinUrl('images/icons/facebook-blue-24.png'); ?>" alt="facebook icon"></a>
@@ -14,3 +14,13 @@
 			<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=philosophie"></script>
 	</fieldset>
 </div>
+<script type="text/transform">
+$(document).ready(function(){
+    $('#copyBtn').zclip({
+        path:'/js/ZeroClipboard.swf',
+        copy:function(){return $('input#referralLink').val();}
+    });
+
+
+});
+</script>
