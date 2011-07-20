@@ -256,7 +256,7 @@ p.question{margin:0;font-weight:bold;color:#431f4c;}
 #saleInfo{padding-top:25px;}
 #saleInfo h1{margin-bottom:20px;}
 #filterSale{position: relative;margin-top:25px;padding:15px 10px 25px;background-color:#e1e1e1;}
-.shareThis h4{text-transform:none;font-weight:bold;color:#431f4c;}
+.shareThis h4{text-transform:none;color:#431f4c;}
 .shareThis p{margin-bottom:0px;}
 .shareThis img{margin-left:5px;}
 #filterSale select{width:100%;font-size:1.4em;margin-bottom:10px;}
