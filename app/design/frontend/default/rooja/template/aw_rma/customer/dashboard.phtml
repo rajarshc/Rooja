@@ -18,8 +18,8 @@
 
 <div class="awrma-account">
     <div class="page-title title-buttons">
-        <h1><?php echo $this->__('RMA') ?></h1>
-        <a class="link-awrma-newrma" href="<?php echo $this->getUrl('awrma/customer_rma/new') ?>"><?php echo $this->__('Request New RMA') ?></a>
+        <h1>Returns</h1>
+        <a class="link-awrma-newrma" href="<?php echo $this->getUrl('awrma/customer_rma/new') ?>"><?php echo $this->__('Request a Return') ?></a>
     </div>
     <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
     <?php if($this->getRmaEntitiesCollection()->getSize()) : ?>
@@ -51,7 +51,7 @@
                         <a href="<?php echo $this->getUrl('awrma/customer_rma/view', array('id' => $item->getId())) ?>" class="link-awrma-bold"><?php echo $this->__('View Request') ?></a>
                         <?php if($item->getIsActive()) : ?>
                         <span class="separator">|</span>
-                        <a class="link-awrma" href="<?php echo $this->getUrl('awrma/customer_rma/cancel', array('id' => $item->getId())) ?>" onclick="return confirm('<?php echo $this->__('Are you sure you would like to cancel this RMA?') ?>')" class="link-awrma-cancel"><?php echo $this->__('Cancel') ?></a>
+                        <a class="link-awrma" href="<?php echo $this->getUrl('awrma/customer_rma/cancel', array('id' => $item->getId())) ?>" onclick="return confirm('<?php echo $this->__('Are you sure you would like to cancel this Return?') ?>')" class="link-awrma-cancel"><?php echo $this->__('Cancel') ?></a>
                         <?php endif; ?>
                     </span>
                 </td>

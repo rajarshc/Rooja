@@ -27,7 +27,7 @@
     <?php if($_rmaRequest) : ?>
     <?php $_order = Mage::getModel('sales/order')->loadByIncrementId($_rmaRequest->getOrderId()) ?>
     <div class="page-title title-buttons">
-        <h1><?php echo $this->__('RMA ').$_rmaRequest->getTextId() ?>&nbsp;&ndash;&nbsp;<?php echo Mage::getModel('awrma/entitystatus')->load($_rmaRequest->getStatus())->getName() ?></h1>
+        <h1><?php echo $this->__('Return ').$_rmaRequest->getTextId() ?>&nbsp;&ndash;&nbsp;<?php echo Mage::getModel('awrma/entitystatus')->load($_rmaRequest->getStatus())->getName() ?></h1>
         <?php if(Mage::helper('awrma/config')->getAllowPrintLabel() && $_rmaRequest->getStatus() != Mage::helper('awrma/status')->getResolvedCanceledStatusId()) : ?>
             <?php if($_rmaRequest->getStatus() == Mage::helper('awrma/status')->getPendingApprovalStatusId()) : ?>
         <span class="link-awrma-printlabel link-awrma-inactive" onclick="return false"><?php echo $this->__('Print Label') ?></span>
