@@ -73,7 +73,7 @@ body{
 	position: absolute;
 	font-size: 1.4em;
 	z-index: 15;
-	width: 135px;
+	width: 200px;
 	top: 70px;
 	color:#fff;
 	text-decoration: none;
@@ -119,6 +119,7 @@ body{
 }
 #mainNav ul li ul li a:hover{
 	background-color: #431f4c;
+	color:#AB8FB2;
 }
 #mainNav ul li a{
 	font-size: 1.4em;
@@ -173,6 +174,7 @@ ul#myAccount li ul li a{
 ul#myAccount li ul li a:hover{
 	background-color: #431f4c;
 	cursor: pointer;
+	color:#AB8FB2;
 }
 #myBag{
 	display: block;
@@ -191,8 +193,8 @@ ul#myAccount li ul li a:hover{
 /* ~~~~~ FOOTER ~~~~~ */
 
 #mainFooter{width:100%;background:url(../images/bgs/footer-diag.png) repeat;padding:30px 0;color:#fff;overflow:hidden;}
-#mainFooter a{color:#fff;text-decoration:underline;}
-#mainFooter a:hover{color:#C7B299;}
+#mainFooter a{color:#fff;}
+#mainFooter a:hover{color:#C7B299;text-decoration:underline;}
 #mainFooter h4{text-transform:uppercase;font-size:1.4em;margin-bottom:20px;}
 #mainFooter ul li{font-size:1.2em;line-height:1.67em;}
 #mainFooter ul#socialLinks, #mainFooter ul#socialLinks a, #copyrightInfo, #copyrightInfo a{color:#c7b299;}
@@ -217,7 +219,7 @@ ul#myAccount li ul li a:hover{
 #pageContent .std  ul li, #pageContent .std  ol li{padding-bottom:5px;}
 p.question{margin:0;font-weight:bold;color:#431f4c;}
 #tocLinks{font-size:1.2em;line-height:2em;}
-#tocLinks a{text-decoration:underline;}
+#tocLinks a:hover{color:#431f4c;}
 
 .main{padding-bottom:20px;}
 
@@ -284,6 +286,7 @@ h2#saleDetails{color:#c60;margin:22px 0 5px;}
 #productBreakdown{padding:10px 5px;border-top:1px solid #ccc;border-bottom:1px solid #8e7994;margin-bottom:15px;}
 #productBreakdown li{display:inline;padding:0 4px;}
 #productBreakdown li a{color:#666;}
+#productBreakdown li a.selected{color:#000;}
 
 #likeThis{background-color:#431f4c;padding:8px 11px;font-weight:bold;color:#fff;line-height:34px;height:34px;}
 #likeBtn{background-image:url(../images/icons/like-btn.png);width:62px;height:34px;}
@@ -320,7 +323,7 @@ h2#saleDetails{color:#c60;margin:22px 0 5px;}
 #nextProduct p{width:150px;float: right;}
 
 #commentsRelated{background:url(../images/bgs/black-diag.png) repeat;overflow:hidden;margin-top:25px;padding:30px 0;}
-#commentsRelated h3{color:#fff;margin-bottom:22px;}
+#commentsRelated h3{color:#fff;margin-bottom:22px;text-transform:uppercase;}
 
 #related ul li{display:inline;}
 #related ul li a{position:relative;float:left;display:block;margin:0 5px 5px 0px;max-height: 114px;overflow: hidden;}

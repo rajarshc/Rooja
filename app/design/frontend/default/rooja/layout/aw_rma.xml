@@ -11,7 +11,7 @@
     <customer_account>
         <reference name="customer_account_navigation">
             <block type="awrma/customer_accountlink" name="awrma.customer.account.checker" as="awrma_customer_account_checker">
-                <action method="addLink"></action>
+                <action method="addLink"><label>Returns</label></action>
             </block>
         </reference>
     </customer_account>

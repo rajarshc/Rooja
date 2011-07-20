@@ -61,6 +61,7 @@ if (!$categoryIds == null){
 
 <section id="saleDetails">
 	<div class="container">
+		<a href="#" class="needAssistance fr" title="Need Assitance? Talk to a live rep"><img src="<?php echo $this->getSkinUrl('images/icons/question-mark.png'); ?>" alt="Question mark icon"> Need Assistance</a>
 <div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
 		<?php if (!$categoryIds == null){ ?>
 			<?php if ($expired == 1) { ?>
@@ -76,7 +77,7 @@ if (!$categoryIds == null){
 		<?php }else { ?>
 		<a title="Back to Home" class="backTo fl" href="/">Back to home</a>
 		<?php } ?>
-		<a href="#" class="needAssistance fr" title="Need Assitance? Talk to a live rep"><img src="<?php echo $this->getSkinUrl('images/icons/question-mark.png'); ?>" alt="Question mark icon"> Need Assistance</a>
+		
 		<section id="productDetails" class="col4 clear">
 			<section id="gallery" class="col2 fl">
 				            <?php echo $this->getChildHtml('media') ?>
@@ -318,7 +319,7 @@ echo '<span>' . $likes = $xml->link_stat->like_count . '</span>';
 <div id="fb-root"></div><script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:comments href="<?php echo $currentUrl = $this->helper('core/url')->getCurrentUrl();?>" num_posts="2" width="460" colorscheme="dark"></fb:comments>
 		</section>
 		<section id="related" class="col2 fl noMargin">
-			<h3>You might also like</h3>
+			<h3>Wear it With</h3>
 
         <?php echo $this->getChildHtml('upsell_products') ?>
 
