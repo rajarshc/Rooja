@@ -323,7 +323,7 @@ h2#saleDetails{color:#c60;margin:22px 0 5px;}
 #nextProduct p{width:150px;float: right;}
 
 #commentsRelated{background:url(../images/bgs/black-diag.png) repeat;overflow:hidden;margin-top:25px;padding:30px 0;}
-#commentsRelated h3{color:#fff;margin-bottom:22px;text-transform:uppercase;}
+#commentsRelated h3{color:#fff;margin-bottom:22px;}
 
 #related ul li{display:inline;}
 #related ul li a{position:relative;float:left;display:block;margin:0 5px 5px 0px;max-height: 114px;overflow: hidden;}
@@ -353,7 +353,7 @@ p.saleEnding{color:#cc6600;margin-bottom:10px;}
 
 .backTo{margin:18px 0 10px;text-decoration:underline;font-size:1.2em;padding-left:18px;background:url(../images/icons/back-arrow.png) no-repeat top left;height:14px;line-height:14px;display:block;}
 .needAssistance{background-color:#cc6600;color:#fff;padding:5px;margin:10px 0;font-size:1.2em;height:20px;display:block;line-height:20px;}
-#saleDetails .needAssistance{margin:0;}
+.needAssistance.noMargin{margin:0;}
 .needAssistance img{vertical-align:middle;}
 .backToTop{text-decoration:underline;color:#858585;font-size:1.2em;padding-left:18px;background:url(../images/icons/back-to-top.png) no-repeat top left;height:20px;line-height:20px;display:block;}
 
