@@ -33,7 +33,7 @@
         padding-right: 7px;
     }
 </style>
-<h1><?php echo $this->__('RMA').' '.$rmaRequest->getTextId() ?></h1>
+<h1><?php echo $this->__('Return').' '.$rmaRequest->getTextId() ?></h1>
 <p><?php echo $this->__('Date:') ?> <?php echo $this->formatDate($rmaRequest->getCreatedAt()) ?></p>
 <p class="awrma-line"></p>
 <div class="awrma-left-column">
@@ -76,7 +76,7 @@
 <?php if($this->getFormData()->getAdditionalinfo()) : ?>
 <p><?php echo $this->htmlEscape($this->getFormData()->getAdditionalinfo()) ?></p>
 <?php endif ?>
-<h2><?php echo $this->__('Items RMA Requested for') ?></h2>
+<h2><?php echo $this->__('Items Return Requested for') ?></h2>
 <?php $_order = $rmaRequest->getOrder() ?>
 <table id="awrma-requested-items" class="data-table" cellspacing="0">
     <col />

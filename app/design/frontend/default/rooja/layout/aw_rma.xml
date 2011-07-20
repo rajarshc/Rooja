@@ -11,7 +11,7 @@
     <customer_account>
         <reference name="customer_account_navigation">
             <block type="awrma/customer_accountlink" name="awrma.customer.account.checker" as="awrma_customer_account_checker">
-                <action method="addLink"><label>Returns</label></action>
+                <action method="addLink"><name>awrma_customer_account_checker</name><path>rma/customer_rma/list/</path><label>Returns</label></action>
             </block>
         </reference>
     </customer_account>
@@ -23,9 +23,8 @@
         </reference>
         <reference name="content">
             <block type="awrma/customer_dashboard" name="awrma.customer.account.dashboard" as="awrma_customer_account_dashboard" />
-            <block type="awrma/customer_backlink" name="awrma.customer.account.link.back" template="aw_rma/customer/backlink.phtml">
-                <action method="setBackLink"><link>customer/account</link></action>
-            </block>
+            
+            
         </reference>
     </awrma_customer_rma_list>
 
@@ -39,9 +38,7 @@
             <block type="awrma/customer_new" name="awrma.customer.account.new" as="awrma_customer_account_new">
                 <action method="setGuestMode"><mode>0</mode></action>
             </block>
-            <block type="awrma/customer_backlink" name="awrma.customer.account.link.back" template="aw_rma/customer/backlink.phtml">
-                <action method="setBackLink"><link>awrma/customer_rma/list</link></action>
-            </block>
+            
         </reference>
     </awrma_customer_rma_new>
 
@@ -54,9 +51,7 @@
             <block type="awrma/customer_printlabel" name="awrma.customer.account.printlabel" as="awrma_customer_account_printlabel">
                 <action method="setGuestMode"><mode>0</mode></action>
             </block>
-            <block type="awrma/customer_backlink" name="awrma.customer.account.link.back" template="aw_rma/customer/backlink.phtml">
-                <action method="setBackLink"><link>awrma/customer_rma/view</link><mode>1</mode></action>
-            </block>
+            
         </reference>
     </awrma_customer_rma_printlabel>
 
@@ -73,9 +68,7 @@
             <block type="awrma/customer_printlabel" name="awrma.customer.account.printlabel" as="awrma_customer_account_printlabel">
                 <action method="setGuestMode"><mode>1</mode></action>
             </block>
-            <block type="awrma/customer_backlink" name="awrma.customer.account.link.back" template="aw_rma/customer/backlink.phtml">
-                <action method="setBackLink"><link>awrma/guest_rma/view</link><mode>1</mode></action>
-            </block>
+            
         </reference>
     </awrma_guest_rma_printlabel>
 
@@ -94,9 +87,7 @@
         </reference>
         <reference name="content">
             <block type="awrma/customer_view" name="awrma.customer.account.view" as="awrma_customer_account_view" />
-            <block type="awrma/customer_backlink" name="awrma.customer.account.link.back" template="aw_rma/customer/backlink.phtml">
-                <action method="setBackLink"><link>awrma/customer_rma/list</link></action>
-            </block>
+            
         </reference>
     </awrma_customer_rma_view>
 
@@ -123,9 +114,7 @@
             <block type="awrma/customer_new" name="awrma.orderdetails.newform">
                 <action method="setGuestMode"><mode>1</mode></action>
             </block>
-            <block type="awrma/customer_backlink" name="awrma.customer.account.link.back" template="aw_rma/customer/backlink.phtml">
-                <action method="setBackLink"><link>awrma/guest_rma/index</link></action>
-            </block>
+            
         </reference>
     </awrma_guest_rma_new>
 
