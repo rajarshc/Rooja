@@ -62,6 +62,7 @@ foreach ($categories as $_category){
              <article class="homeSale size2 fl masonry">
                 <a href="<?php echo  $c->getURL() ?>" title="View sale details for: <?php echo $c->getName(); ?>" class="product-image"><img src="/media/catalog/category/<?php echo $c->getThumbnail(); ?>" alt="" width="236px" /></a>
                 <h2><?php echo $c->getName(); ?></h2>
+				<?php echo '<p>'. date('M jS \a\t g:ia', strtotime($enddate)) .'</p>';?>
             </article>
 				<?php } $i++; }}}}  }} ?>
 			
