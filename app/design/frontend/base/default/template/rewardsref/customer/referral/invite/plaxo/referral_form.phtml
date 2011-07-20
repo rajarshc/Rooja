@@ -18,16 +18,18 @@
             <div class="input-box" >
                 <label for="to">To</label>
                <br/>
-                                <textarea name="contacts" id="recipient_list" class="rewardsref_recipient_list" rows="7"></textarea>
+                                <textarea name="contacts" id="recipient_list" class="rewardsref_recipient_list" rows="7">Enter email addresses separated by commas</textarea>
                                 <br/>
                                 <?php echo $this->getChildHtml('plaxo_contact_chooser'); ?>
                             
                 <br/>
             </div>
+			<?php $session = Mage::getSingleton('customer/session');
 
+			if($session->isLoggedIn()) {$customer = $session->getCustomer();}?>
             <div class="input-box" style="display:none;" >
                 <label for="subject"><?php echo $this->__('Subject (Optional)') ?></label>
-                <textarea name="subject" id="subject" class="required-entry textarea" style="width:100%;" rows="1" cols="80" title="<?php echo $this->__('Subject') ?>"  >Enter email addresses separated by commas</textarea>
+                <textarea name="subject" id="subject" class="required-entry textarea" style="width:100%;" rows="1" cols="80" title="<?php echo $this->__('Subject') ?>"  ><?php echo $customer->getFirstname(); ?> thinks you&rsquo;d love us</textarea>
             </div>
 
             <div class="input-box">
