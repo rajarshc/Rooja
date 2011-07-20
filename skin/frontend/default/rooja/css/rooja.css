@@ -256,7 +256,8 @@ p.question{margin:0;font-weight:bold;color:#431f4c;}
 #saleInfo{padding-top:25px;}
 #saleInfo h1{margin-bottom:20px;}
 #filterSale{position: relative;margin-top:25px;padding:15px 10px 25px;background-color:#e1e1e1;}
-.shareThis p{margin-bottom:0px;}
+.shareThis p{text-transform:normal;}
+.shareThis h4{margin-bottom:0px;}
 .shareThis img{margin-left:5px;}
 #filterSale select{width:100%;font-size:1.4em;margin-bottom:10px;}
 #filterSale a {text-decoration:underline;color:#949494;font-size:1.2em;float:left;margin-top:12px;position: absolute;bottom: 15px;}
@@ -286,7 +287,7 @@ h2#saleDetails{color:#c60;margin:22px 0 5px;}
 #productBreakdown{padding:10px 5px;border-top:1px solid #ccc;border-bottom:1px solid #8e7994;margin-bottom:15px;}
 #productBreakdown li{display:inline;padding:0 4px;}
 #productBreakdown li a{color:#666;}
-#productBreakdown li a.selected{color:#000;}
+#productBreakdown li a.selected{color:#000;font-weight:bold;}
 
 #likeThis{background-color:#431f4c;padding:8px 11px;font-weight:bold;color:#fff;line-height:34px;height:34px;}
 #likeBtn{background-image:url(../images/icons/like-btn.png);width:62px;height:34px;}
