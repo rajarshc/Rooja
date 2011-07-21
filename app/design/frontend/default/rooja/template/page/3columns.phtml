@@ -49,7 +49,7 @@ if(!Mage::getSingleton('customer/session')->isLoggedIn() && ($agent !="facebooke
 } ?>
 <body<?php echo $this->getBodyClass()?' class="'.$this->getBodyClass().'"':'' ?>>
 <?php echo $this->getChildHtml('after_body_start') ?>
-<div class="wrapper">
+<!-- <div class="wrapper"> -->
     <?php echo $this->getChildHtml('global_notices') ?>
         <?php echo $this->getChildHtml('header') ?>
         <div class="container col3-layout">
@@ -67,7 +67,7 @@ if(!Mage::getSingleton('customer/session')->isLoggedIn() && ($agent !="facebooke
         </div>
         <?php echo $this->getChildHtml('footer') ?>
         <?php echo $this->getChildHtml('before_body_end') ?>
-</div>
+<!-- </div> -->
 <?php echo $this->getAbsoluteFooter() ?>
 </body>
 </html>
