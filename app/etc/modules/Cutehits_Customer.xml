@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+ <config>
+ <modules>
+ <Cutehits_Customer>
+ <active>true</active>
+ <codePool>local</codePool>
+ 
+ </Cutehits_Customer>
+ </modules>
+ </config>

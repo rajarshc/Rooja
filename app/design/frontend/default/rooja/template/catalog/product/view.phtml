@@ -187,7 +187,7 @@ echo '<span>' . $likes = $xml->link_stat->like_count . '</span>';
 					<?php if (!$fbprice == null) { ?>
 					<?php echo '$' . $fbprice; } else { ?>
 					<?php echo '$' . number_format($_product->getSpecialprice(), 2); } ?></span></p>
-					<a href="#" class="sizeChart fr">Size Chart</a>
+					<a href="#" onclick="window.open('/size-chart', 'a', 'width=500, height=400, scrollbars=0, resizable=0')" class="sizeChart fr">Size Chart</a>
 
 					<br class="clear">
 
