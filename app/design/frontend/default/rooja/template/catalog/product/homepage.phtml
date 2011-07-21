@@ -38,6 +38,7 @@ $categories = Mage::helper('catalog/category')->getStoreCategories();
 foreach ($categories as $_category){
     if($_category->hasChildren()){
         $_category->getId(); // category id
+		if($_category !=5){
         foreach($_category->getChildren() as $subcategory){
 		$c = Mage::getModel('catalog/category')->load($subcategory->getId());
             if($c->getIsActive()){ // check if category is active
@@ -64,7 +65,7 @@ foreach ($categories as $_category){
                 <h2><?php echo $c->getName(); ?></h2>
 				<?php echo '<p>'. date('M jS \a\t g:ia', strtotime($enddate)) .'</p>';?>
             </article>
-				<?php } $i++; }}}}  }} ?>
+				<?php } $i++; }}}}}  }} ?>
 			
 
 <?php
