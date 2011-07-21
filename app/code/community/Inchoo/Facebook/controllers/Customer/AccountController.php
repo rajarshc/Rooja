@@ -134,6 +134,7 @@ class Inchoo_Facebook_Customer_AccountController extends Mage_Core_Controller_Fr
 					->setFirstname($standardInfo['first_name'])
 					->setLastname($standardInfo['last_name'])
 					->setEmail($standardInfo['email'])
+					->setData( 'group_id', 4)
 					->setPassword($randomPassword)
 					->setConfirmation($randomPassword)
 					->setFacebookUid($this->_getSession()->getUid());

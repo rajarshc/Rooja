@@ -35,6 +35,8 @@
 <?php echo $this->getChildHtml('head') ?>
 </head>
 <?php /* AM EDIT - Redirect to Login Page */ ?>
+<?php if(Mage::getSingleton('customer/session')->isLoggedIn() && (Mage::getSingleton('customer/session')->getCustomerGroupId() == 4)){ ?>
+<?php header("Status: 301"); header('Location: '.$this->getUrl('unapproved')) ; exit; } ?> 
 <?php if(isset($_SERVER['HTTP_USER_AGENT'])){$agent = $_SERVER['HTTP_USER_AGENT'];}?>
 
 <?php Mage::getSingleton('customer/session')->setBeforeAuthUrl($this->getRequest()->getRequestUri());  //save requested URL for later redirection
