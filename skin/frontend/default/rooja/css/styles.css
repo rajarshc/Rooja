@@ -933,7 +933,7 @@ h1.submitted {padding-top: 40px;}
 .cart .data-table tr.even {background: inherit;}
 .cart .data-table td {border: none;padding: 10px 0;}
 .cart .data-table .product-image {float: left;margin: 0 20px;}
-.cart .btn-remove2 {margin: 0 0 0 40px;}
+.cart .btn-remove2 {margin: 3px 0 0 20px;}
 .cart .col2-set .col-2 {width: 250px;margin: 0 60px 0 0;}
 .cart .total_gray {background: #e0e0e0;font-size: 14px;padding: 20px 10px;line-height: 20px;margin: 0 0 10px;}
 .cart .total_gray h2 {font-size: 18px;text-transform: uppercase;text-align: center;margin: 0 0 10px;}
