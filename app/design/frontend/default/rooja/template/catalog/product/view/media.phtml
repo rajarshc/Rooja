@@ -36,7 +36,7 @@
     $_helper = $this->helper('catalog/output');
     $_gallery = $this->getGalleryImages();
 
-    $_resize = 480;
+    $_resize = 395;
 ?>
 
 <style type="text/css">
@@ -95,7 +95,7 @@ return false;
 <?php endif; ?>
 <p class="product-image-zoom">
 	<?php
-		$_img = '<img id="image" src="'.$this->helper('catalog/image')->init($_product, 'image')->keepFrame(false)->resize($_resize).'" alt="'.$this->htmlEscape($this->getImageLabel()).'" width="395px" title="'.$this->htmlEscape($this->getImageLabel()).'" onclick="popWin(\''.$this->getGalleryUrl().'.\', \'gallery\', \'width=300,height=300,left=50,top=50,location=no,status=yes,scrollbars=yes,resizable=yes\'); return false;" />';
+		$_img = '<img id="image" src="'.$this->helper('catalog/image')->init($_product, 'image')->keepFrame(false)->resize($_resize).'" alt="'.$this->htmlEscape($this->getImageLabel()).'" title="'.$this->htmlEscape($this->getImageLabel()).'" onclick="popWin(\''.$this->getGalleryUrl().'.\', \'gallery\', \'width=300,height=300,left=50,top=50,location=no,status=yes,scrollbars=yes,resizable=yes\'); return false;" />';
         echo $_helper->productAttribute($_product, $_img, 'image')
     ?>
     <img id="slide-loader" src="<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif') ?>" />
