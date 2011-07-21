@@ -77,7 +77,7 @@
             <?php $mergedCells = ($this->helper('tax')->displayCartBothPrices() ? 2 : 1); ?>
                 <thead>
                     <tr>
-                        <th rowspan="<?php echo $mergedCells; ?>" class="a-center"><?php echo $this->__('Remove') ?></th>
+                        <!--<th rowspan="<?php echo $mergedCells; ?>" class="a-center"><?php echo $this->__('Remove') ?></th>-->
                         <th rowspan="<?php echo $mergedCells; ?>"><span class="nobr"><?php echo $this->__('Product Name') ?></span></th>
                         <?php /* <th rowspan="<?php echo $mergedCells; ?>"></th> */ ?>
                         <?php if ($this->helper('wishlist')->isAllowInCart()) : ?>
