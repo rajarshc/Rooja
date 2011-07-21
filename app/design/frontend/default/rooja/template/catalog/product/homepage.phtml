@@ -143,4 +143,11 @@ $numProducts = $this->getNumProducts() ? $this->getNumProducts() : 20;
 		</article>		
 
 <?php endif; */ ?>
-
+<script type="text/javascript">
+	jQuery(document).ready(function(){
+		jQuery(".homeSale").hover(function () {
+		    jQuery(this).find('p').fadeToggle(500);
+		  });
+	 });
+			
+</script>
