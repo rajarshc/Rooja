@@ -128,3 +128,16 @@ strong{font-weight:bold;}
 .register label {font-size: 12px;}
 .input-box {margin: 5px 0;}
 .register .checkbox {float: left;width: 20px;margin: 0 10px 0;}
+
+
+
+
+.fields .field {
+	display: inline-block;
+	*display: inline;
+	zoom: 1;
+}
+
+
+
+
