@@ -137,6 +137,12 @@ strong{font-weight:bold;}
 	*display: inline;
 	zoom: 1;
 }
+.customer-name .field {
+	width: 190px;
+}
+.customer-name .field:first-child {
+/*	margin-right: 3%;*/
+}
 
 
 
