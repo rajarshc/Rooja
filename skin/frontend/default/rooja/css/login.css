@@ -137,7 +137,7 @@ strong{font-weight:bold;}
 	*display: inline;
 	zoom: 1;
 }
-.customer-name .field {
+.customer-name .field input {
 	width: 190px;
 }
 .customer-name .field:first-child {
