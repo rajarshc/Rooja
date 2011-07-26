@@ -18,91 +18,147 @@
 body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; }
 @-->
 
-<body style="background:#F6F6F6; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:12px; margin:0; padding:0;">
-<div style="background:#F6F6F6; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:12px; margin:0; padding:0;">
-<table cellspacing="0" cellpadding="0" border="0" width="100%">
-<tr>
-    <td align="center" valign="top" style="padding:20px 0 20px 0">
-        <table bgcolor="#FFFFFF" cellspacing="0" cellpadding="10" border="0" width="650" style="border:1px solid #E0E0E0;">
-            <!-- [ header starts here] -->
-            <tr>
-                <td valign="top"><a href="{{store url=""}}"><img src="{{skin url="images/logo_email.gif" _area='frontend'}}" alt="{{var store.getFrontendName()}}"  style="margin-bottom:10px;" border="0"/></a></td>
-            </tr>
-            <!-- [ middle starts here] -->
-            <tr>
-                <td valign="top">
-                    <h1 style="font-size:22px; font-weight:normal; line-height:22px; margin:0 0 11px 0;"">Hello, {{htmlescape var=$order.getCustomerName()}}</h1>
-                    <p style="font-size:12px; line-height:16px; margin:0;">
-                        Thank you for your order from {{var store.getFrontendName()}}.
-                        Once your package ships we will send an email with a link to track your order.
-                        You can check the status of your order by <a href="{{store url="customer/account/"}}" style="color:#1E7EC8;">logging into your account</a>.
-                        If you have any questions about your order please contact us at <a href="mailto:{{config path='trans_email/ident_support/email'}}" style="color:#1E7EC8;">{{config path='trans_email/ident_support/email'}}</a> or call us at <span class="nobr">{{config path='general/store_information/phone'}}</span> Monday - Friday, 8am - 5pm PST.
-                    </p>
-                    <p style="font-size:12px; line-height:16px; margin:0;">Your order confirmation is below. Thank you again for your business.</p>
-            </tr>
-            <tr>
-                <td>
-                    <h2 style="font-size:18px; font-weight:normal; margin:0;">Your Order #{{var order.increment_id}} <small>(placed on {{var order.getCreatedAtFormated('long')}})</small></h2>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <table cellspacing="0" cellpadding="0" border="0" width="650">
-                        <thead>
-                        <tr>
-                            <th align="left" width="325" bgcolor="#EAEAEA" style="font-size:13px; padding:5px 9px 6px 9px; line-height:1em;">Billing Information:</th>
-                            <th width="10"></th>
-                            <th align="left" width="325" bgcolor="#EAEAEA" style="font-size:13px; padding:5px 9px 6px 9px; line-height:1em;">Payment Method:</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td valign="top" style="font-size:12px; padding:7px 9px 9px 9px; border-left:1px solid #EAEAEA; border-bottom:1px solid #EAEAEA; border-right:1px solid #EAEAEA;">
-                                {{var order.getBillingAddress().format('html')}}
-                            </td>
-                            <td>&nbsp;</td>
-                            <td valign="top" style="font-size:12px; padding:7px 9px 9px 9px; border-left:1px solid #EAEAEA; border-bottom:1px solid #EAEAEA; border-right:1px solid #EAEAEA;">
-                                {{var payment_html}}
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <br/>
-                    {{depend order.getIsNotVirtual()}}
-                    <table cellspacing="0" cellpadding="0" border="0" width="650">
-                        <thead>
-                        <tr>
-                            <th align="left" width="325" bgcolor="#EAEAEA" style="font-size:13px; padding:5px 9px 6px 9px; line-height:1em;">Shipping Information:</th>
-                            <th width="10"></th>
-                            <th align="left" width="325" bgcolor="#EAEAEA" style="font-size:13px; padding:5px 9px 6px 9px; line-height:1em;">Shipping Method:</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td valign="top" style="font-size:12px; padding:7px 9px 9px 9px; border-left:1px solid #EAEAEA; border-bottom:1px solid #EAEAEA; border-right:1px solid #EAEAEA;">
-                                {{var order.getShippingAddress().format('html')}}
-                                &nbsp;
-                            </td>
-                            <td>&nbsp;</td>
-                            <td valign="top" style="font-size:12px; padding:7px 9px 9px 9px; border-left:1px solid #EAEAEA; border-bottom:1px solid #EAEAEA; border-right:1px solid #EAEAEA;">
-                                {{var order.getShippingDescription()}}
-                                &nbsp;
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <br/>
-                    {{/depend}}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"  xml:lang="en" lang="en" dir="ltr"> 
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+	<style type="text/css">
+	
+	td {
+		padding: 10px 8px 2px;
+		vertical-align:top;
+	}
+	body, p {
+		font-family: arial, sans-serif;
+		font-size: 13px;
+		line-height: 15px;
+		color: #373737;
+	}
+	
+	table {
+		border-collapse:collapse;
+		width:100%;	
+	}
+	
+	a {
+		text-decoration:underline;
+		color: #181818;
+	}
+	.order-specs td {
+		padding: 10px 8px 10px;
+	}
+	
+	#wrapper {
+		width: 650px;
+	}
+
+	.logo {
+	background-color:#50305f;
+	}
+
+	.item-info{
+		color: #50305f;
+		font-weight: bold;
+		font-size: 14px;
+	}
+	.purchase-header {
+		color: white;
+		background-color: #412647;
+		height: 40px;
+		font-size:14px;
+		font-weight:bold;
+	}
+	.order-specs {
+		background-color:#e2e2e2;
+		width:100%;
+	}
+	
+	.thanks {padding-top: 20px;}
+	
+	.centered {
+		margin: 0 auto;
+	}
+	
+	.smaller {
+		width: 90%;
+	}
+	
+	.smallest {
+		width: 88%;
+	}
+	.costs {
+		width:40%;
+		margin-left: 60%;
+		padding-bottom: 30px;
+	}
+	
+/*	div, table{
+		border:1px solid #ff0000;
+	}*/
+
+	</style>
+	
+</head>
+<body>
+<div id="wrapper">
+		<table>
+			<tr>
+				<td class="logo"><img src="{{skin url="images/email/logo.jpg" _area='frontend'}}" alt="rooja"/></td>
+			</tr>
+		</table>
+
+	<div class="centered smaller">
+				<div class="centered thanks"><img src="thanks.jpg" alt="Thanks for your purchase!" /></div>
+		<table class="order-specs">
+			<tr class="purchase-header">
+				<td>Order Number</td>
+				<td>Order Date</td>
+				<td>Shipping Address</td>
+			</tr>
+		
+			<tr>
+				<td>29408</td>
+				<td>February 17, 2011</td>
+				<td>{{var order.shipping_address.format('html')}</td>
+			</tr>		
+		</table>
+
+		<table>
+			<tr class="item-info">
                     {{layout handle="sales_email_order_items" order=$order}}
-                    <p style="font-size:12px; margin:0 0 10px 0">{{var order.getEmailCustomerNote()}}</p>
-                </td>
-            </tr>
-            <tr>
-                <td bgcolor="#EAEAEA" align="center" style="background:#EAEAEA; text-align:center;"><center><p style="font-size:12px; margin:0;">Thank you, <strong>{{var store.getFrontendName()}}</strong></p></center></td>
-            </tr>
-        </table>
-    </td>
-</tr>
-</table>
-</div>
+			</tr>
+		</table>
+		
+			<img src="break.jpg" />
+	</div>
+	
+		<div class="costs"> 
+			<table>
+				<tr>
+					<td>Subtotal</td>
+					<td>$738.24</td>
+				</tr>
+				<tr>
+					<td>Shipping & Handling</td>
+					<td>$0.00</td>
+				</tr>
+				<tr>
+					<td>Tax</td>
+					<td>$11.03</td>
+				</tr>
+				<tr>
+					<td><strong>Grand Total</strong></td>
+					<td><strong>$759.92</strong></td>
+				</tr>
+			</table>
+		</div>
+	
+	<div class="smaller centered">
+		Questions about your order? Contact us at <a href="mailto:contact@rooja.com">contact@rooja.com</a> or call us at (888) 767-4482.
+		</div>
+	</div>
+	
 </body>
+</html>
