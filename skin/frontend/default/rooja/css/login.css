@@ -44,12 +44,22 @@ h1#logo{
     width:228px;height:16px;
     margin-bottom:15px;
 }
+#retrievePassword{
+    background-image:url(../images/splash/retrieve-your-password-here.png);
+    width:365px;height:16px;
+    margin-bottom:15px;
+}
 #forgetPass{margin-top:0px;text-decoration:underline;color:#c7becc;}
 #forgetPass:hover{color:#fff;}
 
 #signUp{
     background-image:url(../images/splash/sign-up.png);
     width:84px;height:16px;
+    margin-bottom:15px;
+}
+#getEarlyAccess{
+    background-image:url(../images/splash/get-early-access.png);
+    width:208px;height:16px;
     margin-bottom:15px;
 }
 
@@ -87,6 +97,12 @@ form input#loginBtn{
 
 #tellMeMore{
     background-image:url(../images/splash/join-now-btn.png);
+    width:382px;height:39px;
+    margin-bottom:15px;
+}
+
+#getOnList{
+    background-image:url(../images/splash/get-on-list-btn.png);
     width:382px;height:39px;
     margin-bottom:15px;
 }
