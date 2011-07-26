@@ -152,3 +152,14 @@ strong{font-weight:bold;}
 
 
 
+.defaultvalue_label {
+	opacity: 0.75 !important;
+}
+.defaultvalue_label_focus {
+	opacity: 0.5 !important;
+}
+
+
+
+
+
