@@ -138,10 +138,10 @@ strong{font-weight:bold;}
 	zoom: 1;
 }
 .customer-name .field input {
-	width: 190px;
+	width: 176px;
 }
 .customer-name .field:first-child {
-/*	margin-right: 3%;*/
+	margin-right: 8px;
 }
 
 
