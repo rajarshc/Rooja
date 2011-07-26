@@ -98,56 +98,7 @@ background-color:#50305f;
 			</tr>
 		</table>
 
-	<div class="centered smaller">
-				<div class="centered thanks"><img src="{{skin url="images/email/thanks.jpg" _area='frontend'}}" alt="Thanks for your purchase!" /></div>
-		<table class="order-specs">
-			<tr class="purchase-header">
-				<td>Order Number</td>
-				<td>Order Date</td>
-				<td>Shipping Address</td>
-			</tr>
-		
-			<tr>
-				<td>29408</td>
-				<td>February 17, 2011</td>
-				<td>{{var order.shipping_address.format('html')}</td>
-			</tr>		
-		</table>
+<img src="{{skin url="images/email/thanks.jpg" _area='frontend'}}" alt="Thanks for your purchase!" />
 
-		<table>
-			<tr class="item-info">
-                    {{layout handle="sales_email_order_items" order=$order}}
-			</tr>
-		</table>
-		
-			<img src="{{skin url="images/email/break.jpg" _area='frontend'}}" />
-	</div>
-	
-		<div class="costs"> 
-			<table>
-				<tr>
-					<td>Subtotal</td>
-					<td>$738.24</td>
-				</tr>
-				<tr>
-					<td>Shipping & Handling</td>
-					<td>$0.00</td>
-				</tr>
-				<tr>
-					<td>Tax</td>
-					<td>$11.03</td>
-				</tr>
-				<tr>
-					<td><strong>Grand Total</strong></td>
-					<td><strong>$759.92</strong></td>
-				</tr>
-			</table>
-		</div>
-	
-	<div class="smaller centered">
-		Questions about your order? Contact us at <a href="mailto:contact@rooja.com">contact@rooja.com</a> or call us at (888) 767-4482.
-		</div>
-	</div>
-	
 </body>
 </html>
