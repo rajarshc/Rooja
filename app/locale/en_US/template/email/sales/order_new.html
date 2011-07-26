@@ -87,7 +87,7 @@ a {
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />	
 </head>
 <body>
-		<table style="margin:0 auto;">
+		<table style="margin-left:auto; margin-right:auto;">
 			<tr>
 				<td style="background:#50305f;"><img src="{{skin url="images/email/logo.jpg" _area='frontend'}}" alt="rooja"/></td>
 			</tr>
@@ -124,11 +124,6 @@ a {
                        <tr>
                            <td valign="top" style="font-size:12px; padding:7px 9px 9px 9px; border-left:1px solid #EAEAEA; border-bottom:1px solid #EAEAEA; border-right:1px solid #EAEAEA;">
                                {{var order.getShippingAddress().format('html')}}
-                               &nbsp;
-                           </td>
-                           <td>&nbsp;</td>
-                           <td valign="top" style="font-size:12px; padding:7px 9px 9px 9px; border-left:1px solid #EAEAEA; border-bottom:1px solid #EAEAEA; border-right:1px solid #EAEAEA;">
-                               {{var order.getShippingDescription()}}
                                &nbsp;
                            </td>
                        </tr>
