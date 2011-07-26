@@ -153,10 +153,10 @@ strong{font-weight:bold;}
 
 
 .defaultvalue_label {
-	opacity: rgba(46,26,51,0.75) !important;
+	color: rgba(46,26,51,0.75) !important;
 }
 .defaultvalue_label_focus {
-	opacity: rgba(46,26,51,0.5) !important;
+	color: rgba(46,26,51,0.5) !important;
 }
 
 
