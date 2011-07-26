@@ -39,6 +39,11 @@ h1#logo{
     float:left;
     margin:0 20px 15px 0;
 }
+#createAccount{
+    background-image:url(../images/splash/create-an-account.png);
+    width:228px;height:16px;
+    margin-bottom:15px;
+}
 #forgetPass{margin-top:0px;text-decoration:underline;color:#c7becc;}
 #forgetPass:hover{color:#fff;}
 
