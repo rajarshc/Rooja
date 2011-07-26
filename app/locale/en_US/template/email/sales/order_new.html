@@ -43,10 +43,6 @@ a {
 	width: 650px;
 }
 
-.logo {
-background-color:#50305f;
-}
-
 .item-info{
 	color: #50305f;
 	font-weight: bold;
@@ -91,10 +87,9 @@ background-color:#50305f;
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />	
 </head>
 <body>
-<div id="wrapper">
-		<table>
+		<table style="margin:0 auto;">
 			<tr>
-				<td class="logo"><img src="{{skin url="images/email/logo.jpg" _area='frontend'}}" alt="rooja"/></td>
+				<td style="background:#50305f;"><img src="{{skin url="images/email/logo.jpg" _area='frontend'}}" alt="rooja"/></td>
 			</tr>
 		</table>
 
@@ -109,7 +104,7 @@ background-color:#50305f;
 		
 			<tr>
 				<td>{{var order.increment_id}}</td>
-				<td>{{var order.getCreatedAtFormated('long')}}</td>
+				<td>{{var order.getCreatedAtFormated('short')}}</td>
 				<td>{{var order.shipping_address.format('html')}</td>
 			</tr>		
 		</table>
