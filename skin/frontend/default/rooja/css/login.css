@@ -126,7 +126,7 @@ strong{font-weight:bold;}
 #notifyWrapper #submitBtn {float: right;width: 99px;background: #271D2A;color: #fff;text-align: center;font-weight: normal;}
 .register h3.legend {font-size: 14px;margin: 10px 0;}
 .register label {font-size: 12px;}
-.input-box {margin: 5px 0;}
+/*.input-box {margin: 5px 0;}*/
 .register .checkbox {float: left;width: 20px;margin: 0 10px 0;}
 
 
@@ -138,7 +138,7 @@ strong{font-weight:bold;}
 	zoom: 1;
 }
 .customer-name .field input {
-	width: 176px;
+	width: 166px;
 }
 .customer-name .field:first-child {
 	margin-right: 8px;

@@ -66,20 +66,11 @@ jQuery(function() {
                     <?php echo $this->getLayout()->createBlock('customer/widget_name')->setObject($this->getFormData())->toHtml() ?>
                 </li>
                 <li>
-                    <label for="email_address" class="required"><em>*</em><?php echo $this->__('Email Address') ?></label>
+                    <label for="email_address" class="required"><?php echo $this->__('Email Address') ?> *</label>
                     <div class="input-box">
                         <input type="text" name="email" id="email_address" value="<?php echo $this->htmlEscape($this->getFormData()->getEmail()) ?>" title="<?php echo $this->__('Email Address') ?>" class="input-text validate-email required-entry" />
                     </div>
                 </li>
-                <?php if ($this->isNewsletterEnabled()): ?>
-                <li class="control">
-                    <div class="input-box">
-                        <input type="checkbox" name="is_subscribed" title="<?php echo $this->__('Sign Up for Newsletter') ?>" value="1" id="is_subscribed"<?php if($this->getFormData()->getIsSubscribed()): ?> checked="checked"<?php endif; ?> class="checkbox" />
-                    </div>
-                    <label for="is_subscribed"><?php echo $this->__('Sign Up for Newsletter') ?></label>
-                </li>
-                <br/>
-                <?php endif ?>
             <?php $_dob = $this->getLayout()->createBlock('customer/widget_dob') ?>
             <?php if ($_dob->isEnabled()): ?>
                 <li><?php echo $_dob->setDate($this->getFormData()->getDob())->toHtml() ?></li>
@@ -94,6 +85,16 @@ jQuery(function() {
             <?php endif ?>
             </ul>
         </div>
+				
+        <?php if ($this->isNewsletterEnabled()): ?>
+        <li class="control">
+            <div class="input-box">
+                <input type="checkbox" name="is_subscribed" title="<?php echo $this->__('Sign Up for Newsletter') ?>" value="1" id="is_subscribed"<?php if($this->getFormData()->getIsSubscribed()): ?> checked="checked"<?php endif; ?> class="checkbox" />
+            </div>
+            <label for="is_subscribed"><?php echo $this->__('Sign Up for Newsletter') ?></label>
+        </li>
+        <br/>
+        <?php endif ?>
     <?php if($this->getShowAddressFields()): ?>
         <div class="fieldset">
             <input type="hidden" name="create_address" value="1" />
@@ -172,13 +173,13 @@ jQuery(function() {
             <ul class="form-list">
                 <li class="fields">
                     <div class="field">
-                        <label for="password" class="required"><em>*</em><?php echo $this->__('Password') ?></label>
+                        <label for="password" class="required"><?php echo $this->__('Password') ?> *</label>
                         <div class="input-box">
                             <input type="password" name="password" id="password" title="<?php echo $this->__('Password') ?>" class="input-text required-entry validate-password" />
                         </div>
                     </div>
                     <div class="field">
-                        <label for="confirmation" class="required"><em>*</em><?php echo $this->__('Confirm Password') ?></label>
+                        <label for="confirmation" class="required"><?php echo $this->__('Confirm Password') ?> *</label>
                         <div class="input-box">
                             <input type="password" name="confirmation" title="<?php echo $this->__('Confirm Password') ?>" id="confirmation" class="input-text required-entry validate-cpassword" />
                         </div>
