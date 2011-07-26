@@ -33,15 +33,15 @@
 ?>
 <script src="/js/jquery.defaultvalue.js" type="text/javascript"></script> 
 <script type="text/javascript">
-$(function() {
+jQuery(function() {
 	
-	$('input[type="text"]').defaultValue();
+	jQuery('input[type="text"]').defaultValue();
 	
 	setTimeout(function() {
 		// Chrome does not fire a change event when autofilling forms
 		// To prevent weird overlap with defaultValue and Chrome autofill,
 		// fire your own change event after 100 or so milliseconds
-		$('input[type="text"]').change();
+		jQuery('input[type="text"]').change();
 	}, 100);
 	
 });
