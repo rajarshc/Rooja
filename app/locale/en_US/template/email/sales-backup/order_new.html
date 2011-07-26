@@ -15,18 +15,82 @@
 "var order.getEmailCustomerNote()":"Email Order Note"}
 @-->
 <!--@styles
-body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; }
+td {
+	padding: 10px 8px 2px;
+	vertical-align:top;
+}
+body, p {
+	font-family: arial, sans-serif;
+	font-size: 13px;
+	line-height: 15px;
+	color: #373737;
+}
+
+table {
+	border-collapse:collapse;
+	width:100%;	
+}
+
+a {
+	text-decoration:underline;
+	color: #181818;
+}
+.order-specs td {
+	padding: 10px 8px 10px;
+}
+
+#wrapper {
+	width: 650px;
+}
+
+.logo {
+background-color:#50305f;
+}
+
+.item-info{
+	color: #50305f;
+	font-weight: bold;
+	font-size: 14px;
+}
+.purchase-header {
+	color: white;
+	background-color: #412647;
+	height: 40px;
+	font-size:14px;
+	font-weight:bold;
+}
+.order-specs {
+	background-color:#e2e2e2;
+	width:100%;
+}
+
+.thanks {padding-top: 20px;}
+
+.centered {
+	margin: 0 auto;
+}
+
+.smaller {
+	width: 90%;
+}
+
+.smallest {
+	width: 88%;
+}
+.costs {
+	width:40%;
+	margin-left: 60%;
+	padding-bottom: 30px;
+}
 @-->
 
-<body style="background:#F6F6F6; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:12px; margin:0; padding:0;">
-<div style="background:#F6F6F6; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:12px; margin:0; padding:0;">
 <table cellspacing="0" cellpadding="0" border="0" width="100%">
 <tr>
     <td align="center" valign="top" style="padding:20px 0 20px 0">
-        <table bgcolor="#FFFFFF" cellspacing="0" cellpadding="10" border="0" width="650" style="border:1px solid #E0E0E0;">
+        <table bgcolor="#FFFFFF" cellspacing="0" cellpadding="10" border="0" width="650">
             <!-- [ header starts here] -->
             <tr>
-                <td valign="top"><a href="{{store url=""}}"><img src="{{skin url="images/logo_email.gif" _area='frontend'}}" alt="{{var store.getFrontendName()}}"  style="margin-bottom:10px;" border="0"/></a></td>
+                <td valign="top"><a href="{{store url=""}}"><img src="{{skin url="images/email/logo.jpg" _area='frontend'}}" alt="{{var store.getFrontendName()}}"/></a></td>
             </tr>
             <!-- [ middle starts here] -->
             <tr>
