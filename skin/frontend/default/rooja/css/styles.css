@@ -297,7 +297,7 @@ p.required { font-size:10px; text-align:right; color:#d68536; margin-bottom:0px;
 .error-msg,
 .success-msg,
 .note-msg,
-.notice-msg {padding:8px;font-size:1.2em;font-weight:bold;}
+.notice-msg {padding:8px;font-size:1.2em;font-weight:bold;line-height:1.5em;}
 .error-msg span,
 .success-msg span,
 .note-msg span,
