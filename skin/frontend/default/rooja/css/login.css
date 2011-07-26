@@ -39,6 +39,16 @@ h1#logo{
     float:left;
     margin:0 20px 15px 0;
 }
+#createAccount{
+    background-image:url(../images/splash/create-an-account.png);
+    width:228px;height:16px;
+    margin-bottom:15px;
+}
+#retrievePassword{
+    background-image:url(../images/splash/retrieve-your-password-here.png);
+    width:365px;height:16px;
+    margin-bottom:15px;
+}
 #forgetPass{margin-top:0px;text-decoration:underline;color:#c7becc;}
 #forgetPass:hover{color:#fff;}
 
@@ -47,9 +57,19 @@ h1#logo{
     width:84px;height:16px;
     margin-bottom:15px;
 }
+#getEarlyAccess{
+    background-image:url(../images/splash/get-early-access.png);
+    width:208px;height:16px;
+    margin-bottom:15px;
+}
+#nowLoggedOut{
+    background-image:url(../images/splash/you-are-now-logged-out.png);
+    width:303px;height:16px;
+    margin-bottom:15px;
+}
 
 form{
-    border-bottom:5px solid #3b2243;
+/*    border-bottom:5px solid #3b2243;*/
     overflow:hidden;
     margin-bottom:20px;
     clear:both;
@@ -82,6 +102,12 @@ form input#loginBtn{
 
 #tellMeMore{
     background-image:url(../images/splash/join-now-btn.png);
+    width:382px;height:39px;
+    margin-bottom:15px;
+}
+
+#getOnList{
+    background-image:url(../images/splash/get-on-list-now-btn.png);
     width:382px;height:39px;
     margin-bottom:15px;
 }
@@ -126,5 +152,35 @@ strong{font-weight:bold;}
 #notifyWrapper #submitBtn {float: right;width: 99px;background: #271D2A;color: #fff;text-align: center;font-weight: normal;}
 .register h3.legend {font-size: 14px;margin: 10px 0;}
 .register label {font-size: 12px;}
-.input-box {margin: 5px 0;}
+/*.input-box {margin: 5px 0;}*/
 .register .checkbox {float: left;width: 20px;margin: 0 10px 0;}
+
+
+
+
+.fields .field {
+	display: inline-block;
+	*display: inline;
+	zoom: 1;
+}
+.customer-name .field input {
+	width: 166px;
+}
+.customer-name .field:first-child {
+	margin-right: 8px;
+}
+
+
+
+
+.defaultvalue_label {
+	color: rgba(46,26,51,0.75) !important;
+}
+.defaultvalue_label_focus {
+	color: rgba(46,26,51,0.5) !important;
+}
+
+
+
+
+

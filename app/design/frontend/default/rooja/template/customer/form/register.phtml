@@ -31,6 +31,21 @@
  * @see Mage_Customer_Block_Form_Register
  */
 ?>
+<script src="/js/jquery.defaultvalue.js" type="text/javascript"></script> 
+<script type="text/javascript">
+jQuery(function() {
+	
+	jQuery('input[type="text"], input[type="password"]').defaultValue();
+	
+	setTimeout(function() {
+		// Chrome does not fire a change event when autofilling forms
+		// To prevent weird overlap with defaultValue and Chrome autofill,
+		// fire your own change event after 100 or so milliseconds
+		jQuery('input[type="text"]').change();
+	}, 100);
+	
+});
+</script>
 <div id="notifyWrapper" class="register">
 <div class="wrapper">
 <header id="mainHeader">
@@ -38,33 +53,23 @@
 	<p id="highlight" class="tr">Apparel and accessories from leading International and Indian designers at prices you just can’t get in the stores</p>
 </header><!--End Header-->
 <section id="content" class="body">
-        <h2 class="legend"><?php echo $this->__('Create an Account') ?></h2>
+    <h2 id="createAccount" class="tr"><?php echo $this->__('Create an Account') ?></h2>
     <?php echo $this->getChildHtml('form_fields_before')?>
     <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
     <form action="<?php echo $this->getPostActionUrl() ?>" method="post" id="form-validate">
         <div class="fieldset">
             <input type="hidden" name="success_url" value="<?php echo $this->getSuccessUrl() ?>" />
             <input type="hidden" name="error_url" value="<?php echo $this->getErrorUrl() ?>" />
-            <h3 class="legend"><?php echo $this->__('Personal Information') ?></h3>
             <ul class="form-list">
                 <li class="fields">
                     <?php echo $this->getLayout()->createBlock('customer/widget_name')->setObject($this->getFormData())->toHtml() ?>
                 </li>
                 <li>
-                    <label for="email_address" class="required"><em>*</em><?php echo $this->__('Email Address') ?></label>
+                    <label for="email_address" class="required"><?php echo $this->__('Email Address') ?> *</label>
                     <div class="input-box">
                         <input type="text" name="email" id="email_address" value="<?php echo $this->htmlEscape($this->getFormData()->getEmail()) ?>" title="<?php echo $this->__('Email Address') ?>" class="input-text validate-email required-entry" />
                     </div>
                 </li>
-                <?php if ($this->isNewsletterEnabled()): ?>
-                <li class="control">
-                    <div class="input-box">
-                        <input type="checkbox" name="is_subscribed" title="<?php echo $this->__('Sign Up for Newsletter') ?>" value="1" id="is_subscribed"<?php if($this->getFormData()->getIsSubscribed()): ?> checked="checked"<?php endif; ?> class="checkbox" />
-                    </div>
-                    <label for="is_subscribed"><?php echo $this->__('Sign Up for Newsletter') ?></label>
-                </li>
-                <br/>
-                <?php endif ?>
             <?php $_dob = $this->getLayout()->createBlock('customer/widget_dob') ?>
             <?php if ($_dob->isEnabled()): ?>
                 <li><?php echo $_dob->setDate($this->getFormData()->getDob())->toHtml() ?></li>
@@ -153,28 +158,37 @@
         </div>
     <?php endif; ?>
         <div class="fieldset">
-            <h3 class="legend"><?php echo $this->__('Login Information') ?></h3>
             <ul class="form-list">
                 <li class="fields">
                     <div class="field">
-                        <label for="password" class="required"><em>*</em><?php echo $this->__('Password') ?></label>
+                        <label for="password" class="required"><?php echo $this->__('Password') ?> *</label>
                         <div class="input-box">
                             <input type="password" name="password" id="password" title="<?php echo $this->__('Password') ?>" class="input-text required-entry validate-password" />
                         </div>
                     </div>
                     <div class="field">
-                        <label for="confirmation" class="required"><em>*</em><?php echo $this->__('Confirm Password') ?></label>
+                        <label for="confirmation" class="required"><?php echo $this->__('Confirm Password') ?> *</label>
                         <div class="input-box">
                             <input type="password" name="confirmation" title="<?php echo $this->__('Confirm Password') ?>" id="confirmation" class="input-text required-entry validate-cpassword" />
                         </div>
                     </div>
                 </li>
+
+
+				        <?php if ($this->isNewsletterEnabled()): ?>
+				        <li class="control" style="display: none;">
+				            <div class="input-box">
+				                <input type="checkbox" name="is_subscribed" title="<?php echo $this->__('Sign Up for Newsletter') ?>" value="1" checked="checked" id="is_subscribed"<?php if($this->getFormData()->getIsSubscribed()): ?> checked="checked"<?php endif; ?> class="checkbox" />
+				            </div>
+				            <label for="is_subscribed"><?php echo $this->__('Sign Up for Newsletter') ?></label>
+				        </li>
+				        <br/>
+				        <?php endif ?>
             </ul>
+
         </div>
         <div class="buttons-set">
-            <p class="required"><?php echo $this->__('* Required Fields') ?></p>
-            <p class="back-link"><a href="<?php echo $this->escapeUrl($this->getBackUrl()) ?>" class="back-link"><small>&laquo; </small><?php echo $this->__('Back') ?></a></p>
-		<input type="submit" id="submitBtn" value="Submit" name="submitBtn">
+					<input type="submit" id="submitBtn" value="Submit" name="submitBtn">
         </div>
     </form>
     <script type="text/javascript">
@@ -189,14 +203,23 @@
 		
 </section><!--End Content-->
 </div>
-	<section id="brands">
-		<ul>
-			<li class="one"><img src="<?php echo $this->getSkinUrl('images/splash/logos/marc-jacobs.png') ?>" alt="Marc Jacobs"></li>
-			<li class="two"><img src="<?php echo $this->getSkinUrl('images/splash/logos/calvin-klein.png') ?>" alt="Calvin Klein"></li>
-			<li class="last three"><img src="<?php echo $this->getSkinUrl('images/splash/logos/burberry.png') ?>" alt="Burberry"></li>
-			
-		</ul>
-	</section>
+<section id="brands">
+	<div id="brandCol1" class="brandCol fl">
+		<img src="<?php echo $this->getSkinUrl('images/splash/logos/marc-jacobs.png') ?>" alt="Marc Jacobs">
+		<img src="<?php echo $this->getSkinUrl('images/splash/logos/boss.png') ?>" alt="Hugo Boss">
+		<img src="<?php echo $this->getSkinUrl('images/splash/logos/gucci.png') ?>" alt="gucci">
+	</div>
+	<div id="brandCol2" class="brandCol fl">
+		<img src="<?php echo $this->getSkinUrl('images/splash/logos/calvin-klein.png') ?>" alt="Calvin Klein">
+		<img src="<?php echo $this->getSkinUrl('images/splash/logos/fendi.png') ?>" alt="Fendi">
+		<img src="<?php echo $this->getSkinUrl('images/splash/logos/versace.png') ?>" alt="versace">
+	</div>
+	<div id="brandCol3" class="brandCol last fl">
+		<img src="<?php echo $this->getSkinUrl('images/splash/logos/burberry.png') ?>" alt="Burberry">
+		<img src="<?php echo $this->getSkinUrl('images/splash/logos/lacoste.png') ?>" alt="Lacoste">
+		<img src="<?php echo $this->getSkinUrl('images/splash/logos/diesel.png') ?>" alt="Diesel">
+	</div>
+</section>
 </div>
 
 <script type="text/javascript">
