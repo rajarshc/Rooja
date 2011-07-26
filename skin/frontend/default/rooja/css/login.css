@@ -54,7 +54,7 @@ h1#logo{
 }
 
 form{
-    border-bottom:5px solid #3b2243;
+/*    border-bottom:5px solid #3b2243;*/
     overflow:hidden;
     margin-bottom:20px;
     clear:both;
