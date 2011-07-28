@@ -16,25 +16,4 @@
         <?php echo $this->getChildHtml('additional') ?>
     </div>
 
-<?php if(Mage::getStoreConfig('checkout/oneclickcartcheckout/pdd_status')!=1):?>
-	<label><b><?php echo $this->__("Preferred Delivery date")?></b></label>
-	<div style="clear:both;overflow:auto">
-		<input name="pdd" id="pdd" title="" value="" class="input-text" type="text"/>
-		
-	</div>
-
-	<script type="text/javascript">
-	//<![CDATA[
-	Calendar.setup({
-			inputField: "pdd", 
-			inFormat: "%m/%e/%y",
-			showsTime: false,
-			button:"pdd",
-			align:"Bl",
-			singleClick: true
-		});
-	//]]>
-</script>
-	<?php endif;?>	
-
 </div>

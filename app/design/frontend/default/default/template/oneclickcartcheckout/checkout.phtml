@@ -30,7 +30,7 @@
     	</tr>
     <?php endif;?>
         <tr>
-            <td colspan="<?php if(Mage::getStoreConfig('checkout/oneclickcartcheckout/comment_status')!=1) echo "2"; else echo "1";?>" class="billing_section">
+            <td class="billing_section">
                 <li class="section active">
                     <?=$this->getChildHtml("oneclickcartcheckout.billing")?> 
                     <div id="shipping-info" style="display: none;"> 
