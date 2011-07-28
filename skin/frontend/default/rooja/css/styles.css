@@ -1103,7 +1103,7 @@ form#discount-coupon-form .discount h2, .shipping h2  {font-size:14px;margin: 0 
 .opc .order-review .authentication {}
 .opc .order-review .warning-message {}
 
-.form-list input.input-text{height:36px;line-height:36px;color:#999;padding:0px 8px;width:200px;}
+.form-list input.input-text{height:36px;line-height:36px;color:#999;padding:0px 50px; margin: 5px; width:200px;}
 .block-progress h2{font-size:2em;color:#431f4b;margin-bottom:5px;}
 
 /* Multiple Addresses Checkout */
