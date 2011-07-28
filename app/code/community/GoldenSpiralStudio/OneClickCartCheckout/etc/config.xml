@@ -1,0 +1,124 @@
+<?xml version="1.0"?>
+<config>
+<default>
+<checkout>
+<oneclickcartcheckout>
+	<checkout_style>default</checkout_style>
+	<reminder>0</reminder>
+</oneclickcartcheckout>
+</checkout>
+</default>
+    <modules>
+        <GoldenSpiralStudio_OneClickCartCheckout>
+            <version>2.0.0</version>
+        </GoldenSpiralStudio_OneClickCartCheckout>
+    </modules>
+    <frontend>
+        <routers>
+            <oneclickcartcheckout>
+                <use>standard</use>
+                <args>
+                    <module>GoldenSpiralStudio_OneClickCartCheckout</module>
+                    <frontName>oneclickcartcheckout</frontName>
+                </args>
+            </oneclickcartcheckout>
+        </routers>
+        <layout>
+            <updates>
+                <oneclickcartcheckout>
+                    <file>oneclickcartcheckout.xml</file>
+                </oneclickcartcheckout>
+            </updates>
+        </layout>
+    </frontend>
+    <admin>
+        <routers>
+			<oneclickcartcheckout>
+				<use>admin</use>
+				<args>
+					<module>GoldenSpiralStudio_OneClickCartCheckout</module>
+					<frontName>oneclickcartcheckout</frontName>
+				</args>
+			</oneclickcartcheckout>
+        </routers>
+    </admin>
+    <adminhtml>
+		
+		<acl>
+			<resources>
+				<all>
+					<title>Allow Everything</title>
+				</all>
+				<admin>
+					<children>
+						<GoldenSpiralStudio_OneClickCartCheckout>
+							<title>OneClickCartCheckout Module</title>
+							<sort_order>10</sort_order>
+						</GoldenSpiralStudio_OneClickCartCheckout>
+					</children>
+				</admin>
+			</resources>
+		</acl>
+		<layout>
+			<updates>
+				<oneclickcartcheckout>
+					<file>oneclickcartcheckout.xml</file>
+				</oneclickcartcheckout>
+			</updates>
+		</layout>
+    </adminhtml>   
+    <global>
+        <models>
+            <oneclickcartcheckout>
+                <class>GoldenSpiralStudio_OneClickCartCheckout_Model</class>
+                <resourceModel>oneclickcartcheckout_mysql4</resourceModel>
+            </oneclickcartcheckout>
+            <oneclickcartcheckout_mysql4>
+                <class>GoldenSpiralStudio_OneClickCartCheckout_Model_Mysql4</class>
+                <entities>
+                    <oneclickcartcheckout>
+                        <table>oneclickcartcheckout</table>
+                    </oneclickcartcheckout>
+                </entities>
+            </oneclickcartcheckout_mysql4>
+        </models>
+        <resources>
+            <oneclickcartcheckout_setup>
+                <setup>
+                    <module>GoldenSpiralStudio_OneClickCartCheckout</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </oneclickcartcheckout_setup>
+            <oneclickcartcheckout_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </oneclickcartcheckout_write>
+            <oneclickcartcheckout_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </oneclickcartcheckout_read>
+        </resources>
+        <blocks>
+            <oneclickcartcheckout>
+                <class>GoldenSpiralStudio_OneClickCartCheckout_Block</class>
+            </oneclickcartcheckout>
+        </blocks>
+        <helpers>
+            <oneclickcartcheckout>
+                <class>GoldenSpiralStudio_OneClickCartCheckout_Helper</class>
+            </oneclickcartcheckout>
+        </helpers>
+    </global>
+    <crontab>
+        <jobs>
+            <oneclickcartcheckout_reminder_send>
+                <schedule><cron_expr>0 1 * * *</cron_expr></schedule>
+                <run><model>oneclickcartcheckout/observer::sendReminderEmail</model></run>
+            </oneclickcartcheckout_reminder_send>
+        </jobs>
+	</crontab>
+</config>

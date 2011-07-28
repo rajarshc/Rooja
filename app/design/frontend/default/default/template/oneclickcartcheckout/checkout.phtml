@@ -1,0 +1,105 @@
+
+<?php if ($this->canCheckout()):?>
+<script type="text/javascript" src="<?php echo $this->getSkinUrl('js/checkout.js') ?>"></script>
+<script type="text/javascript">countryRegions = <?php echo $this->helper('directory')->getRegionJson() ?></script>
+
+<?php $this->getA()?>
+<?php // echo $this->getChildHtml("oneclickcartcheckout.billing")?>
+<?php //echo $this->getChildHtml("shipping_method")?>
+<?php // echo $this->getChildHtml("payment")?>
+
+
+<div style="display:none">
+<div id="customerLoginForm">
+<?php echo $this->getChildHtml("customer_form_login")?>
+</div>
+</div>
+ 
+ <span id="shipping:same_as_billing"></span>
+
+  <h1><?=$this->__("Checkout")?></h1>
+    <form id="checkoutform" method="POST" action="<?php echo $this->getUrl('oneclickcartcheckout/checkout/saveOrder') ?>" >
+   
+    <ol class="opc">
+    <table class="cart_checkout_table">
+    <?php if (!$this->helper('customer')->isLoggedIn() ):?>
+    	<tr>
+    		<td colspan="2">  
+    		 <div class="loginHelp"><?php echo $this->__("Already registered?")?>  <a  onclick="showLoginForm()"><?=$this->__("click here to log-in.")?></a></div>
+    		</td>
+    	</tr>
+    <?php endif;?>
+        <tr>
+            <td colspan="<?php if(Mage::getStoreConfig('checkout/oneclickcartcheckout/comment_status')!=1) echo "2"; else echo "1";?>" class="billing_section">
+                <li class="section active">
+                    <?=$this->getChildHtml("oneclickcartcheckout.billing")?> 
+                    <div id="shipping-info" style="display: none;"> 
+                    <?php echo $this->getChildHtml("shipping2")?>    
+                    </div>
+                      <a  id="toggleShipping" onclick="toggleShipping()"><?=$this->__("Shipping address not the same as Billing address?")?></a>
+                      </li> 
+            </td>
+            <td>                    
+                 <li class="section active">
+                    <?=$this->getChildHtml("payment")?>    
+                </li> 
+            </td>
+        </tr>
+        <tr>
+            <td>                              
+            <li class="section active" id="shipping_method_section">
+
+                <?=$this->getChildHtml("shipping_method")?>
+            </li>
+            </td>
+            <?php
+             if(Mage::getStoreConfig('checkout/oneclickcartcheckout/comment_status')!=1):?>
+          <td>                              
+             <li class="section active section-comment">
+                            <?=$this->getChildHtml("order_comment")?>
+                        </li>
+           </td>
+           <?php endif;?>
+            <td>
+              <li class="section active section-coupon" id="coupon-section">
+                 <?=$this->getChildHtml("coupon2")?>
+                        </li>
+            <div >
+            <?php echo $this->getChildHtml("review")?>
+<!--                <div id='checkoutloader' class='checkoutloader' style="width:100%;height:150px"></div>-->
+            </div>
+            
+           </td>     
+        </tr>
+    </table>
+    
+    </ol>
+    </form>
+    
+    
+    <script type="text/javascript">
+    //<![CDATA[
+    Event.observe(window, 'load', function() {
+        var shippingMethod = new ShippingMethod('co-shipping-method-form', "<?php echo $this->getUrl('oneclickcartcheckout/checkout/saveShippingMethod') ?>");
+    });
+
+    updateCartUrl = "<?php echo $this->getUrl('oneclickcartcheckout/checkout/updateCart') ?>";
+
+    Event.observe(window, 'load', function() {
+       
+  });
+    
+   function toggleShipping(){
+        
+       $("shipping-info").toggle();
+        
+    }
+
+   	function showLoginForm(){
+	  	 Modalbox.show($('customerLoginForm'),{title:"<?=$this->__("Customer Login")?>"});
+	  	 setTimeout(function(){  new VarienForm('login-form', true);},1000);
+	 }
+    //]]>
+    
+    </script>
+    <?php endif;?>

@@ -1,0 +1,26 @@
+.opc .cart_checkout_table {}
+.opc .cart_checkout_table .step-title{background:black;border:1px solid black}
+.opc .cart_checkout_table .step-title span.number{
+	 background: none repeat scroll 0 0 #FFFFFF;
+    border: medium none;
+    color: black;
+    line-height: 16px;
+    margin-bottom: 3px;
+    margin-top: 4px;
+    padding: 0;
+    text-align: center;
+    width: 18px;
+}
+.opc .cart_checkout_table .step-title h2{
+	color: #FFFFFF;
+    font-size: 13px;
+    line-height: 23px;
+}
+
+.opc .cart_checkout_table .step{border:1px solid black}
+.opc .cart_checkout_table .step dl {}
+.opc .cart_checkout_table .step dd {margin-bottom:10px;}
+.opc .cart_checkout_table .step dt {line-height:20px}
+
+
+

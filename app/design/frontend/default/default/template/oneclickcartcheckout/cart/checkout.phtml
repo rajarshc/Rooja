@@ -1,0 +1,93 @@
+<script type="text/javascript" src="<?php echo $this->getSkinUrl('js/checkout.js') ?>"></script>
+<script type="text/javascript">countryRegions = <?php echo $this->helper('directory')->getRegionJson() ?></script>
+
+
+
+<script>
+
+var review = new Review("<?php echo $this->getUrl('oneclickcartcheckout/checkout/getReviewHtml') ?>",null,
+			"<?php echo $this->getUrl('oneclickcartcheckout/checkout/updateCart') ?>"
+		); 
+
+
+</script>
+
+<?php if(!$this->canCheckout() ): ?>
+    <?php if($this->canCheckout() ): ?>
+    <p><?php echo Mage::getStoreConfig('sales/minimum_order/description'); ?></p>
+    <p><a href="<?php echo $this->getUrl(''); ?>"><?php echo $this->__('Back to homepage'); ?></a></p>    
+    <?php else: ?>
+    <p><?php echo $this->__('You need to have products in your cart to checkout, and your cart is empty.'); ?></p>
+    <p><a href="<?php echo $this->getUrl(''); ?>"><?php echo $this->__('Back to homepage'); ?></a></p>
+    <?php endif; ?>
+<?php else: ?>
+     <h1><?=$this->__("Checkout")?></h1>
+    <form id="checkoutform" method="POST" action="<?php echo $this->getUrl('oneclickcartcheckout/checkout/saveOrder') ?>" >
+   
+    <ol class="opc">
+    <table class="cart_checkout_table">
+        <tr>
+            <td colspan="<?php if(Mage::getStoreConfig('checkout/oneclickcartcheckout/comment_status')!=1) echo "2"; else echo "1";?>" class="billing_section">
+                <li class="section active">
+                    <?=$this->getChildHtml("cart_checkout_billing")?>    
+                </li> 
+            </td>
+            <td>
+                 <li class="section active">
+                    <?=$this->getChildHtml("cart_checkout_payment")?>    
+                </li> 
+            </td>
+        </tr>
+        <tr>
+            <td>
+            <li class="section active" id="shipping_method_section">
+            	<?=$this->getChildHtml("shipping_method")?>
+            </li>
+            </td>
+          
+            	<?php if(Mage::getStoreConfig('checkout/oneclickcartcheckout/comment_status')!=1):?>
+            	  <td>
+            		 <li class="section active section-comment">
+			            	<?=$this->getChildHtml("order_comment")?>
+			            </li>
+			             </td>
+            	<?php endif;?>
+           
+            <td>
+            <div id="reviewCheckout">
+        		<div id='checkoutloader' class='checkoutloader' style="width:100%;height:150px"></div>
+            </div>
+            
+           </td> 	
+        </tr>
+    </table>
+    
+    </ol>
+    </form>
+    
+
+    		
+    
+    <script type="text/javascript">
+    //<![CDATA[
+    Event.observe(window, 'load', function() {
+        var shippingMethod = new ShippingMethod('co-shipping-method-form', "<?php echo $this->getUrl('oneclickcartcheckout/checkout/saveShippingMethod') ?>");
+	});
+  
+
+    Event.observe(window, 'load', function() {
+    var request = new Ajax.Request(
+              "<?php echo $this->getUrl('oneclickcartcheckout/checkout/init') ?>",
+              {
+                  method:'post'
+              }
+          ); 
+        review.loadReview();
+        
+	});
+    //]]>
+    
+    </script>
+<?php endif;?>
+
+

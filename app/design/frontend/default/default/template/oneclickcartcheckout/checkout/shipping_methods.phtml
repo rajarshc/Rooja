@@ -1,0 +1,40 @@
+<div class="step-title">
+            <span class="number">3</span>
+                <h2><?=$this->__("Shipping Method")?></h2>
+            </div>
+<div class="step">
+
+    <div id="checkout-shipping-method-load">
+        <?php echo $this->getChildHtml('available') ?>
+    </div>
+    <script type="text/javascript">
+    //<![CDATA[
+        var shippingMethod = new ShippingMethod('co-shipping-method-form', "<?php echo $this->getUrl('oneclickcartcheckout/checkout/saveShippingMethod') ?>");
+    //]]>
+    </script>
+    <div id="onepage-checkout-shipping-method-additional-load">
+        <?php echo $this->getChildHtml('additional') ?>
+    </div>
+
+<?php if(Mage::getStoreConfig('checkout/oneclickcartcheckout/pdd_status')!=1):?>
+	<label><b><?php echo $this->__("Preferred Delivery date")?></b></label>
+	<div style="clear:both;overflow:auto">
+		<input name="pdd" id="pdd" title="" value="" class="input-text" type="text"/>
+		
+	</div>
+
+	<script type="text/javascript">
+	//<![CDATA[
+	Calendar.setup({
+			inputField: "pdd", 
+			inFormat: "%m/%e/%y",
+			showsTime: false,
+			button:"pdd",
+			align:"Bl",
+			singleClick: true
+		});
+	//]]>
+</script>
+	<?php endif;?>	
+
+</div>
