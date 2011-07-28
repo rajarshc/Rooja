@@ -370,7 +370,7 @@ a.selected{color:;}
 h1 {font-size: 2.5em; color: #431f4c; margin-bottom: 10px; font-weight:normal;font-family:"ltc-bodoni-175-1","ltc-bodoni-175-2", georgia, serif;line-height:.9em;}
 h2 {font-size: 2.4em;line-height:1em;font-family:"ltc-bodoni-175-1","ltc-bodoni-175-2", georgia, serif;font-weight:normal;}
 h3 {font-size: 2.4em; color: #431f4c; line-height:18px; margin-bottom: 15px; font-weight:normal;font-family:"ltc-bodoni-175-1","ltc-bodoni-175-2", georgia, serif;}
-.step h3 {font-family:helvetica, arial, sans-serif; font-size:15px;}
+.step h3 {font-family:helvetica, arial, sans-serif; font-size:15px; font-weight: bold;}
 h4{font-size:1.6em;font-family:"ltc-bodoni-175-1","ltc-bodoni-175-2", georgia, serif;font-weight:normal; text-transform:uppercase; padding: 10px 0;}
 p {font-size: 1.2em;line-height:1.4em;margin-bottom:20px;}
 p.saleEnding{color:#cc6600;margin-bottom:10px;}
