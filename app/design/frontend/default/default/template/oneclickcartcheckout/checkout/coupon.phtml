@@ -26,15 +26,14 @@
 ?>
 
 <div class="step-title">
-            <span class="number">5</span>
-                <h2><?php echo $this->__('Discount Codes') ?></h2>
+                <h2><?php echo $this->__('Order Review') ?></h2>
             </div>
 <div class="step">
 <form id="discount-coupon-form" action="<?php echo $this->getUrl('checkout/cart/couponPost') ?>" method="post">
     <div class="discount">
       
         <div class="discount-form">
-            <label for="coupon_code"><?php echo $this->__('Enter your coupon code if you have one.') ?></label>
+            <p><?php echo $this->__('Enter your coupon code if you have one.') ?></p>
             <input type="hidden" name="remove" id="remove-coupone" value="0" />
             <div class="input-box">
                 <input class="input-text" id="coupon_code" name="coupon_code" type="text" value="<?php echo $this->htmlEscape($this->getCouponCode()) ?>" />
