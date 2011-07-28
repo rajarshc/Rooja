@@ -27,7 +27,11 @@
 <?php
 /**
  * Shopping cart template
- *
+ * <section id="commentsRelated">
+ *	<section id="related" class="container">
+ *	<h2>Wear it with</h2>
+ *               <?php echo $this->getChildHtml('crosssell') ?>
+ *	</section> 
  * @see Mage_Checkout_Block_Cart
  */
 ?>
@@ -138,9 +142,4 @@
     </div>
 </div>
 
-<section id="commentsRelated">
-	<section id="related" class="container">
-	<h2>Wear it with</h2>
-                <?php echo $this->getChildHtml('crosssell') ?>
-	</section>
 </section>
