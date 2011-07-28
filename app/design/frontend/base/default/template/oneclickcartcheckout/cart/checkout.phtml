@@ -14,6 +14,7 @@ var review = new Review("<?php echo $this->getUrl('oneclickcartcheckout/checkout
 
 <?php if(!$this->canCheckout() ): ?>
     <?php if($this->canCheckout() ): ?>
+	<div style="width: 980px;">
     <p><?php echo Mage::getStoreConfig('sales/minimum_order/description'); ?></p>
     <p><a href="<?php echo $this->getUrl(''); ?>"><?php echo $this->__('Back to homepage'); ?></a></p>    
     <?php else: ?>
@@ -64,6 +65,7 @@ var review = new Review("<?php echo $this->getUrl('oneclickcartcheckout/checkout
     
     </ol>
     </form>
+</div>
     
 
     		
