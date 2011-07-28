@@ -441,3 +441,9 @@ a[href$=".doc"]:after {content: " (DOC)";}
 .input-box {position: relative;}
 .discount .buttons-set {position: absolute;right:0;float: right;top:0;}
 .saleDetails a span {height: 105px;overflow: hidden;display: block;margin: 0 0 15px;}
+
+/** One step checkout */
+#one-check {
+	width: 980px;
+	margin: 0 auto;
+}
