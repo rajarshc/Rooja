@@ -52,7 +52,6 @@
 			        <?php endfor; } ?>
                 
                    <?php if(Mage::getStoreConfig('checkout/oneclickcartcheckout/city_status')!=1):?>
-
                     <div class="field">
                         <label for="billing:city" class="required"><em>*</em><?php echo $this->__('City') ?></label>
                         <div class="input-box">
@@ -82,6 +81,7 @@
 <li class="fields">                    
 <div class="field">
                         <label for="billing:postcode" class="required"><em>*</em><?php echo $this->__('Zip/Postal Code') ?></label>
+
                         <div class="input-box">
                             <input type="text" title="<?php echo $this->__('Zip/Postal Code') ?>" name="billing[postcode]" id="billing:postcode" value="<?php echo $this->htmlEscape($this->getAddress()->getPostcode()) ?>" class="input-text validate-zip-international required-entry" />
                         </div>
@@ -99,6 +99,7 @@
                     </div>
 </li>
 
+
                     <?php elseif (Mage::getStoreConfig('checkout/oneclickcartcheckout/country_status')=="enabled"):?>
 	<li class="fields">
                         <div class="field">
@@ -115,6 +116,7 @@
                 
                 
                <?php if(Mage::getStoreConfig('checkout/oneclickcartcheckout/phone_status')!=1):?>
+<li class="fields">
                     <div class="field">
                         <label for="billing:telephone" class="required"><em>*</em><?php echo $this->__('Telephone') ?></label>
                         <div class="input-box">
@@ -129,6 +131,7 @@
                             <input type="text" name="billing[fax]" value="<?php echo $this->htmlEscape($this->getAddress()->getFax()) ?>" title="<?php echo $this->__('Fax') ?>" class="input-text" id="billing:fax" />
                         </div>
                     </div>
+</li>
                <?php endif;?>
                 
 
