@@ -38,6 +38,15 @@
                     </div>
                       <a  id="toggleShipping" onclick="toggleShipping()"><?=$this->__("Shipping address not the same as Billing address?")?></a>
                       </li> 
+
+			  	<li class="section active">
+                    <?=$this->getChildHtml("payment")?>    
+                </li>
+
+		        <li class="section active" id="shipping_method_section">
+	                <?=$this->getChildHtml("shipping_method")?>
+	            </li>
+		
             </td>
 
 			<td>
@@ -50,30 +59,6 @@
             </div>
             
            </td>
-        </tr>
-        <tr>
-	
-            <td>                    
-                 <li class="section active">
-                    <?=$this->getChildHtml("payment")?>    
-                </li> 
-            </td>
-
-            <td>                              
-            <li class="section active" id="shipping_method_section">
-
-                <?=$this->getChildHtml("shipping_method")?>
-            </li>
-            </td>
-            <?php
-			//no need for this object
-             //if(Mage::getStoreConfig('checkout/oneclickcartcheckout/comment_status')!=1):?>
-          <!-- <td>                              
-                       <li class="section active section-comment">
-                                      <?=$this->getChildHtml("order_comment")?>
-                                  </li>
-                     </td> -->
-           <?php //endif;?>
         </tr>
     </table>
     
