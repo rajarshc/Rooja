@@ -25,7 +25,7 @@
  */
 ?>
 <div class="step-title">
-                <h2><?=$this->__("Select Payment Method")?></h2>
+                <h2><?=$this->__("Payment and Delivery Method")?></h2>
             </div>
 <div class="step">
 <script type="text/javascript">
@@ -33,7 +33,7 @@
     var payment = new Payment('co-payment-form', '<?php echo $this->getUrl('checkout/onepage/savePayment') ?>');
 //]]>
 </script>
-
+<h3>Payment Method</h3>
     <fieldset>
         <?php echo $this->getChildHtml('methods') ?>
     </fieldset>
@@ -65,4 +65,18 @@
     payment.currentMethod = "<?php echo $this->getChild('methods')->getSelectedMethodCode() ?>";
 //]]>
 </script>
+
+<div id="checkout-shipping-method-load">
+    <?php echo $this->getChildHtml('available') ?>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+    var shippingMethod = new ShippingMethod('co-shipping-method-form', "<?php echo $this->getUrl('oneclickcartcheckout/checkout/saveShippingMethod') ?>");
+//]]>
+</script>
+<div id="onepage-checkout-shipping-method-additional-load">
+    <?php echo $this->getChildHtml('additional') ?>
+</div>
+
+
 </div>
