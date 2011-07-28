@@ -35,8 +35,10 @@
                     <?=$this->getChildHtml("oneclickcartcheckout.billing")?> 
                     <div id="shipping-info" style="display: none;"> 
                     <?php echo $this->getChildHtml("shipping2")?>    
+					<h3>Shipping Address</h3>
+                    <a  id="toggleShipping" onclick="toggleShipping()"><?=$this->__("Shipping address not the same as Billing address?")?></a>
+
                     </div>
-                      <a  id="toggleShipping" onclick="toggleShipping()"><?=$this->__("Shipping address not the same as Billing address?")?></a>
                       </li> 
 
 			  	<li class="section active">
