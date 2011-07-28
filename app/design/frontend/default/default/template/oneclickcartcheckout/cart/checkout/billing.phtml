@@ -79,15 +79,17 @@
                
              
                           <?php if(Mage::getStoreConfig('checkout/oneclickcartcheckout/zip_status')!=1):?>
-                    <div class="field">
+<li class="fields">                    
+<div class="field">
                         <label for="billing:postcode" class="required"><em>*</em><?php echo $this->__('Zip/Postal Code') ?></label>
                         <div class="input-box">
                             <input type="text" title="<?php echo $this->__('Zip/Postal Code') ?>" name="billing[postcode]" id="billing:postcode" value="<?php echo $this->htmlEscape($this->getAddress()->getPostcode()) ?>" class="input-text validate-zip-international required-entry" />
                         </div>
                     </div>
+</li>
                     <?php endif;?>
                     <?php if(Mage::getStoreConfig('checkout/oneclickcartcheckout/country_status')=="detect" || !Mage::getStoreConfig('checkout/oneclickcartcheckout/country_status')):?>
-                    
+                    <li class="fields">
                     <div class="field">
                         <label for="billing:country_id" class="required"><em>*</em><?php echo $this->__('Country') ?></label>
                         <div class="input-box">
@@ -95,13 +97,17 @@
                             <?php echo $this->getCountryHtmlSelectDetect('billing') ?>
                         </div>
                     </div>
+</li>
+
                     <?php elseif (Mage::getStoreConfig('checkout/oneclickcartcheckout/country_status')=="enabled"):?>
+	<li class="fields">
                         <div class="field">
                         <label for="billing:country_id" class="required"><em>*</em><?php echo $this->__('Country') ?></label>
                         <div class="input-box">
                             <?php echo $this->getCountryHtmlSelect('billing') ?>
                         </div>
                     </div>
+	</li>
                     <?php endif;?>
                     
                     

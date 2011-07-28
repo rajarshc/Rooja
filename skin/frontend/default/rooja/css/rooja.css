@@ -450,4 +450,4 @@ a[href$=".doc"]:after {content: " (DOC)";}
 
 .billing_section {width: 50%;}
 
-a#toggleShipping {font-size:14px;}
+a#toggleShipping {font-size:14px; padding: 5px 0 10px;}
