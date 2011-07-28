@@ -8,7 +8,7 @@
 .cart_checkout_table td.billing_section input[type='text'],
 .cart_checkout_table td.billing_section input[type='password'],
 .cart_checkout_table td.billing_section select
-{width:100%}
+{/*width:100%*/}
 
 .cart_checkout_table td.billing_section .field {width:46%;margin-left:3px;margin-right:3px}
 .cart_checkout_table td.billing_section .input-box 
