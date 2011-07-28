@@ -12,10 +12,8 @@ var review = new Review("<?php echo $this->getUrl('oneclickcartcheckout/checkout
 
 </script>
 
-
 <?php if(!$this->canCheckout() ): ?>
     <?php if($this->canCheckout() ): ?>
-
     <p><?php echo Mage::getStoreConfig('sales/minimum_order/description'); ?></p>
     <p><a href="<?php echo $this->getUrl(''); ?>"><?php echo $this->__('Back to homepage'); ?></a></p>    
     <?php else: ?>
@@ -23,8 +21,6 @@ var review = new Review("<?php echo $this->getUrl('oneclickcartcheckout/checkout
     <p><a href="<?php echo $this->getUrl(''); ?>"><?php echo $this->__('Back to homepage'); ?></a></p>
     <?php endif; ?>
 <?php else: ?>
-	
-<div id="one-con" style="width: 980px;">	
      <h1><?=$this->__("Checkout")?></h1>
     <form id="checkoutform" method="POST" action="<?php echo $this->getUrl('oneclickcartcheckout/checkout/saveOrder') ?>" >
    
@@ -68,7 +64,6 @@ var review = new Review("<?php echo $this->getUrl('oneclickcartcheckout/checkout
     
     </ol>
     </form>
-
     
 
     		
@@ -93,8 +88,6 @@ var review = new Review("<?php echo $this->getUrl('oneclickcartcheckout/checkout
     //]]>
     
     </script>
-
-</div>
 <?php endif;?>
 
 

@@ -16,7 +16,7 @@
 </div>
  
  <span id="shipping:same_as_billing"></span>
-
+<div id="one-check" style="width:980px;">
   <h1><?=$this->__("Checkout")?></h1>
     <form id="checkoutform" method="POST" action="<?php echo $this->getUrl('oneclickcartcheckout/checkout/saveOrder') ?>" >
    
@@ -75,7 +75,7 @@
     
     </ol>
     </form>
-    
+
     
     <script type="text/javascript">
     //<![CDATA[
@@ -102,4 +102,5 @@
     //]]>
     
     </script>
+    </div>
     <?php endif;?>
