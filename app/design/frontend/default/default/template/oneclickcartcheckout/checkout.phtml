@@ -39,13 +39,26 @@
                       <a  id="toggleShipping" onclick="toggleShipping()"><?=$this->__("Shipping address not the same as Billing address?")?></a>
                       </li> 
             </td>
+
+			<td>
+              <li class="section active section-coupon" id="coupon-section">
+                 <?=$this->getChildHtml("coupon2")?>
+                        </li>
+            <div >
+            <?php echo $this->getChildHtml("review")?>
+<!--                <div id='checkoutloader' class='checkoutloader' style="width:100%;height:150px"></div>-->
+            </div>
+            
+           </td>
+        </tr>
+        <tr>
+	
             <td>                    
                  <li class="section active">
                     <?=$this->getChildHtml("payment")?>    
                 </li> 
             </td>
-        </tr>
-        <tr>
+
             <td>                              
             <li class="section active" id="shipping_method_section">
 
@@ -61,16 +74,6 @@
                                   </li>
                      </td> -->
            <?php //endif;?>
-            <td>
-              <li class="section active section-coupon" id="coupon-section">
-                 <?=$this->getChildHtml("coupon2")?>
-                        </li>
-            <div >
-            <?php echo $this->getChildHtml("review")?>
-<!--                <div id='checkoutloader' class='checkoutloader' style="width:100%;height:150px"></div>-->
-            </div>
-            
-           </td>     
         </tr>
     </table>
     
