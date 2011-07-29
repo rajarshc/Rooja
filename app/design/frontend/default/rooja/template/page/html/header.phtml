@@ -85,9 +85,8 @@ foreach ($categories as $_category){
 				}
             }
         }
-			echo '<li><a href="#">Invite a Friend</a></li> ';
         					$i=1;
-
+		echo '<li><a href="#">Invite a Friend</a></li> ';
         echo '</ul><ul>';
         foreach($_category->getChildren() as $subcategory){
 		$c = Mage::getModel('catalog/category')->load($subcategory->getId());
