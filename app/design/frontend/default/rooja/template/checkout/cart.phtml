@@ -35,31 +35,3 @@
  * @see Mage_Checkout_Block_Cart
  */
 ?>
-<div class="cart">
-
-    <div class="page-title title-buttons">
-            <div class="col-2">
-                <?php echo $this->getChildHtml('coupon') ?>
-                <?php if (!$this->getIsVirtual()): echo $this->getChildHtml('shipping'); endif; ?>
-            </div>
-        </div>
-        <div class="totals">
-        	<div class="total_gray">
-        	<h2>You current total</h2>
-
-            <?php echo $this->getChildHtml('totals'); ?>
-            </div>
-            <?php if(!$this->hasError()): ?>
-            <ul class="checkout-types">
-            <?php foreach ($this->getMethods('methods') as $method): ?>
-                <?php if ($methodHtml = $this->getMethodHtml($method)): ?>
-                <li><?php echo $methodHtml; ?></li>
-                <?php endif; ?>
-            <?php endforeach; ?>
-            </ul>
-            <?php endif; ?>
-        </div>
-    </div>
-</div>
-
-</section>
