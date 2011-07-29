@@ -370,7 +370,7 @@ h2#saleDetails{color:#c60;margin:22px 0 5px;}
 #productOptions label{color:#595959;font-size:1.2em;}
 
 #addToBagBtn{background-image:url(../images/icons/add-to-bag.png);width:230px;height:50px;margin-top:5px;border:none;cursor:pointer;}
-#estimatedShippingDate{width:230px;padding:8px 0;text-align:center;background-color:#6f989d;color:#2b3536;margin:0;}
+#estimatedShippingDate{width:230px;padding:8px 0;text-align:center;background-color:#6f989d;color:#bb6e17;margin:0;}
 
 #prevNextLinks{margin:5px 0 0;position: absolute;width: 80px;}
 #prevProduct, #nextProduct {position:relative;}
