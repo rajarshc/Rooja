@@ -31,8 +31,8 @@
 <dl class="sp-methods">
     <?php $shippingMe = array(); ?>
     <?php $_sole = count($_shippingRateGroups) == 1; foreach ($_shippingRateGroups as $code => $_rates): ?>
-        <dt><?php echo $this->getCarrierName($code) ?></dt>
-        <dd>
+        <dt><em><?php echo $this->getCarrierName($code) ?></em></dt>
+        <dd class="ship-metho">
             <ul>
             <?php $_sole = $_sole && count($_rates) == 1; foreach ($_rates as $_rate): ?>
                 <?php $shippingMe[] = "'".$_rate->getCode()."':".(float)$_rate->getPrice(); ?>
