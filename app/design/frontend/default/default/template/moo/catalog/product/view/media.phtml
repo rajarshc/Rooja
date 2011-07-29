@@ -30,25 +30,6 @@
     $_helper = $this->helper('catalog/output');
 ?>
 
-    <?php if(isset($gallery)): ?>
-		<div class="more-views">
-		    <ul>
-        <?php echo $gallery; ?>
-    <?php endif; ?>
-
-<?php else: ?>
-   		<li>
-    <?php
-        $_img = '<img src="'.$this->helper('catalog/image')->init($_product, 'image')->resize(265).'" alt="'.$this->htmlEscape($this->getImageLabel()).'" title="'.$this->htmlEscape($this->getImageLabel()).'" />';
-        echo $_helper->productAttribute($_product, $_img, 'image');
-    ?>
-		</li>
-<?php endif; ?>
-
-    </ul>
-</div>
-
-
 <p class="product-image-zoom">
 <?php
 $mainImagePath = '';
@@ -71,12 +52,32 @@ if (count($galleryImages) > 0) {
 }
 ?>
 
+ <img id="slide-loader" src="<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif') ?>" />
+</p>
+
 <?php if ($_product->getImage() != 'no_selection' && $_product->getImage()): ?>
+<p class="product-image product-image-zoom">
     <a rel="<?php echo $this->renderCloudOptions(); ?>" gallery="<?php echo $mainImagePath; ?>" href="<?php echo $this->helper('catalog/image')->init($_product, 'image'); ?>" class="cloud-zoom" id="cloudZoom">
     <?php
         $_img = '<img id="image" src="'.$this->getCloudImage($_product).'" alt="'.$this->htmlEscape($this->getImageLabel()).'" title="'.$this->htmlEscape($this->getImageLabel()).'" />';
         echo $_helper->productAttribute($_product, $_img, 'image');
     ?>
     </a>
-
 </p>
+    <?php if(isset($gallery)): ?>
+		<div class="more-views">
+		    <ul>
+        <?php echo $gallery; ?>
+    <?php endif; ?>
+
+<?php else: ?>
+   		<li>
+    <?php
+        $_img = '<img src="'.$this->helper('catalog/image')->init($_product, 'image')->resize(265).'" alt="'.$this->htmlEscape($this->getImageLabel()).'" title="'.$this->htmlEscape($this->getImageLabel()).'" />';
+        echo $_helper->productAttribute($_product, $_img, 'image');
+    ?>
+		</li>
+<?php endif; ?>
+
+    </ul>
+</div>
