@@ -974,6 +974,8 @@ form#discount-coupon-form .discount h2, .shipping h2  {font-size:14px;margin: 0 
 .discount button.button	{margin: 0;position: absolute;top:0;right:0;}
 .shipping button.button {float: left;margin: 0;}
 #co-shipping-method-form button.button span {background: #431F4C;}
+.discount-form p{font-weight:bold;}
+
 
 /* Checkout Types */
 .cart .checkout-types { float:right; text-align:right; }
@@ -1025,7 +1027,7 @@ form#discount-coupon-form .discount h2, .shipping h2  {font-size:14px;margin: 0 
 /* Checkout ============================================================================== */
 /********** < Common Checkout Styles */
 /* Shipping and Payment methods */
-.sp-methods dt { font-weight:normal; font-family: helvetica, arial, sans-serif; font-size: 12px; }
+.sp-methods dt {  font-family: helvetica, arial, sans-serif; }
 .sp-methods .price { font-weight:bold; }
 .sp-methods .form-list { padding-left:20px; }
 .sp-methods select.month { width:150px; margin-right:10px; }
