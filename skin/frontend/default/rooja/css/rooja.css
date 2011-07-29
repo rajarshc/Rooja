@@ -336,7 +336,7 @@ h2#saleDetails{color:#c60;margin:22px 0 5px;}
 #productBreakdown li a{color:#666;}
 #productBreakdown li a.selected{color:#000;font-weight:bold;}
 
-#likeThis{background-color:#431f4c;padding:8px 11px;font-weight:bold;color:#fff;line-height:34px;height:34px;}
+#likeThis{background-color:#431f4c;padding:8px 11px;font-weight:bold;color:#fff;line-height:34px;height:34px;margin-bottom:0px;}
 #likeBtn{background-image:url(../images/icons/like-btn.png);width:62px;height:34px;}
 
 #productOptions{
