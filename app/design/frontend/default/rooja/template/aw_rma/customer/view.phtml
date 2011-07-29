@@ -26,7 +26,7 @@
 <div class="awrma-account">
     <?php if($_rmaRequest) : ?>
     <?php $_order = Mage::getModel('sales/order')->loadByIncrementId($_rmaRequest->getOrderId()) ?>
-    <div class="page-title title-buttons">
+    <div class="page-title">
         <h1><?php echo $this->__('Return ').$_rmaRequest->getTextId() ?>&nbsp;&ndash;&nbsp;<?php echo Mage::getModel('awrma/entitystatus')->load($_rmaRequest->getStatus())->getName() ?></h1>
         <?php if(Mage::helper('awrma/config')->getAllowPrintLabel() && $_rmaRequest->getStatus() != Mage::helper('awrma/status')->getResolvedCanceledStatusId()) : ?>
             <?php if($_rmaRequest->getStatus() == Mage::helper('awrma/status')->getPendingApprovalStatusId()) : ?>
@@ -51,7 +51,7 @@
         <?php endif ?>
     </div>
     <div class="fieldset">
-        <h2 class="legend"><?php echo $this->__('Request Information') ?></h2>
+       
         <ul class="form-list">
             <li class="fields">
                 <div class="field">
@@ -136,10 +136,10 @@
                     </div>
                 </li>
             </ul>
-            <div class="buttons-set">
+            
                 <p class="required"><?php echo $this->__('* Required Fields') ?></p>
                 <button type="submit" title="<?php echo $this->__('Submit Comment') ?>" class="button" id="awrma-comment-submit"><span><span><?php echo $this->__('Submit Comment') ?></span></span></button>
-            </div>
+            
         </form>
         <script type="text/javascript">
             var commentForm = new VarienForm('awrma-comment-form', true);
@@ -159,13 +159,13 @@
                     <?php echo $_rmaRequest->getCustomerName() ?>
                     <?php endif ?>
                 </strong>
-                <div>
+                <p>
                     <?php echo $_comment->getText() ?>
-                </div>
+                </p>
                 <?php if($_comment->getAttachments()) : ?>
-                <div>
+                <p>
                     <a href="<?php echo $this->getDownloadUrl($_comment) ?>"><?php echo $_comment->getAttachments() ?></a> (<?php echo Mage::helper('awrma/files')->getTextSize($_comment->getAttachments()) ?>)
-                </div>
+                </p>
                 <?php endif ?>
             </li>
             <?php endforeach ?>
