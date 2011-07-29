@@ -72,7 +72,7 @@ body:before {
 
 #mainNav{
 	float: left;
-	width: 400px;
+	width: 350px;
 	height:70px;
 	margin: -10px 0px 0px 22px;
 }
@@ -395,7 +395,7 @@ h2#saleDetails{color:#c60;margin:22px 0 5px;}
 .more-views{display:block;float:left;width:75px;margin-right:10px;}
 .more-views ul li{/*float:left;*/}
 
-#gallery .product-image-zoom{position:relative;width:395px;height:640px;overflow:hidden;}
+#gallery .product-image-zoom{position:relative;width:395px;height:640px;overflow:hidden;float:right;}
 #gallery .product-image-zoom img{position:absolute;top:0;left:0;}
 
 
