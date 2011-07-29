@@ -47,8 +47,7 @@
 .qty_value {padding-left:5px;padding-right:5px;font-weight:bold;}
 .cart .totals {display:none}
 #review-buttons-container .f-left {display:none}
-#coupon_code {  margin-bottom: 9px;
-    width: 99%;} 
+#coupon_code {  margin-bottom: 9px;} 
 #coupon-section {margin-bottom:10px} 
 #toggleShipping {margin-top:5px;display:block;cursor: pointer}
 #shipping-info {margin-top:10px;}
