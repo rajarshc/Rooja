@@ -28,7 +28,7 @@
 <?php if (!($_shippingRateGroups = $this->getShippingRates())): ?>
     <p><?php echo $this->__('Sorry, no quotes are available for this order at this time.') ?></p>
 <?php else: ?>
-<dl class="sp-methods">
+<dl class="sp-methods2">
     <?php $shippingMe = array(); ?>
     <?php $_sole = count($_shippingRateGroups) == 1; foreach ($_shippingRateGroups as $code => $_rates): ?>
         <dt><em><?php echo $this->getCarrierName($code) ?></em></dt>
