@@ -33,11 +33,10 @@
             <td class="billing_section">
                 <li class="section active">
                     <?=$this->getChildHtml("oneclickcartcheckout.billing")?> 
-                    <div id="shipping-info" style="display: none;"> 
-                    <?php echo $this->getChildHtml("shipping2")?>    
-					<h3>Shipping Address</h3>
                     <a  id="toggleShipping" onclick="toggleShipping()"><?=$this->__("Shipping address not the same as Billing address?")?></a>
 
+                    <div id="shipping-info" style="display: none;"> 
+                    <?php echo $this->getChildHtml("shipping2")?>    
                     </div>
                       </li> 
 
