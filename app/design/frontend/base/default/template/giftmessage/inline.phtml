@@ -106,7 +106,7 @@ billing.onSave = function(evt){
         <p id="giftnote"><?php echo $this->__('Do you have any gift items in your order?'); ?></p>
         <p class="control">
             <input type="checkbox" name="allow_gift_messages" id="allow_gift_messages" value="1" onclick="toogleVisibilityOnObjects(this, ['allow-gift-message-container']);"<?php if($this->getItemsHasMesssages() || $this->getEntityHasMessage()): ?> checked="checked"<?php endif; ?> class="checkbox" />
-            <label for="allow_gift_messages"><?php echo $this->__('Add gift options.') ?></label>
+            <label for="allow_gift_messages"><?php echo $this->__('Yes') ?></label>
         </p>
     </div>
     <div class="gift-messages-form" id="allow-gift-message-container">
