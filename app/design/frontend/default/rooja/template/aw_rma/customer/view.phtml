@@ -114,7 +114,7 @@
     </table>
     <?php if(!(!$_rmaRequest->getIsActive() && (!$this->getComments() || !$this->getComments()->getSize()))) : ?>
     <div class="fieldset">
-        <h3><?php echo $_rmaRequest->getIsActive() ? $this->__('Leave Comment') : $this->__('Messages History') ?></h3>
+        <h3 class="leaveCommentRMA"><?php echo $_rmaRequest->getIsActive() ? $this->__('Leave Comment') : $this->__('Messages History') ?></h3>
         <?php if($_rmaRequest->getIsActive()) : ?>
         <?php $_formData = $this->getFormData() ?>
         <form method="post" id="awrma-comment-form" action="<?php echo $this->getCommentUrl() ?>" enctype="multipart/form-data">
