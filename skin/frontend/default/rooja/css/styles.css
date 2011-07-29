@@ -1266,7 +1266,7 @@ h3 .product-name {font-family:helvetica, arial, sans-serif; font-size:12px;}
 .reward-link {
 	text-decoration: underline;
 }
-.rewardsref_myreferrals_multireferral_predictpoints{font-size:14px;margin-bottom:10px;}
+.rewardsref_myreferrals_multireferral_predictpoints{font-size:14px;margin-bottom:10px;display:none;}
 
 
 /********** Invite a Friend */
