@@ -87,7 +87,7 @@
             </li>
         </ul>
     </div>
-    <h4><?php echo $this->__('Items RMA Requested for') ?></h4>
+    <h3><?php echo $this->__('Items RMA Requested for') ?></h3>
     <table id="awrma-requested-items" class="data-table">
         <col />
         <col width="1" />
@@ -114,7 +114,7 @@
     </table>
     <?php if(!(!$_rmaRequest->getIsActive() && (!$this->getComments() || !$this->getComments()->getSize()))) : ?>
     <div class="fieldset">
-        <h2 class="legend"><?php echo $_rmaRequest->getIsActive() ? $this->__('Leave Comment') : $this->__('Messages History') ?></h2>
+        <h3 class="legend"><?php echo $_rmaRequest->getIsActive() ? $this->__('Leave Comment') : $this->__('Messages History') ?></h3>
         <?php if($_rmaRequest->getIsActive()) : ?>
         <?php $_formData = $this->getFormData() ?>
         <form method="post" id="awrma-comment-form" action="<?php echo $this->getCommentUrl() ?>" enctype="multipart/form-data">
