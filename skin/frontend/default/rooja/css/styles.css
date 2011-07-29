@@ -188,6 +188,8 @@ button.disabled span {}
 
 button.btn-checkout span {}
 button.btn-checkout.no-checkout {}
+#authentication {margin: 9px 0 0 220px;}
+
 
 p.control input.checkbox,
 p.control input.radio { margin-right:6px; }
