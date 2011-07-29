@@ -33,10 +33,10 @@
     <?php $_sole = count($_shippingRateGroups) == 1; foreach ($_shippingRateGroups as $code => $_rates): ?>
         <dt><em><?php echo $this->getCarrierName($code) ?></em></dt>
         <dd>
-            <ul>
+            <ul class="ship-metho">
             <?php $_sole = $_sole && count($_rates) == 1; foreach ($_rates as $_rate): ?>
                 <?php $shippingMe[] = "'".$_rate->getCode()."':".(float)$_rate->getPrice(); ?>
-                <li class="ship-metho">
+                <li>
                    <?php if ($_rate->getErrorMessage()): ?>
                     <ul class="messages"><li class="error-msg"><ul><li><?php echo $_rate->getErrorMessage() ?></li></ul></li></ul>
                    <?php else: ?>
