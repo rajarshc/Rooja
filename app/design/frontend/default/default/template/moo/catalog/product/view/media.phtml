@@ -71,9 +71,6 @@ if (count($galleryImages) > 0) {
 }
 ?>
 
- <img id="slide-loader" src="<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif') ?>" />
-
-
 <?php if ($_product->getImage() != 'no_selection' && $_product->getImage()): ?>
     <a rel="<?php echo $this->renderCloudOptions(); ?>" gallery="<?php echo $mainImagePath; ?>" href="<?php echo $this->helper('catalog/image')->init($_product, 'image'); ?>" class="cloud-zoom" id="cloudZoom">
     <?php
@@ -81,4 +78,5 @@ if (count($galleryImages) > 0) {
         echo $_helper->productAttribute($_product, $_img, 'image');
     ?>
     </a>
+
 </p>
