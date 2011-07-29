@@ -123,9 +123,9 @@ if($session->isLoggedIn()) {$customer = $session->getCustomer();}
 	
 	<aside id="accountLinks">
 		<ul id="myAccount">
+			<li><a href="#">Invite Friends & Earn Free Shipping</a></li>
 			<li><a href="#" title="">Welcome <?php echo $customer->getFirstname(); ?></a>
 				<ul>
-					<li><a href="#">Invite Friends & Earn Free Shipping</a></li>
 					<li><a href="/customer/account" title="">My Account</a></li>
 					<li><a href="/customer/account/logout" title="">Sign Out</a></li>
 				</ul>
