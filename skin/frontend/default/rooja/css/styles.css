@@ -376,8 +376,8 @@ p.required { font-size:10px; text-align:right; color:#d68536; margin-bottom:0px;
 .data-table tfoot {}
 .data-table tr.first {}
 .data-table tr.last {}
-.data-table tr.odd {}
-.data-table tr.even { /*background-color:#f6f6f6;*/ }
+.data-table tr.odd {border-bottom:1px solid #ccc;}
+.data-table tr.even { /*background-color:#f6f6f6;*/border-bottom:1px solid #ccc; }
 .data-table tbody.odd {}
 .data-table tbody.odd td { border-width:0 1px; }
 .data-table tbody.even { background-color:#f6f6f6; }
