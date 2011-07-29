@@ -1,0 +1,216 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Moo Extension
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * @category   Moo
+ * @package    Moo_Catalog
+ * @author     Mohamed Alsharaf <mohamed.alsharaf@gmail.com>
+ * @copyright  Copyright (c) 2010 Mohamed Alsharaf. (http://jamandcheese-on-phptoast.com)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+-->
+<config>
+    <sections>
+        <moo_cloudzoom translate="label" module="moo_catalog">
+            <label>Moo Product Gallery "ClouldZoom"</label>
+            <tab>catalog</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>10</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <general translate="label">
+                    <label>General</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <enabled translate="label">
+                            <label>Enable ClouldZoom</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enabled>
+                    </fields>
+                </general>
+                <originalImage translate="label">
+                    <label>Main Image</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>13</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <imageWidth translate="label">
+                            <label>Width</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </imageWidth>
+                        <imageHeight translate="label">
+                            <label>Height</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </imageHeight>
+                        <tint translate="label">
+                            <label>Overlay Color</label>
+                            <comment>Specifies a tint colour which will cover the small image. Colours should be specified in hex format, e.g. '#aa00aa'. Does not work with softFocus.</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </tint>
+                        <tintOpacity translate="label">
+                            <label>Overlay Color Opacity</label>
+                            <comment>Opacity of the tint, where 0 is fully transparent, and 1 is fully opaque.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>moo/gallery_cloudZoom_opacityRange</source_model>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </tintOpacity>
+                        <softFocus translate="label">
+                            <label>Soft Focus</label>
+                            <comment>Applies a subtle blur effect to the small image. Set to true or false. Does not work with tint.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </softFocus>
+                    </fields>
+                </originalImage>
+                <zoomImage translate="label">
+                    <label>Zoom Image</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>11</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <zoomWidth translate="label">
+                            <label>Width</label>
+                            <frontend_type>text</frontend_type>
+                            <comment>The width of the zoom window in pixels. If 'auto' is specified, the width will be the same as the small image.</comment>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </zoomWidth>
+                        <zoomHeight translate="label">
+                            <label>Height</label>
+                            <comment>The height of the zoom window in pixels. If 'auto' is specified, the height will be the same as the small image.</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </zoomHeight>
+                        <position translate="label">
+                            <label>Position</label>
+                            <comment>Specifies the position of the zoom window relative to the small image.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>moo/gallery_cloudZoom_position</source_model>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </position>
+                        <adjustX translate="label">
+                            <label>X Position</label>
+                            <comment>Allows you to fine tune the x-position of the zoom window in pixels.</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </adjustX>
+                        <adjustY translate="label">
+                            <label>Y Position</label>
+                            <comment>Allows you to fine tune the y-position of the zoom window in pixels.</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </adjustY>
+                        <smoothMove translate="label">
+                            <label>Smooth Move</label>
+                            <comment>Amount of smoothness/drift of the zoom image as it moves. The higher the number, the smoother/more drifty the movement will be. 1 = no smoothing.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>moo/gallery_cloudZoom_smoothMove</source_model>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </smoothMove>
+                        <showTitle translate="label">
+                            <label>Show Title</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </showTitle>
+                        <titleOpacity translate="label">
+                            <label>Title Opacity</label>
+                            <comment>Specifies the opacity of the title if displayed, where 0 is fully transparent, and 1 is fully opaque.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>moo/gallery_cloudZoom_opacityRange</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </titleOpacity>
+                    </fields>
+                </zoomImage>
+                <lens translate="label">
+                    <label>Lens</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>12</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <lensOpacity translate="label">
+                            <label>Lens Opacity</label>
+                            <comment>Opacity of the lens mouse pointer, where 0 is fully transparent, and 1 is fully opaque. In tint and soft-focus modes, it will always be transparent.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>moo/gallery_cloudZoom_opacityRange</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </lensOpacity>
+                    </fields>
+                </lens>
+            </groups>
+        </moo_cloudzoom>
+    </sections>
+</config>

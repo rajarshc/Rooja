@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Moo Extension
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * @category   Moo
+ * @package    Moo_Catalog
+ * @author     Mohamed Alsharaf <mohamed.alsharaf@gmail.com>
+ * @copyright  Copyright (c) 2010 Mohamed Alsharaf. (http://jamandcheese-on-phptoast.com)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+-->
+<config>
+    <modules>
+        <Moo_Catalog>
+            <version>1.0.0</version>
+        </Moo_Catalog>
+    </modules>
+    <global>
+        <blocks>
+            <catalog>
+                <rewrite>
+                    <product_view_media>Moo_Catalog_Block_Product_View_Media</product_view_media>
+                </rewrite>
+            </catalog>
+            <moo>
+                <class>Moo_Catalog_Block</class>
+            </moo>
+        </blocks>
+        <models>
+            <moo>
+                <class>Moo_Catalog_Model</class>
+            </moo>
+        </models>
+        <helpers>
+            <moo_catalog>
+                <class>Moo_Catalog_Helper</class>
+            </moo_catalog>
+        </helpers>
+    </global>
+    <frontend>
+        <layout>
+            <updates>
+                <moo_cloudzoom>
+                    <file>moo_cloudzoom.xml</file>
+                </moo_cloudzoom>
+            </updates>
+        </layout>
+    </frontend>
+    <adminhtml>
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <moo_cloudzoom translate="title" module="moo_catalog">
+                                            <title>Moo Product Gallery "ClouldZoom"</title>
+                                            <sort_order>50</sort_order>
+                                        </moo_cloudzoom>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+    </adminhtml>
+
+    <default>
+        <moo_cloudzoom>
+            <general>
+                <enabled>1</enabled>
+            </general>
+            <zoomImage>
+                <zoomWidth>300</zoomWidth>
+                <zoomHeight>300</zoomHeight>
+                <position>right</position>
+                <smoothMove>3</smoothMove>
+                <showTitle>1</showTitle>
+                <titleOpacity>1</titleOpacity>
+                <adjustX>0</adjustX>
+                <adjustY>0</adjustY>
+            </zoomImage>
+            <lens>
+                <lensOpacity>0.5</lensOpacity>
+            </lens>
+            <originalImage>
+                <imageWidth>300</imageWidth>
+                <imageHeight>300</imageHeight>
+                <tint></tint>
+                <tintOpacity>0.5</tintOpacity>
+                <softFocus>0</softFocus>
+            </originalImage>
+        </moo_cloudzoom>
+    </default>
+</config>
