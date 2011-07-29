@@ -111,6 +111,7 @@ body:before {
 #mainNav ul li div ul{
 	border-top: solid 1px #431f4c;
 	padding-top:10px;
+	width: 100%;
 }
 #mainNav ul li div ul li{
 	display: block;
@@ -119,6 +120,7 @@ body:before {
 	height:auto;
 	padding:0;
 }
+
 #mainNav ul li div ul li.navSectTitle{
     text-transform: uppercase;
 	color: #ab8fb2;
@@ -164,6 +166,10 @@ ul#myAccount li{
 	padding: 10px 20px 29px 0px;
 	background: url("../images/icons/arrow-nav-white.png") no-repeat right 8px;
 }
+
+	li.ignore-item {
+		background:none;
+	}
 ul#myAccount li a{
 	text-transform: none;
 	font-family: Arial;
