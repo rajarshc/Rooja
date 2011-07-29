@@ -1011,8 +1011,8 @@ form#discount-coupon-form .discount h2, .shipping h2  {font-size:14px;margin: 0 
 .cart .totals table tfoot th {}
 
 /* Options Tool Tip */
-.item-options dt { font-weight:bold; font-style:italic;float:left;padding-bottom:15px;clear:both; }
-.item-options dd { padding-left:10px;float:left;padding-bottom:15px; }
+.item-options dt { font-weight:bold; float:left;padding-bottom:10px;clear:both; }
+.item-options dd { padding-left:5px;float:left;padding-bottom:10px; }
 .truncated { cursor:help; }
 .truncated a.dots { cursor:help; }
 .truncated a.details { cursor:help; }
