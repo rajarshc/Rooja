@@ -173,7 +173,18 @@ button.button span span { background-position:100% 0; padding:0 12px 0 4px; }
 button.disabled {}
 button.disabled span {}
 
-#apply-coupon {display:block; float:left; height:40px; background:#431f4c; font:normal 12px/40px Arial, Helvetica, sans-serif; text-align:center; white-space:nowrap; color:#fff; }
+#apply-coupon {
+	display:block; 
+	float:left; 
+	padding:3px 10px;
+	border:none;
+	height:40px; 
+	background:#cc6600;  
+	font:normal 12px/40px Arial, Helvetica, sans-serif; 
+	text-align:center; 
+	white-space:nowrap; 
+	color:#fff; 
+	}
 
 button.btn-checkout span {}
 button.btn-checkout.no-checkout {}

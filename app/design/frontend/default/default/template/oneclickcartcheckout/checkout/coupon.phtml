@@ -35,9 +35,11 @@
             <input type="hidden" name="remove" id="remove-coupone" value="0" />
             <div class="input-box">
                 <input class="input-text" id="coupon_code" name="coupon_code" type="text" value="<?php echo $this->htmlEscape($this->getCouponCode()) ?>" />
+
+                <button id="apply-coupon" type="button" title="<?php echo $this->__('Apply Coupon') ?>"  onclick="discountForm.submit(false)" value="<?php echo $this->__('Apply Coupon') ?>"><span><span><?php echo $this->__('Apply Coupon') ?></span></span></button>
+
             </div>
             <div>
-                <button id="apply-coupon" type="button" title="<?php echo $this->__('Apply Coupon') ?>"  onclick="discountForm.submit(false)" value="<?php echo $this->__('Apply Coupon') ?>"><span><span><?php echo $this->__('Apply Coupon') ?></span></span></button>
                 <?php if(strlen($this->getCouponCode())): ?>
                     &nbsp; <button type="button" title="<?php echo $this->__('Cancel Coupon') ?>" class="button" onclick="discountForm.submit(true)" value="<?php echo $this->__('Cancel Coupon') ?>"><span><span><?php echo $this->__('Cancel Coupon') ?></span></span></button>
                 <?php endif;?>
