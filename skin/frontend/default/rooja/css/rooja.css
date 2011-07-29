@@ -250,7 +250,7 @@ p.question{margin:0;font-weight:bold;color:#431f4c;}
 		border:1px solid #e2e2e2;
 	}
 
-.coup-entry {
+#coup-entry {
 	overflow: hidden;
 	background: #fff;
 }
