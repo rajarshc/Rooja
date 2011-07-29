@@ -112,7 +112,6 @@ foreach ($categories as $_category){
     }
 }
 ?>
-<li><a href="">Invite a Friend</a></li>
 </ul>
 </nav>
 	<?php if(isset($_SERVER['HTTP_USER_AGENT'])){$agent = $_SERVER['HTTP_USER_AGENT'];}?>
@@ -126,6 +125,7 @@ if($session->isLoggedIn()) {$customer = $session->getCustomer();}
 		<ul id="myAccount">
 			<li><a href="#" title="">Welcome <?php echo $customer->getFirstname(); ?></a>
 				<ul>
+					<li><a href="#">Invite Friends & Earn Free Shipping</a></li>
 					<li><a href="/customer/account" title="">My Account</a></li>
 					<li><a href="/customer/account/logout" title="">Sign Out</a></li>
 				</ul>
