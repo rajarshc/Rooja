@@ -247,13 +247,13 @@ p.question{margin:0;font-weight:bold;color:#431f4c;}
 	margin-top:70px;
 }
 	#coupon_code {
-		border:1px #e2e2e2;
+		border:1px solid #e2e2e2;
 	}
-.discount-form {
-	overflow: hidden;
-	background: white;
-}
 
+.coup-entry {
+	overflow: hidden;
+	background: #fff;
+}
 
 h3 .product-name {
 	font-family: helvetica, arial, sans-serif;
@@ -465,6 +465,7 @@ a[href$=".doc"]:after {content: " (DOC)";}
 #one-check {
 	width: 980px;
 	margin: 0 auto;
+	margin-top: 20px;
 }
 
 .billing_section {width: 50%;}
