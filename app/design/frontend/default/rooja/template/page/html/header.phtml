@@ -86,7 +86,6 @@ foreach ($categories as $_category){
             }
         }
         					$i=1;
-		echo '<li><a href="#">Invite a Friend</a></li> ';
         echo '</ul><ul>';
         foreach($_category->getChildren() as $subcategory){
 		$c = Mage::getModel('catalog/category')->load($subcategory->getId());
@@ -113,6 +112,7 @@ foreach ($categories as $_category){
     }
 }
 ?>
+<li>Invite a Friend</li>
 </ul>
 </nav>
 	<?php if(isset($_SERVER['HTTP_USER_AGENT'])){$agent = $_SERVER['HTTP_USER_AGENT'];}?>
