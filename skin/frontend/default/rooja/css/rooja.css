@@ -74,8 +74,13 @@ body:before {
 	float: left;
 	width: 400px;
 	height:70px;
-	margin: -10px 0px 0px 140px;
+	margin: -10px 0px 0px 22px;
 }
+
+#mainNav ul {
+    width: 380px;
+}
+
 #mainNav ul li{
 	display: inline-block;
 	margin-right: 25px;
