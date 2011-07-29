@@ -59,10 +59,7 @@ if (count($galleryImages) > 0) {
 }
 ?>
 
-</p>
-
 <?php if ($_product->getImage() != 'no_selection' && $_product->getImage()): ?>
-<p class="product-image product-image-zoom">
     <a rel="<?php echo $this->renderCloudOptions(); ?>" gallery="<?php echo $mainImagePath; ?>" href="<?php echo $this->helper('catalog/image')->init($_product, 'image'); ?>" class="cloud-zoom" id="cloudZoom">
     <?php
         $_img = '<img id="image" src="'.$this->getCloudImage($_product).'" alt="'.$this->htmlEscape($this->getImageLabel()).'" title="'.$this->htmlEscape($this->getImageLabel()).'" />';
