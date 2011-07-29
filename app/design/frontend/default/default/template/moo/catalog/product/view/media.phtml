@@ -25,6 +25,13 @@
  * @see Mage_Catalog_Block_Product_View_Media
  */
 ?>
+<style type="text/css">
+div {
+	border:1px solid #ff0000;
+}
+</style>
+
+
 <?php
     $_product = $this->getProduct();
     $_helper = $this->helper('catalog/output');
@@ -52,7 +59,6 @@ if (count($galleryImages) > 0) {
 }
 ?>
 
- <img id="slide-loader" src="<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif') ?>" />
 </p>
 
 <?php if ($_product->getImage() != 'no_selection' && $_product->getImage()): ?>
