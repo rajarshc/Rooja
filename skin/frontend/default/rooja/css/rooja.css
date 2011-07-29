@@ -167,8 +167,8 @@ ul#myAccount li{
 	background: url("../images/icons/arrow-nav-white.png") no-repeat right 8px;
 }
 
-	li.ignore-item {
-		background:none;
+	ul#myAccount li.ignore-item {
+		background: none;
 	}
 ul#myAccount li a{
 	text-transform: none;
