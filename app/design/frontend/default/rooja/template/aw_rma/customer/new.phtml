@@ -28,7 +28,7 @@
     <form action="<?php echo $this->getGuestMode() ? $this->getUrl('awrma/guest_rma/save') : $this->getUrl('awrma/customer_rma/save') ?>" method="post" id="awrma-new-form">
         <?php echo $this->getBlockHtml('formkey')?>
         <div class="fieldset">
-            <h2 class="legend"><?php echo $this->__('Request Information') ?></h2>
+          
             <ul class="form-list">
                 <li class="wide">
                     <label for="order" class="required"><em>*</em><?php echo $this->__('Order') ?></label>
@@ -110,10 +110,10 @@
                 </li>
             </ul>
         </div>
-        <div class="buttons-set">
+        
             <p class="required"><?php echo $this->__('* Required Fields') ?></p>
             <button type="submit" title="<?php echo $this->__('Submit Request') ?>" class="button" id="awrma-new-submit"><span><span><?php echo $this->__('Submit Request') ?></span></span></button>
-        </div>
+        
     </form>
     <script type="text/javascript">
     //<![CDATA[
