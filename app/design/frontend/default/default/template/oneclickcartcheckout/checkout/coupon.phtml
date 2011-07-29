@@ -25,6 +25,7 @@
  */
 ?>
 
+<div id="coupon">
 <div class="step">
 <form id="discount-coupon-form" action="<?php echo $this->getUrl('checkout/cart/couponPost') ?>" method="post">
     <div class="discount">
@@ -36,7 +37,7 @@
                 <input class="input-text" id="coupon_code" name="coupon_code" type="text" value="<?php echo $this->htmlEscape($this->getCouponCode()) ?>" />
             </div>
             <div>
-                <button type="button" title="<?php echo $this->__('Apply Coupon') ?>" class="button" onclick="discountForm.submit(false)" value="<?php echo $this->__('Apply Coupon') ?>"><span><span><?php echo $this->__('Apply Coupon') ?></span></span></button>
+                <button id="apply-coupon" type="button" title="<?php echo $this->__('Apply Coupon') ?>" class="button" onclick="discountForm.submit(false)" value="<?php echo $this->__('Apply Coupon') ?>"><span><span><?php echo $this->__('Apply Coupon') ?></span></span></button>
                 <?php if(strlen($this->getCouponCode())): ?>
                     &nbsp; <button type="button" title="<?php echo $this->__('Cancel Coupon') ?>" class="button" onclick="discountForm.submit(true)" value="<?php echo $this->__('Cancel Coupon') ?>"><span><span><?php echo $this->__('Cancel Coupon') ?></span></span></button>
                 <?php endif;?>
@@ -75,4 +76,5 @@ discountForm.submit = function (isRemove) {
 }
 //]]>
 </script>
+</div>
 </div>

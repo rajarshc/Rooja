@@ -85,6 +85,10 @@ ul,ol         { list-style:none; }
 .no-margin    { margin:0 !important; }
 .no-padding   { padding:0 !important; }
 .no-bg        { background:none !important; }
+
+.giftnote {
+	font-weight:bold;
+}
 /* ======================================================================================= */
 
 
@@ -168,6 +172,8 @@ button.button span:hover, #continueShoppingBtn:hover{background-color:#000;}
 button.button span span { background-position:100% 0; padding:0 12px 0 4px; }
 button.disabled {}
 button.disabled span {}
+
+#apply-coupon {display:block; float:left;}
 
 button.btn-checkout span {}
 button.btn-checkout.no-checkout {}
