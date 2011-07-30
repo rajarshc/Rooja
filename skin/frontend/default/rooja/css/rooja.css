@@ -237,6 +237,8 @@ ul#myAccount li ul li a:hover{
 
 /* ~~~~~ PAGE ~~~~~ */
 
+
+/* HOW IT WORKS OVERLAY */
 .howitworks {width:980px; color: #fff; background: #000; }
 .howitworks img {float:left; display: block; padding: 4px 10px 20px 0;}
 	.hiw1-2 {float:left; width: 66%;}
@@ -245,6 +247,7 @@ ul#myAccount li ul li a:hover{
 .three {float:right; width: 31%; padding: 0 10px; background:#a85705;}
 
 .howitworks p.hiw-header {border: none;}
+.white {color: white;}
 
 .staticContent{margin:30px 0 30px;overflow:hidden;}
 .staticContent h1{margin-bottom:20px;}
