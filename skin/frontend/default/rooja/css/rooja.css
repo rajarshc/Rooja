@@ -239,8 +239,8 @@ ul#myAccount li ul li a:hover{
 
 
 /* HOW IT WORKS OVERLAY */
-.hiw-container {background: url(../images/bgs/black-diag.png) repeat; height:262px; width:100%; margin: 0 auto;}
-.howitworks {width:980px; color: #fff; }
+.hiw-container {background: url(../images/bgs/black-diag.png) repeat; height:262px; width:100%;}
+.howitworks {width:980px; color: #fff; margin: 0 auto;}
 .howitworks img {float:left; display: block; padding: 4px 10px 20px 0;}
 	.hiw1-2 {float:left; width: 66%;}
 		.one {float:left; width: 46%; padding: 0 10px;background:#a85705;}
