@@ -239,7 +239,7 @@ ul#myAccount li ul li a:hover{
 
 .howitworks {width:980px; color: #fff; background: #000; }
 .howitworks img {float:left; display: block; padding: 4px 10px 20px 0;}
-	.1and2 {float:left; max-width: 66%;}
+	.hiw1-2 {float:left; width: 66%;}
 		.one {float:left; width: 48%; padding: 0 10px;background:#a85705;}
 		.two {float:right; width: 48%; padding: 0 10px;background:#a85705;}
 .three {float:right; width: 33%; padding: 0 10px; background:#a85705;}
