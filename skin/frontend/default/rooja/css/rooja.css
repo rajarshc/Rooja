@@ -238,11 +238,11 @@ ul#myAccount li ul li a:hover{
 /* ~~~~~ PAGE ~~~~~ */
 
 .howitworks{width:980px; color: #fff; background: #000; }
-.howitworks img {float:left;}
+.howitworks img {float:left; display: block;}
 	.1and2 {float:left; max-width: 66%;}
-		.one {float:left; width: 30%; padding: 0 10px;}
-		.two {float:right; width: 30%; padding: 0 10px;}
-.howitworks .three {float:right; width: 30%; padding: 0 10px;}
+		.one {float:left; width: 30%; padding: 0 10px;background:#a85705;}
+		.two {float:right; width: 30%; padding: 0 10px;background:#a85705;}
+.three {float:right; width: 30%; padding: 0 10px; background:#a85705;}
 
 .howitworks p.hiw-header {border: none;}
 
@@ -332,7 +332,7 @@ h3 .product-name {
 #filterSale a.btn-remove {float: left;position: relative;margin: 3px 8px 0 0;bottom: 0;font-size: 14px;}
 #filterSale ul li {min-height: 25px;line-height: 18px;}
 #filterSale ul li span {font-size: 14px;}
-.sideAd{background-color:#d68533;padding:15px 10px;margin-top:5px;}
+.sideAd{background-color:#a3bcbf;padding:15px 10px;margin-top:5px;}
 .sideAd p{font-weight:bold;color:#fff;margin:0;background:url(../images/icons/rupee-icon.png) no-repeat left center;padding-left:28px;}
 
 .product{width:230px;height:230px;overflow:hidden;position:relative;margin-bottom:20px;}
