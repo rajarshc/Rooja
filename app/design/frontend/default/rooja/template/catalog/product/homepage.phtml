@@ -31,6 +31,7 @@
  * @see Mage_Catalog_Block_Product_List
  */
 ?>
+
 <?php 
 $i = 0;
 $categories = Mage::helper('catalog/category')->getStoreCategories();
@@ -64,9 +65,7 @@ foreach ($categories as $_category){
                 <h2><?php echo $c->getName(); ?></h2>
 				<?php echo '<p>'. date('M jS \a\t g:ia', strtotime($enddate)) .'</p>';?>
             </article>
-				<?php } $i++; }}}}}  }} ?>
-</div>
-			
+				<?php } $i++; }}}}}  }} ?>			
 
 <?php
     /* $_productCollection=$this->getLoadedProductCollection();
