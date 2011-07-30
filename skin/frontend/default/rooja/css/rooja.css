@@ -239,10 +239,10 @@ ul#myAccount li ul li a:hover{
 
 .howitworks{width:980px; color: #fff; background: #000; }
 .howitworks img {float:left;}
-	.1and2 {float:left; width: 66%;}
-		.one {float:left; width: 33%;}
-		.two {float:right; width: 33%}
-.howitworks .three {float:right; width: 33%}
+	.1and2 {float:left; max-width: 66%;}
+		.one {float:left; width: 30%; padding: 0 10px;}
+		.two {float:right; width: 30%; padding: 0 10px;}
+.howitworks .three {float:right; width: 30%; padding: 0 10px;}
 
 .howitworks p.hiw-header {border: none;}
 
