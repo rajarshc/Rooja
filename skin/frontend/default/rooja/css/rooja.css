@@ -247,7 +247,7 @@ ul#myAccount li ul li a:hover{
 .three {float:right; width: 31%; padding: 0 10px; background:#a85705;}
 
 .howitworks p.hiw-header {border: none;}
-h2.white {
+p.hiw-header {
 	color: white; 
 	font-size: 2.4em;
 	line-height: 1em;
