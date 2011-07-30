@@ -221,6 +221,7 @@ ul#myAccount li ul li a:hover{
 	border-left: 1px dotted #fff;
 }
 
+
 /* ~~~~~ FOOTER ~~~~~ */
 
 #mainFooter{width:100%;background:url(../images/bgs/footer-diag.png) repeat;padding:30px 0;color:#fff;overflow:hidden;}
@@ -235,6 +236,15 @@ ul#myAccount li ul li a:hover{
 #copyrightInfo a{text-decoration:none;}
 
 /* ~~~~~ PAGE ~~~~~ */
+
+.howitworks{width:980px; color: #fff; background: #000;}
+.howitwork img {float:left;}
+	.1and2 {float:left;}
+		.1and2 .one {float:left;}
+		.1and2 .two {float:right;}
+.howitworks .three {float:right;}
+
+.howitworks p.header {}
 
 .staticContent{margin:30px 0 30px;overflow:hidden;}
 .staticContent h1{margin-bottom:20px;}
