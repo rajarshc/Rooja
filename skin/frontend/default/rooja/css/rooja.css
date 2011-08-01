@@ -222,6 +222,12 @@ ul#myAccount li ul li a:hover{
 }
 
 
+#sharePurchase h3{
+	font-size: 1.5em; font-weight: bold;font-family:helvetica; color: #333;
+}
+
+
+
 /*************** CONTACT FORM */
 #contact-text, #contact-form {
 	width: 45%;
