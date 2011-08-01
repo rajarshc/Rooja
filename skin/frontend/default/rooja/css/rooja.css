@@ -221,8 +221,17 @@ ul#myAccount li ul li a:hover{
 	border-left: 1px dotted #fff;
 }
 
+
+/*************** CONTACT FORM */
 #contact-text, #contact-form {
 	width: 50%;
+	background: #e0e0e0;
+	padding: 20px;
+}
+
+#contact-wrapper {
+	overflow: hidden;
+	width: 100%;
 }
 
 
