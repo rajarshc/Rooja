@@ -243,7 +243,7 @@ ul#myAccount li ul li a:hover{
 }
 
 #contact-wrapper button.button span, #continueShoppingBtn {
-	margin: 0 -5px;
+	margin: 0;
 }
 
 #contact-form .form-list .field {
