@@ -221,6 +221,10 @@ ul#myAccount li ul li a:hover{
 	border-left: 1px dotted #fff;
 }
 
+#contact-text, #contact-form {
+	width: 50%;
+}
+
 
 /* ~~~~~ FOOTER ~~~~~ */
 
