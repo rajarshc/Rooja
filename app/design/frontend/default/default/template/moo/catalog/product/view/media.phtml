@@ -26,6 +26,11 @@
  */
 ?>
 
+
+<script type="text/javascript">
+ 	function doNothing() { return false; }
+</script>
+
 <?php
     $_product = $this->getProduct();
     $_helper = $this->helper('catalog/output');
@@ -54,7 +59,7 @@ if (count($galleryImages) > 0) {
 ?>
 
 <?php if ($_product->getImage() != 'no_selection' && $_product->getImage()): ?>
-    <a rel="<?php echo $this->renderCloudOptions(); ?>" gallery="<?php echo $mainImagePath; ?>" href="<?php echo $this->helper('catalog/image')->init($_product, 'image'); ?>" class="cloud-zoom" id="cloudZoom" onclick="return false;">
+    <a rel="<?php echo $this->renderCloudOptions(); ?>" gallery="<?php echo $mainImagePath; ?>" href="<?php echo $this->helper('catalog/image')->init($_product, 'image'); ?>" class="cloud-zoom" id="cloudZoom" onclick="return doNothing();">
 	>
     <?php
         $_img = '<img id="image" src="'.$this->getCloudImage($_product).'" alt="'.$this->htmlEscape($this->getImageLabel()).'" title="'.$this->htmlEscape($this->getImageLabel()).'" />';
