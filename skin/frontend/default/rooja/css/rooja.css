@@ -244,7 +244,7 @@ ul#myAccount li ul li a:hover{
 	width: 185px;
 }
 
-#contact-wrapper form-list label {
+#contact-wrapper label.required {
 	margin: 0 0 0 -10px;
 }
 
