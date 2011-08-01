@@ -236,6 +236,14 @@ ul#myAccount li ul li a:hover{
 	width: 400px;
 }
 
+#contact-form .form-list .field {
+	width:210px;
+}
+
+#contact-form form-list label {
+	margin: 0 0 0 -10px;
+}
+
 #contact-text ul li a {
 	font-size: 12px;
 	color: #431F4C;
