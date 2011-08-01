@@ -236,12 +236,12 @@ ul#myAccount li ul li a:hover{
 	width: 400px;
 }
 
-#contact-form ul li a {
+#contact-text ul li a {
 	font-size: 12px;
 	color: #431F4C;
 	}
 
-	#contact-form ul li a img {
+	#contact-text ul li a img {
 		vertical-align: middle;
 		margin: 5px 5px 5px 0;
 		}
