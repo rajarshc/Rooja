@@ -236,6 +236,15 @@ ul#myAccount li ul li a:hover{
 	width: 400px;
 }
 
+#contact-form li a {
+	font-size: 12px;
+	color: #431F4C;
+	}
+
+	#contact-form li a img {
+		vertical-align: middle;
+		margin: 5px 5px 5px 0;
+		}
 
 #contact-wrapper {
 	overflow: hidden;
@@ -246,6 +255,7 @@ ul#myAccount li ul li a:hover{
 #contact-wrapper p {
 	font-size: 1.4em;
 }
+
 
 
 /* ~~~~~ FOOTER ~~~~~ */
