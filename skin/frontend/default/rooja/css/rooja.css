@@ -230,12 +230,16 @@ ul#myAccount li ul li a:hover{
 	height:481px;
 }
 
+#contact-form button.button span span {
+	padding: 0 12px 0 0;
+}
+
 #contact-text h3, #contact-form h3 {
 	font-size: 1.5em; font-weight: bold;font-family:helvetica;
 }
 #contact-form .form-list li.wide textarea {
 	width: 406px;
-	margin:5px 0 0 6px;
+	margin:5px 0 0 0;
 }
 
 #contact-wrapper button.button span, #continueShoppingBtn {
@@ -248,6 +252,7 @@ ul#myAccount li ul li a:hover{
 
 #contact-wrapper .form-list input.input-text {
 	width: 185px;
+	margin: 0;
 }
 
 #contact-text ul li a {
