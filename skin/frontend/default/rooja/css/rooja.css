@@ -227,6 +227,7 @@ ul#myAccount li ul li a:hover{
 	width: 45%;
 	background: #e0e0e0;
 	padding: 20px;
+	min-height:450px;
 }
 
 #contact-text h3, #contact-form h3 {
@@ -237,16 +238,16 @@ ul#myAccount li ul li a:hover{
 	margin:5px 0 0 6px;
 }
 
+#contact-wrapper button.button span, #continueShoppingBtn {
+	margin: 0 0 0 6px;
+}
+
 #contact-form .form-list .field {
 	width:210px;
 }
 
 #contact-wrapper .form-list input.input-text {
 	width: 185px;
-}
-
-#contact-wrapper label {
-	margin: 0 0 0 10px;
 }
 
 #contact-text ul li a {
