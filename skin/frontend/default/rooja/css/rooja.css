@@ -234,6 +234,7 @@ ul#myAccount li ul li a:hover{
 }
 #contact-form .form-list li.wide textarea {
 	width: 412px;
+	margin:5px 0 0 6px;
 }
 
 #contact-form .form-list .field {
@@ -244,7 +245,7 @@ ul#myAccount li ul li a:hover{
 	width: 185px;
 }
 
-#contact-wrapper label.required {
+#contact-wrapper label {
 	margin: 0 0 0 10px;
 }
 
