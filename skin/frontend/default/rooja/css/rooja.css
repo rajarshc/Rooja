@@ -243,9 +243,9 @@ ul#myAccount li ul li a:hover{
 .howitworks {width:980px; color: #fff; margin: 0 auto; overflow: hidden;}
 .howitworks img {float:left; display: block; padding: 4px 10px 20px 0;}
 	.hiw1-2 {float:left; width: 66%;}
-		.one {float:left; width: 46%; padding: 0 10px;background:#a85705;}
-		.two {float:right; width: 46%; padding: 0 10px;background:#a85705;}
-.three {float:right; width: 31%; padding: 0 10px; background:#a85705;}
+		.one {float:left; width: 46%; padding: 15px 10px;background:#a85705;}
+		.two {float:right; width: 46%; padding: 15px 10px;background:#a85705;}
+.three {float:right; width: 31%; padding: 15px 10px; background:#a85705;}
 
 .howitworks p.hiw-header {border: none;}
 p.hiw-header {
@@ -255,19 +255,25 @@ p.hiw-header {
 	font-family: "ltc-bodoni-175-1","ltc-bodoni-175-2", georgia, serif;
 	font-weight: normal;
 	text-transform:uppercase;
+	padding: 10px 0 20px;
 	}
 	
-.closer {width:100%; 
+.closer {
+	width:100%; 
 	overflow: hidden;
-	padding: 20px 0;}	
+	padding: 60px 0;
+	}	
 a.closer {	
 	font-family: "ltc-bodoni-175-1","ltc-bodoni-175-2", georgia, serif; 
-	background: black; 
+	background: black url("../images/icons/arrow-nav-white.png") no-repeat right 8px;
 	font-size:18px; 
 	padding: 5px 10px;
 	color: #fff;
 	margin-left: 50%;}
 
+
+/* TWO COL DEFAULT */
+.2col {}
 .staticContent{margin:30px 0 30px;overflow:hidden;}
 .staticContent h1{margin-bottom:20px;}
 .staticContent h2{margin:30px 0 10px;color:#431f4c;}
