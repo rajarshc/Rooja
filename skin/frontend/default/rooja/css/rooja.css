@@ -245,7 +245,7 @@ ul#myAccount li ul li a:hover{
 }
 
 #contact-wrapper label.required {
-	margin: 0 0 0 -10px;
+	margin: 0 0 0 10px;
 }
 
 #contact-text ul li a {
