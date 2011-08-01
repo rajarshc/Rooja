@@ -56,6 +56,8 @@
 
 		        <ul class="form-list">
 		            <li class="fields">
+			
+			<div class="contact-wrapper">
 		                <div class="field">
 		                    <label for="name" class="required"><em>*</em><?php echo Mage::helper('contacts')->__('Name') ?></label>
 		                    <div class="input-box">
@@ -68,6 +70,7 @@
 		                        <input name="email" id="email" title="<?php echo Mage::helper('contacts')->__('Email') ?>" value="<?php echo $this->htmlEscape($this->helper('contacts')->getUserEmail()) ?>" class="input-text required-entry validate-email" type="text" />
 		                    </div>
 		                </div>
+		</div>
 		            </li>
 		            <li>
 		                <label for="telephone"><?php echo Mage::helper('contacts')->__('Telephone') ?></label>
