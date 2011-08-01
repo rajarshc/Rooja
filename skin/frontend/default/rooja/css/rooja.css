@@ -240,7 +240,11 @@ ul#myAccount li ul li a:hover{
 	width:210px;
 }
 
-#contact-form form-list label {
+#contact-form .form-list input.input-text {
+	width: 185;
+}
+
+#contact-wrapper form-list label {
 	margin: 0 0 0 -10px;
 }
 
