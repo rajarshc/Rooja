@@ -168,8 +168,10 @@ ul#myAccount li{
 }
 
 	ul#myAccount li.ignore-item {
-		background: none;
-		width: 106px;
+		background: ("../images/invite-friends.png") top left;
+		text-indent:-9999px;
+		width: 150px;
+		height:60px;
 		line-height: 18px;
 		margin: -17px 0;
 	}
