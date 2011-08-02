@@ -222,6 +222,11 @@ ul#myAccount li ul li a:hover{
 }
 
 
+#thankYouMsg a {
+	color: #C60;
+	font-weight:bold;
+}
+
 #sharePurchase h3{
 	font-size: 18px; font-weight: bold;font-family:helvetica; color: #333;
 }
