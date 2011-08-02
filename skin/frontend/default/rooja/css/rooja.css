@@ -168,10 +168,9 @@ ul#myAccount li{
 }
 
 	ul#myAccount li.ignore-item {
-		margin: -17px 0;
-		background: url("../images/invite-friends.png") no-repeat top left
+		background: url("../images/invite-friends.png") no-repeat top left;
 		height: 3px;
-		margin:0 19px 0 0;
+		margin: 0 19px 0 0;
 	}
 	
 	ul#myAccount li.ignore-item a{
