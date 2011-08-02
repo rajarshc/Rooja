@@ -957,6 +957,10 @@ h1.submitted {padding-top: 40px;}
 .cart .total_gray {background: #e0e0e0;font-size: 14px;padding: 20px 10px;line-height: 20px;margin: 0 0 10px;}
 .cart .total_gray h2 {font-size: 18px;text-transform: uppercase;text-align: center;margin: 0 0 10px;}
 
+#sharePurchase .col1 {
+	width:350px;
+}
+
 .shipping {margin: 15px 0 0;}
 .shipping .form-list label {font-size: 14px;line-height: 40px;}
 .shipping .form-list .input-box {clear: inherit;}
