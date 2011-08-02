@@ -222,7 +222,7 @@ ul#myAccount li ul li a:hover{
 }
 
 
-#thankYouMsg a .contact {
+#thankYouMsg a.contact {
 	color: #C60;
 	font-weight:bold;
 }
