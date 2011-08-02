@@ -957,7 +957,7 @@ h1.submitted {padding-top: 40px;}
 .cart .total_gray {background: #e0e0e0;font-size: 14px;padding: 20px 10px;line-height: 20px;margin: 0 0 10px;}
 .cart .total_gray h2 {font-size: 18px;text-transform: uppercase;text-align: center;margin: 0 0 10px;}
 
-#sharePurchase .col1 {
+#sharePurchase .fr .col1 .share-purchase {
 	width:350px;
 }
 
