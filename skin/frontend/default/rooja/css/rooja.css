@@ -168,13 +168,19 @@ ul#myAccount li{
 }
 
 	ul#myAccount li.ignore-item {
-		background: ("../images/invite-friends.png") top left;
+		margin: -17px 0;
+	}
+	
+	ul#myAccount li.ignore-item a{
+		display:block;
 		text-indent:-9999px;
 		width: 150px;
 		height:60px;
+		background: ("../images/invite-friends.png") top left;
 		line-height: 18px;
-		margin: -17px 0;
+		
 	}
+	
 ul#myAccount li a{
 	text-transform: none;
 	font-family: Arial;
