@@ -1282,7 +1282,7 @@ fielset h4{padding: 10px 0 25px;}
 
 .page-invite {background:#c8d7da;padding:15px 12px;margin-top:10px;}
 .dashboard .page-invite{margin-top:25px;}
-.share-purchase {background:#c8d7da;padding:15px 12px; margin-top: -250px;}
+.share-purchase {background:#c8d7da;padding:15px 12px; margin-top: -250px; width:350px;}
 
 input.invite-input {height: 36px;line-height:36px;padding:0px 8px;width:236px;}
 input.invite-button{height: 36px; color: #fff; font-size:14px; padding: 0px 10px; background: #868686;}
