@@ -38,10 +38,10 @@
 <?php endif;?>
 	<p>Thanks for your purchase! We&#x27;ve received your order and will email you with a confirmation when it ships.</p>
 
-	<p>If you have any questions or there is an error in your order, please <a href="/contacts">Contact Us</a></p>
+	<p>If you have any questions or there is an error in your order, please <a class="contact" href="/contacts">Contact Us</a></p>
 <?php if ($this->getCanViewOrder() && $this->getCanPrintOrder()) :?>
     <p>
-        <?php echo $this->__('Click <a href="%s" onclick="this.target=\'_blank\'">here to print</a> a copy of your order confirmation.', $this->getPrintUrl()) ?>
+        <?php echo $this->__('Click <a class="contact" href="%s" onclick="this.target=\'_blank\'">here to print</a> a copy of your order confirmation.', $this->getPrintUrl()) ?>
         <?php echo $this->getChildHtml() ?>
     </p>
 <?php endif;?>
