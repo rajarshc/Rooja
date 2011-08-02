@@ -174,11 +174,12 @@ ul#myAccount li{
 	}
 	
 	ul#myAccount li.ignore-item a{
-		display:block;
+		display: block;
 		text-indent:-9999px;
 		width: 150px;
-		margin:-10px -20px 0 0;
+		margin:-10px -21px 0 16px;
 		height: 32px;
+		border:1px dotted white;
 		line-height: 18px;
 		
 	}
