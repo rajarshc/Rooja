@@ -1300,6 +1300,41 @@ input.invite-button{height: 36px; color: #fff; font-size:14px; padding: 0px 10px
 .addressBoxPg{margin:20px 0;overflow:hidden;padding-bottom:10px;}
 .addressBoxPg a{font-size:1.2em;font-weight:bold;color:#C60;}
 
+
+/***** box form elements (product page) */
+.super-attribute-select {
+visibility: hidden;
+}
+ 
+.va_wrapper {
+margin: 0;
+padding: 0;
+padding-top: 5px;
+list-style: none;
+}
+ 
+.va_wrapper li a {
+margin-right: 3px;
+float: left;
+background: none repeat scroll 0 0 #55AAFF;
+border: 1px solid #000000;
+padding: 4px 7px;
+color: #FFF;
+font-size: 13px;
+font-weight: bold;
+text-decoration: none;
+}
+ 
+.va_wrapper li {
+float: left;
+margin-right: 2px;
+}
+ 
+.va_wrapper li a.selected {
+background: #FFF;
+color: red;
+}
+
 /* ======================================================================================= */
 
 

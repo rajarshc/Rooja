@@ -31,6 +31,29 @@
  * @see Mage_Review_Block_Product_View
  */
 ?>
+
+<script type="text/javascript">
+jQuery(function() {
+    jQuery("#attribute128").visualAttribute();
+    jQuery("#attribute129").visualAttribute({
+        attrClicked:function(data) {
+
+            if (data.text == 'M') {
+                alert('Please select a color first.');
+                return false;
+            }
+            else {
+                alert('Clicked on size: ' + data.text + ' (value: ' + data.value + ', position: ' + data.position + ')');
+                return true;
+            }
+        },
+        useTitle:true
+    });
+
+});
+	
+</script> 
+
 <?php $_helper = $this->helper('catalog/output'); ?>
 <?php $_product = $this->getProduct(); ?>
 <?php $fbprice = $_helper->productAttribute($_product, $_product->getRl_price(), 'rl_price'); ?>

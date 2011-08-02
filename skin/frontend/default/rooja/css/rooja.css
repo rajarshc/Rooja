@@ -169,6 +169,9 @@ ul#myAccount li{
 
 	ul#myAccount li.ignore-item {
 		background: none;
+		width: 106px;
+		line-height: 18px;
+		margin: -17px 0;
 	}
 ul#myAccount li a{
 	text-transform: none;
