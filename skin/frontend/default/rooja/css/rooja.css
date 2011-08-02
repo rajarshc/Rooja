@@ -169,14 +169,17 @@ ul#myAccount li{
 
 	ul#myAccount li.ignore-item {
 		margin: -17px 0;
+		background: ("../images/invite-friends.png") top left;
+		height: 3px;
+		margin:0 19px 0 0;
 	}
 	
 	ul#myAccount li.ignore-item a{
 		display:block;
 		text-indent:-9999px;
 		width: 150px;
-		height:60px;
-		background: ("../images/invite-friends.png") top left;
+		margin:-10px -20px 0 0;
+		height: 32px;
 		line-height: 18px;
 		
 	}
