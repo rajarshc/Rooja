@@ -1291,6 +1291,8 @@ input.invite-button{height: 36px; color: #fff; font-size:14px; padding: 0px 10px
 
 .inputbox .label, .addthis_toolbox  {padding: 10px 0; margin: -20px 0 0 0;}
 
+.page-invite .inputbox .label, .addthis_toolbox {margin: 0;}
+
 #referred-friends-table {background:#fff; border:0px;}
 
 /********** Address Page */
