@@ -45,6 +45,11 @@ h1#logo{
     float:left;
     margin:0 20px 15px 0;
 }
+#waitingList{
+    background-image:url(../images/splash/waiting-list.png);
+    width:337px;height:16px;
+    margin:0 0px 15px 25px;
+}
 #createAccount{
     background-image:url(../images/splash/create-an-account.png);
     width:228px;height:16px;
