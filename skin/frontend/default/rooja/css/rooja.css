@@ -104,6 +104,7 @@ body:before {
 	text-decoration: none;
 	margin-left: -15px;
 	background: #220f26;
+	z-index:9999;
 }
 #mainNav ul li:hover div {
 	display: block;	
@@ -522,7 +523,7 @@ h2#saleDetails{color:#c60;margin:22px 0 5px;}
 
 #gallery .product-image-zoom{position:relative;width:395px;height:640px;overflow:hidden;float:right;}
 #gallery .product-image-zoom img{position:absolute;top:0;left:0;}
-
+#gallery .product-image-zoom #wrap{z-index:1000 !important;}
 
 .awrma-account{width:535px;}
 .awrma-account .form-list{margin:20px 0;}

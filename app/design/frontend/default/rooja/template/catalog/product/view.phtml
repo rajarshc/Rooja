@@ -163,7 +163,7 @@ if (!$categoryIds == null){
 					               success: function(x){
 					                 //alert('price is now set to: ' + x);
 					                 //var offset = -<?php echo $fbinc; ?>;
-					                console.log('liked!'); jQuery('#likeThis').find('span:last').text(function(i,txt) { return parseInt(txt, 10) + 1; });
+					                 jQuery('#likeThis').find('span:last').text(function(i,txt) { return parseInt(txt, 10) + 1; });
 
 					                 jQuery('.currentPrice').find('span:last').text(<?php echo number_format($fbprice - $fbinc, 2); ?>);
 									
