@@ -25,12 +25,7 @@
  */
 ?>
 <?php echo $this->getChildHtml('items_before'); ?>
-<?php $_item = $this->getItem() ?>
-
 <div id="checkout-review-table-wrapper">
-	
-	 <td><a href="<?php echo $this->getItemUrl($_item) ?>" title="<?php echo $this->htmlEscape($this->getItemName($_item)) ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($this->getItemProductForThumbnail($_item), 'thumbnail')->resize(75); ?>" width="75" alt="<?php echo $this->htmlEscape($this->getItemName($_item)) ?>" /></a></td>
-	
     <table class="data-table" id="checkout-review-table">
         <?php if ($this->helper('tax')->displayCartBothPrices()): $colspan = $rowspan = 2; else: $colspan = $rowspan = 1; endif; ?>
         <col />
