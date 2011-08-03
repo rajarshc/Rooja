@@ -31,7 +31,17 @@
  * @see Mage_Review_Block_Product_View
  */
 ?>
-
+<script type="text/javascript"> 
+	window.fbAsyncInit = function() {
+	 FB.init({appId: '173637846031428', status: true, cookie: true, xfbml: true});
+	};
+	(function() {
+	 var e = document.createElement('script'); e.async = true;
+	 e.src = document.location.protocol +
+	   '//connect.facebook.net/en_US/all.js';
+	 document.getElementById('fb-root').appendChild(e);
+	}());
+</script>
 <script type="text/javascript" src="/magento.visual.attribute.js"></script>
 
 <script type="text/javascript">
@@ -147,44 +157,7 @@ if (!$categoryIds == null){
 					
 					<p id="likeThis">
 					<fb:like layout="button_count" width="60" style="margin:3px 0 0;float:right" title="Rooja: <?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?>"></fb:like>
-					<script type="text/javascript">
-						jQuery.noConflict();
-						window.fbAsyncInit = function() {
-					       FB.init({appId: '173637846031428', status: true, cookie: true,
-					                xfbml: true});
-					       FB.Event.subscribe('edge.create', function(response) {
-					             // do something with response
-					            // alert('hi master');
-					             // ajax the price
-					             jQuery.ajax({
-					               type:     "POST",
-					               url:      "/rbanh?id=<?php echo $_product->getId(); ?>&url=<?php echo urlencode($_SERVER['REQUEST_URI']); ?>",
-					               dataType: "html",
-					               success: function(x){
-					                 //alert('price is now set to: ' + x);
-					                 //var offset = -<?php echo $fbinc; ?>;
-					                 console.log('liked'); jQuery('#likeThis').find('span:last').text(function(i,txt) { return parseInt(txt, 10) + 1; });
-
-					                 jQuery('.currentPrice').find('span:last').text('-$'+<?php echo number_format($fbprice - $fbinc, 2); ?>);
-									
-						             //alert('<?php echo '$' . number_format($fbprice, 2); ?>');
-					               },
-					               error: function(x){
-					                 alert('There was a problem with facebook. Please try again later')
-					               }
-					            });
-					             // if not empty, update the price.
-					       });
-					     };
-					     (function() {
-					       var e = document.createElement('script');
-					       e.type = 'text/javascript';
-					       e.src = document.location.protocol +
-					         '//connect.facebook.net/en_US/all.js';
-					       e.async = true;
-					       document.getElementById('fb-root').appendChild(e);
-					     }());
-					</script>
+					
 					
 					<?php
 					$source_url = $this->helper('core/url')->getCurrentUrl();
@@ -352,7 +325,34 @@ echo '<span>' . $likes = $xml->link_stat->like_count . '</span>';
 		<br class="clear">
 	</div>
 </section>
+<script type="text/javascript">
+	jQuery.noConflict();
 
+       FB.Event.subscribe('edge.create', function(response) {
+             // do something with response
+            // alert('hi master');
+             // ajax the price
+             jQuery.ajax({
+               type:     "POST",
+               url:      "/rbanh?id=<?php echo $_product->getId(); ?>&url=<?php echo urlencode($_SERVER['REQUEST_URI']); ?>",
+               dataType: "html",
+               success: function(x){
+                 //alert('price is now set to: ' + x);
+                 //var offset = -<?php echo $fbinc; ?>;
+              jQuery('#likeThis').find('span:last').text(function(i,txt) { return parseInt(txt, 10) + 1; });
+                 jQuery('.currentPrice').find('span:last').text('$'+<?php echo number_format($fbprice - $fbinc, 2); ?>);
+				
+	             alert('<?php echo '$' . number_format($fbprice, 2); ?>');
+               },
+               error: function(x){
+                 alert('There was a problem with facebook. Please try again later')
+               }
+            });
+             // if not empty, update the price.
+       });
+     };
+     
+</script>
 <script type="text/javascript">
 	jQuery(document).ready(function(){
 			jQuery("a#detailsTab").click(
