@@ -168,22 +168,24 @@ ul#myAccount li{
 }
 
 	ul#myAccount li.ignore-item {
-		background: url("../images/invite-friends.png") no-repeat top left;
-		height: 3px;
-		margin: 0 19px 0 0;
+		background: url("../images/invite-friends.png") no-repeat left center;
+		height: 45px;
+		margin: -26px 19px 0 0;
+		padding: 14px 10px 10px 10px;
 	}
 	
 		ul#myAccount li.ignore-item:hover {
 			background: #220F26 url("../images/invite-friends.png") no-repeat top left;
-			height: 3px;
-			margin: 0 19px 0 0;
+			height: 45px;
+			margin: -26px 19px 0 0;
+			padding: 14px 10px 10px 10px;
 		}
 	
 	ul#myAccount li.ignore-item a{
 		display: block;
 		text-indent:-9999px;
 		width: 150px;
-		margin:-10px -21px 0 16px;
+		margin: 10px -21px 0 16px;
 		height: 25px;
 		border-right:1px dotted white;
 		line-height: 18px;
