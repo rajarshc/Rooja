@@ -75,6 +75,11 @@ h1#logo{
     width:208px;height:16px;
     margin-bottom:15px;
 }
+#earlyAccess{
+    background-image:url(../images/splash/early-access.png);
+    width:192px;height:19px;
+    margin-bottom:18px;
+}
 #nowLoggedOut{
     background-image:url(../images/splash/you-are-now-logged-out.png);
     width:303px;height:16px;
