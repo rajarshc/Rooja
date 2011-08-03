@@ -200,7 +200,7 @@ Product view
                 <block type="core/text_list" name="alert.urls" as="alert_urls" translate="label">
                     <label>Alert Urls</label>
                 </block>
-
+				<block type="checkout/cart_sidebar" name="topcart" template="checkout/cart/sidebar.phtml"/>
                 <action method="setTierPriceTemplate"><template>catalog/product/view/tierprices.phtml</template></action>
 
                 <block type="catalog/product_list_upsell" name="product.info.upsell" as="upsell_products" template="catalog/product/list/upsell.phtml">
