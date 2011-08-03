@@ -327,10 +327,10 @@ echo '<span>' . $likes = $xml->link_stat->like_count . '</span>';
 </section>
 <script type="text/javascript">
 	jQuery.noConflict();
-
+	 var fbOffset = <?php echo number_format($fbinc, 2); ?>;
+	 var fbPriceJS = <?php echo number_format($fbprice, 2); ?>;
        FB.Event.subscribe('edge.create', function(response) {
-             // do something with response
-            // alert('hi master');
+            
              // ajax the price
              jQuery.ajax({
                type:     "POST",
@@ -338,9 +338,9 @@ echo '<span>' . $likes = $xml->link_stat->like_count . '</span>';
                dataType: "html",
                success: function(x){
                  //alert('price is now set to: ' + x);
-                 //var offset = -<?php echo $fbinc; ?>;
+                var newPrice = fbOffset - fbPriceJS; 
               jQuery('#likeThis').find('span:last').text(function(i,txt) { return parseInt(txt, 10) + 1; });
-                 jQuery('.currentPrice').find('span:last').text('$'+<?php echo number_format($fbprice - $fbinc, 2); ?>);
+                 jQuery('.currentPrice').find('span:last').text('$'+ newPrice);
 				
 	            //alert('<?php echo '$' . number_format($fbprice, 2); ?>');
                },
