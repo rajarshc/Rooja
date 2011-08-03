@@ -44,7 +44,7 @@
 
         <?php foreach ($rates as $rate): ?>
         <tr class="summary-details-<?php echo $taxIter; ?> summary-details<?php if ($isTop): echo ' summary-details-first'; endif; ?>" style="display:none;">
-            <td class="a-right" style="<?php echo $_style ?>" colspan="<?php echo $this->getColspan(); ?>">
+            <td class="a-right" style="<?php echo $_style ?>" colspan="4">
                 <?php echo $rate['title']; ?>
                 <?php if (!is_null($rate['percent'])): ?>
                     (<?php echo (float)$rate['percent']; ?>%)
@@ -63,7 +63,7 @@
     <?php endforeach; ?>
 <?php endif;?>
 <tr <?php if ($this->helper('tax')->displayFullSummary() && $_value!=0): ?> class="summary-total" onclick="expandDetails(this, '.summary-details-<?php echo $taxIter;?>')"<?php endif; ?>>
-    <td style="<?php echo $_style ?>" class="a-right" colspan="<?php echo $this->getColspan(); ?>">
+    <td style="<?php echo $_style ?>" class="a-right" colspan="4">
         <?php if ($this->helper('tax')->displayFullSummary()): ?>
             <div class="summary-collapse"><?php echo $this->getTotal()->getTitle() ?></div>
         <?php else: ?>
