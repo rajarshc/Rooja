@@ -338,9 +338,10 @@ echo '<span>' . $likes = $xml->link_stat->like_count . '</span>';
                dataType: "html",
                success: function(x){
                  //alert('price is now set to: ' + x);
-                var newPrice = fbOffset - fbPriceJS; 
+                var newPrice = fbOffset - fbPriceJS;
+console.log(newPrice);
               jQuery('#likeThis').find('span:last').text(function(i,txt) { return parseInt(txt, 10) + 1; });
-                 jQuery('.currentPrice').find('span:last').text('$'+ newPrice);
+                 jQuery('.currentPrice').find('span:last').text(' $'+ newPrice);
 				
 	            //alert('<?php echo '$' . number_format($fbprice, 2); ?>');
                },
