@@ -309,6 +309,10 @@ ul#myAccount li ul li a:hover{
 
 
 
+/* ----- CHECKOUT ---- */
+td .product-name { width: 130px;}
+
+
 /* ~~~~~ FOOTER ~~~~~ */
 
 #mainFooter{width:100%;background:url(../images/bgs/footer-diag.png) repeat;padding:30px 0;color:#fff;overflow:hidden;}
