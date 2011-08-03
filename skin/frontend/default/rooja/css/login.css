@@ -152,7 +152,7 @@ form input#loginBtn{
     text-align:center;
 }
 
-.navCont{margin: 0px auto;width:630px;text-align:center;}
+.navCont{margin: 0px auto;width:850px;text-align:center;}
 
 #navLinks ul{float:left;text-align:center;  line-height:19px;}
 
@@ -165,7 +165,7 @@ form input#loginBtn{
 #navLinks ul li a{color:#fff;}
 #navLinks ul li a:hover{color:#ab8fb2;}
 
-#socialLinks{float:left;margin-left:15px;}
+#socialLinks{margin-left:15px;}
 #socialLinks a{margin-right:15px;height:20px;float:left;}
 #socialLinks a:hover{background-position:bottom left;}
 #socialLinks a#facebook{
