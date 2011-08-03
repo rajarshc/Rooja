@@ -47,24 +47,28 @@
 <!-- CUSTOMER INFO -->
 	<tr style="margin: 0;padding: 0;border: 0;border-spacing: 0px;border-collapse: collapse;">
 		<td colspan="2" style="margin: 0;padding: 0;border: 0;border-spacing: 0px;border-collapse: collapse;">
-		<table id="orderInfo" style="margin: 0;padding: 0;border: 0;background: #e2e2e2;font-family: Helvetica, Arial, sans-serif;color: #333;font-size: 15px;border-spacing: 0px;border-collapse: collapse;width: 100%;">
-		<tr style="margin: 0;padding: 0;border: 0;border-spacing: 0px;border-collapse: collapse;">
-			<td class="subhead-sect" style="margin: 0;padding: 5px 10px;border: 0;border-spacing: 0px;border-collapse: collapse;width: 33%;">
-				{{var order.increment_id}}
-			</td>
-			<td class="subhead-sect" style="margin: 0;padding: 5px 10px;border: 0;border-spacing: 0px;border-collapse: collapse;width: 33%;">
-				{{var order.getCreatedAtFormated('short')}
-			</td>
-			<td class="subhead-sect" style="margin: 0;padding: 5px 10px;border: 0;border-spacing: 0px;border-collapse: collapse;width: 33%;">
-				{{var order.shipping_address.format('html')}
-			</td>
-		</tr></table>
-	</td></tr>
+		
+			<table id="orderInfo" style="margin: 0;padding: 0;border: 0;background: #e2e2e2;font-family: Helvetica, Arial, sans-serif;color: #333;font-size: 15px;border-spacing: 0px;border-collapse: collapse;width: 100%;">
+				<tr style="margin: 0;padding: 0;border: 0;border-spacing: 0px;border-collapse: collapse;">
+					<td class="subhead-sect" style="margin: 0;padding: 5px 10px;border: 0;border-spacing: 0px;border-collapse: collapse;width: 33%;">
+						{{var order.increment_id}}
+					</td>
+					<td class="subhead-sect" style="margin: 0;padding: 5px 10px;border: 0;border-spacing: 0px;border-collapse: collapse;width: 33%;">
+						{{var order.getCreatedAtFormated('short')}
+					</td>
+					<td class="subhead-sect" style="margin: 0;padding: 5px 10px;border: 0;border-spacing: 0px;border-collapse: collapse;width: 33%;">
+						{{var order.shipping_address.format('html')}
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
 	<tr style="margin: 0;padding: 0;border: 0;border-spacing: 0px;border-collapse: collapse;">
 		<td colspan="2" style="margin: 0;padding: 0;border: 0;border-spacing: 0px;border-collapse: collapse;">
 
 		<table>
 			<tr class="item-info">
+			<td>
                    	{{depend order.getIsNotVirtual()}}
                    <table cellspacing="0" cellpadding="0" border="0" width="650">
                        <thead>
@@ -74,26 +78,24 @@
                            <th align="left" width="325" bgcolor="#EAEAEA" style="font-size:13px; padding:5px 9px 6px 9px; line-height:1em;">Shipping Method:</th>
                        </tr>
                        </thead>
-                       <tbody>
-                       <tr>
-                           <td valign="top" style="font-size:12px; padding:7px 9px 9px 9px; border-left:1px solid #EAEAEA; border-bottom:1px solid #EAEAEA; border-right:1px solid #EAEAEA;">
-                               {{var order.getShippingAddress().format('html')}}
-                               &nbsp;
-                           </td>
-                       </tr>
-                       </tbody>
-                   </table>
-                   <br/>
-                   {{/depend}}
-                   {{layout handle="sales_email_order_items" order=$order}}
-                   <p style="font-size:12px; margin:0 0 10px 0">{{var order.getEmailCustomerNote()}}</p>
+	                       <tbody>
+	                       <tr>
+	                           <td valign="top" style="font-size:12px; padding:7px 9px 9px 9px; border-left:1px solid #EAEAEA; border-bottom:1px solid #EAEAEA; border-right:1px solid #EAEAEA;">
+	                               {{var order.getShippingAddress().format('html')}}
+	                               &nbsp;
+	                           </td>
+	                       </tr>
+	                       </tbody>
+	                   </table>
+	                   <br/>
+	                   {{/depend}}
+	                   {{layout handle="sales_email_order_items" order=$order}}
+	                   <p style="font-size:12px; margin:0 0 10px 0">{{var order.getEmailCustomerNote()}}</p>
+					</tr>
+				</table>
+				</td>
 			</tr>
-		</table>
-		
-			<img src="{{skin url="images/email/break.jpg" _area='frontend'}}" />
-
-
-				</td></tr>
+						<img src="{{skin url="images/email/break.jpg" _area='frontend'}}" />
 				<tr style="margin: 0;padding: 0;border: 0;border-spacing: 0px;border-collapse: collapse;">
 					<td colspan="2" style="margin: 0;padding: 0;border: 0;border-spacing: 0px;border-collapse: collapse;">
 						<div id="totals" style="float: right;">
