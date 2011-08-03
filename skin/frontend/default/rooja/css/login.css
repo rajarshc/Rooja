@@ -23,17 +23,18 @@ body{
     margin:50px auto 0;
 }
 
-#loginTabs{margin-top:-45px;}
+#loginTabs{margin:-45px 0 15px -15px;}
 #loginTabs ul li{display:inline;}
 #loginTabs ul li a{float:left;margin-right:1px;width:90px;height:30px;}
 #loginTabs ul li a.selected{background-position:bottom left;}
 #loginTabs ul li a#loginTab{background-image:url(../images/splash/btns/login.png);}
 #loginTabs ul li a#getInvitedTab{background-image:url(../images/splash/btns/get-invited.png);}
 
+
 h1#logo{
     background-image:url(../images/splash/rooja-logo.png);
     width:179px;height:85px;
-    margin:15px auto 12px;
+    margin:0px auto 12px;
 }
 #highlight{
     background-image:url(../images/splash/about-blurb2.png);
