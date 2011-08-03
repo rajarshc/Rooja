@@ -23,6 +23,12 @@ body{
     margin:50px auto 0;
 }
 
+#tabs ul li{display:inline;}
+#tabs ul li a{float:left;margin-right:1px;width:90px;height:30px;}
+#tabs ul li a.selected{background-position:bottom left;}
+#tabs ul li a#loginTab{background-image:url(../images/splash/btns/login.png);}
+#tabs ul li a#getInvitedTab{background-image:url(../images/splash/btns/get-invited.png);}
+
 h1#logo{
     background-image:url(../images/splash/rooja-logo.png);
     width:179px;height:85px;
@@ -34,10 +40,15 @@ h1#logo{
      margin:0 auto 38px;
 }
 #members{
-    background-image:url(../images/splash/members.png);
-    width:103px;height:16px;
+    background-image:url(../images/splash/members-sign-in.png);
+    width:176px;height:16px;
     float:left;
     margin:0 20px 15px 0;
+}
+#waitingList{
+    background-image:url(../images/splash/waiting-list.png);
+    width:337px;height:16px;
+    margin:0 0px 15px 25px;
 }
 #createAccount{
     background-image:url(../images/splash/create-an-account.png);
@@ -49,7 +60,7 @@ h1#logo{
     width:365px;height:16px;
     margin-bottom:15px;
 }
-#forgetPass{margin-top:0px;text-decoration:underline;color:#c7becc;}
+#forgetPass{margin-top:0px;text-decoration:underline;color:#c7becc;float:right;}
 #forgetPass:hover{color:#fff;}
 
 #signUp{
@@ -86,8 +97,8 @@ input{
     border:none;outline:none;
 }
 form input#loginBtn{
-    background:url(../images/splash/login-btn.png) no-repeat top left;
-    width:99px;height:39px;
+    background:url(../images/splash/btns/sign-in.png) no-repeat top left;
+    width:99px;height:42px;
     float:right;
     cursor:pointer;
 }
@@ -121,11 +132,49 @@ form input#loginBtn{
    overflow:hidden;
    margin:0 auto 0px;
    position:relative;
+   border-top:6px solid #472a4f;
 }
 
 #brands .brandCol{display:block;width:126px;height:19px;text-align:center;position:relative;}
 #brands .brandCol img{vertical-align:middle;}
 
+#navLinks{
+    background:#000;
+    padding:10px;
+    overflow:hidden;
+    border-top:1px solid #222;
+    margin-top:40px;
+    position:fixed;
+    bottom:0px;
+    width:100%;
+    text-align:center;
+}
+
+.navCont{margin: 0px auto;width:630px;text-align:center;}
+
+#navLinks ul{float:left;text-align:center;  line-height:19px;}
+
+#navLinks ul li{
+    display:inline;
+    font-size:1.2em;
+    text-transform:uppercase;
+    padding:0px 14px;
+}
+#navLinks ul li a{color:#fff;}
+#navLinks ul li a:hover{color:#ab8fb2;}
+
+#socialLinks{float:left;margin-left:15px;}
+#socialLinks a{margin-right:15px;height:20px;float:left;}
+#socialLinks a:hover{background-position:bottom left;}
+#socialLinks a#facebook{
+    background-image:url(../_images/facebook3.png);
+    width:20px;
+}
+#socialLinks a#twitter{
+    background-image:url(../_images/twitter3.png);
+    width:20px;
+}
+#fbLikes{float:left;}
 
 /* ~~~~~ Typography ~~~~~ */
 
@@ -181,6 +230,48 @@ strong{font-weight:bold;}
 }
 
 
+/* ~~~~~ MY BETA LIST ~~~~~ */
+#MyBetaList form input#MyBetaList-email{
+    background-color:#684e70;
+    background-image:none;
+    color:#2e1a33;
+    font-size:1.4em;
+    width:360px;
+    padding:10px;
+    height:auto;
+    margin:0 0 10px;
+    text-indent:0;
+    cursor:auto;
+}
+#MyBetaList form input{
+    background:url(../_images/join-now-btn.png) no-repeat top left;
+    width:109px;height:40px;
+    margin:0 0 0px 271px;
+    outline:none;border:none;
+    float:none;
+    text-indent:-9999px;display:block;
+    cursor:pointer;
+}
+#tellMeMore{
+    background-image:url(../_images/tell-me-more-btn.png);
+    width:380px;height:41px;
+}
+
+form{
+    border-bottom:5px solid #3b2243;
+    overflow:hidden;
+    margin-bottom:20px;
+}
+#MyBetaList-form{border:none;margin-bottom:8px;}
+
+#MyBetaList{padding:0 !important;margin:0 !important;background-color:transparent !important;
+    font-size:10px !important;line-height:10px !important;}
+#MyBetaList-step1 h2, #MyBetaList-step1 p{display:none;}
+#MyBetaList-step2{margin-bottom:25px;color:#ccc;}
+
+#MyBetaList a#MyBetaList-referrer-link:link, #MyBetaList a#MyBetaList-referrer-link:visited{color:#24112a !important;}
+.twitter-share-button, .twitter-count-none{margin-top:-1px;}
+.alignRight{text-align:right;border-bottom:5px solid #3b2243;margin-bottom:20px;padding-bottom:20px;}
 
 
 
