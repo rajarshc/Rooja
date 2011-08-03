@@ -23,17 +23,18 @@ body{
     margin:50px auto 0;
 }
 
-#loginTabs{margin-top:-50px;}
+#loginTabs{margin:-45px 0 0px -15px;}
 #loginTabs ul li{display:inline;}
 #loginTabs ul li a{float:left;margin-right:1px;width:90px;height:30px;}
 #loginTabs ul li a.selected{background-position:bottom left;}
 #loginTabs ul li a#loginTab{background-image:url(../images/splash/btns/login.png);}
 #loginTabs ul li a#getInvitedTab{background-image:url(../images/splash/btns/get-invited.png);}
 
+#mainHeader.login{padding-top:15px;}
 h1#logo{
     background-image:url(../images/splash/rooja-logo.png);
     width:179px;height:85px;
-    margin:0 auto 12px;
+    margin:0px auto 12px;
 }
 #highlight{
     background-image:url(../images/splash/about-blurb2.png);
@@ -151,7 +152,7 @@ form input#loginBtn{
     text-align:center;
 }
 
-.navCont{margin: 0px auto;width:630px;text-align:center;}
+.navCont{margin: 0px auto;width:850px;text-align:center;}
 
 #navLinks ul{float:left;text-align:center;  line-height:19px;}
 
@@ -164,15 +165,15 @@ form input#loginBtn{
 #navLinks ul li a{color:#fff;}
 #navLinks ul li a:hover{color:#ab8fb2;}
 
-#socialLinks{float:left;margin-left:15px;}
+#socialLinks{margin-left:15px;}
 #socialLinks a{margin-right:15px;height:20px;float:left;}
 #socialLinks a:hover{background-position:bottom left;}
 #socialLinks a#facebook{
-    background-image:url(../_images/facebook3.png);
+    background-image:url(../images/splash/facebook3.png);
     width:20px;
 }
 #socialLinks a#twitter{
-    background-image:url(../_images/twitter3.png);
+    background-image:url(../images/splash/twitter3.png);
     width:20px;
 }
 #fbLikes{float:left;}
@@ -258,11 +259,6 @@ strong{font-weight:bold;}
     width:380px;height:41px;
 }
 
-form{
-    border-bottom:5px solid #3b2243;
-    overflow:hidden;
-    margin-bottom:20px;
-}
 #MyBetaList-form{border:none;margin-bottom:8px;}
 
 #MyBetaList{padding:0 !important;margin:0 !important;background-color:transparent !important;
