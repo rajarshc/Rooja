@@ -175,7 +175,7 @@ ul#myAccount li{
 	}
 	
 		ul#myAccount li.ignore-item:hover {
-			background: #220F26 url("../images/invite-friends.png") no-repeat top left;
+			background: #220F26 url("../images/invite-friends.png") no-repeat left center;
 			height: 45px;
 			margin: -26px 19px 0 0;
 			padding: 14px 10px 10px 10px;
