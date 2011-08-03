@@ -24,9 +24,13 @@
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 ?>
-
 <?php echo $this->getChildHtml('items_before'); ?>
+<?php $_item = $this->getItem() ?>
+
 <div id="checkout-review-table-wrapper">
+	
+	 <td><a href="<?php echo $this->getItemUrl($_item) ?>" title="<?php echo $this->htmlEscape($this->getItemName($_item)) ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($this->getItemProductForThumbnail($_item), 'thumbnail')->resize(75); ?>" width="75" alt="<?php echo $this->htmlEscape($this->getItemName($_item)) ?>" /></a></td>
+	
     <table class="data-table" id="checkout-review-table">
         <?php if ($this->helper('tax')->displayCartBothPrices()): $colspan = $rowspan = 2; else: $colspan = $rowspan = 1; endif; ?>
         <col />
@@ -39,10 +43,6 @@
         <?php endif; ?>
         <thead>
             <tr>
-				<th rowspan="<?php echo $rowspan ?>">
-				<img src="<?php echo $this->getProductThumbnail()->resize(75); ?>" width="45" height="45" alt="<?php echo $this->htmlEscape($this->getProductName()) ?>" /><?php if ($this->hasProductUrl()):?>
-				</th>
-					
                 <th rowspan="<?php echo $rowspan ?>"><?php echo $this->__('Product Name') ?></th>
                 <th colspan="<?php echo $colspan ?>" class="a-center"><?php echo $this->__('Price') ?></th>
                 <th rowspan="<?php echo $rowspan ?>" class="a-center"><?php echo $this->__('Qty') ?></th>
