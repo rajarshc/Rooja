@@ -23,7 +23,7 @@ body{
     margin:50px auto 0;
 }
 
-#loginTabs{margin-top:-50px;}
+#loginTabs{margin-top:-45px;}
 #loginTabs ul li{display:inline;}
 #loginTabs ul li a{float:left;margin-right:1px;width:90px;height:30px;}
 #loginTabs ul li a.selected{background-position:bottom left;}
@@ -33,7 +33,7 @@ body{
 h1#logo{
     background-image:url(../images/splash/rooja-logo.png);
     width:179px;height:85px;
-    margin:0 auto 12px;
+    margin:15px auto 12px;
 }
 #highlight{
     background-image:url(../images/splash/about-blurb2.png);
