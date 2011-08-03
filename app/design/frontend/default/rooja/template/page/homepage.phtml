@@ -54,9 +54,9 @@ if(!Mage::getSingleton('customer/session')->isLoggedIn() && ($agent !="facebooke
         	
         <?php
 		
-		
-		if(!isset(Mage::getSingleton('core/session')->getYourVariable())){
-		    Mage::getSingleton('core/session')->setYourVariable('1');
+		$Data =  Mage::getSingleton('core/session')->getYourVariable()
+		if(!isset($Data)){
+		    Mage::getSingleton('core/session')->setYourVariable('visited');
 		}
 		else{ ?>
 			<div class="hiw-container">
@@ -86,7 +86,7 @@ if(!Mage::getSingleton('customer/session')->isLoggedIn() && ($agent !="facebooke
 				<div class="closer" id="closerBtn"><a href="#" class="closer">Close</a></div>
 				</div>
 				</div>
-<?php } echo Mage::getSingleton('core/session')->getYourVariable(); ?>
+<?php } ?>
 
 <section id="liveSales">
 	<div class="container">
