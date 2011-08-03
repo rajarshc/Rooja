@@ -311,6 +311,10 @@ ul#myAccount li ul li a:hover{
 
 /* ----- CHECKOUT ---- */
 td .product-name { width: 130px;}
+.item-options {
+	font-size: 12px;
+	line-height: 18px;
+	}
 
 
 /* ~~~~~ FOOTER ~~~~~ */
