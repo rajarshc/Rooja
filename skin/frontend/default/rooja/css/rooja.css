@@ -27,7 +27,7 @@ body{
 }
 html, body {height: 100%;}
 
-#wrap {min-height: 100%;}
+#wrap {min-height: 100%; z-index:0;}
 
 #mainContentWrap {overflow:auto;
 	padding-bottom: 218px;}  /* must be same height as the footer */
@@ -172,6 +172,12 @@ ul#myAccount li{
 		height: 3px;
 		margin: 0 19px 0 0;
 	}
+	
+		ul#myAccount li.ignore-item:hover {
+			background: #220F26 url("../images/invite-friends.png") no-repeat top left;
+			height: 3px;
+			margin: 0 19px 0 0;
+		}
 	
 	ul#myAccount li.ignore-item a{
 		display: block;
