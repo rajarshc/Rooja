@@ -1,5 +1,4 @@
 <?php
-session_start();
 /**
  * Magento
  *
@@ -85,7 +84,7 @@ if(!Mage::getSingleton('customer/session')->isLoggedIn() && ($agent !="facebooke
 				<div class="closer" id="closerBtn"><a href="#" class="closer">Close</a></div>
 				</div>
 				</div>
-<?php } ?>
+<?php } echo $_SESSION['first_visit']; ?>
 
 <section id="liveSales">
 	<div class="container">
