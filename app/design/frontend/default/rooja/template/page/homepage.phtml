@@ -53,8 +53,10 @@ if(!Mage::getSingleton('customer/session')->isLoggedIn() && ($agent !="facebooke
         <?php echo $this->getChildHtml('header') ?>
         	
         <?php
-		if(!isset($_SESSION['first_visit'])){
-		    $_SESSION['first_visit'] = 1;
+		
+		
+		if(!isset(Mage::getSingleton('core/session')->getYourVariable())){
+		    Mage::getSingleton('core/session')->setYourVariable('1');
 		}
 		else{ ?>
 			<div class="hiw-container">
@@ -84,7 +86,7 @@ if(!Mage::getSingleton('customer/session')->isLoggedIn() && ($agent !="facebooke
 				<div class="closer" id="closerBtn"><a href="#" class="closer">Close</a></div>
 				</div>
 				</div>
-<?php } echo $_SESSION['first_visit']; ?>
+<?php } echo Mage::getSingleton('core/session')->getYourVariable(); ?>
 
 <section id="liveSales">
 	<div class="container">
