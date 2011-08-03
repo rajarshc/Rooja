@@ -1,4 +1,5 @@
 <?php
+session_start();
 /**
  * Magento
  *
@@ -51,7 +52,12 @@ if(!Mage::getSingleton('customer/session')->isLoggedIn() && ($agent !="facebooke
 <?php echo $this->getChildHtml('after_body_start') ?>
     <?php echo $this->getChildHtml('global_notices') ?>
         <?php echo $this->getChildHtml('header') ?>
-
+        	
+        <?php
+		if(!isset($_SESSION['first_visit'])){
+		    $_SESSION['first_visit'] = 1;
+		}
+		else{ ?>
 			<div class="hiw-container">
 				<div class="howitworks">
 					<p class="hiw-header">How it works</p>
@@ -79,7 +85,7 @@ if(!Mage::getSingleton('customer/session')->isLoggedIn() && ($agent !="facebooke
 				<div class="closer" id="closerBtn"><a href="#" class="closer">Close</a></div>
 				</div>
 				</div>
-
+<?php } ?>
 
 <section id="liveSales">
 	<div class="container">
