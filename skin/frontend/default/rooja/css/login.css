@@ -258,11 +258,6 @@ strong{font-weight:bold;}
     width:380px;height:41px;
 }
 
-form{
-    border-bottom:5px solid #3b2243;
-    overflow:hidden;
-    margin-bottom:20px;
-}
 #MyBetaList-form{border:none;margin-bottom:8px;}
 
 #MyBetaList{padding:0 !important;margin:0 !important;background-color:transparent !important;
