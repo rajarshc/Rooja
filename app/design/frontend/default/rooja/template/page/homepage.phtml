@@ -171,14 +171,14 @@ foreach ($sortedArrayByDates as $date => $array)
 	</div>
 </section>
 <script>
-    $(function(){
+    jQuery(function(){
 	
-	$("#closerBtn").click(function() {
-	        $(".hiw-container").slideUp();
+	jQuery("#closerBtn").click(function() {
+	        jQuery(".hiw-container").slideUp();
 	        return false;
 	});
 		
-      $('#liveSales .container').masonry({
+      jQuery('#liveSales .container').masonry({
         singleMode: true,
         columnWidth: 240,
         resizeable: true,
