@@ -612,6 +612,8 @@ a[href$=".doc"]:after {content: " (DOC)";}
 .saleDetails a span {height: 105px;overflow: hidden;display: block;margin: 0 0 15px;}
 
 /** One step checkout */
+#sidebarCart{display:none;}
+
 #one-check {
 	width: 980px;
 	margin: 0 auto;
