@@ -76,10 +76,9 @@ if(!Mage::getSingleton('customer/session')->isLoggedIn() && ($agent !="facebooke
 						</p>
 					</div>
 
-				<div class="closer"><a href="#" class="closer">Close</a></div>
+				<div class="closer" id="closerBtn"><a href="#" class="closer">Close</a></div>
 				</div>
 				</div>
-
 
 
 <section id="liveSales">
@@ -173,6 +172,11 @@ foreach ($sortedArrayByDates as $date => $array)
 </section>
 <script>
     $(function(){
+	
+	$("#closerBtn").click(function() {
+	        $(".hiw-container").slideUp();
+	        return false;
+	});
 		
       $('#liveSales .container').masonry({
         singleMode: true,
