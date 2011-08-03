@@ -23,11 +23,12 @@ body{
     margin:50px auto 0;
 }
 
-#tabs ul li{display:inline;}
-#tabs ul li a{float:left;margin-right:1px;width:90px;height:30px;}
-#tabs ul li a.selected{background-position:bottom left;}
-#tabs ul li a#loginTab{background-image:url(../images/splash/btns/login.png);}
-#tabs ul li a#getInvitedTab{background-image:url(../images/splash/btns/get-invited.png);}
+#loginTabs{margin-top:-50px;}
+#loginTabs ul li{display:inline;}
+#loginTabs ul li a{float:left;margin-right:1px;width:90px;height:30px;}
+#loginTabs ul li a.selected{background-position:bottom left;}
+#loginTabs ul li a#loginTab{background-image:url(../images/splash/btns/login.png);}
+#loginTabs ul li a#getInvitedTab{background-image:url(../images/splash/btns/get-invited.png);}
 
 h1#logo{
     background-image:url(../images/splash/rooja-logo.png);
