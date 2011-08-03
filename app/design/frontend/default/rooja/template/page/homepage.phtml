@@ -54,8 +54,8 @@ if(!Mage::getSingleton('customer/session')->isLoggedIn() && ($agent !="facebooke
         	
         <?php
 		
-		$Data =  Mage::getSingleton('core/session')->getYourVariable()
-		if(!isset($Data)){
+		$firstVisit =  Mage::getSingleton('core/session')->getYourVariable();
+		if(!isset($firstVisit)){
 		    Mage::getSingleton('core/session')->setYourVariable('visited');
 		}
 		else{ ?>
