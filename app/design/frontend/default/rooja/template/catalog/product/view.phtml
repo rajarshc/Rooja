@@ -342,15 +342,15 @@ echo '<span>' . $likes = $xml->link_stat->like_count . '</span>';
               jQuery('#likeThis').find('span:last').text(function(i,txt) { return parseInt(txt, 10) + 1; });
                  jQuery('.currentPrice').find('span:last').text('$'+<?php echo number_format($fbprice - $fbinc, 2); ?>);
 				
-	             alert('<?php echo '$' . number_format($fbprice, 2); ?>');
+	            //alert('<?php echo '$' . number_format($fbprice, 2); ?>');
                },
                error: function(x){
-                 alert('There was a problem with facebook. Please try again later')
+                 alert('There was a problem with facebook. Please try again later');
                }
             });
              // if not empty, update the price.
        });
-     };
+   
      
 </script>
 <script type="text/javascript">
