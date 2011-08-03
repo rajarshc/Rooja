@@ -33,12 +33,18 @@
 ?>
 <div id="notifyWrapper">
 <div class="wrapper">
+	<nav id="loginTabs">
+		<ul>
+			<li><a href="#" id="loginTab" class="tr selected">Login</a></li>
+			<li><a href="#" id="getInvitedTab" class="tr">Get Invited</a></li>
+		</ul>
+	</nav>
 <header id="mainHeader">
 	<h1 id="logo" class="tr">Rooja</h1>
-	<p id="highlight" class="tr">Apparel and accessories from leading International and Indian designers at prices you just can’t get in the stores</p>
+	<p id="highlight" class="tr">Member&rsquo;s only shopping club. Save up to 60% off retail.</p>
 </header><!--End Header-->
 <section id="content" class="body">
-	<h2 id="members" class="tr">Members</h2>
+	<h2 id="members" class="tr">Members Sign In</h2>
 	<a href="<?php echo $this->getForgotPasswordUrl() ?>" id="forgetPass">Forget your password?</a>
 
 	<form action="<?php echo $this->getPostActionUrl() ?>" method="post" id="login-form">
@@ -48,8 +54,7 @@
 
 		<input type="submit" id="loginBtn" name="loginBtn" class="tr">
 	</form>
-	<h2 id="signUp" class="tr">Sign Up</h2>
-	<a href="/customer/account/create" id="tellMeMore" class="tr">Don&rsquo;t have an account? Join Now.</a>
+
 	
 </section><!--End Content-->
 </div>
@@ -71,6 +76,22 @@
 		</div>
 	</section>
 </div>
+<nav id="navLinks">
+	<div class="navCont">
+	<ul>
+		<li><a href="about.html">About</a></li>
+		<li><a href="http://blog.rooja.com">Blog</a></li>
+	</ul>
+	
+	<div id="socialLinks">
+		<a href="http://www.twitter.com/roojafashion" title="follow rooja on twitter" target="_blank" id="twitter" class="tr">Follow us on Twitter</a>
+		
+		<article id="fbLikes">
+			<div id="fb-root"></div><script src="http://connect.facebook.net/en_US/all.js#appId=220835284594313&amp;xfbml=1"></script><fb:like href="http://www.facebook.com/roojafashion" send="false" layout="button_count" width="60" show_faces="false" font="arial" ref="website"></fb:like>
+		</article>
+	</div>
+	</div>
+</nav>
 
     <script type="text/javascript">
     //<![CDATA[
