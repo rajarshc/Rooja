@@ -169,11 +169,11 @@ form input#loginBtn{
 #socialLinks a{margin-right:15px;height:20px;float:left;}
 #socialLinks a:hover{background-position:bottom left;}
 #socialLinks a#facebook{
-    background-image:url(../_images/facebook3.png);
+    background-image:url(../images/splash/facebook3.png);
     width:20px;
 }
 #socialLinks a#twitter{
-    background-image:url(../_images/twitter3.png);
+    background-image:url(../images/splash/twitter3.png);
     width:20px;
 }
 #fbLikes{float:left;}
