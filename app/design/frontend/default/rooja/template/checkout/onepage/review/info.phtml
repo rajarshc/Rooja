@@ -25,11 +25,6 @@
  */
 ?>
 
-<?php
-$_item = $this->getItem();
-$isVisibleProduct = $_item->getProduct()->isVisibleInSiteVisibility();
-?>
-
 <?php echo $this->getChildHtml('items_before'); ?>
 <div id="checkout-review-table-wrapper">
     <table class="data-table" id="checkout-review-table">
