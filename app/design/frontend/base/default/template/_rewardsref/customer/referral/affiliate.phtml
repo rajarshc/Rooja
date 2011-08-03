@@ -1,0 +1,33 @@
+<div class="page-invite">
+	<fieldset>
+			<h3 class="page-invite-head">Invite your Friends to Join Rooja!</h3>
+			<p>Copy this link and paste the URL below into Twitter, Facebook or an Email</p>
+	        
+		       <input class="invite-input" id="referralLink" type="text" value="<?php echo $this->getReferralUrl(); ?>" />
+		               <input class="invite-button" id="copyBtn" type="submit" title="send" value="Copy" />
+	
+						<div class="addthis_toolbox addthis_default_style" addthis:url="<?php echo $this->getReferralUrl(); ?>">
+						<a class="addthis_button_facebook"><img src="<?php echo $this->getSkinUrl('images/icons/facebook-blue-24.png'); ?>" alt="facebook icon"></a>
+						<a class="addthis_button_twitter"><img src="<?php echo $this->getSkinUrl('images/icons/twitter-teal-24.png'); ?>" alt="twitter icon"></a>
+						</div>
+						<script type="text/javascript">
+							var addthis_config = {"data_track_clickback":true};
+							var addthis_share = { 
+							    templates: {
+							                   twitter: 'Join me at Rooja! Apparel from leading International designers at prices you can&rsquo;t beat. {{url}} via @RoojaFashion'
+							               }
+							}
+						</script>			
+			<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=philosophie"></script>
+	</fieldset>
+</div>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+    jQuery('#copyBtn').zclip({
+        path:'/js/jquery/ZeroClipboard.swf',
+        copy:function(){return jQuery('input#referralLink').val();}
+    });
+
+
+});
+</script>

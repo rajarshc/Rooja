@@ -1,0 +1,15 @@
+
+    <div class="input-box">
+        <label for="rewards_referral">
+        <?php 
+            if($this->showReferralEmail() && !$this->showReferralCode()) {
+                echo $this->__('Referral E-mail');
+            }elseif(!$this->showReferralEmail() && $this->showReferralCode()) {
+                echo $this->__('Referral Code');
+            } else {
+                echo $this->__('Referral E-mail or Code');
+            }
+        ?>
+        </label> 
+        <input type="text" name="billing[rewards_referral]" id="rewards_referral" class="input-text" />
+    </div><BR />

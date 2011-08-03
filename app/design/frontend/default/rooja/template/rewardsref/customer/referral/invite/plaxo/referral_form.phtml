@@ -1,0 +1,52 @@
+<?php if ($this->showSendReferralForm()): ?>
+   
+  <form action="<?php echo $this->getUrl('rewardsref/customer/invites/') ?>" method="post" id="form-validates">
+      <?php if ($this->hasPredictedSignupPoints()): ?>
+  		<div class="rewardsref_myreferrals_multireferral_predictpoints rewardsref_myreferrals_multireferral_predictpoints_signup">
+              <?php echo $this->__("You could earn up to %s when your referral signs up.", $this->getPredictedSignupPoints()); ?>
+          </div>
+      <?php endif; ?>
+      <?php if ($this->hasPredictedFirstOrderPoints()): ?>
+  		<div class="rewardsref_myreferrals_multireferral_predictpoints rewardsref_myreferrals_multireferral_predictpoints_firstorder">
+              <?php echo $this->__("You could earn up to %s when your referral makes their first order.", $this->getPredictedFirstOrderPoints()); ?>
+          </div>
+      <?php endif; ?>
+
+<div class="ref-form half-col left">
+        <fieldset>
+            <h3 class="page-invite-head">Send Invitations</h3>
+            <div class="input-box" >
+                <label for="to">To</label>
+               <br/>
+                                <textarea name="contacts" id="recipient_list" class="rewardsref_recipient_list" rows="7">Enter email addresses separated by commas</textarea>
+                                <br/>
+                                <?php echo $this->getChildHtml('plaxo_contact_chooser'); ?>
+                            
+                <br/>
+            </div>
+			<?php $session = Mage::getSingleton('customer/session');
+
+			if($session->isLoggedIn()) {$customer = $session->getCustomer();}?>
+            <div class="input-box" style="display:none;" >
+                <label for="subject"><?php echo $this->__('Subject (Optional)') ?></label>
+                <textarea name="subject" id="subject" class="required-entry textarea" style="width:100%;" rows="1" cols="80" title="<?php echo $this->__('Subject') ?>"  ><?php echo $customer->getFirstname(); ?> thinks you&rsquo;d love us</textarea>
+            </div>
+
+            <div class="input-box">
+                <label for="message">Message</label><br />
+                <textarea name="message" id="message" class="required-entry textarea" style="width:100%;" rows="4" cols="80" title="<?php echo $this->__('Short Message') ?>" >Join me at rooja.com! Rooja brings you carefully selected fashion products from internationally renowned designers and brands at discounts upto 60%. Best of all: Membership is free. ;)</textarea>
+            </div>
+
+            <div class="button-set" style="margin-top:0px">
+                <!--<a href="<?php echo $this->getBackUrl() ?>" class="left">&laquo; <?php echo $this->__('Back') ?></a>-->
+                <button type="submit" title="<?php echo $this->__('Invite') ?>" class="button"><span><span><?php echo $this->__('Invite') ?></span></span></button>
+            </div>
+            
+        </fieldset>
+    </form>
+
+    <script type="text/javascript">
+        var dataForm = new VarienForm('form-validate', true);
+    </script>
+</div>
+<?php endif; ?>
