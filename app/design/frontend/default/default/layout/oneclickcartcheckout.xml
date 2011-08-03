@@ -68,7 +68,12 @@
 				            <block type="core/text_list" name="checkout.onepage.review.info.items.before" as="items_before" translate="label">
 				                <label>Items Before</label>
 				            </block>
-				            <block type="core/text_list" name="checkout.onepage.review.info.items.after" as="items_after" translate="label">
+				            <block type="core/text_list" name="checkout.onepage.review.info.items.after" as="items_after" translate="label"> 
+					            <action method="addItemRender"><type>simple</type><block>checkout/cart_item_renderer</block><template>checkout/cart/item/default.phtml</template></action>
+				                <action method="addItemRender"><type>grouped</type><block>checkout/cart_item_renderer_grouped</block><template>checkout/cart/item/default.phtml</template></action>
+				                <action method="addItemRender"><type>configurable</type><block>checkout/cart_item_renderer_configurable</block><template>checkout/cart/item/default.phtml</template></action>
+				
+				
 				                <label>Items After</label>
 				            </block>
 				               
