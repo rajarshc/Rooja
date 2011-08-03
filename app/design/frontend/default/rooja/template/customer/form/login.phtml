@@ -35,8 +35,8 @@
 <div class="wrapper">
 	<nav id="loginTabs">
 		<ul>
-			<li><a href="#" id="loginTab" class="tr selected">Login</a></li>
-			<li><a href="#" id="getInvitedTab" class="tr">Get Invited</a></li>
+			<li><a href="#loginCont" id="loginTab" class="tr selected">Login</a></li>
+			<li><a href="#getInvitedCont" id="getInvitedTab" class="tr">Get Invited</a></li>
 		</ul>
 	</nav>
 <header id="mainHeader" class="clear login">
@@ -44,6 +44,7 @@
 	<p id="highlight" class="tr">Member&rsquo;s only shopping club. Save up to 60% off retail.</p>
 </header><!--End Header-->
 <section id="content" class="body">
+	<div id="loginCont">
 	<h2 id="members" class="tr">Members Sign In</h2>
 	<a href="<?php echo $this->getForgotPasswordUrl() ?>" id="forgetPass">Forget your password?</a>
 
@@ -54,8 +55,14 @@
 
 		<input type="submit" id="loginBtn" name="loginBtn" class="tr">
 	</form>
-
+	</div>
+	<div style="display:none" id="getInvitedCont">
+	<h2 id="earlyAccess" class="tr">Early Access</h2>
+	<p>Get invited to the pre-launch sale in Summer 2011. Free shipping within India.</p>
+	<link href="http://my.betali.st/widget/y2jd9dtr.css" rel="stylesheet" /><script src="http://my.betali.st/widget/y2jd9dtr.js" id="MyBetaList"></script>
 	
+	<p class="alignRight">Free membership by invitation only.</p>
+	</div>	
 </section><!--End Content-->
 </div>
 	<section id="brands">
@@ -92,7 +99,17 @@
 	</div>
 	</div>
 </nav>
-
+<script type="text/javascript">
+	jQuery(document).ready(function(){
+			jQuery("a#loginTab").click(
+				 function() {jQuery("#getInvitedCont").hide(); jQuery("#loginCont").show(); jQuery("#loginTab").addClass('selected'); jQuery("#getInvitedTab").removeClass('selected');return false;}
+			);
+			jQuery("a#getInvitedTab").click(
+				 function() {jQuery("#getInvitedCont").show();jQuery("#loginCont").hide(); jQuery("#loginTab").removeClass('selected'); jQuery("#getInvitedTab").addClass('selected');return false;}
+			);
+	 });
+			
+</script>
     <script type="text/javascript">
     //<![CDATA[
         var dataForm = new VarienForm('login-form', true);
