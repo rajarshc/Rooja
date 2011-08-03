@@ -1,4 +1,7 @@
+<html>
+<head>
 <!--@subject {{var store.getFrontendName()}}: New Order # {{var order.increment_id}} @-->
+
 <!--@vars
 {"store url=\"\"":"Store Url",
 "skin url=\"images/logo_email.gif\" _area='frontend'":"Email Logo Image",
@@ -14,109 +17,58 @@
 "layout handle=\"sales_email_order_items\" order=$order":"Order Items Grid",
 "var order.getEmailCustomerNote()":"Email Order Note"}
 @-->
-<!--@styles
-td {
-	padding: 10px 8px 2px;
-	vertical-align:top;
-}
-body, p {
-	font-family: arial, sans-serif;
-	font-size: 13px;
-	line-height: 15px;
-	color: #373737;
-}
-
-table {
-	border-collapse:collapse;
-	width:100%;	
-}
-
-a {
-	text-decoration:underline;
-	color: #181818;
-}
-.order-specs td {
-	padding: 10px 8px 10px;
-}
-
-#wrapper {
-	width: 650px;
-}
-
-.item-info{
-	color: #50305f;
-	font-weight: bold;
-	font-size: 14px;
-}
-.purchase-header {
-	color: white;
-	background-color: #412647;
-	height: 40px;
-	font-size:14px;
-	font-weight:bold;
-}
-.order-specs {
-	background-color:#e2e2e2;
-	width:100%;
-}
-
-.thanks {padding-top: 20px;}
-
-.centered {
-	margin: 0 auto;
-}
-
-.smaller {
-	width: 90%;
-}
-
-.smallest {
-	width: 88%;
-}
-.costs {
-	width:40%;
-	margin-left: 60%;
-	padding-bottom: 30px;
-}
-
-table, div {
-border:1px solid #ff0000;
-}
-@-->
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
-<html xmlns="http://www.w3.org/1999/xhtml"  xml:lang="en" lang="en" dir="ltr"> 
-<head>
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />	
+
 </head>
-<body>
-	
-	<div style="margin-left:auto; margin-right:auto;">
-		<table>
-			<tr>
-				<td style="background:#50305f;"><img src="{{skin url="images/email/logo.jpg" _area='frontend'}}" alt="rooja"/></td>
-			</tr>
-		</table>
-
-	<div class="centered smaller">
-				<div class="centered thanks"><img src="{{skin url="images/email/thanks.jpg" _area='frontend'}}" alt="Thanks for your purchase!" /></div>
-		<table class="order-specs">
-			<tr class="purchase-header">
-				<td>Order Number</td>
-				<td>Order Date</td>
-				<td>Shipping Address</td>
-			</tr>
+<table id="main" style="margin: 0 auto;padding: 0;border: 0;background: #fff;font-family: Helvetica, Arial, sans-serif;color: #333;font-size: 15px;border-spacing: 0px;border-collapse: collapse;width: 582px;">
+	<tr style="margin: 0;padding: 0;border: 0;border-spacing: 0px;border-collapse: collapse;">
+		<td colspan="2" class="header" style="margin: 0;padding: 0;border: 0;border-spacing: 0px;border-collapse: collapse;background: #666 url({{skin url="images/email/email-templates_01.jpg" _area='frontend'}}); width: 582px;height: 95px;"></td>
+	</tr>
+	<tr style="margin: 0;padding: 0;border: 0;border-spacing: 0px;border-collapse: collapse;">
+		<td colspan="2" style="margin: 0;padding: 0;border: 0;border-spacing: 0px;border-collapse: collapse;">
+			<img src="{{skin url="images/email/email-templates_02.jpg" _area='frontend'}}" width="582" height="88" alt="" style="margin: 0;padding: 0;border: 0;background: #fff;font-family: Helvetica, Arial, sans-serif;color: #333;font-size: 15px;"></td>
+	</tr>
+	<tr style="margin: 0;padding: 0;border: 0;border-spacing: 0px;border-collapse: collapse;">
+		<td colspan="2" style="margin: 0;padding: 0;border: 0;border-spacing: 0px;border-collapse: collapse;">
+			<table id="orderInfoHead" style="margin: 0;padding: 2px 10px;border: 0;background: #412647;font-family: Helvetica, Arial, sans-serif;color: #333;font-size: 15px;border-spacing: 0px;border-collapse: collapse;width: 100%;">
+			<tr style="margin: 0;padding: 0;border: 0;border-spacing: 0px;border-collapse: collapse;">
+				<td class="subhead-sect" style="margin: 0;padding: 5px 10px;border: 0;border-spacing: 0px;border-collapse: collapse;width: 33%;">
+					<p class="subhead" style="font-family: Helvetica, Arial;font-weight: bold;font-size: 15px;color: #fff;">Order Number</p>
+				</td>
+				<td class="subhead-sect" style="margin: 0;padding: 5px 10px;border: 0;border-spacing: 0px;border-collapse: collapse;width: 33%;">
+					<p class="subhead" style="font-family: Helvetica, Arial;font-weight: bold;font-size: 15px;color: #fff;">Order Date</p>
+				</td>
+				<td class="subhead-sect" style="margin: 0;padding: 5px 10px;border: 0;border-spacing: 0px;border-collapse: collapse;width: 33%;">
+					<p class="subhead" style="font-family: Helvetica, Arial;font-weight: bold;font-size: 15px;color: #fff;">Shipping Address</p>
+				</td>
+			</tr></table>
+	</td></tr>
+<!-- CUSTOMER INFO -->
+	<tr style="margin: 0;padding: 0;border: 0;border-spacing: 0px;border-collapse: collapse;">
+		<td colspan="2" style="margin: 0;padding: 0;border: 0;border-spacing: 0px;border-collapse: collapse;">
 		
-			<tr>
-				<td>{{var order.increment_id}}</td>
-				<td>{{var order.getCreatedAtFormated('short')}}</td>
-				<td>{{var order.shipping_address.format('html')}</td>
-			</tr>		
-		</table>
+			<table id="orderInfo" style="margin: 0;padding: 0;border: 0;background: #e2e2e2;font-family: Helvetica, Arial, sans-serif;color: #333;font-size: 15px;border-spacing: 0px;border-collapse: collapse;width: 100%;">
+				<tr style="margin: 0;padding: 0;border: 0;border-spacing: 0px;border-collapse: collapse;">
+					<td class="subhead-sect" style="margin: 0;padding: 5px 10px;border: 0;border-spacing: 0px;border-collapse: collapse;width: 33%;">
+						{{var order.increment_id}}
+					</td>
+					<td class="subhead-sect" style="margin: 0;padding: 5px 10px;border: 0;border-spacing: 0px;border-collapse: collapse;width: 33%;">
+						{{var order.getCreatedAtFormated('short')}
+					</td>
+					<td class="subhead-sect" style="margin: 0;padding: 5px 10px;border: 0;border-spacing: 0px;border-collapse: collapse;width: 33%;">
+						{{var order.shipping_address.format('html')}
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr style="margin: 0;padding: 0;border: 0;border-spacing: 0px;border-collapse: collapse;">
+		<td colspan="2" style="margin: 0;padding: 0;border: 0;border-spacing: 0px;border-collapse: collapse;">
 
 		<table>
 			<tr class="item-info">
+			<td>
                    	{{depend order.getIsNotVirtual()}}
                    <table cellspacing="0" cellpadding="0" border="0" width="650">
                        <thead>
@@ -126,51 +78,36 @@ border:1px solid #ff0000;
                            <th align="left" width="325" bgcolor="#EAEAEA" style="font-size:13px; padding:5px 9px 6px 9px; line-height:1em;">Shipping Method:</th>
                        </tr>
                        </thead>
-                       <tbody>
-                       <tr>
-                           <td valign="top" style="font-size:12px; padding:7px 9px 9px 9px; border-left:1px solid #EAEAEA; border-bottom:1px solid #EAEAEA; border-right:1px solid #EAEAEA;">
-                               {{var order.getShippingAddress().format('html')}}
-                               &nbsp;
-                           </td>
-                       </tr>
-                       </tbody>
-                   </table>
-                   <br/>
-                   {{/depend}}
-                   {{layout handle="sales_email_order_items" order=$order}}
-                   <p style="font-size:12px; margin:0 0 10px 0">{{var order.getEmailCustomerNote()}}</p>
+	                       <tbody>
+	                       <tr>
+	                           <td valign="top" style="font-size:12px; padding:7px 9px 9px 9px; border-left:1px solid #EAEAEA; border-bottom:1px solid #EAEAEA; border-right:1px solid #EAEAEA;">
+	                               {{var order.getShippingAddress().format('html')}}
+	                               &nbsp;
+	                           </td>
+	                       </tr>
+	                       </tbody>
+	                   </table>
+	                   <br/>
+	                   {{/depend}}
+	                   {{layout handle="sales_email_order_items" order=$order}}
+	                   <p style="font-size:12px; margin:0 0 10px 0">{{var order.getEmailCustomerNote()}}</p>
+					</tr>
+				</table>
+				</td>
 			</tr>
-		</table>
-		
-			<img src="{{skin url="images/email/break.jpg" _area='frontend'}}" />
-	</div>
-	
-		<div class="costs"> 
-			<table>
-				<tr>
-					<td>Subtotal</td>
-					<td>$738.24</td>
+						<img src="{{skin url="images/email/break.jpg" _area='frontend'}}" />
+				<tr style="margin: 0;padding: 0;border: 0;border-spacing: 0px;border-collapse: collapse;">
+					<td colspan="2" style="margin: 0;padding: 0;border: 0;border-spacing: 0px;border-collapse: collapse;">
+						<div id="totals" style="float: right;">
+							SUBTOTAL
+						</div>
+					</td>
 				</tr>
-				<tr>
-					<td>Shipping & Handling</td>
-					<td>$0.00</td>
-				</tr>
-				<tr>
-					<td>Tax</td>
-					<td>$11.03</td>
-				</tr>
-				<tr>
-					<td><strong>Grand Total</strong></td>
-					<td><strong>$759.92</strong></td>
-				</tr>
+				<tr style="margin: 0;padding: 0;border: 0;border-spacing: 0px;border-collapse: collapse;">
+					<td colspan="2" id="footer" style="margin: 0;padding: 20px 10px;border: 0;border-spacing: 0px;border-collapse: collapse;width: 100%;font-size: 13px;color: #000;">
+						Questions about your order? Contact us at <a href="mailto:contact@rooja.com" style="color: #000;text-decoration: underline;">contact@rooja.com</a> or call us at (888) 727 4482.
+				</td></tr>
 			</table>
-		</div>
-	
-	<div class="smaller centered">
-		Questions about your order? Contact us at <a href="mailto:contact@rooja.com">contact@rooja.com</a> or call us at (888) 767-4482.
-		</div>
-	</div>
-	</div>
-	
-</body>
-</html>
+			<!-- End Save for Web Slices -->
+
+			</html>
