@@ -165,7 +165,7 @@ if (!$categoryIds == null){
 					                 //var offset = -<?php echo $fbinc; ?>;
 					                 jQuery('#likeThis').find('span:last').text(function(i,txt) { return parseInt(txt, 10) + 1; });
 
-					                 jQuery('.currentPrice').find('span:last').text(<?php echo number_format($fbprice - $fbinc, 2); ?>);
+					                 jQuery('.currentPrice').find('span:last').text('$'+<?php echo number_format($fbprice - $fbinc, 2); ?>);
 									
 						             //alert('<?php echo '$' . number_format($fbprice, 2); ?>');
 					               },
@@ -210,7 +210,7 @@ echo '<span>' . $likes = $xml->link_stat->like_count . '</span>';
 					<p class="startingPrice">Starting Price: <strike>$<?php echo number_format($_product->getPrice(), 2) ?></strike></p>
 					<p class="currentPrice">Current Price:<span>
 					<?php if (!$fbprice == null) { ?>
-					<?php echo '$' . $fbprice; } else { ?>
+					<?php echo '$' . number_format($fbprice,2); } else { ?>
 					<?php echo '$' . number_format($_product->getSpecialprice(), 2);$fbprice = number_format($_product->getSpecialprice(), 2); } ?></span></p>
 					<a href="#" onclick="window.open('/size-chart', 'a', 'width=500, height=400, scrollbars=0, resizable=0')" class="sizeChart fr">Size Chart</a>
 

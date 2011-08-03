@@ -233,12 +233,11 @@ ul#myAccount li ul li a:hover{
 #myBag{
 	display: block;
 	float: left;
-	width: 100px;
+	width: 85px;
 	height: 5px;
 	margin-left: 10px;
-	padding: 10px 0px 10px 20px;
+	padding: 10px 0px 10px 35px;
 	background: url("../images/icons/bag.png") no-repeat 10px 4px;
-	text-indent: 30px;
 	color: #fff;
 	font-size: 1.2em;
 	border-left: 1px dotted #fff;
@@ -448,7 +447,7 @@ h3 .product-name {
 #filterSale a.btn-remove {float: left;position: relative;margin: 3px 8px 0 0;bottom: 0;font-size: 14px;}
 #filterSale ul li {min-height: 25px;line-height: 18px;}
 #filterSale ul li span {font-size: 14px;}
-.sideAd{background-color:#a3bcbf;padding:15px 10px;margin-top:5px;}
+.sideAd{background-color:#a3bcbf;padding:15px 10px;/*margin-top:5px;*/}
 .sideAd p{font-weight:bold;color:#fff;margin:0;background:url(../images/icons/rupee-icon.png) no-repeat left center;padding-left:28px;}
 
 .product{width:230px;height:230px;overflow:hidden;position:relative;margin-bottom:20px;}
