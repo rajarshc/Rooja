@@ -259,7 +259,7 @@ ul#myAccount li ul li a:hover{
     display:block;
     width:730px;
     height:30px;
-    background:url(../_images/referral-bar.png) no-repeat top left;
+    background:url(../images/referral-bar.png) no-repeat top left;
     position:relative;
 }
 
