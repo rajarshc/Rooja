@@ -254,6 +254,26 @@ ul#myAccount li ul li a:hover{
 }
 
 
+/*************** REFERRAL BAR */
+#referralBar{
+    display:block;
+    width:730px;
+    height:30px;
+    background:url(../_images/referral-bar.png) no-repeat top left;
+    position:relative;
+}
+
+#numReferrals{
+    position:absolute;
+    top:0;
+    left:0;
+    height:30px;
+    z-index:10;
+    display:block;
+    background:#7ca600;
+}
+
+
 /*************** CONTACT FORM */
 #contact-text, #contact-form {
 	width: 45%;
