@@ -78,9 +78,13 @@
 <script type="text/javascript">
 	jQuery(document).ready(function(){
 		jQuery("#myBag").click(function() {
-			jQuery("#sidebarCart").slideDown();
+			jQuery("#sidebarCart").slideToggle();
 			return false;
 			});
+		jQuery("#closerBtn").click(function() {
+			        jQuery("#sidebarCart").slideUp();
+			        return false;
+		});
 			
 	 });
 			
