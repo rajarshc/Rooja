@@ -1,0 +1,22 @@
+
+    <fieldset class="group-select wide">
+        <h4 class="legend"><?php echo $this->__('Referral Information') ?></h4>
+        <ul>
+            <li>
+                <div class="input-box">
+                    <label for="rewards_referral">
+                    <?php 
+                        if($this->showReferralEmail() && !$this->showReferralCode()) {
+                            echo $this->__('Referral E-mail');
+                        }elseif(!$this->showReferralEmail() && $this->showReferralCode()) {
+                            echo $this->__('Referral Code');
+                        } else {
+                            echo $this->__('Referral E-mail or Code');
+                        }
+                    ?>
+                    </label>
+                    <input type="text" name="rewards_referral" id="rewards_referral" class="input-text" />
+                </div>
+            </li>
+        </ul>
+    </fieldset>
