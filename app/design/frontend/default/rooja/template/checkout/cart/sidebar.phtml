@@ -45,12 +45,7 @@
             <?php else: ?>
                 <p class="amount"><?php echo $this->__('There are <a href="%s">%s items</a> in your cart.', $this->getUrl('checkout/cart'), $_cartQty) ?></p>
             <?php endif ?>
-            <p class="subtotal">
-                <span class="label"><?php echo $this->__('Cart Subtotal:') ?></span> <?php echo Mage::helper('checkout')->formatPrice($this->getSubtotal()) ?>
-                <?php if ($_subtotalInclTax = $this->getSubtotalInclTax()): ?>
-                    <br />(<?php echo Mage::helper('checkout')->formatPrice($_subtotalInclTax) ?> <?php echo Mage::helper('tax')->getIncExcText(true) ?>)
-                <?php endif; ?>
-            </p>
+            
         </div>
 
 	
@@ -73,6 +68,14 @@
     <?php else: ?>
         <p class="empty"><?php echo $this->__('You have no items in your shopping cart.') ?></p>
     <?php endif ?>
+	<p class="subtotal">
+        <span class="label"><?php echo $this->__('Cart Subtotal:') ?></span> <?php echo Mage::helper('checkout')->formatPrice($this->getSubtotal()) ?>
+        <?php if ($_subtotalInclTax = $this->getSubtotalInclTax()): ?>
+            <br />(<?php echo Mage::helper('checkout')->formatPrice($_subtotalInclTax) ?> <?php echo Mage::helper('tax')->getIncExcText(true) ?>)
+        <?php endif; ?>
+    </p>
+
+<?php echo $this->__('<a href="%s" id="checkoutBtn">Checkout', $this->getUrl('checkout/cart')) ?>
     </div>
 </div>
 
