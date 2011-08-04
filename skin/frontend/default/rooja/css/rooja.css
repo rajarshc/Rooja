@@ -282,7 +282,7 @@ ul#myAccount li ul li a:hover{
 #cart-sidebar li.even{background:none;}
 #cart-sidebar li{border-top:1px solid #494949;}
 
-#topCart .product-name{font-size:1.5em;font-family: "ltc-bodoni-175-1","ltc-bodoni-175-2", georgia, serif;color:#fff;}
+#topCart .product-name{font-size:1.3em;font-family: "ltc-bodoni-175-1","ltc-bodoni-175-2", georgia, serif;color:#fff;}
 #topCart .product-name a{color:#fff;}
 
 #cart-sidebar img{padding:0;}
