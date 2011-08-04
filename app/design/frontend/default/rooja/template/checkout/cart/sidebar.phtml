@@ -34,9 +34,9 @@
 <?php if ($this->getIsNeedToDisplaySideBar()):?>
 <div class="block block-cart" id="sidebarCart">
     <?php $_cartQty = $this->getSummaryCount() ?>
-    <div class="block-title">
-        <strong><span><?php echo $this->__('My Cart') ?></span></strong>
-    </div>
+	<div class="hiw-container">
+		<div class="howitworks">
+			<p class="hiw-header">How it works</p>
     <div class="block-content">
     <?php if ($_cartQty>0): ?>
         <div class="summary">
@@ -52,6 +52,10 @@
                 <?php endif; ?>
             </p>
         </div>
+
+		<div class="closer" id="closerBtn"><a href="#" class="closer">Close</a></div>
+		</div>
+		</div>
     <?php endif ?>
     <?php if($_cartQty && $this->isPossibleOnepageCheckout()): ?>
     <div class="actions">
