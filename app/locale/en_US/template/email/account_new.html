@@ -8,48 +8,46 @@
 "htmlescape var=$customer.password":"Customer Password"}
 @-->
 
-<!--@styles
-body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; }
-@-->
+<html>
+<head>
+<title>Welcome to Rooja!</title>
 
-<body style="background:#F6F6F6; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:12px; margin:0; padding:0;">
-<div style="background:#F6F6F6; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:12px; margin:0; padding:0;">
-<table cellspacing="0" cellpadding="0" border="0" height="100%" width="100%">
-        <tr>
-            <td align="center" valign="top" style="padding:20px 0 20px 0">
-                <!-- [ header starts here] -->
-                <table bgcolor="FFFFFF" cellspacing="0" cellpadding="10" border="0" width="650" style="border:1px solid #E0E0E0;">
-                    <tr>
-                        <td valign="top">
-                            <a href="{{store url=""}}"><img src="{{skin url="images/logo_email.gif" _area='frontend'}}" alt="{{var store.getFrontendName()}}"  style="margin-bottom:10px;" border="0"/></a></td>
-                    </tr>
-                <!-- [ middle starts here] -->
-                    <tr>
-                        <td valign="top">
-                            <h1 style="font-size:22px; font-weight:normal; line-height:22px; margin:0 0 11px 0;"">Dear {{htmlescape var=$customer.name}},</h1>
-                            <p style="font-size:12px; line-height:16px; margin:0 0 16px 0;">Welcome to {{var store.getFrontendName()}}. To log in when visiting our site just click <a href="{{store url="customer/account/"}}" style="color:#1E7EC8;">Login</a> or <a href="{{store url="customer/account/"}}" style="color:#1E7EC8;">My Account</a> at the top of every page, and then enter your e-mail address and password.</p>
-                            <p style="border:1px solid #E0E0E0; font-size:12px; line-height:16px; margin:0; padding:13px 18px; background:#f9f9f9;">
-                                Use the following values when prompted to log in:<br/>
-                                <strong>E-mail</strong>: {{var customer.email}}<br/>
-                                <strong>Password</strong>: {{htmlescape var=$customer.password}}<p>
-                            <p style="font-size:12px; line-height:16px; margin:0 0 8px 0;">When you log in to your account, you will be able to do the following:</p>
-                            <ul style="font-size:12px; line-height:16px; margin:0 0 16px 0; padding:0;">
-                                <li style="list-style:none inside; padding:0 0 0 10px;">&ndash; Proceed through checkout faster when making a purchase</li>
-                                <li style="list-style:none inside; padding:0 0 0 10px;">&ndash; Check the status of orders</li>
-                                <li style="list-style:none inside; padding:0 0 0 10px;">&ndash; View past orders</li>
-                                <li style="list-style:none inside; padding:0 0 0 10px;">&ndash; Make changes to your account information</li>
-                                <li style="list-style:none inside; padding:0 0 0 10px;">&ndash; Change your password</li>
-                                <li style="list-style:none inside; padding:0 0 0 10px;">&ndash; Store alternative addresses (for shipping to multiple family members and friends!)</li>
-                            </ul>
-                            <p style="font-size:12px; line-height:16px; margin:0;">If you have any questions about your account or any other matter, please feel free to contact us at <a href="mailto:{{config path='trans_email/ident_support/email'}}" style="color:#1E7EC8;">{{config path='trans_email/ident_support/email'}}</a> or by phone at {{config path='general/store_information/phone'}}.</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td bgcolor="#EAEAEA" align="center" style="background:#EAEAEA; text-align:center;"><center><p style="font-size:12px; margin:0;">Thank you again, <strong>{{var store.getFrontendName()}}</strong></p></center></td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-    </table>
-</div>
-</body>
+<meta httpequiv="ContentType" content="text/html; charset=iso88591">
+</head>
+<table id="Table_01" width="650" height="638" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse;font-family: Helvetica, Arial, sans-serif;font-size: 13px;color: #111;line-height: 18px;margin: 0 auto;">
+	<tr style="border-collapse: collapse;font-family: Helvetica, Arial, sans-serif;font-size: 13px;color: #111;line-height: 18px;">
+		<td colspan="2" style="border-collapse: collapse;font-family: Helvetica, Arial, sans-serif;font-size: 13px;color: #111;line-height: 18px;">
+			 <a href="{{store url=""}}"><img src="{{skin url="images/email/new-account_02.jpg" _area='frontend'}}" width="650" height="180" alt="" style="display: block;padding: 10px 10px 10px 0;"></a></td>
+	</tr>
+	<tr style="border-collapse: collapse;font-family: Helvetica, Arial, sans-serif;font-size: 13px;color: #111;line-height: 18px;">
+		<td style="border-collapse: collapse;font-family: Helvetica, Arial, sans-serif;font-size: 13px;color: #111;line-height: 18px;">
+			<img src="{{skin url="images/email/new-account_03.jpg" _area='frontend'}}" width="336" height="375" alt="" style="display: block;padding: 10px 10px 10px 0;"></td>
+		<td style="border-collapse: collapse;font-family: Helvetica, Arial, sans-serif;font-size: 13px;color: #111;line-height: 18px;">
+		<img src="{{skin url="images/email/register.jpg" _area='frontend'}}" alt="Thanks for Registering!" style="display: block;padding: 10px 10px 10px 0;">
+		Use the following when prompted to log in
+
+			<p class="password" style="background: #e2e2e2;fontsize: 16px;line-height: 22px;padding: 10px 23px;margin: 10px;">
+				Email: Dru B <br>
+				Pass: pizzazz	
+			</p>
+
+
+		<img src="{{skin url="images/email/account.jpg" _area='frontend'}}" alt="Account Features" style="display: block;padding: 10px 10px 10px 0;">
+<ul style="list-style: square;">
+	<li style="list-style: square;">Proceed through checkout faster when making a purchase</li>
+	<li style="list-style: square;">Check the status of orders</li>
+	<li style="list-style: square;">View past orders</li>
+	<li style="list-style: square;">Make changes to your <a href="{{store url="customer/account/"}}" style="color:#000; text-decoration:underline;">account information</a></li>
+	<li style="list-style: square;">Change your password</li>
+	<li style="list-style: square;">Store alternative addresses (for shipping to multiple family members and friends!)</li>
+		
+	</ul></td></tr>
+	<tr style="border-collapse: collapse;font-family: Helvetica, Arial, sans-serif;font-size: 13px;color: #111;line-height: 18px;">
+		<td colspan="2" id="footer" style="border-collapse: collapse;font-family: Helvetica, Arial, sans-serif;font-size: 11px;color: #111;line-height: 18px;">
+			<img src="{{skin url="images/email/break.jpg" _area='frontend'}}" alt="" style="display: block;padding: 10px 10px 10px 0;">
+			If you have any questions about your account or any other matter, please feel free to contact us at support@rooja.com or by phone at (888) 298-9238.
+		</td>
+	</tr>
+</table>
+
+</html>
