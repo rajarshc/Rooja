@@ -280,10 +280,13 @@ ul#myAccount li ul li a:hover{
 #topCart .mini-products-list .product-image{width:60px;border:none;}
 
 #cart-sidebar li.even{background:none;}
-#cart-sidebar li{border-top:1px solid #fff;}
+#cart-sidebar li{border-top:1px solid #494949;}
 
 #topCart .product-name{font-size:1.5em;font-family: "ltc-bodoni-175-1","ltc-bodoni-175-2", georgia, serif;color:#fff;}
 #topCart .product-name a{color:#fff;}
+
+#cart-sidebar img{padding:0;}
+#checkoutBtn
 
 
 /*************** CONTACT FORM */
