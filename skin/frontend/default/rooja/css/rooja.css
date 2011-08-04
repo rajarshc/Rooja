@@ -383,7 +383,7 @@ p.hiw-header {
 .closer {
 	width:100%; 
 	overflow: hidden;
-	padding: 60px 0;
+
 	}	
 a.closer {	
 	font-family: "ltc-bodoni-175-1","ltc-bodoni-175-2", georgia, serif; 
@@ -391,6 +391,8 @@ a.closer {
 	font-size:18px; 
 	padding: 5px 29px 5px 10px;
 	color: #fff;
+	text-transform:uppercase;
+	height:32px;
 	margin-left: 50%;}
 
 
