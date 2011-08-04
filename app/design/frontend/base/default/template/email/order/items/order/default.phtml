@@ -27,9 +27,9 @@
 <?php $_item = $this->getItem() ?>
 <?php $_order = $this->getItem()->getOrder() ?>
 
-<table id="productListing" style="margin: 0;padding: 0;border: 0;background: #fff;font-family: Helvetica, Arial, sans-serif;color: #333;font-size: 15px;border-spacing: 0px;border-collapse: collapse;width: 100%;">
+<table id="productListing" style="margin: 0;padding: 0;border: 0;background: #fff;font-family: Helvetica, Arial, sans-serif;color: #333;font-size: 15px;border-spacing: 0px;border-collapse: collapse;width: 582px;">
 	<tr style="margin: 0;padding: 0;border: 0;border-spacing: 0px;border-collapse: collapse;">
-		<td class="product" style="margin: 0;padding: 10px;border: 0;border-spacing: 0px;border-collapse: collapse;width: 50%;">
+		<td class="product" style="margin: 0;padding: 10px;border: 0;border-spacing: 0px;border-collapse: collapse;width: 291px;">
 		<?php echo $this->htmlEscape($_item->getName()) ?> (x<?php echo $_item->getQtyOrdered()*1 ?>) <br/> <?php if ($this->getItemOptions()): ?><br/>  
 		<?php foreach ($this->getItemOptions() as $option): ?>
             <dt><strong><em><?php echo $option['label'] ?></em></strong></dt>
@@ -45,7 +45,7 @@
 		        <?php endif; ?>
 		        <?php echo $this->escapeHtml($_item->getDescription()) ?>
 		</td>
-		<td class="product" style="margin: 0;padding: 10px;border: 0;border-spacing: 0px;border-collapse: collapse;width: 50%;"> <?php if ($this->helper('tax')->displaySalesPriceExclTax($_order->getStore()) || $this->helper('tax')->displaySalesBothPrices($_order->getStore())): ?>
+		<td class="product" style="margin: 0;padding: 10px;border: 0;border-spacing: 0px;border-collapse: collapse;width: 291px;"> <?php if ($this->helper('tax')->displaySalesPriceExclTax($_order->getStore()) || $this->helper('tax')->displaySalesBothPrices($_order->getStore())): ?>
 	            <?php if ($this->helper('tax')->displaySalesBothPrices($_order->getStore())): ?>
 	                <span class="label"><?php echo Mage::helper('tax')->__('Excl. Tax'); ?>:</span>
 	            <?php endif; ?>
