@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<config>
+    <modules>
+        <J2t_All>
+            <version>1.0.0</version>
+        </J2t_All>
+    </modules>
+
+    <global>
+        <models>
+            <j2t_all>
+                <class>J2t_All_Model</class>
+            </j2t_all>
+        </models>
+        <!--<helpers>
+            <j2t_all>
+                <class>J2t_All_Helper</class>
+            </j2t_all>
+        </helpers>-->
+        <!--<blocks>
+            <productalert>
+                <class>Mage_AdminNotification_Block</class>
+            </productalert>
+        </blocks>-->
+    </global>
+
+    <adminhtml>
+        <events>
+            <controller_action_predispatch>
+                <observers>
+                    <j2t_all>
+                        <class>j2t_all/observer</class>
+                        <method>preDispatch</method>
+                    </j2t_all>
+                </observers>
+            </controller_action_predispatch>
+        </events>
+    </adminhtml>
+
+    <default>
+        <system>
+            <j2t_all>
+                <feed_url_j2t>j2t-design.net/notifications.rss</feed_url_j2t>
+            </j2t_all>
+        </system>
+    </default>
+</config>

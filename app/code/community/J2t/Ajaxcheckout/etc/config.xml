@@ -1,0 +1,183 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+            <J2t_Ajaxcheckout>
+                    <version>0.1.0</version>
+                    <depends>
+                            <Mage_Customer />
+                            <Mage_Checkout />
+                    </depends>
+            </J2t_Ajaxcheckout>
+    </modules>
+    <global>
+
+        <models>
+            <j2tajaxcheckout>
+                <class>J2t_Ajaxcheckout_Model</class>
+            </j2tajaxcheckout>
+        </models>
+        <blocks>
+            <j2tajaxcheckout>
+                <class>J2t_Ajaxcheckout_Block</class>
+            </j2tajaxcheckout>
+        </blocks>
+        <helpers>
+            <j2tajaxcheckout>
+                <class>J2t_Ajaxcheckout_Helper</class>
+            </j2tajaxcheckout>
+        </helpers>
+
+    </global>
+
+    <frontend>
+        <layout>
+            <updates>
+                <j2tajaxcheckout>
+                    <file>j2tajaxcheckout.xml</file>
+                </j2tajaxcheckout>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <J2t_Ajaxcheckout>
+                    <files>
+                        <default>j2t_ajaxcheckout.csv</default>
+                    </files>
+                </J2t_Ajaxcheckout>
+            </modules>
+        </translate>
+
+    </frontend>
+
+    <frontend>
+        <routers>
+            <j2tajaxcheckout>
+                <use>standard</use>
+                <args>
+                    <module>J2t_Ajaxcheckout</module>
+                    <frontName>j2tajaxcheckout</frontName>
+                </args>
+            </j2tajaxcheckout>
+        </routers>
+    </frontend>
+
+    <adminhtml>
+
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <catalog>
+                            <children>
+                                <j2tajaxcheckout_adminform>
+                                    <title>Configuration</title>
+                                </j2tajaxcheckout_adminform>
+                            </children>
+                        </catalog>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+
+
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <j2tajaxcheckout>
+                                            <title>J2T Ajax Cart</title>
+                                        </j2tajaxcheckout>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                        <customer>
+                            <children>
+                                <j2tajaxcheckout translate="title">
+                                    <title>J2T Ajax Cart</title>
+                                    <sort_order>45</sort_order>
+                                </j2tajaxcheckout>
+                            </children>
+                        </customer>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+    </adminhtml>
+
+
+    <default>
+        <j2tajaxcheckout>
+            <default>
+                <j2t_ajax_cart_template>default</j2t_ajax_cart_template>
+                <j2t_ajax_cart_loading_size>260x50</j2t_ajax_cart_loading_size>
+                <j2t_ajax_cart_confirm_size>260x134</j2t_ajax_cart_confirm_size>
+                <j2t_ajax_cart_image_size>55x55</j2t_ajax_cart_image_size>
+                <j2t_ajax_cart_show_popup>1</j2t_ajax_cart_show_popup>
+                <j2t_ajax_cart_show_upsells>1</j2t_ajax_cart_show_upsells>
+                <j2t_ajax_cart_upsells_nb>3</j2t_ajax_cart_upsells_nb>
+                <j2t_ajax_cart_upsells_nb_per_line>3</j2t_ajax_cart_upsells_nb_per_line>
+                <j2t_ajax_cart_upsells_image_size>50x50</j2t_ajax_cart_upsells_image_size>
+                <j2t_ajax_cart_options>0</j2t_ajax_cart_options>
+                <j2t_ajax_cart_qty>0</j2t_ajax_cart_qty>
+            </default>
+        </j2tajaxcheckout>
+    </default>
+
+
+
+    <!-- checkout/cart/delete -->
+
+    <global>
+        <!-- Mage_Catalog_ProductController -->
+        <!--<routers>
+            <catalog>
+                <rewrite>
+                    <product>
+                        <to>/j2tajaxcheckout/product</to>
+                        <override_action>true</override_action>
+                        <actions>
+                            <view><to>j2tajaxcheckout/product/view</to></view>
+                        </actions>
+                    </product>
+                </rewrite>
+            </catalog>
+        </routers>-->
+
+
+        <!--<routers>
+            <checkout>
+                <rewrite>
+                    <cart>
+                        <to>/j2tajaxcheckout/index</to>
+                        <override_action>true</override_action>
+                        <actions>
+                            <add><to>j2tajaxcheckout/index/cart</to></add>
+                        </actions>
+                    </cart>
+                    <cart>
+                        <to>/j2tajaxcheckout/index</to>
+                        <override_action>true</override_action>
+                        <actions>
+                            <delete><to>j2tajaxcheckout/index/cartdelete</to></delete>
+                        </actions>
+                    </cart>
+                </rewrite>
+            </checkout>
+        </routers>-->
+    </global>
+
+    <!--<global>
+        <rewrite>
+            <j2t_ajaxcheckout_index_cart>
+                <from><![CDATA[#^/checkout/cart/add/?$#]]></from>
+                <to>/j2tajaxcheckout/index/cart/</to>
+            </j2t_ajaxcheckout_index_cart>
+        </rewrite>
+    </global>-->
+</config>
+

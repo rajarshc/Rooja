@@ -1,0 +1,70 @@
+<script type="text/javascript">
+    var ajax_cart_show_popup = <?php echo (int)Mage::getStoreConfig('j2tajaxcheckout/default/j2t_ajax_cart_show_popup', Mage::app()->getStore()->getId());?>;
+    var ajax_cart_qty = <?php echo (int)Mage::getStoreConfig('j2tajaxcheckout/default/j2t_ajax_cart_qty', Mage::app()->getStore()->getId());?>;
+    <?php $loading_arr = explode("x",Mage::getStoreConfig('j2tajaxcheckout/default/j2t_ajax_cart_loading_size', Mage::app()->getStore()->getId()));?>
+    <?php $confirm_arr = explode("x",Mage::getStoreConfig('j2tajaxcheckout/default/j2t_ajax_cart_confirm_size', Mage::app()->getStore()->getId()));?>
+    <?php $model_name = Mage::getStoreConfig('j2tajaxcheckout/default/j2t_ajax_cart_template', Mage::app()->getStore()->getId()); ?>
+
+    var j2t_custom_top_link = '<?php echo Mage::getStoreConfig('j2tajaxcheckout/default/j2t_ajax_cart_custom_top_link', Mage::app()->getStore()->getId()); ?>';
+    var j2t_custom_cart = '<?php echo Mage::getStoreConfig('j2tajaxcheckout/default/j2t_ajax_cart_custom_cart', Mage::app()->getStore()->getId()); ?>';
+    var j2t_custom_mini_cart = '<?php echo Mage::getStoreConfig('j2tajaxcheckout/default/j2t_ajax_cart_custom_mini_cart', Mage::app()->getStore()->getId()); ?>';
+    var j2t_product_essentials = '<?php echo Mage::getStoreConfig('j2tajaxcheckout/default/j2t_ajax_cart_product_essentials', Mage::app()->getStore()->getId()); ?>';
+
+    var j2t_product_image = '<?php echo Mage::getStoreConfig('j2tajaxcheckout/default/j2t_ajax_cart_product_image', Mage::app()->getStore()->getId()); ?>';
+    var j2t_product_shop = '<?php echo Mage::getStoreConfig('j2tajaxcheckout/default/j2t_ajax_cart_product_shop', Mage::app()->getStore()->getId()); ?>';
+    var j2t_product_options = '<?php echo Mage::getStoreConfig('j2tajaxcheckout/default/j2t_ajax_cart_product_options', Mage::app()->getStore()->getId()); ?>';
+    var j2t_product_bottom = '<?php echo Mage::getStoreConfig('j2tajaxcheckout/default/j2t_ajax_cart_product_bottom', Mage::app()->getStore()->getId()); ?>';
+
+
+    var j2t_show_options = '<?php echo Mage::getStoreConfig('j2tajaxcheckout/default/j2t_ajax_cart_options', Mage::app()->getStore()->getId()); ?>';
+
+
+    var loadingW = <?php echo $loading_arr[0];?>;
+    var loadingH = <?php echo $loading_arr[1];?>;
+    var confirmW = <?php echo $confirm_arr[0];?>;
+    var confirmH = <?php echo $confirm_arr[1];?>;
+    <?php if ($model_name != 'default'):?>
+    <?php $temp = Mage::getModel("j2tajaxcheckout/template$model_name");?>
+    var use_template = true;
+    var box_width_height = <?php echo $temp->getWH(); ?>;
+    <?php else:?>
+    var use_template = false;
+    var box_width_height = 0;
+    <?php endif;?>
+</script>
+
+<div class="j2t-overlay" id="j2t-overlay" style="display: none;">&nbsp;</div>
+
+<div style="display: none; width: <?php echo $loading_arr[0];?>px; height: <?php echo $loading_arr[1];?>px; top: 550px;" class="j2tajax-progress" id="j2t_ajax_progress">
+        &nbsp;
+</div>
+<div class="j2t-loading-data" id="j2t-loading-data" style="display: none;">
+    <img alt="<?php echo $this->__('loading...');?>" src="<?php echo $this->getSkinUrl();?>images/j2t/ajax-loader.gif"/>
+    <p><?php echo $this->__('loading...');?></p>
+</div>
+
+<div style="display: none; width: <?php echo $confirm_arr[0];?>px; height: <?php echo $confirm_arr[1];?>px; position: fixed; top: 496px;" class="j2tajax-confirm" id="j2t_ajax_confirm">
+        &nbsp;
+</div>
+
+<div id="j2t-temp-div" style="display:none;"></div>
+
+<div id="j2t-div-template" style="display:none;">
+        <div class="j2t-box-tl">&nbsp;</div>
+        <div class="j2t-box-tm">&nbsp;</div>
+        <div class="j2t-box-tr">&nbsp;</div>
+        <div class="j2t-box-cl">&nbsp;</div>
+        <div class="j2t-box-cm">&nbsp;</div>
+        <div class="j2t-box-cr">&nbsp;</div>
+        <div class="j2t-box-bl">&nbsp;</div>
+        <div class="j2t-box-bm">&nbsp;</div>
+        <div class="j2t-box-br">&nbsp;</div>
+</div>
+
+<div class="j2t_ajax_qty" id="j2t_ajax_qty" style="display:none;">
+    <div class="add-to-cart">
+        <label for="qty"><?php echo $this->__('Qty:') ?></label>
+        <input type="text" name="qty" maxlength="12" value="1" title="<?php echo $this->__('Qty') ?>" class="input-text qty" />
+        <button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart j2t-btn-cart"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
+    </div>
+</div>
