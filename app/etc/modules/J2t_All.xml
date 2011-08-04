@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<J2t_All>
+			<active>true</active>
+			<codePool>community</codePool>
+		</J2t_All>
+	</modules>
+</config>
