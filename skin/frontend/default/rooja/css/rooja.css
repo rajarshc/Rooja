@@ -276,6 +276,10 @@ ul#myAccount li ul li a:hover{
 
 #howClose{font-size:1.3em;color:#d68533;margin:5px 0 0;}
 
+#topCart{
+    height:auto;
+}
+
 
 /*************** CONTACT FORM */
 #contact-text, #contact-form {
