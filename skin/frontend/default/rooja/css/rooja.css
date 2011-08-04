@@ -276,9 +276,10 @@ ul#myAccount li ul li a:hover{
 
 #howClose{font-size:1.3em;color:#d68533;margin:5px 0 0;}
 
-#topCart{
-    height:auto;
-}
+#topCart{height:auto;}
+#topCart .mini-products-list .product-image{width:60px;border:none;}
+
+#topCart .block li.even{background:transparent;}
 
 
 /*************** CONTACT FORM */
