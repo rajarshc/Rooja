@@ -3,6 +3,10 @@
         <h1>Invite a Friend</h1>
 
 <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<?php $_referred = $this->getReferred();?>
+
+<br/>
+<h1>You have <?php echo count($_referred);?> referral.</h1>
 
 <div class="half-col right"><?php echo $this->getChildHtml('affiliate'); ?></div>
 <?php echo $this->getChildHtml('refer_form'); ?>
