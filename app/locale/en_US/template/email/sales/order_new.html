@@ -31,7 +31,7 @@
 	</tr>
 	<tr style="margin: 0;padding: 0;border: 0;border-spacing: 0px;border-collapse: collapse;">
 		<td colspan="2" style="margin: 0;padding: 0;border: 0;border-spacing: 0px;border-collapse: collapse;">
-			<table id="orderInfoHead" style="margin: 0;padding: 2px 10px;border: 0;background: #412647;font-family: Helvetica, Arial, sans-serif;color: #333;font-size: 15px;border-spacing: 0px;border-collapse: collapse;width: 100%;">
+			<table id="orderInfoHead" style="margin: 0;padding: 2px 10px;border: 0;background: #412647;font-family: Helvetica, Arial, sans-serif;color: #333;font-size: 15px;border-spacing: 0px;border-collapse: collapse;width: 592px;">
 			<tr style="margin: 0;padding: 0;border: 0;border-spacing: 0px;border-collapse: collapse;">
 				<td class="subhead-sect" style="margin: 0;padding: 5px 10px;border: 0;border-spacing: 0px;border-collapse: collapse;width: 33%;">
 					<p class="subhead" style="font-family: Helvetica, Arial;font-weight: bold;font-size: 15px;color: #fff;">Order Number</p>
@@ -48,7 +48,7 @@
 	<tr style="margin: 0;padding: 0;border: 0;border-spacing: 0px;border-collapse: collapse;">
 		<td colspan="2" style="margin: 0;padding: 0;border: 0;border-spacing: 0px;border-collapse: collapse;">
 		
-			<table id="orderInfo" style="margin: 0;padding: 0;border: 0;background: #e2e2e2;font-family: Helvetica, Arial, sans-serif;color: #333;font-size: 15px;border-spacing: 0px;border-collapse: collapse;width: 100%;">
+			<table id="orderInfo" style="margin: 0;padding: 0;border: 0;background: #e2e2e2;font-family: Helvetica, Arial, sans-serif;color: #333;font-size: 15px;border-spacing: 0px;border-collapse: collapse;width: 592px;">
 				<tr style="margin: 0;padding: 0;border: 0;border-spacing: 0px;border-collapse: collapse;">
 					<td class="subhead-sect" style="margin: 0;padding: 5px 10px;border: 0;border-spacing: 0px;border-collapse: collapse;width: 33%;">
 						{{var order.increment_id}}
@@ -57,7 +57,7 @@
 						{{var order.getCreatedAtFormated('short')}
 					</td>
 					<td class="subhead-sect" style="margin: 0;padding: 5px 10px;border: 0;border-spacing: 0px;border-collapse: collapse;width: 33%;">
-						{{var order.shipping_address.format('html')}
+						{{var order.shipping_address.format('html')}}
 					</td>
 				</tr>
 			</table>
@@ -70,23 +70,6 @@
 			<tr class="item-info">
 			<td>
                    	{{depend order.getIsNotVirtual()}}
-                   <table cellspacing="0" cellpadding="0" border="0" width="650">
-                       <thead>
-                       <tr>
-                           <th align="left" width="325" bgcolor="#EAEAEA" style="font-size:13px; padding:5px 9px 6px 9px; line-height:1em;">Shipping Information:</th>
-                           <th width="10"></th>
-                           <th align="left" width="325" bgcolor="#EAEAEA" style="font-size:13px; padding:5px 9px 6px 9px; line-height:1em;">Shipping Method:</th>
-                       </tr>
-                       </thead>
-	                       <tbody>
-	                       <tr>
-	                           <td valign="top" style="font-size:12px; padding:7px 9px 9px 9px; border-left:1px solid #EAEAEA; border-bottom:1px solid #EAEAEA; border-right:1px solid #EAEAEA;">
-	                               {{var order.getShippingAddress().format('html')}}
-	                               &nbsp;
-	                           </td>
-	                       </tr>
-	                       </tbody>
-	                   </table>
 	                   <br/>
 	                   {{/depend}}
 	                   {{layout handle="sales_email_order_items" order=$order}}
@@ -104,7 +87,7 @@
 					</td>
 				</tr>
 				<tr style="margin: 0;padding: 0;border: 0;border-spacing: 0px;border-collapse: collapse;">
-					<td colspan="2" id="footer" style="margin: 0;padding: 20px 10px;border: 0;border-spacing: 0px;border-collapse: collapse;width: 100%;font-size: 13px;color: #000;">
+					<td colspan="2" id="footer" style="margin: 0;padding: 20px 10px;border: 0;border-spacing: 0px;border-collapse: collapse;width: 592px; font-size: 13px;color: #000;">
 						Questions about your order? Contact us at <a href="mailto:contact@rooja.com" style="color: #000;text-decoration: underline;">contact@rooja.com</a> or call us at (888) 727 4482.
 				</td></tr>
 			</table>
