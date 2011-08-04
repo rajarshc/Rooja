@@ -261,6 +261,7 @@ ul#myAccount li ul li a:hover{
     height:30px;
     background:url(../images/referral-bar.png) no-repeat top left;
     position:relative;
+    margin-bottom:15px;
 }
 
 #numReferrals{
