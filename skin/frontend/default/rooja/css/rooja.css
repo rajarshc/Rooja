@@ -288,7 +288,7 @@ ul#myAccount li ul li a:hover{
 #cart-sidebar img{padding:0;}
 #topCart .subtotal{text-align:right;}
 #checkoutBtn{
-    float:right; height:40px; background:#431f4c; padding:0 0 0 8px; font:normal 12px/40px Arial, Helvetica, sans-serif; text-align:center; white-space:nowrap; color:#fff;
+    float:right; height:46px; background:#cc6600; width:181px; font-size:1.3em; text-align:center; color:#fff;
 }
 
 
