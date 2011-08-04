@@ -281,6 +281,8 @@ ul#myAccount li ul li a:hover{
 
 #topCart .block li.even{background:transparent;}
 
+#topCart .product-name{font-size:1.5em;font-family: "ltc-bodoni-175-1","ltc-bodoni-175-2", georgia, serif;color:#fff;}
+
 
 /*************** CONTACT FORM */
 #contact-text, #contact-form {
