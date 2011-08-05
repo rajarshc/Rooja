@@ -32,6 +32,46 @@
  */
 ?>
 
+<?php
+function timeBetweenNowAndDeadline($deadline) {
+    $currentDate = date("U");
+    $diff = $deadline-$currentDate;
+    $seconds = 0;
+    $hours   = 0;
+    $minutes = 0;
+
+    if($diff % 86400 <= 0){$days = $diff / 86400;}  // 86,400 seconds in a day
+    if($diff % 86400 > 0)
+    {
+        $rest = ($diff % 86400);
+        $days = ($diff - $rest) / 86400;
+        if($rest % 3600 > 0)
+        {
+            $rest1 = ($rest % 3600);
+            $hours = ($rest - $rest1) / 3600;
+            if($rest1 % 60 > 0)
+            {
+                $rest2 = ($rest1 % 60);
+            $minutes = ($rest1 - $rest2) / 60;
+            $seconds = $rest2;
+            }
+            else{$minutes = $rest1 / 60;}
+        }
+        else{$hours = $rest / 3600;}
+    }
+
+    if($days > 0){$days = $days.'d, ';}
+    else{$days = false;}
+    if($hours > 0){$hours = $hours.'h, ';}
+    else{$hours = false;}
+    if($minutes > 0){$minutes = $minutes.'m, ';}
+    else{$minutes = false;}
+    $seconds = $seconds.'s'; // always be at least one second
+
+    return $days.''.$hours;
+}
+
+?>
 <?php 
 $i = 0;
 $categories = Mage::helper('catalog/category')->getStoreCategories();
@@ -56,6 +96,7 @@ foreach ($categories as $_category){
 							<article class="homeSale size2 fl masonry">
 				                <a href="<?php echo  $c->getURL() ?>" title="View sale details for: <?php echo $c->getName(); ?>" class="product-image"><img src="/media/catalog/category/<?php echo $c->getThumbnail(); ?>" alt="" width="236px" /></a>
 				                <h2><?php echo $c->getName(); ?></h2>
+						
 								<?php echo '<p>'. date('M jS \a\t g:ia', strtotime($enddate)) .'</p>';?>
 				            </article>
 						<?php } else{ ?>
@@ -63,7 +104,7 @@ foreach ($categories as $_category){
              <article class="homeSale size2 fl masonry">
                 <a href="<?php echo  $c->getURL() ?>" title="View sale details for: <?php echo $c->getName(); ?>" class="product-image"><img src="/media/catalog/category/<?php echo $c->getThumbnail(); ?>" alt="" width="236px" /></a>
                 <h2><?php echo $c->getName(); ?></h2>
-				<?php echo '<p>'. date('M jS \a\t g:ia', strtotime($enddate)) .'</p>';?>
+					<p><?php echo timeBetweenNowAndDeadline(strtotime($enddate); ?></p>
             </article>
 				<?php } $i++; }}}}}  }} ?>			
 
