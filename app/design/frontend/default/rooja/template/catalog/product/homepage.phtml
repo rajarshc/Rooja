@@ -98,7 +98,7 @@ foreach ($categories as $_category){
 				                <a href="<?php echo  $c->getURL() ?>" title="View sale details for: <?php echo $c->getName(); ?>" class="product-image"><img src="/media/catalog/category/<?php echo $c->getThumbnail(); ?>" alt="" width="236px" /></a>
 				                <h2><?php echo $c->getName(); ?></h2>
 						
-								<p><?php echo timeBetweenNowAndDeadline($enddate); ?></p>
+								<p>Sale ends in <?php echo timeBetweenNowAndDeadline($enddate); ?></p>
 				            </article>
 						<?php } else{ ?>
              
