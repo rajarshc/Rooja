@@ -19,6 +19,23 @@ $this->numberUpsellsPerLine()
     <?php if($this->canShowUpsells()):?>
         <?php if($collection = $this->getUpsells()):?>
         <?php $items = $collection->getItems();?>
+        <?php if(count($items)): ?>
+        <span class="j2t-upsells-list-wrapper">
+            <h4 class="j2t-upsells-title"><?php echo $this->__('You might also like:');?></h4>
+
+            <table cellspacing="0" class="generic-product-grid catalog-listing j2t-upsells-list" id="j2t-upsell-product-table">
+                <tr>
+            <?php $items_left = $this->getNumberUpsellsPerLine();?>
+            <?php $k=0;foreach ($items as $item):?>
+                    <?php if($k >= $this->getNumberUpsells()) break;?>
+                    
+                    <?php if ($k > 0 && $k%$this->getNumberUpsellsPerLine() == 0):
+                        echo '</tr><tr>';
+                        $items_left = $this->getNumberUpsellsPerLine();
+                    else:
+                        $items_left--;
+                    endif;?>
+                    
                 <td class="j2t-upsells-list-item">
                 <span class="j2t-product-image"><a href="<?php echo $item->getProductUrl() ?>"><img src="<?php echo $this->helper('catalog/image')->init($item, 'small_image')->resize($this->getImageSize()) ?>" width="50" height="50" alt="<?php echo $this->htmlEscape($item->getName()) ?>" /></a></span>
                 <h5  class="j2t-product-lnk"><a href="<?php echo $item->getProductUrl() ?>"><?php echo $this->htmlEscape($item->getName()) ?></a></h5>
