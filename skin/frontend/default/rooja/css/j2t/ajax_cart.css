@@ -103,7 +103,7 @@ span.j2t-upsells-list-wrapper {display:block; text-align:left;}
 
 table.j2t-upsell-product-table {clear:both;}
 table td.j2t-upsells-list-item h5.j2t-product-lnk {}
-table td.j2t-upsells-list-item h5.j2t-product-lnk a {font-size: 11px; font-weight: normal;}
+table td.j2t-upsells-list-item h5.j2t-product-lnk a {font-size: 11px; font-weight: normal;line-height:14px;}
 h4.j2t-upsells-title {display:block; clear:both; padding-left:10px;padding-top:5px;}
 
 div.j2tajax-progress, div.j2tajax-confirm {background:#fff;}
