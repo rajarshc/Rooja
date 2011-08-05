@@ -63,7 +63,7 @@ function timeBetweenNowAndDeadline($deadline) {
 
     if($days > 0){$days = $days.' days and ';}
     else{$days = false;}
-    if($hours > 0){$hours = $hours.'hours ';}
+    if($hours > 0){$hours = $hours.' hours ';}
     else{$hours = false;}
     if($minutes > 0){$minutes = $minutes.'m, ';}
     else{$minutes = false;}
@@ -105,7 +105,7 @@ foreach ($categories as $_category){
              <article class="homeSale size2 fl masonry">
                 <a href="<?php echo  $c->getURL() ?>" title="View sale details for: <?php echo $c->getName(); ?>" class="product-image"><img src="/media/catalog/category/<?php echo $c->getThumbnail(); ?>" alt="" width="236px" /></a>
                 <h2><?php echo $c->getName(); ?></h2>
-				<p><?php echo timeBetweenNowAndDeadline($enddate); ?></p>
+				<p>Sale ends in <?php echo timeBetweenNowAndDeadline($enddate); ?></p>
             </article>
 				<?php } $i++; }}}}}  }} ?>			
 
