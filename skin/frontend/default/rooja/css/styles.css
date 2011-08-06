@@ -309,7 +309,7 @@ p.required { font-size:10px; text-align:right; color:#d68536; margin-bottom:0px;
 .notice { color:#ccc; }
 
 .messages,
-.messages ul { list-style:none !important; margin:0 !important; padding:0 !important; }
+.messages ul { list-style:none !important; margin:3px 0 !important; padding:0 !important; }
 .messages { width:100%; overflow:hidden; }
 .messages li { margin:0 0 10px; }
 .messages li li { margin:0 0 3px; }
