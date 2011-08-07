@@ -469,7 +469,7 @@ function hideJ2tOverlay(){
     $('j2t-overlay').hide();
     $('j2t_ajax_progress').hide();
     $('j2t_ajax_confirm').hide();
-    new Effect.SlideDown($('sidebarCart'), { duration: 0.5});
+    new Effect.SlideDown('sidebarCart'); 
 }
 
 
