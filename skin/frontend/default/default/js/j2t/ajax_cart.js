@@ -462,6 +462,7 @@ function cartdelete(url){
 }
 
 function showJ2tOverlay(){
+    console.log('showing overlay');
     new Effect.Appear($('j2t-overlay'), { duration: 0.5,  to: 0.8 });
 }
 
