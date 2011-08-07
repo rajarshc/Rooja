@@ -462,12 +462,10 @@ function cartdelete(url){
 }
 
 function showJ2tOverlay(){
-    console.log('showing overlay');
     new Effect.Appear($('j2t-overlay'), { duration: 0.5,  to: 0.8 });
 }
 
 function hideJ2tOverlay(){
-    console.log('hide overlay');
     $('j2t-overlay').hide();
     $('j2t_ajax_progress').hide();
     $('j2t_ajax_confirm').hide();
