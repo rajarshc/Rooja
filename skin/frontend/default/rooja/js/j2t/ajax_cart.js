@@ -471,7 +471,7 @@ function hideJ2tOverlay(){
     $('j2t_ajax_confirm').hide();
     var isHidden = jQuery('#sidebarCart').is(':hidden');
     if( isHidden ) {
-      jQuery('#sidebarCart').slideToggle();
+      jQuery('#sidebarCart').slideDown();
     }
     
    
