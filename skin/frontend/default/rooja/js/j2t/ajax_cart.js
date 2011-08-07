@@ -469,12 +469,10 @@ function hideJ2tOverlay(){
     $('j2t-overlay').hide();
     $('j2t_ajax_progress').hide();
     $('j2t_ajax_confirm').hide();
-    if( jQuery('#sidebarCart').is(":visible") ) {
-      // element is visible
-    }
-    else {
+    if( jQuery('#sidebarCart').is(":hidden") ) {
       jQuery('#sidebarCart').slideDown();
     }
+    
    
 }
 
