@@ -209,7 +209,7 @@ function sendcart(url, type, qty_to_insert){
     }
     if (continue_scr) {
         
-        hideJ2tOverlay();
+        //hideJ2tOverlay();
         showLoading();
         if (type == 'form'){
             //alert('la');
@@ -469,7 +469,8 @@ function hideJ2tOverlay(){
     $('j2t-overlay').hide();
     $('j2t_ajax_progress').hide();
     $('j2t_ajax_confirm').hide();
-    if( jQuery('#sidebarCart').is(":hidden")==true ) {
+    var isHidden = jQuery('#sidebarCart').is(':hidden');
+    if( isHidden ) {
       jQuery('#sidebarCart').slideToggle();
     }
     
