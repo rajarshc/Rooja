@@ -466,6 +466,7 @@ function showJ2tOverlay(){
 }
 
 function hideJ2tOverlay(){
+    console.log('hiding');
     $('j2t-overlay').hide();
     $('j2t_ajax_progress').hide();
     $('j2t_ajax_confirm').hide();
