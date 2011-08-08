@@ -132,9 +132,12 @@ if($session->isLoggedIn()) {$customer = $session->getCustomer();}
 					<li><a href="/customer/account/logout" title="">Sign Out</a></li>
 				</ul>
 			</li>
+			<li>
+				<?php $cart_count = Mage::getSingleton('checkout/cart')->getSummaryQty(); ?>
+				<a href="/checkout/cart" id="myBag">My Bag (<?php if($cart_count == 0) echo '0'; else echo $cart_count; ?>)</a>
+				
+			</li>
 		</ul>
-		<?php $cart_count = Mage::getSingleton('checkout/cart')->getSummaryQty(); ?>
-		<a href="/checkout/cart" id="myBag">My Bag (<?php if($cart_count == 0) echo '0'; else echo $cart_count; ?>)</a>
 	</aside>
 	<?php } ?>
 	</div>
