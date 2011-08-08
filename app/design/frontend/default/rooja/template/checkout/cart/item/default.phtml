@@ -38,7 +38,7 @@ $isVisibleProduct = $_item->getProduct()->isVisibleInSiteVisibility();
             <?php echo $this->htmlEscape($this->getProductName()) ?>
         <?php endif; ?>
         </h2>
-        <?php if ($_options = $this->getOptionList()):?>
+        <?php if ($_options = $this->getOptionList()):?>s
         <dl class="item-options">
             <?php foreach ($_options as $_option) : ?>
             <?php $_formatedOptionValue = $this->getFormatedOptionValue($_option) ?>
