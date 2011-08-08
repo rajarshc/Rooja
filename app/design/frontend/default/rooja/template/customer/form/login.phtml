@@ -51,10 +51,11 @@
 	<form action="<?php echo $this->getPostActionUrl() ?>" method="post" id="login-form">
         <input type="text" name="login[username]" value="<?php echo $this->htmlEscape($this->getUsername()) ?>" id="email" class="input-text required-entry validate-email" title="<?php echo $this->__('Email Address') ?>" />
 		<input type="password" name="login[password]" class="input-text required-entry validate-password" id="pass" title="<?php echo $this->__('Password') ?>" />
-				<button id="fBConnect" rel="facebook-connect" type="button" title="<?php echo $this->__('Connect with Facebook') ?>" class="button"></button>
-				<p>Having trouble? Email us at <a href="mailto:support@rooja.in">support@rooja.in</a></p>
+				<button id="fBConnect" rel="facebook-connect" type="button" title="<?php echo $this->__('Connect with Facebook') ?>" class="button"></button> 
 		<input type="submit" id="loginBtn" name="loginBtn" class="tr">
 	</form>
+	<br/>
+	<p>Having trouble? Email us at <a href="mailto:support@rooja.in">support@rooja.in</a></p>
 	</div>
 	<div style="display:none" id="getInvitedCont">
 	<h2 id="earlyAccess" class="tr">Early Access</h2>
