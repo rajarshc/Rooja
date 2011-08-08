@@ -205,7 +205,7 @@ strong{font-weight:bold;}
 
 /* ~~~~~ Advanced Login Classes - AM edit ~~~~~ */
 #notifyWrapper .validation-advice {margin: 0 0 10px;}
-#notifyWrapper #submitBtn {float: right;width: 99px;background: #271D2A;color: #fff;text-align: center;font-weight: normal;}
+#notifyWrapper #submitBtn {float: right;width: 99px;background: #271D2A;color: #fff;text-align: center;font-weight: normal;cursor:pointer;}
 .register h3.legend {font-size: 14px;margin: 10px 0;}
 .register label {font-size: 12px;}
 /*.input-box {margin: 5px 0;}*/
