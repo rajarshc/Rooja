@@ -71,7 +71,7 @@ echo $likes = $xml->link_stat->like_count;
 					<?php echo 'R' . number_format($_product->getSpecialprice(), 2); } ?>
 				
 				</span><span> 
-				<?php if(!$_product->isSaleable()){ echo 'Sold Out'; } else { echo '$' . number_format($_product->getPrice(), 2); } ?></span></p>
+				<?php if(!$_product->isSaleable()){ echo 'Sold Out'; } else { echo 'R' . number_format($_product->getPrice(), 2); } ?></span></p>
 				<h2 class="productName"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h2>
 			</article>
 		</article>
