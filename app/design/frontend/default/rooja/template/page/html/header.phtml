@@ -133,8 +133,10 @@ if($session->isLoggedIn()) {$customer = $session->getCustomer();}
 				</ul>
 			</li>
 		</ul>
-		<?php $cart_count = Mage::getSingleton('checkout/cart')->getSummaryQty(); ?>
-		<a href="/checkout/cart" id="myBag">My Bag (<?php if($cart_count == 0) echo '0'; else echo $cart_count; ?>)</a>
+		<ul>
+		<li id="myBag"><?php $cart_count = Mage::getSingleton('checkout/cart')->getSummaryQty(); ?>
+		<a href="/checkout/cart" class="myBag">My Bag (<?php if($cart_count == 0) echo '0'; else echo $cart_count; ?>)</a></li>
+		</ul>
 	</aside>
 	<?php } ?>
 	</div>
