@@ -12,7 +12,7 @@
 		$awayFrom10 = 10 - $referrerCount;
 	?>
 	<h3 class="fr" id="howClose"><?php echo $awayFrom10 ?> more friends until a special prize!</h3>
-	<span id="referralBar" class="clear"><span id="numReferrals" style="width=<?php echo $referrerPercent; ?>%"></span></span>
+	<span id="referralBar" class="clear"><span id="numReferrals" style="width:<?php echo $referrerPercent; ?>%;"></span></span>
 	
     <?php if($_referred->getSize()): ?>
     <table cellspacing="0" class="data-table" id="referred-friends-table">
