@@ -71,13 +71,13 @@ h1#logo{
     margin-bottom:15px;
 }
 #getEarlyAccess{
-    background-image:url(../images/splash/become-a-member.png);
-    width:243px;height:19px;
+    background-image:url(../images/splash/get-early-access.png);
+    width:208px;height:16px;
     margin-bottom:15px;
 }
 #earlyAccess{
-    background-image:url(../images/splash/early-access.png);
-    width:192px;height:19px;
+    background-image:url(../images/splash/become-a-member.png);
+    width:243px;height:19px;
     margin-bottom:18px;
 }
 #nowLoggedOut{
