@@ -181,11 +181,7 @@ echo '<span>' . $likes = $xml->link_stat->like_count . '</span>';
 					</figure>
 				</section>
 				<section id="productOptions">
-<<<<<<< HEAD
-					<p class="startingPrice">Starting Price: <strike>R <?php echo number_format($_product->getPrice(), 2) ?></strike></p>
-=======
-					<p class="startingPrice">Original Price: <strike>$<?php echo number_format($_product->getPrice(), 2) ?></strike></p>
->>>>>>> 8affc1a38c8d0901ae0e84759e2ab348bd1f49fe
+						<p class="startingPrice">Starting Price: <strike>R <?php echo number_format($_product->getPrice(), 2) ?></strike></p>
 					<p class="currentPrice">Current Price:<span>
 					<?php if (!$fbprice == null) { ?>
 					<?php echo '$' . number_format($fbprice,2); } else { ?>
