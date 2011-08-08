@@ -3845,7 +3845,7 @@
 				<displayName>US Dollar</displayName>
 				<displayName count="one">US dollar</displayName>
 				<displayName count="other">US dollars</displayName>
-				<symbol>$</symbol>
+				<symbol>R</symbol>
 			</currency>
 			<currency type="USN">
 				<displayName>US Dollar (Next day)</displayName>
