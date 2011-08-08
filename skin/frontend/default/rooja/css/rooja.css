@@ -254,6 +254,10 @@ ul#myAccount li ul li a:hover{
 	font-size: 1.2em;
 }
 
+.dotted {
+	border-left: 1px dotted #fff;
+}
+
 #myBag:hover{
 	display: block;
 	float: left;
@@ -264,7 +268,6 @@ ul#myAccount li ul li a:hover{
 	background: #431F4C url("../images/icons/bag.png") no-repeat 10px 25px;
 	color: white;
 	font-size: 1.2em;
-	border-left: 1px dotted #fff;
 }
 
 .myBag {
