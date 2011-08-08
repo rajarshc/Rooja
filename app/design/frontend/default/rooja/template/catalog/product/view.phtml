@@ -109,7 +109,7 @@ if (!$categoryIds == null){
 		<h2 id="saleDetails">This sale has expired!</h2>
 		<?php } ?>
 		<?php if (!$categoryIds == null){ ?>
-		<a href="<?php echo $currentcategory->getUrl(); ?>" class="backTo fl" title="Back to sale">Back to sale</a>
+		<a href="<?php echo $currentcategory->getUrl(); ?>" class="backTo fl" title="Back to sale page">Back to sale page</a>
 		<?php }else { ?>
 		<a title="Back to Home" class="backTo fl" href="/">Back to home</a>
 		<?php } ?>
@@ -181,7 +181,7 @@ echo '<span>' . $likes = $xml->link_stat->like_count . '</span>';
 					</figure>
 				</section>
 				<section id="productOptions">
-					<p class="startingPrice">Starting Price: <strike>$<?php echo number_format($_product->getPrice(), 2) ?></strike></p>
+					<p class="startingPrice">Original Price: <strike>$<?php echo number_format($_product->getPrice(), 2) ?></strike></p>
 					<p class="currentPrice">Current Price:<span>
 					<?php if (!$fbprice == null) { ?>
 					<?php echo '$' . number_format($fbprice,2); } else { ?>
