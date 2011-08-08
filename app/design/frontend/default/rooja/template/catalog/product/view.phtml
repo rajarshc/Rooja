@@ -184,8 +184,8 @@ echo '<span>' . $likes = $xml->link_stat->like_count . '</span>';
 						<p class="startingPrice">Starting Price: <strike>R <?php echo number_format($_product->getPrice(), 2) ?></strike></p>
 					<p class="currentPrice">Current Price:<span>
 					<?php if (!$fbprice == null) { ?>
-					<?php echo 'Rs' . number_format($fbprice,2); } else { ?>
-					<?php $fbprice = number_format($_product->getSpecialprice(), 2);echo 'Rs' . $fbprice; } ?></span></p>
+					<?php echo 'Rs. ' . number_format($fbprice,2); } else { ?>
+					<?php $fbprice = number_format($_product->getSpecialprice(), 2);echo 'Rs. ' . $fbprice; } ?></span></p>
 					<a href="#" onclick="window.open('/size-chart', 'a', 'width=500, height=400, scrollbars=0, resizable=0')" class="sizeChart fr">Size Chart</a>
 
 					<br class="clear">
