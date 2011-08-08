@@ -47,10 +47,10 @@
 <?php if($_id!=$catId):  ?>
 <?php // Product page ?>
 <!--Product page OG Meta tags-->
-<meta property="og:title" content="<?php echo trim(Mage::registry('current_product')->getName())?>"/>
+<meta property="og:title" content="Shop the <?php echo trim(Mage::registry('current_product')->getName())?> sale at Rooja.com"/>
 <meta property="og:type" content="product"/>
 <meta property="og:url" content="<?php echo $this->helper('core/url')->getCurrentUrl() ?>"/>
-<meta property="og:description" content="Like my pick? Visit Rooja.com now and get access to top designer brands at upto 60% off retail. The website requires membership. Good news: membership is free. :)"/>
+<meta property="og:description" content="Apparel and accessories from leading International and Indian designers at prices you just can't get in the stores"/>
 <meta property="og:image" content="<?php echo Mage::helper('catalog/image')->init(Mage::registry('current_product'), 'small_image')->resize(100,100);?>"/>
 <?php else: ?>
 <?php // Category page ?>
@@ -58,7 +58,7 @@
 <meta property="og:title" content="<?php echo trim(Mage::registry('current_category')->getName())?>"/>
 <meta property="og:type" content="product"/>
 <meta property="og:url" content="<?php echo $this->helper('core/url')->getCurrentUrl() ?>"/>
-<meta property="og:description" content="Apparel and accessories from leading International and Indian designers at prices you just can&rsquo;t get in the stores"/>
+<meta property="og:description" content="Apparel and accessories from leading International and Indian designers at prices you just can't get in the stores"/>
 <?php if(trim(Mage::registry('current_category')->getImageUrl()=="")): ?>
 <meta property="og:image" content="http://rooja.com/_images/rooja-logo-fb.png"/>
 <?php else: ?>
@@ -72,7 +72,7 @@
 <meta property="og:title" content="Rooja | Luxury Designer Apparel and Accessories"/>
 <meta property="og:type" content="product"/>
 <meta property="og:url" content="<?php echo $this->helper('core/url')->getCurrentUrl() ?>"/>
-<meta property="og:description" content="Apparel and accessories from leading International and Indian designers at prices you just can&rsquo;t get in the stores."/>
+<meta property="og:description" content="Apparel and accessories from leading International and Indian designers at prices you just can't get in the stores"/>
 <meta property="og:image" content="http://rooja.com/_images/rooja-logo-fb.png"/>
 <?php endif; ?>
 
