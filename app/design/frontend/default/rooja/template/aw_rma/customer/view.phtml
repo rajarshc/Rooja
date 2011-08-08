@@ -46,7 +46,7 @@
         <span class="separator">|</span>
             <?php endif ?>
         <?php if($_rmaRequest->getStatus() != Mage::helper('awrma/status')->getPackageSentStatusId()) : ?>
-        <a href="<?php echo $this->getCancelUrl() ?>" onclick="return confirm('<?php echo $this->__('Are you sure you would like to cancel this RMA?') ?>')" class="link-awrma-cancel"><?php echo $this->__('Cancel') ?></a>
+        <a href="<?php echo $this->getCancelUrl() ?>" onclick="return confirm('<?php echo $this->__('Are you sure you would like to cancel this Return?') ?>')" class="link-awrma-cancel"><?php echo $this->__('Cancel') ?></a>
         <?php endif ?>
         <?php endif ?>
     </div>
@@ -87,7 +87,7 @@
             </li>
         </ul>
     </div>
-    <h3><?php echo $this->__('Items RMA Requested for') ?></h3>
+    <h3><?php echo $this->__('Items Return Requested for') ?></h3>
     <table id="awrma-requested-items" class="data-table">
         <col />
         <col width="1" />
