@@ -378,9 +378,15 @@ h2.print {
 
 #my-orders-table {background: #e0e0e0; padding: 12px;margin: 15px 0;line-height: 17px;}
 
+.data-table-points { width:100%; font-size:12px;}
+.data-table-points th { padding:10px 0;/* border:1px solid #ddd;*/ font-weight:bold; white-space:nowrap; }
+.data-table-points td { padding:5px 0; /*border:1px solid #ddd;*/ }
+
+
 .data-table { width:100%; font-size:12px;}
 .data-table th { padding:5px;/* border:1px solid #ddd;*/ font-weight:bold; white-space:nowrap; }
 .data-table td { padding:5px; /*border:1px solid #ddd;*/ }
+
 .data-table thead { /*background-color:#f2f2f2;*/ }
 .data-table tbody {}
 .data-table tfoot {}
