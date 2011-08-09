@@ -380,7 +380,7 @@ h2.print {
 
 .data-table-points { width:100%; font-size:12px;}
 .data-table-points th { padding:10px 0;/* border:1px solid #ddd;*/ font-weight:bold; white-space:nowrap; }
-.data-table-points td { padding:5px 0; /*border:1px solid #ddd;*/ }
+.data-table-points td { padding:8px 0; /*border:1px solid #ddd;*/ }
 
 
 .data-table { width:100%; font-size:12px;}
