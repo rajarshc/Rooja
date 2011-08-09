@@ -30,26 +30,26 @@
 <div class="col2-set">
     <?php if (!$_order->getIsVirtual()): ?>
     <div class="col-1">
-        <h2><?php echo $this->__('Shipping Address') ?></h2>
-        <address><?php echo $_order->getShippingAddress()->format('html') ?></address>
+        <h2 class="print"><?php echo $this->__('Shipping Address') ?></h2>
+        <address class="print"><?php echo $_order->getShippingAddress()->format('html') ?></address>
     </div>
     <div class="col-2">
     <?php else: ?>
     <div class="col-1">
     <?php endif; ?>
-        <h2><?php echo $this->__('Billing Address') ?></h2>
-        <address><?php echo $_order->getBillingAddress()->format('html') ?></address>
+        <h2 class="print"><?php echo $this->__('Billing Address') ?></h2>
+        <address class="print"><?php echo $_order->getBillingAddress()->format('html') ?></address>
     </div>
 <?php if (!$_order->getIsVirtual()): ?>
 </div>
 <div class="col2-set">
     <div class="col-1">
-        <h2><?php echo $this->__('Shipping Method') ?></h2>
+        <h2 class="print"><?php echo $this->__('Shipping Method') ?></h2>
          <?php echo $_order->getShippingDescription() ?>
     </div>
 <?php endif; ?>
     <div class="col-2">
-        <h2><?php echo $this->__('Payment Method') ?></h2>
+        <h2 class="print"><?php echo $this->__('Payment Method') ?></h2>
         <?php echo $this->getPaymentInfoHtml() ?>
     </div>
 </div>

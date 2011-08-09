@@ -54,6 +54,7 @@ caption,th,td { vertical-align:top; text-align:left; font-weight:normal; }
 /* Content */
 strong        { font-weight:bold; }
 address       { font-style:normal; line-height: 12px;}
+address.print       { font-style:normal; line-height: 16px;}
 cite          { font-style:normal; }
 q,
 blockquote    { quotes:none; }
@@ -344,6 +345,13 @@ p.required { font-size:10px; text-align:right; color:#d68536; margin-bottom:0px;
 
 .subtitle,
 .sub-title { clear:both; }
+
+h2.print {
+	padding:10px 0;
+	font-size: 18px;
+	font-weight: normal;
+	line-height: 1.25;
+	}
 
 /* Pager */
 .pager {  padding:5px; margin:5px 0; text-align:center; }
