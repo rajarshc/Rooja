@@ -18,16 +18,18 @@
     <table cellspacing="0" class="data-table" id="referred-friends-table">
         <thead>
             <tr>
+                <?php ?><th><?php echo $this->__('Full Name') ?></th><?php ?>
                 <th><?php echo $this->__('Email') ?></th>
                 <!--<th><?php echo $this->__('Registered?') ?></th>-->
                 <th><?php echo $this->__('Status') ?></th>
-                <th><?php echo $this->__('Accumulated Earnings') ?></th>
+                <th><?php echo $this->__('Earnings') ?></th>
             </tr>
         </thead>
         <tbody>
             <?php $_odd = ''; ?>
             <?php foreach ($_referred as $_friend): ?>
                 <tr>
+                    <?php ?><td><?php echo $_friend->getReferralName() ?></td><?php ?>
                     <td><?php echo $_friend->getReferralEmail() ?></td>
                     <!--<td><?php echo $_friend->getReferralChildId() ? $this->__('yes') : $this->__('no') ?></td>-->
                     <td class="a-left"><?php echo $this->getStatusCaption( (int)($_friend->getReferralStatus()) ); ?></td>
