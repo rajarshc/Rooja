@@ -249,13 +249,15 @@ ul#myAccount li ul li a:hover{
 	height: 5px;
 	margin: -26px 0 -17px 10px;
 	padding: 35px 0px 33px 36px;
-	background: url("../images/icons/bag.png") no-repeat 10px 25px;
+	background: url("../images/icons/bag.png") no-repeat 10px 25px !important;
 	color: white;
 	font-size: 1.2em;
 }
 
 .dotted {
 	border-left: 1px dotted #fff;
+	margin-left: -40px;
+	padding: 0 0 0 18px;
 }
 
 #myBag:hover{
@@ -268,10 +270,6 @@ ul#myAccount li ul li a:hover{
 	background: #431F4C url("../images/icons/bag.png") no-repeat 10px 25px !important;
 	color: white;
 	font-size: 1.2em;
-}
-
-.myBag {
-		border-left: 1px dotted #fff;
 }
 
 #thankYouMsg a.contact {
