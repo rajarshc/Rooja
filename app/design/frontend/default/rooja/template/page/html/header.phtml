@@ -125,16 +125,16 @@ if($session->isLoggedIn()) {$customer = $session->getCustomer();}
 	
 	<aside id="accountLinks">
 		<ul id="myAccount">
-			<li class="ignore-item dots"><a href="/rewardsref/customer/index/">Invite Friends and Earn Free Shipping</a></li>
+			<li class="ignore-item"><a href="/rewardsref/customer/index/">Invite Friends and Earn Free Shipping</a></li>
 			<li class="welcome-top"><a href="#" title="">Welcome <?php echo $customer->getFirstname(); ?></a>
 				<ul>
 					<li><a href="/customer/account" title="">My Account</a></li>
 					<li><a href="/customer/account/logout" title="">Sign Out</a></li>
 				</ul>
 			</li>
-			<li class="dots ignore-item">
+			<li id="myBag">
 				<?php $cart_count = Mage::getSingleton('checkout/cart')->getSummaryQty(); ?>
-				<a href="/checkout/cart" id="myBag">My Bag (<?php if($cart_count == 0) echo '0'; else echo $cart_count; ?>)</a>	
+				<a href="/checkout/cart" class="dotted">My Bag (<?php if($cart_count == 0) echo '0'; else echo $cart_count; ?>)</a>	
 			</li>
 		</ul>
 	</aside>
