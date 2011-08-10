@@ -255,7 +255,7 @@ li#myBag{
 
 .dotted {
 	border-left: 1px dotted white;
-	padding: 0 13px 0 35px !important;
+	padding: 0 0 0 39px !important;
 }
 
 li#myBag:hover{
