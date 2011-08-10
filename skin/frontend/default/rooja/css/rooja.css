@@ -249,7 +249,7 @@ ul#myAccount li ul li a:hover{
 	height: 5px;
 	margin: -26px 0 -17px 10px;
 	padding: 35px 0px 33px 36px;
-	background: url("../images/icons/bag.png") no-repeat 10px 25px !important;
+	background: #431F4C url("../images/icons/bag.png") no-repeat 10px 25px !important;
 	color: white;
 	font-size: 1.2em;
 }
