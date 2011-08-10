@@ -57,6 +57,13 @@ ul.awrma-comments-list li>div {
     color: #777 !important;
 }
 
+.link-awrma-newrma {
+	background:url(../images/request.jpg);
+	width:200px; height:39px;
+	text-indent:-999px;
+	display:block;
+}
+
 .awrma-m13x-input-wide {
     width: 525px !important;
 }
