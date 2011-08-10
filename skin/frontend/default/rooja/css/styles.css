@@ -354,7 +354,7 @@ h2.print {
 	}
 
 /* Pager */
-.pager {  padding:5px; margin:5px 0; text-align:center; }
+.pager {  padding:5px 0; margin:8px 0; text-align:center; }
 .pager .amount { float:left;margin-bottom:0; }
 .pager .limiter { float:right; }
 .pager .pages { margin:0 135px; }

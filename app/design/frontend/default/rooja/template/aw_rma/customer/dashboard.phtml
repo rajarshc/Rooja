@@ -16,7 +16,7 @@
  */
 ?>
 
-<div class="awrma-account">
+<div>
     <div class="page-title">
         <h1>Returns</h1>
 		<p>Didn't like it? Not what you wanted? Return it! </p>
@@ -25,12 +25,12 @@
     <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
     <?php if($this->getRmaEntitiesCollection()->getSize()) : ?>
     <?php echo $this->getChildHtml('pager'); ?>
-    <table class="data-table" id="my-rmas-table">
-        <col width="1" />
-        <col width="1" />
-        <col width="1" />
+    <table class="data-table-points" id="my-rmas-table">
+        <col width="10%" />
+        <col width="20%" />
+        <col width="20%" />
         <col />
-        <col width ="1"/>
+        <col width ="20%"/>
         <thead>
             <tr>
                 <th><?php echo $this->__('Date') ?></th>
