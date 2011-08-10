@@ -182,15 +182,15 @@ ul#myAccount li.welcome-top:hover {
 
 	ul#myAccount li.ignore-item {
 		background: url("../images/invite-friends.png") no-repeat 9px center;
-		margin: 16px -21px 0 16px;
-		height: 15px;
+		height: 45px;
+		margin: -26px 23px 0 0;
 		padding: 14px 11px 10px 15px;
 	}
 	
 		ul#myAccount li.ignore-item:hover {
 			background: #220F26 url("../images/invite-friends.png") no-repeat 9px center;
-			margin: 16px -21px 0 16px;
-			height: 15px;
+			height: 45px;
+			margin: -26px 23px 0 0;
 			padding: 14px 11px 10px 15px;
 		}
 	
