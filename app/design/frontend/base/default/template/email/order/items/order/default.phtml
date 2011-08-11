@@ -27,7 +27,7 @@
 <?php $_item = $this->getItem() ?>
 <?php $_order = $this->getItem()->getOrder() ?>
 
-<table id="productListing" style="margin: 0;padding: 0;border: 0;background: #fff;font-family: Helvetica, Arial, sans-serif;color: #333;font-size: 15px;border-spacing: 0px;border-collapse: collapse;width: 582px;">
+<table id="productListing" style="margin: 0;padding: 0;border: 0;background: #fff;font-family: Helvetica, Arial, sans-serif;color: #333;font-size: 15px;border-spacing: 0px;border-collapse: collapse; width: 582px;">
 	<tr style="margin: 0;padding: 0;border: 0;border-spacing: 0px;border-collapse: collapse;">
 		<td class="product" style="margin: 0;padding: 10px;border: 0;border-spacing: 0px;border-collapse: collapse;width: 291px;">
 		<?php echo $this->htmlEscape($_item->getName()) ?> (x<?php echo $_item->getQtyOrdered()*1 ?>) <br/> <?php if ($this->getItemOptions()): ?><br/>  
