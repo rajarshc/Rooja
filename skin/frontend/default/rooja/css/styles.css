@@ -573,7 +573,7 @@ tr.summary-details-excluded { font-style:italic; }
 
 .miniCartSubtotalPrice {
 	font-size:16px;
-	padding:0 0 0 15px;
+	padding:0 0 0 6px;
 }
 
 .block li.odd {}
