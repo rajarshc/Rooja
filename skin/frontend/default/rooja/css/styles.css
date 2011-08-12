@@ -560,7 +560,7 @@ tr.summary-details-excluded { font-style:italic; }
 .block .block-content li.item { padding:5px 0; }
 .block .block-content li a {}
 .block .btn-remove { float:right;}
-.block .btn-edit { padding: 0 5px;}
+.block .btn-edit {display: block; margin: -8px 0 0 120px;}
 .block .actions { text-align:right; }
 .block .actions a { float:left; }
 .block .empty {}
