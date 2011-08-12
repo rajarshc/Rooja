@@ -567,13 +567,13 @@ tr.summary-details-excluded { font-style:italic; }
 .block .empty {}
 
 .miniCartSubtotal {
-	font-size:18px;
+	font-size:16px;
 	font-weight:bold;
 	display:inline;
 }
 
 .miniCartSubtotalPrice {
-	font-size:18px;
+	font-size:16px;
 	padding:0 0 0 15px;
 }
 
