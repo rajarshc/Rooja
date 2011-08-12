@@ -58,12 +58,12 @@
     <?php else: ?>
         <p class="empty"><?php echo $this->__('You have no items in your shopping cart.') ?></p>
     <?php endif ?>
-	<p class="subtotal">
+	<div class="subtotal">
         <p class="miniCartSubtotal">Cart Subtotal</p> <span class="miniCartSubtotalPrice"><?php echo Mage::helper('checkout')->formatPrice($this->getSubtotal()) ?></span>
         <?php if ($_subtotalInclTax = $this->getSubtotalInclTax()): ?>
             <br />(<?php echo Mage::helper('checkout')->formatPrice($_subtotalInclTax) ?> <?php echo Mage::helper('tax')->getIncExcText(true) ?>)
         <?php endif; ?>
-    </p>
+    </div>
 <a href="/checkout/cart" id="checkoutBtn">Proceed to Checkout</a>
 <div class="clear"></div>
     </div>
