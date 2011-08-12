@@ -317,7 +317,11 @@ li#myBag:hover{
 #topCart .product-name a{color:#fff;}
 
 #cart-sidebar img{padding:0;}
-#topCart .subtotal{text-align:right;}
+#topCart .subtotal{text-align: right;
+float: right;
+width: 300px;
+overflow: hidden;}
+
 #checkoutBtn{
     float:right; height:46px;line-height:46px; background:#cc6600; width:181px; font-size:1.4em; text-align:center; color:#fff;
 }
