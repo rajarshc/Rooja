@@ -47,6 +47,7 @@
 				</td>
 			</tr>
 			<tr>
+				<td>
 				<?php if ($this->helper('tax')->displayCartPriceExclTax() || $this->helper('tax')->displayCartBothPrices()): ?>
 			        <?php if ($this->helper('tax')->displayCartBothPrices()): ?>
 			            <?php echo $this->__('Excl. Tax'); ?>:
@@ -56,6 +57,7 @@
 			        <?php else: ?>
 			            <?php echo $this->helper('checkout')->formatPrice($_item->getCalculationPrice()) ?>
 			        <?php endif; ?>				
+			</td>
 			</tr>
 		</table>
 		
