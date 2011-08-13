@@ -421,13 +421,13 @@ td .product-name { width: 130px;}
 .howitworks img {float:left; display: block; padding: 4px 14px 20px 5px;}
 	.hiw1-2 {float:left; width: 66%;}
 		.one {float:left; width: 46%; padding: 15px 10px;
-		background: #431F4C url(../images/bgs/three.png) left center no-repeat;
+		background: #431F4C url(../images/bgs/one.png) left center no-repeat;
 		opacity: 0.8;
 		height: 193px;
 		opacity: 0.8;
 		}
 		.two {float:right; width: 46%; padding: 15px 10px;
-			background: #431F4C url(../images/bgs/three.png) left center no-repeat;
+			background: #431F4C url(../images/bgs/two.png) left center no-repeat;
 			opacity: 0.8;
 			height: 193px;
 			opacity: 0.8;
@@ -442,8 +442,8 @@ td .product-name { width: 130px;}
 	opacity: 0.8;
 	}
 .three p, .two p, .one p {
-	width:220px;
-	margin: 65px 10px 0 40px;
+	width: 206px;
+	margin: 17px 10px 0 85px;
 }
 .howitworks p.hiw-header {border: none;}
 p.hiw-header {
