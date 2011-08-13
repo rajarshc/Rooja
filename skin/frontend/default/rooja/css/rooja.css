@@ -417,7 +417,7 @@ td .product-name { width: 130px;}
 }
 
 
-.howitworks {width:980px; color: #fff; margin: 0 auto 30px; overflow: hidden;}
+.howitworks {width:980px; color: #fff; margin: 0 auto 30px; overflow: hidden; margin-top: 77px;}
 .howitworks img {float:left; display: block; padding: 4px 14px 20px 5px;}
 	.hiw1-2 {float:left; width: 66%;}
 		.one {float:left; width: 46%; padding: 15px 10px;
@@ -448,15 +448,17 @@ td .product-name { width: 130px;}
 .howitworks p.hiw-header {border: none;}
 p.hiw-header {
 	color: white; 
-	font-size: 2.4em;
+	font-size: 3.4em;
 	line-height: 1em;
 	font-family: "ltc-bodoni-175-1","ltc-bodoni-175-2", georgia, serif;
 	font-weight: normal;
 	text-transform:uppercase;
+	text-align:center;
 	}
 	
 .closer {
 	width:100%; 
+	margin
 	}	
 a.closer {	
 	font-family: "ltc-bodoni-175-1","ltc-bodoni-175-2", georgia, serif; 
