@@ -52,6 +52,13 @@ if(!Mage::getSingleton('customer/session')->isLoggedIn() && ($agent !="facebooke
     <?php echo $this->getChildHtml('global_notices') ?>
         <?php echo $this->getChildHtml('header') ?>
         	
+        <?php
+		
+		// $firstVisit =  Mage::getSingleton('core/session')->getYourVariable();
+		// 
+		// 		if($firstVisit!='visited'){
+		// 		    Mage::getSingleton('core/session')->setYourVariable('visited');
+	 ?>
 			<div class="hiw-container">
 				<div class="howitworks">
 					<p class="hiw-header">How it works</p>
@@ -80,7 +87,7 @@ if(!Mage::getSingleton('customer/session')->isLoggedIn() && ($agent !="facebooke
 				</div>
 				<div class="closer" id="closerBtn"><a href="#" class="closer">Close</a></div>
 				</div>
-<?php } ?>
+<?php //} ?>
 
 <section id="liveSales">
 	<div class="container">
