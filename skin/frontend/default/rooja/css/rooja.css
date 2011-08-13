@@ -441,7 +441,10 @@ td .product-name { width: 130px;}
 	height: 193px;
 	opacity: 0.8;
 	}
-
+.three p, .two p, .one p {
+	width:220px;
+	margin: 65px 10px 0 40px;
+}
 .howitworks p.hiw-header {border: none;}
 p.hiw-header {
 	color: white; 
