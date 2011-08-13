@@ -54,10 +54,10 @@ if(!Mage::getSingleton('customer/session')->isLoggedIn() && ($agent !="facebooke
         	
         <?php
 		
-		// $firstVisit =  Mage::getSingleton('core/session')->getYourVariable();
-		// 
-		// 		if($firstVisit!='visited'){
-		// 		    Mage::getSingleton('core/session')->setYourVariable('visited');
+		$firstVisit =  Mage::getSingleton('core/session')->getYourVariable();
+			
+					if($firstVisit!='visited'){
+					    Mage::getSingleton('core/session')->setYourVariable('visited');
 	 ?>
 			<div class="hiw-container">
 				<div class="howitworks">
@@ -84,7 +84,7 @@ if(!Mage::getSingleton('customer/session')->isLoggedIn() && ($agent !="facebooke
 				</div>
 				<div class="closer" id="closerBtn"><a href="#" class="closer">Close</a></div>
 				</div>
-<?php //} ?>
+<?php } ?>
 
 <section id="liveSales">
 	<div class="container">
