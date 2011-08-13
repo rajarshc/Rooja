@@ -445,10 +445,20 @@ td .product-name { width: 130px;}
 	width: 206px;
 	margin: 17px 10px 0 85px;
 }
+
+.one h4, .two h4, .three h4 {
+	font-size: 1.6em;
+	font-family: "ltc-bodoni-175-1","ltc-bodoni-175-2", georgia, serif;
+	font-weight: normal;
+	line-height: 1.2em;
+	text-transform: uppercase;
+	padding: 24px 0 0px 83px;
+	}
+}
 .howitworks p.hiw-header {border: none;}
 p.hiw-header {
 	color: white; 
-	font-size: 3.4em;
+	font-size: 4.4em;
 	line-height: 1em;
 	font-family: "ltc-bodoni-175-1","ltc-bodoni-175-2", georgia, serif;
 	font-weight: normal;
@@ -458,7 +468,7 @@ p.hiw-header {
 	
 .closer {
 	width:100%; 
-	margin
+	margin:50px 0 0 0;
 	}	
 a.closer {	
 	font-family: "ltc-bodoni-175-1","ltc-bodoni-175-2", georgia, serif; 
