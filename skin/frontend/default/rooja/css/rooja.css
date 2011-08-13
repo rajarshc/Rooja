@@ -420,14 +420,27 @@ td .product-name { width: 130px;}
 .howitworks {width:980px; color: #fff; margin: 0 auto 30px; overflow: hidden;}
 .howitworks img {float:left; display: block; padding: 4px 14px 20px 5px;}
 	.hiw1-2 {float:left; width: 66%;}
-		.one {float:left; width: 46%; padding: 15px 10px;background:#a85705;}
-		.two {float:right; width: 46%; padding: 15px 10px;background:#a85705;}
+		.one {float:left; width: 46%; padding: 15px 10px;
+		background: #431F4C url(../images/bgs/three.png) left center no-repeat;
+		opacity: 0.8;
+		height: 193px;
+		opacity: 0.8;
+		}
+		.two {float:right; width: 46%; padding: 15px 10px;
+			background: #431F4C url(../images/bgs/three.png) left center no-repeat;
+			opacity: 0.8;
+			height: 193px;
+			opacity: 0.8;
+			}
 .three {		
-		float: right;
-		width: 31%;
-		padding: 15px 10px;
-		background: #431F4C url(../images/bgs/three.png) left center;
-		opacity: 0.8;}
+	float: right;
+	width: 31%;
+	padding: 15px 10px;
+	background: #431F4C url(../images/bgs/three.png) left center no-repeat;
+	opacity: 0.8;
+	height: 193px;
+	opacity: 0.8;
+	}
 
 .howitworks p.hiw-header {border: none;}
 p.hiw-header {
