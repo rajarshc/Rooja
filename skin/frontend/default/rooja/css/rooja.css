@@ -170,13 +170,13 @@ ul#myAccount li{
 
 ul#myAccount li.welcome-top {
 	padding: 36px 25px 27px 20px;
-	background: url("../images/icons/arrow-nav-white.png") no-repeat 99px 33px;
+	background: url("../images/icons/arrow-nav-white.png") no-repeat center right;
 	margin: -26px 0 0 0;
 }
 
 ul#myAccount li.welcome-top:hover {
 	padding: 36px 25px 27px 20px;
-	background:#220F26 url("../images/icons/arrow-nav-white.png") no-repeat 99px 33px;
+	background:#220F26 url("../images/icons/arrow-nav-white.png") no-repeat center right;
 	margin: -26px 0 0 0;
 	}
 
@@ -218,6 +218,7 @@ ul#myAccount li ul {
 	z-index: 15;
 	width: 135px;
 	top: 70px;
+	margin-left:-20px;
 }
 ul#myAccount li:hover ul {display: block;}
 
