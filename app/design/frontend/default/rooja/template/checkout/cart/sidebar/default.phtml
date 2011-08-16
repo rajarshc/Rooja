@@ -38,13 +38,13 @@
         <p class="product-name"><?php if ($this->hasProductUrl()): ?><a href="<?php echo $this->getProductUrl() ?>"><?php endif; ?><?php echo $this->htmlEscape($this->getProductName()) ?><?php if ($this->hasProductUrl()): ?></a><?php endif; ?></p>
 		<table width="100%" border="0">
 			<tr>
-				<td>
+				<td width="500px">
 		        Quantity in Cart: <strong><?php echo $this->getQty() ?></strong>     <?php if ($isVisibleProduct): ?>
 			        <a href="<?php echo $this->getConfigureUrl() ?>" title="<?php echo $this->__('Edit item') ?>" class="btn-edit"><?php echo $this->__('Edit item')?></a>
 			        <?php endif ?>
 			    
 				</td>
-				<td>
+				<td width="200px">
 				<?php if ($this->helper('tax')->displayCartPriceExclTax() || $this->helper('tax')->displayCartBothPrices()): ?>
 			        <?php if ($this->helper('tax')->displayCartBothPrices()): ?>
 			            <?php echo $this->__('Excl. Tax'); ?>:
@@ -56,7 +56,7 @@
 			        <?php endif; ?>				
 			</td>
 			<td>
-				   <a href="<?php echo $this->getDeleteUrl() ?>" title="<?php echo $this->__('Remove This Item') ?>" onclick="return confirm('<?php echo $this->__('Are you sure you would like to remove this item from the shopping cart?') ?>');" class="btn-remove"><?php echo $this->__('Remove This Item') ?></a>
+				   <a href="<?php echo $this->getDeleteUrl() ?>" title="<?php echo $this->__('Remove This Item') ?>" onclick="return confirm('<?php echo $this->__('Are you sure you would like to remove this item from the shopping cart?') ?>');">Remove</a>
 			</td>
 			</tr>
 		</table>
