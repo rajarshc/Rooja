@@ -82,7 +82,7 @@
 	position: relative;
 	overflow: hidden;
 	z-index: 1102;
-	border: 0px solid #aaa;
+	border: 0px solid #111;
 }
 
 #fancybox-hide-sel-frame {
