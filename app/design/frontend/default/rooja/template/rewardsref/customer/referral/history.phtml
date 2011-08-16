@@ -3,16 +3,9 @@
    
 <?php if($this->showHistory()): ?>
 <br/><br/>    
-<h3 class="page-invite-head fl">Track Your Progress</h3>
+<h3 class="page-invite-head fl">Your Referrals</h3>
 
-	<br/>
-	<?php 
-		$referrerCount = count($_referred);
-		$referrerPercent = $referrerCount * 10;
-		$awayFrom10 = 10 - $referrerCount;
-	?>
-	<h3 class="fr" id="howClose"><?php echo $awayFrom10 ?> more friends until a special prize!</h3>
-	<span id="referralBar" class="clear"><span id="numReferrals" style="width:<?php echo $referrerPercent; ?>%;"></span></span>
+	<br>
 	
     <?php if($_referred->getSize()): ?>
     <table cellspacing="0" class="data-table" id="referred-friends-table">
