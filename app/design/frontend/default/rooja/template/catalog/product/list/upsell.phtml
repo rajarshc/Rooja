@@ -36,7 +36,7 @@
 $url = "http://api.facebook.com/restserver.php?method=links.getStats&urls=".urlencode($source_url);
 $xml = file_get_contents($url);
 $xml = simplexml_load_string($xml);
-echo $xml;
+print_r($xml);
 echo $likes = $xml->link_stat->like_count;
 ?>
 </span>--></a>
