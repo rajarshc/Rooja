@@ -34,16 +34,16 @@
             <li>
 	<?php
 	 list($categoryId,) = $_link->getCategoryIds();
-	print_r($categoryId);
-				$source_url = $_link->setCategoryId($categoryId)->getProductUrl();
-				echo $source_url;
+	//print_r($categoryId);
+	$source_url = $_link->setCategoryId($categoryId)->getProductUrl();
+	//echo $source_url;
 	//$source_url = $_link->getProductUrl();
 	?>
 <a href="<?php echo $_link->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_link->getName()) ?>"><img src="<?php echo $this->helper('catalog/image')->init($_link, 'small_image')->resize(114)->keepFrame(false) ?>" width="114"  alt="<?php echo $this->htmlEscape($_link->getName()) ?>"> <!--<span class="numLikes"><img src="<?php echo $this->getSkinUrl('images/icons/thumbs-up.png'); ?>" alt="Thumbs Up icon"> 
 $url = "http://api.facebook.com/restserver.php?method=links.getStats&urls=".urlencode($source_url);
 $xml = file_get_contents($url);
 $xml = simplexml_load_string($xml);
-print_r($xml);
+//print_r($xml);
 echo $likes = $xml->link_stat->like_count;
 ?>
 </span>--></a>
