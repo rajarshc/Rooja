@@ -184,6 +184,90 @@ form input#loginBtn{
 }
 #fbLikes{float:left;}
 
+/* ~~~~~ About ~~~~~ */
+
+
+h1#about{
+    background-image:url(../images/splash/about.png);
+    width:176px;height:37px;
+    margin-bottom:25px; 
+}
+
+.hiwIcon{ margin:10px 12px 0 0;}
+
+.hiwText{float:left;width:321px;}
+
+#discount{
+    background-image:url(../images/splash/discount.png);
+    width:134px;height:19px;
+    margin:18px 0;
+}
+#howItWorks{
+    background-image:url(../images/splash/how-it-works.png);
+    width:200;height:19px;
+    margin:18px 0;
+}
+
+#roojaValues{
+    background-image:url(../images/splash/core-values.png);
+    width:306px;height:19px;
+    margin:18px 0; 
+}
+#roojaPromises{
+    background-image:url(../images/splash/roojas-promises.png);
+    width:253px;height:19px;
+    margin:18px 0; 
+}
+
+#whyRooja{
+    background-image:url(../images/splash/why-rooja.png);
+    width:165px;height:19px;
+    margin:18px 0; 
+}
+
+#exclusiveBrands{
+    background-image:url(../images/splash/exclusive-brands.png);
+    width:256px;height:19px;
+    margin:18px 0; 
+}
+#socialMedia{
+    background-image:url(../images/splash/social-media.png);
+    width:187px;height:19px;
+    margin:18px 0; 
+}
+
+#brands{
+   background:#3e2647;
+   padding:25px 15px 25px;
+   width:380px;
+   overflow:hidden;
+   margin:0 auto 0px;
+}
+
+#brands ul li{display:inline;position:relative;padding:0px 45px 25px 0;float:left;}
+#brands ul li.last{padding-right:0;}
+#brands ul li.bot{padding-bottom:0;}
+#brands ul li img{vertical-align:middle;}
+
+#brands ul li.two{
+    padding-right:35px;
+}
+#brands ul li.four{
+    padding-left:25px;
+}
+
+#brands ul li.five{
+    padding-left:35px;
+    padding-right:61px;
+}
+#brands ul li.nine{
+    padding-left:3px;
+    padding-right:67px;
+}
+
+.twitter-follow-button{width:170px !important;float:left;margin-bottom:20px;}
+.fb_iframe_widget  div.fbDarkWidget{background-color:#fff !important;border:none !important;margin-top:20px;}
+
 /* ~~~~~ Typography ~~~~~ */
 
 a {text-decoration:none; color:#fff;}
