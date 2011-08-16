@@ -332,7 +332,7 @@ width: 450px;
 overflow: hidden;
 padding: 30px 0 0 0;}
 
-#topCart .continueShoppingLink{color:#fff;font-size:1.2em;margin:15px 15px 0 125px;float:left;}
+#topCart .continueShoppingLink{color:#fff;font-size:1.2em;margin:15px 0px 0 135px;float:left;}
 #checkoutBtn{
     float:right; height:46px;line-height:46px; background:#cc6600; width:181px; font-size:1.4em; text-align:center; color:#fff;display:block;
 }
