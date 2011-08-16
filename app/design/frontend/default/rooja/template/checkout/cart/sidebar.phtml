@@ -50,6 +50,18 @@
     <?php if(count($_items)): ?>
       
         <ol id="cart-sidebar" class="mini-products-list">
+			<li class="item cart-sidebar-header"><table width="100%" border="0">
+				<tr>
+					<td width="500px">
+						Product
+						</td>
+						<td width="300px">
+						Price
+						</td>
+						<td></td>
+						</tr>
+					</table>		
+			</li>
         <?php foreach($_items as $_item): ?>
             <?php echo $this->getItemHtml($_item) ?>
         <?php endforeach; ?>
