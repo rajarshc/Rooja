@@ -34,6 +34,7 @@
             <li>
 	<?php
 	 list($categoryId,) = $_link->getCategoryIds();
+	print_r($categoryId);
 				$source_url = $_link->setCategoryId($categoryId)->getProductUrl();
 				echo $source_url;
 	//$source_url = $_link->getProductUrl();
