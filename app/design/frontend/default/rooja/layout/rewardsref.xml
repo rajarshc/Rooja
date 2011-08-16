@@ -35,6 +35,7 @@
             <block type="rewardsref/customer_referral" name="referral" template="rewardsref/customer/referral.phtml" >
                 <block type="rewardsref/customer_referral_abstract" name="preferences" template="rewardsref/customer/referral/preferences.phtml" />
                 <block type="rewardsref/customer_referral_history" name="history" template="rewardsref/customer/referral/history.phtml" />
+				<block type="rewardsref/customer_referral_history" name="progress_bar" template="rewardsref/customer/referral/progress_bar.phtml" />
                 <block type="core/text_list" name="refer_form" as="refer_form">
 	                <block type="rewardsref/customer_referral_abstract" name="refer_form_multi" template="rewardsref/customer/referral/invite/plaxo/referral_form.phtml">
 	                    <block type="rewardsref/customer_referral_abstract" name="plaxo_contact_chooser" template="rewardsref/customer/referral/invite/plaxo/plaxo_contact_chooser.phtml" />
