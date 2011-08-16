@@ -54,10 +54,10 @@ if(!Mage::getSingleton('customer/session')->isLoggedIn() && ($agent !="facebooke
         	
         <?php
 		
-		$firstVisit =  Mage::getSingleton('core/session')->getYourVariable();
-			
+		$firstVisit =  Mage::getSingleton('core/session')->getFirstVisit();
+			echo $firstVisit;
 					if($firstVisit!='visited'){
-					    Mage::getSingleton('core/session')->setYourVariable('visited');
+					    Mage::getSingleton('core/session')->setFirstVisit('visited');
 	 ?>
 			<div class="hiw-container">
 				<div class="howitworks">
