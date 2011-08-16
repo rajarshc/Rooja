@@ -362,6 +362,15 @@ echo '<span>' . $likes = $xml->link_stat->like_count . '</span>';
 			jQuery("a#shippingTab").click(
 				 function() {jQuery(".shipping").show();jQuery(".details").hide(); jQuery("#detailsTab").removeClass('selected'); jQuery("#shippingTab").addClass('selected');return false;}
 			);
+	
+			jQuery('a.sizeChart').live('click', function(){
+				newwindow=window.open("", "mywindow1",'height=400,width=500');
+				var sizeWindowContent = jQuery('.sizeChartCont').html();
+				newwindow.document.write(sizeWindowContent);
+				
+				if (window.focus) {newwindow.focus();}
+				return false;
+			});
 	 });
 			
 </script>
