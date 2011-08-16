@@ -336,6 +336,7 @@ padding: 30px 0 0 0;}
 #checkoutBtn{
     float:right; height:46px;line-height:46px; background:#cc6600; width:181px; font-size:1.4em; text-align:center; color:#fff;display:block;
 }
+.cart-sidebar-header{padding:3px;background-color:#494949;color:#000;}
 .remove-item{color:#fff;text-align:right;}
 
 
