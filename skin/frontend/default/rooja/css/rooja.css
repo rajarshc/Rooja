@@ -541,7 +541,7 @@ h3 .product-name {
 
 
 /* ~~~~~ HOME ~~~~~ */
-#liveSales{/*background:url(../images/bgs/black-diag.png) repeat;*/ background:#000; overflow:hidden;padding:30px 0;}
+#liveSales{background:url(../images/bgs/black-diag.png) repeat; /*background:#000;*/ overflow:hidden;padding:30px 0;}
 
 .homeSale, .homeAd{position:relative;overflow:hidden;width:236px;margin-bottom:4px;margin-right:4px;}
 .size1{height:353px;}
