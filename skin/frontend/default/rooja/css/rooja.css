@@ -570,7 +570,11 @@ h3 .product-name {
 #filterSale a.btn-remove {float: left;position: relative;margin: 3px 8px 0 0;bottom: 0;font-size: 14px;}
 #filterSale ul li {min-height: 25px;line-height: 18px;}
 #filterSale ul li span {font-size: 14px;}
-.sideAd{background-color:#a3bcbf;padding:15px 10px;/*margin-top:5px;*/}
+.sideAd{
+    background:url(../images/bgs/teal-corner.png) no-repeat top left #a3bcbf;
+    padding:15px 10px;
+    /*margin-top:5px;*/
+}
 .sideAd p{font-weight:bold;color:#fff;margin:0;background:url(../images/icons/rupee-icon.png) no-repeat left center;padding-left:28px;}
 
 .product{width:230px;height:230px;overflow:hidden;position:relative;margin-bottom:20px;}
@@ -667,9 +671,9 @@ p {font-size: 1.2em;line-height:1.4em;margin-bottom:20px;}
 p.saleEnding{color:#cc6600;margin-bottom:10px;}
 
 .backTo{margin:18px 0 10px;text-decoration:underline;font-size:1.2em;padding-left:18px;background:url(../images/icons/back-arrow.png) no-repeat top left;height:14px;line-height:14px;display:block;}
-.needAssistance{background-color:#cc6600;color:#fff;padding:5px;margin:10px 0;font-size:1.2em;height:20px;display:block;line-height:20px;}
-.needAssistance.noMargin{margin:0;}
-.needAssistance img{vertical-align:middle;}
+.needAssistance,.needAssistance2{background-color:#cc6600;color:#fff;padding:5px;margin:10px 0;font-size:1.2em;height:20px;display:block;line-height:20px;}
+.needAssistance.noMargin, .needAssistance2.noMargin{margin:0;}
+.needAssistance img, .needAssistance2 img{vertical-align:middle;}
 .backToTop{text-decoration:underline;color:#858585;font-size:1.2em;padding-left:18px;background:url(../images/icons/back-to-top.png) no-repeat top left;height:20px;line-height:20px;display:block;}
 
 /* ~~~~~ FORM STYLES ~~~~~ */
