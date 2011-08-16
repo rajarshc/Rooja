@@ -308,7 +308,9 @@ li#myBag:hover{
 
 #howClose{font-size:1.3em;color:#d68533;margin:5px 0 0;}
 
-#topCart{height:auto;}
+#topCart{height:auto;background-image:url(../images/bgs/black-diag.png);}
+#topCart .howitworks{margin-top:0;}
+
 #topCart .mini-products-list .product-image{width:60px;border:none;}
 
 #cart-sidebar li.even{background:none;}
@@ -320,7 +322,7 @@ li#myBag:hover{
 #cart-sidebar img{padding:0;}
 #topCart .subtotal{text-align: right;
 float: right;
-width: 300px;
+width: 450px;
 overflow: hidden;
 padding: 30px 0 0 0;}
 
