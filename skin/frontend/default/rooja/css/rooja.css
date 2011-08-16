@@ -657,6 +657,8 @@ h2#saleDetails{color:#c60;margin:22px 0 5px;}
 .awrma-comments-list li p{margin:5px 0 10px;}
 .leaveCommentRMA{margin-top:20px;}
 
+.sizeChartCont{display:none;}
+
 /* ~~~~~ Typography ~~~~~ */
 
 a {text-decoration:none; color:#000;}
