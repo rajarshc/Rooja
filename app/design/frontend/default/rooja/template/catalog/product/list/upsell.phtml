@@ -32,8 +32,8 @@
         <?php for($_j=0;$_j<$this->getColumnCount();$_j++): ?>
             <?php if($_link=$this->getIterableItem()): ?>
             <li>
-<a href="<?php echo $_link->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_link->getName()) ?>"><img src="<?php echo $this->helper('catalog/image')->init($_link, 'small_image')->resize(114)->keepFrame(false) ?>" width="114"  alt="<?php echo $this->htmlEscape($_link->getName()) ?>"> <span class="numLikes"><img src="<?php echo $this->getSkinUrl('images/icons/thumbs-up.png'); ?>" alt="Thumbs Up icon"> <?php list($categoryId,) = $product->getCategoryIds();
-			$source_url = $product->setCategoryId($categoryId)->getProductUrl();
+<a href="<?php echo $_link->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_link->getName()) ?>"><img src="<?php echo $this->helper('catalog/image')->init($_link, 'small_image')->resize(114)->keepFrame(false) ?>" width="114"  alt="<?php echo $this->htmlEscape($_link->getName()) ?>"> <span class="numLikes"><img src="<?php echo $this->getSkinUrl('images/icons/thumbs-up.png'); ?>" alt="Thumbs Up icon"> <?php list($categoryId,) = $_link->getCategoryIds();
+			$source_url = $_link->setCategoryId($categoryId)->getProductUrl();
 //$source_url = $_link->getProductUrl();
 $url = "http://api.facebook.com/restserver.php?method=links.getStats&urls=".urlencode($source_url);
 $xml = file_get_contents($url);
