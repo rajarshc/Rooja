@@ -308,7 +308,7 @@ li#myBag:hover{
 
 #howClose{font-size:1.3em;color:#d68533;margin:5px 0 0;}
 
-#topCart{height:auto;background-image:url(../images/bgs/black-diag.png);}
+#topCart{height:auto;background-image:url(../images/bgs/black-diag.png);background-size:auto;-moz-background-size:auto;-webkit-background-size:auto;-khtml-background-size:auto;}
 #topCart .howitworks{margin-top:0;}
 
 #topCart .mini-products-list .product-image{width:60px;border:none;}
@@ -326,7 +326,7 @@ width: 450px;
 overflow: hidden;
 padding: 30px 0 0 0;}
 
-#topCart .continueShoppingLink{color:#fff;}
+#topCart .continueShoppingLink{color:#fff;font-size:1.2em;margin:15px 15px 0 0 ;}
 #checkoutBtn{
     float:right; height:46px;line-height:46px; background:#cc6600; width:181px; font-size:1.4em; text-align:center; color:#fff;
 }
