@@ -22,7 +22,7 @@ body{
     background:rgba(81,49,92,.9);
     margin:50px auto 0;
 }
-#aboutWrapper div.wrapper{margin:0;}
+#aboutWrapper div.wrapper{margin:0;background:#51315c;}
 
 #loginTabs{margin:-45px 0 0px -15px;}
 #loginTabs ul li{display:inline;}
