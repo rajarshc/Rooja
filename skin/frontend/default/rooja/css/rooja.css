@@ -308,7 +308,13 @@ li#myBag:hover{
 
 #howClose{font-size:1.3em;color:#d68533;margin:5px 0 0;}
 
-#topCart{height:auto;background-image:url(../images/bgs/black-diag.png);background-size:auto;-moz-background-size:auto;-webkit-background-size:auto;-khtml-background-size:auto;}
+#topCart{height:auto;
+    background:url(../images/bgs/black-diag.png) repeat top left;
+    background-size:auto;
+    -moz-background-size:auto;
+    -webkit-background-size:auto;
+    -khtml-background-size:auto;
+}
 #topCart .howitworks{margin-top:0;}
 
 #topCart .mini-products-list .product-image{width:60px;border:none;}
