@@ -169,36 +169,36 @@ ul#myAccount li{
 }
 
 ul#myAccount li.welcome-top {
-	padding: 36px 25px 27px 20px;
+	padding: 36px 30px 28px 30px;
 	background: url("../images/icons/arrow-nav-white.png") no-repeat 125px 34px;
-	margin: -26px 0 0 0;
+	margin: -26px 0 0 -11px;
 }
 
 ul#myAccount li.welcome-top:hover {
-	padding: 36px 25px 27px 20px;
-	background:#220F26 url("../images/icons/arrow-nav-white.png") no-repeat 125px 34px;
-	margin: -26px 0 0 0;
+	padding: 36px 30px 28px 30px;
+	background: #220F26 url("../images/icons/arrow-nav-white.png") no-repeat 115px 34px;
+	margin: -26px 0 0 -11px;
 	}
 
 	ul#myAccount li.ignore-item {
 		background: url("../images/invite-friends.png") no-repeat center center;
 		height: 45px;
 		margin: -26px 13px 0 0;
-		padding: 14px 5px 10px 5px;
+		padding: 14px 5px 11px 5px;
 	}
 	
 		ul#myAccount li.ignore-item:hover {
 			background: #220F26 url("../images/invite-friends.png") no-repeat center center;
 			height: 45px;
 			margin: -26px 13px 0 0;
-			padding: 14px 5px 10px 5px;
+			padding: 14px 5px 11px 5px;
 		}
 	
 	ul#myAccount li.ignore-item a{
 		display: block;
 		text-indent:-9999px;
 		width: 150px;
-		margin: 10px -21px 0 16px;
+		margin: 14px 17px 11px 5px;
 		height: 25px;
 		border-right:1px dotted white;
 		line-height: 18px;
@@ -267,8 +267,8 @@ li#myBag{
 li#myBag:hover{
 	display: block;
 	width: 114px;
-	height: 3px;
-	margin: -28px 5px 0 9px;
+	height: 4px;
+	margin: -28px 5px 0 1px;
 	padding: 37px 10px 31px 0 !important;
 	background: #220F26 url("../images/icons/bag.png") no-repeat 12px 30px !important;
 	color: white;
@@ -680,8 +680,6 @@ h2#saleDetails{color:#c60;margin:22px 0 5px;}
 /* ~~~~~ Typography ~~~~~ */
 
 a {text-decoration:none; color:#000;}
-a:hover {color: ;}
-a.selected{color:;}
 h1 {font-size: 2.5em; color: #431f4c; margin-bottom: 10px; font-weight:normal;font-family:"ltc-bodoni-175-1","ltc-bodoni-175-2", georgia, serif;line-height:.9em;}
 h1#checkout {margin-top:40px;}
 
