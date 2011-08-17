@@ -181,17 +181,17 @@ ul#myAccount li.welcome-top:hover {
 	}
 
 	ul#myAccount li.ignore-item {
-		background: url("../images/invite-friends.png") no-repeat 9px center;
+		background: url("../images/invite-friends.png") no-repeat center center;
 		height: 45px;
 		margin: -26px 13px 0 0;
-		padding: 14px 11px 10px 15px;
+		padding: 14px 5px 10px 5px;
 	}
 	
 		ul#myAccount li.ignore-item:hover {
-			background: #220F26 url("../images/invite-friends.png") no-repeat 9px center;
+			background: #220F26 url("../images/invite-friends.png") no-repeat center center;
 			height: 45px;
 			margin: -26px 13px 0 0;
-			padding: 14px 11px 10px 15px;
+			padding: 14px 5px 10px 5px;
 		}
 	
 	ul#myAccount li.ignore-item a{
