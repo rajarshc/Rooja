@@ -169,15 +169,15 @@ ul#myAccount li{
 }
 
 ul#myAccount li.welcome-top {
-	padding: 36px 30px 28px 30px;
+	padding: 36px 42px 28px 30px;
+	margin: -26px -8px 0 -11px;
 	background: url("../images/icons/arrow-nav-white.png") no-repeat 125px 34px;
-	margin: -26px 0 0 -11px;
 }
 
 ul#myAccount li.welcome-top:hover {
-	padding: 36px 30px 28px 30px;
+	padding: 36px 42px 28px 30px;
+	margin: -26px -8px 0 -11px;
 	background: #220F26 url("../images/icons/arrow-nav-white.png") no-repeat 125px 34px;
-	margin: -26px 0 0 -11px;
 	}
 
 	ul#myAccount li.ignore-item {
@@ -267,7 +267,7 @@ li#myBag{
 li#myBag:hover{
 	display: block;
 	width: 114px;
-	height: 5px;
+	height: 4px;
 	margin: -28px 5px 0 9px;
 	padding: 37px 10px 31px 0 !important;
 	background: #220F26 url("../images/icons/bag.png") no-repeat 12px 30px !important;
