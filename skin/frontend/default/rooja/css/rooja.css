@@ -748,11 +748,7 @@ content: " (PDF)";
 a[href$=".doc"]:after {content: " (DOC)";}
 
 /* Addition styles from AM */
-.product-options {background-color: #F6F6F6;
-    border: 1px solid #DDDDDD;
-    margin: 10px 0;
-    padding: 10px 10px 0;
-    }
+
 .product-options p.required {padding: 0;}
 .input-box {position: relative;}
 .discount .buttons-set {position: absolute;right:0;float: right;top:0;}

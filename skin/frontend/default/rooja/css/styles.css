@@ -879,7 +879,7 @@ tr.summary-details-excluded { font-style:italic; }
 .product-view .short-description {}
 
 /* Product Options */
-.product-options { padding:10px; margin:10px 0 0; border:1px solid #ddd; background-color:#f6f6f6; }
+.product-options {margin:10px 0 0; }
 .product-options dt label { font-weight:bold; }
 .product-options dt .qty-holder { float:right; }
 .product-options dt .qty-holder label { vertical-align:middle; }
