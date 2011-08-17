@@ -591,6 +591,12 @@ h3 .product-name {
     padding:25px 10px 15px;
     margin-top:3px;
 }
+
+.sideAd-orange {
+    background:url(../images/bgs/orange-corner.png) no-repeat top left #CC6600;
+    padding:25px 10px 15px;
+    margin-top:3px;
+}
 .sideAd p{font-weight:bold;color:#fff;margin:0;background:url(../images/icons/rupee-icon.png) no-repeat left center;padding-left:28px;}
 
 .product{width:230px;height:230px;overflow:hidden;position:relative;margin-bottom:20px;}
