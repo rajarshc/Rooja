@@ -407,11 +407,12 @@ td .product-name { width: 130px;}
 
 #mainFooter{width:100%;background:url(../images/bgs/footer-diag.png) repeat;padding:30px 0;color:#fff;overflow:hidden;}
 #mainFooter a{color:#fff;}
-#mainFooter a:hover{color:#C7B299;text-decoration:underline;}
+#mainFooter a:hover{color:#C7B299;text-decoration:none;}
 #mainFooter h4{text-transform:uppercase;font-size:1.4em;margin-bottom:20px;}
 #mainFooter ul li{font-size:1.2em;line-height:1.67em;}
 #mainFooter ul#socialLinks, #mainFooter ul#socialLinks a, #copyrightInfo, #copyrightInfo a{color:#c7b299;}
-#mainFooter ul#socialLinks img{vertical-align:middle;margin:5px 5px 5px 0;}
+#mainFooter ul#socialLinks a:hover{text-decoration:none;color:#fff;}
+#mainFooter ul#socialLinks img{vertical-align:middle;margin:5px 8px 5px 0px;}
 #twitter_update_list{padding:12px;background:url(../images/bgs/twitter-diag.png) repeat;margin-bottom:8px;}
 #copyrightInfo {margin-top:-4px;}
 #copyrightInfo a{text-decoration:none;}
@@ -481,6 +482,7 @@ p.hiw-header {
 .closer {
 	width:100%; 
 	margin:56px 0 0 0;
+	text-align:center;
 	}	
 a.closer {	
 	font-family: "ltc-bodoni-175-1","ltc-bodoni-175-2", georgia, serif; 
@@ -489,8 +491,7 @@ a.closer {
 	padding: 5px 29px 5px 10px;
 	color: #fff;
 	text-transform:uppercase;
-	
-	margin-left: 50%;}
+}
 
 
 #checkout-payment-method-load p {
@@ -553,7 +554,7 @@ h3 .product-name {
 .size3{height:119px;}
 
 .homeSale h2{color:#fff !important;font-size:2em;padding:15px 10px;display:block;width:222px;background:url(../images/bgs/purp-opacity-photo-diag.png) repeat;position:absolute;bottom:0px;z-index:10;margin: 0;}
-.homeSale p{position:absolute;top:0;display:block;padding:5px 6px;background:url(../images/bgs/pink-diag.png) repeat;width:100%;font-size:1.4em;color:#fff;}
+.homeSale p{position:absolute;top:0;display:none;padding:5px 6px;background:url(../images/bgs/pink-diag.png) repeat;width:100%;font-size:1.4em;color:#fff;}
 
 .homeAd{background:url(../images/bgs/orange-diag.png) repeat;padding: 10px;width:217px;height:  95px;color:#fff;}
 .homeAd h3 a{text-transform:uppercase;font-size:14px;text-decoration:underline;margin-bottom:5px;color:#fff;font-weight:normal;}
@@ -587,7 +588,7 @@ h3 .product-name {
 #filterSale ul li span {font-size: 14px;}
 .sideAd{
     background:url(../images/bgs/teal-corner.png) no-repeat top left #a3bcbf;
-    padding:15px 10px;
+    padding:25px 10px 15px;
     margin-top:3px;
 }
 .sideAd p{font-weight:bold;color:#fff;margin:0;background:url(../images/icons/rupee-icon.png) no-repeat left center;padding-left:28px;}
@@ -660,7 +661,9 @@ h2#saleDetails{color:#c60;margin:22px 0 5px;}
 .details{display:block;margin:15px 0 0;}
 
 .more-views{display:block;float:left;width:75px;margin-right:10px;}
+.more-views h2{display:none;}
 .more-views ul li{/*float:left;*/}
+.more-views ul li img{border:1px solid #ccc;margin-bottom:5px;}
 
 #gallery .product-image-zoom{position:relative;width:395px;height:640px;overflow:hidden;float:right;}
 #gallery .product-image-zoom img{position:absolute;top:0;left:0;}
@@ -748,11 +751,7 @@ content: " (PDF)";
 a[href$=".doc"]:after {content: " (DOC)";}
 
 /* Addition styles from AM */
-.product-options {background-color: #F6F6F6;
-    border: 1px solid #DDDDDD;
-    margin: 10px 0;
-    padding: 10px 10px 0;
-    }
+
 .product-options p.required {padding: 0;}
 .input-box {position: relative;}
 .discount .buttons-set {position: absolute;right:0;float: right;top:0;}
