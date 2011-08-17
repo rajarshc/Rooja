@@ -1341,12 +1341,11 @@ list-style: none;
 .va_wrapper li a {
 margin-right: 3px;
 float: left;
-background: none repeat scroll 0 0 #55AAFF;
-border: 1px solid #000000;
-padding: 4px 7px;
-color: #FFF;
-font-size: 13px;
-font-weight: bold;
+background: #A3BCBF;
+border: 1px solid #68888c;
+padding: 8px;
+color: #431F4C;
+font-size: 11px;
 text-decoration: none;
 }
  
@@ -1356,8 +1355,8 @@ margin-right: 2px;
 }
  
 .va_wrapper li a.selected {
-background: #FFF;
-color: red;
+background: #431F4C;
+color: #fff;
 }
 
 /* ======================================================================================= */

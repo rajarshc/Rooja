@@ -587,7 +587,7 @@ h3 .product-name {
 #filterSale ul li span {font-size: 14px;}
 .sideAd{
     background:url(../images/bgs/teal-corner.png) no-repeat top left #a3bcbf;
-    padding:15px 10px;
+    padding:25px 10px 15px;
     margin-top:3px;
 }
 .sideAd p{font-weight:bold;color:#fff;margin:0;background:url(../images/icons/rupee-icon.png) no-repeat left center;padding-left:28px;}
