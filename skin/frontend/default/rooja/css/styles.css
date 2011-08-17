@@ -1351,6 +1351,7 @@ width:30px;
 display:block;
 text-align:center;
 }
+.va_wrapper li a:hover{background-color:#68888c;}
  
 .va_wrapper li {
 float: left;
