@@ -1346,7 +1346,7 @@ border: 1px solid #68888c;
 padding: 8px;
 color: #431F4C;
 font-size: 11px;
-text-decoration: none;
+text-transform:uppercase;
 }
  
 .va_wrapper li {
