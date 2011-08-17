@@ -1339,7 +1339,7 @@ list-style: none;
 }
  
 .va_wrapper li a {
-margin-right: 3px;
+margin: 3px 6px 3px 0;
 float: left;
 background: #A3BCBF;
 border: 1px solid #68888c;
@@ -1347,6 +1347,9 @@ padding: 8px;
 color: #431F4C;
 font-size: 11px;
 text-transform:uppercase;
+width:30px;
+display:block;
+text-align:center;
 }
  
 .va_wrapper li {
@@ -1357,6 +1360,7 @@ margin-right: 2px;
 .va_wrapper li a.selected {
 background: #431F4C;
 color: #fff;
+border-color:#000;
 }
 
 /* ======================================================================================= */
