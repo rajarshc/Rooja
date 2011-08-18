@@ -544,6 +544,8 @@ h3 .product-name {
 	font-size: 13px;
 }
 
+.ccHintText{display:none;}
+#checkout-review-load .reviewbuttoncont {margin-top:20px;}
 
 
 /* ~~~~~ HOME ~~~~~ */
