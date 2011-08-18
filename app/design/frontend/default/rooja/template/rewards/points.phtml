@@ -56,10 +56,10 @@ if ($this->hasPoints()) {
         } else {                     // <- otherwise display the caption as normal
             echo $p['currency'] . " " . $p['amount'];
         }
-//        adds (s) to point statement
-		if (!$this->getDontShowStringPoints()) {
-                    echo " " . (($p['amount'] == 1) ? $this->__('Point') : $this->__('Points'));
-                }
+        //adds (s) to point statement
+		// if (!$this->getDontShowStringPoints()) {
+        //             echo " " . (($p['amount'] == 1) ? $this->__('Point') : $this->__('Points'));
+        //         }
     } else {
         /* MORE THAN ONE points currency in the store: */
 
