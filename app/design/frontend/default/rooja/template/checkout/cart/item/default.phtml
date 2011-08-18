@@ -159,6 +159,15 @@ $isVisibleProduct = $_item->getProduct()->isVisibleInSiteVisibility();
     <?php endif; ?>
     <td class="a-center">
         <?php echo $this->getQty() ?>
+	  	<table class="qty_table">
+	   		<tr>
+	   			<td><span class="decreaseItem" id="decreaseItem" onclick="review.decreaseItem(<?=$_item->getProductId()?>)"></span></td>
+
+	   			<td> <span class="qty_value">   <?php echo $_item->getQty() ?></span></td>
+
+	   			<td><span class="increaseItem" id="increaseItem" onclick="review.increaseItem(<?=$_item->getProductId()?>)"></span></td>
+	   		</tr>
+	   	</table>
     </td>
     <?php if ($this->helper('tax')->displayCartPriceExclTax() || $this->helper('tax')->displayCartBothPrices()): ?>
     <td class="a-right">
