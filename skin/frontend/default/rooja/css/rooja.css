@@ -422,7 +422,7 @@ td .product-name { width: 130px;}
 
 /* HOW IT WORKS OVERLAY */
 .hiw-container { 
-	background: url(../images/bgs/hiw-full.png) center no-repeat; 
+	background: url(../images/bgs/hiw-full.jpg) center no-repeat; 
 	background-size: cover;
 	-moz-background-size: cover;
 	-webkit-background-size: cover;
