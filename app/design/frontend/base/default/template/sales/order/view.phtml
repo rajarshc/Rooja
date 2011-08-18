@@ -58,8 +58,7 @@
     <h2 class="table-caption"><?php echo $this->__('Items Ordered') ?>
         <?php if ($_order->getTracksCollection()->count()) : ?>
 <div style="float: right;margin-bottom: 15px;">
-	<button type="button" class="button" id="continueShoppingBtn"><a style="color:#fff;" href="<?php echo $this->getUrl('awrma/customer_rma/createfororder/', array('order_id' => $_order->getIncrementId())) ?>">Request a Return</a></button>
-	&nsbp
+	<button type="button" class="button" id="continueShoppingBtn" style="margin-right:5px;"><a style="color:#fff;" href="<?php echo $this->getUrl('awrma/customer_rma/createfororder/', array('order_id' => $_order->getIncrementId())) ?>">Request a Return</a></button>
 <button type="button" class="button" id="continueShoppingBtn" onclick="popWin('<?php echo $this->helper('shipping')->getTrackingPopupUrlBySalesModel($_order)?>','trackorder','top=0,left=0,width=800,height=600,resizable=yes,scrollbars=yes'); return false;">Track Your Order</button>
 </div>
         <?php endif; ?>
