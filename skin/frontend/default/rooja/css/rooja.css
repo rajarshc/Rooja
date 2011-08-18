@@ -523,8 +523,9 @@ p.question{margin:0;font-weight:bold;color:#431f4c;}
 }
 	#coupon_code {
 		border:1px solid #e2e2e2;
-		width: 70%;
+		width: 150px;
 		float: left;
+		margin-right:10px;
 	}
 
 .coup-entry {

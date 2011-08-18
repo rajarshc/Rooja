@@ -31,11 +31,11 @@
     <div class="discount">
       
         <div class="discount-form">
-            <p><?php echo $this->__('Enter your coupon code if you have one.') ?></p>
+         
             <input type="hidden" name="remove" id="remove-coupone" value="0" />
-            <div class="input-box">
+            
                 <input class="input-text" id="coupon_code" name="coupon_code" type="text" value="<?php echo $this->htmlEscape($this->getCouponCode()) ?>" />
-            </div>
+            
             <button id="apply-coupon" type="button" title="<?php echo $this->__('Apply Coupon') ?>"  onclick="discountForm.submit(false)" value="<?php echo $this->__('Apply Coupon') ?>"><span><span><?php echo $this->__('Apply Coupon') ?></span></span></button>
 
             <div>
