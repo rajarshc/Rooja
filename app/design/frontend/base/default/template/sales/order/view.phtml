@@ -57,8 +57,8 @@
     <?php $_order = $this->getOrder() ?>
     <h2 class="table-caption"><?php echo $this->__('Items Ordered') ?>
         <?php if ($_order->getTracksCollection()->count()) : ?>
-            <span class="separator">|</span> 
-<button type="button" class="button" id="continueShoppingBtn" onclick="popWin('<?php echo $this->helper('shipping')->getTrackingPopupUrlBySalesModel($_order) ?>','trackorder','top=0,left=0,width=800,height=600,resizable=yes,scrollbars=yes'); return false;">Track Your Order</button>
+
+<button type="button" class="button" style="float: right;margin-bottom: 15px;" id="continueShoppingBtn" onclick="popWin('<?php echo $this->helper('shipping')->getTrackingPopupUrlBySalesModel($_order)?>','trackorder','top=0,left=0,width=800,height=600,resizable=yes,scrollbars=yes'); return false;">Track Your Order</button>
         <?php endif; ?>
     </h2>
 
