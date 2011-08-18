@@ -28,7 +28,7 @@
 <fieldset>
     <ul class="form-list">
     <?php if ($this->customerHasAddresses()): ?>
-        <li class="wide">
+        <li class="wide-2">
             <label for="billing-address-select"><?php echo $this->__('Select a billing address from your address book or enter a new address.') ?></label>
             <div class="input-box">
                 <?php echo $this->getAddressesHtmlSelect('billing') ?>
@@ -56,14 +56,14 @@
                     </div>
         <?php endif ?>
                 </li>
-                <li class="wide">
+                <li class="wide-2">
                     <label for="billing:street1" class="required"><em>*</em><?php echo $this->__('Address') ?></label>
                     <div class="input-box">
                         <input type="text" title="<?php echo $this->__('Street Address') ?>" name="billing[street][]" id="billing:street1" value="<?php echo $this->htmlEscape($this->getAddress()->getStreet(1)) ?>" class="input-text required-entry" />
                     </div>
                 </li>
         <?php for ($_i=2, $_n=$this->helper('customer/address')->getStreetLines(); $_i<=$_n; $_i++): ?>
-                <li class="wide">
+                <li class="wide-2">
                     <div class="input-box">
                         <input type="text" title="<?php echo $this->__('Street Address %s', $_i) ?>" name="billing[street][]" id="billing:street<?php echo $_i?>" value="<?php echo $this->htmlEscape($this->getAddress()->getStreet($_i)) ?>" class="input-text" />
                     </div>

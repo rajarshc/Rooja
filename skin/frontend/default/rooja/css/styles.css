@@ -217,6 +217,7 @@ p.control input.radio { margin-right:6px; }
 .form-list select { width:260px; }
 .form-list li.wide .input-box { width:535px; }
 .form-list li.wide input.input-text { width:100%; }
+.form-list li.wide-2 input.input-text { width:94%; }
 .form-list li.wide textarea { width:529px; }
 .form-list li.wide select { width:535px; }
 .form-list li.additional-row { border-top:1px solid #ccc; margin-top:10px; padding-top:7px; }
@@ -1152,7 +1153,7 @@ form#discount-coupon-form .discount h2, .shipping h2  {font-size:14px;margin: 0 
 .opc .order-review .authentication {}
 .opc .order-review .warning-message {}
 
-.form-list input.input-text{height:36px;line-height:36px;color:#111;padding:0px 8px; margin: 0; height:30px; width:200px;}
+.form-list input.input-text{height:36px;line-height:36px;color:#111;height: 24px;width: 182px; }
 .block-progress h2{font-size:2em;color:#431f4b;margin-bottom:5px;}
 
 /* Multiple Addresses Checkout */
