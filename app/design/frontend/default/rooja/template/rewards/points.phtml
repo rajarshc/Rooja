@@ -54,7 +54,7 @@ if ($this->hasPoints()) {
         if (empty($p['currency'])) {   // if the currency caption is blank or empty
             echo $p['amount'];       // <- then don't display the caption
         } else {                     // <- otherwise display the caption as normal
-            echo $p['amount'] . " " . $p['currency'];
+            echo $p['currency'] . " " . $p['amount'];
         }
         if (!$this->getDontShowStringPoints()) {
             echo " " . (($p['amount'] == 1) ? $this->__('Point') : $this->__('Points'));
