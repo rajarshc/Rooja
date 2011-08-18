@@ -176,7 +176,7 @@ button.disabled span {}
 
 #apply-coupon {
 	display:block; 
-	float:right; 
+	float:left; 
 	padding:3px 10px;
 	border:none;
 	height:40px; 
