@@ -54,9 +54,11 @@
                     <div id="shipping-info" style="display: none;"> 
                     <?php echo $this->getChildHtml("shipping2")?>    
                     </div>
-					  <input type="checkbox" name="toggleShipping" id="toggleShipping" value="1" onclick="toggleShipping()" checked="checked" class="checkbox" />
-			            <a  id="toggleShipping" onclick="toggleShipping()"><label for="toggleShipping">My Shipping address is the same as my billing address.</label></a>
+					  <a  id="toggleShipping" onclick="toggleShipping()"><input type="checkbox" name="toggleShipping" id="toggleShipping" value="1" onclick="toggleShipping()" checked="checked" class="checkbox" />
+			          <label for="toggleShipping">My Shipping address is the same as my billing address.</label></a>
+			                    
 
+				
                       </li> 
 
                     </div>
