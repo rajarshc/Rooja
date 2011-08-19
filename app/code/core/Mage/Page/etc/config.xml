@@ -55,6 +55,11 @@
                     <layout_handle>page_one_column</layout_handle>
                     <is_default>1</is_default>
                 </one_column>
+				<one_column_static>
+				    <label>1 Column (static)</label>
+				    <template>page/1column-static.phtml</template>
+				</one_column_static>
+				
                 <two_columns_left module="page" translate="label">
                     <label>2 columns with left bar</label>
                     <template>page/2columns-left.phtml</template>
