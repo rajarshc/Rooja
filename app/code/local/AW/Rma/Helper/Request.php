@@ -98,8 +98,8 @@ class AW_Rma_Helper_Request extends Mage_Core_Helper_Abstract {
 
                             //Clear form data stored in session
                             self::_getSession()->getAWRMAFormData(TRUE);
-                            self::_getSession()->addSuccess(Mage::helper('awrma')->__('New RMA request has been successfully added'));
-                            self::_getSession()->addNotice(Mage::helper('awrma')->__('Your RMA is currently waiting for approval'));
+                            self::_getSession()->addSuccess(Mage::helper('awrma')->__('New Return request has been successfully added'));
+                            self::_getSession()->addNotice(Mage::helper('awrma')->__('Your Return is currently waiting for approval'));
                             return $guestMode ? $rmaEntity->getExternalLink() : $rmaEntity->getId();
 
                         } else {
