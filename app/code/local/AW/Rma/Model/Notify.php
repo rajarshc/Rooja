@@ -80,7 +80,7 @@ class AW_Rma_Model_Notify extends Mage_Core_Model_Abstract {
             # Common variables
             $_status = Mage::getModel('awrma/entitystatus')->load($rmaRequest->getStatus());
             if($_status->getData() == array()) throw new Exception('Can\t load request status');
-            $_subject = Mage::helper('awrma')->__('Notify about RMA ').$rmaRequest->getTextId();
+            $_subject = Mage::helper('awrma')->__('Notify about Return ').$rmaRequest->getTextId();
             $_store = Mage::app()->getSafeStore($rmaRequest->getStoreId());
             $_sender = Mage::helper('awrma/config')->getEmailSender($rmaRequest->getStoreId());
             $_departmentDisplayName = Mage::helper('awrma/config')->getDepartmentDisplayName($rmaRequest->getStoreId());
@@ -166,7 +166,7 @@ class AW_Rma_Model_Notify extends Mage_Core_Model_Abstract {
                 'store' => $rmaRequest->getStoreId()
             ));
 
-            $_subject = Mage::helper('awrma')->__('Notify about RMA #').$rmaRequest->getTextId();
+            $_subject = Mage::helper('awrma')->__('Notify about Return #').$rmaRequest->getTextId();
             $_store = Mage::app()->getSafeStore($rmaRequest->getStoreId());
             $_sender = Mage::helper('awrma/config')->getEmailSender($rmaRequest->getStoreId());
             $_departmentDisplayName = Mage::helper('awrma/config')->getDepartmentDisplayName($rmaRequest->getStoreId());

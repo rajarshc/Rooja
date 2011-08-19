@@ -60,10 +60,10 @@ class AW_Rma_Customer_RmaController extends Mage_Core_Controller_Front_Action {
             if(is_object($_rmaRequest) && $_rmaRequest->getData() != array()) {
                 return $_rmaRequest;
             } else {
-                $this->_getSession()->addError('Can\'t load RMA request');
+                $this->_getSession()->addError('Can\'t load Return request');
             }
         } else {
-            $this->_getSession()->addError($this->__('External RMA ID isn\'t specified'));
+            $this->_getSession()->addError($this->__('External Return ID isn\'t specified'));
         }
 
         $this->_redirect('awrma/customer_rma/index');
@@ -89,11 +89,11 @@ class AW_Rma_Customer_RmaController extends Mage_Core_Controller_Front_Action {
                 Mage::unregister('awrma-request');
                 Mage::register('awrma-request', $_rmaRequest);
             } else {
-                $this->_getSession()->addError('Can\'t load RMA request');
+                $this->_getSession()->addError('Can\'t load Return request');
                 $_okFlag = FALSE;
             }
         } else {
-            $this->_getSession()->addError('No RMA Request ID specified');
+            $this->_getSession()->addError('No Return Request ID specified');
             $_okFlag = FALSE;
         }
 
@@ -126,7 +126,7 @@ class AW_Rma_Customer_RmaController extends Mage_Core_Controller_Front_Action {
     }
 
     protected function newAction() {
-        $this->_initAction('Request RMA');
+        $this->_initAction('Request Return');
 
         $this->renderLayout();
     }
@@ -163,12 +163,12 @@ class AW_Rma_Customer_RmaController extends Mage_Core_Controller_Front_Action {
                 $_rmaRequest->setStatus(Mage::helper('awrma/status')->getResolvedCanceledStatusId());
                 $_rmaRequest->save();
                 Mage::getModel('awrma/notify')->checkChanges($_rmaRequest, NULL, TRUE);
-                $this->_getSession()->addSuccess($this->__('Your RMA successfully canceled'));
+                $this->_getSession()->addSuccess($this->__('Your Return successfully canceled'));
             } else {
-                $this->_getSession()->addError($this->__('Can\'t load RMA by specified ID'));
+                $this->_getSession()->addError($this->__('Can\'t load Return by specified ID'));
             }
         } else {
-            $this->_getSession()->addError($this->__('RMA Id isn\'t specified'));
+            $this->_getSession()->addError($this->__('Return Id isn\'t specified'));
         }
 
         if(isset($_rmaRequest) && $_rmaRequest->getId())
@@ -227,7 +227,7 @@ class AW_Rma_Customer_RmaController extends Mage_Core_Controller_Front_Action {
             $rmaRequest->setStatus(Mage::helper('awrma/status')->getPackageSentStatusId());
             $rmaRequest->save();
             Mage::getModel('awrma/notify')->checkChanges($rmaRequest, null, TRUE);
-            $this->_getSession()->addSuccess($this->__('RMA status has been successfully changed'));
+            $this->_getSession()->addSuccess($this->__('Return status has been successfully changed'));
         }
         return $this->_redirect('*/*/view', array('id' => $this->getRequest()->getParam('id')));
     }

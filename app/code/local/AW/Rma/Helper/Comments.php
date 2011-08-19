@@ -145,11 +145,11 @@ class AW_Rma_Helper_Comments extends Mage_Core_Helper_Abstract {
                 }
             } else {
                 $_okFlag = FALSE;
-                self::_getSession()->addError(Mage::helper('awrma')->__('You can\'t comment resolved RMA'));
+                self::_getSession()->addError(Mage::helper('awrma')->__('You can\'t comment resolved Return'));
             }
         } else {
             $_okFlag = FALSE;
-            self::_getSession()->addError(Mage::helper('awrma')->__('Can\'t load RMA request'));
+            self::_getSession()->addError(Mage::helper('awrma')->__('Can\'t load Return request'));
         }
 
         self::_getSession()->setAWRMACommentFormData($request->getParams());
