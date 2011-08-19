@@ -286,7 +286,7 @@ p.control input.radio { margin-right:6px; }
 .form-list .customer-dob .dob-year { width:140px; }
 .form-list .customer-dob .dob-year input.input-text { width:134px; }
 
-.buttons-set { clear:both; margin:5px 0 0; padding:5px; border:1px solid #ddd; }
+.buttons-set { clear:both; margin:5px 0 0; padding:5px; /*border:1px solid #ddd; */}
 .buttons-set .back-link { float:left; }
 .buttons-set button.button { float:right; }
 .buttons-set p.required { margin:0 0 5px; }
