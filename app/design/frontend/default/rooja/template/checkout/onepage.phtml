@@ -28,7 +28,8 @@
 <script type="text/javascript" src="<?php echo $this->getSkinUrl('js/opcheckout.js') ?>"></script>
 <script type="text/javascript">countryRegions = <?php echo $this->helper('directory')->getRegionJson() ?></script>
 
-
+<section style="width:45%; float:right;">
+	
 <ol class="opc" id="checkoutSteps">
 <?php 
 $validate = false; 
@@ -52,7 +53,26 @@ if(!$validate) { ?>
 <!-- <p class="required"><strong>Warning! You are using trial version of Quick One page checkout for this domain <br/>
 Contact KAM Technology at contact@kamtechco.net to activate the license</strong></p> -->
 <?php } ?>
-<?php $i=0; foreach($this->getSteps() as $_stepId => $_stepInfo):  $i++ ?>
+
+<?php $i=0; foreach($this->getSteps() as $_stepId => $_stepInfo):  $i++ ;
+
+	if ($i == 4) { ?>
+		</ol>
+		</section>
+		
+		<section style="width:45%; float:right;">
+	        <div class="step-title">
+	            <h2><?php echo $_stepInfo['label'] ?></h2>
+		    <a href="#"><?php echo $this->__('Edit') ?></a>
+	        </div>
+	        <div id="checkout-step-<?php echo $_stepId ?>" class="step a-item"> 
+	            <?php echo $this->getChildHtml($_stepId) ?>
+	        </div>
+			
+		</section>
+		
+	}
+?>
     <li id="opc-<?php echo $_stepId ?>" class="section <?php echo !empty($_stepInfo['allow'])?'allow':'' ?> <?php echo !empty($_stepInfo['complete'])?'saved':'' ?>">
         <div class="step-title">
             <h2><?php echo $_stepInfo['label'] ?></h2>
@@ -63,8 +83,9 @@ Contact KAM Technology at contact@kamtechco.net to activate the license</strong>
         </div>
 
     </li>
+
 <?php endforeach ?>
-</ol>
+
     
 <script type="text/javascript">
 //variable for loginForm
