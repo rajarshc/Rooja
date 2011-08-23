@@ -1132,8 +1132,11 @@ form#discount-coupon-form .discount h2, .shipping h2  {font-size:14px;margin: 0 
 .opc .buttons-set.disabled button.button { display:none; }
 .opc .buttons-set .please-wait { height:21px; line-height:21px; }
 
+.section { width:470px; display:block;}
+
 .opc .step-title { /*background-color:#645967;*/ padding:8px 15px; text-align:right; width:470px;}
-li#opc-review {float:right !important;}
+li#opc-review {float:right !important;
+margin: -911px 0 0 0;}
 .opc .step-title .number { float:left; line-height:22px; margin-right:5px; }
 .opc .step-title h2 {text-align:left;font-size:2em; margin: 9px 0 -5px -14px; color:#431f4b;}
 .opc .step-title a { display:none; float:right; }
