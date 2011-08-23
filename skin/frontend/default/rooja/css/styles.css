@@ -1142,6 +1142,8 @@ li#opc-review {
 	position: absolute;
 	left: 490px;
 }
+
+.address-select { width:400px;}
 .opc .step-title .number { float:left; line-height:22px; margin-right:5px; }
 .opc .step-title h2 {text-align:left;font-size:2em; margin: 9px 0 -5px -14px; color:#431f4b;}
 .opc .step-title a { display:none; float:right; }
