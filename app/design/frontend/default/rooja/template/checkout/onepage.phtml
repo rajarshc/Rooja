@@ -60,7 +60,7 @@ Contact KAM Technology at contact@kamtechco.net to activate the license</strong>
 		</ol>
 		</section>
 		
-		<section style="width:470px; float:right;">
+		<section style="width:470px; float:right;" class="section <?php echo !empty($_stepInfo['allow'])?'allow':'' ?> <?php echo !empty($_stepInfo['complete'])?'saved':'' ?>">
 	        <div class="step-title">
 	            <h2><?php echo $_stepInfo['label'] ?></h2>
 		    <a href="#"><?php echo $this->__('Edit') ?></a>
