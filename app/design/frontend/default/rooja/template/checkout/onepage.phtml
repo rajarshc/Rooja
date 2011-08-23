@@ -53,7 +53,6 @@ Contact KAM Technology at contact@kamtechco.net to activate the license</strong>
 <?php $i=0; foreach($this->getSteps() as $_stepId => $_stepInfo):  $i++ ?>
     <li id="opc-<?php echo $_stepId ?>" class="section <?php echo !empty($_stepInfo['allow'])?'allow':'' ?> <?php echo !empty($_stepInfo['complete'])?'saved':'' ?>">
         <div class="step-title">
-	<span class="number"><?php echo $i ?></span>
             <h2><?php echo $_stepInfo['label'] ?></h2>
 	    <a href="#"><?php echo $this->__('Edit') ?></a>
         </div>

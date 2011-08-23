@@ -46,7 +46,7 @@ function loggedInBilling()
 
 <form id="co-billing-form" action="">
 <?php if ($this->customerHasAddresses()): ?>
-    <p><?php echo $this->__('Select a billing address from your address book or enter a new address.') ?></p>
+	<h3>Billing Address</h3>
     <ul><li><p><?php echo $this->getAddressesHtmlSelect('billing') ?></p></li></ul>
 <?php echo "<script>loggedInBilling()</script>"; ?>
 <?php endif ?>

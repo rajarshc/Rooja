@@ -25,7 +25,7 @@
  */
 ?>
 <?php if (!($_shippingRateGroups = $this->getShippingRates())): ?>
-    <?php echo $this->__('Shipping method is shown after shipping address is entered.') ?>
+    <p><?php echo $this->__('Shipping method is shown after shipping address is entered.') ?></p>
 <?php else: ?>
 <dl class="sp-methods">
     <?php foreach ($_shippingRateGroups as $code => $_rates): ?>
