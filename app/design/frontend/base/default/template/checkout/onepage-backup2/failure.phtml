@@ -23,25 +23,10 @@
  * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
-
-/**
- * @see Mage_Checkout_Block_Cart_Totals
- */
 ?>
-<?php if ($this->getTotals()): ?>
-<tfoot>
-    <?php $_colspan = $this->helper('tax')->displayCartBothPrices() ? 5 : 3; ?>
-    <?php echo $this->renderTotals(null, $_colspan); ?>
-    <?php echo $this->renderTotals('footer', $_colspan); ?>
-    <?php if ($this->needDisplayBaseGrandtotal()):?>
-    <tr>
-        <td class="a-right" colspan="<?php echo $_colspan; ?>">
-            <small><?php echo $this->helper('sales')->__('Your credit card will be charged for') ?></small>
-        </td>
-        <td class="a-right">
-            <small><?php echo $this->displayBaseGrandtotal() ?></small>
-        </td>
-    </tr>
-    <?php endif?>
-</tfoot>
-<?php endif; ?>
+<div class="page-title">
+    <h1><?php echo $this->__('An error occurred in the process of payment') ?></h1>
+</div>
+<?php if ($this->getRealOrderId()) : ?><p><?php echo $this->__('Order #') . $this->getRealOrderId() ?></p><?php endif ?>
+<?php if ($error = $this->getErrorMessage()) : ?><p><?php echo $error ?></p><?php endif ?>
+<p><?php echo $this->__('Click <a href="%s">here</a> to continue shopping.', $this->getContinueShoppingUrl()) ?></p>
