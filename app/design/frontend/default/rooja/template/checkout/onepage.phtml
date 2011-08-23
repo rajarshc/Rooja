@@ -71,7 +71,7 @@ Contact KAM Technology at contact@kamtechco.net to activate the license</strong>
 			
 		</section>
 		
-<?php } ?>
+<?php } else { ?>
     <li id="opc-<?php echo $_stepId ?>" class="section <?php echo !empty($_stepInfo['allow'])?'allow':'' ?> <?php echo !empty($_stepInfo['complete'])?'saved':'' ?>">
         <div class="step-title">
             <h2><?php echo $_stepInfo['label'] ?></h2>
@@ -83,7 +83,8 @@ Contact KAM Technology at contact@kamtechco.net to activate the license</strong>
 
     </li>
 
-<?php endforeach ?>
+
+<?php } endforeach ?>
 
     
 <script type="text/javascript">
