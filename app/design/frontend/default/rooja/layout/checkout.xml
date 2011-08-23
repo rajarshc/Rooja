@@ -303,7 +303,7 @@ One page checkout main layout
         <remove name="left"/>
 
         <reference name="root">
-            <action method="setTemplate"><template>page/2columns-right.phtml</template></action>
+            <action method="setTemplate"><template>page/page/1column.phtml</template></action>
         </reference>
         <reference name="right">
             <action method="unsetChildren"></action>
@@ -426,7 +426,7 @@ One page checkout order review block
     <checkout_onepage_failure translate="label">
         <label>One Page Checkout Failure</label>
         <reference name="root">
-            <action method="setTemplate"><template>page/2columns-right.phtml</template></action>
+            <action method="setTemplate"><template>page/page/1column.phtml</template></action>
         </reference>
         <reference name="content">
             <block type="checkout/onepage_failure" name="checkout.failure" template="checkout/onepage/failure.phtml"/>
