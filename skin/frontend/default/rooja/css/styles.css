@@ -1134,7 +1134,7 @@ form#discount-coupon-form .discount h2, .shipping h2  {font-size:14px;margin: 0 
 
 .opc .step-title { background-color:#645967; padding:8px 15px; text-align:right; }
 .opc .step-title .number { float:left; line-height:22px; margin-right:5px; }
-.opc .step-title h2 { color:#fff;text-align:left;font-size:2em; margin:0;}
+.opc .step-title h2 {text-align:left;font-size:2em; margin: 9px 0 -5px -14px; color:#431f4b;}
 .opc .step-title a { display:none; float:right; }
 
 .opc .allow .step-title { cursor:pointer; }
@@ -1142,7 +1142,7 @@ form#discount-coupon-form .discount h2, .shipping h2  {font-size:14px;margin: 0 
 
 .opc .active {}
 .opc .active .step-title {background-color:#fff; cursor:default; }
-.opc .active .step-title h2 {margin: 9px 0 -5px -14px; color:#431f4b;}
+/*.opc .active .step-title h2 {margin: 9px 0 -5px -14px; color:#431f4b;}*/
 /*.opc .active .step-title a { display:none; }*/
 
 .opc .step { margin: 10px 0; background:#e0e0e0;border-top:1px solid #ddd; padding:10px; position:relative; }
@@ -1156,6 +1156,8 @@ form#discount-coupon-form .discount h2, .shipping h2  {font-size:14px;margin: 0 
 .form-list input.input-text{height:36px;line-height:24px !important;color:#111;height: 24px;width: 182px; }
 .block-progress h2{font-size:2em;color:#431f4b;margin-bottom:5px;}
 
+
+#billing-buttons-container {overflow:hidden;}
 /* Multiple Addresses Checkout */
 .checkout-progress { padding:0 50px; margin:10px 0; }
 .checkout-progress li { float:left; width:20%; border-top:5px solid #ccc; text-align:center; color:#ccc; }
