@@ -47,8 +47,8 @@ break;
 }
 }
 if(!$validate) { ?>
-<p class="required"><strong>Warning! You are using trial version of Quick One page checkout for this domain <br/>
-Contact KAM Technology at contact@kamtechco.net to activate the license</strong></p>
+<!-- <p class="required"><strong>Warning! You are using trial version of Quick One page checkout for this domain <br/>
+Contact KAM Technology at contact@kamtechco.net to activate the license</strong></p> -->
 <?php } ?>
 <?php $i=0; foreach($this->getSteps() as $_stepId => $_stepInfo):  $i++ ?>
     <li id="opc-<?php echo $_stepId ?>" class="section <?php echo !empty($_stepInfo['allow'])?'allow':'' ?> <?php echo !empty($_stepInfo['complete'])?'saved':'' ?>">
