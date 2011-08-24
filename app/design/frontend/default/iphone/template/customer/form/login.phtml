@@ -32,12 +32,12 @@
  */
 ?>
 <div class="account-login">
-    <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
     <form action="<?php echo $this->getPostActionUrl() ?>" method="post" id="login-form">
         <div class="registered-users">
             <h1><?php echo $this->__('Registered Customers') ?></h1>
             <ul class="form-list">
                 <li>
+	    <p><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></p>
                     <label for="email" class="required"><?php echo $this->__('Email Address') ?></label>
                     <input type="text" name="login[username]" value="<?php echo $this->htmlEscape($this->getUsername()) ?>" id="email" class="input-text required-entry validate-email" title="<?php echo $this->__('Email Address') ?>" />
                 </li>

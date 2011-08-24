@@ -43,11 +43,11 @@
 	<h1 id="logo" class="tr">Rooja</h1>
 	<p id="highlight" class="tr">Member&rsquo;s only shopping club. Save up to 60% off retail.</p>
 </header><!--End Header-->
+	    <p><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></p>
 <section id="content" class="body">
 	<div id="loginCont">
 		
 	<h2 id="members" class="tr">Members Sign In</h2>
-	    <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
 	<a href="<?php echo $this->getForgotPasswordUrl() ?>" id="forgetPass">Forgot your password?</a>
 
 	<form action="<?php echo $this->getPostActionUrl() ?>" method="post" id="login-form">
