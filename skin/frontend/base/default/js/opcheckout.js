@@ -36,7 +36,7 @@ Checkout.prototype = {
         this.method = '';
         this.payment = '';
         this.loadWaiting = false;
-        this.steps = ['login', 'billing', 'shipping_method', 'payment', 'review'];
+        this.steps = ['login', 'billing', 'shipping', 'shipping_method', 'payment', 'review'];
 
         //this.onSetMethod = this.nextStep.bindAsEventListener(this);
 
@@ -283,7 +283,7 @@ Billing.prototype = {
     },
 
     save: function(){
-        //if (checkout.loadWaiting!=false) return;
+        if (checkout.loadWaiting!=false) return;
 
         var validator = new Validation(this.form);
         if (validator.validate()) {
