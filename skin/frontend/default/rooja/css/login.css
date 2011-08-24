@@ -179,7 +179,7 @@ form input#loginBtn{
 #navLinks ul li a{color:#fff;}
 #navLinks ul li a:hover{color:#ab8fb2;}
 
-#socialLinks{margin-left:-20px 0 0 0;}
+#socialLinks{margin:-20px 0 0 0;}
 #socialLinks a{margin-right:15px;height:20px;float:left;}
 #socialLinks a:hover{background-position:bottom left;}
 #socialLinks a#facebook{
