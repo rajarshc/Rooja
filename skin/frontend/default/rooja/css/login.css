@@ -15,6 +15,16 @@ body{
 	color:#ddd;
 }
 
+li.error-msg {
+	font-size: 14px;
+	padding: 10px 0;
+	text-align: center;
+	display: block;
+	background: #51315C;
+	width: 100%;
+	margin-bottom: 23px;
+}
+
 #notifyWrapper div.wrapper, #aboutWrapper div.wrapper{
     width:380px;
     padding:15px;
