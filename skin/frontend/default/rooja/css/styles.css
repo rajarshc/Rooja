@@ -1132,16 +1132,22 @@ form#discount-coupon-form .discount h2, .shipping h2  {font-size:14px;margin: 0 
 .opc .buttons-set.disabled button.button { display:none; }
 .opc .buttons-set .please-wait { height:21px; line-height:21px; }
 
-.section { width:470px; display:inline-block;}
+.section { width:470px; /*display:inline-block;*/}
 
 .opc .step-title { /*background-color:#645967;*/ padding:8px 15px; text-align:right; width:470px;}
-li#opc-review {
-/*	float: right !important;
-	top: 0;
+
+li#opc-billing, #opc-shipping, #opc-shipping_method {
+	float: left !important;
+}
+
+li#opc-review, #opc-payment {
+	float: right !important;
+/*	top: 0;
 	display: block;
 	position: absolute;
 	left: 490px;*/
 }
+
 
 .address-select { width:400px;}
 .opc .step-title .number { float:left; line-height:22px; margin-right:5px; }
