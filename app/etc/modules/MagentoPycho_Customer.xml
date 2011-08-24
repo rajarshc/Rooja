@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * 
+ * GuruWebSoft (www.guruwebsoft.com)
+ * 
+ * @author     MagentoPycho <rajen_k_bhtt@hotmail.com>
+ * @category   Customer
+ * @package    MagentoPycho_Customer
+ */
+-->
+<config>
+    <modules>
+        <MagentoPycho_Customer>
+            <active>true</active>
+            <codePool>local</codePool>
+        </MagentoPycho_Customer>
+    </modules>
+</config> 

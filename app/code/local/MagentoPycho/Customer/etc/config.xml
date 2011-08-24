@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category   MagentoPycho
+ * @package    MagentoPycho_Customer
+ * @author     developer@magepsycho.com
+ * @website    http://www.magepsycho.com
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+-->
+<config>
+    <modules>
+        <MagentoPycho_Customer>
+            <version>1.1.0</version>
+        </MagentoPycho_Customer>
+    </modules>
+
+    <!-- Old Approach
+    <frontend>
+       <routers>
+          <magentopycho_customer>
+             <use>standard</use>
+             <args>
+                 <module>MagentoPycho_Customer</module>
+                 <frontName>mpcustomer</frontName>
+             </args>
+          </magentopycho_customer>
+       </routers>
+    </frontend>
+    <global>
+        <rewrite>
+            <magentopycho_customer_account>
+                <from><![CDATA[#^/customer/account/#]]></from>
+                <to>/mpcustomer/account/</to>
+            </magentopycho_customer_account>
+        </rewrite>
+    </global>-->
+    
+    <!-- Newer Approach -->
+    <frontend>
+        <routers>
+            <customer>
+                <args>
+                    <modules>
+                        <magentopycho_customer before="Mage_Customer">MagentoPycho_Customer</magentopycho_customer>
+                    </modules>
+                </args>
+            </customer>
+        </routers>
+    </frontend>    
+    
+    <global>  
+        <blocks>
+            <mpcustomer>
+                <class>MagentoPycho_Customer_Block</class>
+            </mpcustomer>
+        </blocks>      
+        <helpers>
+            <mpcustomer>
+                <class>MagentoPycho_Customer_Helper</class>
+            </mpcustomer>
+        </helpers>
+    </global>
+    
+     <adminhtml>
+        <!--<acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <mpcustomer>
+                                            <title>MagentoPycho Area</title>
+                                        </mpcustomer>
+                                        <mpcustomer2>
+                                            <title>MagentoPycho Area2</title>
+                                        </mpcustomer2>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>-->
+        <acl>
+            <resources>
+                <all>
+					<title>Allow Everything</title>
+				</all>
+                <admin>
+                    <children>
+						<mpcustomer module="mpcustomer">
+							<title>Custom Login Redirect Module</title>
+							<sort_order>10</sort_order>
+						</mpcustomer>
+
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <magepychoinfo>
+											<title>MagePsycho - All</title>
+										</magepychoinfo>
+                                        <mpcustomer>
+                                            <title>MagePsycho Area</title>
+                                        </mpcustomer>
+                                        <mpcustomer2>
+                                            <title>MagePsycho Area</title>
+                                        </mpcustomer2>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+    </adminhtml> 
+    
+    <default>
+        <mpcustomer>
+            <customloginredirect>
+                <active>1</active>
+                <url>customer/address</url>
+            </customloginredirect>
+        </mpcustomer>
+    </default>
+
+</config>
