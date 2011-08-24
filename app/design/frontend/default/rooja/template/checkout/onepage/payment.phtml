@@ -39,7 +39,6 @@ var payment = new Payment('co-payment-form', '<?php echo $this->getUrl('checkout
     </div>
 </form>
 <div class="buttons-set" id="payment-buttons-container">
-    <p class="required"><?php echo $this->__('* Required Fields') ?></p>
     <div id="payment-buttons-container">
       <!--  <a href="#" class="back-link" onclick="checkout.back(); return false;"><span><?php echo $this->__('Back') ?></span></a> -->
         <button type="button" class="button" onclick="payment.save()"><span><?php echo $this->__('Confirm Payment') ?></span></button>
