@@ -63,7 +63,7 @@ Contact KAM Technology at contact@kamtechco.net to activate the license</strong>
     </li>
 <?php endforeach ?>
 </ol>
-
+    
 <script type="text/javascript">
 //variable for loginForm
 var loginFormValue ="loggedin" ;
@@ -78,7 +78,7 @@ this.billingValidation();
 //<![CDATA[
     var accordion = new Accordion('checkoutSteps', '.head', true);
     <?php if($this->getActiveStep()): ?>
-		accordion.openSection('opc-review');
+    accordion.openSection('opc-<?php echo $this->getActiveStep() ?>');
     <?php endif ?>
 
     var checkout = new Checkout(accordion,{

@@ -51,7 +51,7 @@ function loggedInShipping()
 <form id="co-shipping-form" action="">
 <?php if ($this->customerHasAddresses()): ?>
 
-   <p><?php echo $this->__('Select a shipping address from your address book or enter a new address.') ?></p>
+   <h3><?php echo $this->__('Shipping Address') ?></h3>
    <p><?php echo $this->getAddressesHtmlSelect('shipping') ?></p>
       <?php echo "<script>loggedInShipping()</script>"; ?>
 <?php endif ?>
