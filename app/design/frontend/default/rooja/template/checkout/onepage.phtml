@@ -52,7 +52,7 @@ Contact KAM Technology at contact@kamtechco.net to activate the license</strong>
 <?php } ?>
 <?php $i=0; foreach($this->getSteps() as $_stepId => $_stepInfo):  $i++; ?>
 	<?php if($i==0){ echo "<li id="checkoutStep1"><ul>";} ?>
-	<?php if($i==3) { echo "</ul></li><li id="checkoutStep2"><ul>";}?>
+	<?php if($i==3) { echo '</ul></li><li id="checkoutStep2"><ul>';}?>
     <li id="opc-<?php echo $_stepId ?>" class="section <?php echo !empty($_stepInfo['allow'])?'allow':'' ?> <?php echo !empty($_stepInfo['complete'])?'saved':'' ?>">
         <div class="step-title">
             <h2><?php echo $_stepInfo['label'] ?></h2>
