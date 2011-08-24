@@ -46,7 +46,8 @@
     <?php if($_cartQty && $this->isPossibleOnepageCheckout()): ?>
     
     <?php endif ?>
-    <?php $_items = $this->getRecentItems() ?>
+    <?php $_items = $this->getItems() ?>
+	
     <?php if(count($_items)): ?>
       
         <ol id="cart-sidebar" class="mini-products-list">
