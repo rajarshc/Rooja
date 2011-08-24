@@ -78,11 +78,11 @@ function loggedInShipping()
             <input type="text" id="shipping:company" name="shipping[company]" value="<?php echo $this->htmlEscape($this->getAddress()->getCompany()) ?>" title="<?php echo $this->__('Company') ?>" class="input-text" onchange="shipping.setSameAsBilling(false);" /></div>
 <?php if(false): ?>
             <div class="fields">
-            <label for="shipping:email" class="required"><?php echo $this->__('Email Address') ?> <em>*</em></label><br />
+            <label for="shipping:email" class="required"><?php echo $this->__('Email Address') ?> *</label><br />
             <input type="text" name="shipping[email]" id="shipping:email" value="<?php echo $this->htmlEscape($this->getAddress()->getEmail()) ?>" title="<?php echo $this->__('Email Address') ?>" class="validate-email required-entry input-text" /></div>
 <?php endif ?>
             </li>
-        <li class="wide"><label for="shipping:street1" class="required"><?php echo $this->__('Address') ?> <em>*</em></label><br />
+        <li class="wide"><label for="shipping:street1" class="required"><?php echo $this->__('Address') ?> *</label><br />
             <input type="text" title="<?php echo $this->__('Street Address') ?>" name="shipping[street][]" id="shipping:street1" value="<?php echo $this->htmlEscape($this->getAddress()->getStreet(1)) ?>" class="required-entry input-text" onchange="shipping.setSameAsBilling(false);" /></li>
 <?php for ($_i=2, $_n=$this->helper('customer/address')->getStreetLines(); $_i<=$_n; $_i++): ?>
         <li class="wide"><input type="text" title="<?php echo $this->__('Street Address '.$_i) ?>" name="shipping[street][]" id="shipping:street<?php echo $_i?>" value="<?php echo $this->htmlEscape($this->getAddress()->getStreet($_i)) ?>" class="input-text" onchange="shipping.setSameAsBilling(false);"/></li>
@@ -90,10 +90,10 @@ function loggedInShipping()
         <li class="fields">
 
 <div class="field">
-            <label for="shipping:postcode" class="required"><?php echo $this->__('Postal Code') ?> <em>*</em></label><br />
+            <label for="shipping:postcode" class="required"><?php echo $this->__('Postal Code') ?> *</label><br />
             <input type="text" title="<?php echo $this->__('Postal Code') ?>" name="shipping[postcode]" id="shipping:postcode" value="<?php echo $this->htmlEscape($this->getAddress()->getPostcode()) ?>" class="validate-zip-international required-entry input-text" onchange="shipping.setSameAsBilling(false);"/></div>
 <div class="field">
-            <label for="shipping:city" class="required"><?php echo $this->__('City') ?> <em>*</em></label><br />
+            <label for="shipping:city" class="required"><?php echo $this->__('City') ?> *</label><br />
             <input type="text" title="<?php echo $this->__('City') ?>" name="shipping[city]" value="<?php echo $this->htmlEscape($this->getAddress()->getCity()) ?>" class="required-entry input-text" id="shipping:city" onchange="shipping.setSameAsBilling(false);" /></div> 
 
 </li>
@@ -102,7 +102,7 @@ function loggedInShipping()
             
             
             <div class="field">
-	                <label for="shipping:region_id" class="required"><?php echo $this->__('State/Province') ?> <em>*</em></label><br />
+	                <label for="shipping:region_id" class="required"><?php echo $this->__('State/Province') ?> *</label><br />
 	                <select id="shipping:region_id" name="shipping[region_id]" title="<?php echo $this->__('State/Province') ?>" >
 	                    <option value=""><?php echo $this->__('Please select region, state or province') ?></option>
 	                </select>
@@ -114,7 +114,7 @@ function loggedInShipping()
             <input type="text" id="shipping:region" name="shipping[region]" value="<?php echo $this->htmlEscape($this->getAddress()->getRegion()) ?>" title="<?php echo $this->__('State/Province') ?>" /></div>
 
 <div class="field">
-            <label for="shipping:country_id" class="required"><?php echo $this->__('Country') ?> <em>*</em></label><br />
+            <label for="shipping:country_id" class="required"><?php echo $this->__('Country') ?> *</label><br />
             <?php echo $this->getCountryHtmlSelect('shipping') ?>
             </div>
 
@@ -126,7 +126,7 @@ function loggedInShipping()
             <label for="shipping:fax"><?php echo $this->__('Fax') ?></label><br />
             <input type="text" name="shipping[fax]" value="<?php echo $this->htmlEscape($this->getAddress()->getFax()) ?>" title="<?php echo $this->__('Fax') ?>" class="input-text" id="shipping:fax" onchange="shipping.setSameAsBilling(false);" /></div>
 	<div class="field">
-	            <label for="shipping:telephone" class="required"><?php echo $this->__('Telephone') ?> <em>*</em></label><br />
+	            <label for="shipping:telephone" class="required"><?php echo $this->__('Telephone') ?> *</label><br />
             <input type="text" name="shipping[telephone]" value="<?php echo $this->htmlEscape($this->getAddress()->getTelephone()) ?>" title="<?php echo $this->__('Telephone') ?>" class="required-entry input-text" id="shipping:telephone" onchange="shipping.setSameAsBilling(false);" /></div>
 	
 	</li>
