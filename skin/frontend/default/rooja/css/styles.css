@@ -984,7 +984,7 @@ h1.submitted {padding-top: 40px;}
 .cart .data-table {border: none;background: #e2e2e2;font-size: 14px;line-height: 20px;}
 .cart .data-table thead {background: inherit;}
 .cart .data-table th {padding:25px 20px 10px;border:none;border-bottom: 2px solid #717171;font-weight: normal;}
-.cart .data-table th .unit-price{padding:25px 0 10px;}
+.cart .data-table th.unit-price{padding:25px 0 10px;}
 .cart .data-table tr.even {background: inherit;}
 .cart .data-table td {border: none;padding: 10px 0;}
 .cart .data-table .product-image {float: left;margin: 0 20px;}
