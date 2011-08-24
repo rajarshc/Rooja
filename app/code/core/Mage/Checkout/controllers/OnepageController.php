@@ -290,39 +290,36 @@ class Mage_Checkout_OnepageController extends Mage_Checkout_Controller_Action
     /**
      * save checkout billing address
      */
-  public function saveBillingAction()
+    public function saveBillingAction()
     {
-        $layout = $this->getLayout();
         if ($this->_expireAjax()) {
-            //return;//allowed to continue with the merged steps
+           // return;
         }
         if ($this->getRequest()->isPost()) {
-            $postData = $this->getRequest()->getPost('billing', array());
-            $data = $this->_filterPostData($postData);
+//            $postData = $this->getRequest()->getPost('billing', array());
+//            $data = $this->_filterPostData($postData);
+            $data = $this->getRequest()->getPost('billing', array());
             $customerAddressId = $this->getRequest()->getPost('billing_address_id', false);
+
             if (isset($data['email'])) {
                 $data['email'] = trim($data['email']);
             }
             $result = $this->getOnepage()->saveBilling($data, $customerAddressId);
+
             if (!isset($result['error'])) {
                 /* check quote for virtual */
                 if ($this->getOnepage()->getQuote()->isVirtual()) {
-//                    $result['goto_section'] = 'payment';
-//                    $result['update_section'] = array(
-//                        'name' => 'payment-method',
-//                        'html' => $this->_getPaymentMethodsHtml()
-//                    );
-                } elseif (isset($data['use_for_shipping']) &amp;&amp; $data['use_for_shipping'] == 1) {
-//                    $result['goto_section'] = 'payment';
-//                    $result['update_section'] = array(
-//                        'name' => 'shipping-method',
-//                        'html' => $this->_getPaymentMethodsHtml().'<br />'.$this->_getShippingMethodsHtml()
-//                    );
-//                    $result['goto_section'] = 'shipping_method';
-//                    $result['update_section'] = array(
-//                        'name' => 'shipping-method',
-//                        'html' => $this->_getShippingMethodsHtml()
-//                    );
+                    // $result['goto_section'] = 'payment';
+                    // $result['update_section'] = array(
+                    //     'name' => 'payment-method',
+                    //     'html' => $this->_getPaymentMethodsHtml()
+                    // );
+                } elseif (isset($data['use_for_shipping']) && $data['use_for_shipping'] == 1) {
+                    // $result['goto_section'] = 'shipping_method';
+                    // $result['update_section'] = array(
+                    //     'name' => 'shipping-method',
+                    //     'html' => $this->_getShippingMethodsHtml()
+                    // );
 
                     //$result['allow_sections'] = array('shipping');
                     //$result['duplicateBillingInfo'] = 'true';
@@ -330,6 +327,7 @@ class Mage_Checkout_OnepageController extends Mage_Checkout_Controller_Action
                     //$result['goto_section'] = 'shipping';
                 }
             }
+
             $this->getResponse()->setBody(Mage::helper('core')->jsonEncode($result));
         }
     }
