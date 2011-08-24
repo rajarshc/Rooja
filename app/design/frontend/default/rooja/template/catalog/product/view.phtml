@@ -46,21 +46,8 @@
 
 <script type="text/javascript">
 jQuery(function() {
-    jQuery("#optionsCont select").visualAttribute();
-    /*jQuery("#attribute129").visualAttribute({
-        attrClicked:function(data) {
-
-            if (data.text == 'M') {
-                alert('Please select a color first.');
-                return false;
-            }
-            else {
-                alert('Clicked on size: ' + data.text + ' (value: ' + data.value + ', position: ' + data.position + ')');
-                return true;
-            }
-        },
-        useTitle:true
-    });*/
+    jQuery("#product-options-wrapper select").visualAttribute();
+ 
 
 });
 	
@@ -195,7 +182,7 @@ echo '<span>' . $likes = $xml->link_stat->like_count . '</span>';
 					
 			<?php if (($expired == 1) && (!$categoryIds == null)) { ?>
 				<?php if ($_product->isSaleable() && $this->hasOptions()) { ?>
-	            	<div id="optionsCont"><?php echo $this->getChildChildHtml('container2', '', true, false) ?></div>
+	            	<?php echo $this->getChildChildHtml('container2', '', true, false) ?>
 				<?php } else { ?>
 					<?php echo $this->getChildHtml('addtocart') ?>
 		        <?php } ?>
