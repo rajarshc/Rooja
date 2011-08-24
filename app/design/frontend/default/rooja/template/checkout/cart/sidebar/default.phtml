@@ -36,22 +36,14 @@
     <?php endif; ?>
     <div class="product-details">
         <p class="product-name"><?php if ($this->hasProductUrl()): ?><a href="<?php echo $this->getProductUrl() ?>"><?php endif; ?><?php echo $this->htmlEscape($this->getProductName()) ?><?php if ($_options = $this->getOptionList()):?>
-	        <dl class="item-options">
+	     
 	            <?php foreach ($_options as $_option) : ?>
 	            <?php $_formatedOptionValue = $this->getFormatedOptionValue($_option) ?>
-	            <dt><?php echo $this->htmlEscape($_option['label']) ?></dt>
-	            <dd<?php if (isset($_formatedOptionValue['full_view'])): ?> class="truncated"<?php endif; ?>><?php echo $_formatedOptionValue['value'] ?>
-	                <?php if (isset($_formatedOptionValue['full_view'])): ?>
-	                <div class="truncated_full_value">
-	                    <dl class="item-options">
-	                        <dt><?php echo $this->htmlEscape($_option['label']) ?></dt>
-	                        <dd><?php echo $_formatedOptionValue['full_view'] ?></dd>
-	                    </dl>
-	                </div>
-	                <?php endif; ?>
-	            </dd>
+	            <?php echo $this->htmlEscape($_option['label']) ?>
+	            <?php echo $_formatedOptionValue['value'] ?>
+	                
+	         
 	            <?php endforeach; ?>
-	        </dl>
 	        <?php endif;?><?php if ($this->hasProductUrl()): ?></a><?php endif; ?>
 			 
 	</p>
