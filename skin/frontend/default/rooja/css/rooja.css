@@ -522,10 +522,11 @@ p.question{margin:0;font-weight:bold;color:#431f4c;}
 	margin-top:13px;
 }
 	#coupon_code {
-		border:1px solid #e2e2e2;
-		width: 150px;
+		border: 1px solid #E2E2E2;
+		width: 146px;
 		float: left;
-		margin-right:10px;
+		margin: 0;
+		padding-bottom: 2px;
 	}
 
 .coup-entry {
