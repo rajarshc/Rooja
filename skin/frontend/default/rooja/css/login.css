@@ -157,11 +157,18 @@ form input#loginBtn{
     width:100%;
     text-align:center;
     z-index:9999;
+	height: 20px;
 }
 
 .navCont{margin: 0px auto;width:850px;text-align:center;}
 
-#navLinks ul{float:left;text-align:center;  line-height:19px;}
+#navLinks ul{
+	text-align: center;
+	line-height: 19px;
+	margin: 0 auto;
+	width: 485px;
+	height: 19px;
+}
 
 #navLinks ul li{
     display:inline;
@@ -172,7 +179,7 @@ form input#loginBtn{
 #navLinks ul li a{color:#fff;}
 #navLinks ul li a:hover{color:#ab8fb2;}
 
-#socialLinks{margin-left:15px;}
+#socialLinks{margin-left:-20px 0 0 0;}
 #socialLinks a{margin-right:15px;height:20px;float:left;}
 #socialLinks a:hover{background-position:bottom left;}
 #socialLinks a#facebook{
