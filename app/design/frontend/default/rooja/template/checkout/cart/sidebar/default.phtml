@@ -36,13 +36,13 @@
     <?php endif; ?>
     <div class="product-details">
         <p class="product-name"><?php if ($this->hasProductUrl()): ?><a href="<?php echo $this->getProductUrl() ?>"><?php endif; ?><?php echo $this->htmlEscape($this->getProductName()) ?><?php if ($_options = $this->getOptionList()):?>
-	     (
+	    <span class="productOptions">(
 	            <?php foreach ($_options as $_option) : ?>
 	            <?php $_formatedOptionValue = $this->getFormatedOptionValue($_option) ?>
-	            <span class="productOptions"><?php echo $this->htmlEscape($_option['label']) ?> - <?php echo $_formatedOptionValue['value'] ?></span>
+	            <?php echo $this->htmlEscape($_option['label']) ?> - <?php echo $_formatedOptionValue['value'] ?>
 	                
 	         
-	            <?php endforeach; ?>)
+	            <?php endforeach; ?>)</span>
 	        <?php endif;?><?php if ($this->hasProductUrl()): ?></a><?php endif; ?>
 			 
 	</p>
