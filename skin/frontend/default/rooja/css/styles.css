@@ -1388,7 +1388,7 @@ padding: 8px;
 color: #431F4C;
 font-size: 11px;
 text-transform:uppercase;
-width:30px;
+min-width:30px;
 display:block;
 text-align:center;
 }
