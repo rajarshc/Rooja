@@ -30,8 +30,6 @@ body          { background:#fff; font:12px/1.35 Arial, Helvetica, sans-serif; co
 
 img           { border:0; vertical-align:top; }
 
-#loginCont li.error-msg {font-size:13px;}
-
 a             { color:#05c; text-decoration:underline; }
 a:hover       { text-decoration:none; }
 :focus        { outline:0; }
