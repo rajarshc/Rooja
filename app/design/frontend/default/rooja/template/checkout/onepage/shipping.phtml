@@ -142,12 +142,13 @@ function loggedInShipping()
  <p class="no-display"><input type="checkbox" name="shipping[same_as_billing]" id="shipping:same_as_billing" value="1" <?php if($this->getAddress()->getSameAsBilling()): ?>checked="checked"<?php endif ?> onclick="shipping.setSameAsBilling(this.checked)" /> &nbsp;<label for="shipping:same_as_billing"><?php echo $this->__('Use Billing Address') ?></label></p> 
 </form>
 <div>
+
     <div id="shipping-buttons-container">
-      <!--  <a href="#" class="back left" onclick="checkout.back(); return false;"><?php echo $this->__('Back') ?></a> -->
- <!--       <button type="button" class="form-button right" onclick="shipping.save()"><span><?php echo $this->__('Continue') ?></span></button>  -->
-        <!-- <span id="shipping-please-wait" style="display:none;" class="please-wait">
-            <img src="<?php //echo $this->getSkinUrl('images/opc-ajax-loader.gif') ?>" class="v-middle" alt="" /> &nbsp; <?php //echo $this->__('Loading next step...') ?> &nbsp;
-        </span> -->
+  <a href="#" class="back left" onclick="checkout.back(); return false;"><?php echo $this->__('Back') ?></a>
+<button type="button" class="form-button right" onclick="shipping.save()"><span><?php echo $this->__('Continue') ?></span></button>
+        <span id="shipping-please-wait" style="display:none;" class="please-wait">
+            <img src="<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif') ?>" class="v-middle" alt="" /> &nbsp; <?php echo $this->__('Loading next step...') ?> &nbsp;
+        </span>
     </div>
     
 </div>
