@@ -48,7 +48,27 @@
     <?php endif; ?>
 <?php endforeach; ?>
 </dl>
+<p class="ccHintText">You will be redirected to CCAvenue our secure online payment-processing partner.</p>
+<p class="codHintText">We verify all Cash on Delivery orders over the phone after you have made a purchase and start processing the order. Our customer service team will contact you within 24 hours and alternatively you can call us at +91-11-45673347 to verify your order. Failing verification of the order will result in a cancellation. Failure to accept a verified order will revoke your Cash On Delivery privileges on future orders.</p>
 <?php echo $this->getChildChildHtml('additional'); ?>
+<script type="text/javascript">
+	jQuery(document).ready(function(){
+		if (jQuery("#p_method_cashondelivery:checked").length > 0){ jQuery(".codHintText").show(); }
+
+		  // add functionality for the onclicks here
+		  jQuery("#p_method_cashondelivery").click(function() {
+		    jQuery(".codHintText").show();
+			jQuery(".ccHintText").hide();
+		  });
+
+		  jQuery("#p_method_Avenues_standard").click(function() {
+		    jQuery(".ccHintText").show();
+			jQuery(".codHintText").hide();
+		  });
+	 });
+			
+	
+</script>
 <script type="text/javascript">
 //<![CDATA[
 <?php echo $this->getChildChildHtml('scripts'); ?>
