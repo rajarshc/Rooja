@@ -46,7 +46,7 @@ function loggedInBilling()
 
 <form id="co-billing-form" action="">
 <?php if ($this->customerHasAddresses()): ?>
-	<h3>Billing Address</h3>
+	
     <ul><li><p><?php echo $this->getAddressesHtmlSelect('billing') ?></p></li></ul>
 <?php echo "<script>loggedInBilling()</script>"; ?>
 <?php endif ?>
@@ -71,8 +71,8 @@ function loggedInBilling()
 <?php endfor ?>
             <li class="fields">
 <div class="field">
-                <label for="billing:postcode"><?php echo $this->__('Zip/Postal Code') ?> <span class="required">*</span></label><br />
-                <input type="text" title="<?php echo $this->__('Zip/Postal Code') ?>" name="billing[postcode]" id="billing:postcode" value="<?php echo $this->htmlEscape($this->getAddress()->getPostcode()) ?>" class="validate-zip-international required-entry input-text" /></div>
+                <label for="billing:postcode"><?php echo $this->__('Postal Code') ?> <span class="required">*</span></label><br />
+                <input type="text" title="<?php echo $this->__('Postal Code') ?>" name="billing[postcode]" id="billing:postcode" value="<?php echo $this->htmlEscape($this->getAddress()->getPostcode()) ?>" class="validate-zip-international required-entry input-text" /></div>
 
 <div class="field">
                 <label for="billing:city"><?php echo $this->__('City') ?> <span class="required">*</span></label><br />

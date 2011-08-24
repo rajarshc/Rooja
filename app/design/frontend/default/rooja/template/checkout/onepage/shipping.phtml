@@ -51,7 +51,7 @@ function loggedInShipping()
 <form id="co-shipping-form" action="">
 <?php if ($this->customerHasAddresses()): ?>
 
-   <p><?php echo $this->__('Select a shipping address from your address book or enter a new address.') ?></p>
+   
    <p><?php echo $this->getAddressesHtmlSelect('shipping') ?></p>
       <?php echo "<script>loggedInShipping()</script>"; ?>
 <?php endif ?>
@@ -90,8 +90,8 @@ function loggedInShipping()
         <li class="fields">
 
 <div class="field">
-            <label for="shipping:postcode" class="required"><?php echo $this->__('Zip/Postal Code') ?> <em>*</em></label><br />
-            <input type="text" title="<?php echo $this->__('Zip/Postal Code') ?>" name="shipping[postcode]" id="shipping:postcode" value="<?php echo $this->htmlEscape($this->getAddress()->getPostcode()) ?>" class="validate-zip-international required-entry input-text" onchange="shipping.setSameAsBilling(false);"/></div>
+            <label for="shipping:postcode" class="required"><?php echo $this->__('Postal Code') ?> <em>*</em></label><br />
+            <input type="text" title="<?php echo $this->__('Postal Code') ?>" name="shipping[postcode]" id="shipping:postcode" value="<?php echo $this->htmlEscape($this->getAddress()->getPostcode()) ?>" class="validate-zip-international required-entry input-text" onchange="shipping.setSameAsBilling(false);"/></div>
 <div class="field">
             <label for="shipping:city" class="required"><?php echo $this->__('City') ?> <em>*</em></label><br />
             <input type="text" title="<?php echo $this->__('City') ?>" name="shipping[city]" value="<?php echo $this->htmlEscape($this->getAddress()->getCity()) ?>" class="required-entry input-text" id="shipping:city" onchange="shipping.setSameAsBilling(false);" /></div> 
