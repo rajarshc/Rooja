@@ -401,6 +401,10 @@ td .product-name { width: 130px;}
 	font-size: 12px;
 	line-height: 18px;
 	}
+#shopping-cart-table td .product-name {
+    width:450px;
+    float:left;
+}
 
 
 /* ~~~~~ FOOTER ~~~~~ */
