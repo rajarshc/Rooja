@@ -491,8 +491,8 @@ p.hiw-header {
 	}	
 a.closer {	
 	font-family: "ltc-bodoni-175-1","ltc-bodoni-175-2", georgia, serif; 
-	background: black url("../images/icons/arrow-nav-white-up.png") no-repeat 58px 11px;
-	font-size:18px; 
+	background: black url("../images/icons/arrow-nav-white-up.png") no-repeat 50px 11px;
+	font-size:16px; 
 	padding: 5px 29px 5px 10px;
 	color: #fff;
 }
