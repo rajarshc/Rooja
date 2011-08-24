@@ -134,24 +134,6 @@
             <?php endif; ?>
         <?php endif; ?>
     <?php endif; ?>
-        <?php if ($_options = $this->getOptionList()):?>
-        <div class="truncated">
-          <div class="truncated_full_value">
-            <dl class="item-options">
-                <?php foreach ($_options as $_option) : ?>
-                <dt><?php echo $this->htmlEscape($_option['label']) ?></dt>
-                <dd>
-                    <?php if (is_array($_option['value'])): ?>
-                    <?php echo nl2br(implode("\n", $_option['value'])) ?>
-                    <?php else: ?>
-                    <?php echo $_option['value'] ?>
-                    <?php endif; ?>
-                </dd>
-                <?php endforeach; ?>
-            </dl>
-          </div>
-        <a href="#" onclick="return false;" class="details"><?php echo $this->__('Details') ?></a>
-        </div>
-        <?php endif; ?>
+        
     </div>
 </li>
