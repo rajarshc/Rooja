@@ -177,6 +177,8 @@ white-space: nowrap;
 color: white;
 width: auto;
 margin: 0;}
+.cart button.button span, #continueShoppingBtn{background-color:#999;}
+
 #continueShoppingBtn {padding:0 15px;}
 button.button span:hover, #continueShoppingBtn:hover{background-color:#000;}
 button.button span span { background-position:100% 0; padding:0 12px 0 4px; }
@@ -990,7 +992,7 @@ h1.submitted {padding-top: 40px;}
 .cart .data-table .product-image {float: left;margin: 0 20px;}
 .cart .btn-remove2 {margin: 3px 0 0 20px;}
 .cart .col2-set .col-2 {width: 250px;margin: 0 60px 0 0;}
-.cart .total_gray {background: #e0e0e0;font-size: 14px;padding: 20px 10px;line-height: 20px;margin: 0 0 10px;}
+.cart .total_gray {background: #999;font-size: 14px;padding: 20px 10px;line-height: 20px;margin: 0 0 10px;}
 .cart .total_gray h2 {font-size: 18px;text-transform: uppercase;text-align: center;margin: 0 0 10px;}
 
 .shipping {margin: 15px 0 0;}
@@ -1038,7 +1040,7 @@ form#discount-coupon-form .discount h2, .shipping h2  {font-size:14px;margin: 0 
 
 /* Discount Codes & Estimate Shipping and Tax Boxes */
 .cart .discount,
-.cart .shipping {}
+.cart .shipping {width:270px;}
 
 /* Shopping Cart Totals */
 .cart .totals { float:right; }
