@@ -993,7 +993,7 @@ h1.submitted {padding-top: 40px;}
 .cart .btn-remove2 {margin: 3px 0 0 20px;}
 .cart .col2-set .col-2 {width: 250px;margin: 0 60px 0 0;}
 .cart .total_gray {background: #999;font-size: 14px;padding: 20px 10px;line-height: 20px;margin: 0 0 10px;}
-.cart .total_gray h2 {font-size: 18px;text-transform: uppercase;text-align: center;margin: 0 0 10px;}
+.cart .total_gray h2 {font-size: 18px;text-transform: uppercase;margin: 0 0 10px;}
 
 .shipping {margin: 15px 0 0;}
 .shipping .form-list label {font-size: 14px;line-height: 40px;}
@@ -1020,6 +1020,7 @@ form#discount-coupon-form .discount h2, .shipping h2  {font-size:14px;margin: 0 
 /* Checkout Types */
 .cart .checkout-types { float:right; text-align:right; }
 .cart .checkout-types button.button span{background-color:#431F4C;}
+.cart .checkout-types button.button:hover span{background-color:#000;}
 .cart .title-buttons .checkout-types li { float:left; margin:0 0 5px 5px; }
 .cart .checkout-types .paypal-or { margin:0 8px; line-height:2.3; }
 .cart .totals .checkout-types .paypal-or { clear:both; display:block; padding:3px 55px 8px 0; line-height:1.0; font-size:11px; }
