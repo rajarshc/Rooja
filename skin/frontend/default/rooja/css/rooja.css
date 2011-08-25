@@ -403,7 +403,7 @@ td .product-name { width: 130px;}
 	}
 #shopping-cart-table td .product-name,#shopping-cart-table  .item-options {
     width:450px;
-    float:left;
+ 
     margin-bottom:5px;
 }
 #shopping-cart-totals-table{font-size:12px;}
