@@ -24,7 +24,7 @@ class Inchoo_Facebook_Customer_AccountController extends Mage_Core_Controller_Fr
 
     	if(!$this->_getSession()->validate()) {
     		$this->_getCustomerSession()->addError($this->__('Facebook connection failed.'));
-    		$this->_redirect('/');
+    		$this->_redirect('*/*/');
     		return;
     	}
     	
@@ -60,7 +60,7 @@ class Inchoo_Facebook_Customer_AccountController extends Mage_Core_Controller_Fr
 			$this->_getCustomerSession()->addSuccess(
 				$this->__('Your Facebook account has been successfully connected. Now you can fast login using Facebook Connect anytime.')
 			);
-			$this->_redirect('/');
+			$this->_redirect('*/*/');
 			return;
         }
         
@@ -121,7 +121,7 @@ class Inchoo_Facebook_Customer_AccountController extends Mage_Core_Controller_Fr
 			$this->_getCustomerSession()->addSuccess(
 				$this->__('Your Facebook account has been successfully connected. Now you can fast login using Facebook Connect anytime.')
 			);
-			$this->_redirect('/');
+			$this->_redirect('*/*/');
     		return;
 		}
 		
@@ -190,7 +190,7 @@ class Inchoo_Facebook_Customer_AccountController extends Mage_Core_Controller_Fr
 			$customer->sendNewAccountEmail();
 			
 			$this->_getCustomerSession()->setCustomerAsLoggedIn($customer);
-			$this->_redirect('/');
+			$this->_redirect('*/*/');
 			return;
 		
 		//else set form data and redirect to registration
