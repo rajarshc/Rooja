@@ -74,7 +74,7 @@ class Inchoo_Facebook_Customer_AccountController extends Mage_Core_Controller_Fr
 			//
 			$this->_getCustomerSession()->setCustomerAsLoggedIn($uidCustomer);
 			//$this->_redirectReferer();
-			$this->_redirect('customer/account/edit');
+			$this->_redirect('/');
 			return;        	
         }
         
