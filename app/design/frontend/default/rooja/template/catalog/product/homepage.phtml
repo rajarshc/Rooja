@@ -188,7 +188,7 @@ $numProducts = $this->getNumProducts() ? $this->getNumProducts() : 20;
 <script type="text/javascript">
 	jQuery(document).ready(function(){
 		jQuery(".homeSale p").hide();
-		jQuery(".homeSale").hover(function () {
+		jQuery(".homeSale").hoverIntent(function () {
 		    jQuery(this).find('p').fadeToggle(500);
 		  });
 	 });
