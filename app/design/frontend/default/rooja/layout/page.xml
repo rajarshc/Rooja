@@ -76,7 +76,7 @@ Default layout, loads most of the pages
                 <action method="addJs"><script>mage/cookies.js</script></action>
                 <action method="addJs"><script>jquery/jquerynoConflict.min.js</script></action>
                 <action method="addJs"><script>jquery/jquery.zclip.js</script></action>
-				<action method="addJs"><script>jquery/jquery.hoverIntent.minified.js</script></action>
+				
 				
                 <block type="page/js_cookie" name="js_cookies" template="page/js/cookie.phtml"/>
 
