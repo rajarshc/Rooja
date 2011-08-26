@@ -557,7 +557,7 @@ h3 .product-name {
 	font-size: 13px;
 }
 
-#ccHintText,#codHintText{display:none;}
+#ccHintText,#codHintText, #hintText{display:none;}
 #checkout-review-load .reviewbuttoncont {margin-top:20px;}
 
 
