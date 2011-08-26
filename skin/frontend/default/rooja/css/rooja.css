@@ -306,7 +306,7 @@ li#myBag:hover{
     background:#7ca600;
 }
 
-#howClose{font-size:1.3em;color:#d68533;margin:5px 0 0;}
+#howClose{font-size:1.3em;color:#d68533;margin:5px 0 0;text-align:right;}
 
 #topCart{height:auto;
     background:url(../images/bgs/black-diag.png) repeat top left;
