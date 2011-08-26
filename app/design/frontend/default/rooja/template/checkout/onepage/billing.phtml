@@ -144,7 +144,7 @@ function loggedInBilling()
 	                   <input type="text" name="billing[fax]" value="<?php echo $this->htmlEscape($this->getAddress()->getFax()) ?>" title="<?php echo $this->__('Fax') ?>" class="input-text" id="billing:fax" />
                 </div>
             <div class="field">
-	   		<label for="billing:telephone" class="required"><?php echo $this->__('Telephone') ?> *</label><br/>
+	   		<label for="billing:telephone" class="required"><?php echo $this->__('Telephone') ?> <span class="required">*</span></label><br/>
 	                   <input type="text" name="billing[telephone]" value="<?php echo $this->htmlEscape($this->getAddress()->getTelephone()) ?>" title="<?php echo $this->__('Telephone') ?>" class="required-entry input-text" id="billing:telephone" />
                </div>
            </li>
