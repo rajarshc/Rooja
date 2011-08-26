@@ -409,6 +409,11 @@ td .product-name { width: 130px;}
 #shopping-cart-totals-table{font-size:12px;}
 
 .productOptions{font-size:12px;}
+#gift-message-whole-message{
+    width:440px;
+}
+
+#gift-message-whole-from{margin-bottom:5px;}
 
 
 /* ~~~~~ FOOTER ~~~~~ */
