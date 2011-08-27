@@ -30,6 +30,9 @@
             <action method="addCss" ifconfig="rewards/referral/referral_show">
                 <stylesheet>css/rewardsref/plaxo.css</stylesheet>                        
             </action>
+			<action method="setTitle">
+                <title>Invite your friends and Earn Free Shipping and Cash!</title>                        
+            </action>
         </reference>
         <reference name="content">
             <block type="rewardsref/customer_referral" name="referral" template="rewardsref/customer/referral.phtml" >
@@ -49,6 +52,7 @@
             <block type="customer/account_dashboard" name="customer.account.link.back" template="customer/account/link/back.phtml"/>
         </reference>            
     </rewardsref_customer_index>
+
     
     
     <customer_account_create>
