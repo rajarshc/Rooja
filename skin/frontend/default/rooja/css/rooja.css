@@ -570,7 +570,7 @@ h3 .product-name {
 .size3{height:119px;}
 
 .homeSale h2{color:#fff !important;font-size:2em;padding:15px 10px;display:block;width:222px;background:url(../images/bgs/purp-opacity-photo-diag.png) repeat;position:absolute;bottom:0px;z-index:10;margin: 0;}
-.homeSale h2.blackBg{background-image:url(../images/bgs/gray-opacity-photo.png);}
+.homeSale h2.blackBg{background-image:url(../images/bgs/gray-opacity-photo-diag.png);}
 .homeSale p{position:absolute;top:0;display:none;padding:5px 6px;background:url(../images/bgs/pink-diag.png) repeat;width:100%;font-size:1.4em;color:#fff;}
 
 .homeAd{background:url(../images/bgs/orange-diag.png) repeat;padding: 10px;width:217px;height:  95px;color:#fff;}
