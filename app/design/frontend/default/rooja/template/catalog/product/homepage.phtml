@@ -96,7 +96,7 @@ foreach ($categories as $_category){
 							</article>
 							<article class="homeSale size2 fl masonry">
 				                <a href="<?php echo  $c->getURL() ?>" title="View sale details for: <?php echo $c->getName(); ?>" class="product-image"><img src="/media/catalog/category/<?php echo $c->getThumbnail(); ?>" alt="" width="236px" /></a>
-				                <h2><?php echo $c->getName(); ?></h2>
+				                <h2 class='blackBg'><?php echo $c->getName(); ?></h2>
 						
 								<p>Sale ends in <?php echo timeBetweenNowAndDeadline($enddate); ?></p>
 				            </article>
@@ -104,7 +104,7 @@ foreach ($categories as $_category){
              
              <article class="homeSale size2 fl masonry">
                 <a href="<?php echo  $c->getURL() ?>" title="View sale details for: <?php echo $c->getName(); ?>" class="product-image"><img src="/media/catalog/category/<?php echo $c->getThumbnail(); ?>" alt="" width="236px" /></a>
-                <h2<?php if($i%2==0) echo " class='blackBg'"; ?>><?php echo $c->getName(); ?></h2>
+                <h2<?php if($i%2==1) echo " class='blackBg'"; ?>><?php echo $c->getName(); ?></h2>
 				<p>Sale ends in <?php echo timeBetweenNowAndDeadline($enddate); ?></p>
             </article>
 				<?php } $i++; }}}}}  }} ?>			
