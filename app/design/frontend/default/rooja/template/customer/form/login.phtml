@@ -37,12 +37,12 @@ jQuery(function() {
 	
 	jQuery('input[type="text"], input[type="password"]').defaultValue();
 	
-	setTimeout(function() {
+	/*setTimeout(function() {
 		// Chrome does not fire a change event when autofilling forms
 		// To prevent weird overlap with defaultValue and Chrome autofill,
 		// fire your own change event after 100 or so milliseconds
 		jQuery('input[type="text"]').change();
-	}, 100);
+	}, 100);*/
 	
 });
 </script>
