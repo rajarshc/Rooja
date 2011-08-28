@@ -148,7 +148,7 @@ form input#loginBtn{
    padding:25px 15px;
    width:380px;
    overflow:hidden;
-   margin:0 auto 0px;
+   margin:0 auto 50px;
    position:relative;
    border-top:6px solid #472a4f;
 }
