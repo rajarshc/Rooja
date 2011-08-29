@@ -35,7 +35,9 @@
 <script type="text/javascript">
 jQuery(function() {
 	
-	jQuery('input[type="text"], input[type="password"]').defaultValue();
+	jQuery('input[type="text"], input[type="password"]').defaultValue({
+		preferPlaceholder: true
+	});
 	
 	setTimeout(function() {
 		// Chrome does not fire a change event when autofilling forms
@@ -66,9 +68,9 @@ jQuery(function() {
 
 	<form action="<?php echo $this->getPostActionUrl() ?>" method="post" id="login-form">
         <label for="email">Email Address</label>
-		<input type="text" name="login[username]" value="<?php echo $this->htmlEscape($this->getUsername()) ?>" id="email" class="input-text required-entry validate-email" title="<?php echo $this->__('Email Address') ?>" />
+		<input type="text" name="login[username]" value="<?php echo $this->htmlEscape($this->getUsername()) ?>" id="email" class="input-text required-entry validate-email" title="<?php echo $this->__('Email Address') ?>" placeholder="Email Address" />
 		<label for="pass">Password</label>
-		<input type="password" name="login[password]" class="input-text required-entry validate-password" id="pass" title="<?php echo $this->__('Password') ?>" />
+		<input type="password" name="login[password]" class="input-text required-entry validate-password" id="pass" title="<?php echo $this->__('Password') ?>" placeholder="Password" />
 				<button id="fBConnect" rel="facebook-connect" type="button" title="<?php echo $this->__('Connect with Facebook') ?>" class="button"></button> 
 		<input type="submit" id="loginBtn" name="loginBtn" class="tr">
 	</form>
