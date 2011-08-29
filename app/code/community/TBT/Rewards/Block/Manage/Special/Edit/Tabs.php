@@ -55,7 +55,7 @@ class TBT_Rewards_Block_Manage_Special_Edit_Tabs extends Mage_Adminhtml_Block_Wi
 	protected function _beforeToHtml() {
 		$this->addTab ( 'main_section', array ('label' => Mage::helper ( 'salesrule' )->__ ( 'Rule Information' ), 'content' => $this->getLayout ()->createBlock ( 'rewards/manage_special_edit_tab_main' )->toHtml (), 'active' => true ) );
 		
-		$this->addTab ( 'conditions_section', array ('label' => Mage::helper ( 'salesrule' )->__ ( 'Conditions' ), 'content' => $this->getLayout ()->createBlock ( 'rewards/manage_special_edit_tab_conditions' )->toHtml () ) );
+		$this->addTab ( 'conditions_section', array ('label' => Mage::helper ( 'salesrule' )->__ ( 'Triggers & Conditions' ), 'content' => $this->getLayout ()->createBlock ( 'rewards/manage_special_edit_tab_conditions' )->toHtml () ) );
 		
 		$this->addTab ( 'actions_section', array ('label' => Mage::helper ( 'salesrule' )->__ ( 'Actions' ), 'content' => $this->getLayout ()->createBlock ( 'rewards/manage_special_edit_tab_actions' )->toHtml () ) );
 		

@@ -1,0 +1,104 @@
+﻿ 
+WDCA SWEET TOOTH™ POINTS AND REWARDS SYSTEM
+END USER LICENSE AGREEMENT (“AGREEMENT”)
+________________________________________
+PLEASE READ THE FOLLOWING TERMS AND CONDITIONS CAREFULLY BEFORE DOWNLOADING, INSTALLING OR USING THE SOFTWARE. LICENSEE AGREES THAT WDCA MAY MAKE CHANGES TO THESE TERMS AT ANY TIME WITHOUT PRIOR NOTICE.
+
+DISCLAIMER 
+
+By adding to, editing, or in any way modifying any code in this extension, the Licensee understands that WDCA is not held liable for any inconsistencies or abnormalities in the behaviour of the extension. By adding to, editing, or in any way modifying this code, the Licensee terminates any agreement of support offered by WDCA, outlined in the provided Sweet Tooth License. Upon discovery of modified code in the process of support, the Licensee is still held accountable for any and all billable time WDCA spent during the support process. WDCA does not guarantee compatibility with any other framework extension. WDCA is not responsible for any inconsistencies or abnormalities in the behaviour of this code if caused by any other frameworks or framework extension(s). 
+
+By downloading or using the Software you agree to this Agreement on behalf as an individual, and on behalf of your employer or another entity with which you are associated, if such employer or entity has not previously accepted these terms (you and such employer or other entity, collectively, the “Licensee”) and agree to be bound by its terms and conditions; and b) you are accepting electronic delivery of the Software. If the Licensee has not previously accepted these terms, you represent and warrant that you have full legal authority to bind the Licensee to these terms and conditions. This Agreement, is a legal agreement between the Licensee and Trade Business Technology Corp. , d/b/a WDCA, a Canadian corporation having its principal place of business at 295 Hagey Blvd., 1st Floor, Waterloo, Ontario N2L 6R5 Canada. 
+
+This Agreement constitutes the entire agreement concerning Licensee’s use of the Sweet Tooth ™ Software. This Agreement is subject to the Open Software License (OSL 3.0).  It is available through the world-wide-web at this URL: http://opensource.org.licenses/osl-3.0.php .  
+
+This Agreement replaces and supersedes any verbal understandings, written communications and representations, including and not limited to purchase order documentation, excepted those contained in subsequent writing, including by not limited to a license agreement with terms for support and an accompanying ordering schedule, in all cases signed by WDCA.
+
+1. License 
+
+1.1	Subject to Licensee’s compliance with terms and conditions of this Agreement and any applicable payment terms, WDCA grants Licensee a non-transferable, non-assignable, non-sub licensable, worldwide license solely during the Term to use, modify and create derivative works in respect of the Software, solely for internal purposes, in accordance with Software’s technical documentation. Such license is limited to the maximum number of designated serves as approved in writing by WDCA. (“Designated Server”).
+
+1.2	In the event that Licensee’s actual number of Servers of a particular Software license exceeds the licensed number of Designated Servers on such license, Licensee shall promptly provide WDCA with written notice and pay WDCA the fees required to license such additional Server(s) in accordance with the commercial terms set out in the Ordering Schedule.
+
+1.3	Licensee shall implement reasonable controls to ensure that it does not exceed the maximum number of licensed Servers of the Software. 
+
+1.4	WDCA shall provide to Licensee an initial copy of the Software, including the associated technical documentation, for use by Licensee in accordance with this Agreement. 
+
+1.5 	The Licensee shall not resell the extension or any source code under different branding than Sweet Tooth ™.
+
+1.6	The Licensee shall not resell any functionality of Sweet Tooth ™ as a service.
+
+2.   License Exclusions
+
+2.1 Except as expressly authorized herein, Licensee shall not:
+a. use or deploy the Software on any Server in excess of the number of Designated Servers;
+b. distribute, sublicense, disclose, market, rent, lease, remote computing services, networking, batch processing or transfer to any third party the Software or permit any person entity to have access to the Software by means of time sharing, remote computing services, networking, batch processing, service bureau or time sharing arrangement; 
+2.2. No license, right or interest in any WDCA trademark, trade name or service mark is granted hereunder.
+
+3.  Fees and Payment Terms
+
+Licensee shall pay WDCA the fees specified by WDCA. All fees shall be due at the point of sale. Once payment is received, the software will be electronically shipped. Licensee is responsible for all taxes concerning the Software and/or services, excluding taxes based on WDCA’s income. Licensee is responsible for fees concerning online payment for software. 
+
+4. Title and Protection
+
+4.1 WDCA retains title to all portions of the Proprietary Material and any copies thereof. Licensee agree to maintain strict controls to ensure that such materials are treated confidentially and safeguarded with at least the same degree of care that it takes to protect its own information of a similar nature, which in no event shall be less than a reasonable degree of care, and shall not disclose the Proprietary Material to anyone other than those of its employees or consultants under nondisclosure obligations, having a need to know for purposes consistent with this Agreement. Licensee shall affix, to each full or partial copy of the Proprietary Materials or any portion thereof made by Licensee, all copyright and proprietary information notice as were affixed to the original. The obligations set forth in this Section shall survive termination of this Agreement. 
+
+5.  Indemnification 
+
+Licensee agrees to defend, indemnify and hold harmless WDCA and its  affiliates, representatives, partners, agents and employees form  and  against all and all liabilities, claims, costs and expenses, including attorneys’ fees, that arise out of or in connection with the use of the Software, or a break of these Terms. 
+
+6. Default and Termination
+
+6.1. An event of default shall be deemed to occur if: (i) Licensee fails to perform any of its obligations under the Sections entitled "License Exclusions" or
+"Title and Protection"; or (ii) either party fails to perform any other material obligation under this Agreement and such failure remains uncured for more than thirty (30) days after receipt of written notice thereof.
+
+6.2. If an event of default occurs, the non-defaulting party, in addition to any other rights available to it under the law, may terminate this Agreement and all licenses granted hereunder by written notice to the defaulting party. Remedies shall be cumulative and there shall be no obligation to exercise a particular remedy.
+
+6.3. Within thirty (30) days after termination of the Software license or expiration of the Term, Licensee shall certify in writing to WDCA that Licensee has ceased use of the Software and that all copies of the Software in any form, including partial copies within modified versions, have been destroyed.
+
+7. Warranty 
+
+7.1	Warranty for Software.  WDCA warrants for a single period of thirty (30) days commencing upon Licensee’s payment for software. WDCA will provide assistance of installation with only original Magento core code within this thirty (30) day period free of charge. WDCA will define installation assistance as operating with the licensee to successfully install the software. WDCA is not liable to assist customers who have modified the original Magento core code. Regardless of who did the code modifications any patches, modifications, and/or changes of the Magento core, base, library and/or  default files and/or folders void our support warranty for your license. This applies even if it's Magento themselves. 
+
+The licensee is liable to assist WDCA in resolving all issues to whatever extent WDCA warrants acceptable. Issues are defined as obstacles identified by WDCA to the successful installation of the software. If licensee does not successfully contact WDCA to address any issues within thirty (30) days after WDCA receives payment, WDCA will not be liable for services regarding said issues. 
+
+7.2	DISCLAIMER. THE EXPRESS WARRANTIES SET FORTH IN THIS SECTION 7 ARE THE ONLY WARRANTIES MADE BY WDCA WITH RESPECT TO THE SOFTWARE PROVIDED BY WDCA. WDCA MAKES NO OTHER WARRANTIES, EXPRESS, IMPLIED OR MAKES NO WARRANTY OF MERCHANTABILITY OR FITNESS FOR ANY PARTICULAR PURPOSE. WDCA’S EXPRESS WARRANTIES SHALL NOT BE ENLARGED, DIMINISHED OR AFFECTED BY AND NO OBLIGATION OR LIABILITY SHALL ARISE OUT OF, WDCA RENDERING TECHNICAL OR OTHER ADVICE OR SERVICE IN CONNECTION WITH THE SOFTWARE.  
+
+8.  Support 
+
+8.1	WDCA will provide support for major bug fixes for the software within 365 days of payment receipt to the Licensee free of charge. Major bug fixes are defined as updates to only our software core code that resolve an inability of software to correctly function with Magento’s original core code. WDCA reserves the right to decide which instances of major bug fixes require updating. The licensee is liable to successfully notify WDCA of all issues that may qualify as a major bug. 
+	
+9. Limitation of Liability
+
+9.1       LIABILITY EXCLUSIONS. NOTHING IN THIS AGREEMENT SHALL EXCLUDE OR LIMIT ETIHER PARTY’S LIABILITY FOR (i) THE TORT OF FRAUD OR DECIT (ii) DEATH OR PERSONAL INJURY CAUSED BY SUCH PARTY’ NEGLIGENCE OR (iii) ANY OTHER LIABILITY WHICH CANNOT BE EXCLUDED OR LIMITED BY APPLICABLE LAW. SAVE FOR THE FOREGOING, NEITHER PARTY ACCEPTS AND HEREBY EXCLUDES ANY LIABILITY FOR LOSS OF OR DAMAGE TO LICENSEE’S TANGIBLE PROPERTY OTHER THAN THAT CAUSE BY ITS NEGLIGENCE AND HEREBY EXCLUDES ANY OTHER LIABILITY FOR NEGLIENCE ARISING PURSUANT TO THE TERMS OF THIS AGREEMENT. SAVE FOR THE FOREGOING, NEITHER PARTY ACCEPTS AND HEREBY EXCLUDES ANY LIABILITY FOR LOSS OF OR DAMANGE TO LICENSEE’S TANGIBLE PROPERTY OTHER THAN THAT CAUSE BY ITS NEGLIGENCE AND HEREBY EXCLUDES ANY OTHER LIABILITY FOR NEGLIGENCE ARISNG PURSUANT TO THE TERMS OF THIS AGREEMENT. UNDER NO CIRCUMSTANCES WILL EITHER PARTY BE LIABLE FOR: LOSS OF REVENUE; LOSS OF ACTUAL OR ANTICIPATED PROFITS; LOSS OF CONTRACTS; LOSS OF THE USE OF MONEY; LOSS OF ANTICIPATED SAVINGS; LOSS OF BUSINESS; LOSS OF OPPORTUNITY; LOSS OF GOODWILL; LOSS OF REPUTATION; LOSS OF DAMAGE TO CORRUPTION OF DATA; OR CONSEQUENTIAL OR INDIRECT LOSS OR SPECIAL, PUNITIVE, OR INCIDENTAL DAMAGES (INCLUDING, FOR THE AVOIDANCE OF DOUBT, WHERE SUCH LOSS OR DAMAGE IS ALSO OF A CATEGORY OF LOSS OR DAMANGE ALREADY LISTED) WHETHER FORESEEABLE OR UNFORESEEABLE BASED ON CLAIMS OF LICENSEE OR ANY OTHER PARTY ARISING OUT OF ANY BREAK OR FAILURE OF EXPRESS OR IMPLIED WARRANTY CONDITIONS OR OTHER TERM, BREACH OF CONTRACT, MISREPRESENTATION, NEGLIGENCE, OTHER LIABILITY IN TORT, FAILURE OF ANY REMEDY TO ACHIEVE ITS ESSENTIAL PURPOSE, OR OTHERWISE. 
+
+10. General
+
+This Agreement is made in and shall be governed by the laws of Ontario, Canada. All proceedings shall be conducted in English. Location for all proceedings shall be Waterloo, Ontario. WDCA reserves the right to terminate this license at any time without notice or consent of the licensee. WDCA reserves the right to terminate all or any support liabilities at any time without notice or consent of licensee. WDCA reserves the right to bill the licensee at anytime without notice or consent for any services rendered relating to our software. 
+
+11. Refunds
+All sales final.  No refunds, exchanges or returns will be given for any licenses.
+
+12. License Usage
+A single license grants the licensee to install the extension on ONE (1) Magento installation using the provided installer or installation instructions. Licensee must purchase additional licenses from WDCA, one for each Magento installation for which the Magento extension will be used. The Licensee shall not resell the extension or any source code under different branding than Sweet Tooth ™. The Licensee shall not resell any functionality of Sweet Tooth ™ as a service.
+
+
+13. Definitions
+“Licensee” is the person who is entering into this contract with WDCA. This person is purchasing and implementing the Sweet ToothTM rewards and points system into their Magento e-commerce store.
+
+“WDCA” is the software company that Khaki Tech Inc. is doing business as.
+
+“d/b/a” means “doing business as”
+
+"Modifications" means any code developed by Licensee or any third party, including without limitation, configuration, integrations, implementations, or localizations to the external layer of the core, baseline Software product. The term "Modifications" excludes bug fixes supplied as part of Support Services.
+
+"Proprietary Material" means the Software, related documentation, and all parts, copies and modifications thereof, and any other information, in whatever form, received by Licensee hereunder from WDCA or its licensors, provided, however, such information shall not be deemed Proprietary Material if it (a) is or becomes a part of the public domain through no act or omission of Licensee; or (b) was in Licensee's lawful possession prior to the disclosure and had not been obtained by Licensee from WDCA; or (c) is lawfully disclosed to Licensee by a third party without restriction on disclosure; or (d) is independently developed by Licensee without reference to or use of the Proprietary Material.
+
+"Designated Server" means any physical or virtual server from which a single instance of the
+Software is accessed and used either for production purposes.
+
+"Software" means WDCA’s proprietary e-commerce software solution known as the
+Sweet Tooth™ rewards and points system, provided solely in source code, including associated technical documentation, and all bug fix updates thereof furnished to Licensee as part of Support Services. 
+
+“Term” means the period commencing upon WDCA’s electronic delivery of the
+Software to Licensee and expiring on the date set out in the Ordering Schedule, unless extended by the mutual written consent of both parties.

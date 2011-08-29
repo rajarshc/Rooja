@@ -102,14 +102,14 @@ class TBT_Rewards_Block_Manage_Customer_Edit_Tab_Summary extends Mage_Adminhtml_
 	 * @return Mage_Model_Customer
 	 */
 	public function _getCustomer() {
-		if ($this->hasCustomer ()) {
-			return $this->getData ( 'customer' );
+	    if ($this->hasCustomer ()) {
+			return Mage::getModel('rewards/customer')->getRewardsCustomer($this->getData ( 'customer' ));
 		}
 		if (Mage::registry ( 'current_customer' )) {
-			return Mage::getModel('rewards/customer')->load(Mage::registry ( 'current_customer' )->getId());
+			return Mage::getModel('rewards/customer')->getRewardsCustomer(Mage::registry ( 'current_customer' ));
 		}
 		if (Mage::registry ( 'customer' )) {
-			return Mage::getModel('rewards/customer')->load(Mage::registry ( 'customer' )->getId());
+			return Mage::getModel('rewards/customer')->getRewardsCustomer(Mage::registry ( 'customer' ));
 		}
 		Mage::throwException ( Mage::helper ( 'customer' )->__ ( 'Can\'t get customer instance' ) );
 	}

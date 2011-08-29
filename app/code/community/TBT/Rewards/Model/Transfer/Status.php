@@ -47,12 +47,19 @@ class TBT_Rewards_Model_Transfer_Status extends Varien_Object {
 	// status values less than 1 means that transfer is ignored in
 	// customer point calculations.
 	const STATUS_CANCELLED = 1;
-	const STATUS_ON_HOLD = 3;
-	const STATUS_PENDING = 4;
+	const STATUS_PENDING_APPROVAL = 3;
+	const STATUS_PENDING_EVENT = 4;
 	const STATUS_APPROVED = 5;
+	const STATUS_PENDING_TIME = 6;
 	
 	public function getOptionArray() {
-		return array (self::STATUS_CANCELLED => Mage::helper ( 'rewards' )->__ ( 'Cancelled' ), self::STATUS_ON_HOLD => Mage::helper ( 'rewards' )->__ ( 'On Hold' ), self::STATUS_PENDING => Mage::helper ( 'rewards' )->__ ( 'Pending' ), self::STATUS_APPROVED => Mage::helper ( 'rewards' )->__ ( 'Approved' ) );
+		return array (
+		    self::STATUS_APPROVED => Mage::helper ( 'rewards' )->__ ( 'Approved' ),
+		    self::STATUS_CANCELLED => Mage::helper ( 'rewards' )->__ ( 'Cancelled' ),
+		    self::STATUS_PENDING_APPROVAL => Mage::helper ( 'rewards' )->__ ( 'Pending: Approval' ),
+		    self::STATUS_PENDING_EVENT => Mage::helper ( 'rewards' )->__ ( 'Pending: Event' ),
+		    self::STATUS_PENDING_TIME => Mage::helper ( 'rewards' )->__ ( 'Pending: Time' )
+		);
 	}
 	
 	/**
@@ -71,7 +78,9 @@ class TBT_Rewards_Model_Transfer_Status extends Varien_Object {
 	}
 	
 	public function getCountableStatuses() {
-		return array (self::STATUS_APPROVED => Mage::helper ( 'rewards' )->__ ( 'Approved' ) );
+		return array (
+		    self::STATUS_APPROVED => Mage::helper ( 'rewards' )->__ ( 'Approved' )
+		);
 	}
 	
 	public function getCountableStatusIds() {
@@ -80,16 +89,40 @@ class TBT_Rewards_Model_Transfer_Status extends Varien_Object {
 	
 	public function getAvailableNextStatuses($current_status) {
 		switch ($current_status) {
-			case self::STATUS_CANCELLED :
-				return array (self::STATUS_CANCELLED );
-			case self::STATUS_ON_HOLD :
-				return array (self::STATUS_ON_HOLD, self::STATUS_CANCELLED, self::STATUS_APPROVED );
-			case self::STATUS_PENDING :
-				return array (self::STATUS_PENDING, self::STATUS_CANCELLED, self::STATUS_APPROVED, self::STATUS_ON_HOLD );
-			case self::STATUS_APPROVED :
-				return array (self::STATUS_APPROVED );
-			default :
-				return array_keys ( $this->getInitialStatuses () );
+			case self::STATUS_CANCELLED:
+				return array (
+				    self::STATUS_CANCELLED
+				);
+			case self::STATUS_PENDING_APPROVAL:
+				return array (
+				    self::STATUS_PENDING_APPROVAL,
+				    self::STATUS_CANCELLED,
+				    self::STATUS_APPROVED
+				);
+			case self::STATUS_PENDING_EVENT:
+				return array (
+				    self::STATUS_PENDING_EVENT,
+				    self::STATUS_CANCELLED,
+				    self::STATUS_APPROVED,
+				    self::STATUS_PENDING_APPROVAL,
+				    self::STATUS_PENDING_TIME
+				);
+			case self::STATUS_PENDING_TIME:
+			    return array(
+			        self::STATUS_PENDING_TIME,
+			        self::STATUS_CANCELLED,
+			        self::STATUS_APPROVED,
+			        self::STATUS_PENDING_APPROVAL,
+			        self::STATUS_PENDING_EVENT
+			    );
+			case self::STATUS_APPROVED:
+				return array (
+				    self::STATUS_APPROVED
+				);
+			default:
+				return array_keys (
+				    $this->getInitialStatuses()
+				);
 		}
 	}
 	
@@ -104,16 +137,37 @@ class TBT_Rewards_Model_Transfer_Status extends Varien_Object {
 	}
 	
 	public function getInitialStatuses() {
-		return array (self::STATUS_APPROVED => Mage::helper ( 'rewards' )->__ ( 'Approved' ), self::STATUS_ON_HOLD => Mage::helper ( 'rewards' )->__ ( 'On Hold' ), self::STATUS_PENDING => Mage::helper ( 'rewards' )->__ ( 'Pending' )
-        /* TODO WDCA: add status-REVOKED here, so that it is intuitive for admin to select it from
-         *   the drop-down list when creating transfers, then dynamically turn it into a status-APPROVED
-         *   transfer with reason-REVOKED
-         */
+		return array (
+		    self::STATUS_APPROVED => Mage::helper ( 'rewards' )->__ ( 'Approved' ),
+		    self::STATUS_PENDING_APPROVAL => Mage::helper ( 'rewards' )->__ ( 'Pending: Approval' ),
+		    self::STATUS_PENDING_EVENT => Mage::helper ( 'rewards' )->__ ( 'Pending: Event' ),
+		    self::STATUS_PENDING_TIME => Mage::helper ( 'rewards' )->__ ( 'Pending: Time' )
+            /* TODO WDCA: add status-REVOKED here, so that it is intuitive for admin to select it from
+             *   the drop-down list when creating transfers, then dynamically turn it into a status-APPROVED
+             *   transfer with reason-REVOKED
+             */
         );
 	}
 	
 	public function genSelectableStatuses() {
-		return array (array ('label' => Mage::helper ( 'rewards' )->__ ( 'Approved' ), 'value' => self::STATUS_APPROVED ), array ('label' => Mage::helper ( 'rewards' )->__ ( 'Cancelled' ), 'value' => self::STATUS_CANCELLED ), array ('label' => Mage::helper ( 'rewards' )->__ ( 'On Hold' ), 'value' => self::STATUS_ON_HOLD ), array ('label' => Mage::helper ( 'rewards' )->__ ( 'Pending' ), 'value' => self::STATUS_PENDING ) );
+		return array (
+		    array (
+		    	'label' => Mage::helper ( 'rewards' )->__ ( 'Approved' ),
+		    	'value' => self::STATUS_APPROVED ),
+		    array (
+		    	'label' => Mage::helper ( 'rewards' )->__ ( 'Cancelled' ),
+		    	'value' => self::STATUS_CANCELLED ),
+		    array (
+		    	'label' => Mage::helper ( 'rewards' )->__ ( 'Pending: Approval' ),
+		    	'value' => self::STATUS_PENDING_APPROVAL ),
+		    array (
+		    	'label' => Mage::helper ( 'rewards' )->__ ( 'Pending: Event' ),
+		    	'value' => self::STATUS_PENDING_EVENT ),
+		    array (
+		        'label' => Mage::helper ( 'rewards' )->__ ( 'Pending: Time' ),
+		        'value' => self::STATUS_PENDING_TIME
+		    )
+		);
 	}
 	
 	public function canAdjustQty($current_status) {
@@ -122,9 +176,9 @@ class TBT_Rewards_Model_Transfer_Status extends Varien_Object {
 				return false;
 			case self::STATUS_APPROVED :
 				return false;
-			case self::STATUS_ON_HOLD :
+			case self::STATUS_PENDING_APPROVAL :
 				return true;
-			case self::STATUS_PENDING :
+			case self::STATUS_PENDING_EVENT :
 				return true;
 			default :
 				return true;
@@ -172,10 +226,10 @@ class TBT_Rewards_Model_Transfer_Status extends Varien_Object {
 	}
 	
 	public function getStatusCaption($id) {
-		$stats = $this->getOptionArray ();
+		$statuses = $this->getOptionArray ();
 		
-		if (($id >= self::STATUS_CANCELLED) && ($id <= self::STATUS_APPROVED)) {
-			return $stats [$id];
+		if (array_key_exists($id, $statuses)) {
+			return $statuses [$id];
 		} else {
 			return null;
 		}
@@ -194,5 +248,17 @@ class TBT_Rewards_Model_Transfer_Status extends Varien_Object {
 		}
 		return false;
 	}
+	
+	
+	
+	/**
+	 * @deprecated use STATUS_PENDING_APPROVAL instead
+	 */
+	const STATUS_ON_HOLD = self::STATUS_PENDING_APPROVAL;
+	
+	/**
+	 * @deprecated use STATUS_PENDING_EVENT instead
+	 */
+	const STATUS_PENDING = self::STATUS_PENDING_EVENT;
 
 }

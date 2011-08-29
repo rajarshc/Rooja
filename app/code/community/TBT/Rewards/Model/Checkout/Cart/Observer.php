@@ -47,25 +47,33 @@
 class TBT_Rewards_Model_Checkout_Cart_Observer {
 	
 	/**
-	 * 
-	 *
-	 * @param   Varien_Event_Observer $observer
+	 * observers controller_action_postdispatch for Mage_Checkout_CartController
+         * then add messages if the layout has not loaded
+         * 
 	 * @return  TBT_Rewards_Model_Checkout_Cart_Observer
 	 */
 	public function checkRedemptions($observer) {
-		//  die(print_r($points_spent, true));
-		if ($this->_getRewardsSess ()->isCustomerLoggedIn ()) {
-			if ($this->_getRewardsSess ()->isCartOverspent ()) {
-				$msg = Mage::helper ( 'rewards' )->__ ( "You are trying to redeem more points than you have in your balance.  You will not be able to checkout." );
-				$this->_getCheckoutSession ()->addError ( $msg );
-			}
-		} else {
-			if ($this->_getRewardsSess ()->hasRedemptions ()) {
-				$msg = Mage::helper ( 'rewards' )->__ ( "You are trying to redeem points but you're not logged in. You may not have enough points to checkout." );
-				$this->_getCheckoutSession ()->addError ( $msg );
-			}
-		}
-		return $this;
+            if($observer['controller_action'] instanceof Mage_Checkout_CartController) {
+                /* @var Mage_Checkout_CartController */
+                $cartController = $observer['controller_action'];
+                /* @var Mage_Core_Model_Layout */
+                $cartLayoutBlocks = $cartController->getLayout()->getAllBlocks();
+                // only add session messages before the layout has been loaded
+                if(empty($cartLayoutBlocks)) {
+                    if ($this->_getRewardsSess ()->isCustomerLoggedIn ()) {
+                            if ($this->_getRewardsSess ()->isCartOverspent ()) {
+                                    $msg = Mage::helper ( 'rewards' )->__ ( "You are trying to redeem more points than you have in your balance.  You will not be able to checkout." );
+                                    $this->_getCheckoutSession ()->addError ( $msg );
+                            }
+                    } else {
+                            if ($this->_getRewardsSess ()->hasRedemptions ()) {
+                                    $msg = Mage::helper ( 'rewards' )->__ ( "You are trying to redeem points but you're not logged in. You may not have enough points to checkout." );
+                                    $this->_getCheckoutSession ()->addError ( $msg );
+                            }
+                    }
+                }
+            }
+            return $this;
 	}
 	
 	/**

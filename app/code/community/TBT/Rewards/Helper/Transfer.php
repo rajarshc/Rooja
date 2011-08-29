@@ -160,10 +160,10 @@ class TBT_Rewards_Helper_Transfer extends Mage_Core_Helper_Abstract {
 	 * @param  int $currency_id   : The ID of the point currency used in this transfer
 	 * @param  int $reference_type: The type of action from which this transfer originates (Customer order, reviews, etc.)
 	 * @param  int $reference_id  :  The ID of the object from which this transfer originates (Order ID, etc.)
-	 * @param  int $rule_id       : The ID of the rule that allowed this transfer to be created... RULE MAY HAVE BEEN DISCONTINUED
+	 * @param  int $rule          : The rule model that allowed this transfer to be created... RULE MAY HAVE BEEN DISCONTINUED
 	 * @return boolean            : whether or not the point-transfer succeeded
 	 */
-	public function transferSignupPoints($num_points, $currency_id, $customer_id, $rule_id) {
+	public function transferSignupPoints($num_points, $currency_id, $customer_id, $rule) {
 		// ALWAYS ensure that we only give an integral amount of points
 		$num_points = floor ( $num_points );
 		
@@ -182,69 +182,28 @@ class TBT_Rewards_Helper_Transfer extends Mage_Core_Helper_Abstract {
 			$transfer->setReasonId ( TBT_Rewards_Model_Transfer_Reason::REASON_CUSTOMER_REDEMPTION );
 		}
 		
-		//get the default starting status - usually Pending
-		if (! $transfer->setStatus ( null, Mage::helper ( 'rewards/config' )->getInitialTransferStatusAfterSignup () )) {
-			return false;
+		//get On-Hold initial status override
+		if ($rule->getOnholdDuration() > 0) {
+            $transfer->setEffectiveStart(date('Y-m-d H:i:s', strtotime("+{$rule->getOnholdDuration()} days")))
+                ->setStatus(null, TBT_Rewards_Model_Transfer_Status::STATUS_PENDING_TIME);
+		} else {
+    		//get the default starting status - usually Pending
+    		if (! $transfer->setStatus ( null, Mage::helper ( 'rewards/config' )->getInitialTransferStatusAfterSignup () )) {
+    			return false;
+    		}
 		}
 		
-		$transfer->setId ( null )->setCurrencyId ( $currency_id )->setQuantity ( $num_points )->setComments ( Mage::getStoreConfig ( 'rewards/transferComments/signupEarned' ) )->setRuleId ( $rule_id )->setCustomerId ( $customer_id )->setAsSignup ()->save ();
+		$transfer->setId(null)
+		    ->setCurrencyId($currency_id)
+		    ->setQuantity($num_points)
+		    ->setComments(Mage::getStoreConfig('rewards/transferComments/signupEarned'))
+		    ->setRuleId($rule->getId())
+		    ->setCustomerId($customer_id)
+		    ->setAsSignup()
+		    ->save();
 		
 		return true;
 	}
-	
-	/**
-	 * Creates a customer point-transfer of any amount or currency.
-	 *
-	 * @param  int $num_points    : Quantity of points to transfer: positive=>distribution, negative=>redemption
-	 * @param  int $currency_id   : The ID of the point currency used in this transfer
-	 * @param  int $reference_type: The type of action from which this transfer originates (Customer order, reviews, etc.)
-	 * @param  int $reference_id  :  The ID of the object from which this transfer originates (Order ID, etc.)
-	 * @param  int $rule_id       : The ID of the rule that allowed this transfer to be created... RULE MAY HAVE BEEN DISCONTINUED
-	 * @return boolean            : whether or not the point-transfer succeeded
-	 */
-	public function transferRevokedPoints($num_points, $currency_id, $reference_transfer_id, $customer_id) {
-		return ($this->createRevokedTransfer ( $num_points, $currency_id, $reference_transfer_id, $customer_id ) != 0);
-	}
-	
-	/**
-	 * Creates a customer point-transfer of any amount or currency.
-	 *
-	 * @param  int $num_points    : Quantity of points to transfer: positive=>distribution, negative=>redemption
-	 * @param  int $currency_id   : The ID of the point currency used in this transfer
-	 * @param  int $reference_type: The type of action from which this transfer originates (Customer order, reviews, etc.)
-	 * @param  int $reference_id  :  The ID of the object from which this transfer originates (Order ID, etc.)
-	 * @param  int $rule_id       : The ID of the rule that allowed this transfer to be created... RULE MAY HAVE BEEN DISCONTINUED
-	 * @return boolean            : whether or not the point-transfer succeeded
-	 */
-	public function createRevokedTransfer($num_points, $currency_id, $reference_transfer_id, $customer_id) {
-		// ALWAYS ensure that we only give an integral amount of points
-		$num_points = floor ( $num_points );
-		
-		if ($num_points == 0) {
-			return 0;
-		}
-		
-		$transfer = Mage::getModel ( 'rewards/transfer' );
-		
-		// get the default starting status - usually Pending
-		if (! $transfer->setStatus ( null, TBT_Rewards_Model_Transfer_Status::STATUS_APPROVED )) {
-			// we tried to use an invalid status... is getInitialTransferStatusAfterReview() improper ??
-			return 0;
-		}
-		
-		$customer = Mage::getModel ( 'rewards/customer' )->load ( $customer_id );
-		if (($customer->getUsablePointsBalance ( $currency_id ) + $num_points) < 0) {
-			$error = $this->__ ( 'Not enough points for transaction. You have %s, but you need %s', Mage::getModel ( 'rewards/points' )->set ( $currency_id, $customer->getUsablePointsBalance ( $currency_id ) ), Mage::getModel ( 'rewards/points' )->set ( $currency_id, $num_points * - 1 ) );
-			throw new Exception ( $error );
-		}
-		
-		$original_transfer = Mage::getModel ( 'rewards/transfer' )->load ( $reference_transfer_id );
-		
-		$transfer->setId ( null )->setCurrencyId ( $currency_id )->setQuantity ( $num_points )->setCustomerId ( $customer_id )->setReferenceTransferId ( $reference_transfer_id )->setReasonId ( TBT_Rewards_Model_Transfer_Reason::REASON_SYSTEM_REVOKED )->setComments ( Mage::getStoreConfig ( 'rewards/transferComments/revoked' ), $original_transfer->getComments () )->save ();
-		
-		return $transfer->getId ();
-	}
-	
 	/**
 	 * Creates a customer point-transfer of any amount or currency.
 	 * TODO Move this into a separate model that extends the Transfer model and instantiate it.
@@ -484,131 +443,132 @@ class TBT_Rewards_Helper_Transfer extends Mage_Core_Helper_Abstract {
 		}
 		return $ret;
 	}
-	
-	/**
-	 * Calculates the amount of points to be given or deducted from a customer based on catalog item,
-	 * given the rule that is being executed and the item that caused the rule to run.
-	 * @nelkaake Wednesday May 5, 2010: TODO move this to something other than the transfer helper      *      
-	 *
-	 * @param   int                         $rule_id			: the ID of the rule to execute
-	 * @param   Mage_Sales_Model_Quote_Item||TBT_Rewards_Model_Catalog_Product $item				: the catalog item associated
-	 * @param	bool						$allow_redemptions	: whether or not to calculate redemptions, if given
-	 * @return  array											: 'amount' & 'currency' as keys
-	 */
-	public function calculateCatalogPoints($rule_id, $item, $allow_redemptions) {
-		Varien_Profiler::start ( "TBT_Rewards:: Catalog points calculator" );
-		
-		// Load the rule and product model.
-		$rule = $this->getCatalogRule ( $rule_id );
-		$product = $this->assureProduct ( $item );
-		
-		// Get the store configuration
-		$prices_include_tax = Mage::helper ( 'tax' )->priceIncludesTax ();
-		
-		// Instantiate what the product cost will be evaluated to
-		if (! $product->getCost ()) {
-			$product = $product->load ( $product->getId () );
-		}
-		$product_cost = ( int ) $product->getCost ();
-		
-		if ($this->isItem ( $item )) {
-			$qty = ($item->getQty () > 0) ? $item->getQty () : 1; //@nelkaake 04/03/2010 2:05:12 PM (terniary check jsut in case)
-			if ($prices_include_tax) {
-				//@nelkaake Changed on Wednesday May 5, 2010: 
-				$price = $item->getBaseRowTotal ();
-				if (Mage::helper ( 'rewards/config' )->earnCatalogPointsForTax ()) {
-					$price += $item->getBaseTaxAmount ();
-				}
-			} else {
-				$price = $item->getBaseRowTotal ();
-			}
-			$profit = $item->getBaseRowTotal () - ($product_cost * $qty); //@nelkaake 04/03/2010 2:05:12 PM
-		} else {
-			//@nelkaake Changed on Wednesday May 5, 2010: 
-			$qty = 1; //@nelkaake 04/03/2010 2:05:12 PM
-			$price = $product->getFinalPrice ();
-			$profit = $product->getFinalPrice () - $product_cost;
-			
-			//@nelkaake Added on Wednesday May 5, 2010: 
-			if (! Mage::helper ( 'rewards/config' )->earnCatalogPointsForTax () && $prices_include_tax) {
-				$price = $price / (1 + (( float ) $product->getTaxPercent () / 100));
-				$profit = $price - $product_cost;
-			}
-		}
-		
-		// Set default price and profit values
-		if ($profit < 0) {
-			$profit = 0;
-		}
-		if ($price < 0) {
-			$price = 0;
-		}
-		
-		if ($rule->getId ()) {
-			if ($rule->getPointsAction () == 'give_points') {
-				// give a flat number of points if this rule's conditions are met
-				// since this is a catalog rule, the points are relative to the quantity
-				$points_to_transfer = $rule->getPointsAmount () * $qty; //@nelkaake 04/03/2010 2:05:12 PM
-			} else if (($rule->getPointsAction () == 'deduct_points') && $allow_redemptions) {
-				// deduct a flat number of points if this rule's conditions are met
-				// since this is a catalog rule, the points are relative to the quantity
-				$points_to_transfer = $rule->getPointsAmount () * - 1;
-			} else if ($rule->getPointsAction () == 'give_by_amount_spent' || $rule->getPointsAction () == 'give_by_profit') {
-				if ($rule->getPointsAction () == 'give_by_amount_spent') {
-					$value = $price;
-				} elseif ($rule->getPointsAction () == 'give_by_profit') {
-					$value = $profit;
-				} else {
-					$value = 0;
-				}
-				
-				// give a set qty of points per every given amount spent if this rule's conditions are met
-				$points_to_transfer = $rule->getPointsAmount () * floor ( $value / $rule->getPointsAmountStep () );
-				if ($rule->getPointsMaxQty () > 0) {
-					if ($points_to_transfer > $rule->getPointsMaxQty ()) {
-						$points_to_transfer = $rule->getPointsMaxQty ();
-					}
-				}
-				if ($points_to_transfer < 0) {
-					$points_to_transfer = 0;
-				}
-			} else if (($rule->getPointsAction () == 'deduct_by_amount_spent') && $allow_redemptions) {
-				// deduct a set qty of points per every given amount spent if this rule's conditions are met
-				$price = $product->getFinalPrice ();
-				$points_to_transfer = $rule->getPointsAmount () * floor ( $price / $rule->getPointsAmountStep () ) * - 1;
-				
-				if ($rule->getPointsMaxQty () > 0) {
-					if ($points_to_transfer < ($rule->getPointsMaxQty () * - 1)) {
-						$points_to_transfer = $rule->getPointsMaxQty () * - 1;
-					}
-				}
-			} else {
-				// whatever the Points Action is set to is invalid
-				// - this means no transfer of points
-				
 
-				Varien_Profiler::stop ( "TBT_Rewards:: Catalog points calculator" );
-				return null;
-			}
-			
-			//@nelkaake Added on Sunday May 30, 2010: 
-			if ($max_points_spent = $rule->getPointsMaxQty () * $qty) {
-				if ($points_to_transfer < 0) {
-					if (- $points_to_transfer > $max_points_spent)
-						$points_to_transfer = - $max_points_spent;
-				} else {
-					if ($points_to_transfer > $max_points_spent)
-						$points_to_transfer = $max_points_spent;
-				}
-			}
-			
-			Varien_Profiler::stop ( "TBT_Rewards:: Catalog points calculator" );
-			return array ('amount' => $points_to_transfer, 'currency' => $rule->getPointsCurrencyId () );
-		}
-		
-		Varien_Profiler::stop ( "TBT_Rewards:: Catalog points calculator" );
-		return null;
-	}
+    /**
+     * Calculates the amount of points to be given or deducted from a customer based on catalog item,
+     * given the rule that is being executed and the item that caused the rule to run.
+     * @nelkaake Wednesday May 5, 2010: TODO move this to something other than the transfer helper      *      
+     *
+     * @param   int                         $rule_id			: the ID of the rule to execute
+     * @param   Mage_Sales_Model_Quote_Item||TBT_Rewards_Model_Catalog_Product $item				: the catalog item associated
+     * @param	bool						$allow_redemptions	: whether or not to calculate redemptions, if given
+     * @return  array											: 'amount' & 'currency' as keys
+     */
+    public function calculateCatalogPoints($rule_id, $item, $allow_redemptions) {
+        Varien_Profiler::start("TBT_Rewards:: Catalog points calculator");
+        
+        // Load the rule and product model.
+        $rule = $this->getCatalogRule($rule_id);
+        $product = $this->assureProduct($item);
+        
+        // Get the store configuration
+        $prices_include_tax = Mage::helper('tax')->priceIncludesTax();
+        
+        // Instantiate what the product cost will be evaluated to
+        if ( ! $product->getCost() ) {
+            $product = $product->load($product->getId());
+        }
+        $product_cost = (int) $product->getCost();
+        
+        if ( $this->isItem($item) ) {
+            $qty = ($item->getQty() > 0) ? $item->getQty() : 1; //@nelkaake 04/03/2010 2:05:12 PM (terniary check jsut in case)
+            if ( $prices_include_tax ) {
+                //@nelkaake Changed on Wednesday May 5, 2010: 
+                $price = $item->getBaseRowTotal();
+                if ( Mage::helper('rewards/config')->earnCatalogPointsForTax() ) {
+                    $price += $item->getBaseTaxAmount();
+                }
+            } else {
+                $price = $item->getBaseRowTotal();
+            }
+            $profit = $item->getBaseRowTotal() - ($product_cost * $qty); //@nelkaake 04/03/2010 2:05:12 PM
+        } else {
+            //@nelkaake Changed on Wednesday May 5, 2010: 
+            $qty = 1; //@nelkaake 04/03/2010 2:05:12 PM
+            $price = $product->getFinalPrice();
+            $profit = $product->getFinalPrice() - $product_cost;
+            
+            //@nelkaake Added on Wednesday May 5, 2010: 
+            if ( ! Mage::helper('rewards/config')->earnCatalogPointsForTax() && $prices_include_tax ) {
+                $price = $price / (1 + ((float) $product->getTaxPercent() / 100));
+                $profit = $price - $product_cost;
+            }
+        }
+        
+        // Set default price and profit values
+        if ( $profit < 0 ) {
+            $profit = 0;
+        }
+        if ( $price < 0 ) {
+            $price = 0;
+        }
+        
+        if ( $rule->getId() ) {
+            if ( $rule->getPointsAction() == 'give_points' ) {
+                    // give a flat number of points if this rule's conditions are met
+                // since this is a catalog rule, the points are relative to the quantity
+                $points_to_transfer = $rule->getPointsAmount() * $qty; //@nelkaake 04/03/2010 2:05:12 PM
+            } elseif ( ($rule->getPointsAction() == 'deduct_points') && $allow_redemptions ) {
+                // deduct a flat number of points if this rule's conditions are met
+                // since this is a catalog rule, the points are relative to the quantity
+                $points_to_transfer = $rule->getPointsAmount() * - 1;
+            } elseif ( $rule->getPointsAction() == 'give_by_amount_spent' || $rule->getPointsAction() == 'give_by_profit' ) {
+                if ( $rule->getPointsAction() == 'give_by_amount_spent' ) {
+                    $value = $price;
+                } elseif ( $rule->getPointsAction() == 'give_by_profit' ) {
+                    $value = $profit;
+                } else {
+                    $value = 0;
+                }
+                
+                // give a set qty of points per every given amount spent if this rule's conditions are met
+                $points_to_transfer = $rule->getPointsAmount() * floor(round($value / $rule->getPointsAmountStep(), 5));
+                if ( $rule->getPointsMaxQty() > 0 ) {
+                    if ( $points_to_transfer > $rule->getPointsMaxQty() ) {
+                        $points_to_transfer = $rule->getPointsMaxQty();
+                    }
+                }
+                if ( $points_to_transfer < 0 ) {
+                    $points_to_transfer = 0;
+                }
+            } elseif ( ($rule->getPointsAction() == 'deduct_by_amount_spent') && $allow_redemptions ) {
+                // deduct a set qty of points per every given amount spent if this rule's conditions are met
+                $price = $product->getFinalPrice();
+                $points_to_transfer = $rule->getPointsAmount() * floor(round($price / $rule->getPointsAmountStep(), 5)) * - 1;
+                
+                if ( $rule->getPointsMaxQty() > 0 ) {
+                    if ( $points_to_transfer < ($rule->getPointsMaxQty() * - 1) ) {
+                        $points_to_transfer = $rule->getPointsMaxQty() * - 1;
+                    }
+                }
+            } else {
+                // whatever the Points Action is set to is invalid
+                // - this means no transfer of points
+                
+
+                Varien_Profiler::stop("TBT_Rewards:: Catalog points calculator");
+                return null;
+            }
+            
+            //@nelkaake Added on Sunday May 30, 2010: 
+            if ( $max_points_spent = $rule->getPointsMaxQty() * $qty ) {
+                if ( $points_to_transfer < 0 ) {
+                    if ( - $points_to_transfer > $max_points_spent ) $points_to_transfer = - $max_points_spent;
+                } else {
+                    if ( $points_to_transfer > $max_points_spent ) $points_to_transfer = $max_points_spent;
+                }
+            }
+            
+            Varien_Profiler::stop("TBT_Rewards:: Catalog points calculator");
+            return array(
+                'amount' => $points_to_transfer, 
+                'currency' => $rule->getPointsCurrencyId()
+            );
+        }
+        
+        Varien_Profiler::stop("TBT_Rewards:: Catalog points calculator");
+        return null;
+    }
 	
 	/**
 	 * Calculates the amount of points to be given or deducted from a customer's cart, given the
@@ -633,7 +593,7 @@ class TBT_Rewards_Helper_Transfer extends Mage_Core_Helper_Abstract {
 				// deduct a set qty of points per every given amount spent if this rule's conditions are met
 				// - this is a total price amongst ALL associated items, so add it up
 				$price = $this->getTotalAssociatedItemPrice ( $order_items, $rule->getId () );
-				$points_to_transfer = $rule->getPointsAmount () * floor ( $price / $rule->getPointsAmountStep () );
+				$points_to_transfer = $rule->getPointsAmount () * floor ( round($price / $rule->getPointsAmountStep (), 5) );
 				
 				if ($rule->getPointsMaxQty () > 0) {
 					if ($points_to_transfer > $rule->getPointsMaxQty ()) {
@@ -720,7 +680,7 @@ class TBT_Rewards_Helper_Transfer extends Mage_Core_Helper_Abstract {
 		$prices_include_tax = Mage::helper ( 'tax' )->priceIncludesTax ();
 		
 		foreach ( $order_items as $item ) {
-			if ($item->getParentItem ())
+			if ($this->_skipItemSumCalc($item))
 				continue;
 			
 		//@nelkaake Added on Friday June 11, 2010: 
@@ -759,6 +719,22 @@ class TBT_Rewards_Helper_Transfer extends Mage_Core_Helper_Abstract {
 		}
 		return $price;
 	}
+        
+                
+        /**
+	 * 
+	 * @param Mage_Sales_Model_Quote_Address_Item $item
+	 */
+	protected function _skipItemSumCalc($item) {
+	    if($item->getParentItem () ) {
+	        if(($item->getParentItem()->getProductType() != 'bundle')) {
+	            return true;
+	        }
+	    }
+	    return false;
+	}
+	
+        
 	
 	/**
 	 * Accumulates the profit of all items out of a list that are associated with a given rule.
@@ -789,6 +765,64 @@ class TBT_Rewards_Helper_Transfer extends Mage_Core_Helper_Abstract {
 		
 		return $profit;
 	}
+	
+	
+	
+	/**
+	 * Creates a customer point-transfer of any amount or currency.
+	 * @deprecated Use TBT_Rewards_Model_Transfer::revoke()
+	 *
+	 * @param  int $num_points    : Quantity of points to transfer: positive=>distribution, negative=>redemption
+	 * @param  int $currency_id   : The ID of the point currency used in this transfer
+	 * @param  int $reference_type: The type of action from which this transfer originates (Customer order, reviews, etc.)
+	 * @param  int $reference_id  :  The ID of the object from which this transfer originates (Order ID, etc.)
+	 * @param  int $rule_id       : The ID of the rule that allowed this transfer to be created... RULE MAY HAVE BEEN DISCONTINUED
+	 * @return boolean            : whether or not the point-transfer succeeded
+	 */
+	public function transferRevokedPoints($num_points, $currency_id, $reference_transfer_id, $customer_id) {
+		return ($this->createRevokedTransfer ( $num_points, $currency_id, $reference_transfer_id, $customer_id ) != 0);
+	}
+	
+	/**
+	 * Creates a customer point-transfer of any amount or currency.
+	 * @deprecated Use TBT_Rewards_Model_Transfer::revoke()
+	 *
+	 * @param  int $num_points    : Quantity of points to transfer: positive=>distribution, negative=>redemption
+	 * @param  int $currency_id   : The ID of the point currency used in this transfer
+	 * @param  int $reference_type: The type of action from which this transfer originates (Customer order, reviews, etc.)
+	 * @param  int $reference_id  :  The ID of the object from which this transfer originates (Order ID, etc.)
+	 * @param  int $rule_id       : The ID of the rule that allowed this transfer to be created... RULE MAY HAVE BEEN DISCONTINUED
+	 * @return boolean            : whether or not the point-transfer succeeded
+	 */
+	public function createRevokedTransfer($num_points, $currency_id, $reference_transfer_id, $customer_id) {
+		// ALWAYS ensure that we only give an integral amount of points
+		$num_points = floor ( $num_points );
+		
+		if ($num_points == 0) {
+			return 0;
+		}
+		
+		$transfer = Mage::getModel ( 'rewards/transfer' );
+		
+		// get the default starting status - usually Pending
+		if (! $transfer->setStatus ( null, TBT_Rewards_Model_Transfer_Status::STATUS_APPROVED )) {
+			// we tried to use an invalid status... is getInitialTransferStatusAfterReview() improper ??
+			return 0;
+		}
+		
+		$customer = Mage::getModel ( 'rewards/customer' )->load ( $customer_id );
+		if (($customer->getUsablePointsBalance ( $currency_id ) + $num_points) < 0) {
+			$error = $this->__ ( 'Not enough points for transaction. You have %s, but you need %s', Mage::getModel ( 'rewards/points' )->set ( $currency_id, $customer->getUsablePointsBalance ( $currency_id ) ), Mage::getModel ( 'rewards/points' )->set ( $currency_id, $num_points * - 1 ) );
+			throw new Exception ( $error );
+		}
+		
+		$original_transfer = Mage::getModel ( 'rewards/transfer' )->load ( $reference_transfer_id );
+		
+		$transfer->setId ( null )->setCurrencyId ( $currency_id )->setQuantity ( $num_points )->setCustomerId ( $customer_id )->setReferenceTransferId ( $reference_transfer_id )->setReasonId ( TBT_Rewards_Model_Transfer_Reason::REASON_SYSTEM_REVOKED )->setComments ( Mage::getStoreConfig ( 'rewards/transferComments/revoked' ), $original_transfer->getComments () )->save ();
+		
+		return $transfer->getId ();
+	}
+	
 	
 	/**
 	 * Fetches a cached shopping cart rule model

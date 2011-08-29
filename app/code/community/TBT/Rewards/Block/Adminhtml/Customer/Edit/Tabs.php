@@ -33,7 +33,7 @@
  * @author      Magento Core Team <core@magentocommerce.com>
  */
 class TBT_Rewards_Block_Adminhtml_Customer_Edit_Tabs extends Mage_Adminhtml_Block_Widget_Tabs {
-	
+    
 	public function __construct() {
 		parent::__construct ();
 		$this->setId ( 'customer_info_tabs' );

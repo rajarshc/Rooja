@@ -73,6 +73,7 @@ class TBT_Rewards_Block_Manage_Customer_Points_Grid extends Mage_Adminhtml_Block
 	
 	/**
 	 * If we should be using the customer points balance index table, this will join the index table to this grid collection
+	 * @note: TODO this is a copy from the class TBT_Rewards_Block_Manage_Transfer_Edit_Tab_Customer_Grid. We should be using a decorator design pattern here.
 	 * @param unknown_type $collection
 	 */
 	protected function _joinCustomerPointsIndex($collection=null) {

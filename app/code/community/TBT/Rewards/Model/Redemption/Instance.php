@@ -103,7 +103,6 @@ class TBT_Rewards_Model_Redemption_Instance extends Varien_Object {
 		$product_price = $cc_ratio * $product_price;
 		
 		$effect = $this->_help ()->amplifyEffect ( $product_price, $applicable_rule [self::POINTS_EFFECT], $this->getUses () );
-		print_r ( $applicable_rule [self::POINTS_EFFECT] . "|price=$product_price" );
 		
 		//print_r("{$this->getUses()} uses of {$applicable_rule['effect']} on {$product_price} gives effect {$effect}. <BR />");
 		

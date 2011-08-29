@@ -60,6 +60,33 @@ class TBT_Rewards_Helper_Version extends Mage_Core_Helper_Abstract {
 		}
 		return false;
 	}
+
+	/**
+	 * True if the base version is at least the verison specified without converting version numbers to other versions of Magento.
+	 *
+	 * @param string $version
+	 * @param unknown_type $task
+	 * @return boolean
+	 */
+	public function isRawVerAtLeast($version) {
+		// convert Magento Enterprise, Professional, Community to a base version
+		$mage_base_version = Mage::getVersion ();
+		
+		if (version_compare ( $mage_base_version, $version, '>=' )) {
+			return true;
+		}
+		return false;
+	}
+	
+	/**
+	 * True if the base version is at least the verison specified without checking 
+	 * @param string $version
+	 */
+	public function isEnterpriseAtLeast($version) {
+	    if(!$this->isMageEnterprise()) return false;
+	    
+	    return $this->isRawVerAtLeast($version);
+	}
 	
 	/**
 	 *
@@ -107,6 +134,13 @@ class TBT_Rewards_Helper_Version extends Mage_Core_Helper_Abstract {
 	}
 	
 	/**
+	 * True if the version of Magento currently being rune is Enterprise Edition
+	 */
+	public function isMageEnterprise() {
+	    return Mage::getConfig ()->getModuleConfig ( 'Enterprise_Enterprise' ) && Mage::getConfig ()->getModuleConfig ( 'Enterprise_AdminGws' ) && Mage::getConfig ()->getModuleConfig ( 'Enterprise_Checkout' ) && Mage::getConfig ()->getModuleConfig ( 'Enterprise_Customer' );
+	}
+	
+	/**
 	 * attempt to convert an Enterprise, Professional, Community magento version number to its compatable Community version
 	 * 
 	 * @param string $task fix problems where direct version numbers cant be changed to a community release without knowing the intent of the task
@@ -116,11 +150,11 @@ class TBT_Rewards_Helper_Version extends Mage_Core_Helper_Abstract {
 		/* Enterprise - 
          * 1.9 | 1.8 | 1.5
          */
-		if (Mage::getConfig ()->getModuleConfig ( 'Enterprise_Enterprise' ) && Mage::getConfig ()->getModuleConfig ( 'Enterprise_AdminGws' ) && Mage::getConfig ()->getModuleConfig ( 'Enterprise_Checkout' ) && Mage::getConfig ()->getModuleConfig ( 'Enterprise_Customer' )) {
+		if ($this->isMageEnterprise()) {
 			if (version_compare ( $version, '1.9.1', '>=' ))
 				return '1.5.0';
 			if (version_compare ( $version, '1.9.0', '>=' ))
-				return '1.4.0';
+				return '1.4.2';
 			if (version_compare ( $version, '1.8.0', '>=' ))
 				return '1.3.1';
 			return '1.3.1';

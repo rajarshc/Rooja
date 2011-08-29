@@ -32,7 +32,7 @@
  * 
  * @category   [TBT]
  * @package    [TBT_Rewards]
- * @copyright  Copyright (c) 2009 Web Development Canada (http://www.wdca.ca)
+ * @copyright  Copyright (c) 2011 WDCA (http://www.wdca.ca)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -48,13 +48,34 @@ if(class_exists('AW_Ajaxcartpro_Model_Observer')) {
     
 class TBT_Rewards_Model_Ajaxcartpro_Observer extends AW_Ajaxcartpro_Model_Observer {
 	
+    /**
+     * @override $compare_version::addToCartEvent to make sure that Sweet TOoth 
+     * points information is properly submitted with the product submit form.
+     * @param unknown_type $observer
+     */
 	public function addToCartEvent($observer) {
+	    // In version 2.2.3+ this is not needed.
+	    if($this->_awVerAtLeast('2.2.3')) {
+	        return parent::addToCartEvent ( $observer );
+	    }
 		// Triger the Sweet Tooth redemption catalogrule observer
 		$st_obs = new TBT_Rewards_Model_Catalogrule_Observer ();
 		$st_obs->appendPointsQuote ( $observer );
 		
 		// Trigger AheadWork's code
 		parent::addToCartEvent ( $observer );
+	}
+	
+	/**
+	 * Return true if the version of AW Ajax Cart Pro is at least $compare_version
+	 * @param string $compare_version
+	 */
+	protected function _awVerAtLeast($compare_version) {
+	    $aw_version = (string) Mage::getConfig()->getNode('modules/AW_Ajaxcartpro/version');
+	    
+	    $version_match = version_compare($aw_version, $compare_version, '>=');
+	    
+	    return $version_match; 
 	}
 
 }

@@ -77,7 +77,10 @@ class TBT_Rewards_Block_Manage_Promo_Catalog_Edit_Tab_Labels extends Mage_Adminh
 		$rule = $this->_getRule ();
 		$form = new Varien_Data_Form ();
 		$form->setHtmlIdPrefix ( 'rule_' );
+		
 		$fieldset = $form->addFieldset ( 'default_label_fieldset', array ('legend' => Mage::helper ( 'catalogrule' )->__ ( 'Default Label' ) ) );
+		Mage::getSingleton('rewards/wikihints')->addWikiHint($fieldset, "Catalog Spending Rule: Default Label" );
+		
 		$labelCollection = Mage::getModel ( 'rewards/catalogrule_label' )->getRuleLabels ( $rule );
 		$labels = array ();
 		foreach ( $labelCollection as $label ) {
@@ -86,6 +89,8 @@ class TBT_Rewards_Block_Manage_Promo_Catalog_Edit_Tab_Labels extends Mage_Adminh
 		$fieldset->addField ( 'store_default_label', 'text', array ('name' => 'store_labels[0]', 'required' => false, 'label' => Mage::helper ( 'catalogrule' )->__ ( 'Default Rule Label for All Store Views' ), 'value' => isset ( $labels [0] ) ? $labels [0] : '' ) );
 		
 		$fieldset = $form->addFieldset ( 'store_labels_fieldset', array ('legend' => Mage::helper ( 'catalogrule' )->__ ( 'Store View Specific Labels' ), 'table_class' => 'form-list stores-tree' ) );
+		Mage::getSingleton('rewards/wikihints')->addWikiHint($fieldset, "Catalog Spending Rule: Store View Specific Labels" );
+		
 		foreach ( Mage::app ()->getWebsites () as $website ) {
 			$fieldset->addField ( "w_{$website->getId()}_label", 'note', array ('label' => $website->getName (), 'fieldset_html_class' => 'website' ) );
 			foreach ( $website->getGroups () as $group ) {

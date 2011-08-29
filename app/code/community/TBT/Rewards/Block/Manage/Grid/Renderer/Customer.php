@@ -79,7 +79,7 @@ class TBT_Rewards_Block_Manage_Grid_Renderer_Customer extends Mage_Adminhtml_Blo
 	 */
 	protected function _getCustomer($cid) {
 		if (isset ( $this->_customers [$cid] )) {
-			return $this->_customers [$cid];
+			return Mage::getModel('rewards/customer')->getRewardsCustomer($this->_customers [$cid]);
 		}
 	    
 		$customer = Mage::getModel ( 'rewards/customer' )->load ( $cid );

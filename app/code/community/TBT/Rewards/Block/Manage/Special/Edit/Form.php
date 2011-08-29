@@ -55,6 +55,27 @@ class TBT_Rewards_Block_Manage_Special_Edit_Form extends Mage_Adminhtml_Block_Wi
 		$form = new Varien_Data_Form ( array ('id' => 'edit_form', 'action' => $this->getData ( 'action' ), 'method' => 'post' ) );
 		$form->setUseContainer ( true );
 		$this->setForm ( $form );
+		
+		/*$this->setChild('form-after', $this->getLayout()->createBlock('adminhtml/widget_form_element_dependence')
+		    ->addFieldMap(
+		        'rule_points_conditions',
+		        'points_conditions')
+		    ->addFieldMap(
+		        'rule_is_onhold_enabled',
+		        'is_onhold_enabled')
+            ->addFieldMap(
+                'rule_onhold_duration',
+                'onhold_duration')
+            ->addFieldDependence(
+                'is_onhold_enabled',
+                'points_conditions',
+                'customer_sign_up')
+            ->addFieldDependence(
+                'onhold_duration',
+                'is_onhold_enabled',
+                true)
+        );*/
+		
 		return parent::_prepareForm ();
 	}
 

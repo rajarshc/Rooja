@@ -43,17 +43,18 @@ class TBT_Rewards_Model_Tag_Observer extends Varien_Object {
 	 * @return TBT_Rewards_Model_Tag_Observer
 	 */
 	public function afterSaveTag(Varien_Event_Observer $o) {
-		$tag = $this->_wrapperModel->wrap ( $o->getEvent ()->getDataObject () );
-		//If the tag becomes approved, approve all associated pending tranfser
-		if ($this->oldData ['status'] == Mage_Tag_Model_Tag::STATUS_PENDING && $tag->getTag()->getStatus() == Mage_Tag_Model_Tag::STATUS_APPROVED) {
-			$tag->approvePendingTransfers ();
-		
-		//If the tag is new (hence not having an id before) get applicable rules, 
-		//and create a pending transfer for each one
-		} elseif ($tag->getTag ()->getTagId () && ! isset ( $this->oldData ['tag_id'] )) {
-			$tag->ifNewTag ();
-		}
-		return $this;
+            $tag = $this->_wrapperModel->wrap ( $o->getEvent ()->getDataObject () );
+            //If the tag becomes approved, approve all associated pending tranfser
+            if ($this->oldData ['status'] == Mage_Tag_Model_Tag::STATUS_PENDING && $tag->getTag()->getStatus() == Mage_Tag_Model_Tag::STATUS_APPROVED) {
+                $tag->approvePendingTransfers ();
+            } elseif($this->oldData ['status'] == Mage_Tag_Model_Tag::STATUS_PENDING && $tag->getTag()->getStatus() == Mage_Tag_Model_Tag::STATUS_DISABLED) {
+                $tag->discardPendingTransfers ();
+            //If the tag is new (hence not having an id before) get applicable rules, 
+            //and create a pending transfer for each one
+            } elseif ($tag->getTag ()->getTagId () && ! isset ( $this->oldData ['tag_id'] )) {
+                $tag->ifNewTag ();
+            }
+            return $this;
 	}
 	
 	/**

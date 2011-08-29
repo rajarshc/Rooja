@@ -165,12 +165,12 @@ class TBT_Rewards_Block_Product_Price extends Mage_Catalog_Block_Product_Price {
 	/**
 	 * Fetches the current session customer, or false if the customer is not logged in.
 	 *
-	 * @return TBT_Rewards_Model_Customer the customer model or false if no customer is logged in.
+	 * @return TBT_Rewards_Model_Customer|false
 	 */
 	public function getCurrentCustomer() {
 		if ($this->customer == null) {
 			if ($this->_getRS ()->isCustomerLoggedIn ()) {
-				$this->customer = $this->_getRS ()->getSessionCustomer ();
+				$this->customer = Mage::getModel('rewards/customer')->getRewardsCustomer($this->_getRS()->getSessionCustomer());
 				if (! $this->customer->getId ()) {
 					$this->customer = false;
 				}

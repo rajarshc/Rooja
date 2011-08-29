@@ -58,7 +58,7 @@ class TBT_Rewards_Model_Observer_Sales_Order_Invoice_Pay {
 		if (Mage::helper ( 'rewards/config' )->shouldApprovePointsOnInvoice ()) {
 			$orderTransfers = Mage::getModel ( 'rewards/transfer' )->getTransfersAssociatedWithOrder ( $order->getId () );
 			foreach ( $orderTransfers as $transfer ) {
-				if ($transfer->getStatus () == TBT_Rewards_Model_Transfer_Status::STATUS_PENDING) {
+				if ($transfer->getStatus () == TBT_Rewards_Model_Transfer_Status::STATUS_PENDING_EVENT) {
 					$transfer->setStatus ( $transfer->getStatus (), TBT_Rewards_Model_Transfer_Status::STATUS_APPROVED );
 					$transfer->save ();
 				}

@@ -17,11 +17,11 @@ class TBT_Rewards_Model_Customer_Indexer_Observer extends Varien_Object {
     	    
     		$transfer = $observer->getEvent ()->getDataObject ();
     	    
-    		Mage::helper('rewards/debug_profiler')->start('TBT_Rewards::Customer Points Index - Update usable poitns balance.');
+    		Mage::helper('rewards/debug_profiler')->start('TBT_Rewards::Customer Points Index - Update usable points balance.');
     		
     		Mage::getSingleton ( 'index/indexer' )->processEntityAction ( $transfer, 'rewards/transfer', Mage_Index_Model_Event::TYPE_SAVE );
     		
-    		Mage::helper('rewards/debug_profiler')->stop('"TBT_Rewards::Customer Points Index - Update usable poitns balance.');
+    		Mage::helper('rewards/debug_profiler')->stop('"TBT_Rewards::Customer Points Index - Update usable points balance.');
 	    } catch(Exception $e) {
 	        Mage::helper('rewards/debug')->logException($e);
 	    }
@@ -34,39 +34,8 @@ class TBT_Rewards_Model_Customer_Indexer_Observer extends Varien_Object {
 	 * @return TBT_Rewards_Model_Customer_Indexer_Points
 	 */
 	public function updateIndexAfterOrderSave($observer) {
-	    try {
-    	    if(!Mage::helper('rewards/customer_points_index')->canIndex()) {
-    	        //shouldn't be using the index 
-    	        return $this;
-    	    }
-    	    
-    		$order = $observer->getEvent ()->getDataObject ();
-    		
-    		if(!$order) {
-    		    // For some reason the order model was null, so get out of here.
-    		    Mage::helper('rewards/debug')->error("Tried to update points balance in the observer that updates customer points balances, but the order variable was empty so the process was aborted.");
-    		    return $this;
-    		}
-    		
-    		$transfer = Mage::getModel ( 'rewards/transfer' )->getTransfersAssociatedWithOrder ( $order->getId () )->getFirstItem ();
-    		
-    		if(!$transfer || !$transfer->getCustomerId()) {
-    		    // No transfer existed (got null for first order transfer item), and/or customer ID is not yet associated with 
-    		    // transfer model, so the update index function after the order saves was aborted.
-    		    Mage::helper('rewards/debug')->error("No transfer existed (got null for first order transfer item), and/or customer ID is not yet associated with transfer model, so the update index function after the order saves was aborted.");
-    		    return $this;
-    		}
-    		
-    		Mage::helper('rewards/debug_profiler')->start('TBT_Rewards::Customer Points Index - Update after order save.');
-    		
-    		Mage::getSingleton ( 'index/indexer' )->processEntityAction ( 
-    		    $transfer, 'rewards/transfer', Mage_Index_Model_Event::TYPE_SAVE );
-    		    
-    		Mage::helper('rewards/debug_profiler')->stop('TBT_Rewards::Customer Points Index - Update after order save.');
-	    
-	    } catch(Exception $e) {
-	        Mage::helper('rewards/debug')->logException($e);
-	    }
+    	 // @nelkaake We don't need to update the index after an order save since it will update after any points transfer changes.
+    	 //			  I'm removing this because I don't want to delay the order creation method at all.
 		return $this;
 	}
 
@@ -82,11 +51,14 @@ class TBT_Rewards_Model_Customer_Indexer_Observer extends Varien_Object {
     	        return $this;
     	    }
     	    
+    	    $event = $observer->getEvent();
+    	    
     	    $session_customer = $this->_getRewardsCustomer($observer->getEvent()->getOrder());
     	
     		if(!$session_customer || !$session_customer->getId()) {
     		    // Only if a customer model exists and that customer has been already created.
-    		    Mage::helper('rewards/debug')->error("Customer model deos not exist in observer or that customer has not been saved yet, so aborted index update after order save function.");
+                //TODO tempoarily edited: Mage::helper('rewards/customer_points_index')->error();
+    		    Mage::helper('rewards/debug')->error("Customer model does not exist in observer or that customer has not been saved yet.  This caused the points index to be to become out of sync and disabled.");
     		    return $this;
     		}
     		
@@ -123,7 +95,8 @@ class TBT_Rewards_Model_Customer_Indexer_Observer extends Varien_Object {
     	
     		if(!$customer || !$customer->getId()) {
     		    // Only if a customer model exists and that customer has been already created.
-    		    Mage::helper('rewards/debug')->error("Customer model deos not exist in observer or that customer has not been saved yet, so aborted index update after order save function.");
+                    Mage::helper('rewards/customer_points_index')->error();
+    		    Mage::helper('rewards/debug')->error("Customer model does not exist in observer or that customer has not been saved yet.  This caused the points index to be to become out of sync and disabled.");
     		    return $this;
     		}
     		
@@ -153,20 +126,25 @@ class TBT_Rewards_Model_Customer_Indexer_Observer extends Varien_Object {
 	
          // If the customer exists in the order, use that. If not, use the session customer from the rewards model.
         if ($order) {
-            if( $order->getCustomer()) {
+            Mage::helper('rewards/debug')->log("Got order");
+            if( $order ->getCustomer() ) {
                 // The index session dispatch requires a rewards model, so we should load that.
                 $session_customer = $order->getCustomer();
-                
+                Mage::helper('rewards/debug')->log("Sess cust =  {$session_customer->getId()}");
                 if (! ($session_customer instanceof TBT_Rewards_Model_Customer)) {
-                    $session_customer = Mage::getModel('rewards/customer')->load( $session_customer->getCustomerId() );
+                    $session_customer = Mage::getModel('rewards/customer')->getRewardsCustomer( $session_customer );
                 }
+                Mage::helper('rewards/debug')->log("ORder does not have ses cust, so reloading one from order id {$order->getCustomerId()} to give =  {$session_customer->getId()}");
             } else {
                 $session_customer = Mage::getModel('rewards/customer')->load( $order->getCustomerId() );
+                Mage::helper('rewards/debug')->log("ORder does not have ses cust, so reloading one from order id {$order->getCustomerId()} to give =  {$session_customer->getId()}");
             }
         } else {
             $session_customer = $this->_getRewardsSess()->getSessionCustomer();
+            Mage::helper('rewards/debug')->log("ORder given not valid");
         }
         
+        Mage::helper('rewards/debug')->log("Sess cust =  {$session_customer->getId()}");
         return $session_customer;
 	}
 	

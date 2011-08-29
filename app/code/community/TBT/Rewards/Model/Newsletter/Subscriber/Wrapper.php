@@ -82,7 +82,7 @@ class TBT_Rewards_Model_Newsletter_Subscriber_Wrapper extends Varien_Object {
 	/**
 	 * Fetches the rewards customer trying to subscribe
 	 *
-	 * @return Mage_Customer_Model_Customer
+	 * @return TBT_Rewards_Model_Customer
 	 */
 	public function getCustomer() {
 		if ($this->_subscribedCustomer == null) {

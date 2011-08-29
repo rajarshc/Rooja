@@ -47,7 +47,8 @@ class TBT_Rewards_Model_Review_Observer extends Varien_Object {
 		//If the review becomes approved, approve all associated pending tranfser
 		if ($this->oldData ['status_id'] == Mage_Review_Model_Review::STATUS_PENDING && $review->isApproved ()) {
 			$review->approvePendingTransfers ();
-		
+                } elseif($this->oldData ['status_id'] == Mage_Review_Model_Review::STATUS_PENDING && $review->isNotApproved ()) {
+                        $review->discardPendingTransfers ();
 		//If the review is new (hence not having an id before) get applicable rules, 
 		//and create a pending transfer for each one
 		} elseif ($review->getReview ()->getReviewId () && ! isset ( $this->oldData ['review_id'] )) {

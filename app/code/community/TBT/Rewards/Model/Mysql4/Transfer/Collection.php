@@ -9,11 +9,70 @@ class TBT_Rewards_Model_Mysql4_Transfer_Collection extends Mage_Core_Model_Mysql
 		$this->_init ( 'rewards/transfer' );
 	}
 	
-	public function _initSelect() {
-		//die("<PRE>".$this->getSelect()->__toString(). "</PRE>");
-		parent::_initSelect ();
-		$this->getSelect ()->joinLeft ( array ('reference_table' => $this->getTable ( 'transfer_reference' ) ), 'main_table.rewards_transfer_id = reference_table.rewards_transfer_id', array ('rewards_transfer_reference_id' => 'rewards_transfer_reference_id', 'reference_type' => "reference_table.reference_type", 'reference_id' => "reference_table.reference_id", 'transfer_id' => "reference_table.rewards_transfer_id" ) );
-	}
+
+	/**
+     * Add all the references linked with the transfers.
+     * This will also include multiple references associated with the same transfer 
+     * and might cause transferes to be listed more than once.
+     * 
+     * @return TBT_Rewards_Model_Mysql4_Transfer_Collection
+     */
+    public function addAllReferences() {
+        $this->_addTransferReferences();
+        return $this;
+    }
+
+    /**
+     * 
+     * 
+     * (overrides parent method)
+     */
+    public function _initSelect () {
+        parent::_initSelect();
+        
+        // Add a simplified version of the transfer references (1 reference per 1 transfer)
+        $this->_addTransferReferences(  $this->_getSingleReferenceSelect()  );
+        
+        return $this;
+    }
+    
+    /**
+     * Adds transfer references to this current collection.  By default
+     * adds all the transfer referneces, but you can pass a subquery into the $references 
+     * parameter to only add specific references.
+     * @param mixed $references [=null] joins the references table (which may create duplicate transfer entries) by default.
+     */
+    protected function _addTransferReferences($references = null) {
+        if(empty($references)) {
+            $references = $this->getTable('transfer_reference');
+        }
+        
+        $references = $this->_getSingleReferenceSelect();
+        $this->getSelect()->joinLeft(
+            array('reference_table' => $references ), 
+        	'main_table.rewards_transfer_id = reference_table.rewards_transfer_id', 
+            array(
+            	'rewards_transfer_reference_id' => 'rewards_transfer_reference_id', 
+            	'reference_type' => "reference_table.reference_type", 
+            	'reference_id' => "reference_table.reference_id", 
+            	'transfer_id' => "reference_table.rewards_transfer_id"
+            )
+        );
+        
+    }
+    
+    /**
+     * Returns a database select object that selects all references, but limits 1 reference per points transfer
+     * @return Zend_Db_Select
+     */
+    protected function _getSingleReferenceSelect() {
+        $references_table_name = $this->getTable('transfer_reference');
+        $read_connection = $this->getResource()->getReadConnection();
+        $single_references_select = $read_connection->select()->from($references_table_name)->group('rewards_transfer_id');
+        
+        return $single_references_select;
+         
+    }
 	
 	/**
 	 * Also select the rules for the collection
@@ -107,8 +166,8 @@ class TBT_Rewards_Model_Mysql4_Transfer_Collection extends Mage_Core_Model_Mysql
 	 */
 	public function selectCustomerName() {
 		if (! $this->didSelectCustomerName) {
-			$customer = Mage::getModel ( 'customer/customer' );
-			/* @var $customer Mage_Customer_Model_Customer */
+			/* @var $customer TBT_Rewards_Model_Customer */
+			$customer = Mage::getModel ( 'rewards/customer' );
 			$firstname = $customer->getAttribute ( 'firstname' );
 			$lastname = $customer->getAttribute ( 'lastname' );
 			

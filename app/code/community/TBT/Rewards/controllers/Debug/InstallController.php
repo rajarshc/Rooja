@@ -57,9 +57,9 @@ class TBT_Rewards_Debug_InstallController extends TBT_Rewards_Debug_AbstractCont
     
     public function _clearDbInstallMemory($conn, $code) {
     	
-        
+        $table_prefix = Mage::getConfig()->getTablePrefix();
         $conn->query("
-			DELETE FROM    `core_resource`  
+			DELETE FROM    `{$table_prefix}core_resource`  
 			WHERE    `code` = '{$code}'
 			;
         ");

@@ -45,36 +45,12 @@
  */
 class TBT_Rewards_Block_Sales_Order_Print_Points extends TBT_Rewards_Block_Sales_Order_Points {
 	
-	/**
-	 *
-	 */
-	protected $_source;
-	
-	/**
-	 * Check if we nedd display full tax total info
-	 *
-	 * @return bool
-	 */
-	public function displayFullSummary() {
-		return $this->_config->displaySalesFullSummary ( $this->getOrder ()->getStore () );
+	public function getTotalsBlockName() {
+	    return 'order_points';
+	}
+	public function getTotalsCode() {
+	    return 'rewards';
 	}
 	
-	/**
-	 * Get data (totals) source model
-	 *
-	 * @return Varien_Object
-	 */
-	public function getSource() {
-		return $this->_source;
-	}
-	
-	/**
-	 * Get order store object
-	 *
-	 * @return Mage_Core_Model_Store
-	 */
-	public function getStore() {
-		return $this->_order->getStore ();
-	}
 
 }

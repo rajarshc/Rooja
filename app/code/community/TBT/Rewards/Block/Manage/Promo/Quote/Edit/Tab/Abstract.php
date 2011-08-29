@@ -57,11 +57,14 @@ abstract class TBT_Rewards_Block_Manage_Promo_Quote_Edit_Tab_Abstract extends Ma
 		if ($this->_isRedemptionType ()) {
 			$field_title = 'Update prices using the following information';
 			$actions = array (// 'by_fixed' => Mage::helper('rewards')->__('Fixed amount discount'),
-			'cart_fixed' => Mage::helper ( 'rewards' )->__ ( 'Fixed amount discount for whole cart' ), 'by_percent' => Mage::helper ( 'rewards' )->__ ( 'Percentage amount discount for whole cart' ) )//'buy_x_get_y' => Mage::helper('rewards')->__('Buy X get Y free (discount amount is Y) [in development]'),
-			;
+				'cart_fixed' => Mage::helper ( 'rewards' )->__ ( 'Fixed amount discount for whole cart' ), 
+				'by_percent' => Mage::helper ( 'rewards' )->__ ( 'Percentage amount discount for whole cart' ) 
+			);//'buy_x_get_y' => Mage::helper('rewards')->__('Buy X get Y free (discount amount is Y) [in development]'),
+			
 			$apply_caption = Mage::helper ( 'rewards' )->__ ( 'Discount Style' );
 			
 			$fieldset = $form->addFieldset ( 'action_fieldset', array ('legend' => Mage::helper ( 'rewards' )->__ ( $field_title ) ) );
+		    Mage::getSingleton('rewards/wikihints')->addWikiHint($fieldset, "Shopping Cart Spending Rule - Actions - Update prices using the following information" );
 			
 			$fieldset->addField ( 'simple_action', 'select', array ('label' => $apply_caption, 'name' => 'simple_action', 'options' => $actions, 'onchange' => 'toggleDiscountActionsSelect(this.value)' ) );
 			
@@ -83,12 +86,39 @@ abstract class TBT_Rewards_Block_Manage_Promo_Quote_Edit_Tab_Abstract extends Ma
 			$disabled_field_msg_html = "<div class='disabled-field-msg' style='font-style: italic; font-size: 10px;'>" . $this->__ ( "This feature has been temporarily disabled for this version of Sweet Tooth in ensure quality.  It will be re-enabled in the next release of Sweet Tooth." ) . "</div>";
 			//@nelkaake -a 16/11/10: 
 			if ($this->_isRedemptionType () && Mage::helper ( 'rewards' )->isMageVersionAtLeast ( '1.4' )) {
-				$fieldset->addField ( 'apply_to_shipping', 'select', array ('label' => Mage::helper ( 'rewards' )->__ ( 'Apply to Shipping Amount' ), 'title' => Mage::helper ( 'rewards' )->__ ( 'Apply to Shipping Amount' ), 'name' => 'apply_to_shipping', 'values' => Mage::getSingleton ( 'adminhtml/system_config_source_yesno' )->toOptionArray (), 'after_element_html' => $disabled_field_msg_html, 'disabled' => true ) );
+			    
+			    //@nelkaake hidden these fields. Did not remove them in case the Magento default values are not adequate.
+				$fieldset->addField ( 
+					'apply_to_shipping', 
+					'hidden', array (
+						'label' => Mage::helper ( 'rewards' )->__ ( 'Apply to Shipping Amount' ), 
+						'title' => Mage::helper ( 'rewards' )->__ ( 'Apply to Shipping Amount' ), 
+						'name' => 'apply_to_shipping', 
+						'values' => Mage::getSingleton ( 'adminhtml/system_config_source_yesno' )->toOptionArray (), 
+						'disabled' => true, 
+						'value' => 0 
+				    )
+				);
 			}
 			
-			$fieldset->addField ( 'simple_free_shipping', 'select', array ('label' => Mage::helper ( 'rewards' )->__ ( 'Free shipping' ), 'title' => Mage::helper ( 'rewards' )->__ ( 'Free shipping' ), 'name' => 'simple_free_shipping', 'after_element_html' => $disabled_field_msg_html, 'disabled' => true, 'options' => array (0 => Mage::helper ( 'rewards' )->__ ( 'No' ), Mage_SalesRule_Model_Rule::FREE_SHIPPING_ITEM => Mage::helper ( 'rewards' )->__ ( 'For items matching the conditions below' ), Mage_SalesRule_Model_Rule::FREE_SHIPPING_ADDRESS => Mage::helper ( 'rewards' )->__ ( 'For the whole cart' ) ) ) );
+			//@nelkaake hidden these fields. Did not remove them in case the Magento default values are not adequate.
+			$fieldset->addField ( 'simple_free_shipping', 
+				'hidden', array (
+					'label' => Mage::helper ( 'rewards' )->__ ( 'Free shipping' ), 
+					'title' => Mage::helper ( 'rewards' )->__ ( 'Free shipping' ), 
+					'name' => 'simple_free_shipping', 
+					'disabled' => true, 
+					'options' => array (
+			            0 => Mage::helper ( 'rewards' )->__ ( 'No' ), 
+			            Mage_SalesRule_Model_Rule::FREE_SHIPPING_ITEM => Mage::helper ( 'rewards' )->__ ( 'For items matching the conditions below' ), 
+			            Mage_SalesRule_Model_Rule::FREE_SHIPPING_ADDRESS => Mage::helper ( 'rewards' )->__ ( 'For the whole cart' ) 
+			         ),
+			         'value' => 0 
+			     ) 
+			);
 			
-			$fieldset->addField ( 'stop_rules_processing', 'select', array ('label' => Mage::helper ( 'rewards' )->__ ( 'Stop further rules processing' ), 'title' => Mage::helper ( 'rewards' )->__ ( 'Stop further rules processing' ), 'name' => 'stop_rules_processing', 'options' => array ('1' => Mage::helper ( 'rewards' )->__ ( 'Yes' ), '0' => Mage::helper ( 'rewards' )->__ ( 'No' ) ) ) );
+			$stop_rules_processing_field = $fieldset->addField ( 'stop_rules_processing', 'select', array ('label' => Mage::helper ( 'rewards' )->__ ( 'Stop further rules processing' ), 'title' => Mage::helper ( 'rewards' )->__ ( 'Stop further rules processing' ), 'name' => 'stop_rules_processing', 'options' => array ('1' => Mage::helper ( 'rewards' )->__ ( 'Yes' ), '0' => Mage::helper ( 'rewards' )->__ ( 'No' ) ) ) );
+		    Mage::getSingleton('rewards/wikihints')->addWikiHint($stop_rules_processing_field, "Shopping Cart Spending Rule - Actions - Stop Further Rules Processing" );
 		
 		} else {
 		
@@ -112,7 +142,9 @@ abstract class TBT_Rewards_Block_Manage_Promo_Quote_Edit_Tab_Abstract extends Ma
 		
 		$renderer->setNewChildUrl ( $this->getUrl ( '*/manage_promo_quote/newActionHtml/form/rule_actions_fieldset' ) );
 		
-		$fieldset = $form->addFieldset ( 'actions_fieldset', array ('legend' => Mage::helper ( 'rewards' )->__ ( 'Apply the rule actions only to cart items matching the following conditions (leave blank for all items)' ) . '<div id="NoSupportNotice"></div>' ) )->setRenderer ( $renderer );
+		$fieldset = $form->addFieldset ('actions_fieldset', array ('legend' => Mage::helper ( 'rewards' )->__ ( 'Apply the rule actions only to cart items matching the following conditions (leave blank for all items)' ) . '<div id="NoSupportNotice" style="display: inline-block"></div>' ) )->setRenderer ( $renderer );
+		
+		Mage::getSingleton('rewards/wikihints')->addWikiHint($fieldset, "How to apply the rule actions to a subset of products" );
 		
 		$fieldset->addField ( 'actions', 'text', array ('name' => 'actions', 'label' => Mage::helper ( 'rewards' )->__ ( 'Apply to' ), 'title' => Mage::helper ( 'rewards' )->__ ( 'Apply to' ), 'required' => true ) )->setRule ( $model )->setRenderer ( Mage::getBlockSingleton ( 'rule/actions' ) );
 		
@@ -132,7 +164,14 @@ abstract class TBT_Rewards_Block_Manage_Promo_Quote_Edit_Tab_Abstract extends Ma
 		}
 		$fieldset = $form->addFieldset ( 'points_action_fieldset', array ('legend' => $field_caption ) );
 		
-		$fieldset->addField ( 'points_action', 'select', array ('label' => $action_caption, 'name' => 'points_action', 'options' => $this->_getPointsActionOptions (), 'onchange' => 'toggleActionsSelect(this.value)' ) );
+		
+		if ($this->_isRedemptionType ()) {
+		    Mage::getSingleton('rewards/wikihints')->addWikiHint($fieldset, "Shopping Cart Spending Rule - Actions" );
+		} else {
+		    Mage::getSingleton('rewards/wikihints')->addWikiHint($fieldset, "Shopping Cart Earning Rule - Actions" );
+		}
+		
+		$pointsActionField = $fieldset->addField ( 'points_action', 'select', array ('label' => $action_caption, 'name' => 'points_action', 'options' => $this->_getPointsActionOptions (), 'onchange' => 'toggleActionsSelect(this.value)' ) );
 		
 		// SETUP OUR CURRENCY SELECTION
 		$currencyData = Mage::helper ( 'rewards/currency' )->getAvailCurrencies ();
@@ -157,7 +196,15 @@ abstract class TBT_Rewards_Block_Manage_Promo_Quote_Edit_Tab_Abstract extends Ma
 		
 		$fieldset->addField ( 'points_qty_step', 'text', array ('name' => 'points_qty_step', 'label' => Mage::helper ( 'rewards' )->__ ( 'Quantity Step (Z)' ) ) );
 		
-		$fieldset->addField ( 'points_max_qty', 'text', array ('name' => 'points_max_qty', 'label' => Mage::helper ( 'rewards' )->__ ( $points_max_qty_caption ) ) );
+		$points_max_qty_field = $fieldset->addField ( 'points_max_qty', 'text', array ('name' => 'points_max_qty', 'label' => Mage::helper ( 'rewards' )->__ ( $points_max_qty_caption ) ) );
+		
+	
+		if ($this->_isRedemptionType ()) {
+		    Mage::getSingleton('rewards/wikihints')->addWikiHint($points_max_qty_field, "Shopping Cart Points Spending Rule: Maximum Distributed Points" );
+		} else {
+		    Mage::getSingleton('rewards/wikihints')->addWikiHint($points_max_qty_field, "Shopping Cart Points Earning Rule: Maximum Distributed Points" );
+		}
+		
 		
 		return $fieldset;
 	}

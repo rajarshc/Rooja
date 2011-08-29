@@ -90,7 +90,8 @@ class TBT_Rewards_Block_Manage_Promo_Catalog_Edit_Tab_Main extends Mage_Adminhtm
 		$fieldset->addField ( 'from_date', 'date', array ('name' => 'from_date', 'label' => Mage::helper ( 'catalogrule' )->__ ( 'From Date' ), 'title' => Mage::helper ( 'catalogrule' )->__ ( 'From Date' ), 'image' => $this->getSkinUrl ( 'images/grid-cal.gif' ), 'input_format' => Varien_Date::DATE_INTERNAL_FORMAT, 'format' => $dateFormatIso ) );
 		$fieldset->addField ( 'to_date', 'date', array ('name' => 'to_date', 'label' => Mage::helper ( 'catalogrule' )->__ ( 'To Date' ), 'title' => Mage::helper ( 'catalogrule' )->__ ( 'To Date' ), 'image' => $this->getSkinUrl ( 'images/grid-cal.gif' ), 'input_format' => Varien_Date::DATE_INTERNAL_FORMAT, 'format' => $dateFormatIso ) );
 		
-		$fieldset->addField ( 'sort_order', 'text', array ('name' => 'sort_order', 'label' => Mage::helper ( 'catalogrule' )->__ ( 'Priority' ) ) );
+		$element = $fieldset->addField ( 'sort_order', 'text', array ('name' => 'sort_order', 'label' => Mage::helper ( 'catalogrule' )->__ ( 'Priority' ) ) );
+		Mage::getSingleton('rewards/wikihints')->addWikiHint($element, "Rule Priority", null, $this->__("Get help with rule priorities."));
 		
 		$form->setValues ( $model->getData () );
 		

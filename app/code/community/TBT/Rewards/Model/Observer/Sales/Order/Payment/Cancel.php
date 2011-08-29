@@ -55,12 +55,14 @@ class TBT_Rewards_Model_Observer_Sales_Order_Payment_Cancel {
 			return $this;
 		}
 		
+                $hasCanceledPendingTransferes = false;
 		if (Mage::helper ( 'rewards/config' )->shouldRemovePointsOnCancelledOrder ()) {
 			$orderTransfers = Mage::getModel ( 'rewards/transfer' )->getTransfersAssociatedWithOrder ( $order->getId () );
 			foreach ( $orderTransfers as $transfer ) {
-				if (($transfer->getStatus () == TBT_Rewards_Model_Transfer_Status::STATUS_PENDING) || ($transfer->getStatus () == TBT_Rewards_Model_Transfer_Status::STATUS_ON_HOLD)) {
+				if (($transfer->getStatus () == TBT_Rewards_Model_Transfer_Status::STATUS_PENDING_EVENT) || ($transfer->getStatus () == TBT_Rewards_Model_Transfer_Status::STATUS_PENDING_APPROVAL)) {
 					$transfer->setStatus ( $transfer->getStatus (), TBT_Rewards_Model_Transfer_Status::STATUS_CANCELLED );
 					$transfer->save ();
+                                        $hasCanceledPendingTransferes = true;
 				} else if ($transfer->getStatus () == TBT_Rewards_Model_Transfer_Status::STATUS_APPROVED) {
 					try {
 						$is_transfer_successful = Mage::helper ( 'rewards/transfer' )->transferRevokedPoints ( $transfer->getQuantity () * - 1, $transfer->getCurrencyId (), $transfer->getId (), $transfer->getCustomerId () );
@@ -75,8 +77,24 @@ class TBT_Rewards_Model_Observer_Sales_Order_Payment_Cancel {
 					}
 				}
 			}
-		}
+		}     
+	
+        if($hasCanceledPendingTransferes) {
+            $this->_cancelDispatchedMsgs();
+        }
+                
 		return $this;
+	}
+	
+	/**
+	 * remove messages of pending points because they were revoked
+	 * @return $this
+	 */
+	protected function _cancelDispatchedMsgs() {
+        Mage::getSingleton ( 'core/session' )->getMessages()->deleteMessageByIdentifier('TBT_Rewards_Model_Observer_Sales_Order_Save_After_Create(pending points)');
+        Mage::getSingleton ( 'core/session' )->addSuccess ( Mage::helper ( 'rewards' )->__ ( 'Successfully cancelled pending point transactions' ) );
+        
+	     return $this;
 	}
 
 }

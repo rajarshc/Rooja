@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<layout version="1.0.0">
+	<default>
+		<reference name="before_body_end">
+			<block type="rewardssocial/facebook_like_rewards" name="rewardssocial_event_register"
+				as="rewardssocial_event_register" template="rewardssocial/facebook/body_end/event_register.phtml" />
+		</reference>
+		<reference name="head">
+			<action method="addJs">
+				<script>tbt/rewardssocial/facebook/like/reward.js</script>
+			</action>
+			<action method="addCss">
+				<stylesheet>css/rewardssocial/facebook/like.css</stylesheet>
+			</action>
+		</reference>
+	</default>
+
+	<catalog_category_default>
+		<reference name="content">
+			<block type="rewardssocial/facebook_like_notificationblock"
+				name="defaultcat.likebutton.rewards.notificationblock" as="rewards.notificationblock"
+				template="rewardssocial/facebook/like/notification_block.phtml"
+				after="defaultcat.likebutton">
+				<action method="setHidden"
+					ifconfig="evlike/evlike_visibility/ev_like_visibility_category_default">
+					<value>1</value>
+				</action>
+				<action method="setIsCategoryButton">
+					<value>1</value>
+				</action>
+			</block>
+		</reference>
+	</catalog_category_default>
+
+	<catalog_category_layered>
+		<reference name="content">
+			<block type="rewardssocial/facebook_like_notificationblock"
+				name="defaultcat.likebutton.rewards.notificationblock" as="rewards.notificationblock"
+				template="rewardssocial/facebook/like/notification_block.phtml"
+				after="defaultcat.likebutton">
+				<action method="setHidden"
+					ifconfig="evlike/evlike_visibility/ev_like_visibility_category_default">
+					<value>1</value>
+				</action>
+				<action method="setIsCategoryButton">
+					<value>1</value>
+				</action>
+			</block>
+		</reference>
+	</catalog_category_layered>
+
+	<catalog_product_view>
+		<reference name="content">
+			<block type="rewardssocial/facebook_like_notificationblock"
+				name="likebutton.rewards.notificationblock" as="rewards.notificationblock"
+				template="rewardssocial/facebook/like/notification_block.phtml"
+				after="likebutton">
+				<action method="setHidden"
+					ifconfig="evlike/evlike_visibility/ev_like_visibility_product_default">
+					<value>1</value>
+				</action>
+			</block>
+		</reference>
+
+
+		<reference name="product.info">
+			<block type="rewardssocial/facebook_like_notificationblock"
+				name="likebutton.rewards.notificationblock" as="rewards.notificationblock"
+				template="rewardssocial/facebook/like/notification_block.phtml"
+				after="info.likebutton" >
+                <action method="setHidden"
+                    ifconfig="evlike/evlike_visibility/ev_like_visibility_product_default">
+                    <value>1</value>
+                </action>
+            </block>
+		</reference>
+	</catalog_product_view>
+
+	<cms_page>
+		<reference name="content">
+			<block type="rewardssocial/facebook_like_notificationblock"
+				name="defaultcms.likebutton.rewards.notificationblock" as="rewards.notificationblock"
+				template="rewardssocial/facebook/like/notification_block.phtml"
+				after="defaultcms.likebutton">
+				<action method="setHidden"
+					ifconfig="evlike/evlike_visibility/ev_like_visibility_cms_default">
+					<value>1</value>
+				</action>
+				<action method="setIsCmsButton">
+					<value>1</value>
+				</action>
+			</block>
+		</reference>
+	</cms_page>
+
+	<cms_index_defaultindex>
+
+		<reference name="content">
+			<block type="rewardssocial/facebook_like_notificationblock"
+				name="defaultcms.likebutton.rewards.notificationblock" as="rewards.notificationblock"
+				template="rewardssocial/facebook/like/notification_block.phtml"
+				after="defaultcms.likebutton">
+				<action method="setHidden"
+					ifconfig="evlike/evlike_visibility/ev_like_visibility_cms_default">
+					<value>1</value>
+				</action>
+				<action method="setIsCmsButton">
+					<value>1</value>
+				</action>
+			</block>
+		</reference>
+	</cms_index_defaultindex>
+</layout>

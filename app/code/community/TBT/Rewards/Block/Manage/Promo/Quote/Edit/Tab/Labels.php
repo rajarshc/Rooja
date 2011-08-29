@@ -84,10 +84,14 @@ class TBT_Rewards_Block_Manage_Promo_Quote_Edit_Tab_Labels extends TBT_Rewards_B
 		$form->setHtmlIdPrefix ( 'rule_' );
 		
 		$fieldset = $form->addFieldset ( 'default_label_fieldset', array ('legend' => Mage::helper ( 'salesrule' )->__ ( 'Default Label' ) ) );
+		Mage::getSingleton('rewards/wikihints')->addWikiHint($fieldset, "Shopping Cart Spending Rule: Default Label" );
+		
 		$labels = $rule->getStoreLabels ();
 		$fieldset->addField ( 'store_default_label', 'text', array ('name' => 'store_labels[0]', 'required' => false, 'label' => Mage::helper ( 'salesrule' )->__ ( 'Default Rule Label for All Store Views' ), 'value' => isset ( $labels [0] ) ? $labels [0] : '' ) );
 		
 		$fieldset = $form->addFieldset ( 'store_labels_fieldset', array ('legend' => Mage::helper ( 'salesrule' )->__ ( 'Store View Specific Labels' ), 'table_class' => 'form-list stores-tree' ) );
+		Mage::getSingleton('rewards/wikihints')->addWikiHint($fieldset, "Shopping Cart Spending Rule: Store View Specific Labels" );
+		
 		foreach ( Mage::app ()->getWebsites () as $website ) {
 			$fieldset->addField ( "w_{$website->getId()}_label", 'note', array ('label' => $website->getName (), 'fieldset_html_class' => 'website' ) );
 			foreach ( $website->getGroups () as $group ) {

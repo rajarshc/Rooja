@@ -58,14 +58,45 @@ class TBT_Rewards_Model_Observer_Sales_Order_Save_After_Approve {
 		if ((strtolower ( $order->getStatus () ) == 'complete') && Mage::helper ( 'rewards/config' )->shouldApprovePointsOnShipment ()) {
 			$orderTransfers = Mage::getModel ( 'rewards/transfer' )->getTransfersAssociatedWithOrder ( $order->getId () );
 			foreach ( $orderTransfers as $transfer ) {
-				if ($transfer->getStatus () == TBT_Rewards_Model_Transfer_Status::STATUS_PENDING) {
+				if ($transfer->getStatus () == TBT_Rewards_Model_Transfer_Status::STATUS_PENDING_EVENT) {
 					$transfer->setStatus ( $transfer->getStatus (), TBT_Rewards_Model_Transfer_Status::STATUS_APPROVED );
 					$transfer->save ();
 				}
 			}
+                     
+			// Tell the customer what happened
+			$this->_dispatchTransferMsgs($order);
 		}
 		
 		return $this;
 	}
+	
+	/**
+	 * Sends any order and pending messages to the display
+	 * @param TBT_Rewards_Model_Sales_Order $order
+	 */
+	protected function _dispatchTransferMsgs($order) {
+        $earned_points_string = Mage::getModel ( 'rewards/points' )->set ( $order->getTotalEarnedPoints () );
+		$redeemed_points_string = Mage::getModel ( 'rewards/points' )->set ( $order->getTotalSpentPoints () );
+		
+		if ($order->hasPointsEarning ()) {
+			if ($this->_getRewardsSession ()->isAdminMode ()) {
+				Mage::getSingleton ( 'core/session' )->addSuccess ( Mage::helper ( 'rewards' )->__ ( '%s were approved for the order.', $earned_points_string ) );
+			}
+		}
+		
+		return $this;
+    }
+
+    /**
+     * Fetches the rewards session
+     *
+     * @return TBT_Rewards_Model_Session
+     */
+    protected function _getRewardsSession() {
+        return Mage::getSingleton('rewards/session');
+    }
+	
+	
 
 }

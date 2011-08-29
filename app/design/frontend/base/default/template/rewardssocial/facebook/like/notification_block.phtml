@@ -1,0 +1,15 @@
+<?php 
+$predicted_points = $this->getPredictedLikePointsString();
+?>
+<div class="facebook-like-rewards-notification" id="facebook-like-rewards-notification" style="display:none;">
+    <div class="facebook-like-rewards-notification-content" id="facebook-like-rewards-notification-content">
+    <?php if(!$this->getHasLikedPage() && $this->getHasPredictedLikePoints()): ?>
+        <?php if ($this->getIsCustomerLoggedIn()): ?>
+            <?php echo $this->__("Earn <B>%s</B> for liking this page.", $predicted_points ); ?>
+        <?php else: ?>
+            <?php echo $this->getTextWithLoginLinks(  $this->__("[login_link]Log-in or create an account[/login_link] to earn <B>%s</B> for liking this page.", $predicted_points )  ); ?>
+        <?php endif; ?>
+    <?php endif; ?>
+    </div>
+	<div class="ajax-loading" id="facebook-like-rewards-ajax-loading" style="display:none;">&nbsp;</div>
+</div>

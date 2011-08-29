@@ -87,13 +87,12 @@ class TBT_Rewards_Manage_Customer_EditController extends Mage_Adminhtml_Controll
 	
 	public function transfersGridAction() {
 		$id = $this->getRequest ()->getParam ( 'customer_id' );
-		//die($id . "|");
-		$customer = Mage::getModel ( 'customer/customer' )->load($id);
-		$model = Mage::getModel ( 'rewards/customer' );
+		$customer = Mage::getModel ( 'rewards/customer' );
+		
 		if ($id) {
-			$loadedCustomer = $model->load ( $customer );
+		    $customer = $customer->load($id);
 		}
-		Mage::register ( 'current_customer', $loadedCustomer );
+		Mage::register ( 'current_customer', $customer );
 		$this->getResponse ()->setBody ( $this->getLayout ()->createBlock ( 'rewards/manage_customer_edit_tab_points' )->toHtml () );
 	}
 	

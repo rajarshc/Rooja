@@ -120,7 +120,7 @@ var RedemptionSlider = Class.create({
 	 */
     getRealMaxUses: function(max_uses, points_per_use, cp, pp, pp_disp) {
         var lowest_max_uses = max_uses;
-		
+        	
         // Check max points that can be spent on product price
         // befor the price goes to 0;
         var max_pp_uses = pp/pp_disp;
@@ -150,6 +150,7 @@ var RedemptionSlider = Class.create({
         if(this.slider != null) {			
             this.slider.dispose();
         }
+        max = parseInt(max/step) * step;
         this.sliderData.minimum = min;
         this.sliderData.maximum = max;
         this.sliderData.step = step;
@@ -160,7 +161,7 @@ var RedemptionSlider = Class.create({
             var vals=new Array();
             vals.push(min);
             $R(min, max-1).each( function(v){
-                if(v%step==0){
+                if(v%step==0 && (v+step) <= max ){
                     vals.push(v+step);
                 }
             } );

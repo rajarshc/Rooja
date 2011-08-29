@@ -99,8 +99,11 @@ class TBT_Rewards_Block_Manage_Currency_Edit_Tab_Appearance extends Mage_Adminht
 		$form = new Varien_Data_Form ();
 		$this->setForm ( $form );
 		$fieldset = $form->addFieldset ( 'currency_form', array ('legend' => Mage::helper ( 'rewards' )->__ ( 'Currency Appearance' ) ) );
+		Mage::getSingleton('rewards/wikihints')->addWikiHint($fieldset, "Points Currency Section" );
 		
-		$fieldset->addField ( 'image', 'text', array ('name' => 'image', 'label' => Mage::helper ( 'rewards' )->__ ( 'Image Path (relative to store skin)' ), 'title' => Mage::helper ( 'rewards' )->__ ( 'Image Path (relative to store skin)' ) ) );
+		$image_field = $fieldset->addField ( 'image', 'text', array ('name' => 'image', 'label' => Mage::helper ( 'rewards' )->__ ( 'Image Path (relative to store skin)' ), 'title' => Mage::helper ( 'rewards' )->__ ( 'Image Path (relative to store skin)' ) ) );
+		Mage::getSingleton('rewards/wikihints')->addWikiHint($image_field, "Points Currency Section - Image Path" );
+		
 		
 		$fieldset->addField ( 'image_width', 'text', array ('name' => 'image_width', 'class' => 'validate-number', 'label' => Mage::helper ( 'rewards' )->__ ( 'Image Width (px)' ), 'title' => Mage::helper ( 'rewards' )->__ ( 'Image Width (px)' ) ) );
 		

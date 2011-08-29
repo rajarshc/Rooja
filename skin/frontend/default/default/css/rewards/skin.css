@@ -176,7 +176,7 @@
 	text-align: center;
 }
 .mypoints-transfers
-{ padding:10px 0;
+{
 }
 .mypoints-transfers .content TABLE TBODY
 {
@@ -196,10 +196,10 @@
 {
 	margin-bottom: 6px;
 }
+.mypoints-summary .pendingapproval-points { }
+.mypoints-summary .pendingevent-points { }
+.mypoints-summary .pendingtime-points { }
 .mypoints-summary .pending-points
-{
-}
-.mypoints-summary .onhold-points
 {
 	margin-bottom: 12px;
 }

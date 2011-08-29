@@ -1,0 +1,17 @@
+<?php $transfer = $this->getTransfer(); ?>
+
+<?php if ($transfer->isOrder()): ?>       
+    <td><a href="<?php echo $this->getOrderUrl($transfer->getReferenceId()) ?>">
+            <?php echo $this->__('View Order') ?></a></td>
+
+<?php elseif ($transfer->isReview()): ?>       
+    <td><a href="<?php echo $this->getReviewUrl($transfer->getReferenceId()) ?>">
+            <?php echo $this->__('View Review') ?></a></td>
+
+<?php elseif ($transfer->isFriendTransfer()): ?>
+    <?php $friend_email = $this->getCustomerEmail($transfer->getReferenceId()) ?>
+    <td><a href="mailto:<?php echo $friend_email ?>">
+            <?php echo $friend_email ?></a></td>
+<?php else: ?>
+    <td></td>
+<?php endif ?>

@@ -59,6 +59,8 @@ class TBT_Rewards_Block_Manage_Promo_Catalog_Edit_Tab_Conditions extends Mage_Ad
 		
 		if ($this->_isRedemptionType ()) {
 			$fieldset = $form->addFieldset ( 'points_action_fieldset', array ('legend' => Mage::helper ( 'rewards' )->__ ( 'Customer Spends Points' ) ) );
+			Mage::getSingleton('rewards/wikihints')->addWikiHint($fieldset, "Catalog Points Spending Rule - Conditions - Spending Amounts" );
+			
 			$options = Mage::getSingleton ( 'rewards/catalogrule_actions' )->getRedemptionOptionArray ();
 			
 			// SETUP OUR ACTION SELECTION

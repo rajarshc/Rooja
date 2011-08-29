@@ -57,3 +57,9 @@ $colspan = $this->getColSpan();
         <td class="order-points-spent" <?php echo $this->getValueProperties(); ?>><span class="amount"><?php echo $this->getPointsSpentString() ?></span></td>
     </tr>
 <?php endif; ?>
+<?php if ($this->hasCatalogSpendingDiscount()): ?>
+    <tr class="order-invoice-points-earned">
+        <td colspan="<?php echo $colspan; ?>" class="a-right caption" <?php echo $this->getLabelProperties(); ?>><?php echo $this->__('Item Discounts') ?></td>
+        <td class="order-invoice-item-discounts" <?php echo $this->getValueProperties(); ?>><span class="amount"><?php echo $this->getCatalogSpendingDiscount() ?></span></td>
+    </tr>
+<?php endif; ?>

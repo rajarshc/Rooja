@@ -43,8 +43,12 @@
  * @package    TBT_Rewards
  * @author     WDCA Sweet Tooth Team <contact@wdca.ca>
  */
-class TBT_Rewards_Block_Sales_Order_Points extends Mage_Core_Block_Template {
+abstract class TBT_Rewards_Block_Sales_Order_Points extends TBT_Rewards_Block_Sales_Order_Abstract {
 	
+	/**
+	 * Returns a string containing the total number of points sepnt for this order. 
+	 * @return string
+	 */
 	public function getPointsEarnedString() {
 		$order = $this->getOrder ();
 		$points_earned = $order->getTotalEarnedPoints ();
@@ -52,6 +56,10 @@ class TBT_Rewards_Block_Sales_Order_Points extends Mage_Core_Block_Template {
 		return $earned_str;
 	}
 	
+	/**
+	 * Returns a string containing the total number of points earned for this order. 
+	 * @return string
+	 */
 	public function getPointsSpentString() {
 		$order = $this->getOrder ();
 		$points_spent = $order->getTotalSpentPoints ();
@@ -59,46 +67,29 @@ class TBT_Rewards_Block_Sales_Order_Points extends Mage_Core_Block_Template {
 		return $spent_str;
 	}
 	
+
 	/**
-	 * Fetches the order model
-	 *
-	 * @return TBT_Rewards_Model_Sales_Order
+	 * Returns the catalog points discount for the order
 	 */
-	public function getOrder() {
-		//@nelkaake -c 14/12/10:        
-		$order = null;
-		$parent = $this->getParentBlock ();
+	public function getCatalogSpendingDiscount() {
+		$order = $this->getOrder ();
 		
-		if ($parent) {
-			$order = $parent->getOrder ();
-		} elseif ($this->getData ( 'order' )) {
-			$order = $this->getData ( 'order' );
-		} else {
-			return null;
-		}
+		$rewards_discount_amount = $order->getRewardsDiscountAmount();
+		$rewards_discount_amount_str = $this->getOrder()->getStore()->formatPrice($rewards_discount_amount, false);
 		
-		if (! $order) {
-			$order = Mage::registry ( 'current_order' );
-		}
-		
-		if (! ($order instanceof TBT_Rewards_Model_Sales_Order)) {
-			$order = TBT_Rewards_Model_Sales_Order::wrap ( $order );
-		}
-		return $order;
+		return $rewards_discount_amount_str;
 	}
 	
+	
 	/**
-	 * Initialize all order totals relates with tax
-	 *
-	 * @nelkaake Added on Thursday August 19, 2010:      
-	 * @return Mage_Tax_Block_Sales_Order_Tax
+	 * Returns true if catalog points were spent on this order. 
+	 * @return boolean
 	 */
-	public function initTotals() {
-		$parent = $this->getParentBlock ();
-		$this->_order = $parent->getOrder ();
-		$this->_source = $parent->getSource ();
-		$parent->addTotal ( new Varien_Object ( array ('code' => 'rewards', 'block_name' => 'order_points' ) ) );
-		return $this;
+	public function hasCatalogSpendingDiscount() {
+	    $csd = $this->getCatalogSpendingDiscount();
+	    return !empty($csd);
 	}
 
+	
+	
 }

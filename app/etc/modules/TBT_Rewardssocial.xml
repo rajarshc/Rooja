@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<config>
+    <modules>
+        <TBT_Rewardssocial>
+            <active>true</active>
+            <codePool>community</codePool>
+        </TBT_Rewardssocial>
+        <depends>
+            <!-- dependent on Sweet Tooth Core -->
+            <TBT_Rewards />
+        </depends>
+    </modules>
+</config>

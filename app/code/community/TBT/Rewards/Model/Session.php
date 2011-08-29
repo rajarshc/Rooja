@@ -74,6 +74,7 @@ class TBT_Rewards_Model_Session extends Mage_Core_Model_Session_Abstract {
 	 * @return TBT_Rewards_Model_Session
 	 */
 	public function triggerNewCustomerCreate(&$customer) {
+	    $customer = Mage::getModel('rewards/customer')->getRewardsCustomer($customer);
 		foreach ( $this->_customerListeners as $customer_listener ) {
 			$customer_listener->onNewCustomerCreate ( $customer );
 		}
@@ -130,7 +131,7 @@ class TBT_Rewards_Model_Session extends Mage_Core_Model_Session_Abstract {
 				}
 			}
 		}
-		return $this->_customer;
+		return Mage::getModel('rewards/customer')->getRewardsCustomer($this->_customer);
 	}
 	
 	public function isCustConfirmPending($customer = null) {
@@ -169,6 +170,7 @@ class TBT_Rewards_Model_Session extends Mage_Core_Model_Session_Abstract {
 	 * @return TBT_Rewards_Model_Session
 	 */
 	public function setCustomer($customer) {
+	    $customer = Mage::getModel('rewards/customer')->getRewardsCustomer($customer);
 		if ($this->isAdminMode ()) {
 			// TODO: What do we do here? ... hmm
 		} else {
@@ -466,6 +468,19 @@ class TBT_Rewards_Model_Session extends Mage_Core_Model_Session_Abstract {
 				$points_to_transfer = 0;
 			}
 			
+			// New code for instore!
+            $result = new Varien_Object(array(
+				'points_to_transfer'      => $points_to_transfer
+            ));
+            Mage::dispatchEvent('rewards_calculate_cart_points', array(
+				'rule_id'    => $rule->getId(),
+				'order_items'    => $order_items,
+				'allow_redemptions' => $allow_redemptions,
+				'result'   => $result,
+            ));
+            $points_to_transfer = $result->getPointsToTransfer();
+            // End new code for instore
+
 			$points_array = array ('amount' => $points_to_transfer, 'currency' => $rule->getPointsCurrencyId (), 'rule_id' => $rule_id, 'rule_name' => $rule->getName () );
 			
 			//Mage::helper('rewards/debug')->dd($points_array, false, false);
@@ -657,7 +672,7 @@ class TBT_Rewards_Model_Session extends Mage_Core_Model_Session_Abstract {
 		$points = array ();
 		$points_exist = false;
 		
-		$total_cart_points = $this->updateShoppingCartPoints ();
+		$total_cart_points = $this->updateShoppingCartPoints ( $cart );
 		//    	Mage::helper('rewards/debug')->dd($total_cart_points);
 		
 

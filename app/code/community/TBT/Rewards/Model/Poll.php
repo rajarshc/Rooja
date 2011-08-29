@@ -80,7 +80,7 @@ class TBT_Rewards_Model_Poll extends Mage_Poll_Model_Poll {
 					
 					if ($is_transfer_successful) {
 						//Alert the customer on the distributed points   
-						Mage::getSingleton ( 'core/session' )->addSuccess ( Mage::helper ( 'rewards' )->__ ( 'You received %s for voting', Mage::getModel ( 'rewards/points' )->set ( $rule ) ) );
+						Mage::getSingleton ( 'core/session' )->addSuccess ( Mage::helper ( 'rewards' )->__ ( 'You received %s for voting', (string)Mage::getModel ( 'rewards/points' )->set ( $rule ) ) );
 					}
 				}
 			}

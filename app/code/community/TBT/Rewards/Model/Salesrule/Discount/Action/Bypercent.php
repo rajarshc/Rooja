@@ -99,10 +99,12 @@ class TBT_Rewards_Model_Salesrule_Discount_Action_Bypercent extends TBT_Rewards_
 		$all_items = $address->getAllItems ();
 		$store = $item->getQuote ()->getStore ();
 		
-		//@nelkaake -a 1/12/10: Confusing way how this returns in mid-method
+        $totalDiscountOnCart = 0;
+        
+        $discountPercent = $this->_getRulePercent($rule);
+        
+        // TODO move this to a method
 		if ($rule->getPointsAction () != TBT_Rewards_Model_Salesrule_Actions::ACTION_DISCOUNT_BY_POINTS_SPENT) {
-			$discountPercent = ($rule->getDiscountAmount () / 100);
-			$totalDiscountOnCart = 0;
 			foreach ( $all_items as $cartItem ) {
 				if (! $rule->getActions ()->validate ( $cartItem )) {
 					continue;
@@ -113,40 +115,50 @@ class TBT_Rewards_Model_Salesrule_Discount_Action_Bypercent extends TBT_Rewards_
 				$totalDiscountOnCart += $discountOnItem;
 			}
 			return $totalDiscountOnCart;
-		} // else, this is a by points spent rule:  
-		
+		} 
 
-		$points_spent = Mage::getSingleton ( 'rewards/session' )->getPointsSpending ();
-		$discountPercent = (($rule->getDiscountAmount () * floor ( ($points_spent / $rule->getPointsAmount ()) )) / 100);
-		$discountPercent = min ( $discountPercent, 1 );
-		
-		$totalDiscountOnCart = 0;
-		$totalAmountToDiscount = 0;
-		//TODO do base discount calcs
+        $totalAmountToDiscount = 0;
 		foreach ( $all_items as $cartItem ) {
-			if (! $rule->getActions ()->validate ( $cartItem )) {
-				continue;
-			}
-			
-			list($item_row_total, $item_base_row_total) = $this->_getDiscountableRowTotal($address, $item, $rule);	
-			
-			$totalAmountToDiscount += $item_row_total; // $cartItem->getTaxAmount();
-			
-			/*// Fetch the catalog rewards discounts.  Add this NEGATIVE amount to the total.
-			list($catalog_discount, $base_catalog_discount) = $this->_collectCatalogRewardsDiscounts($address, $cartItem);
-			$totalAmountToDiscount += $base_catalog_discount;*/
-		}
-		
-		// @nelkaake -a 16/11/10: 
-		if ($rule->getApplyToShipping ()) {
-			$totalAmountToDiscount += $address->getBaseShippingAmountForDiscount();
-		}
-		
-		$totalDiscountOnCart = $totalAmountToDiscount * $discountPercent;
-		
+            if (! $rule->getActions ()->validate ( $cartItem )) {
+                    continue;
+            }
+            list($item_row_total, $item_base_row_total) = $this->_getDiscountableRowTotal($address, $item, $rule);	
+            $totalAmountToDiscount += $item_row_total; // $cartItem->getTaxAmount();
+
+            /*// Fetch the catalog rewards discounts.  Add this NEGATIVE amount to the total.
+            list($catalog_discount, $base_catalog_discount) = $this->_collectCatalogRewardsDiscounts($address, $cartItem);
+            $totalAmountToDiscount += $base_catalog_discount;*/
+        }
+
+        // @nelkaake -a 16/11/10: 
+        if ($rule->getApplyToShipping ()) {
+                $totalAmountToDiscount += $address->getBaseShippingAmountForDiscount();
+        }
+
+        $totalDiscountOnCart = $totalAmountToDiscount * $discountPercent;
 		
 		return $totalDiscountOnCart;
 	}
+
+    /**
+     * Get the discount percentage from the rule with consideration for the session points spending amount
+     * @param TBT_Rewards_Model_Salesrule $rule
+     */
+    protected function _getRulePercent($rule) {
+        
+        $discountPercent = 0;
+        
+        if ( $rule->getPointsAction() == TBT_Rewards_Model_Salesrule_Actions::ACTION_DISCOUNT_BY_POINTS_SPENT ) {
+            $points_spent = Mage::getSingleton('rewards/session')->getPointsSpending();
+            $discountPercent = (($rule->getDiscountAmount() * floor(($points_spent / $rule->getPointsAmount()))) / 100);
+        } else {
+            $rulePercent = (float) $rule->getDiscountAmount() / 100;
+        }
+        
+        $discountPercent = min($discountPercent, 1);
+        
+        return $discountPercent;
+    }
 	
 	protected function _getTotalSpendingPercent($rule) {
 	
@@ -184,8 +196,8 @@ class TBT_Rewards_Model_Salesrule_Discount_Action_Bypercent extends TBT_Rewards_
 		$quote = $item->getQuote ();
 		$store = $item->getQuote ()->getStore ();
 		
-        $rulePercent = min(100, $rule->getDiscountAmount())/100;
-		
+        $rulePercent = $this->_getRulePercent($rule);
+        
 		$quoteAmount = $quote->getStore ()->convertPrice ( $cartRules [$rule->getId ()] );
 		$quoteAmountBase = $cartRules [$rule->getId ()];
 

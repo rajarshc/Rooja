@@ -1,0 +1,7 @@
+
+<?php if ($this->customerHasUsablePoints()): ?>
+    <div style="padding-left: 18px;">
+        <input type="checkbox" name="pay_for_shipping_with_points" id="pay_for_shipping_with_points" onchange="slider_needs_refresh=true;"/>&nbsp;
+        <label for="pay_for_shipping_with_points"><?php echo $this->__('Pay for shipping with points'); ?></label>
+    </div>
+<?php endif; ?>

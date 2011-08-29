@@ -7,11 +7,11 @@ class TBT_Testsweet_Model_Test_Suite_Magento_Filesystem extends TBT_Testsweet_Mo
     }
 
     public function getSubject() {
-        return $this->__('Magento filesystem');
+        return $this->__('Magento - Filesystem');
     }
 
     public function getDescription() {
-        return $this->__('Check that Magento has read/write on filesystem');
+        return $this->__('Check that Magento has read/write on filesystem.');
     }
 
     protected function generateSummary() {
@@ -53,10 +53,11 @@ class TBT_Testsweet_Model_Test_Suite_Magento_Filesystem extends TBT_Testsweet_Mo
 
 
         $target = Mage::getBaseDir('base');
-        if (version_compare(phpversion(), '5.2.11', '>='))
-            $directory = new RecursiveDirectoryIterator($target, RecursiveDirectoryIterator::FOLLOW_SYMLINKS);
-        else
-            $directory = new RecursiveDirectoryIterator($target);
+        // dont folow symlinks because this could cause a recursive loop
+        //if (version_compare(phpversion(), '5.2.11', '>='))
+        //    $directory = new RecursiveDirectoryIterator($target, RecursiveDirectoryIterator::FOLLOW_SYMLINKS);
+        //else
+        $directory = new RecursiveDirectoryIterator($target);
         $iterator = new RecursiveIteratorIterator($directory);
 
         $not_readable_count = 0;
@@ -70,7 +71,7 @@ class TBT_Testsweet_Model_Test_Suite_Magento_Filesystem extends TBT_Testsweet_Mo
                 $not_readable_count++;
             }
             if ($not_readable_count > 50) {
-                $this->addWarning($this->__('More then 50 none accessable files... skipping test'));
+                $this->addWarning($this->__('More than 50 none accessible files... skipping test.'));
                 break;
             }
         }

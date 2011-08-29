@@ -49,10 +49,39 @@ class TBT_Rewards_Model_Transfer extends Mage_Core_Model_Abstract {
 	protected $_eventPrefix = 'rewards_transfer';
 	protected $_eventObject = 'rewards_transfer';
 	
+	protected $_references = null;
+	
 	public function _construct() {
 		parent::_construct ();
 		$this->_init ( 'rewards/transfer' );
 		$this->loadReferenceInformation ();
+	}
+	
+	/**
+	 * Cancels this points tranfer if possible.
+	 * If success, saves the cancellation.
+	 * @return true if success, false otherwise.
+	 */
+	public function cancel() {
+        $status_change_result = $this->setStatus($this->getStatus(), TBT_Rewards_Model_Transfer_Status::STATUS_CANCELLED);
+        
+        if($status_change_result === false) {
+            return false;
+        }
+        
+        $this->save();
+        
+        return true;
+	}
+	
+	/**
+	 * Adds to the comments of this points transfer, separated by a \n\r (does not save)
+	 * @param string $new_comment
+	 */
+	public function appendComments($new_comment) {
+	    $old_comments = $this->getComments();
+        $this->setComments( $old_comments . "\n\r" . $new_comment );
+        return $this;
 	}
 	
 	public function setOrderId($id) {
@@ -219,6 +248,7 @@ class TBT_Rewards_Model_Transfer extends Mage_Core_Model_Abstract {
 	 * Sets the status of the transfer if possible.
 	 * If the new transfer is illegal, returns false,
 	 * otherwise, updates the status and returns $this.          
+	 * @return mixed boolean if false, or $this if OK
 	 */
 	public function setStatus($oldStatusId, $newStatusId) {
 		$availStatuses = Mage::getSingleton ( 'rewards/transfer_status' )->getAvailableNextStatuses ( $this->getStatus () );
@@ -353,10 +383,22 @@ class TBT_Rewards_Model_Transfer extends Mage_Core_Model_Abstract {
 		}
 	}
 	
+	/**
+	 * Fetches the transfer reference collection for this transfer
+	 * @return TBT_Rewards_Model_Mysql4_Transfer_Reference_Collection
+	 */
+	public function getAllReferences() {
+	    if($this->_references == null) {
+	        $this->_references = Mage::getModel('rewards/transfer_reference')->getCollection()->filterByTransfer($this->getId());
+	    }
+	    return $this->_references;
+	}
+	
 	private function storeReferenceData() {
 		$reference_data = array ();
 		$reference_data ['rule_id'] = null;
 		$reference_data ['id'] = null;
+		
 		
 		if (! $this->getId ()) {
 			$this->_data ['reference_data'] = $reference_data;
@@ -374,9 +416,14 @@ class TBT_Rewards_Model_Transfer extends Mage_Core_Model_Abstract {
 		$reference_data ['reference_id'] = $ref->getReferenceId ();
 		$reference_data ['rule_id'] = $ref->getRuleId ();
 		$reference_data ['id'] = $ref->getId ();
+		
 		$this->_data ['reference_data'] = $reference_data;
 		$this->_data ['reference_type'] = $ref->getReferenceType ();
 		$this->_data ['reference_id'] = $ref->getReferenceId ();
+		
+		
+		
+		return $this;
 	}
 	
 	protected function clearReferences() {
@@ -427,6 +474,44 @@ class TBT_Rewards_Model_Transfer extends Mage_Core_Model_Abstract {
 		
 		return $transfer;
 	}
+
+	/**
+	 * Revokes a points transfer by creating an oposite, linked points transfer.
+	 * @throws Exception
+	 * @return TBT_Rewards_Model_Transfer the resulting REVOKED reason type points transfer
+	 */
+    public function revoke() {
+        $transfer = Mage::getModel('rewards/transfer');
+    
+        // get the default starting status - usually Pending
+        if ( ! $transfer->setStatus(null, TBT_Rewards_Model_Transfer_Status::STATUS_APPROVED) ) {
+            // we tried to use an invalid status... is getInitialTransferStatusAfterReview() improper ??
+            return $this;
+        }
+        
+        $customer_id = $this->getCustomerId();
+        $num_points = $this->getQuantity() * (-1);
+        $currency_id = $this->getCurrencyId();
+        
+        $customer = Mage::getModel('rewards/customer')->load($customer_id);
+        if ( ($customer->getUsablePointsBalance($currency_id) + $num_points) < 0 ) {
+            $error = $this->__('Not enough points for transaction. You have %s, but you need %s', 
+            Mage::getModel('rewards/points')->set($currency_id, $customer->getUsablePointsBalance($currency_id)), 
+            Mage::getModel('rewards/points')->set($currency_id, $num_points * - 1));
+            throw new Exception($error);
+        }
+        
+        $transfer->setId(null)
+            ->setCurrencyId($currency_id)
+            ->setQuantity($num_points)
+            ->setCustomerId($customer_id)
+            ->setReferenceTransferId($this->getId())
+            ->setReasonId(TBT_Rewards_Model_Transfer_Reason::REASON_SYSTEM_REVOKED)
+            ->setComments(Mage::getStoreConfig('rewards/transferComments/revoked'), $this->getComments())
+            ->save();
+        
+        return $transfer;
+    }
 	
 	/**
 	 * This should be VERY avoided.

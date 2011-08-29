@@ -1,0 +1,96 @@
+
+<script type="text/javascript">
+    var slider_ajax_timeout = false;
+    var slider_ajax_timeout_delay = 500;
+    var last_slider_ajax_request = false;
+    function updateTotalsDueToSpendings(new_spending_amount) {
+        $('payment-please-wait').show();
+        $('shopping-cart-totals-table').hide();
+        if(last_slider_ajax_request) {
+            last_slider_ajax_request.options.onSuccess = function(t) { /* do nothing because a new request has started */}
+        }
+         
+        //Edited 10/03/2010 3:19:03 AM 
+        // The Ajax.Updater method is not supported by IE 7-8 when we're using UTF-8 data (or some other reason), so we need to use a regular request
+        if(Prototype.Browser.IE) {
+            last_slider_ajax_request = new Ajax.Request(
+            '<?php echo $this->getUrl("rewards/cart_redeem/changePointsSpending"); ?>', 
+            {
+                parameters: { points_spending: new_spending_amount  },
+                onSuccess: function(t) { 
+                    $('payment-please-wait').hide(); 
+                    $('shopping-cart-totals-table').insert({before:t.responseText});
+                    $('shopping-cart-totals-table').next().remove();
+                    $('shopping-cart-totals-table').show();
+                } 
+            }
+        );
+        } else {
+            last_slider_ajax_request = new Ajax.Updater(
+            'shopping-cart-totals-table', 
+            '<?php echo $this->getUrl("rewards/cart_redeem/changePointsSpending"); ?>', 
+            {
+                parameters: { points_spending: new_spending_amount  },
+                onSuccess: function(t) { $('payment-please-wait').hide(); $('shopping-cart-totals-table').show();} 
+            }
+        );
+        }
+    }
+    /**
+     * Sets the value in the input box and what is displayed to the user.
+     * @param val
+     * @return
+     */
+    RedemptionSlider.prototype.setExternalValue = function(val) {
+        var pts = val*this.points_per_use;
+        if(pts == 1) {
+            this.sliderCaption.innerHTML = CAPTION_YOU_WILL_SPEND + ":" + CAPTION_ONE_POINT.replace("%s", val);
+        } else {
+            this.sliderCaption.innerHTML = CAPTION_YOU_WILL_SPEND + ":" + CAPTION_MULTIPLE_POINTS.replace("%s", val);
+        }
+        if(this.sliderValuebox.value != this.getUses()) {
+            this.sliderValuebox.value = this.getUses();
+            if(slider_ajax_timeout) {
+                clearTimeout(slider_ajax_timeout);
+            }
+            slider_ajax_timeout = setTimeout("updateTotalsDueToSpendings("+pts+")", slider_ajax_timeout_delay);
+            if(rSlider.isMaxed()) {
+                $('use_all_points').checked = true;
+            } else {
+                $('use_all_points').checked = false;
+            }
+            // TODO also update giant cart points block if it's there
+        }
+    }
+
+    function toggleUseAllPoints(checked) {
+        if(checked) {
+            rSlider.maximize();
+        } else {
+            rSlider.slider.setValue(0);
+        }
+    }
+    
+    
+    document.observe("dom:loaded", function() {
+        $('shopping-cart-totals-table').insert({after: $('payment-please-wait')});
+        if($('payment-please-wait')) { $('payment-please-wait').hide(); }
+	    
+    });
+	
+    function toggleCartRule(checkbox_elem) {
+        var add_rule_url = '<?php echo $this->getUrl("rewards/cart_redeem/cartadd"); ?>';
+        var remove_rule_url = '<?php echo $this->getUrl("rewards/cart_redeem/cartremove"); ?>';
+        var url = '';
+        var rid = checkbox_elem.value;
+        checkbox_elem.disabled =  true;
+        if(checkbox_elem.checked) {
+            url = add_rule_url + 'rids/' + rid;
+        } else {
+            url = remove_rule_url + 'rids/' + rid;
+        }
+        $(checkbox_elem).next().innerHTML = CAPTION_REFRESHING_CART;
+        window.location = url;
+        return true;
+    }
+</script>

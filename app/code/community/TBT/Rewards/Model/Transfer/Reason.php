@@ -68,7 +68,7 @@ class TBT_Rewards_Model_Transfer_Reason extends Varien_Object {
 	}
 	
 	public function getOtherReasons() {
-		$base_reasons = array (self::REASON_SYSTEM_ADJUSTMENT => Mage::helper ( 'rewards' )->__ ( 'System Adjustment' ), self::REASON_FROM_CUSTOMER => Mage::helper ( 'rewards' )->__ ( 'Points Received From a Friend' ), self::REASON_TO_CUSTOMER => Mage::helper ( 'rewards' )->__ ( 'Points Given To a Friend' ), self::REASON_SYSTEM_REVOKED => Mage::helper ( 'rewards' )->__ ( 'Points Revoked' ), self::REASON_ADMIN_ADJUSTMENT => Mage::helper ( 'rewards' )->__ ( 'Administrative Adjustment' ), self::REASON_UNSPECIFIED => Mage::helper ( 'rewards' )->__ ( 'WARNING: UNSPECIFIED REASON' ) );
+		$base_reasons = array (self::REASON_SYSTEM_ADJUSTMENT => Mage::helper ( 'rewards' )->__ ( 'System Adjustment' ), self::REASON_FROM_CUSTOMER => Mage::helper ( 'rewards' )->__ ( 'Points Received From a Friend' ), self::REASON_TO_CUSTOMER => Mage::helper ( 'rewards' )->__ ( 'Points Given To a Friend' ), self::REASON_SYSTEM_REVOKED => Mage::helper ( 'rewards' )->__ ( 'Points Revoked' ), self::REASON_ADMIN_ADJUSTMENT => Mage::helper ( 'rewards' )->__ ( 'Administrative Adjustment' ), self::REASON_UNSPECIFIED => Mage::helper ( 'rewards' )->__ ( 'Unspecified Reason' ) );
 		$base_reasons += $this->_getTypes ()->getOtherReasons ();
 		return $base_reasons;
 	}
@@ -86,7 +86,7 @@ class TBT_Rewards_Model_Transfer_Reason extends Varien_Object {
 	}
 	
 	public function getOptionArray() {
-		$base_reasons = array (self::REASON_SYSTEM_ADJUSTMENT => Mage::helper ( 'rewards' )->__ ( 'System Adjustment' ), self::REASON_CUSTOMER_REDEMPTION => Mage::helper ( 'rewards' )->__ ( 'Points Redeemed on Order' ), self::REASON_CUSTOMER_DISTRIBUTION => Mage::helper ( 'rewards' )->__ ( 'Points Distribution' ), self::REASON_FROM_CUSTOMER => Mage::helper ( 'rewards' )->__ ( 'Points Received From a Friend' ), self::REASON_TO_CUSTOMER => Mage::helper ( 'rewards' )->__ ( 'Points Given To a Friend' ), self::REASON_SYSTEM_REVOKED => Mage::helper ( 'rewards' )->__ ( 'Points Revoked' ), self::REASON_ADMIN_ADJUSTMENT => Mage::helper ( 'rewards' )->__ ( 'Administrative Adjustment' ), self::REASON_UNSPECIFIED => Mage::helper ( 'rewards' )->__ ( 'WARNING: UNSPECIFIED REASON' ) );
+		$base_reasons = array (self::REASON_SYSTEM_ADJUSTMENT => Mage::helper ( 'rewards' )->__ ( 'System Adjustment' ), self::REASON_CUSTOMER_REDEMPTION => Mage::helper ( 'rewards' )->__ ( 'Points Redeemed on Order' ), self::REASON_CUSTOMER_DISTRIBUTION => Mage::helper ( 'rewards' )->__ ( 'Points Distribution' ), self::REASON_FROM_CUSTOMER => Mage::helper ( 'rewards' )->__ ( 'Points Received From a Friend' ), self::REASON_TO_CUSTOMER => Mage::helper ( 'rewards' )->__ ( 'Points Given To a Friend' ), self::REASON_SYSTEM_REVOKED => Mage::helper ( 'rewards' )->__ ( 'Points Revoked' ), self::REASON_ADMIN_ADJUSTMENT => Mage::helper ( 'rewards' )->__ ( 'Administrative Adjustment' ), self::REASON_UNSPECIFIED => Mage::helper ( 'rewards' )->__ ( 'Unspecified Reason' ) );
 		$base_reasons += $this->_getTypes ()->getAllReasons ();
 		return $base_reasons;
 	}

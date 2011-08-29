@@ -8,7 +8,11 @@ class TBT_Rewards_Model_Mysql4_Customer_Indexer_Points extends Mage_Index_Model_
 	 */
 	public function _construct() {
 		$this->_init ( 'rewards/customer_indexer_points', 'customer_id' );
-		$this->useIdxTable ( true );
+        if( Mage::helper('rewards/version')->isBaseMageVersionAtLeast('1.4.1') ) {
+		    $this->useIdxTable ( true );
+        }
+        
+        return $this;
 	}
 	
 	/**
@@ -20,9 +24,36 @@ class TBT_Rewards_Model_Mysql4_Customer_Indexer_Points extends Mage_Index_Model_
 	 */
 	public function reindexAll() {
 		$this->_createTable ();
-		$pointsBalances = $this->_getCustomerBalance ();
-		if (count ( $pointsBalances )) {
-			$this->_getWriteAdapter ()->insertMultiple ( $this->getIdxTable (), $pointsBalances );
+        
+        $customerTable = Mage::getSingleton('core/resource')->getTableName('customer_entity');
+        
+        // Set all balances to 0
+        $sql = "INSERT INTO {$this->getIdxTable()} (customer_id, customer_points_usable)
+                SELECT customer_table.entity_id, '0' FROM {$customerTable} as `customer_table`";
+        $results = $this->_getWriteAdapter()->query($sql);
+        
+        $read = Mage::getSingleton('core/resource')->getConnection('core_read');
+        $sub_select = $read->select()->from(Mage::getSingleton('core/resource')->getTableName('rewards_transfer_reference'))->group('rewards_transfer_id');
+        $sub_select_sql = (String)$sub_select;
+
+        // Update balances
+        $sql = "SELECT `points_table`.* FROM (
+            SELECT SUM(main_table.quantity) AS `customer_points_usable`, `main_table`.`customer_id` FROM `{$this->getTable ( 'rewards/transfer' )}` AS `main_table`
+             LEFT JOIN ($sub_select_sql) AS `reference_table` ON main_table.rewards_transfer_id = reference_table.rewards_transfer_id
+             LEFT JOIN `{$this->getTable ( 'rewards/currency' )}` AS `currency_table` ON currency_table.rewards_currency_id=main_table.currency_id WHERE (main_table.status IN (5)) GROUP BY `main_table`.`customer_id`,
+                    `main_table`.`currency_id`
+            UNION
+            SELECT SUM(main_table.quantity) AS `customer_points_usable`, `main_table`.`customer_id` FROM `{$this->getTable ( 'rewards/transfer' )}` AS `main_table`
+             LEFT JOIN ($sub_select_sql) AS `reference_table` ON main_table.rewards_transfer_id = reference_table.rewards_transfer_id
+             LEFT JOIN `{$this->getTable ( 'rewards/currency' )}` AS `currency_table` ON currency_table.rewards_currency_id=main_table.currency_id WHERE (quantity < 0) AND (status=4) GROUP BY `main_table`.`customer_id`,
+                    `main_table`.`currency_id`
+            ) AS `points_table`
+            GROUP BY `points_table`.`customer_id`
+        ";
+        $results = $this->_getWriteAdapter()->query($sql)->fetchAll();
+        
+		if (count ( $results )) {
+			$this->_getWriteAdapter ()->insertOnDuplicate ( $this->getIdxTable (), $results );
 		}
 		return $this;
 	}
@@ -34,7 +65,14 @@ class TBT_Rewards_Model_Mysql4_Customer_Indexer_Points extends Mage_Index_Model_
 	 * @return TBT_Rewards_Model_Mysql4_Customer_Indexer_Points
 	 */
 	public function reindexUpdate($customerId) {
-		$this->_getWriteAdapter ()->insertOnDuplicate ( $this->getIdxTable (), $this->_getCustomerBalance ( $customerId ) );
+	    $simple_points_balance = $this->_getCustomerBalance ( $customerId );
+	   /*
+		@nelkaake comment 8/03/2011
+		Mage::helper('rewards/debug')->log(
+	    	"updating customer points balance for customer ID #{$customerId} with points balance: ".
+			 print_r($simple_points_balance, true) );
+		*/
+		$this->_getWriteAdapter ()->insertOnDuplicate ( $this->getIdxTable (), $simple_points_balance );
 		return $this;
 	}
 	
@@ -88,8 +126,14 @@ class TBT_Rewards_Model_Mysql4_Customer_Indexer_Points extends Mage_Index_Model_
 			    continue;
 			}
 			
+		    $cp_real_bal = $customer->getRealUsablePoints ();
+	        /*
+			@nelkaake comment 8/03/2011
+			Mage::helper('rewards/debug')->log("Customer points balance: ". print_r($cp_real_bal, true));
+	        Mage::helper('rewards/debug')->log("Customer points balance array sum: ". array_sum ( $cp_real_bal ) );
+			*/
 			$customerIdxData [] = array ('customer_id' => $customer->getId (), 
-				'customer_points_usable' => array_sum ( $customer->getRealUsablePoints () ) 
+				'customer_points_usable' => array_sum ( $cp_real_bal ) 
 			);
 		}
 		

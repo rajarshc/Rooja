@@ -107,7 +107,7 @@ abstract class TBT_Rewards_Model_Catalogrule_Selection_Algorithm_Abstract {
 	 * @return TBT_Rewards_Model_Catalogrule_Selection_Algorithm_Abstract
 	 */
 	public function init($customer, $product) {
-		$this->_customer = $customer;
+		$this->_customer = Mage::getModel('rewards/customer')->getRewardsCustomer($customer);
 		$this->_product = $this->ensureProduct ( $product );
 		$this->_rules = null;
 		return $this;

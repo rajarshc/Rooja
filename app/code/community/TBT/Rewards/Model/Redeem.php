@@ -428,21 +428,13 @@ class TBT_Rewards_Model_Redeem extends Mage_Core_Model_Abstract {
 			return $this;
 		
 		if ($item->getRowTotalBeforeRedemptions () == 0) {
-            $rewards_discount = $item->getRewardsCatalogDiscount();
-            if(!empty($rewards_discount) && !Mage::helper('rewards/version')->isBaseMageVersionAtLeast('1.4')) {
-                if($item->getRowTotalBeforeRedemptions () == $item->getRowTotal() ){
-                    $price -= $rewards_discount;
-                }    
-            }
-            
 			$item->setRowTotalBeforeRedemptions ( $item->getRowTotal () );
 			$item->setRowTotalBeforeRedemptionsInclTax ( $item->getRowTotalInclTax () );
-		
 		} elseif ($item->getRowTotalBeforeRedemptions () < $item->getRowTotal ()) {
 			$item->setRowTotal ( $item->getRowTotalBeforeRedemptions () );
 			$item->setRowTotalInclTax ( $item->getRowTotalBeforeRedemptionsInclTax () );
-		
-		} else {
+		} 
+                else {
 			// do nothing
 		}
 		

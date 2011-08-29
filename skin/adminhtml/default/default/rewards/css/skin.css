@@ -32,7 +32,9 @@ h3.head-manage-promo-catalog
 	padding-right:0;
 }
 
-.tabs.config-tabs span.stadmin-config_menu {
+.tabs.config-tabs span.stadmin-config_menu, 
+        .tabs a:hover.active span.stadmin-config_menu, 
+        .tabs.config-tabs span.stadmin-config_menu a.stadmin-config_menu:hover {
 	padding: 0;
 	background-image:url("../images/st_micro_icon.png");
 	background-position:0 2px;
@@ -41,6 +43,8 @@ h3.head-manage-promo-catalog
 	padding-left:22px;
 	padding-right:0;
 }
+
+
 
 .content-header h3 span.stadmin-config_menu {
 	background-image:url("../images/st_micro_icon.png");
@@ -58,4 +62,30 @@ h3.head-manage-promo-catalog
 .entry-edit .rewards-currency-footer-msg {
     text-align: left;
 }
+
+
+.textarea{
+	width: 88% !important;
+}
+
+.value{
+	width: 310px !important;
+}
+
+.wikiHint {
+	text-decoration: none;
+	display: inline-block;
+	margin-left: 7px;
+	background: url("../images/wikiHint.png") no-repeat scroll 0;
+}
+
+.wikiHint:hover {
+	text-decoration: none;
+	/*
+	font-weight: bold;
+	margin-left: 6px;
+	*/
+}
+
+
 

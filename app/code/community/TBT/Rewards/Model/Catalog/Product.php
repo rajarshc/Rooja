@@ -318,7 +318,7 @@ class TBT_Rewards_Model_Catalog_Product extends Mage_Catalog_Model_Product {
 	 * Calculates how many points 
 	 *
 	 * @param TBT_Rewards_Model_Catalogrule_Rule|int $rule      : id or model
-	 * @return unknown
+	 * @return array
 	 */
 	public function getCatalogPointsForRule($rule) {
 		if ($rule instanceof TBT_Rewards_Model_Catalogrule_Rule) {
@@ -390,36 +390,46 @@ class TBT_Rewards_Model_Catalog_Product extends Mage_Catalog_Model_Product {
 		/* TODO: make this method return REWARDS-SYSTEM rule id's ONLY */
 		// look up all rule objects associated with this item
 		$now = ($date == null) ? Mage::helper ( 'rewards' )->now () : $date;
-		$productId = $this->getId ();
-		$rule_data = Mage::getResourceModel ( 'catalogrule/rule' )->getRuleProductsForDateRange ( $now, $now, $productId );
-		//getRulesForProduct($date, $wId, $pId)
-		if (! $rule_data) {
-			return null;
-		}
-		
-		$wId = ($wId == null) ? Mage::app ()->getStore ()->getWebsiteId () : $wId;
+                $wId = ($wId == null) ? Mage::app ()->getStore ()->getWebsiteId () : $wId;
+                
 		$gId = ($gId == null) ? Mage::getSingleton ( 'customer/session' )->getCustomerGroupId () : $gId;
 		
-		// add each ID to a string of associated rule ID's
+		$productId = $this->getId ();
+                
 		$rule_ids = array ();
-		foreach ( $rule_data as $rule ) {
-			
-			if (($rule ['from_time'] != 0) && (strtotime ( $now ) < $rule ['from_time'])) {
-				continue;
-			}
-			if (($rule ['to_time'] != 0) && (strtotime ( $now ) > $rule ['to_time'])) {
-				continue;
-			}
-			if ($rule ['website_id'] != $wId) {
-				continue;
-			}
-			if ($rule ['customer_group_id'] != $gId) {
-				continue;
-			}
-			$rule_ids [] = ( int ) $rule ['rule_id'];
-		}
-		$rule_ids = array_unique ( $rule_ids );
 		
+		// The getRuleProductsForDateRange function is removed completely in Magento v1.6+
+        if (Mage::helper('rewards')->isBaseMageVersionAtLeast('1.5.1')) {
+            $rule_data = Mage::getResourceModel('catalogrule/rule')->getRulesFromProduct($now, $wId, $gId, $productId);
+            if ($rule_data) {
+                foreach ( $rule_data as $ruleId => $rule ) {
+                    $rule_ids [] = (int)$rule ['rule_id'];                        
+                }
+            }
+            
+        // For older versions of Magento we can use getRuleProductsForDateRange
+        } else {
+            $rule_data = Mage::getResourceModel( 'catalogrule/rule')->getRuleProductsForDateRange($now, $now, $productId);
+            if ($rule_data) {
+                foreach ( $rule_data as $ruleId => $rule ) {
+                    if (($rule ['from_time'] != 0) && (strtotime ( $now ) < $rule ['from_time'])) {
+                            continue;
+                    }
+                    if (($rule ['to_time'] != 0) && (strtotime ( $now ) > $rule ['to_time'])) {
+                            continue;
+                    }
+                    if ($rule ['website_id'] != $wId) {
+                            continue;
+                    }
+                    if ($rule ['customer_group_id'] != $gId) {
+                            continue;
+                    }
+                    $rule_ids [] = ( int ) $rule ['rule_id'];
+                }
+            }
+        }
+		
+		$rule_ids = array_unique ( $rule_ids );
 		return $rule_ids;
 	}
 	

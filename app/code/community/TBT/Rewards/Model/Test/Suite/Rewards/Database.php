@@ -1,6 +1,7 @@
 <?php
 
-class TBT_Rewards_Model_Test_Suite_Rewards_Database extends TBT_Testsweet_Model_Test_Suite_Abstract {
+class TBT_Rewards_Model_Test_Suite_Rewards_Database
+        extends TBT_Testsweet_Model_Test_Suite_Abstract {
 
     public function getRequireTestsweetVersion() {
         return '1.0.0.0';
@@ -98,15 +99,7 @@ class TBT_Rewards_Model_Test_Suite_Rewards_Database extends TBT_Testsweet_Model_
         $tableChecks[$cr->getTableName('catalogrule_product_price')] = array(
             'rules_hash'
         );
-        $tableChecks[$cr->getTableName('sales_flat_quote')] = array(
-            'cart_redemptions',
-            'applied_redemptions'
-        );
-        $tableChecks[$cr->getTableName('sales_flat_quote_item')] = array(
-            'earned_points_hash',
-            'redeemed_points_hash',
-            'row_total_before_redemptions'
-        );
+
         $tableChecks[$cr->getTableName('salesrule')] = array(
             'points_action',
             'points_currency_id',
@@ -116,14 +109,26 @@ class TBT_Rewards_Model_Test_Suite_Rewards_Database extends TBT_Testsweet_Model_
             'points_qty_step',
             'points_max_qty'
         );
-        $tableChecks[$cr->getTableName('sales_flat_quote')] = array(
-            'rewards_discount_amount',
-            'rewards_base_discount_amount',
-            'rewards_discount_tax_amount',
-            'rewards_discount_base_tax_amount'
-        );
 
-        if (Mage::helper('rewards/version')->isBaseMageVersionAtLeast('1.4')) {
+        if (Mage::helper('rewards/version')->isBaseMageVersionAtLeast('1.3.2')) {
+            $tableChecks[$cr->getTableName('sales_flat_quote')] = array(
+                'cart_redemptions',
+                'applied_redemptions',
+                'rewards_discount_amount',
+                'rewards_base_discount_amount',
+                'rewards_discount_tax_amount',
+                'rewards_discount_base_tax_amount'
+            );
+
+            $tableChecks[$cr->getTableName('sales_flat_quote_item')] = array(
+                'earned_points_hash',
+                'redeemed_points_hash',
+                'row_total_before_redemptions'
+            );
+        }
+
+        if (Mage::helper('rewards/version')->isBaseMageVersionAtLeast('1.4.1')) {
+
             $tableChecks[$cr->getTableName('sales_flat_order')] = array(
                 'rewards_discount_amount',
                 'rewards_base_discount_amount',
@@ -157,9 +162,11 @@ class TBT_Rewards_Model_Test_Suite_Rewards_Database extends TBT_Testsweet_Model_
 
             foreach ($columns as $column) {
                 if (in_array($column, $table_columns)) {
-                    $this->addPass($this->__("Table %s has column %s", $table, $column));
+                    $this->addPass($this->__("Table %s has column %s", $table,
+                                    $column));
                 } else {
-                    $this->addFail($this->__("Table %s is missing column %s", $table, $column));
+                    $this->addFail($this->__("Table %s is missing column %s",
+                                    $table, $column));
                 }
             }
         }

@@ -7,11 +7,11 @@ class TBT_Testsweet_Model_Test_Suite_Php_Extensions extends TBT_Testsweet_Model_
     }
 
     public function getSubject() {
-        return $this->__('Check PHP extensions');
+        return $this->__('PHP - Extensions');
     }
 
     public function getDescription() {
-        return $this->__('Check PHP has required extension');
+        return $this->__('Check PHP has required extension.');
     }
     
 
@@ -21,13 +21,10 @@ class TBT_Testsweet_Model_Test_Suite_Php_Extensions extends TBT_Testsweet_Model_
      * (overrides parent method)
      */
     protected function generateSummary() {
-
+        $this->_checkCurl();        
         $this->_checkInstalledExtensions();
-
         $this->_checkApc();
-        
-        $this->_checkCurl();
-        
+        $this->_checkEaccelerator();
     }
     
     
@@ -98,7 +95,7 @@ class TBT_Testsweet_Model_Test_Suite_Php_Extensions extends TBT_Testsweet_Model_
      */
     protected function _checkApc() {
         if (extension_loaded('apc')) {
-            $this->addWarning($this->__("PHP has problematic extension APC. This extension was reported to cause issues when misconfigured", $extension));
+            $this->addWarning($this->__("PHP has extension APC. This extension can cause cache issues when misconfigured."));
             if (ini_get('apc.stat') != '1') {
                 $this->addFail($this->__("APC.STAT is set: %s", ini_get('apc.stat')), $this->__("When APC stat is set off, the system will not recheck files for changes and will continue to use cached values"));
             }
@@ -106,5 +103,14 @@ class TBT_Testsweet_Model_Test_Suite_Php_Extensions extends TBT_Testsweet_Model_
         
         return $this;
     }
-
+    
+    protected function _checkEaccelerator() {
+        if (extension_loaded('eaccelerator')) {
+            $this->addWarning($this->__("PHP has extension eAccelerator. This extension can cause cache issues when misconfigured."));
+            if (ini_get('eaccelerator.check_mtime') != '1') {
+                $this->addFail($this->__("eAccelerator check_mtime is set: %s", ini_get('eaccelerator.check_mtime')), $this->__("When eAccelerator mtime is set off, the system will not check files for updates and will continue using outdated cached files."));
+            }
+        }
+        return $this;
+    }
 }

@@ -87,9 +87,9 @@ class TBT_Rewards_Model_Tag extends Mage_Tag_Model_Tag {
 	 */
 	protected function approvePendingTransfers() {
 		foreach ( $this->getAssociatedTransfers () as $transfer ) {
-			if ($transfer->getStatus () == TBT_Rewards_Model_Transfer_Status::STATUS_PENDING) {
+			if ($transfer->getStatus () == TBT_Rewards_Model_Transfer_Status::STATUS_PENDING_EVENT) {
 				//Move the transfer status from pending to approved, and save it!
-				$transfer->setStatus ( TBT_Rewards_Model_Transfer_Status::STATUS_PENDING, TBT_Rewards_Model_Transfer_Status::STATUS_APPROVED );
+				$transfer->setStatus ( TBT_Rewards_Model_Transfer_Status::STATUS_PENDING_EVENT, TBT_Rewards_Model_Transfer_Status::STATUS_APPROVED );
 				$transfer->save ();
 			}
 		}

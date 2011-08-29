@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
-<config>    
+<config>
     <modules>
         <TBT_Testsweet>
-            <version>1.0.0.0</version>
+            <version>1.0.1.1</version>
         </TBT_Testsweet>
     </modules>
 
@@ -16,32 +16,33 @@
                     <su>TBT_Testsweet_Model_Test_Suite_Php_Su</su>
                     <suhosin>TBT_Testsweet_Model_Test_Suite_Php_Suhosin</suhosin>
                 </suites>
-            </core_php>            
+            </core_php>
             <core_magento>
                 <suites>
                     <cron>TBT_Testsweet_Model_Test_Suite_Magento_Cron</cron>
                     <filesystem>TBT_Testsweet_Model_Test_Suite_Magento_Filesystem</filesystem>
                     <compiler>TBT_Testsweet_Model_Test_Suite_Magento_Compiler</compiler>
                     <cache>TBT_Testsweet_Model_Test_Suite_Magento_Cache</cache>
+                    <configuration>TBT_Testsweet_Model_Test_Suite_Magento_Configuration</configuration>
                     <indexer>TBT_Testsweet_Model_Test_Suite_Magento_Indexer</indexer>
-                </suites>     
+                </suites>
             </core_magento>
             <core_magento_module>
                 <suites>
-                    <conflict>TBT_Testsweet_Model_Test_Suite_Magento_Module_Conflict</conflict>
+                    <!--<cache>TBT_Testsweet_Model_Test_Suite_Magento_Module_Cache</cache>-->
                     <version>TBT_Testsweet_Model_Test_Suite_Magento_Module_Version</version>
                     <output>TBT_Testsweet_Model_Test_Suite_Magento_Module_Output</output>
-                </suites>     
+                    <conflict>TBT_Testsweet_Model_Test_Suite_Magento_Module_Conflict</conflict>
+                </suites>
             </core_magento_module>
         </tests>
     </testsweet>
-    
+
     <crontab>
         <jobs>
             <testsweet_cron>
                 <schedule>
                     <cron_expr>*/5 * * * *</cron_expr>
-                    <!--<cron_expr>0,5,10,15,20,25,30,35,40,45,50,55 * * * *</cron_expr>-->
                 </schedule>
                 <run>
                     <model>testsweet/observer_crontest::run</model>
@@ -49,7 +50,7 @@
             </testsweet_cron>
         </jobs>
     </crontab>
-    
+
     <global>
         <models>
             <testsweet>
@@ -62,8 +63,7 @@
             </testsweet>
         </helpers>
     </global>
-    
-    
+
     <frontend>
         <routers>
             <testsweet>
@@ -75,7 +75,5 @@
             </testsweet>
         </routers>
     </frontend>
-    
-    
-    
+
 </config>

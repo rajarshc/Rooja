@@ -67,6 +67,9 @@ class TBT_Rewards_Model_Catalogrule_Rule extends Mage_CatalogRule_Model_Rule imp
 	 */
 	public function cleanCache() {
 		Mage::app ()->cleanCache ( self::CACHE_TAG . '_' . $this->getId () );
+                //TODO: review this call to cleanCache... might be invalid because keys are more complex.
+                //$key = "rewards_product_view_points_{$nameInLayout}_{$blockType}_{$product_id}_{$website_id}_{$customer_group_id}";
+                //$key = "rewards_product_predictpoints_{$nameInLayout}_{$blockType}_{$product_id}_{$website_id}_{$customer_group_id}";                
 		Mage::app ()->cleanCache ( 'rewards_product_predictpoints' );
 		Mage::app ()->cleanCache ( 'rewards_product_view_points' );
 		return $this;

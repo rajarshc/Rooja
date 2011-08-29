@@ -37,6 +37,8 @@
 
 /**
  * Modified tax renderer 
+ * @deprecated using observer now instead
+ * @see TBT_Rewards_Model_Observer_Block_Total_Tax
  *
  * @category   TBT
  * @package    TBT_Rewards
@@ -44,21 +46,7 @@
  */
 class TBT_Rewards_Block_Checkout_Total_Tax extends Mage_Checkout_Block_Total_Tax {
 	
-	// Change the template to be the Sweet Tooth one so that we can display the tax discount if we need to
-	protected $_template = 'rewards/checkout/total/tax.phtml';
-	
-	public function getTotalInclCatalogDiscounts() {
-		$total = $this->getTotal ()->getValue ();
-		
-		// If tax is included in the produt price then we should subtract the change in tax price from the 
-		// tax total visually only.
-		$store = $this->getTotal ()->getAddress ()->getQuote ()->getStore ();
-		if (Mage::helper ( 'tax' )->priceIncludesTax ( $store )) {
-			$total -= $this->getTotal ()->getAddress ()->getQuote ()->getRewardsDiscountTaxAmount ();
-		}
-		return $total;
-	}
-	
+
 	/**
 	 * Retrieve block view from file (template)
 	 *
@@ -70,4 +58,6 @@ class TBT_Rewards_Block_Checkout_Total_Tax extends Mage_Checkout_Block_Total_Tax
 		
 		return parent::fetchView ( $fileName );
 	}
+	
+	
 }

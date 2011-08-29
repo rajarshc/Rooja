@@ -87,6 +87,17 @@ class TBT_Rewards_Block_Customer_Summary extends Mage_Core_Block_Template {
 		return $pts;
 	}
 	
+	/**
+	 * Fetches a summary of the points that customer has.
+	 *
+	 * @return string
+	 */
+	public function getCustomerPendingTimePointsSummary() {
+		$pts = $this->htmlEscape ( $this->_getCustomer ()->getPendingTimePointsSummary () );
+		$pts = Mage::helper ( 'rewards' )->emphasizeThePoints ( $pts );
+		return $pts;
+	}
+	
 	public function hasPendingPoints() {
 		return $this->_getCustomer ()->hasPendingPoints ();
 	}
@@ -97,6 +108,10 @@ class TBT_Rewards_Block_Customer_Summary extends Mage_Core_Block_Template {
 	
 	public function hasOnHoldPoints() {
 		return $this->_getCustomer ()->hasPointsOnHold ();
+	}
+	
+	public function hasPendingTimePoints() {
+	    return $this->_getCustomer()->hasPendingTimePoints();
 	}
 	
 	/**

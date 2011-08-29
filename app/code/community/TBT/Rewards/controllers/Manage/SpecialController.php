@@ -91,6 +91,7 @@ class TBT_Rewards_Manage_SpecialController extends TBT_Rewards_Manage_Sweettooth
 				$this->_redirect ( '*/*' );
 				return;
 			}
+			$model->setIsOnholdEnabled($model->getOnholdDuration() != 0);
 		}
 		// set entered data if was error when we do save
 		$data = Mage::getSingleton ( 'adminhtml/session' )->getPageData ( true );

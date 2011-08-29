@@ -57,7 +57,17 @@ class TBT_Rewards_Block_Manage_Transfer_Edit_Tab_Customer_Grid extends Mage_Admi
 	}
 	
 	protected function _prepareCollection() {
-		$collection = Mage::getResourceModel ( 'customer/customer_collection' )->addNameToSelect ()->addAttributeToSelect ( 'email' )->addAttributeToSelect ( 'created_at' )->joinAttribute ( 'billing_postcode', 'customer_address/postcode', 'default_billing', null, 'left' )->joinAttribute ( 'billing_city', 'customer_address/city', 'default_billing', null, 'left' )->joinAttribute ( 'billing_telephone', 'customer_address/telephone', 'default_billing', null, 'left' )->joinAttribute ( 'billing_regione', 'customer_address/region', 'default_billing', null, 'left' )->joinAttribute ( 'billing_country_id', 'customer_address/country_id', 'default_billing', null, 'left' )->joinField ( 'store_name', 'core/store', 'name', 'store_id=store_id', null, 'left' );
+		$collection = Mage::getResourceModel ( 'customer/customer_collection' )->addNameToSelect ()
+		        ->addAttributeToSelect ( 'email' )
+		        ->addAttributeToSelect ( 'created_at' )
+		        ->joinAttribute ( 'billing_postcode', 'customer_address/postcode', 'default_billing', null, 'left' )
+		        ->joinAttribute ( 'billing_city', 'customer_address/city', 'default_billing', null, 'left' )
+		        ->joinAttribute ( 'billing_telephone', 'customer_address/telephone', 'default_billing', null, 'left' )
+		        ->joinAttribute ( 'billing_regione', 'customer_address/region', 'default_billing', null, 'left' )
+		        ->joinAttribute ( 'billing_country_id', 'customer_address/country_id', 'default_billing', null, 'left' )
+		        ->joinField ( 'store_name', 'core/store', 'name', 'store_id=store_id', null, 'left' );
+		
+		$this->_joinCustomerPointsIndex($collection);
 		
 		$this->setCollection ( $collection );
 		if ($customer_id = $this->getRequest ()->getParam ( 'customer_id' )) {
@@ -66,6 +76,27 @@ class TBT_Rewards_Block_Manage_Transfer_Edit_Tab_Customer_Grid extends Mage_Admi
 		return parent::_prepareCollection ();
 	}
 	
+
+	/**
+	 * If we should be using the customer points balance index table, this will join the index table to this grid collection
+	 * TODO this is a copy from the class TBT_Rewards_Block_Manage_Customer_Points_Grid. We should be using a decorator design pattern here.
+	 * @param unknown_type $collection
+	 */
+	protected function _joinCustomerPointsIndex($collection=null) {
+	    if(!Mage::helper('rewards/customer_points_index')->useIndex()) {
+	        // Shouldn't be using the customer points index.
+	        return $this;
+	    }
+	    
+	    $collection = $collection == null ? $this->getCollection() : $collection;
+	
+	    $points_index_table = Mage::getResourceModel('rewards/customer_indexer_points')->getIdxTable();
+	    $collection->getSelect()->joinLeft(
+	        array('points_index' => $points_index_table), 
+	        'e.entity_id = points_index.customer_id');
+		
+		return $this;
+	}
 	/**
 	 * Retirve currently edited product model
 	 *

@@ -66,6 +66,59 @@ class TBT_Rewards_Block_Manage_Special_Edit extends Mage_Adminhtml_Block_Widget_
 		
 		$additional_init_scripts = Mage::getSingleton ( 'rewards/special_action' )->getAdminFormInitScripts ();
 		$this->_formInitScripts = array_merge ( $this->_formInitScripts, $additional_init_scripts );
+		
+		$this->_formInitScripts [] = <<<TOGGLE_ONHOLD
+	        function toggleOnholdEnabled(isEnabled) {
+	        	var rule_onhold_duration = $('rule_onhold_duration').up().up();
+	        	if (isEnabled == 1) {
+	        		rule_onhold_duration.show();
+	        		$('rule_onhold_duration').addClassName('validate-notzero')
+	        			.addClassName('validate-not-negative-number');
+	        	} else {
+	        		rule_onhold_duration.hide();
+	        		$('rule_onhold_duration').removeClassName('validate-notzero')
+	        			.removeClassName('validate-not-negative-number');
+	        	}
+	    	}
+TOGGLE_ONHOLD;
+        $this->_formInitScripts [] = "toggleOnholdEnabled($('rule_is_onhold_enabled').value)";
+        
+        $behavior_checks = array();
+        $behaviors = Mage::getSingleton('rewards/probation')->getProbationalBehaviors();
+
+        if(count($behaviors) > 0) {
+            foreach ($behaviors as $key) {
+                $behavior_checks[] = "
+                	if (action == '{$key}') {
+                		rule_is_onhold_enabled.show();
+                	}";
+            }
+        } else {
+            // If there are no behavior checks, just make an empty IF statement that does nothing.
+            $behavior_checks[] = "if(true) { }";
+        }
+        
+        $jsIfBehaviorIsProbational = implode(" else ", $behavior_checks);
+
+        $this->_formInitScripts [] = <<<ONHOLD_AVAILABLE
+	        function toggleActionsSelect(action) {
+	        	var rule_is_onhold_enabled = $('rule_is_onhold_enabled').up().up();
+	        	{$jsIfBehaviorIsProbational}
+	        	else {
+	        		$('rule_is_onhold_enabled').value = 0;
+	        		toggleOnholdEnabled(0);
+	        		rule_is_onhold_enabled.hide();
+	        	}
+	    	}
+	    	
+	   	// update the onchange events for the rule_points_conditions field.
+	   	document.observe("dom:loaded", function() {
+    	   	var old_onchange_event = $('rule_points_conditions').getAttribute('onchange');
+    		$('rule_points_conditions').setAttribute('onchange', (old_onchange_event == null ? '' : old_onchange_event) + 'toggleActionsSelect(this.value);');
+		});
+		
+ONHOLD_AVAILABLE;
+        $this->_formInitScripts [] = "toggleActionsSelect($('rule_points_conditions').value)";
 	
 		#$this->setTemplate('promo/quote/edit.phtml');
 	}

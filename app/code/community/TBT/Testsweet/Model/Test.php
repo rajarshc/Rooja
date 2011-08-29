@@ -18,7 +18,4 @@ class TBT_Testsweet_Model_Test {
         $this->buildDefaultTester()->outputSummary();
     }
     
-
-
-
 }

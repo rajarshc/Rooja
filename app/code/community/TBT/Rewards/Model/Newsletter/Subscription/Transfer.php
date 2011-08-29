@@ -117,7 +117,7 @@ class TBT_Rewards_Model_Newsletter_Subscription_Transfer extends TBT_Rewards_Mod
 		$currency_id = $rule->getPointsCurrencyId ();
 		$rule_id = $rule->getId ();
 		$transfer = $this->initTransfer ( $num_points, $currency_id, $rule_id );
-		$customer = $rsubscriber->getCustomer ();
+		$customer = Mage::getModel('rewards/customer')->getRewardsCustomer($rsubscriber->getCustomer ());
 		$store_id = $customer->getStore ()->getId ();
 		
 		if (! $transfer) {

@@ -53,7 +53,7 @@ class TBT_Rewards_Block_Special_Header extends Mage_Core_Block_Template {
 	public function getPointsSummary() {
 		if (Mage::getSingleton ( 'rewards/session' )->isCustomerLoggedIn ()) {
 			$customer = Mage::getSingleton ( 'rewards/session' )->getSessionCustomer ();
-			return $customer->getPointsSummary ();
+			return Mage::getModel('rewards/customer')->getRewardsCustomer($customer)->getPointsSummary ();
 		} else {
 			return "";
 		}

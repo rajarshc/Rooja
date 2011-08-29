@@ -1,30 +1,39 @@
 <?php
-
 /**
- * Magento
- *
+ * WDCA - Sweet Tooth
+ * 
  * NOTICE OF LICENSE
- *
- * This source file is subject to the Open Software License (OSL 3.0)
- * that is bundled with this package in the file LICENSE.txt.
- * It is also available through the world-wide-web at this URL:
+ * 
+ * This source file is subject to the WDCA SWEET TOOTH POINTS AND REWARDS 
+ * License, which extends the Open Software License (OSL 3.0).
+ * The Sweet Tooth License is available at this URL: 
+ * http://www.wdca.ca/sweet_tooth/sweet_tooth_license.txt
+ * The Open Software License is available at this URL: 
  * http://opensource.org/licenses/osl-3.0.php
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@magentocommerce.com so we can send you a copy immediately.
- *
+ * 
  * DISCLAIMER
- *
- * Do not edit or add to this file if you wish to upgrade Magento to newer
- * versions in the future. If you wish to customize Magento for your
- * needs please refer to http://www.magentocommerce.com for more information.
- *
- * @category   Mage
- * @package    Mage_Paypal
- * @copyright  Copyright (c) 2008 Irubin Consulting Inc. DBA Varien (http://www.varien.com)
+ * 
+ * By adding to, editing, or in any way modifying this code, WDCA is 
+ * not held liable for any inconsistencies or abnormalities in the 
+ * behaviour of this code. 
+ * By adding to, editing, or in any way modifying this code, the Licensee
+ * terminates any agreement of support offered by WDCA, outlined in the 
+ * provided Sweet Tooth License. 
+ * Upon discovery of modified code in the process of support, the Licensee 
+ * is still held accountable for any and all billable time WDCA spent 
+ * during the support process.
+ * WDCA does not guarantee compatibility with any other framework extension. 
+ * WDCA is not responsbile for any inconsistencies or abnormalities in the
+ * behaviour of this code if caused by other framework extension.
+ * If you did not receive a copy of the license, please send an email to 
+ * contact@wdca.ca or call 1-888-699-WDCA(9322), so we can send you a copy 
+ * immediately.
+ * 
+ * @category   [TBT]
+ * @package    [TBT_Rewards]
+ * @copyright  Copyright (c) 2011 WDCA (http://www.wdca.ca)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-
 /**
  *
  * PayPal Standard Checkout Module
@@ -38,12 +47,109 @@ class TBT_Rewards_Model_Paypal_Standard extends Mage_Paypal_Model_Standard {
 		return 0.01;
 	}
 	
+	
+	/**
+	 * Appends Sweet Tooth information 
+	 * @note: As of Sweet Tooth 1.5.0.3, this rewrite has been replaced with the TBT_Rewards_Model_Paypal_Observer observer for 
+     *        all versions of Magento greater than or equal to 1.4.1.  Previous versions do not dispatch the paypal_prepare_line_items 
+     *        event
+ 	 * @deprecated for Magento 1.4.1+ as of  Sweet Tooth 1.5.0.3
+	 *
+	 * @return array paypal checkout fields
+	 */
+	public function getStandardCheckoutFormFields() {
+    
+		$scf = parent::getStandardCheckoutFormFields ();
+        // Only run for Magento 1.4.0.x and lower; newer versions use thew paypal_prepare_line_items event obsrever in the TBT_Rewards_Model_Paypal_Observer class
+        if(Mage::helper('rewards/version')->isBaseMageVersionAtLeast('1.4.1')) {
+            return $scf;
+        }
+    
+		$items = $this->_getQuote ()->getAllItems ();
+		
+		//@nelkaake -a 16/11/10: There are two major things we need to do here: 
+		// 1. If the balance is 0, make sure there is at least 1 penny in the subtotal so PayPal lets us checkout.  
+		// 2. Gather all of our catalog points redemption discounts and add them to the final cart discount total.
+
+		Mage::getSingleton ( 'rewards/redeem' )->refactorRedemptions ( $items );
+        
+        $disc_attr = 'discount_amount';
+                
+        
+		if (isset ( $scf[$disc_attr] )) {
+			$discountAmount = ( float ) $scf[$disc_attr];
+			if ($discountAmount >= $this->_getQuote ()->getSubtotal ()) {
+				//@nelkaake Sunday April 25, 2010 : We're discounting the whole amount, so we need to add a premium in order for PayPal to see the output.
+				$scf[$disc_attr] = ( float ) $scf[$disc_attr] - $this->getPaypalZeroCheckoutFee ();
+				$scf[$disc_attr] = ( string ) $scf[$disc_attr];
+			}
+		} else {
+			$scf[$disc_attr] = 0;
+		}
+		$scf[$disc_attr] = ( float ) $scf[$disc_attr];
+		
+		//@nelkaake -a 16/11/10: Figure out the accumulated difference in price so we can add to the discount amount 
+		//TODO @nelkaake: Can we calculate the discount amount another way, perhaps using the new getCatalogDiscount method in the Redeem singleton?
+        $acc_diff = $this->getDiscountDisplacement();
+        
+		$scf[$disc_attr] += $acc_diff;
+        
+		//@nelkaake Added on Monday October 4, 2010: Uncomment this if you want to see what's being sent to PayPal standard checkout
+        //Mage::helper('rewards/debug')->dd(array($scf, Mage::helper('rewards/debug')->getSimpleBacktrace() ));
+		
+
+		return $scf;
+	}
+	
+	/**
+	 * Returns the total amount of discount displacement due to catalog redemption rules that needs to 
+	 * be subtracted from the grand total.
+	 * This is a positive amount          
+	 * 
+	 * @param Mage_Sales_Model_Order|Mage_Sales_Model_Quote $_quote=null If null uses the current session quote or the quote stored in this model
+	 * @return float
+	 */
+	public function getDiscountDisplacement($_quote=null) {
+    
+        if(  !($_quote instanceof Mage_Sales_Model_Order || $_quote instanceof Mage_Sales_Model_Quote)  ) {
+            $_quote = $this->_getQuote ();
+        }
+		$items = $_quote->getAllItems ();
+		
+		//@nelkaake -a 16/11/10: There are two major things we need to do here: 
+		// 1. If the balance is 0, make sure there is at least 1 penny in the subtotal so PayPal lets us checkout.  
+		// 2. Gather all of our catalog points redemption discounts and add them to the final cart discount total.
+		
+        Mage::getSingleton ( 'rewards/redeem' )->refactorRedemptions ( $items );
+        
+		//@nelkaake -a 16/11/10: Figure out the accumulated difference in price so we can add to the discount amount 
+		$acc_diff = 0;
+        
+        $acc_diff = $this->_getTotalCatalogDiscount($_quote);
+        
+		$acc_diff = $_quote->getStore ()->roundPrice ( $acc_diff );
+		if ($acc_diff == - 0)
+			$acc_diff = 0;
+        
+		if ($acc_diff >= $_quote->getSubtotal ()) {
+			//@nelkaake Sunday April 25, 2010 : We're discounting the whole amount, so we need to add a premium in order for PayPal to see the output.
+			$acc_diff = ( float ) $acc_diff - $this->getPaypalZeroCheckoutFee ();
+		}
+		$acc_diff = ( float ) $acc_diff;
+
+		return $acc_diff;
+	}
+    
+    
 	/**
 	 * Returns a quote model that is applicable to this checkout model
 	 *
+	 * @param Mage_Sales_Model_Order|Mage_Sales_Model_Quote $_quote=null If null uses the current session quote or the quote stored in this model
 	 * @return Mage_Sales_Model_Quote
 	 */
 	protected function _getQuote() {
+    
+        
 		if ($this->getHasEnsuredQuote ())
 			return $this->getEnsuredQuote ();
 		$quote = $this->getQuote ();
@@ -61,56 +167,6 @@ class TBT_Rewards_Model_Paypal_Standard extends Mage_Paypal_Model_Standard {
 	}
 	
 	/**
-	 * Appends Sweet Tooth information 
-	 *
-	 * @return array paypal checkout fields
-	 */
-	public function getStandardCheckoutFormFields() {
-
-
-		$items = $this->_getQuote ()->getAllItems ();
-		
-		//@nelkaake -a 16/11/10: There are two major things we need to do here: 
-		// 1. If the balance is 0, make sure there is at least 1 penny in the subtotal so PayPal lets us checkout.  
-		// 2. Gather all of our catalog points redemption discounts and add them to the final cart discount total.
-		
-
-		Mage::getSingleton ( 'rewards/redeem' )->refactorRedemptions ( $items );
-		$scf = parent::getStandardCheckoutFormFields ();
-		if (isset ( $scf ['discount_amount_cart'] )) {
-			$discountAmount = ( float ) $scf ['discount_amount_cart'];
-			if ($discountAmount >= $this->_getQuote ()->getSubtotal ()) {
-				//@nelkaake Sunday April 25, 2010 : We're discounting the whole amount, so we need to add a premium in order for PayPal to see the output.
-				$scf ['discount_amount_cart'] = ( float ) $scf ['discount_amount_cart'] - $this->getPaypalZeroCheckoutFee ();
-				$scf ['discount_amount_cart'] = ( string ) $scf ['discount_amount_cart'];
-			}
-		} else {
-			$scf ['discount_amount_cart'] = 0;
-		}
-		$scf ['discount_amount_cart'] = ( float ) $scf ['discount_amount_cart'];
-		
-		//@nelkaake -a 16/11/10: Figure out the accumulated difference in price so we can add to the discount amount 
-		//TODO @nelkaake: Can we calculate the discount amount another way, perhaps using the new getCatalogDiscount method in the Redeem singleton?
-		$acc_diff = 0;
-        
-        $acc_diff = $this->_getTotalCatalogDiscount();
-        
-		$acc_diff = $this->_getQuote ()->getStore ()->roundPrice ( $acc_diff );
-		if ($acc_diff == - 0)
-			$acc_diff = 0;
-
-
-
-		$scf ['discount_amount_cart'] += - $acc_diff;
-		
-		//@nelkaake Added on Monday October 4, 2010: Uncomment this if you want to see what's being sent to PayPal standard checkout
-        // die(print_r($scf, true));
-		
-
-		return $scf;
-	}
-	
-	/**
 	 * Fetches the redemption calculator model
 	 *
 	 * @return TBT_Rewards_Model_Redeem
@@ -122,11 +178,21 @@ class TBT_Rewards_Model_Paypal_Standard extends Mage_Paypal_Model_Standard {
 	
 	/**
 	 * Returns the total accumulated catalog discounts on the quote model that is in this class
+	 * @param Mage_Sales_Model_Order|Mage_Sales_Model_Quote $_quote=null If null uses the current session quote or the quote stored in this model
 	 * @return int negative discount amount
 	 */
-    protected function _getTotalCatalogDiscount() {
+    protected function _getTotalCatalogDiscount($_quote=null) {
     
-		$items = $this->_getQuote ()->getAllItems ();
+        if(  !($_quote instanceof Mage_Sales_Model_Order || $_quote instanceof Mage_Sales_Model_Quote)  ) {
+            $_quote = $this->_getQuote ();
+        }
+		$items = $_quote->getAllItems ();
+        
+        // If the rewards catalog discount is already stored in the quote, just use that.
+        $quote_discount_amount = $_quote->getRewardsDiscountAmount();
+        if($quote_discount_amount) {
+            return $quote_discount_amount;
+        }
         
 		if (! is_array ( $items )) {
 			$items = array ($items );
@@ -143,7 +209,7 @@ class TBT_Rewards_Model_Paypal_Standard extends Mage_Paypal_Model_Standard {
     
     /**
 	 * Returns the total accumulated catalog discounts on an item
-     * @param Mage_Sales_Model_Quote_Item $item
+     * @param Mage_Sales_Model_Quote_Item|Mage_Sales_Model_Order_Item $item
 	 * @return int negative discount amount
      */
     protected function _getTotalItemCatalogDiscount($item) {
@@ -164,8 +230,8 @@ class TBT_Rewards_Model_Paypal_Standard extends Mage_Paypal_Model_Standard {
             } else {
                 $total_discount = $item->getRowTotalBeforeRedemptions () - $item->getRowTotal();
             }
-        }                                                    
-	  
+        }         
+        
         return $total_discount;
     
     }

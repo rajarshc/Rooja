@@ -63,7 +63,7 @@
             <show_in_store>1</show_in_store>
             <groups>
                 <about translate="label">
-                    <label>About This Extension</label>
+                    <label>About Sweet Tooth</label>
                     <sort_order>10</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
@@ -88,6 +88,7 @@
                     <fields>
                         <layoutsactive translate="label comment">
                             <label>Activate Layout Actions</label>
+                            <comment><![CDATA[If enabled, Sweet Tooth will load JavaScript and CSS files. It will also include most integrated content definitions. Please only change this option if you understand how it affects your store.]]></comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>10</sort_order>
@@ -156,6 +157,18 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>0</show_in_store>
                         </shopping_cart_rule_earn_after_discount>
+                        
+                        <freeshipping_when_spending_points translate="label comment">
+                            <label>Free shipping when spending points</label>
+                            <comment><![CDATA[If enabled, Sweet Tooth will give free shipping to customers when they are spending points.]]></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>80</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </freeshipping_when_spending_points>
+                        
                     </fields>
                 </general>
                 <display translate="label">
@@ -467,6 +480,15 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </TransferToFriend>
+                        <AfterBirthday translate="label">
+                            <label>After Birthday</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>rewards/system_config_statuslist</source_model>
+                            <sort_order>19</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </AfterBirthday>
                     </fields>
                 </InitialTransferStatus>
                 <orders translate="label">
@@ -704,7 +726,7 @@
                 
                 <migration translate="label">
                     <label>Migration Utilities</label>
-                    <sort_order>80</sort_order>
+                    <sort_order>350</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>0</show_in_website>
                     <show_in_store>0</show_in_store>
@@ -755,7 +777,7 @@
                 
                 <help translate="label">
                     <label><![CDATA[Diagnostics & Support Tools]]></label>
-                    <sort_order>85</sort_order>
+                    <sort_order>400</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>0</show_in_website>
                     <show_in_store>0</show_in_store>
@@ -787,7 +809,7 @@
                 <registration translate="label comment">
                     <label>Registration Information</label>
                     <comment><![CDATA[If you didn't install this module using CEM, this section is required.]]></comment>
-                    <sort_order>90</sort_order>
+                    <sort_order>500</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>

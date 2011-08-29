@@ -171,9 +171,9 @@ class TBT_Rewards_Model_Sales_Order extends Mage_Sales_Model_Order {
         
         /**
          * return true if the order initial transfer status if of $status 
-         * TBT_Rewards_Model_Transfer_Status::STATUS_PENDING
+         * TBT_Rewards_Model_Transfer_Status::STATUS_PENDING_EVENT
          * TBT_Rewards_Model_Transfer_Status::STATUS_APPROVED
-         * TBT_Rewards_Model_Transfer_Status::STATUS_ON_HOLD
+         * TBT_Rewards_Model_Transfer_Status::STATUS_PENDING_APPROVAL
          * TBT_Rewards_Model_Transfer_Status::STATUS_CANCELLED
          * 
          * @param TBT_Rewards_Model_Transfer_Status::CONST $status

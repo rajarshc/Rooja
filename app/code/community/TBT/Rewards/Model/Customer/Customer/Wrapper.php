@@ -80,14 +80,14 @@ class TBT_Rewards_Model_Customer_Customer_Wrapper extends Varien_Object
         foreach ($ruleCollection as $rule) {
             try {
                 //Create the Transfer
-                $is_transfer_successful = Mage::helper('rewards/transfer')->transferSignupPoints($rule->getPointsAmount(), $rule->getPointsCurrencyId(), $this->_customer->getId(), $rule->getId());
+                $is_transfer_successful = Mage::helper('rewards/transfer')->transferSignupPoints($rule->getPointsAmount(), $rule->getPointsCurrencyId(), $this->_customer->getId(), $rule);
             } catch (Exception $ex) {
                 Mage::getSingleton('core/session')->addError($ex->getMessage());
             }
 
             if ($is_transfer_successful) {
                 //Alert the customer on the distributed points   
-                Mage::getSingleton('core/session')->addSuccess(Mage::helper('rewards')->__('You received %s for signing up!', Mage::getModel('rewards/points')->set($rule)));
+                Mage::getSingleton('core/session')->addSuccess(Mage::helper('rewards')->__('You received %s for signing up!', (string)Mage::getModel('rewards/points')->set($rule)));
             } else {
                 Mage::getSingleton('core/session')->addError(Mage::helper('rewards')->__('Could not transfer points.'));
             }
@@ -112,8 +112,8 @@ class TBT_Rewards_Model_Customer_Customer_Wrapper extends Varien_Object
      */
     private function _loadPointsCollections() {
         $this->points = $this->_getPointSums('*active*');
-        $this->on_hold_points = $this->_getPointSums(TBT_Rewards_Model_Transfer_Status::STATUS_ON_HOLD);
-        $this->pending_points = $this->_getPointSums(TBT_Rewards_Model_Transfer_Status::STATUS_PENDING);
+        $this->on_hold_points = $this->_getPointSums(TBT_Rewards_Model_Transfer_Status::STATUS_PENDING_APPROVAL);
+        $this->pending_points = $this->_getPointSums(TBT_Rewards_Model_Transfer_Status::STATUS_PENDING_EVENT);
         // Load Indexed point balance
         try {
 	        if(Mage::getModel('index/process')->getCollection()->addFieldToFilter('indexer_code', 'rewards_transfer')->getFirstItem()->getStatus() == Mage_Index_Model_Process::STATUS_PENDING) {
@@ -141,8 +141,8 @@ class TBT_Rewards_Model_Customer_Customer_Wrapper extends Varien_Object
                     ->addStoreFilter(Mage::app()->getStore())
                     ->addFilter("status", $status);
 
-//			if (($status == TBT_Rewards_Model_Transfer_Status::STATUS_PENDING) ||
-//				($status == TBT_Rewards_Model_Transfer_Status::STATUS_ON_HOLD)) {
+//			if (($status == TBT_Rewards_Model_Transfer_Status::STATUS_PENDING_EVENT) ||
+//				($status == TBT_Rewards_Model_Transfer_Status::STATUS_PENDING_APPROVAL)) {
 //					$point_sums->addFieldToFilter("quantity", array('lt' => 0));
 //			}
         }
@@ -169,7 +169,7 @@ class TBT_Rewards_Model_Customer_Customer_Wrapper extends Varien_Object
     public function _getPendingPointsRedemptionsSum() {
         $point_sums = $this->getTransferCollection()
                 ->addStoreFilter(Mage::app()->getStore())
-                ->addFilter("status", TBT_Rewards_Model_Transfer_Status::STATUS_PENDING)
+                ->addFilter("status", TBT_Rewards_Model_Transfer_Status::STATUS_PENDING_EVENT)
                 ->addFieldToFilter("quantity", array('lt' => 0))
                 ->groupByCustomers()
                 ->addFilter("customer_id", $this->_customer->getId());
@@ -393,12 +393,12 @@ class TBT_Rewards_Model_Customer_Customer_Wrapper extends Varien_Object
         }
         if ($this->hasPendingPoints()) {
             $points_pending = Mage::helper('rewards')->getPointsString($this->pending_points);
-            $points_pending .= ' ' . $status_captions[TBT_Rewards_Model_Transfer_Status::STATUS_PENDING];
+            $points_pending .= ' ' . $status_captions[TBT_Rewards_Model_Transfer_Status::STATUS_PENDING_EVENT];
             $parts[] = $points_pending;
         }
         if ($this->hasPointsOnHold()) {
             $points_on_hold = Mage::helper('rewards')->getPointsString($this->on_hold_points);
-            $points_on_hold .= ' ' . $status_captions[TBT_Rewards_Model_Transfer_Status::STATUS_ON_HOLD];
+            $points_on_hold .= ' ' . $status_captions[TBT_Rewards_Model_Transfer_Status::STATUS_PENDING_APPROVAL];
             $parts[] = $points_on_hold;
         }
 

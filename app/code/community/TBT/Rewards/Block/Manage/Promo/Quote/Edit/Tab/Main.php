@@ -94,11 +94,14 @@ class TBT_Rewards_Block_Manage_Promo_Quote_Edit_Tab_Main extends Mage_Adminhtml_
 		if (Mage::helper ( 'rewards' )->isBaseMageVersionAtLeast ( '1.4.1.0' )) {
 			$couponTypeFiled = $fieldset->addField ( 'coupon_type', 'select', array ('name' => 'coupon_type', 'label' => Mage::helper ( 'salesrule' )->__ ( 'Coupon' ), 'required' => true, 'options' => Mage::getModel ( 'salesrule/rule' )->getCouponTypes () ) );
 			
+		    Mage::getSingleton('rewards/wikihints')->addWikiHint($couponTypeFiled, "Shopping Cart Rule - Coupons" );
+			
 			$couponCodeFiled = $fieldset->addField ( 'coupon_code', 'text', array ('name' => 'coupon_code', 'label' => Mage::helper ( 'salesrule' )->__ ( 'Coupon Code' ), 'required' => true ) );
 			
 			$usesPerCouponFiled = $fieldset->addField ( 'uses_per_coupon', 'text', array ('name' => 'uses_per_coupon', 'label' => Mage::helper ( 'salesrule' )->__ ( 'Uses per Coupon' ) ) );
 		} else {
-			$fieldset->addField ( 'coupon_code', 'text', array ('name' => 'coupon_code', 'label' => Mage::helper ( 'salesrule' )->__ ( 'Coupon code' ) ) );
+			$couponCodeFiled = $fieldset->addField ( 'coupon_code', 'text', array ('name' => 'coupon_code', 'label' => Mage::helper ( 'salesrule' )->__ ( 'Coupon code' ) ) );
+		    Mage::getSingleton('rewards/wikihints')->addWikiHint($couponCodeFiled, "Shopping Cart Rule - Coupons" );
 			
 			$fieldset->addField ( 'uses_per_coupon', 'text', array ('name' => 'uses_per_coupon', 'label' => Mage::helper ( 'salesrule' )->__ ( 'Uses per coupon' ) ) );
 		}
@@ -109,7 +112,8 @@ class TBT_Rewards_Block_Manage_Promo_Quote_Edit_Tab_Main extends Mage_Adminhtml_
 		$fieldset->addField ( 'from_date', 'date', array ('name' => 'from_date', 'label' => Mage::helper ( 'salesrule' )->__ ( 'From Date' ), 'title' => Mage::helper ( 'salesrule' )->__ ( 'From Date' ), 'image' => $this->getSkinUrl ( 'images/grid-cal.gif' ), 'input_format' => Varien_Date::DATE_INTERNAL_FORMAT, 'format' => $dateFormatIso ) );
 		$fieldset->addField ( 'to_date', 'date', array ('name' => 'to_date', 'label' => Mage::helper ( 'salesrule' )->__ ( 'To Date' ), 'title' => Mage::helper ( 'salesrule' )->__ ( 'To Date' ), 'image' => $this->getSkinUrl ( 'images/grid-cal.gif' ), 'input_format' => Varien_Date::DATE_INTERNAL_FORMAT, 'format' => $dateFormatIso ) );
 		
-		$fieldset->addField ( 'sort_order', 'text', array ('name' => 'sort_order', 'label' => Mage::helper ( 'salesrule' )->__ ( 'Priority' ) ) );
+		$element = $fieldset->addField ( 'sort_order', 'text', array ('name' => 'sort_order', 'label' => Mage::helper ( 'salesrule' )->__ ( 'Priority' ) ) );
+		Mage::getSingleton('rewards/wikihints')->addWikiHint($element, "Rule Priority", "TEst", $this->__("Get help with rule priorities."));
 		
 		$fieldset->addField ( 'is_rss', 'select', array ('label' => Mage::helper ( 'salesrule' )->__ ( 'Public In RSS Feed' ), 'title' => Mage::helper ( 'salesrule' )->__ ( 'Public In RSS Feed' ), 'name' => 'is_rss', 'options' => array ('1' => Mage::helper ( 'salesrule' )->__ ( 'Yes' ), '0' => Mage::helper ( 'salesrule' )->__ ( 'No' ) ) ) );
 		

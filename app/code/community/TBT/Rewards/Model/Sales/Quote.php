@@ -129,87 +129,137 @@ class TBT_Rewards_Model_Sales_Quote extends Mage_Sales_Model_Quote {
 		}
 		return false;
 	}
-	
-	/**
-	 * Updates this quotes' item catalog points.
-	 * @param TBT_Rewards_Model_Sales_Quote|Mage_Sales_Model_Quote $quote = null
-	 * @return TBT_Rewards_Model_Sales_Quote
-	 *
-	 */
-	public function updateItemCatalogPoints($quote = null) {
-		
-		if ($quote == null) {
-			$quote = &$this;
-		}
-		
-		$quote_items = $quote->getAllItems ();
-		
-		foreach ( $quote_items as &$item ) {
-			
-			if (! $item->getId ()) {
-				continue;
-			}
-			
-			if ($item->getParentItem ()) {
-				continue;
-			}
-			
-			//if(!$item->getProductId()) { 
-			//    continue;
-			//}
-			
 
-			// Should we ignore the distributions because of a catalog redemption?
-			if ($this->_getCfg ()->doIgnoreCDWhenCR ()) {
-				if ($this->_hasAppliedCatalogRedemptions ( $item )) {
-					$item->setEarnedPointsHash ( Mage::helper ( 'rewards' )->hashIt ( array () ) );
-					continue;
-				}
-			}
-			
-			// Should we ignore the distri rules because of a shopping cart redemption?
-			if ($this->_getCfg ()->doIgnoreCDWhenSCR ()) {
-				if ($this->_hasAppliedCartRedemptions ( $quote )) {
-					$item->setEarnedPointsHash ( Mage::helper ( 'rewards' )->hashIt ( array () ) );
-					continue;
-				}
-			}
-			
-			$earned_point_totals = array ();
-			
-			$wId = $quote->getStore ()->getWebsiteId ();
-			$gId = $quote->getCustomerGroupId ();
-			
-			$catalog_rule_ids = $this->_getTransferHelp ()->getCatalogRewardsRuleIdsForProduct ( $item->getProductId (), $wId, $gId );
-			
-			if ($catalog_rule_ids) {
-				foreach ( $catalog_rule_ids as $rule_id ) {
-					if (! $rule_id) {
-						continue;
-					}
-					$points = $this->_getTransferHelp ()->calculateCatalogPoints ( $rule_id, $item, false );
-					if ($points) {
-						if ($points ['amount']) {
-							//@nelkaake 04/03/2010 1:55:03 PM : earned points get divided over the quantity then multiplied by the item quantity
-							//$points['amount'] = $points['amount'] / $item->getQty(); 
-							$earned_point_totals [] = array (TBT_Rewards_Model_Catalogrule_Rule::POINTS_CURRENCY_ID => $points ['currency'], TBT_Rewards_Model_Catalogrule_Rule::POINTS_AMT => $points ['amount'], TBT_Rewards_Model_Catalogrule_Rule::POINTS_RULE_ID => $rule_id, TBT_Rewards_Model_Catalogrule_Rule::POINTS_APPLICABLE_QTY => 1 );
-						}
-					}
-				}
-			}
-			$item->setEarnedPointsHash ( Mage::helper ( 'rewards' )->hashIt ( $earned_point_totals ) );
-		}
-		
-		return $quote;
-	
-	}
+    protected function _areEarningsEnabled($item, $quote = null) {
+
+        if ($quote == null) {
+            $quote = &$this;
+        }
+
+        // Should we ignore the distributions because of a catalog redemption?
+        if ($this->_getCfg()->doIgnoreCDWhenCR()) {
+            if ($this->_hasAppliedCatalogRedemptions($item)) {
+                $item->setEarnedPointsHash(Mage::helper('rewards')->hashIt(array()));
+                return false;
+            }
+        }
+
+        // Should we ignore the distri rules because of a shopping cart redemption?
+        if ($this->_getCfg()->doIgnoreCDWhenSCR()) {
+            if ($this->_hasAppliedCartRedemptions($quote)) {
+                return false;
+            }
+        }
+        
+        return true;
+    }
+    
+    /**
+     *
+     * @param TBT_Rewards_Model_Sales_Quote $item
+     * @param TBT_Rewards_Model_Sales_Quote $quote
+     * @return array 
+     */
+    protected function _calculateItemCatalogEarnings($item, $quote = null) {
+        if ($quote == null) {
+            $quote = &$this;
+        }
+        
+        $earned_point_totals = array();
+        if(false == $this->_areEarningsEnabled($item, $quote)) {
+            return $earned_point_totals;
+        }
+
+        $wId = $quote->getStore()->getWebsiteId();
+        $gId = $quote->getCustomerGroupId();
+
+        $catalog_rule_ids = $this->_getTransferHelp()->getCatalogRewardsRuleIdsForProduct($item->getProductId(), $wId, $gId);
+
+        if ($catalog_rule_ids) {
+            foreach ($catalog_rule_ids as $rule_id) {
+                if (!$rule_id) {
+                    continue;
+                }
+                $points = $this->_getTransferHelp()->calculateCatalogPoints($rule_id, $item, false);
+                if ($points) {
+                    if ($points ['amount']) {
+                        //@nelkaake 04/03/2010 1:55:03 PM : earned points get divided over the quantity then multiplied by the item quantity
+                        //$points['amount'] = $points['amount'] / $item->getQty(); 
+                        $earned_point_totals[] = array(
+                            TBT_Rewards_Model_Catalogrule_Rule::POINTS_CURRENCY_ID => $points['currency'], 
+                            TBT_Rewards_Model_Catalogrule_Rule::POINTS_AMT => $points['amount'], 
+                            TBT_Rewards_Model_Catalogrule_Rule::POINTS_RULE_ID => $rule_id, 
+                            TBT_Rewards_Model_Catalogrule_Rule::POINTS_APPLICABLE_QTY => 1
+                        );
+                    }
+                }
+            }
+        }
+        return $earned_point_totals;
+    }
+    
+    /**
+     * Revoke point earnings from quote items if earnings is not available for the item
+     *
+     * @param TBT_Rewards_Model_Sales_Quote $quote
+     * @return TBT_Rewards_Model_Sales_Quote 
+     */
+    public function updateDisabledEarnings($quote = null) {
+        if ($quote == null) {
+            $quote = &$this;
+        }
+
+        $quote_items = $quote->getAllItems();
+        foreach ($quote_items as &$item) {
+            if (!$item->getId())
+                continue;
+
+            if ($item->getParentItem())
+                continue;
+
+            if (false == $this->_areEarningsEnabled($item, $quote)) {
+                $item->setEarnedPointsHash(Mage::helper('rewards')->hashIt(array()));
+            }
+        }
+
+        return $quote;
+    }
+
+    /**
+     * Updates this quotes' item catalog points.
+     * @param TBT_Rewards_Model_Sales_Quote|Mage_Sales_Model_Quote $quote = null
+     * @return TBT_Rewards_Model_Sales_Quote
+     *
+     */
+    public function updateItemCatalogPoints($quote = null) {
+        if ($quote == null) {
+            $quote = &$this;
+        }
+
+        $quote_items = $quote->getAllItems();
+
+        foreach ($quote_items as &$item) {
+            if (!$item->getId()) {
+                continue;
+            }
+
+            if ($item->getParentItem()) {
+                continue;
+            }
+            $earned_point_totals = $this->_calculateItemCatalogEarnings($item, $quote);
+            $item->setEarnedPointsHash(Mage::helper('rewards')->hashIt($earned_point_totals));
+        }
+
+        return $quote;
+    }
+
 	
 	/**
 	 * 
 	 *
 	 * @return TBT_Rewards_Model_Observer_Sales_Catalogtransfers
 	 */
-	private function _getCatalogTransfersSingleton() {
+	protected function _getCatalogTransfersSingleton() {
 		return Mage::getSingleton ( 'rewards/observer_sales_catalogtransfers' );
 	}
 	
@@ -218,7 +268,7 @@ class TBT_Rewards_Model_Sales_Quote extends Mage_Sales_Model_Quote {
 	 *
 	 * @return TBT_Rewards_Model_Observer_Sales_Carttransfers
 	 */
-	private function _getCartTransfersSingleton() {
+	protected function _getCartTransfersSingleton() {
 		return Mage::getSingleton ( 'rewards/observer_sales_carttransfers' );
 	}
 	
@@ -348,24 +398,36 @@ class TBT_Rewards_Model_Sales_Quote extends Mage_Sales_Model_Quote {
 		foreach ( $this->getAllAddresses () as $address ) {
 			
 			foreach ( $address->getAllItems () as $item ) {
-				$item_applied = Mage::getModel ( 'rewards/salesrule_list_item_applied' )->initItem ( $item );
-				if ($item->getParentItem ())
-					continue;
-				if (! $item_applied->hasRuleId ( $cart_rule_id ))
-					continue;
+                $item_applied = Mage::getModel ( 'rewards/salesrule_list_item_applied' )->initItem ( $item );
+                
+                if ($this->_skipItemSumCalc($item)) {
+                    continue;
+                }
+                    
+                if (! $item_applied->hasRuleId ( $cart_rule_id )) {
+                    continue;
+                }
 				
-		//Mage::log("Item {$item->getName()} has ". print_r($rule_ids, true));
-				if ($prices_include_tax) {
-					$price += $item->getBaseRowTotal (); // + $item->getBaseTaxAmount ();
-				} else {
-					$price += $item->getBaseRowTotal ();
-				}
+				$price += $item->getBaseRowTotal (); // + $item->getBaseTaxAmount ();
 			}
 		}
 		if ($price < 0.00001 && $price > - 0.00001) {
 			$price = 0;
 		}
 		return $price;
+	}
+	
+	/**
+	 * 
+	 * @param Mage_Sales_Model_Quote_Address_Item $item
+	 */
+	protected function _skipItemSumCalc($item) {
+	    if($item->getParentItem () ) {
+	        if(($item->getParentItem()->getProductType() != 'bundle')) {
+	            return true;
+	        }
+	    }
+	    return false;
 	}
 	
 	/**
@@ -383,7 +445,7 @@ class TBT_Rewards_Model_Sales_Quote extends Mage_Sales_Model_Quote {
 				$highest_priority_rule = $salesrule;
 				continue;
 			}
-			if ($salesrule->getSortOrder () > $highest_priority_rule->getSortOrder ()) {
+			if ($salesrule->getSortOrder () < $highest_priority_rule->getSortOrder ()) {
 				$highest_priority_rule = $salesrule;
 				continue;
 			}
@@ -473,7 +535,11 @@ class TBT_Rewards_Model_Sales_Quote extends Mage_Sales_Model_Quote {
 					$max = $max_points_spent;
 				}
 			}
-		
+                        
+                        // truncate the overflow on the max usages to be a divisible step size
+                        if( $min_divisible_step > 1 && $max > 1 ) {
+                            $max = ((int)($max / $min_divisible_step)) * $min_divisible_step;
+                        }		
 		} else {
 			$max = $min_divisible_step = $min = 0;
 		}

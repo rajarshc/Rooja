@@ -8,34 +8,41 @@ class TBT_Testsweet_Model_Test_Collection_Builder extends TBT_Testsweet_Model_Ab
      * @return TBT_Testsweet_Model_Test_Suite_Abstract[] 
      */
     protected function getSuites() {
-        $suites = array();
-
+        $suite_collection = array();
+        
         $testsweet_version = (string) Mage::getConfig()->getModuleConfig('TBT_Testsweet')->version;
 
-        $suites_nodes = Mage::getConfig()->getNode("testsweet/tests");
-        //$suites = Mage::getConfig()->getXpath("//Testsweet/suite");
+        //$suites_nodes = Mage::getConfig()->getNode("testsweet/tests");
+        //$suites_nodes = $suites_nodes->asArray();
+        $suites_nodes = Mage::getConfig()->getXpath("//testsweet//tests");
+        $suites_nodes = $suites_nodes[0];
 
-        $suites_nodes = $suites_nodes->asArray();
+
         foreach ($suites_nodes as $key => $tests) {
+            if ($key) {
+                if (isset($tests->suites)) {
+                    foreach ($tests->suites as $suites_key => $suites) {
+                        foreach ($suites as $suite_key => $suite) {
+                            try {
+                                $suites_key = (string) $suites_key;
+                                $suite = (string) $suite;
 
-            if ($key)
-                if (isset($tests['suites'])) {
-                    foreach ($tests['suites'] as $suite) {
-                        try {
-                            $r = new $suite;
-                            if (version_compare($r->getRequireTestsweetVersion(), $testsweet_version, '<=')) {
-                                $suites[] = $r;
-                            } else {
-                                //TODO: warning test is skiped because testsweet needs an upgrade to version $r->getRequireTestsweetVersion()
+                                $r = new $suite;
+                                if (version_compare($r->getRequireTestsweetVersion(), $testsweet_version, '<=')) {
+                                    $suite_collection[] = $r;
+                                } else {
+                                    //TODO: warning test is skipped because testsweet needs an upgrade to version $r->getRequireTestsweetVersion()
+                                }
+                            } catch (Exception $ex) {
+                                //TODO : deal with this possible error some other way?
+                                echo $ex->getMessage();
                             }
-                        } catch (Exception $ex) {
-                            //TODO : deal with this possible error some other way?
-                            echo $ex->getMessage();
                         }
                     }
                 }
+            }
         }
-        return $suites;
+        return $suite_collection;
     }
 
     /**

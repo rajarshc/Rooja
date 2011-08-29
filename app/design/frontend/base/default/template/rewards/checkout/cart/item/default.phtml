@@ -1,0 +1,10 @@
+<?php
+
+if (Mage::helper('rewards/version')->isMageVersionAtLeast('1.5')) {
+    include 'default_m1501.phtml';
+} else if (Mage::helper('rewards/version')->isMageVersionAtLeast('1.4.2')) {
+    include 'default_m142x.phtml';
+} else {
+    include 'default_m141x.phtml';
+}
+?>

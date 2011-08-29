@@ -3,7 +3,7 @@ $installer = $this;
 
 $installer->startSetup ();
 
-if ( Mage::helper ( 'rewards/version' )->isBaseMageVersionAtLeast ( '1.4' )) {
+if ( Mage::helper ( 'rewards/version' )->isBaseMageVersionAtLeast ( '1.4.1' )) {
 	
 	// We need to remove this column becuase it was named incorrectly, then we should add it back in.
 	Mage::helper ( 'rewards/mysql4_install' )->dropColumns ( $installer, $this->getTable ( 'sales_flat_order' ), array ("`rewards_discount_base_tax_amount`" ) );

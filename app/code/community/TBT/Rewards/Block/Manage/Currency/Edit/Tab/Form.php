@@ -58,6 +58,7 @@ class TBT_Rewards_Block_Manage_Currency_Edit_Tab_Form extends Mage_Adminhtml_Blo
 		$form = new Varien_Data_Form ();
 		$this->setForm ( $form );
 		$fieldset = $form->addFieldset ( 'currency_form', array ('legend' => Mage::helper ( 'rewards' )->__ ( 'Currency Information' ) ) );
+		Mage::getSingleton('rewards/wikihints')->addWikiHint($fieldset, "Points Currency Appearance" );
 		
 		$fieldset->addField ( 'active', 'hidden', array ('label' => Mage::helper ( 'rewards' )->__ ( 'Active' ), 'title' => Mage::helper ( 'rewards' )->__ ( 'Active' ), 'name' => 'active', 'options' => Mage::helper ( 'rewards/currency' )->getActiveOptions () ) );
 		

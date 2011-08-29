@@ -57,9 +57,52 @@ class TBT_Rewards_Model_Observer_Cron extends Varien_Object {
 		return $this;
 	}
 	
+    public function checkPointsProbation($observer)
+    {
+        // get collection of all Pending-Time transfers
+        $transfers = Mage::getModel('rewards/transfer')->getCollection()
+            ->addFilter('status', TBT_Rewards_Model_Transfer_Status::STATUS_PENDING_TIME);
+        foreach ($transfers as $transfer) {
+            // check each transfer if it is time to vest
+            if (time() >= strtotime($transfer->getEffectiveStart())) {
+                // ask dependent modules if it is safe to vest the transfer (default to yes)
+                $result = new Varien_Object(array(
+                    'is_safe_to_approve' => true
+                ));
+                Mage::dispatchEvent('rewards_transfer_vestation', array(
+                    'transfer' => $transfer,
+                    'result'   => $result,
+                ));
+                
+                // approve or cancel transfer, based on dependent modules' feedback
+                if ($result->getIsSafeToApprove()) {
+                    $transfer->setStatus(
+                            $transfer->getStatus(),
+                            TBT_Rewards_Model_Transfer_Status::STATUS_APPROVED)
+                        ->save();
+                } else {
+                    $transfer->setStatus(
+                            $transfer->getStatus(),
+                            TBT_Rewards_Model_Transfer_Status::STATUS_CANCELLED)
+                        ->save();
+                }
+            }
+        }
+        
+        return $this;
+    }
+    
+    public function cfu() {
+        if(!Mage::getStoreConfigFlag('rewards/general/cfu')) {
+            return $this;
+        }
+        
+        Mage::helper ( 'rewards/loyalty_checker' )->checkForUpdates ( );
+        
+        return $this;
+    }
+    
 	public function cronTest($observer) {
-		//Mage::log("Ran TBT_Rewards_Model_Observer_Cron::cronTest");
-		//TODO find out why this runs 4 times when executed by the Magento cron service.
 		return $this;
 	}
 

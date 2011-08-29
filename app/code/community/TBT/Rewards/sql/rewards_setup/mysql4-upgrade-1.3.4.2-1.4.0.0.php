@@ -5,7 +5,7 @@ $installer->startSetup ();
 
 Mage::helper ( 'rewards/mysql4_install' )->addColumns ( $installer, $this->getTable ( 'sales_flat_quote' ), array ("`rewards_discount_amount` DECIMAL(12,4)", "`rewards_base_discount_amount` DECIMAL(12,4)", "`rewards_discount_tax_amount` DECIMAL(12,4)", "`rewards_discount_base_tax_amount` DECIMAL(12,4)" ) );
 
-if (Mage::helper ( 'rewards/version' )->isBaseMageVersionAtLeast ( '1.4' )) {
+if (Mage::helper ( 'rewards/version' )->isBaseMageVersionAtLeast ( '1.4.1' )) {
 	Mage::helper ( 'rewards/mysql4_install' )->addColumns ( $installer, $this->getTable ( 'sales_flat_order' ), array ("`rewards_discount_amount` DECIMAL(12,4)", "`rewards_base_discount_amount` DECIMAL(12,4)", "`rewards_discount_tax_amount` DECIMAL(12,4)", "`rewards_base_discount_tax_amount` DECIMAL(12,4)" ) );
 	
 	Mage::helper ( 'rewards/mysql4_install' )->addColumns ( $installer, $this->getTable ( 'sales_flat_order_item' ), array ("`earned_points_hash` TEXT", "`redeemed_points_hash` TEXT", "`row_total_before_redemptions` DECIMAL(12,4) NOT NULL DEFAULT '0'" ) );

@@ -51,9 +51,15 @@ class TBT_Rewards_Block_Manage_Special_Edit_Tab_Actions extends Mage_Adminhtml_B
 		
 		$form->setHtmlIdPrefix ( 'rule_' );
 		
-		$fieldset = $form->addFieldset ( 'action_fieldset', array ('legend' => Mage::helper ( 'rewards' )->__ ( 'Action to take once conditions are satisfied' ) ) );
+		$fieldset = $form->addFieldset ( 'action_fieldset', array ('legend' => Mage::helper ( 'rewards' )->__ ( 'Actions to take' ) ) );
+	    Mage::getSingleton('rewards/wikihints')->addWikiHint($fieldset, "Customer Behavior Rule - Actions" );
 		
-		$fieldset->addField ( 'points_action', 'select', array ('label' => Mage::helper ( 'salesrule' )->__ ( 'Action' ), 'name' => 'points_action', 'required' => true, 'options' => Mage::getSingleton ( 'rewards/special_action' )->getActionOptionsArray () ) );
+		$fieldset->addField ('points_action', 'select', array(
+		    'name' => 'points_action',
+			'label' => Mage::helper('salesrule')->__('Action'),
+			'required' => true,
+			'options' => Mage::getSingleton('rewards/special_action')->getActionOptionsArray()
+		));
 		
 		// SETUP OUR CURRENCY SELECTION
 		$currencyData = Mage::helper ( 'rewards/currency' )->getAvailCurrencies ();
@@ -73,13 +79,52 @@ class TBT_Rewards_Block_Manage_Special_Edit_Tab_Actions extends Mage_Adminhtml_B
 		
 		$fieldset->addField ( 'points_amount', 'text', array ('name' => 'points_amount', 'required' => true, 'class' => 'validate-not-negative-number', 'label' => Mage::helper ( 'salesrule' )->__ ( 'Fixed Amount' ) ) );
 		
-		Mage::getSingleton ( 'rewards/special_action' )->visitAdminActions ( $fieldset );
+		$initial_transfer_status = Mage::getModel('rewards/transfer_status')->getStatusCaption(TBT_Rewards_Model_Transfer_Status::STATUS_PENDING_TIME);
+		$warning_msg_html = "<div class='disabled-field-msg' style='font-style: italic; font-size: 10px;'>" 
+		    . $this->__("This will set the initial status for points earned by this rule to %s.", $initial_transfer_status) . "</div>";
+		    
 		
-		$form->setValues ( $model->getData () );
+		$isOnholdEnabledField = $fieldset->addField('is_onhold_enabled', 'select', array(
+		    'name' => 'is_onhold_enabled',
+			'label' => $this->__("Start Transfers On-Hold"),
+			'after_element_html' => $warning_msg_html,
+		    'options' => array(
+                '1' => $this->__('Yes'),
+                '0' => $this->__('No')),
+			'onchange' => 'toggleOnholdEnabled(this.value)'
+		));
+	    Mage::getSingleton('rewards/wikihints')->addWikiHint($isOnholdEnabledField, "Customer Behavior Rule - Actions - Transfer On-hold Time" );
 		
-		$this->setForm ( $form );
+		$onholdDurationField = $fieldset->addField('onhold_duration', 'text', array(
+			'name' => 'onhold_duration',
+			'label' => $this->__("Number of days for transfers to be on hold"),
+		    //'required' => true
+		));
 		
-		return parent::_prepareForm ();
+		Mage::getSingleton('rewards/special_action')->visitAdminActions($fieldset);
+		
+		$form->setValues($model->getData());
+		$this->setForm($form);
+		
+		/*$formDependencies = $this->getChild('form-after') ? $this->getChild('form-after') :
+		    $this->getLayout()->createBlock('adminhtml/widget_form_element_dependence');
+		$formDependencies->addFieldMap(
+		        $isOnholdEnabledField->getHtmlId(),
+		        $isOnholdEnabledField->getName())
+            ->addFieldMap(
+                $onholdDurationField->getHtmlId(),
+                $onholdDurationField->getName())
+            ->addFieldDependence(
+                $isOnholdEnabledField->getName(),
+                'points_conditions',
+                'customer_sign_up')
+            ->addFieldDependence(
+                $onholdDurationField->getName(),
+                $isOnholdEnabledField->getName(),
+                true);
+        $this->setChild('form-after', $formDependencies);*/
+		
+		return parent::_prepareForm();
 	}
 
 }

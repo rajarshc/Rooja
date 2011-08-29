@@ -37,6 +37,8 @@
 
 /**
  * Subtotal renderer 
+ * @deprecated using observer now instead
+ * @see TBT_Rewards_Model_Observer_Block_Total_Grandtotal
  *
  * @category   TBT
  * @package    TBT_Rewards

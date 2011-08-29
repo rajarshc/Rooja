@@ -94,4 +94,26 @@ class TBT_Rewards_Helper_Customer_Points_Index extends Mage_Core_Helper_Abstract
         }
         return $this;
     }
+    
+    /**
+     * disable indexer because of an error
+     * @return $this
+     */
+    public function error() {
+        if(!$this->canIndex()) {
+            return $this;
+        }
+        
+        $all_indexes = Mage::getModel('index/process')->getCollection()->addFieldToFilter('indexer_code', 'rewards_transfer');
+        $index = $all_indexes->getFirstItem();
+        
+        if($index) {
+            $index->changeStatus ( Mage_Index_Model_Process::EVENT_STATUS_ERROR );
+            $index->setMode( Mage_Index_Model_Process::MODE_MANUAL );
+            $index->save();
+        }
+        return $this;
+    }
+    
+    
 }

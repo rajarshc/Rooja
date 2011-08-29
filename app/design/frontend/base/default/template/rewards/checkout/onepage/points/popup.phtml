@@ -1,0 +1,36 @@
+
+<?php echo $this->getChildHtml("sliderjs"); ?>
+<?php echo $this->getChildHtml("popupjs"); ?>
+<div id="redeem_points_tip" class="log-tool-tip tool-tip" style=" display: none; ">
+    <div class="btn-close" id="redeem_points_tip_titlebar">
+        <span class="log-tool-tip-header"><?php echo $this->__('Change # Points Spent') ?></span>
+        <a href="#" id="redeem_points_tip_close">
+            <img src="<?php echo $this->getSkinUrl('images/btn_window_close.gif') ?>" 
+                 alt="<?php echo $this->__('Close') ?>" />
+        </a>
+    </div>
+    <div class="block-content">
+        <div class="block-content-container" id="redeem_points_tip_content">
+            <span id="rewards-spending-please-wait" class="opc-please-wait" style="display: none;">
+                <img src="<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif') ?>" class="v-middle" alt="" /> 
+                &nbsp; <?php echo $this->__('Updating Total...') ?> &nbsp;
+            </span>	
+
+            <div class="discount-codes box rewards-box-spend" id="rewards_review_slider">
+                <div class="rewards-box-spend-header">
+                    <h4><?php echo $this->__('Choose # of Points to Spend'); ?></h4>
+                </div>
+                <div class="box-content">
+                    <?php if ($this->customerHasUsablePoints()): ?>
+                        <?php /*                         * *** Here's where the slider gets inserted ***** */ ?>
+                        <?php echo $this->getChildHtml("slider"); ?>
+                        <input type="checkbox" name="use_all_points" id="use_all_points" onclick="toggleUseAllPoints(this.checked)"/>&nbsp;
+                        <label for="use_all_points"><?php echo $this->__('Maximize my discount with points'); ?></label>
+                    <?php else: ?>
+                        <span class="no_points_to_spend"><?php echo $this->__("You don't currently have any points to spend."); ?></span>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

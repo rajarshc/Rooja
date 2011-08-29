@@ -62,7 +62,8 @@ class TBT_Rewards_Block_Customer_Transfers_Reference extends Mage_Core_Block_Tem
 	 * @return TBT_Rewards_Model_Customer
 	 */
 	public function getCustomer() {
-		return Mage::registry ( 'customer' );
+	    $customer = Mage::registry ( 'customer' );
+		return Mage::getModel('rewards/customer')->getRewardsCustomer($customer);
 	}
 	
 	public function _getTransferSummary() {

@@ -47,6 +47,15 @@ class TBT_Rewards_Model_System_Config_Statuslist {
 	
 	public function toOptionArray() {
 		$options = Mage::getModel ( 'rewards/transfer_status' )->getInitialStatusOptionArray ();
+	
+		// Remove the option to select time pending status b/c we should not be able to select this.
+		foreach($options as $index => $option) {
+    		// If pending time status is selectable, then turn it off.  Manual points transfers with pending time status are not available yet.
+    	    if(  $option['value'] == TBT_Rewards_Model_Transfer_Status::STATUS_PENDING_TIME  ) {
+    	        unset($options[$index]);
+    	    }
+		}
+		
 		return $options;
 	}
 

@@ -51,11 +51,18 @@ class TBT_Rewards_Block_Manage_Special_Edit_Tab_Conditions extends Mage_Adminhtm
 		
 		$form->setHtmlIdPrefix ( 'rule_' );
 		
-		$fieldset = $form->addFieldset ( 'action_fieldset', array ('legend' => Mage::helper ( 'salesrule' )->__ ( 'Update prices using the following information' ) ) );
+		$fieldset = $form->addFieldset ( 'trigger_fieldset', array ('legend' => Mage::helper ( 'salesrule' )->__ ( 'Triggers' ) ) );
+		$points_conditions_field = $fieldset->addField ( 'points_conditions', 'select', array (
+			'label' => Mage::helper ( 'salesrule' )->__ ( 'Customer Action or Event' ), 
+			'name' => 'points_conditions', 
+			'options' => Mage::getSingleton ( 'rewards/special_action' )->getOptionsArray (), 
+			'required' => true
+	    ));
+	    Mage::getSingleton('rewards/wikihints')->addWikiHint($fieldset, "Customer Behavior Rule - Triggers" );
 		
-		$fieldset->addField ( 'points_conditions', 'select', array ('label' => Mage::helper ( 'salesrule' )->__ ( 'Customer Behavior' ), 'name' => 'points_conditions', 'options' => Mage::getSingleton ( 'rewards/special_action' )->getOptionsArray (), 'required' => true )
-
-		 );
+		$fieldset = $form->addFieldset ( 'conditions_fieldset', array ('legend' => Mage::helper ( 'salesrule' )->__ ( 'Conditions' ) ) );
+	    Mage::getSingleton('rewards/wikihints')->addWikiHint($fieldset, "Customer Behavior Rule - Conditions" );
+		
 		
 		$customerGroups = Mage::getResourceModel ( 'customer/group_collection' )->load ()->toOptionArray ();
 		

@@ -142,9 +142,17 @@ class TBT_Rewards_Block_Manage_Transfer_Edit_Tab_Grid_Reviews extends Mage_Admin
 	}
 	
 	protected function _getSelectedReviews() {
-		if (Mage::getSingleton ( 'adminhtml/session' )->getTransferData ()) {
+	    
+		if ($this->getReview()) {
+			$reviewIds = array ($this->getReview()->getId());
+			
+		}elseif ($this->getReviewIds()) {
+			$reviewIds = $this->getReviewIds();
+	    
+		} elseif (Mage::getSingleton ( 'adminhtml/session' )->getTransferData ()) {
 			$formData = Mage::getSingleton ( 'adminhtml/session' )->getTransferData ();
 			$reviewIds = isset ( $formData ['review_id'] ) ? $formData ['review_id'] : array ();
+			
 		} elseif (Mage::registry ( 'transfer_data' )->getData ()) {
 			$formData = Mage::registry ( 'transfer_data' )->getData ();
 			$reviewIds = isset ( $formData ['review_id'] ) ? $formData ['review_id'] : array ();

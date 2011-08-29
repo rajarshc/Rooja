@@ -73,7 +73,8 @@ class TBT_Rewards_Block_Manage_Special_Edit_Tab_Main extends Mage_Adminhtml_Bloc
 			$model->setWebsiteIds ( Mage::app ()->getStore ( true )->getWebsiteId () );
 		}
 		
-		$fieldset->addField ( 'sort_order', 'text', array ('name' => 'sort_order', 'label' => Mage::helper ( 'salesrule' )->__ ( 'Priority' ) ) );
+		$element = $fieldset->addField ( 'sort_order', 'text', array ('name' => 'sort_order', 'label' => Mage::helper ( 'salesrule' )->__ ( 'Priority' ) ) );
+		Mage::getSingleton('rewards/wikihints')->addWikiHint($element, "Rule Priority", null, $this->__("Get help with rule priorities."));
 		
 		$fieldset->addField ( 'is_rss', 'select', array ('label' => Mage::helper ( 'salesrule' )->__ ( 'Public In RSS Feed' ), 'title' => Mage::helper ( 'salesrule' )->__ ( 'Public In RSS Feed' ), 'name' => 'is_rss', 'options' => array ('1' => Mage::helper ( 'salesrule' )->__ ( 'Yes' ), '0' => Mage::helper ( 'salesrule' )->__ ( 'No' ) ) ) );
 		

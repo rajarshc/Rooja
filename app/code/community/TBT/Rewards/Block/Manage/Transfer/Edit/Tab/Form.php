@@ -70,6 +70,17 @@ class TBT_Rewards_Block_Manage_Transfer_Edit_Tab_Form extends Mage_Adminhtml_Blo
 		$formData ['status_id'] = $formData ['status'];
 		$availStatuses = Mage::getSingleton ( 'rewards/transfer_status' )->getAvailStatuses ( $formData ['status'] );
 		
+		// If pending time status is selectable, then turn it off.  Manual points transfers with pending time status are not available yet.
+		if(empty($formData ['status'])) {
+		    if(isset($availStatuses[TBT_Rewards_Model_Transfer_Status::STATUS_PENDING_TIME])) {
+		        unset($availStatuses[TBT_Rewards_Model_Transfer_Status::STATUS_PENDING_TIME]);
+		    }
+		    // Humans should not be able to use the pending event status
+		    if(isset($availStatuses[TBT_Rewards_Model_Transfer_Status::STATUS_PENDING_EVENT])) {
+		        unset($availStatuses[TBT_Rewards_Model_Transfer_Status::STATUS_PENDING_EVENT]);
+		    }
+		}
+		
 		$form = new Varien_Data_Form ();
 		$this->setForm ( $form );
 		$fieldset = $form->addFieldset ( 'transfer_form', array ('legend' => Mage::helper ( 'rewards' )->__ ( 'Transfer Information' ) ) );
@@ -93,10 +104,46 @@ class TBT_Rewards_Block_Manage_Transfer_Edit_Tab_Form extends Mage_Adminhtml_Blo
 		
 		$fieldset->addField ( 'transfer_style', 'select', array ('label' => Mage::helper ( 'rewards' )->__ ( 'Transfer Style' ), 'title' => Mage::helper ( 'rewards' )->__ ( 'Transfer Style' ), 'name' => 'transfer_style', 'required' => true, 'class' => 'required-entry wikihints-justify', 'options' => array ('give' => Mage::helper ( 'rewards' )->__ ( 'Give Points' ), 'deduct' => Mage::helper ( 'rewards' )->__ ( 'Deduct Points' ) ) ) );
 		
-		$fieldset->addField ( 'quantity', 'text', array ('name' => 'quantity', 'required' => true, 'class' => 'required-entry validate-not-negative-number wikihints-justify', // 'class' => 'validate-not-negative-number',
-'label' => Mage::helper ( 'salesrule' )->__ ( 'Points Amount' ) ) );
+		$fieldset->addField ( 'quantity', 'text', array (
+			'name' => 'quantity', 
+			'required' => true, 
+			'class' => 'required-entry validate-not-negative-number wikihints-justify', 
+		    // 'class' => 'validate-not-negative-number',
+			'label' => Mage::helper ( 'salesrule' )->__ ( 'Points Amount' ) 
+		) );
 		
-		$fieldset->addField ( 'status_id', 'select', array ('label' => Mage::helper ( 'rewards' )->__ ( 'Status' ), 'title' => Mage::helper ( 'rewards' )->__ ( 'Status' ), 'name' => 'status_id', 'options' => $availStatuses, 'class' => 'required-entry wikihints-justify', 'required' => true ) );
+		if (sizeof($availStatuses) == 1) {
+		    $status_field_type = 'hidden';
+		} else {
+		    $status_field_type = 'select';
+		}
+		
+		$status_field = $fieldset->addField ( 'status_id', $status_field_type, array (
+			'label' => Mage::helper ( 'rewards' )->__ ( 'Status' ), 
+			'title' => Mage::helper ( 'rewards' )->__ ( 'Status' ), 
+			'name' => 'status_id',
+			'options' => $availStatuses, 
+			'class' => 'required-entry wikihints-justify', 
+			'required' => true
+	    ) );
+	    
+		if (sizeof($availStatuses) == 1) {
+		    $availStatuses_copy = $availStatuses;
+		    $status_label_value =array_pop($availStatuses_copy);
+		    $formData['status_label'] = $status_label_value;
+		    
+		    
+    		$status_field = $fieldset->addField ( 'status_label', 'label', array (
+    			'label' => Mage::helper ( 'rewards' )->__ ( 'Status' ), 
+    			'title' => Mage::helper ( 'rewards' )->__ ( 'Status' ), 
+    			'name' => 'status_label',
+    			'class' => 'wikihints-justify', 
+    		    'value' => $status_label_value
+    	    ) );
+    	    
+		}
+	    
+	    Mage::getSingleton('rewards/wikihints')->addWikiHint($status_field, "Edit Points Transfer - Status" );
 		
 		if (! isset ( $formData ['reason_id'] )) {
 			$availReasons = Mage::getSingleton ( 'rewards/transfer_reason' )->getManualReasons ();
@@ -105,8 +152,16 @@ class TBT_Rewards_Block_Manage_Transfer_Edit_Tab_Form extends Mage_Adminhtml_Blo
 		}
 		$availReasons [''] = '';
 		$fieldset->addField ( 'reason_id', 'select', array ('label' => Mage::helper ( 'rewards' )->__ ( 'Reason' ), 'title' => Mage::helper ( 'rewards' )->__ ( 'Reason' ), 'name' => 'reason_id', 'class' => 'required-entry wikihints-justify', 'required' => true, 'options' => $availReasons ) );
-		$fieldset->addField ( 'comments', 'editor', array ('name' => 'comments', 'label' => Mage::helper ( 'rewards' )->__ ( 'Comments/Notes' ), 'title' => Mage::helper ( 'rewards' )->__ ( 'Comments/Notes' ), 'style' => 'width:700px; height:300px;', 'class' => 'wikihints-justify' ) );
 		
+		$comments_field = $fieldset->addField ( 'comments', 'editor', array (
+			'name' => 'comments', 'label' => Mage::helper ( 'rewards' )->__ ( 'Comments/Notes' ), 
+			'title' => Mage::helper ( 'rewards' )->__ ( 'Comments/Notes' ), 
+			'style' => 'width:700px; height:200px;', 
+			'class' => 'wikihints-justify' ) 
+	    );
+		
+	    Mage::getSingleton('rewards/wikihints')->addWikiHint($comments_field, "Edit Points Transfer - Transfer Comments" );
+	    
 		//@nelkaake 04/03/2010 1:05:32 PM : Set some defaults 
 		if ($formData && ! isset ( $formData ['reason_id'] )) {
 			$formData ['reason_id'] = TBT_Rewards_Model_Transfer_Reason::REASON_ADMIN_ADJUSTMENT;

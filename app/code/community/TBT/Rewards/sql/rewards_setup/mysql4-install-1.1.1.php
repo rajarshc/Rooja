@@ -90,6 +90,15 @@ CREATE TABLE IF NOT EXISTS `{$this->getTable('rewards_transfer_reference')}` (
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 " );
 
+// Add foreign key constraint to points transfers table
+Mage::helper ( 'rewards/mysql4_install' )->attemptQuery($installer, "
+    ALTER TABLE `{$this->getTable('rewards_transfer_reference')}` 
+        ADD CONSTRAINT `rewards_transfer_reference_fk` 
+        	FOREIGN KEY (`rewards_transfer_id`) 
+            REFERENCES `{$this->getTable('rewards_transfer')}` (`rewards_transfer_id`) ON DELETE CASCADE ON UPDATE NO ACTION;
+");
+
+
 Mage::helper ( 'rewards/mysql4_install' )->attemptQuery ( $installer, "
 INSERT INTO `{$this->getTable('rewards_currency')}` (`caption`,`value`,`active`,`image`,`image_width`,`image_height`,`image_write_quantity`,`font`,`font_size`,`font_color`)
     SELECT 'Gold','1','1','','','','','','',''

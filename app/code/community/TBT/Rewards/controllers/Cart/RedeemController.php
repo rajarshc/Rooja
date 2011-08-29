@@ -45,17 +45,6 @@
  */
 class TBT_Rewards_Cart_RedeemController extends Mage_Core_Controller_Front_Action {
 	
-	public function catalogAction() {
-		if (! ($item = $this->_loadValidItem ())) {
-			return;
-		}
-		
-		if (! ($catalog_redemptions = $this->_loadValidRedemptions ())) {
-			return;
-		}
-		
-		$quote->setCartRedemptions ( $cart_redemptions )->save ();
-	}
 	
 	public function cartAction() {
 		if (! ($quote = $this->_loadValidQuote ())) {
@@ -361,7 +350,16 @@ class TBT_Rewards_Cart_RedeemController extends Mage_Core_Controller_Front_Actio
 		
 		// if there are still products in the shopping cart
 		if ($cart->getItemsCount ()) {
+            $rewardsQuote = Mage::getModel('rewards/sales_quote');
+            
+			$cart->getQuote ()->getShippingAddress ()->setCollectShippingRates ( true );
+			
+            $rewardsQuote->updateItemCatalogPoints( $cart->getQuote() );
+            
 			$cart->getQuote ()->collectTotals ();
+			
+            $rewardsQuote->updateDisabledEarnings( $cart->getQuote() );
+                                    
 			$this->loadLayout ();
 			$block = $this->getLayout ()->getBlock ( 'checkout.cart.totals' );
 			$this->getResponse ()->setBody ( $block->toHtml () );
@@ -409,4 +407,18 @@ class TBT_Rewards_Cart_RedeemController extends Mage_Core_Controller_Front_Actio
 		return Mage::getSingleton ( 'checkout/session' );
 	}
 
+    /**
+     * @deprecated unused function
+     */
+	public function catalogAction() {
+		if (! ($item = $this->_loadValidItem ())) {
+			return;
+		}
+		
+		if (! ($catalog_redemptions = $this->_loadValidRedemptions ())) {
+			return;
+		}
+		
+		$quote->setCartRedemptions ( $cart_redemptions )->save ();
+	}
 }

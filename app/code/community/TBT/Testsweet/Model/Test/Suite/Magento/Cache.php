@@ -7,14 +7,19 @@ class TBT_Testsweet_Model_Test_Suite_Magento_Cache extends TBT_Testsweet_Model_T
     }
 
     public function getSubject() {
-        return $this->__('Magento Cache');
+        return $this->__('Magento - Cache');
     }
 
     public function getDescription() {
-        return $this->__('Status of magento cache');
+        return $this->__('Status of magento cache.');
     }
 
     protected function generateSummary() {
+
+        if (!version_compare(Mage::getVersion(), '1.4', '>=')) {
+            $this->addNotice($this->__("Test skipped. Test requires Magento 1.4+ , you have : %s.", Mage::getVersion()));
+            return;
+        }
 
         $cache = Mage::app()->getCacheInstance();
 

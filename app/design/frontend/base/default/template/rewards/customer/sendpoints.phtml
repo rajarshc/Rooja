@@ -1,0 +1,95 @@
+<?php
+/**
+ * WDCA - Sweet Tooth
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the WDCA SWEET TOOTH POINTS AND REWARDS 
+ * License, which extends the Open Software License (OSL 3.0).
+ * The Sweet Tooth License is available at this URL: 
+ *      http://www.wdca.ca/solutions_page_sweettooth/Sweet_Tooth_License.php
+ * The Open Software License is available at this URL: 
+ *      http://opensource.org/licenses/osl-3.0.php
+ * 
+ * DISCLAIMER
+ * 
+ * By adding to, editing, or in any way modifying this code, WDCA is 
+ * not held liable for any inconsistencies or abnormalities in the 
+ * behaviour of this code. 
+ * By adding to, editing, or in any way modifying this code, the Licensee
+ * terminates any agreement of support offered by WDCA, outlined in the 
+ * provided Sweet Tooth License. 
+ * Upon discovery of modified code in the process of support, the Licensee 
+ * is still held accountable for any and all billable time WDCA spent 
+ * during the support process.
+ * WDCA does not guarantee compatibility with any other framework extension. 
+ * WDCA is not responsbile for any inconsistencies or abnormalities in the
+ * behaviour of this code if caused by other framework extension.
+ * If you did not receive a copy of the license, please send an email to 
+ * contact@wdca.ca or call 1-888-699-WDCA(9322), so we can send you a copy 
+ * immediately.
+ * 
+ * @category   [TBT]
+ * @package    [TBT_Rewards]
+ * @copyright  Copyright (c) 2009 Web Development Canada (http://www.wdca.ca)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+/**
+ * Customer Send Points
+ *
+ * @category   TBT
+ * @package    TBT_Rewards
+ * @author     WDCA Sweet Tooth Team <contact@wdca.ca>
+ */
+?>
+
+<div class="account-box ad-account-info mypoints-sendfriend"
+     <?php if (!Mage::getStoreConfigFlag('rewards/display/showMiniRedeemCatalog')): ?> style="float:none;"<?php endif; ?>
+     >
+    <div class="head head-alt2">
+        <h4 class="title"><?php echo $this->__("Send Points to a Friend") ?></h4>
+    </div>
+    <form method="post" action="<?php echo $this->getUrl('rewards/customer_sendpoints/send/') ?>">
+        <table cellspacing="5" border="0">
+            <tr>
+                <td> <label for="friend_email"><?php echo $this->__("Friend's Email:") ?> </label> </td>
+                <td> </td>
+                <td> <input type="text" name="friend_email" id="friend_email" /> </td>
+            </tr>
+            <tr>
+                <td> <label for="point_amt"><?php echo $this->__("Point Amount:") ?></label> </td>
+                <td> </td>
+                <td> <input type="text" name="points_amt" id="points_amt" /> </td>
+            </tr>
+            <!--  tr <?php if (!$this->getHasMultipleCurrencies()): ?>style="display:none;"<?php endif; ?> >
+                <td> <label for="currency_id"><?php echo $this->__("Currency:") ?></label> </td>
+                <td> </td>
+                <td>
+                <?php if ($this->getNumPointsCurrencies() == 1): ?>
+                    <select name="currency_id" id="currency_id" disabled="disabled">
+                <?php else: ?>
+                  	<select name="currency_id" id="currency_id">
+                <?php endif; ?>
+                    <?php foreach ($this->getPointsCurrencyIds() as $curr_id) : ?>
+                        <option value="<?php echo $curr_id ?>">
+                            <?php echo Mage::getModel('rewards/currency')->getCurrencyCaption($curr_id) ?>
+                        </option>
+                    <?php endforeach; ?>
+                    </select>
+                </td>
+            </tr -->
+            <tr>
+                <td> <label for="personal_comment"><?php echo $this->__("Comment:") ?></label> </td>
+                <td> </td>
+                <td> <textarea name="personal_comment" id="personal_comment" cols="25" rows="7"></textarea> </td>
+            </tr>
+        </table>
+        <br />
+
+        <button id="button_send_to_friend"class="form-button" type="submit" onclick="$('button_send_to_friend').hide();" >
+            <span><?php echo $this->__('Send to Friend') ?></span>
+        </button>
+    </form>
+</div>
+
+

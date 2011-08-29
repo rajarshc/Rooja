@@ -106,9 +106,9 @@ class TBT_Rewards_Model_Review extends Mage_Review_Model_Review {
 	 */
 	protected function approvePendingTransfers() {
 		foreach ( $this->getAssociatedTransfers () as $transfer ) {
-			if ($transfer->getStatus () == TBT_Rewards_Model_Transfer_Status::STATUS_PENDING) {
+			if ($transfer->getStatus () == TBT_Rewards_Model_Transfer_Status::STATUS_PENDING_EVENT) {
 				//Move the transfer status from pending to approved, and save it!
-				$transfer->setStatus ( TBT_Rewards_Model_Transfer_Status::STATUS_PENDING, TBT_Rewards_Model_Transfer_Status::STATUS_APPROVED );
+				$transfer->setStatus ( TBT_Rewards_Model_Transfer_Status::STATUS_PENDING_EVENT, TBT_Rewards_Model_Transfer_Status::STATUS_APPROVED );
 				$transfer->save ();
 			}
 		}
@@ -124,7 +124,7 @@ class TBT_Rewards_Model_Review extends Mage_Review_Model_Review {
 			
 			if ($is_transfer_successful) {
 				//Alert the customer on the distributed points  
-				Mage::getSingleton ( 'core/session' )->addSuccess ( Mage::helper ( 'rewards' )->__ ( 'You will receive %s upon approval of this review', Mage::getModel ( 'rewards/points' )->set ( $rule ) ) );
+				Mage::getSingleton ( 'core/session' )->addSuccess ( Mage::helper ( 'rewards' )->__ ( 'You will receive %s upon approval of this review', (string)Mage::getModel ( 'rewards/points' )->set ( $rule ) ) );
 			}
 		}
 	}

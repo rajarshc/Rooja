@@ -53,8 +53,30 @@ class TBT_Rewards_Model_Customer extends Mage_Customer_Model_Customer {
 	protected $points = array ();
 	protected $on_hold_points = array ();
 	protected $pending_points = array ();
+	protected $pending_time_points = array();
 	protected $usable_points = array ();
 	protected $transfers = array ();
+
+    /**
+     * @param Mage_Customer_Model_Customer $customer
+     * @return TBT_Rewards_Model_Customer
+     */
+    public function getRewardsCustomer($customer) {
+        if ( $customer instanceof TBT_Rewards_Model_Customer ) {
+            return $customer;
+        }
+        if ( $customer == null ) {
+            $customer = Mage::getModel('rewards/customer');
+        }
+        if ( $customer->getId() ) {
+            $this->load($customer->getId());
+        }
+        $this->addData($customer->getData());
+        
+        return $this;
+    }
+	
+    
 	/**
 	 * This is used to store the id from the model before saving 
 	 * to compare to future versions
@@ -81,10 +103,21 @@ class TBT_Rewards_Model_Customer extends Mage_Customer_Model_Customer {
 	 * (override from an abstract parent)
 	 */
 	protected function _afterLoad() {
-		$this->_loadPointsCollections ();
-		$this->_loadTransferCollections ();
+		$this->loadCollections();
 		return parent::_afterLoad ();
 	}
+
+    /**
+     * Loads customer collections
+     * @return void
+     */
+    public function loadCollections()
+    {
+		$this->_loadPointsCollections();
+        $this->_loadTransferCollections();
+        
+        return $this;
+    }
 	
 	/**
 	 * True if the id specified is new to this customer model after a SAVE event.
@@ -92,7 +125,7 @@ class TBT_Rewards_Model_Customer extends Mage_Customer_Model_Customer {
 	 * @param integer $checkId
 	 * @return boolean
 	 */
-	protected function isNewCustomer($checkId) {
+	public function isNewCustomer($checkId) {
 		return ($this->oldId != $checkId);
 	}
 	
@@ -111,11 +144,13 @@ class TBT_Rewards_Model_Customer extends Mage_Customer_Model_Customer {
 			$this->oldId = $this->getId (); //This stops multiple triggers of this function
 			$this->createTransferForNewCustomer ();
 		}
+		
 		Mage::getSingleton ( 'rewards/session' )->setCustomer ( $this );
 		if ($isNew) {
-			//		    Mage::helper('rewards')->notice("New customer event triggered with customer id #{$this->getId()}");
-			Mage::getSingleton ( 'rewards/session' )->triggerNewCustomerCreate ( $this );
-			Mage::dispatchEvent ( 'rewards_new_customer_create', array ('customer' => &$this ) );
+			if (Mage::helper('rewards/dispatch')->smartDispatch('rewards_customer_signup', array('customer' => $this))) {
+				Mage::getSingleton ( 'rewards/session' )->triggerNewCustomerCreate ( $this );
+				Mage::dispatchEvent ( 'rewards_new_customer_create', array ('customer' => &$this ) );
+			}
 		}
 		return parent::_afterSave ();
 	}
@@ -125,19 +160,19 @@ class TBT_Rewards_Model_Customer extends Mage_Customer_Model_Customer {
 	 *
 	 * 
 	 */
-	private function createTransferForNewCustomer() {
+	public function createTransferForNewCustomer() {
 		$ruleCollection = Mage::getSingleton ( 'rewards/special_validator' )->getApplicableRulesOnSignup ();
 		foreach ( $ruleCollection as $rule ) {
 			try {
 				//Create the Transfer
-				$is_transfer_successful = Mage::helper ( 'rewards/transfer' )->transferSignupPoints ( $rule->getPointsAmount (), $rule->getPointsCurrencyId (), $this->getId (), $rule->getId () );
+				$is_transfer_successful = Mage::helper ( 'rewards/transfer' )->transferSignupPoints ( $rule->getPointsAmount (), $rule->getPointsCurrencyId (), $this->getId (), $rule);
 			} catch ( Exception $ex ) {
 				Mage::getSingleton ( 'core/session' )->addError ( $ex->getMessage () );
 			}
 			
 			if ($is_transfer_successful) {
 				//Alert the customer on the distributed points   
-				Mage::getSingleton ( 'core/session' )->addSuccess ( Mage::helper ( 'rewards' )->__ ( 'You received %s for signing up!', Mage::getModel ( 'rewards/points' )->set ( $rule ) ) );
+				Mage::getSingleton ( 'core/session' )->addSuccess ( Mage::helper ( 'rewards' )->__ ( 'You received %s for signing up!', (string)Mage::getModel ( 'rewards/points' )->set ( $rule ) ) );
 			} else {
 				Mage::getSingleton ( 'core/session' )->addError ( Mage::helper ( 'rewards' )->__ ( 'Could not transfer points.' ) );
 			}
@@ -150,8 +185,9 @@ class TBT_Rewards_Model_Customer extends Mage_Customer_Model_Customer {
 	 */
 	private function _loadPointsCollections() {
 		$this->points = $this->_getPointSums ( '*active*' );
-		$this->on_hold_points = $this->_getPointSums ( TBT_Rewards_Model_Transfer_Status::STATUS_ON_HOLD );
-		$this->pending_points = $this->_getPointSums ( TBT_Rewards_Model_Transfer_Status::STATUS_PENDING );
+		$this->on_hold_points = $this->_getPointSums ( TBT_Rewards_Model_Transfer_Status::STATUS_PENDING_APPROVAL );
+		$this->pending_points = $this->_getPointSums ( TBT_Rewards_Model_Transfer_Status::STATUS_PENDING_EVENT );
+		$this->pending_time_points = $this->_getPointSums( TBT_Rewards_Model_Transfer_Status::STATUS_PENDING_TIME );
 		// Load Indexed point balance
 		try {
 			if (Mage::helper('rewards/customer_points_index')->useIndex()) {
@@ -175,12 +211,8 @@ class TBT_Rewards_Model_Customer extends Mage_Customer_Model_Customer {
 			$point_sums = $this->getCustomerPointsCollection ()->addStoreFilter ( Mage::app ()->getStore () );
 		} else {
 			$point_sums = $this->getCustomerPointsCollectionAll ()->addStoreFilter ( Mage::app ()->getStore () )->addFilter ( "status", $status );
-		
-		//			if (($status == TBT_Rewards_Model_Transfer_Status::STATUS_PENDING) ||
-		//				($status == TBT_Rewards_Model_Transfer_Status::STATUS_ON_HOLD)) {
-		//					$point_sums->addFieldToFilter("quantity", array('lt' => 0));
-		//			}
 		}
+		
 		$point_sums->addFilter ( "customer_id", $this->getId () );
 		
 		$points = array ();
@@ -192,7 +224,6 @@ class TBT_Rewards_Model_Customer extends Mage_Customer_Model_Customer {
 		foreach ( $point_sums as $currency_points ) {
 			$points [$currency_points->getCurrencyId ()] = ( int ) $currency_points->getPointsCount ();
 		}
-		
 		return $points;
 	}
 	
@@ -202,7 +233,11 @@ class TBT_Rewards_Model_Customer extends Mage_Customer_Model_Customer {
 	 * @return array
 	 */
 	public function _getPendingPointsRedemptionsSum() {
-		$point_sums = $this->getTransferCollection ()->addStoreFilter ( Mage::app ()->getStore () )->addFilter ( "status", TBT_Rewards_Model_Transfer_Status::STATUS_PENDING )->addFieldToFilter ( "quantity", array ('lt' => 0 ) )->groupByCustomers ()->addFilter ( "customer_id", $this->getId () );
+		$point_sums = $this->getTransferCollection ()->addStoreFilter ( Mage::app ()->getStore () )
+		        ->addFilter ( "status", TBT_Rewards_Model_Transfer_Status::STATUS_PENDING_EVENT )
+		        ->addFieldToFilter ( "quantity", array ('lt' => 0 ) )
+		        ->groupByCustomers ()
+		        ->addFilter ( "customer_id", $this->getId () );
 		
 		$points = array ();
 		//Zero's out all currencies on the point map
@@ -315,6 +350,16 @@ class TBT_Rewards_Model_Customer extends Mage_Customer_Model_Customer {
 	/**
 	 * Returns the a list of points where each item is 
 	 * a total balance of points
+	 *
+	 * @return array
+	 */
+	public function getPendingTimePoints() {
+		return $this->pending_time_points;
+	}
+	
+	/**
+	 * Returns the a list of points where each item is 
+	 * a total balance of points
 	 * The usable points are the number of points that can be used towards an order RIGHT NOW.
 	 * IE pending redemptions ARE deducted from this total and pending distributions are NOT 
 	 * added to this total.
@@ -377,6 +422,15 @@ class TBT_Rewards_Model_Customer extends Mage_Customer_Model_Customer {
 	}
 	
 	/**
+	 * Returns a nicely formatted string of the customer's PENDING-TIME points
+	 *
+	 * @return string
+	 */
+	public function getPendingTimePointsSummary() {
+		return Mage::helper ( 'rewards' )->getPointsString ( $this->pending_time_points );
+	}
+	
+	/**
 	 * Returns a nicely formatted string of the customer's ON HOLD points
 	 *
 	 * @return string
@@ -417,13 +471,18 @@ class TBT_Rewards_Model_Customer extends Mage_Customer_Model_Customer {
 		}
 		if ($this->hasPendingPoints ()) {
 			$points_pending = Mage::helper ( 'rewards' )->getPointsString ( $this->pending_points );
-			$points_pending .= ' ' . $status_captions [TBT_Rewards_Model_Transfer_Status::STATUS_PENDING];
+			$points_pending .= ' ' . $status_captions [TBT_Rewards_Model_Transfer_Status::STATUS_PENDING_EVENT];
 			$parts [] = $points_pending;
 		}
 		if ($this->hasPointsOnHold ()) {
 			$points_on_hold = Mage::helper ( 'rewards' )->getPointsString ( $this->on_hold_points );
-			$points_on_hold .= ' ' . $status_captions [TBT_Rewards_Model_Transfer_Status::STATUS_ON_HOLD];
+			$points_on_hold .= ' ' . $status_captions [TBT_Rewards_Model_Transfer_Status::STATUS_PENDING_APPROVAL];
 			$parts [] = $points_on_hold;
+		}
+		if ($this->hasPendingTimePoints()) {
+		    $points_pending_time = Mage::helper ( 'rewards' )->getPointsString ( $this->pending_time_points );
+			$points_pending_time .= ' ' . $status_captions [TBT_Rewards_Model_Transfer_Status::STATUS_PENDING_TIME];
+			$parts [] = $points_pending_time;
 		}
 		
 		$del = ' ' . Mage::helper ( 'rewards' )->__ ( 'and' ) . ' ';
@@ -459,6 +518,15 @@ class TBT_Rewards_Model_Customer extends Mage_Customer_Model_Customer {
 		foreach ( $this->getOnHoldPoints () as $points ) {
 			if ($points > 0)
 				return true;
+		}
+		return false;
+	}
+	
+	public function hasPendingTimePoints() {
+		foreach ( $this->getPendingTimePoints () as $points ) {
+			if ($points > 0) {
+				return true;
+			}
 		}
 		return false;
 	}
