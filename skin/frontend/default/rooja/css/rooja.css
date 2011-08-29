@@ -649,7 +649,7 @@ h2#saleDetails{color:#c60;margin:22px 0 5px;}
 }
 #productOptions p.startingPrice{color:#666;margin-bottom:8px;}
 #productOptions p.currentPrice{color:#431f4c;}
-#productOptions p.currentPrice span{font-family:"ltc-bodoni-175-1","ltc-bodoni-175-2", georgia, serif;font-size:2em;}
+#productOptions p.currentPrice span{font-family:"ltc-bodoni-175-1","ltc-bodoni-175-2", georgia, serif;font-size:1.85em;}
 #productInfo {min-height: 400px;}
 
 #colors, #sizes{clear:both;display:block;margin-bottom:10px;overflow:hidden;width:140px;}
