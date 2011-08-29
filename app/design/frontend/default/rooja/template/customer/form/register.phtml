@@ -52,13 +52,13 @@ jQuery(function() {
 <div class="wrapper">
 <header id="mainHeader">
 	<h1 id="logo" class="tr">Rooja</h1>
-	<p id="highlight" class="tr">Apparel and accessories from leading International and Indian designers at prices you just can’t get in the stores</p>
+	<p id="highlight" class="tr">Apparel and accessories from leading International and Indian designers at prices you just cant get in the stores</p>
 </header><!--End Header-->
 <section id="content" class="body">
     <h2 id="createAccount" class="tr"><?php echo $this->__('Create an Account') ?></h2>
     <?php echo $this->getChildHtml('form_fields_before')?>
     <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
-    <form action="<?php echo $this->getPostActionUrl() ?>" method="post" id="form-validate">
+    <form action="<?php echo $this->getPostActionUrl() ?>" method="post" id="form-validate" name="form-validate">
         <div class="fieldset">
             <input type="hidden" name="success_url" value="<?php echo $this->getSuccessUrl() ?>" />
             <input type="hidden" name="error_url" value="<?php echo $this->getErrorUrl() ?>" />
