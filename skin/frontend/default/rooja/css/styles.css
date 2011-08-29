@@ -147,7 +147,7 @@ ul,ol         { list-style:none; }
 .clear {clear:both;}
 .right {float: right;}
 .left {float: left;}
-
+.none {display:none;}
 /* ======================================================================================= */
 
 
