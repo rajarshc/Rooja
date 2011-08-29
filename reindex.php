@@ -1,7 +1,7 @@
 <?php
 set_time_limit(0);
 
-define('PATH_TO_MAGE', '/path/to/your/mage/install');
+define('PATH_TO_MAGE', '/');
 require_once realpath(PATH_TO_MAGE . '/app/Mage.php');
 
 if (empty($argv[1])) {
