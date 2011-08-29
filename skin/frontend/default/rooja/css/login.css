@@ -336,6 +336,12 @@ strong{font-weight:bold;}
 	color: rgba(46,26,51,0.5) !important;
 }
 
+::-webkit-input-placeholder{
+    color: rgba(46,26,51,0.75) !important;
+}
+:-moz-placeholder{
+    color: rgba(46,26,51,0.75) !important;
+}
 
 /* ~~~~~ MY BETA LIST ~~~~~ */
 #MyBetaList form input#MyBetaList-email{
