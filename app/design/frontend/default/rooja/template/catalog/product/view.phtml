@@ -115,7 +115,7 @@ if (!$categoryIds == null){
 			<?php if ($_product->getDescription()):?>
 				<article class="details"><p><?php echo $_helper->productAttribute($_product, nl2br($_product->getDescription()), 'short_description') ?>
 					<?php /*WDCA CODE BEGINS*/ ?>
-					<?php echo $this->getChildHtml('points'); ?>
+					<?php //echo $this->getChildHtml('points'); ?>
 					<?php /*WDCA CODE ENDS*/ ?></p></article>
 				<article class="shipping"><p><?php echo $_helper->productAttribute($_product, nl2br($_product->getShippingReturns()), 'shipping_returns') ?></p></article>
             <?php endif; ?>
