@@ -1369,7 +1369,7 @@ input.invite-button{height: 36px; color: #fff; font-size:14px; padding: 0px 10px
 #referred-friends-table {background:#fff; border:0px;}
 
 #shareLabel{font-size:12px;line-height:34px;margin-right:5px;}
-.addthis_default_style .fb_iframe_widget{vertical-align:center;}
+.addthis_default_style .fb_iframe_widget{margin-top:12px;}
 
 /********** Address Page */
 
