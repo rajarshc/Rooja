@@ -119,6 +119,10 @@
 
             </div>
             <div class="col-2">
+			 <?php /*WDCA CODE BEGINS*/?>
+			            <?php echo $this->getChildHtml('cartpoints_spender'); ?>        
+			            <?php /*WDCA CODE ENDS*/?>
+	
                 <?php echo $this->getChildHtml('coupon') ?>
                 <?php if (!$this->getIsVirtual()): echo $this->getChildHtml('shipping'); endif; ?>
             </div>
