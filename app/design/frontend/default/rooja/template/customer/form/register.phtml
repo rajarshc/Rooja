@@ -55,6 +55,7 @@ jQuery(function() {
 	<p id="highlight" class="tr">Apparel and accessories from leading International and Indian designers at prices you just cant get in the stores</p>
 </header><!--End Header-->
 <section id="content" class="body">
+		  <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
     <h2 id="createAccount" class="tr"><?php echo $this->__('Create an Account') ?></h2>
     <?php echo $this->getChildHtml('form_fields_before')?>
     <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
