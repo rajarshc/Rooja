@@ -78,10 +78,7 @@ jQuery(function() {
             <?php if ($_taxvat->isEnabled()): ?>
                 <li><?php echo $_taxvat->setTaxvat($this->getFormData()->getTaxvat())->toHtml() ?></li>
             <?php endif ?>
-            <?php $_gender = $this->getLayout()->createBlock('customer/widget_gender') ?>
-            <?php if ($_gender->isEnabled()): ?>
-                <li id="gender"><?php echo $_gender->setGender($this->getFormData()->getGender())->toHtml() ?></li>
-            <?php endif ?>
+            
             </ul>
         </div>
     <?php if($this->getShowAddressFields()): ?>
@@ -173,7 +170,10 @@ jQuery(function() {
                         </div>
                     </div>
                 </li>
-
+				<?php $_gender = $this->getLayout()->createBlock('customer/widget_gender') ?>
+	            <?php if ($_gender->isEnabled()): ?>
+	                <li id="gender"><?php echo $_gender->setGender($this->getFormData()->getGender())->toHtml() ?></li>
+	            <?php endif ?>
 
 				        <?php if ($this->isNewsletterEnabled()): ?>
 				        <li class="control" style="display: none;">
