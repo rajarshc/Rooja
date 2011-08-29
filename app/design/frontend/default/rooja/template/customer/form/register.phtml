@@ -35,7 +35,9 @@
 <script type="text/javascript">
 jQuery(function() {
 	
-	jQuery('input[type="text"], input[type="password"]').defaultValue();
+	jQuery('input[type="text"], input[type="password"]').defaultValue({
+		preferPlaceholders: true
+	});
 	
 	setTimeout(function() {
 		// Chrome does not fire a change event when autofilling forms
@@ -67,7 +69,7 @@ jQuery(function() {
                 <li>
                     <label for="email_address" class="required"><?php echo $this->__('Email Address') ?> *</label>
                     <div class="input-box">
-                        <input type="text" name="email" id="email_address" value="<?php echo $this->htmlEscape($this->getFormData()->getEmail()) ?>" title="<?php echo $this->__('Email Address') ?>" class="input-text validate-email required-entry" />
+                        <input type="text" name="email" id="email_address" value="<?php echo $this->htmlEscape($this->getFormData()->getEmail()) ?>" title="<?php echo $this->__('Email Address') ?>" class="input-text validate-email required-entry" placeholder="Email Address" />
                     </div>
                 </li>
             <?php $_dob = $this->getLayout()->createBlock('customer/widget_dob') ?>
@@ -160,13 +162,13 @@ jQuery(function() {
                     <div class="field">
                         <label for="password" class="required"><?php echo $this->__('Password') ?> *</label>
                         <div class="input-box">
-                            <input type="password" name="password" id="password" title="<?php echo $this->__('Password') ?>" class="input-text required-entry validate-password" />
+                            <input type="password" name="password" id="password" title="<?php echo $this->__('Password') ?>" class="input-text required-entry validate-password" placeholder="Password" />
                         </div>
                     </div>
                     <div class="field">
                         <label for="confirmation" class="required"><?php echo $this->__('Confirm Password') ?> *</label>
                         <div class="input-box">
-                            <input type="password" name="confirmation" title="<?php echo $this->__('Confirm Password') ?>" id="confirmation" class="input-text required-entry validate-cpassword" />
+                            <input type="password" name="confirmation" title="<?php echo $this->__('Confirm Password') ?>" id="confirmation" class="input-text required-entry validate-cpassword" placeholder="Confirm Password" />
                         </div>
                     </div>
                 </li>
