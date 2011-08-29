@@ -3,9 +3,9 @@ $cant_use_points = (($this->getMinSpendablePoints() == $this->getMaxSpendablePoi
 ?>
 
 <?php if($this->hasCartPointsData()): ?>
-<div class="discount-codes box rewards-box-spend-minicart discount">
+<div class="discount-codes box rewards-box-spend-minicart discount" style="padding: 0 0 0 25px;">
     <div class="rewards-box-spend-header">
-        <h2><?php echo $this->__('Spend your points'); ?></h2>
+        <h4 style="padding: 0;"><?php echo $this->__('Spend your points'); ?></h4>
     </div>
     <div class="box-content">
 <?php if($this->needsLogin()): ?>
