@@ -83,6 +83,46 @@ if (!$categoryIds == null){
     <form action="<?php echo $this->getSubmitUrl($_product) ?>" method="post" id="product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
 
 
+		<?php 
+			$points_adjusted_array = $this->getPredictedPoints();
+		?>
+		<div class="points-prediction">
+		    <?php if($this->doShowAsLowAs()): ?>
+			<?php if(isset($points_adjusted_array['points_string']) && $points_adjusted_array['points_string'] != "") :?>
+			    <?php if($points_adjusted_array['points_price'] === Mage::helper('core')->formatCurrency(0)) :?>
+				<div class="as_low_as free_with_points">
+			        <?php echo $this->__("Free using <b>%s!</b>",$points_adjusted_array['points_string']); ?>
+			    </div>
+			    <?php else :?>
+				<div class="as_low_as">
+			        <?php echo $this->__("As low as <b>%s</b> using <b>%s</b>" ,$points_adjusted_array['points_price'],$points_adjusted_array['points_string']); ?>
+			    </div>
+			    <?php endif ?>
+			<?php endif ?>
+			<?php endif; ?>
+			<?php if($this->hasEarnablePoints() && !($this->getHideEarning())) :?>
+		    	<?php if($this->doGraphicalEarning()): ?>        
+		    		<div class="earnable" align="left">
+		    		    <table border=0 cellspacing=0 cellpadding=0><tbody><tr>
+		    		    	<td align="left" class="rewards-mini-icon-holder">
+		    				<img src="<?php echo $this->getSkinUrl("images/rewards/add_points.png"); ?>">
+		    			</td>
+		                  <td align="left">
+		                    <?php echo $this->__("Earn %s", $this->getEarnablePointsString()); ?>
+		                  </td>
+		                </tr></tbody></table>
+		            </div>
+		    	<?php else: ?>
+		    		<div class="earnable">
+		            <?php echo $this->__("Earn %s", $this->getEarnablePointsString()); ?>
+		            </div>
+		    	<?php endif ?>
+			<?php endif ?>
+		</div>
+
+		<?php /*WDCA CODE BEGINS*/ ?>
+		<?php echo $this->getChildHtml('points'); ?>
+		<?php /*WDCA CODE ENDS*/ ?>
 
 <section id="saleDetails">
 	<div class="container">
