@@ -255,7 +255,7 @@ h1#about{
 }
 
 #gender label{color:#000;float:left;font-size:14px;}
-#gender select{float:left;}
+#gender select{float:right;margin-left:15px;width:300px;}
 
 #brands{
    background:#3e2647;
