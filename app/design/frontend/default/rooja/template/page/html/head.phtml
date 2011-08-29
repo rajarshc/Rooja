@@ -50,15 +50,16 @@
 <meta property="og:title" content="Shop the <?php echo trim(Mage::registry('current_product')->getName())?> sale at Rooja.com"/>
 <meta property="og:type" content="product"/>
 <meta property="og:url" content="<?php echo $this->helper('core/url')->getCurrentUrl() ?>"/>
-<meta property="og:description" content="Apparel and accessories from leading International and Indian designers at prices you just can't get in the stores"/>
+<meta property="og:description" content="Like my pick? visit Rooja.com. Find many more fashion items at up to 60% off retail. The website requires membership. Good news: membership is free. :) . 
+P.S. Hurry!"/>
 <meta property="og:image" content="<?php echo Mage::helper('catalog/image')->init(Mage::registry('current_product'), 'small_image')->resize(100,100);?>"/>
 <?php else: ?>
 <?php // Category page ?>
 <!--Category page OG Meta tags-->
-<meta property="og:title" content="<?php echo trim(Mage::registry('current_category')->getName())?>"/>
+<meta property="og:title" content="Shop the <?php echo trim(Mage::registry('current_category')->getName())?> sale at Rooja."/>
 <meta property="og:type" content="product"/>
 <meta property="og:url" content="<?php echo $this->helper('core/url')->getCurrentUrl() ?>"/>
-<meta property="og:description" content="Apparel and accessories from leading International and Indian designers at prices you just can't get in the stores"/>
+<meta property="og:description" content="Visit rooja.com now and check out this designer sale, plus many more great designers at up to 60% off retail. Discover new sales every day and get access to their luxury boutique. Membership is free, and you’re invited."/>
 <?php if(trim(Mage::registry('current_category')->getImageUrl()=="")): ?>
 <meta property="og:image" content="http://rooja.com/_images/rooja-logo-fb.png"/>
 <?php else: ?>

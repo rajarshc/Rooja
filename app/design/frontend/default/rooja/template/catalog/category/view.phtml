@@ -73,16 +73,16 @@ $expired = 1;
 		<div class="shareThis">
 			<h4>Share this sale with your friends</h4>
 			<!-- AddThis Button BEGIN -->
-			<div class="addthis_toolbox addthis_default_style" addthis:title="<?php echo $_helper->categoryAttribute($_category, $_category->getName(), 'name') ?>" addthis:description="Like my pick? Visit Rooja.com now and get access to top designer brands at upto 60% off retail. The website requires membership. Good news: membership is free. :)">
+			<div class="addthis_toolbox addthis_default_style" addthis:title="Shop the <?php echo $_helper->categoryAttribute($_category, $_category->getName(), 'name') ?> sale at Rooja." addthis:description="Visit rooja.com now and check out this designer sale, plus many more great designers at up to 60% off retail. Discover new sales every day and get access to their luxury boutique. Membership is free, and you’re invited.">
 			<a class="addthis_button_facebook"><img src="<?php echo $this->getSkinUrl('images/icons/facebook-blue-24.png'); ?>" alt="facebook icon"></a>
-			<a class="addthis_button_twitter" tw:via="RoojaFashion"><img src="<?php echo $this->getSkinUrl('images/icons/twitter-teal-24.png'); ?>" alt="twitter icon"></a>
+			<a class="addthis_button_twitter" tw:via="RoojaFashion" tw:related="RoojaFashion"><img src="<?php echo $this->getSkinUrl('images/icons/twitter-teal-24.png'); ?>" alt="twitter icon"></a>
 			<a class="addthis_button_email"><img src="<?php echo $this->getSkinUrl('images/icons/email-24.png'); ?>" alt="facebook icon"></a>
 			</div>
 			<script type="text/javascript">
 				var addthis_config = {"data_track_clickback":true};
 				var addthis_share = { 
 				    templates: {
-				                twitter: 'Shop the <?php echo $_helper->categoryAttribute($_category, $_category->getName(), 'name') ?> sale on Rooja. {{url}} via @RoojaFashion'
+				                twitter: '<?php echo $_helper->categoryAttribute($_category, $_category->getName(), 'name') ?> sale on Rooja today. {{url}} via @RoojaFashion'
 				               }
 				}
 				</script>
