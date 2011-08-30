@@ -79,7 +79,7 @@ $categories = Mage::helper('catalog/category')->getStoreCategories();
 foreach ($categories as $_category){
     if($_category->hasChildren()){
         $_category->getId(); // category id
-		if($_category !=5){
+		if($_category->getId() !=5){
         foreach($_category->getChildren() as $subcategory){
 		$c = Mage::getModel('catalog/category')->load($subcategory->getId());
             if($c->getIsActive()){ // check if category is active

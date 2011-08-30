@@ -101,6 +101,7 @@ $categories = Mage::helper('catalog/category')->getStoreCategories();
 foreach ($categories as $_category){
     if($_category->hasChildren()){
         $_category->getId(); // category id
+if($_category->getId() !=5){
         foreach($_category->getChildren() as $subcategory){
 		$c = Mage::getModel('catalog/category')->load($subcategory->getId());
             if($c->getIsActive()){ // check if category is active
@@ -126,6 +127,7 @@ foreach ($categories as $_category){
 				}
             }
         }
+}
     }
 }
 ?>
@@ -138,6 +140,7 @@ $sortedArrayByDates = array();
 foreach ($categories as $_category){
     if($_category->hasChildren()){
 		$_category->getId(); // category id
+		if($_category->getId() !=5){
 		foreach($_category->getChildren() as $subcategory){
 			$c = Mage::getModel('catalog/category')->load($subcategory->getId());
 			if (!$c->getSale_start_date() == null) {
@@ -150,6 +153,7 @@ foreach ($categories as $_category){
 				}
 			}
 		}
+	}
     }
 }
 
