@@ -148,7 +148,7 @@ foreach ($categories as $_category){
 				$today = date('y-m-d H:G:00');
 				$startdate = date('y-m-d', strtotime($c->getSale_start_date())) . ' ' . $c->getSale_start_time() . ':00';
 				$enddate = date('y-m-d', strtotime($c->getSale_end_date())) . ' ' . $c->getSale_end_time() . ':00';
-				if ($startdate > $today && $startdate > $fivedays) {
+				if ($startdate > $today && $startdate < $fivedays) {
 					$sortedArrayByDates[strtotime($c->getSale_start_date())][] = $c->getName();
 				}
 			}
