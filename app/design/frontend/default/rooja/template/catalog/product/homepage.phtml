@@ -88,7 +88,7 @@ foreach ($categories as $_category){
 				if (!$c->getSale_start_date() == null) {
 	                $startdate = date('y-m-d', strtotime($c->getSale_start_date())) . ' ' . $c->getSale_start_time() . ':00';
 					$enddate = date('y-m-d', strtotime($c->getSale_end_date())) . ' ' . $c->getSale_end_time() . ':00';
-					if (($enddate > $today && $enddate < $fivedays && $startdate < $fivedays) || ($enddate > $today && $enddate > $fivedays && $startdate < $fivedays)) {
+					if (($enddate > $today && $enddate < $fivedays && $startdate < $today) || ($enddate > $today && $enddate > $fivedays && $startdate < $today)) {
 						if($i == 3){
 							?>
 							<article class="homeAd2 fl masonry">
