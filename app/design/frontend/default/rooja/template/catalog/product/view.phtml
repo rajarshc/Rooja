@@ -121,73 +121,70 @@ if (!$categoryIds == null){
             <?php endif; ?>
 
 				
+				<div class="shareThis">
+					<h4>Share with your friends</h4>
+					
+					<!-- AddThis Button BEGIN -->
+					<div class="addthis_toolbox addthis_default_style" addthis:title="<?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?>" addthis:description="Like my pick? visit Rooja.com. Find many more fashion items at up to 60% off retail. The website requires membership. Good news: membership is free. :) . P.S. Hurry!">
+					<a class="addthis_button_facebook"><img src="<?php echo $this->getSkinUrl('images/icons/facebook-blue-24.png'); ?>" alt="facebook icon"></a>
+					<a class="addthis_button_twitter" tw:via="RoojaFashion" tw:related="RoojaFashion"><img src="<?php echo $this->getSkinUrl('images/icons/twitter-teal-24.png'); ?>" alt="twitter icon"></a>
+					<a class="addthis_button_email"><img src="<?php echo $this->getSkinUrl('images/icons/email-24.png'); ?>" alt="facebook icon"></a>
+					</div>
+					<script type="text/javascript">
+						var addthis_config = {"data_track_clickback":true};
+						var addthis_share = { 
+						    templates: {
+						                   twitter: '<?php echo $currentcategory->getName(); ?> on Rooja.com. <?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?> {{url}} via @RoojaFashion'
+						               }
+						}
+					</script>
+					<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=philosophie"></script>
+					<!-- AddThis Button END -->
+				</div>
+			</section>
 			
+			<section id="purchaseProduct" class="col1 fl noMargin">
+				<section id="reverseAuction">
+					
+					<p id="likeThis">
+					<fb:like layout="button_count" width="60" style="margin:3px 0 0;float:right" title="Rooja: <?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?>"></fb:like>
+					
+					
+					<?php
+					$source_url = $this->helper('core/url')->getCurrentUrl();
+$url = "http://api.facebook.com/restserver.php?method=links.getStats&urls=".urlencode($source_url);
+$xml = file_get_contents($url);
+$xml = simplexml_load_string($xml);
+echo '<span>' . $likes = $xml->link_stat->like_count . '</span>';
+?> people like this</p>
+					<?php /* hidding this 
+					<a href="#" id="likeBtn" class="tr fr">Like this item</a></p>
+					*/ ?>
+										<?php /* To be finalized
+
+					<?php echo 'rl_floor:' . $_helper->productAttribute($_product, $_product->getRl_floor(), 'rl_floor') ?>
+					<?php echo 'rl_inc:' . $_helper->productAttribute($_product, $_product->getRl_inc(), 'rl_inc') ?>
+					<?php echo 'rl_price:' . $_helper->productAttribute($_product, $_product->getRl_price(), 'rl_price') ?>
+					*/ ?>
+					<figure id="likeDetails" class="sideAd">
+						<p>Want to see the price drop? Like this item!</p>
+					</figure>
+				</section>
+				<section id="productOptions">
+						<p class="startingPrice">Original Price: <strike>Rs. <?php echo number_format($_product->getPrice(), 2) ?></strike></p>
+					<p class="currentPrice">Current Price:<span>
+					<?php if (!$fbprice == null) { ?>
+					<?php echo 'Rs. ' . number_format($fbprice,2); } else { ?>
+					<?php $fbprice = number_format($_product->getSpecialprice(), 2);echo 'Rs. ' . $fbprice; } ?></span></p>
+					<a href="#" class="sizeChart fr">Size Chart</a>
+
+					<br class="clear">
+
+	            	<?php echo $this->getChildChildHtml('container1', '', true, false) ?>
 
 					
 			<?php if (($expired == 1) && (!$categoryIds == null)) { ?>
 				<?php if ($_product->isSaleable() && $this->hasOptions()) { ?>
-					
-						<div class="shareThis">
-							<h4>Share with your friends</h4>
-
-							<!-- AddThis Button BEGIN -->
-							<div class="addthis_toolbox addthis_default_style" addthis:title="<?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?>" addthis:description="Like my pick? visit Rooja.com. Find many more fashion items at up to 60% off retail. The website requires membership. Good news: membership is free. :) . P.S. Hurry!">
-							<a class="addthis_button_facebook"><img src="<?php echo $this->getSkinUrl('images/icons/facebook-blue-24.png'); ?>" alt="facebook icon"></a>
-							<a class="addthis_button_twitter" tw:via="RoojaFashion" tw:related="RoojaFashion"><img src="<?php echo $this->getSkinUrl('images/icons/twitter-teal-24.png'); ?>" alt="twitter icon"></a>
-							<a class="addthis_button_email"><img src="<?php echo $this->getSkinUrl('images/icons/email-24.png'); ?>" alt="facebook icon"></a>
-							</div>
-							<script type="text/javascript">
-								var addthis_config = {"data_track_clickback":true};
-								var addthis_share = { 
-								    templates: {
-								                   twitter: '<?php echo $currentcategory->getName(); ?> on Rooja.com. <?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?> {{url}} via @RoojaFashion'
-								               }
-								}
-							</script>
-							<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=philosophie"></script>
-							<!-- AddThis Button END -->
-						</div>
-					</section>
-
-					<section id="purchaseProduct" class="col1 fl noMargin">
-						<section id="reverseAuction">
-
-							<p id="likeThis">
-							<fb:like layout="button_count" width="60" style="margin:3px 0 0;float:right" title="Rooja: <?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?>"></fb:like>
-
-
-							<?php
-							$source_url = $this->helper('core/url')->getCurrentUrl();
-		$url = "http://api.facebook.com/restserver.php?method=links.getStats&urls=".urlencode($source_url);
-		$xml = file_get_contents($url);
-		$xml = simplexml_load_string($xml);
-		echo '<span>' . $likes = $xml->link_stat->like_count . '</span>';
-		?> people like this</p>
-							<?php /* hidding this 
-							<a href="#" id="likeBtn" class="tr fr">Like this item</a></p>
-							*/ ?>
-												<?php /* To be finalized
-
-							<?php echo 'rl_floor:' . $_helper->productAttribute($_product, $_product->getRl_floor(), 'rl_floor') ?>
-							<?php echo 'rl_inc:' . $_helper->productAttribute($_product, $_product->getRl_inc(), 'rl_inc') ?>
-							<?php echo 'rl_price:' . $_helper->productAttribute($_product, $_product->getRl_price(), 'rl_price') ?>
-							*/ ?>
-							<figure id="likeDetails" class="sideAd">
-								<p>Want to see the price drop? Like this item!</p>
-							</figure>
-						</section>
-						<section id="productOptions">
-								<p class="startingPrice">Original Price: <strike>Rs. <?php echo number_format($_product->getPrice(), 2) ?></strike></p>
-							<p class="currentPrice">Current Price:<span>
-							<?php if (!$fbprice == null) { ?>
-							<?php echo 'Rs. ' . number_format($fbprice,2); } else { ?>
-							<?php $fbprice = number_format($_product->getSpecialprice(), 2);echo 'Rs. ' . $fbprice; } ?></span></p>
-							<a href="#" class="sizeChart fr">Size Chart</a>
-
-							<br class="clear">
-
-			            	<?php echo $this->getChildChildHtml('container1', '', true, false) ?>
-			
 	<?php echo $this->getChildChildHtml('container2', '', true, false) ?>
 				<?php } else { ?>
 					<?php echo $this->getChildHtml('addtocart') ?>
