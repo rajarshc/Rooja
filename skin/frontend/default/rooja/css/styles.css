@@ -1360,7 +1360,7 @@ fielset h4{padding: 10px 0 25px;}
 .share-purchase {background:#c8d7da;padding:15px 12px; margin-top: -250px; width:350px;}
 
 input.invite-input {height: 36px;line-height:36px;padding:0px 8px;width:236px;float:left;margin-right:2px;}
-input.invite-button{height: 36px; color: #fff; font-size:14px; padding: 0px 10px; background: #868686;}
+input.invite-button{height: 36px; color: #fff; font-size:14px; padding: 0px 8px; background: #868686;}
 
 .addthis_default_style {padding: 10px 0;}
 
