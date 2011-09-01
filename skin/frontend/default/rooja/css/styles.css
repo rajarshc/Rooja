@@ -26,7 +26,7 @@
 /* Reset ================================================================================= */
 * { margin:0; padding:0; }
 
-body          { background:#fff; font:12px/1.35 Arial, Helvetica, sans-serif; color:#000; }
+body          { background:#fff;  color:#000; }
 
 img           { border:0; vertical-align:top; }
 
@@ -979,7 +979,7 @@ h1.submitted {padding-top: 40px;}
 
 
 /* Shopping Cart ========AM EDIT========================================================== */
-.cart, .checkout {width: 980px;margin: 20px auto 35px;overflow:hidden;}
+.cart, .checkout {width: 980px;margin: 20px auto 35px;}
 .cart h1 {font-size: 28px;color: #431f4c;margin: 5px 0 0;}
 .emptyCart h1{margin:20px 0 20px;}
 .cart h2.product-name {font-family: inherit;}
