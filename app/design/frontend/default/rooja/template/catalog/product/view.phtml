@@ -169,7 +169,7 @@ echo '<span>' . $likes = $xml->link_stat->like_count . '</span>';
 					<figure id="likeDetails" class="sideAd">
 						<p>Want to see the price drop? Like this item!</p>
 					</figure>
-				</section>
+
 
 					
 			<?php if (($expired == 1) && (!$categoryIds == null)) { ?>
@@ -182,7 +182,6 @@ echo '<span>' . $likes = $xml->link_stat->like_count . '</span>';
 							<?php $fbprice = number_format($_product->getSpecialprice(), 2);echo 'Rs. ' . $fbprice; } ?></span></p>
 							<a href="#" class="sizeChart fr">Size Chart</a>
 
-							<br class="clear">
 	<?php echo $this->getChildChildHtml('container2', '', true, false) ?>
 				<?php } else { ?>
 
@@ -190,6 +189,7 @@ echo '<span>' . $likes = $xml->link_stat->like_count . '</span>';
 					<?php echo $this->getChildHtml('addtocart') ?>
 		        <?php } ?>
 			<?php } else {?>
+				</section>
 				</section>
 			<?php } ?>
 
