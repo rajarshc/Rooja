@@ -666,7 +666,7 @@ h2#saleDetails{color:#c60;margin:22px 0 5px;}
 #estimatedShippingDate{width:230px;padding:8px 0;text-align:center;background-color:#bb6e17;color:#fff;margin:0;}
 #soldOut {background-image:url(../images/icons/soldout.jpg);width:230px;height:83px;margin-top:5px;border:none;cursor:pointer;}
 #soldOut span, #expired span {display:none;}
-#expired {background-image:url(../images/icons/expired.jpg);width:230px;height:83px;margin-top:5px;border:none;cursor:pointer;text-indent:-999px;}
+#expired {background-image:url(../images/icons/expired.jpg);width:230px;height:83px;margin-top:5px;border:none;cursor:pointer;text-indent: -9999px;margin-left: -10px;}
 
 #prevNextLinks{margin:5px 0 0;position: absolute;width: 80px;}
 #prevProduct, #nextProduct {position:relative;}
