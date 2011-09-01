@@ -154,7 +154,7 @@ form input#loginBtn{
 }
 
 #brands .brandCol{display:block;width:126px;height:19px;text-align:center;position:relative;}
-#brands img{vertical-align:middle;}
+#brands img{vertical-align:middle;margin-bottom:5px;}
 
 #navLinks{
     background:#000;
