@@ -130,7 +130,7 @@ button.btn-checkout {}
 .advanced-search-summary p,
 .gift-messages-form .item,
 .send-friend .form-list li p,
-.centinel .authentication { zoom:1; }
+.centinel .authentication, #mainNav, #mainNav li, #mainNav li a { zoom:1; }
 
 /* Hover Fix */
 iframe.hover-fix { position:absolute; left:-1px; top:-1px; z-index:-1; background:transparent; filter:progid:DXImageTransform.Microsoft.Alpha(style=0,opacity=0); }
