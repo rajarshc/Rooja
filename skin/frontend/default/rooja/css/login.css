@@ -26,6 +26,9 @@ li.error-msg {
 }
 #loginCont .error-msg {margin-bottom:10px;}
 
+.register .error-msg{text-align:left;padding-left:10px;}
+.register .error-msg li{margin-bottom:8px;}
+
 #notifyWrapper div.wrapper, #aboutWrapper div.wrapper{
     width:380px;
     padding:15px;
