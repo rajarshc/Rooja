@@ -174,18 +174,17 @@ echo '<span>' . $likes = $xml->link_stat->like_count . '</span>';
 					
 			<?php if (($expired == 1) && (!$categoryIds == null)) { ?>
 				<?php if ($_product->isSaleable() && $this->hasOptions()) { ?>
-					
+						<section id="productOptions">
+								<p class="startingPrice">Original Price: <strike>Rs. <?php echo number_format($_product->getPrice(), 2) ?></strike></p>
+							<p class="currentPrice">Current Price:<span>
+							<?php if (!$fbprice == null) { ?>
+							<?php echo 'Rs. ' . number_format($fbprice,2); } else { ?>
+							<?php $fbprice = number_format($_product->getSpecialprice(), 2);echo 'Rs. ' . $fbprice; } ?></span></p>
+							<a href="#" class="sizeChart fr">Size Chart</a>
+
+							<br class="clear">
 	<?php echo $this->getChildChildHtml('container2', '', true, false) ?>
 				<?php } else { ?>
-							<section id="productOptions">
-									<p class="startingPrice">Original Price: <strike>Rs. <?php echo number_format($_product->getPrice(), 2) ?></strike></p>
-								<p class="currentPrice">Current Price:<span>
-								<?php if (!$fbprice == null) { ?>
-								<?php echo 'Rs. ' . number_format($fbprice,2); } else { ?>
-								<?php $fbprice = number_format($_product->getSpecialprice(), 2);echo 'Rs. ' . $fbprice; } ?></span></p>
-								<a href="#" class="sizeChart fr">Size Chart</a>
-
-								<br class="clear">
 
 				            	<?php echo $this->getChildChildHtml('container1', '', true, false) ?>
 					<?php echo $this->getChildHtml('addtocart') ?>
@@ -200,6 +199,16 @@ echo '<span>' . $likes = $xml->link_stat->like_count . '</span>';
 
 						<section id="purchaseProduct" class="col1 fl noMargin">
 									<p id="expired">Expired</p>
+
+			<?php } ?>
+
+
+			<?php if (($expired == 1) && (!$categoryIds == null)) { ?>
+				<?php if ($_product->isSaleable() == false) { ?>
+
+						<section id="purchaseProduct" class="col1 fl noMargin">
+									<p id="soldOut">Sold Out</p>
+			<?php } ?>
 
 			<?php } ?>
 
