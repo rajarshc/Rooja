@@ -64,7 +64,12 @@ P.S. Hurry!"/>
 <script type="text/javascript">
 jQuery(document).ready(function() {
 
-	jQuery("a.fancyboxLink").fancybox();
+	jQuery("a.fancyboxLink").fancybox({
+		autoScale: true,
+		titleShow: false,
+		overlayColor: "#111",
+		type: "inline"
+	});
 
 });
 </script>
