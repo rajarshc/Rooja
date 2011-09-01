@@ -79,7 +79,7 @@ $categories = Mage::helper('catalog/category')->getStoreCategories();
 foreach ($categories as $_category){
     if($_category->hasChildren()){
         $_category->getId(); // category id
-		if($_category !=5){
+		if($_category->getId() !=5){
         foreach($_category->getChildren() as $subcategory){
 		$c = Mage::getModel('catalog/category')->load($subcategory->getId());
             if($c->getIsActive()){ // check if category is active
@@ -88,7 +88,7 @@ foreach ($categories as $_category){
 				if (!$c->getSale_start_date() == null) {
 	                $startdate = date('y-m-d', strtotime($c->getSale_start_date())) . ' ' . $c->getSale_start_time() . ':00';
 					$enddate = date('y-m-d', strtotime($c->getSale_end_date())) . ' ' . $c->getSale_end_time() . ':00';
-					if (($enddate > $today && $enddate < $fivedays && $startdate < $fivedays) || ($enddate > $today && $enddate > $fivedays && $startdate < $fivedays)) {
+					if (($enddate > $today && $enddate < $fivedays && $startdate < $today) || ($enddate > $today && $enddate > $fivedays && $startdate < $today)) {
 						if($i == 3){
 							?>
 							<article class="homeAd2 fl masonry">
@@ -109,82 +109,7 @@ foreach ($categories as $_category){
             </article>
 				<?php } $i++; }}}}}  }} ?>			
 
-<?php
-    /* $_productCollection=$this->getLoadedProductCollection();
-			$_productCollection = Mage::getResourceModel('catalog/product_collection');
-            Mage::getModel('catalog/layer')->prepareProductCollection($_productCollection);
-            $_productCollection->getSelect()->order('rand()');
-            $_productCollection->addStoreFilter();
-            
-$_productCollection->addCategoryFilter(Mage::getModel('catalog/category');
 
-            $numProducts = $this->getNumProducts() ? $this->getNumProducts() : 7;
-            $_productCollection->setPage(1, $numProducts)->load();
-            //var_export($_productCollection);
-    $_helper = $this->helper('catalog/output');
-    $cards = array('size1','size2','size3'); 
-?>
-
-
-<?php
-$sorted = array();
-    //$_productCollection=$this->getLoadedProductCollection();
-$_productCollection = Mage::getModel('catalog/product')
-->getCollection()
-->addAttributeToSort()
-->addAttributeToSelect('small_image')
-->addCategoryFilter(Mage::getModel('catalog/category')->load());
-$_productCollection->getSelect()->order(new Zend_Db_Expr('RAND()'));
-$numProducts = $this->getNumProducts() ? $this->getNumProducts() : 20;
-            $_productCollection->setPage(1, $numProducts)->load();
-            $sorted[] = array(
-            
-            );
-            //var_export($_productCollection);
-            //die('1');
-    $_helper = $this->helper('catalog/output');
-    $cards = array('size1','size2','size3');
-?>
-
-
-<?php if(!$_productCollection->count()): ?>
-<?php else: ?>
-    <?php $_collectionSize = $_productCollection->count() ?>
-    <?php foreach ($_productCollection as $_product): ?>
-    <?php $category = array();
-        $cat_ids = $_product->getCategoryIds();
-        $cat = new Mage_Catalog_Model_Category();
-        foreach ($cat_ids as $cid)
-        {
-            $cat->load($cid);
-            $cat_data = $cat->_data;
-            $category[] = array(
-                'name' => $cat_data['name'],
-                'url_key' => $cat_data['url_key'],
-                'url_path' => $cat_data['url_path'],
-                'parent_id' => $cat_data['parent_id'],
-				'my_meta' => $cat_data['my_meta']
-                );
-        }
-		//var_dump($cat_data);
-        ?>
-            <article class="homeSale size2 fl masonry">
-                <a href="
-                <?php if ($cat_data['parent_id'] == '3') { echo '/women/'; }
-                elseif ($cat_data['parent_id'] == '4') { echo '/men/'; }
-                elseif ($cat_data['parent_id'] == '5') { echo '/travel/'; }
-                echo $cat_data['url_key'] . '.html'; ?>
-                " title="View sale details for: <?php echo $cat_data['name']; ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image'); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" width="236px" /></a>
-                <h2><?php echo $cat_data['name']; ?></h2>
-            </article>
-
-        <?php endforeach ?>
-		<article class="homeAd fl masonry">
-			<h3><a href="#">Invite a Friend</a></h3>
-			<p>Share what&rsquo;s in with your friends on Facebook! Invite a friend and receive $25 to spend on Rooja!</p>
-		</article>		
-
-<?php endif; */ ?>
 <script type="text/javascript">
 	jQuery(document).ready(function(){
 		jQuery(".homeSale p").hide();
