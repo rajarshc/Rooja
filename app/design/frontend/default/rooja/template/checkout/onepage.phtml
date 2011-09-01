@@ -94,8 +94,8 @@ var loginFormValue ="loggedin" ;
 //variables for Billing Form
 
 function onLoginSubmit() {
-//alert("Entered condition satisfied  :   "+loginFormValue);
-this.billingValidation();
+	//alert("Entered condition satisfied  :   "+loginFormValue);
+	this.billingValidation();
 }
 
 //<![CDATA[
@@ -115,6 +115,6 @@ this.billingValidation();
 
 <?php if($this->isCustomerLoggedIn()): ?>
    <?php if (!$this->customerHasAddresses()): ?>
-    echo "<script>this.billingValidation();</script>";
+    <?php echo "<script>this.billingValidation();</script>";?>
     <?php endif ?>
     <?php endif ?>
