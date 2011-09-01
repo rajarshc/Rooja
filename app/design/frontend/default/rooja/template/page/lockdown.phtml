@@ -62,16 +62,20 @@ P.S. Hurry!"/>
 
 </script>
 <script type="text/javascript">
-jQuery(document).ready(function() {
+(function ($) {
+	
+	$(document).ready(function() {
 
-	jQuery("a.fancyboxLink").fancybox({
-		autoScale: true,
-		titleShow: false,
-		overlayColor: "#111",
-		type: "inline"
+		$("a.fancyboxLink").fancybox({
+			autoScale: true,
+			titleShow: false,
+			overlayColor: "#111",
+			type: "inline"
+		});
+		
 	});
 
-});
+})(jQ);
 </script>
 
 </head>
