@@ -182,21 +182,24 @@ echo '<span>' . $likes = $xml->link_stat->like_count . '</span>';
 
 	            	<?php echo $this->getChildChildHtml('container1', '', true, false) ?>
 
-			<?php if ($expired != 1) {?>
-			<p id="expired">Expired</p>
-			<?php } ?>
-			
-			
-
-			<?php if (($expired == 1) && (!$categoryIds == null)) { ?>		
+					
+			<?php if (($expired == 1) && (!$categoryIds == null)) { ?>
 				<?php if ($_product->isSaleable() && $this->hasOptions()) { ?>
-					<?php echo $this->getChildChildHtml('container2', '', true, false) ?>
-						<?php } else { ?>
-							<?php echo $this->getChildHtml('addtocart') ?>
-				        <?php } ?>
-				
+	<?php echo $this->getChildChildHtml('container2', '', true, false) ?>
+				<?php } else { ?>
+					<?php echo $this->getChildHtml('addtocart') ?>
+		        <?php } ?>
 			<?php } else {?>
 				</section>
+			<?php } ?>
+
+
+
+			<?php if ($expired != 1) {?>
+
+						<section id="purchaseProduct" class="col1 fl noMargin">
+									<p id="expired">Expired</p>
+
 			<?php } ?>
 
 
