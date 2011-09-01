@@ -33,49 +33,20 @@
 ?>
 <script src="/js/jquery.defaultvalue.js" type="text/javascript"></script> 
 <script type="text/javascript">
-(function ($) {
-	$(document).ready(function() {
+jQuery(document).ready(function() {
 	
-		$('input[type="text"], input[type="password"]').defaultValue({
-			preferPlaceholder: true
-		});
+	jQuery('input[type="text"], input[type="password"]').defaultValue({
+		preferPlaceholder: true
+	});
 	
-		setTimeout(function() {
-			// Chrome does not fire a change event when autofilling forms
-			// To prevent weird overlap with defaultValue and Chrome autofill,
-			// fire your own change event after 100 or so milliseconds
-			$('input[type="text"]').change();
-		}, 100);
-	});
-
-	var fadeDuration=2000;
-    var slideDuration=4000;
-    var currentIndex=1;
-    var nextIndex=1;
-    $(document).ready(function()
-    {
-        $('ul.slideshow li img').corner();
-        $('ul.slideshow li').css({opacity: 0.0});
-        $("'ul.slideshow li:nth-child("+nextIndex+")'").addClass('show').animate({opacity: 1.0}, fadeDuration);
-        var timer = setInterval('nextSlide()',slideDuration);
-    })
- 
-    function nextSlide(){
-            nextIndex =currentIndex+1;
-            if(nextIndex> $('ul.slideshow li').length)
-            {
-                nextIndex =1;
-            }
-            $("'ul.slideshow li:nth-child("+nextIndex+")'").addClass('show').animate({opacity: 1.0}, fadeDuration);
-            $("'ul.slideshow li:nth-child("+currentIndex+")'").animate({opacity: 0.0}, fadeDuration).removeClass('show');
-            currentIndex = nextIndex;
-    }
-
-
-
-
-	});
-})(jQ);
+	setTimeout(function() {
+		// Chrome does not fire a change event when autofilling forms
+		// To prevent weird overlap with defaultValue and Chrome autofill,
+		// fire your own change event after 100 or so milliseconds
+		jQuery('input[type="text"]').change();
+	}, 100);
+	
+});
 </script>
 <div id="notifyWrapper">
 <div class="wrapper">
@@ -125,33 +96,30 @@
 	<link href="http://my.betali.st/widget/y2jd9dtr.css" rel="stylesheet" /><script src="http://my.betali.st/widget/y2jd9dtr.js" id="MyBetaList"></script>
 	
 	<p class="alignRight">Free membership by invitation only.</p>
-	</div>
+	</div>	
 </section><!--End Content-->
 </div>
 	<section id="brands">
-		<ul class="slideshow">
-		<li>
+		<div id="brandCol1" class="">
 			<img src="<?php echo $this->getSkinUrl('images/splash/logos/1.png') ?>">
-		</li>
-		<li>
+		</div>
+		<div id="brandCol2" class="">
 			<img src="<?php echo $this->getSkinUrl('images/splash/logos/2.png') ?>">
-		</li>
-		<li>
+		</div>
+		<div id="brandCol3" class="">
 			<img src="<?php echo $this->getSkinUrl('images/splash/logos/3.png') ?>">
-		</li>
+		</div>
 	</section>
 </div>
 
 <script type="text/javascript">
-(function ($) {
-	$(document).ready(function(){
-			$("a#loginTab").click(
-				 function() {$("#getInvitedCont").hide(); $("#loginCont").show(); $("#loginTab").addClass('selected'); $("#getInvitedTab").addClass('selected');return false;}
+	jQuery(document).ready(function(){
+			jQuery("a#loginTab").click(
+				 function() {jQuery("#getInvitedCont").hide(); jQuery("#loginCont").show(); jQuery("#loginTab").addClass('selected'); jQuery("#getInvitedTab").removeClass('selected');return false;}
 			);
-			$("a#getInvitedTab").click(
-				 function() {$("#getInvitedCont").show();$("#loginCont").hide(); $("#loginTab").removeClass('selected'); $("#getInvitedTab").addClass('selected');return false;}
+			jQuery("a#getInvitedTab").click(
+				 function() {jQuery("#getInvitedCont").show();jQuery("#loginCont").hide(); jQuery("#loginTab").removeClass('selected'); jQuery("#getInvitedTab").addClass('selected');return false;}
 			);
 	 });
-})(jQ);
 			
 </script>
