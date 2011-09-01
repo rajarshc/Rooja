@@ -185,14 +185,14 @@ echo '<span>' . $likes = $xml->link_stat->like_count . '</span>';
 					
 			<?php if (($expired == 1) && (!$categoryIds == null)) { ?>
 				<?php if ($_product->isSaleable() && $this->hasOptions()) { ?>
-	<button class="tr" id="expired" onclick=""><span>Expired</span></button>            	
+	<p>Expired</p>           	
 	
 	<?php echo $this->getChildChildHtml('container2', '', true, false) ?>
 				<?php } else { ?>
 					<?php echo $this->getChildHtml('addtocart') ?>
 		        <?php } ?>
 			<?php } else {?>
-					<button class="tr" id="SoldOut" onclick=""><span>Sold Out</span></button>     
+					<p>Sold Out</p>
 				</section>
 			<?php } ?>
 
