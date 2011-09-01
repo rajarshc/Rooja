@@ -126,7 +126,7 @@ var fadeDuration=2000;
 					$('ul.slideshow li').css({opacity: 0.0});
 					$("'ul.slideshow li:nth-child("+nextIndex+")'").addClass('show').animate({opacity: 1.0}, fadeDuration);
 					var timer = setInterval('nextSlide()',slideDuration);
-				})
+			
 				function nextSlide(){
 						nextIndex =currentIndex+1;
 						if(nextIndex > $('ul.slideshow li').length)
