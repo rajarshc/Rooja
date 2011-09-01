@@ -182,10 +182,10 @@ echo '<span>' . $likes = $xml->link_stat->like_count . '</span>';
 							<?php $fbprice = number_format($_product->getSpecialprice(), 2);echo 'Rs. ' . $fbprice; } ?></span></p>
 							<a href="#" class="sizeChart fr">Size Chart</a>
 
-							<br class="clear">
 	<?php echo $this->getChildChildHtml('container2', '', true, false) ?>
 				<?php } else { ?>
 
+							<br class="clear">
 				            	<?php echo $this->getChildChildHtml('container1', '', true, false) ?>
 					<?php echo $this->getChildHtml('addtocart') ?>
 		        <?php } ?>
