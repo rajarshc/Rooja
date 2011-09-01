@@ -85,7 +85,7 @@ body:before {
 	display: inline-block;
 	margin-right: 25px;
 	height: 50px;
-	padding: 10px 25px 10px 15px;
+	padding: 32px 25px 10px 15px;
 	background: url("../images/icons/arrow-nav-dark.png") no-repeat scroll 90% 50%;
 }
 #mainNav ul li:hover{
@@ -153,8 +153,8 @@ body:before {
 	font-size: 1.4em;
 	color: #fff;
 	text-transform: uppercase;
-	position: relative;
-	top: 43%;
+/*	position: relative;
+	top: 43%;*/
 	font-family: "ltc-bodoni-175-1","ltc-bodoni-175-2", georgia, serif;
 }
 #accountLinks{
