@@ -185,7 +185,9 @@ echo '<span>' . $likes = $xml->link_stat->like_count . '</span>';
 					
 			<?php if (($expired == 1) && (!$categoryIds == null)) { ?>
 				<?php if ($_product->isSaleable() && $this->hasOptions()) { ?>
-	            	<?php echo $this->getChildChildHtml('container2', '', true, false) ?>
+	<button class="tr" id="soldOut" onclick=""><span>Sold Out</span></button>            	
+	
+	<?php echo $this->getChildChildHtml('container2', '', true, false) ?>
 				<?php } else { ?>
 					<?php echo $this->getChildHtml('addtocart') ?>
 		        <?php } ?>
