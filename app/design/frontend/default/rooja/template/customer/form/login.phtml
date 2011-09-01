@@ -118,7 +118,7 @@
 (function ($) {
 	$(document).ready(function(){
 			$("a#loginTab").click(
-				 function() {$("#getInvitedCont").hide(); $("#loginCont").show(); $("#loginTab").addClass('selected'); $("#getInvitedTab").$('selected');return false;}
+				 function() {$("#getInvitedCont").hide(); $("#loginCont").show(); $("#loginTab").addClass('selected'); $("#getInvitedTab").addClass('selected');return false;}
 			);
 			$("a#getInvitedTab").click(
 				 function() {$("#getInvitedCont").show();$("#loginCont").hide(); $("#loginTab").removeClass('selected'); $("#getInvitedTab").addClass('selected');return false;}
