@@ -182,10 +182,10 @@ echo '<span>' . $likes = $xml->link_stat->like_count . '</span>';
 
 	            	<?php echo $this->getChildChildHtml('container1', '', true, false) ?>
 
-			<?php if (($expired == 0) && (!$categoryIds == null)) { ?>		
-				<p>Expired</p>
-				<?php }?>
-				
+			<?php if ($expired != 1) {?>
+			<p>EXPIRED</p>
+			<?php } ?>
+
 			<?php if (($expired == 1) && (!$categoryIds == null)) { ?>		
 				<?php if ($_product->isSaleable() && $this->hasOptions()) { ?>
 					<?php echo $this->getChildChildHtml('container2', '', true, false) ?>
