@@ -15,7 +15,7 @@ body{
 	color:#ddd;
 }
 
-li.error-msg {
+li.error-msg, li.success-msg {
 	font-size: 14px;
 	padding: 10px 0;
 	text-align: center;
