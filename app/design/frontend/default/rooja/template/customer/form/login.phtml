@@ -122,7 +122,6 @@ jQuery(document).ready(function() {
 		var slideDuration=4000;
 		var currentIndex=1;
 		var nextIndex=1;
-			jQ('ul.slideshow li img').corner();
 			jQ('ul.slideshow li').css({opacity: 0.0});
 			jQ("'ul.slideshow li:nth-child("+nextIndex+")'").addClass('show').animate({opacity: 1.0}, fadeDuration);
 			var timer = setInterval('nextSlide()',slideDuration);
