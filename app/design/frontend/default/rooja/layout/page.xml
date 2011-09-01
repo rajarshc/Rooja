@@ -73,7 +73,6 @@ Default layout, loads most of the pages
                 <action method="addJs"><script>varien/menu.js</script></action>
                 <action method="addJs"><script>mage/translate.js</script></action>
                 <action method="addJs"><script>mage/cookies.js</script></action>
-                <action method="addJs"><script>jquery/jquerynoConflict.min.js</script></action>
                 <action method="addJs"><script>jquery/jquery.zclip.js</script></action>
 				
 				
