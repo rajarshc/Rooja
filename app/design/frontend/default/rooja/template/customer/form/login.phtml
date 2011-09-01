@@ -47,6 +47,29 @@ jQuery(document).ready(function() {
 	}, 100);
 	
 });
+
+var fadeDuration=2000;
+    var slideDuration=4000;
+    var currentIndex=1;
+    var nextIndex=1;
+    $(document).ready(function()
+    {
+        $('ul.slideshow li img').corner();
+        $('ul.slideshow li').css({opacity: 0.0});
+        $("'ul.slideshow li:nth-child("+nextIndex+")'").addClass('show').animate({opacity: 1.0}, fadeDuration);
+        var timer = setInterval('nextSlide()',slideDuration);
+    })
+ 
+    function nextSlide(){
+            nextIndex =currentIndex+1;
+            if(nextIndex> $('ul.slideshow li').length)
+            {
+                nextIndex =1;
+            }
+            $("'ul.slideshow li:nth-child("+nextIndex+")'").addClass('show').animate({opacity: 1.0}, fadeDuration);
+            $("'ul.slideshow li:nth-child("+currentIndex+")'").animate({opacity: 0.0}, fadeDuration).removeClass('show');
+            currentIndex = nextIndex;
+    }
 </script>
 <div id="notifyWrapper">
 <div class="wrapper">
