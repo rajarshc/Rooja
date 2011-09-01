@@ -162,6 +162,23 @@ form button#send2{
 #brands .brandCol{display:block;width:126px;height:19px;text-align:center;position:relative;}
 #brands img{vertical-align:middle;margin-bottom:5px;}
 
+.slideshow{
+		width:380px;
+		list-style: none;
+		position:relative;
+		
+	}
+ 	ul.slideshow li {
+		position:absolute;
+		left:0px;
+		top:0px;
+		display:inline;
+		
+	}
+	ul.slideshow li.show {
+		z-index:500;	
+	}
+
 #navLinks{
     background:#000;
     padding:10px;
