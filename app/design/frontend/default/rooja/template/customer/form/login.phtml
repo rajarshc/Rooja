@@ -123,18 +123,18 @@ var fadeDuration=2000;
 			
 			
 					
-					$('ul.slideshow li').css({opacity: 0.0});
-					$("'ul.slideshow li:nth-child("+nextIndex+")'").addClass('show').animate({opacity: 1.0}, fadeDuration);
+					jQ('ul.slideshow li').css({opacity: 0.0});
+					jQ("'ul.slideshow li:nth-child("+nextIndex+")'").addClass('show').animate({opacity: 1.0}, fadeDuration);
 					var timer = setInterval('nextSlide()',slideDuration);
 			
 				function nextSlide(){
 						nextIndex =currentIndex+1;
-						if(nextIndex > $('ul.slideshow li').length)
+						if(nextIndex > jQ('ul.slideshow li').length)
 						{
 							nextIndex =1;
 						}
-						$("'ul.slideshow li:nth-child("+nextIndex+")'").addClass('show').animate({opacity: 1.0}, fadeDuration);
-						$("'ul.slideshow li:nth-child("+currentIndex+")'").animate({opacity: 0.0}, fadeDuration).removeClass('show');
+						jQ("'ul.slideshow li:nth-child("+nextIndex+")'").addClass('show').animate({opacity: 1.0}, fadeDuration);
+						jQ("'ul.slideshow li:nth-child("+currentIndex+")'").animate({opacity: 0.0}, fadeDuration).removeClass('show');
 						currentIndex = nextIndex;
 				}
 	});
