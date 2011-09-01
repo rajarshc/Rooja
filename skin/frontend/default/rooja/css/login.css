@@ -119,6 +119,8 @@ form button#send2{
     width:99px;height:42px;
     float:right;
     cursor:pointer;
+    border:0;
+    outline:0;
 }
 #fBConnect{
     background:url(../images/splash/facebook-btn.png);
