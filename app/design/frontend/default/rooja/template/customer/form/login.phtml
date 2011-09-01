@@ -125,7 +125,6 @@ jQuery(document).ready(function() {
 			jQ('ul.slideshow li').css({opacity: 0.0});
 			jQ("'ul.slideshow li:nth-child("+nextIndex+")'").addClass('show').animate({opacity: 1.0}, fadeDuration);
 			var timer = setInterval('nextSlide()',slideDuration);
-		})
 		function nextSlide(){
 				nextIndex =currentIndex+1;
 				if(nextIndex > jQ('ul.slideshow li').length)
@@ -136,6 +135,7 @@ jQuery(document).ready(function() {
 				jQ("'ul.slideshow li:nth-child("+currentIndex+")'").animate({opacity: 0.0}, fadeDuration).removeClass('show');
 				currentIndex = nextIndex;
 		}
+	});
 	
 			
 </script>
