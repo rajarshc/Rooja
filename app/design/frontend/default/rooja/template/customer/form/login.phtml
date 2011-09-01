@@ -35,9 +35,7 @@
 <script type="text/javascript">
 jQuery(function() {
 	
-	jQuery('input[type="text"], input[type="password"]').defaultValue({
-		preferPlaceholder: true
-	});
+	jQuery('input[type="text"], input[type="password"]').defaultValue();
 	
 	setTimeout(function() {
 		// Chrome does not fire a change event when autofilling forms
