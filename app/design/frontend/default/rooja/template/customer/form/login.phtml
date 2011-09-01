@@ -45,29 +45,7 @@ jQuery(document).ready(function() {
 		// fire your own change event after 100 or so milliseconds
 		jQuery('input[type="text"]').change();
 	}, 100);
-
-var fadeDuration=2000;
-    var slideDuration=4000;
-    var currentIndex=1;
-    var nextIndex=1;
-    $(document).ready(function()
-    {
-        $('ul.slideshow li img').corner();
-        $('ul.slideshow li').css({opacity: 0.0});
-        $("'ul.slideshow li:nth-child("+nextIndex+")'").addClass('show').animate({opacity: 1.0}, fadeDuration);
-        var timer = setInterval('nextSlide()',slideDuration);
-    })
- 
-    function nextSlide(){
-            nextIndex =currentIndex+1;
-            if(nextIndex> $('ul.slideshow li').length)
-            {
-                nextIndex =1;
-            }
-            $("'ul.slideshow li:nth-child("+nextIndex+")'").addClass('show').animate({opacity: 1.0}, fadeDuration);
-            $("'ul.slideshow li:nth-child("+currentIndex+")'").animate({opacity: 0.0}, fadeDuration).removeClass('show');
-            currentIndex = nextIndex;
-    }
+	
 });
 </script>
 <div id="notifyWrapper">
@@ -123,10 +101,9 @@ var fadeDuration=2000;
 </div>
 	<section id="brands">
 		<ul class="slideshow">
-					<li><img src="<?php echo $this->getSkinUrl('images/splash/logos/1.png') ?>"></li>
-					<li><img src="<?php echo $this->getSkinUrl('images/splash/logos/2.png') ?>"></li>
-					<li><img src="<?php echo $this->getSkinUrl('images/splash/logos/3.png') ?>"></li>
-		</ul>
+			<li><img src="<?php echo $this->getSkinUrl('images/splash/logos/1.png') ?>"></li>
+			<li><img src="<?php echo $this->getSkinUrl('images/splash/logos/2.png') ?>"></li>
+			<li><img src="<?php echo $this->getSkinUrl('images/splash/logos/3.png') ?>"></li>
 	</section>
 </div>
 
@@ -139,5 +116,28 @@ var fadeDuration=2000;
 				 function() {jQuery("#getInvitedCont").show();jQuery("#loginCont").hide(); jQuery("#loginTab").removeClass('selected'); jQuery("#getInvitedTab").addClass('selected');return false;}
 			);
 	 });
+	
+	var fadeDuration=2000;
+		var slideDuration=4000;
+		var currentIndex=1;
+		var nextIndex=1;
+		$(document).ready(function()
+		{
+			$('ul.slideshow li img').corner();
+			$('ul.slideshow li').css({opacity: 0.0});
+			$("'ul.slideshow li:nth-child("+nextIndex+")'").addClass('show').animate({opacity: 1.0}, fadeDuration);
+			var timer = setInterval('nextSlide()',slideDuration);
+		})
+		function nextSlide(){
+				nextIndex =currentIndex+1;
+				if(nextIndex > $('ul.slideshow li').length)
+				{
+					nextIndex =1;
+				}
+				$("'ul.slideshow li:nth-child("+nextIndex+")'").addClass('show').animate({opacity: 1.0}, fadeDuration);
+				$("'ul.slideshow li:nth-child("+currentIndex+")'").animate({opacity: 0.0}, fadeDuration).removeClass('show');
+				currentIndex = nextIndex;
+		}
+	
 			
 </script>
