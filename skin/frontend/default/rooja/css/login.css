@@ -24,6 +24,7 @@ li.error-msg {
 	width: 100%;
 	margin-bottom: 23px;
 }
+#loginCont .error-msg {margin-bottom:10px;}
 
 #notifyWrapper div.wrapper, #aboutWrapper div.wrapper{
     width:380px;
