@@ -31,7 +31,23 @@
  * @see Mage_Customer_Block_Form_Login
  */
 ?>
-
+<script src="/js/jquery.defaultvalue.js" type="text/javascript"></script> 
+<script type="text/javascript">
+jQuery(function() {
+	
+	jQuery('input[type="text"], input[type="password"]').defaultValue({
+		preferPlaceholder: true
+	});
+	
+	setTimeout(function() {
+		// Chrome does not fire a change event when autofilling forms
+		// To prevent weird overlap with defaultValue and Chrome autofill,
+		// fire your own change event after 100 or so milliseconds
+		jQuery('input[type="text"]').change();
+	}, 100);
+	
+});
+</script>
 <div id="notifyWrapper">
 <div class="wrapper">
 	<nav id="loginTabs">
