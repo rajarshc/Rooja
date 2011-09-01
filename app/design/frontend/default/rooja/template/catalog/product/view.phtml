@@ -31,7 +31,17 @@
  * @see Mage_Review_Block_Product_View
  */
 ?>
-
+<script type="text/javascript"> 
+	window.fbAsyncInit = function() {
+	 FB.init({appId: '173637846031428', status: true, cookie: true, xfbml: true});
+	};
+	(function() {
+	 var e = document.createElement('script'); e.async = true;
+	 e.src = document.location.protocol +
+	   '//connect.facebook.net/en_US/all.js';
+	 document.getElementById('fb-root').appendChild(e);
+	}());
+</script>
 <script type="text/javascript" src="/magento.visual.attribute.js"></script>
 
 <script type="text/javascript">
@@ -175,13 +185,14 @@ echo '<span>' . $likes = $xml->link_stat->like_count . '</span>';
 					
 			<?php if (($expired == 1) && (!$categoryIds == null)) { ?>
 				<?php if ($_product->isSaleable() && $this->hasOptions()) { ?>
-	<button class="tr" id="soldOut" onclick=""><span>Sold Out</span></button>            	
+	<button class="tr" id="expired" onclick=""><span>Expired</span></button>            	
 	
 	<?php echo $this->getChildChildHtml('container2', '', true, false) ?>
 				<?php } else { ?>
 					<?php echo $this->getChildHtml('addtocart') ?>
 		        <?php } ?>
-			<?php } else { ?>
+			<?php } else {?>
+					<button class="tr" id="SoldOut" onclick=""><span>Sold Out</span></button>     
 				</section>
 			<?php } ?>
 
@@ -297,7 +308,7 @@ echo '<span>' . $likes = $xml->link_stat->like_count . '</span>';
 	<div class="container">
 		<section id="comments" class="col2 fl">
 			<h3>What people are saying...</h3>
-<fb:comments href="<?php echo $currentUrl = $this->helper('core/url')->getCurrentUrl();?>" num_posts="2" width="460" colorscheme="dark"></fb:comments>
+<div id="fb-root"></div><script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:comments href="<?php echo $currentUrl = $this->helper('core/url')->getCurrentUrl();?>" num_posts="2" width="460" colorscheme="dark"></fb:comments>
 		</section>
 		<section id="related" class="col2 fl noMargin">
 			<h3>Wear it With</h3>
