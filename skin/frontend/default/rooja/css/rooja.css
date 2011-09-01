@@ -565,6 +565,7 @@ h3 .product-name {
 #liveSales{background:url(../images/bgs/black-diag.png) repeat; /*background:#000;*/ overflow:hidden;padding:30px 0;}
 
 .homeSale, .homeAd{position:relative;overflow:hidden;width:236px;margin-bottom:4px;margin-right:4px;}
+.homeAd2{position:relative;overflow:hidden;width:236px;margin-bottom:4px;}
 .size1{height:353px;}
 .size2{height:238px;}
 .size3{height:119px;}
