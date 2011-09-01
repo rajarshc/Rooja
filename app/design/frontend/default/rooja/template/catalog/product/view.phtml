@@ -191,6 +191,9 @@ echo '<span>' . $likes = $xml->link_stat->like_count . '</span>';
 					<?php echo $this->getChildHtml('addtocart') ?>
 		        <?php } ?>
 			<?php } else {?>
+
+							<section id="purchaseProduct" class="col1 fl noMargin">
+										<p id="soldOut">Sold Out</p>
 				</section>
 			<?php } ?>
 
@@ -203,15 +206,6 @@ echo '<span>' . $likes = $xml->link_stat->like_count . '</span>';
 
 			<?php } ?>
 
-
-			<?php if (($expired == 1) && (!$categoryIds == null)) { ?>
-				<?php if ($_product->isSaleable() == false) { ?>
-
-						<section id="purchaseProduct" class="col1 fl noMargin">
-									<p id="soldOut">Sold Out</p>
-			<?php } ?>
-
-			<?php } ?>
 
 
 
