@@ -183,8 +183,11 @@ echo '<span>' . $likes = $xml->link_stat->like_count . '</span>';
 	            	<?php echo $this->getChildChildHtml('container1', '', true, false) ?>
 
 			<?php if ($expired != 1) {?>
-			<p>EXPIRED</p>
+			</section>
+			<img src="images/expired.jpg">
 			<?php } ?>
+			
+			
 
 			<?php if (($expired == 1) && (!$categoryIds == null)) { ?>		
 				<?php if ($_product->isSaleable() && $this->hasOptions()) { ?>
