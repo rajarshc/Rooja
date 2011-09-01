@@ -36,9 +36,10 @@
 <?php  else :?>
     <p><?php echo $this->__('Your order # is: %s.', $this->escapeHtml($this->getOrderId())) ?></p>
 <?php endif;?>
-	<p>We have received your order and will email you with a confirmation when it ships.</p>
+	<p>We have received your order and will email you with a confirmation when it ships. You Earned <?php echo $this->getPointsEarned() ?> on this purchase</p>
 
 	<p>If you have any questions or there is an error in your order, please <a class="contact" href="/contact">Contact Us</a></p>
+
 <?php if ($this->getCanViewOrder() && $this->getCanPrintOrder()) :?>
     <p>
         <?php echo $this->__('Click <a class="contact" href="%s" onclick="this.target=\'_blank\'">here to print</a> a copy of your order confirmation.', $this->getPrintUrl()) ?>
