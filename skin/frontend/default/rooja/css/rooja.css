@@ -84,7 +84,7 @@ body:before {
 #mainNav ul li{
 	display: inline-block;
 	margin-right: 25px;
-	height: 28px;
+	height: 27px;
 	padding: 32px 25px 10px 15px;
 	background: url("../images/icons/arrow-nav-dark.png") no-repeat scroll 90% 50%;
 }
