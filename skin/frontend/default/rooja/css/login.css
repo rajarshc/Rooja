@@ -166,7 +166,7 @@ form button#send2{
 		width:380px;
 		list-style: none;
 		position:relative;
-		
+		display:block;
 	}
  	ul.slideshow li {
 		position:absolute;
