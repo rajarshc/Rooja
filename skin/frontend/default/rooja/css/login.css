@@ -114,7 +114,7 @@ input{
     cursor:auto;
     border:none;outline:none;
 }
-form input#loginBtn{
+form input#send2{
     background:url(../images/splash/btns/sign-in.png) no-repeat top left;
     width:99px;height:42px;
     float:right;
