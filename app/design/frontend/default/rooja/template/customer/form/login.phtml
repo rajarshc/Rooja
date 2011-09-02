@@ -43,9 +43,7 @@
 	$(document).ready(function() {
 	
 		alert('init defaultValue');
-		$('input[type="text"], input[type="password"]').defaultValue({
-			preferPlaceholder: true
-		});
+		$('input[type="text"], input[type="password"]').defaultValue();
 	
 		alert('about to setTimeout for defaultValue');
 		setTimeout(function() {
