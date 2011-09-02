@@ -46,9 +46,9 @@
 			  });
 
 			// If the billing form is showing, also show the button to submit it
-			if ($("#co-billing-form").length) {
+			if (!$("#co-billing-form").length) {
 
-				$('#billing-please-wait').show().css('opacity', 1);
+				$('#billing-buttons-container button').hide();
 
 			}
 
