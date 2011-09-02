@@ -45,18 +45,20 @@
 			   
 			  });
 
+			// If the billing form is showing, also show the button to submit it
+			if ($("#co-billing-form").length) {
+
+				console.log("HEY YOU");
+
+			} else {
+
+				console.log($('form'));
+
+			}
+
 		 });
 
-		// If the billing form is showing, also show the button to submit it
-		if ($("#co-billing-form").length) {
 
-			console.log("HEY YOU");
-
-		} else {
-
-			console.log($('form'));
-
-		}
 
 	})(jQuery);
 
