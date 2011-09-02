@@ -408,7 +408,10 @@ td .product-name { width: 130px;}
 }
 #shopping-cart-totals-table{font-size:12px;}
 #shopping-cart-totals-table td {
-	width: 50%;
+	width: 40%;
+}
+#shopping-cart-totals-table td:first-child {
+	width: 60%;
 }
 
 .productOptions{font-size:12px;}
