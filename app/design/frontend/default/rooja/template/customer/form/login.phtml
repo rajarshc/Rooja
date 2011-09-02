@@ -41,9 +41,19 @@
 	var nextIndex=1;
 	
 	$(document).ready(function() {
-	
-		alert('init defaultValue');
-		$('input[type="text"], input[type="password"]').defaultValue();
+		
+		try {
+		
+			alert('init defaultValue');
+			$('input[type="text"], input[type="password"]').defaultValue({
+				preferPlaceholder: true
+			});
+			
+		} catch (e) {
+			alert(e.message);
+			alert(e.fileName);
+			alert(e.lineNumber);
+		}
 	
 		alert('about to setTimeout for defaultValue');
 		setTimeout(function() {
