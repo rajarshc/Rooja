@@ -52,7 +52,12 @@
 
 			}
 
-			console.log($("#myList"));
+
+			  var $list = $("#myList");
+			  $list.children().each(function () {
+				$(this).removeAttr("selected");
+			  });
+			$list.prepend('<option selected="selected">Choose one:</option>');
 
 		 });
 
