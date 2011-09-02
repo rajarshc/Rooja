@@ -42,6 +42,7 @@
 	
 	$(document).ready(function() {
 	
+		alert('init defaultValue');
 		$('input[type="text"], input[type="password"]').defaultValue({
 			preferPlaceholder: true
 		});
@@ -53,7 +54,7 @@
 			$('input[type="text"]').change();
 		}, 100);
 		
-		
+		alert('init loginTab.click');
 		$("a#loginTab").click(function () {
 			alert('loginTab click');
 			$("#getInvitedCont").hide();
@@ -62,6 +63,7 @@
 			$("#getInvitedTab").removeClass('selected');
 			return false;
 		});
+		alert('init getInvitedTab.click');
 		$("a#getInvitedTab").click(function () {
 			alert('getInvitedTab click');
 			$("#getInvitedCont").show();
