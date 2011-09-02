@@ -45,12 +45,14 @@
 			   
 			  });
 
-			// If the billing form is showing, also show the button to submit it
+			// If the billing form isn't showing, hide the "confirm address" button
 			if (!$("#co-billing-form").length) {
 
 				$('#billing-buttons-container button').hide();
 
 			}
+
+			console.log($("#myList"));
 
 		 });
 
