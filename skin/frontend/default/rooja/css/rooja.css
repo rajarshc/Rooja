@@ -407,6 +407,9 @@ td .product-name { width: 130px;}
     margin-bottom:5px;
 }
 #shopping-cart-totals-table{font-size:12px;}
+#shopping-cart-totals-table td {
+	width: 50%;
+}
 
 .productOptions{font-size:12px;}
 #gift-message-whole-message{
