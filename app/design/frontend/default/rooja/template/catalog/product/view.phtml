@@ -178,9 +178,7 @@ echo '<span>' . $likes = $xml->link_stat->like_count . '</span>';
 					<?php echo $this->getChildChildHtml('container2', '', true, false) ?>
 				<?php } else { ?>
 				
-						<?php if ($_product->isSaleable() == false) { ?>
-							<?php } else {?>
-					
+						
 							<section id="productOptions">
 									<p class="startingPrice">Original Price: <strike>Rs. <?php echo number_format($_product->getPrice(), 2) ?></strike></p>
 								<p class="currentPrice">Current Price:<span>
@@ -193,7 +191,7 @@ echo '<span>' . $likes = $xml->link_stat->like_count . '</span>';
 
 				            	<?php echo $this->getChildChildHtml('container1', '', true, false) ?>
 					<?php echo $this->getChildHtml('addtocart') ?>
-		        <?php }} ?>
+		        <?php } ?>
 			<?php } else {?>
 				</section>
 			<?php } ?>
