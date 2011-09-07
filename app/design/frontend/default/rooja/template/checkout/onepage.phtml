@@ -58,6 +58,13 @@
 			  });
 			$list.prepend('<option selected="selected" disabled="disabled">Choose one:</option>');
 			
+			$list.change(function(){
+				if($('#showshipping').is(":visible")){
+					$('#shippingSaveBtn').show();
+				}
+				else{$('#shippingSaveBtn').hide();}
+			});
+			
 			$("#shipping-address-select").change(function() {
 			 shipping.save();
 			});
@@ -92,8 +99,7 @@ break;
 }
 }
 if(!$validate) { ?>
-<!-- <p class="required"><strong>Warning! You are using trial version of Quick One page checkout for this domain <br/>
-Contact KAM Technology at contact@kamtechco.net to activate the license</strong></p> -->
+
 <?php } ?>
 <?php $i=0; foreach($this->getSteps() as $_stepId => $_stepInfo):  $i++; ?>
 	<?php if($i==1){ echo '<li id="checkoutStep1"><ul>';} ?>
