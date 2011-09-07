@@ -145,7 +145,7 @@ function loggedInShipping()
     <div id="shipping-buttons-container">
   <!-- <a href="#" class="back left" onclick="checkout.back(); return false;">Back</a> -->
 <button type="button" class="form-button right" onclick="shipping.save()" style="display:none;opacity:0;filter: alpha(opacity = 0);" ><span>Continue</span></button>
-        <span id="shipping-please-wait" style="/*opacity:0;filter: alpha(opacity = 0);*/" class="please-wait">
+        <span id="shipping-please-wait" style="opacity:0;filter: alpha(opacity = 0);" class="please-wait">
             <img src="<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif') ?>" class="v-middle" alt="" /> &nbsp; <?php echo $this->__('Loading next step...') ?> &nbsp;
         </span>
     </div>
