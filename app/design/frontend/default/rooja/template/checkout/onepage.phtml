@@ -58,7 +58,7 @@
 			  });
 			$list.prepend('<option selected="selected" disabled="disabled">Choose one:</option>');
 			
-			$list.change(function() {
+			$("#shipping-address-select").change(function() {
 			 shipping.save();
 			});
 			$("#billing-address-select").change(function() {
