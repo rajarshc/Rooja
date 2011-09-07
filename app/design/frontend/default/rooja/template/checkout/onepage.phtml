@@ -57,6 +57,10 @@
 				$(this).removeAttr("selected");
 			  });
 			$list.prepend('<option selected="selected" disabled="disabled">Choose one:</option>');
+			
+			$list.change(function() {
+			 shipping.save();
+			});
 
 		 });
 
