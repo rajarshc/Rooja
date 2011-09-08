@@ -41,8 +41,8 @@
     </tbody>
     <?php endforeach; ?>
 <br /><br /><br />
-    <tbody style="padding:30px 0;">
-        <?php echo $this->getChildHtml('order_totals') ?>
+    <tbody style="margin-top:30px;">
+        <?php echo $this->getChildHtml('order_totals_email') ?>
     </tbody>
 </table>
 <?php if ($this->helper('giftmessage/message')->isMessagesAvailable('order', $_order, $_order->getStore()) && $_order->getGiftMessageId()): ?>
