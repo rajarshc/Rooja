@@ -16,27 +16,27 @@
 "var comment":"Shipment Comment"}
 @-->
 <!--@styles
-body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; }
+body,td { color:#2f2f2f; font:11px/1.35em Arial, Helvetica, sans-serif; }
 @-->
 
-<body style="background:#F6F6F6; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:12px; margin:0; padding:0;">
-<div style="background:#F6F6F6; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:12px; margin:0; padding:0;">
+<body style="background:#F6F6F6; font-family:Arial, Helvetica, sans-serif; font-size:12px; margin:0; padding:0;">
+<div style="background:#F6F6F6; font-family:Arial, Helvetica, sans-serif; font-size:12px; margin:0; padding:0;">
 <table cellspacing="0" cellpadding="0" border="0" height="100%" width="100%">
 <tr>
     <td align="center" valign="top" style="padding:20px 0 20px 0">
         <!-- [ header starts here] -->
         <table bgcolor="#FFFFFF" cellspacing="0" cellpadding="10" border="0" width="650" style="border:1px solid #E0E0E0;">
             <tr>
-                <td valign="top"><a href="{{store url=""}}"><img src="{{skin url="images/logo_email.gif" _area='frontend'}}" alt="{{var store.getFrontendName()}}"  style="margin-bottom:10px;" border="0"/></a></td>
+                <td colspan="2" class="header" style="margin: 0;padding: 0;border: 0;border-spacing: 0px;border-collapse: collapse; width: 650px;height: 95px;"><a href="http://rooja.com"><img src="{{skin url="images/email/email-templates_01.png" _area='frontend'}}" alt="Rooja Fashion"></a></td>
             </tr>
         <!-- [ middle starts here] -->
             <tr>
                 <td valign="top">
-                    <h1 style="font-size:22px; font-weight:normal; line-height:22px; margin:0 0 11px 0;"">Hello, {{htmlescape var=$order.getCustomerName()}}</h1>
+                    <h1 style="font-size:18px; font-weight:normal; line-height:22px; margin:0 0 11px 0;">Hello, {{htmlescape var=$order.getCustomerName()}}</h1>
                     <p style="font-size:12px; line-height:16px; margin:0;">
                         Thank you for your order from {{var store.getFrontendName()}}.
                         You can check the status of your order by <a href="{{store url="customer/account/"}}" style="color:#1E7EC8;">logging into your account</a>.
-                        If you have any questions about your order please contact us at <a href="mailto:{{config path='trans_email/ident_support/email'}}" style="color:#1E7EC8;">{{config path='trans_email/ident_support/email'}}</a> or call us at <span class="nobr">{{config path='general/store_information/phone'}}</span> Monday - Friday, 8am - 5pm PST.
+                        If you have any questions about your order please contact us at <a href="mailto:{{config path='trans_email/ident_support/email'}}" style="color:#1E7EC8;">{{config path='trans_email/ident_support/email'}}</a> or call us at <span class="nobr">{{config path='general/store_information/phone'}}</span>.
                     </p>
                     <p style="font-size:12px; line-height:16px; margin:0;">
                         Your shipping confirmation is below. Thank you again for your business.
@@ -45,7 +45,7 @@ body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif;
             </tr>
             <tr>
                 <td>
-                    <h2 style="font-size:18px; font-weight:normal; margin:0;">Your Shipment #{{var shipment.increment_id}} for Order #{{var order.increment_id}}</h2>
+                    <h2 style="font-size:16px; font-weight:normal; margin:0;">Your Shipment #{{var shipment.increment_id}} for Order #{{var order.increment_id}}</h2>
                 </td>
             </tr>
             <tr>
