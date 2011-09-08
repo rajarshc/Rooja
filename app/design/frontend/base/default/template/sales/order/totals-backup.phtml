@@ -28,11 +28,12 @@
  * @see Mage_Sales_Block_Order_Totals
  */
 ?>
+<table width="580">
 <?php foreach ($this->getTotals() as $_code => $_total): ?>
     <?php if ($_total->getBlockName()): ?>
         <?php echo $this->getChildHtml($_total->getBlockName(), false); ?>
     <?php else:?>
-    <tr class="<?php echo $_code?>">
+    <tr>
         <td <?php echo $this->getLabelProperties()?>>
             <?php if ($_total->getStrong()):?>
             <strong><?php echo $_total->getLabel()?></strong>
@@ -48,5 +49,6 @@
             <?php endif?>
         </td>
     </tr>
+  </table>
     <?php endif?>
 <?php endforeach?>
