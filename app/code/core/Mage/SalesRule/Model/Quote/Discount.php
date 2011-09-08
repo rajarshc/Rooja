@@ -140,9 +140,9 @@ class Mage_SalesRule_Model_Quote_Discount extends Mage_Sales_Model_Quote_Address
         if ($amount!=0) {
             $description = $address->getDiscountDescription();
             if ($description) {
-                $title = Mage::helper('sales')->__('Discount (%s)', $description);
+                $title = Mage::helper('sales')->__('Coupon / Credits (%s)', $description);
             } else {
-                $title = Mage::helper('sales')->__('Discount');
+                $title = Mage::helper('sales')->__('Credits Applied:');
             }
             $address->addTotal(array(
                 'code'  => $this->getCode(),
