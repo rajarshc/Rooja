@@ -96,6 +96,11 @@ Customer account home dashboard layout
                         <action method="setValueProperties"><value>class="last a-right"</value></action>
                         <block type="tax/sales_order_tax" name="tax" template="tax/order/tax.phtml" />
                     </block>
+					<block type="sales/order_totals" name="order_totals_email" template="sales/order/totals-email.phtml">
+                        <action method="setLabelProperties"><value>colspan="4" class="a-right"</value></action>
+                        <action method="setValueProperties"><value>class="last a-right"</value></action>
+                        <block type="tax/sales_order_tax" name="tax" template="tax/order/tax.phtml" />
+                    </block>
                 </block>
             </block>
         </reference>
