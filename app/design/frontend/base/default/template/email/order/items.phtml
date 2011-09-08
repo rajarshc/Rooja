@@ -25,7 +25,7 @@
  */
 ?>
 <?php $_order = $this->getOrder() ?>
-<table cellspacing="0" cellpadding="0" border="0" width="650" style="border:1px solid #EAEAEA;">
+<table cellspacing="0" cellpadding="0" border="0" width="580" style="border:1px solid #EAEAEA;">
     <thead>
         <tr>
             <th align="left" bgcolor="#EAEAEA" style="font-size:13px; padding:3px 9px"><?php echo $this->__('Item') ?></th>
@@ -50,7 +50,7 @@
     <?php $_giftMessage = $this->helper('giftmessage/message')->getGiftMessage($_order->getGiftMessageId()); ?>
     <?php if ($_giftMessage): ?>
 <br />
-<table cellspacing="0" cellpadding="0" border="0" width="650" style="border:1px solid #EAEAEA;">
+<table cellspacing="0" cellpadding="0" border="0" width="580" style="border:1px solid #EAEAEA;">
     <thead>
         <tr>
             <th align="left" bgcolor="#EAEAEA" style="font-size:13px; padding:3px 9px"><strong><?php echo $this->__('Gift Message for this Order') ?></strong></th>
@@ -60,7 +60,7 @@
     <tbody>
 
         <tr>
-            <td colspan="4" align="left" style="padding:3px 9px">
+            <td align="left" style="padding:3px 9px">
             <strong><?php echo $this->__('From:'); ?></strong> <?php echo $this->htmlEscape($_giftMessage->getSender()) ?>
             <br /><strong><?php echo $this->__('To:'); ?></strong> <?php echo $this->htmlEscape($_giftMessage->getRecipient()) ?>
             <br /><strong><?php echo $this->__('Message:'); ?></strong><br /> <?php echo $this->htmlEscape($_giftMessage->getMessage()) ?>
