@@ -28,22 +28,56 @@
 <script type="text/javascript" src="<?php echo $this->getSkinUrl('js/opcheckout.js') ?>"></script>
 <script type="text/javascript">countryRegions = <?php echo $this->helper('directory')->getRegionJson() ?></script>
 <script type="text/javascript">
-	jQuery(document).ready(function(){
-		if (jQuery("#p_method_cashondelivery:checked").length > 0){ jQuery("#hintText").html('We verify all Cash on Delivery orders over the phone after you have made a purchase and start processing the order. Our customer service team will contact you within 24 hours and alternatively you can call us at +91-11-45673347 to verify your order. Failing verification of the order will result in a cancellation. Failure to accept a verified order will revoke your Cash On Delivery privileges on future orders.'); }
+
+	(function ($) {
+		$(document).ready(function(){
+			if ($("#p_method_cashondelivery:checked").length > 0){ $("#hintText").html('We verify all Cash on Delivery orders over the phone after you have made a purchase and start processing the order. Our customer service team will contact you within 24 hours and alternatively you can call us at +91-11-45673347 to verify your order. Failing verification of the order will result in a cancellation. Failure to accept a verified order will revoke your Cash On Delivery privileges on future orders.'); }
 
 
-		  // add functionality for the onclicks here
-		  jQuery("#p_method_cashondelivery").click(function() {
-		    jQuery("#hintText").html('We verify all Cash on Delivery orders over the phone after you have made a purchase and start processing the order. Our customer service team will contact you within 24 hours and alternatively you can call us at +91-11-45673347 to verify your order. Failing verification of the order will result in a cancellation. Failure to accept a verified order will revoke your Cash On Delivery privileges on future orders.');
-		
-		  });
+			  // add functionality for the onclicks here
+			  $("#p_method_cashondelivery").click(function() {
+				$("#hintText").html('We verify all Cash on Delivery orders over the phone after you have made a purchase and start processing the order. Our customer service team will contact you within 24 hours and alternatively you can call us at +91-11-45673347 to verify your order. Failing verification of the order will result in a cancellation. Failure to accept a verified order will revoke your Cash On Delivery privileges on future orders.');
+			
+			  });
 
-		  jQuery("#p_method_Avenues_standard").click(function() {
-			jQuery("#hintText").html('You will be redirected to CCAvenue our secure online payment-processing partner.');
-		   
-		  });
-	 });
+			  $("#p_method_Avenues_standard").click(function() {
+				$("#hintText").html('You will be redirected to CCAvenue our secure online payment-processing partner.');
+			   
+			  });
 
+			// If the billing form isn't showing, hide the "confirm address" button
+			if (!$("#co-billing-form").length) {
+
+				$('#billing-buttons-container button').hide();
+
+			}
+
+			  var $list = $("#myList, #shipping-address-select");
+			  $list.children().each(function () {
+				$(this).removeAttr("selected");
+			  });
+			$list.prepend('<option selected="selected" disabled="disabled">Choose one:</option>');
+			
+			$list.change(function(){
+				billing.save();
+				if($('#shipping-new-address-form').is(":visible")){
+					$('#shippingSaveBtn').show();
+				}
+				else{$('#shippingSaveBtn').hide();}
+			});
+			
+			$("#shipping-address-select").change(function() {
+			 shipping.save();
+			});
+			$("#billing-address-select").change(function() {
+			 billing.save();
+			});
+
+		 });
+
+
+
+	})(jQuery);
 
 </script>
 <ol class="opc" id="checkoutSteps">
@@ -66,8 +100,7 @@ break;
 }
 }
 if(!$validate) { ?>
-<!-- <p class="required"><strong>Warning! You are using trial version of Quick One page checkout for this domain <br/>
-Contact KAM Technology at contact@kamtechco.net to activate the license</strong></p> -->
+
 <?php } ?>
 <?php $i=0; foreach($this->getSteps() as $_stepId => $_stepInfo):  $i++; ?>
 	<?php if($i==1){ echo '<li id="checkoutStep1"><ul>';} ?>
