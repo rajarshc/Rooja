@@ -69,8 +69,15 @@
 			$("#shipping-address-select").change(function() {
 			 shipping.save();
 			});
+			
 			$("#billing-address-select").change(function() {
-			 billing.save();
+			 if($('#billing-new-address-form').is(":visible")){
+				$('#billingSaveBtn').show();
+			}
+			else{
+				$('#billingSaveBtn').hide();
+				billing.save();
+			}	
 			});
 
 		 });
