@@ -164,7 +164,7 @@ body:before {
 ul#myAccount{float:left;}
 ul#myAccount li{
 	float: left;
-	padding: 10px 20px 29px 0px;
+	padding: 10px 20px 28px 0px;
 	background: url("../images/icons/arrow-nav-white.png") no-repeat right 8px fixed;
 	border-bottom:1px solid #431f4c;
 }
