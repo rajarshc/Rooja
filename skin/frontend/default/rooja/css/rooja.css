@@ -175,9 +175,7 @@ ul#myAccount li.welcome-top {
 }
 
 ul#myAccount li.welcome-top:hover {
-	padding: 36px 25px 27px 20px;
-	background:#220F26 url("../images/icons/arrow-nav-white.png") no-repeat 135px 34px;
-	margin: -26px 0 0 0;
+	background-color:#220F26;
 	}
 
 	ul#myAccount li.ignore-item {
@@ -188,10 +186,8 @@ ul#myAccount li.welcome-top:hover {
 	}
 	
 		ul#myAccount li.ignore-item:hover {
-			background: #220F26 url("../images/invite-friends.png") no-repeat 9px center;
-			height: 45px;
-			margin: -26px 13px 0 0;
-			padding: 14px 11px 10px 0px;
+			background-color: #220F26;
+			
 		}
 	
 	ul#myAccount li.ignore-item a{
