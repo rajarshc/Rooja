@@ -47,13 +47,13 @@ $colspan = $this->getColSpan();
 ?>
 <?php if ($this->getOrder()->hasPointsEarning()): ?>
     <tr class="order-print-points-earned">
-        <td colspan="<?php echo $colspan; ?>" class="a-right caption" <?php echo $this->getLabelProperties(); ?>><?php echo $this->__('Points Earned') ?></td>
-        <td class="last a-right" <?php echo $this->getValueProperties(); ?>><span class="amount"><?php echo $this->getPointsEarnedString() ?></span></td>
+        <td colspan="3" align="right" style="padding:3px 9px;" class="a-right caption" <?php echo $this->getLabelProperties(); ?>><?php echo $this->__('Credits Earned') ?></td>
+        <td align="right" style="padding:3px 9px;" class="last a-right" <?php echo $this->getValueProperties(); ?>><span class="amount"><?php echo $this->getPointsEarnedString() ?></span></td>
     </tr>
 <?php endif; ?>
 <?php if ($this->getOrder()->hasPointsSpending()): ?>
     <tr class="order-print-points-spent">
-        <td colspan="<?php echo $colspan; ?>" class="a-right caption" <?php echo $this->getLabelProperties(); ?>><?php echo $this->__('Points Spent') ?></td>
+        <td class="a-right caption" <?php echo $this->getLabelProperties(); ?>><?php echo $this->__('Credits Spent') ?></td>
         <td class="last a-right" <?php echo $this->getValueProperties(); ?>><span class="amount"><?php echo $this->getPointsSpentString() ?></span></td>
     </tr>
 <?php endif; ?>

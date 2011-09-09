@@ -45,7 +45,7 @@ li.error-msg, li.success-msg {
 #loginTabs ul li a#loginTab{background-image:url(../images/splash/btns/login.png);}
 #loginTabs ul li a#getInvitedTab{background-image:url(../images/splash/btns/get-invited.png);}
 
-#mainHeader.login{padding-top:15px;}
+#mainHeader.login{padding-top:15px;margin-top:30px;}
 h1#logo{
     background-image:url(../images/splash/rooja-logo.png);
     width:179px;height:85px;
