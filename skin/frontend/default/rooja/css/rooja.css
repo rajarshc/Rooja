@@ -164,21 +164,21 @@ body:before {
 ul#myAccount{float:left;}
 ul#myAccount li{
 	float: left;
-	padding: 10px 20px 27px 0px;
-	background: url("../images/icons/arrow-nav-white.png") no-repeat right 8px fixed;
-	
+	padding: 10px 20px 29px 0px;
+	background: url("../images/icons/arrow-nav-white.png") no-repeat right 8px;
 }
 
 ul#myAccount li.welcome-top {
 	padding: 36px 25px 27px 20px;
-	background: url("../images/icons/arrow-nav-white.png") no-repeat 135px 34px fixed;
+	background: url("../images/icons/arrow-nav-white.png") no-repeat 135px 34px;
 	margin: -26px 0 0 0;
 }
 
 ul#myAccount li.welcome-top:hover {
-	background-color:#220F26;
-	border-bottom:1px solid #431f4c;
-}
+	padding: 36px 25px 27px 20px;
+	background:#220F26 url("../images/icons/arrow-nav-white.png") no-repeat 135px 34px;
+	margin: -26px 0 0 0;
+	}
 
 	ul#myAccount li.ignore-item {
 		background: url("../images/invite-friends.png") no-repeat 9px center;
