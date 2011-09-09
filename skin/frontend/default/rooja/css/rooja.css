@@ -164,19 +164,20 @@ body:before {
 ul#myAccount{float:left;}
 ul#myAccount li{
 	float: left;
-	padding: 10px 20px 28px 0px;
+	padding: 10px 20px 27px 0px;
 	background: url("../images/icons/arrow-nav-white.png") no-repeat right 8px fixed;
-	border-bottom:1px solid #431f4c;
+	
 }
 
 ul#myAccount li.welcome-top {
-	padding: 36px 25px 28px 20px;
+	padding: 36px 25px 27px 20px;
 	background: url("../images/icons/arrow-nav-white.png") no-repeat 135px 34px fixed;
 	margin: -26px 0 0 0;
 }
 
 ul#myAccount li.welcome-top:hover {
 	background-color:#220F26;
+	border-bottom:1px solid #431f4c;
 }
 
 	ul#myAccount li.ignore-item {
