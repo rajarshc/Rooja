@@ -10,4 +10,4 @@ body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif;
 {{var request.getNotifyCommentText()}}
 {{/depend}}
 <p>You can view your Return Request by following the link <a href="{{var request.getUrl()}}">{{var request.getUrl()}}</a>.</p>
-<p>Thank you for using our Return Service.</p>
+<p>Thank you for using our Return Service. If you have any questions or concerns please contact us at: <a href="mailto:{{config path='trans_email/ident_support/email'}}" style="color:#431F4C;">{{config path='trans_email/ident_support/email'}}</a> or call us at <span class="nobr" style="color:#431F4C;">{{config path='general/store_information/phone'}}</span></p>
