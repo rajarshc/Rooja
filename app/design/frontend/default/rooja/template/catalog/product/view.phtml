@@ -64,6 +64,7 @@ jQuery(function() {
 if (!$categoryIds == null){
 	foreach($categoryIds as $categoryId) {
 		$currentcategory = Mage::getModel('catalog/category')->load($categoryId);
+		print $currentcategory;
 		if($currentcategory ==5){
 			$boutique="boutiques!";
 		}
