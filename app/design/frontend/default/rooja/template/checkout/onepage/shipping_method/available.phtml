@@ -32,7 +32,7 @@
         <dd>
             <ul>
             <?php $i=0; foreach ($_rates as $_rate): ?>
-				<?php $i++; ?>
+				
                 <li>
                    <?php if ($_rate->getErrorMessage()): ?>
                     <ul class="messages"><li class="error-msg"><ul><li><?php echo $_rate->getErrorMessage() ?></li></ul></li></ul>
@@ -51,6 +51,7 @@
                         </label>
                    <?php endif ?>
                 </li>
+<?php $i++; ?>
             <?php endforeach; ?>
             </ul>
         </dd>
