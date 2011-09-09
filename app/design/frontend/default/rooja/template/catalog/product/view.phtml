@@ -64,6 +64,9 @@ jQuery(function() {
 if (!$categoryIds == null){
 	foreach($categoryIds as $categoryId) {
 		$currentcategory = Mage::getModel('catalog/category')->load($categoryId);
+		if($_category->getId() !=5){
+			$boutique="boutiques!";
+		}
 		break;
 	}	
 }
@@ -82,7 +85,7 @@ if (!$categoryIds == null){
 <?php echo $this->getChildHtml('topcart'); ?>
     <form action="<?php echo $this->getSubmitUrl($_product) ?>" method="post" id="product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
 
-<section id="saleDetails">
+<section id="saleDetails"><?php echo $boutique; ?>
 	<div class="container">
 		<a href="#mainFooter" class="needAssistance fr noMargin" title="Need Assistance? Talk to a live rep"><img src="<?php echo $this->getSkinUrl('images/icons/question-mark.png'); ?>" alt="Question mark icon"> Need Assistance</a>
 <div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
