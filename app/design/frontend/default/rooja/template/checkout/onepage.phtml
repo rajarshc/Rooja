@@ -71,13 +71,7 @@
 			});
 			
 			$("#billing-address-select").change(function() {
-			 if($('#billing-new-address-form').is(":visible")){
-				$('#billingSaveBtn').show();
-			}
-			else{
-				$('#billingSaveBtn').hide();
-				billing.save();
-			}	
+			 billing.save();
 			});
 
 		 });
