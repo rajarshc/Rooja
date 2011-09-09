@@ -61,12 +61,12 @@ jQuery(function() {
     var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
 </script>
 <?php $categoryIds = $_product->getCategoryIds();
-echo Mage::getBlockSingleton('catalog/navigation')->getCurrentCategory()->parent_id;
+//get parent id
+//echo Mage::getBlockSingleton('catalog/navigation')->getCurrentCategory()->parent_id;
 
 if (!$categoryIds == null){
 	foreach($categoryIds as $categoryId) {
 		$currentcategory = Mage::getModel('catalog/category')->load($categoryId);
-		
 		break;
 	}	
 }
