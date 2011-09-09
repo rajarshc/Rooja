@@ -107,7 +107,7 @@ body:before {
 	z-index:9999;
 }
 #mainNav ul li:hover div {
-	display: block;	
+	display: block;margin-top:-1px;
 }
 #mainNav ul li div ul{
 	border-top: solid 1px #431f4c;
