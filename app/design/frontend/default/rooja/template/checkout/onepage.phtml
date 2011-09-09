@@ -61,17 +61,22 @@
 			$list.change(function(){
 				//billing.save();
 				if($('#shipping-new-address-form').is(":visible")){
+					$('#shippingSaveBtn').removeClass("btnPressed");
 					$('#shippingSaveBtn').show();
 				}
 				else{$('#shippingSaveBtn').hide();shipping.save();}
 			});
 			
-			/*$("#shipping-address-select").change(function() {
-			 shipping.save();
-			});*/
+			$("#shippingSaveBtn").click(function() {
+			 $(this).addClass("btnPressed");
+			});
+			$("#billingSaveBtn").click(function() {
+			 $(this).addClass("btnPressed");
+			});
 			
 			$("#billing-address-select").change(function() {
 			 if($('#billing-new-address-form').is(":visible")){
+				$('#billingSaveBtn').removeClass("btnPressed");
 				$('#billingSaveBtn').show();
 			}
 			else{
