@@ -519,6 +519,8 @@ a.closer {
 .staticContent h1{margin-bottom:20px;}
 .staticContent h2{margin:30px 0 10px;color:#431f4c;}
 .staticContent h3{font-size: 1.5em; font-weight: bold;font-family:helvetica;}
+.staticContent .std a{color:#431f4c;}
+.staticContent .std a:hover{text-decoration:underline;}
 
     /*#pageContent{margin-top:-30px;}*/
     #pageContent{margin-top:20px;}
@@ -797,7 +799,7 @@ a[href$=".doc"]:after {content: " (DOC)";}
 	margin: 0 auto;
 	margin-top: 20px;
 }
-.btnPressed#billingSaveBtn span{background-color:#000;}
+.btnPressed#billingSaveBtn span,.btnPressed#shippingSaveBtn span{background-color:#000;}
 
 .billing_section {width: 50%;}
 
