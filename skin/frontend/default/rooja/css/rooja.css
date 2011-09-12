@@ -524,7 +524,7 @@ a.closer {
 
     /*#pageContent{margin-top:-30px;}*/
     #pageContent{margin-top:20px;}
-    #checkoutSteps{margin:20px 0 30px;}
+    #checkoutSteps{margin:20px 0 30px;border:none;}
     #checkout-progress-wrapper{margin-top:40px;}
 
 #pageContent .std ul, #pageContent .std ol{font-size:1.2em;line-height:1.4em;list-style:disc outside;margin:0 0 20px 30px;}
