@@ -456,6 +456,8 @@ function cartdelete(url){
 
             //$('j2t_ajax_progress').hide();
             hideJ2tOverlay();
+
+			if (window['fixRoojaNumberInCartLol']) fixRoojaNumberInCartLol();
         }
 
     });

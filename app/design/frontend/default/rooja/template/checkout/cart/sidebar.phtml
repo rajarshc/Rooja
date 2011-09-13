@@ -106,6 +106,8 @@
 		});
 			
 	});
+
+var myGlobalRoojaVar = 0;
 jQuery(function ($) {
 
 	console.log($);
@@ -117,25 +119,26 @@ jQuery(function ($) {
 		var $parent	= $(this).closest('.item'),
 			count	= $('.product-details > table td:first > strong').text();
 
-		console.log($parent);
-
-		if (!removed[$parent[0]]) {
-			removed[$parent[0]] = true;
-
-			console.log("REMOVING");
-
-			var $a		= $('#myBag a'),
-				current	= $a.text().match(/\((\d)\)/)[1],
-				total	= parseInt(current) - parseInt(count),
-				newText	= "My Bag (" + total + ")";
-
-			$a.text(newText);
-		}
+		console.log(count);
+		myGlobalRoojaVar = count;
 
 	});
 
 
 });
+
+
+function fixRoojaNumberInCartLol () {
+
+	var $ 		= jQuery,
+		$a		= $('#myBag a'),
+		current	= $a.text().match(/\((\d)\)/)[1],
+		total	= parseInt(current) - parseInt(count),
+		newText	= "My Bag (" + total + ")";
+
+	$a.text(newText);
+}
+
 			
 </script>
 
