@@ -41,8 +41,9 @@
 
 							var $a		= $('#myBag a'),
 								newAmt	= $('#qty').val(),
-								current	= $a.text().match(/\((\d)\)/)[1],
-								total	= current + newAmt,
+								current	= $a.text().match(/\((\d)\)/)[1];
+							console.log(newAmt, current);
+								var total	= current + newAmt,
 								newText	= "My Bag (" + total + ")";
 
 							$a.text(newText);
