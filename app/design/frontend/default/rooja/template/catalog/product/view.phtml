@@ -347,8 +347,10 @@ echo '<span>' . $likes = $xml->link_stat->like_count . '</span>';
 </section>
 <script type="text/javascript">
 	jQuery.noConflict();
-	 var fbOffset = <?php echo number_format($fbinc, 2); ?>;
-	 var fbPriceJS = <?php echo number_format($fbprice, 2); ?>;
+	 /*var fbOffset = <?php echo number_format($fbinc, 2); ?>;
+	 var fbPriceJS = <?php echo number_format($fbprice, 2); ?>;*/
+	var fbOffset = <?php echo $fbinc; ?>;
+	 var fbPriceJS = <?php echo $fbprice; ?>;
        FB.Event.subscribe('edge.create', function(response) {
             
              // ajax the price
