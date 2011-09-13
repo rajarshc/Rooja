@@ -63,7 +63,7 @@
                     <action method="setCartTemplate"><value>checkout/cart.phtml</value></action>
                     <action method="setEmptyTemplate"><value>checkout/cart/noItems.phtml</value></action>
                     <action method="chooseTemplate"/>
-					<action method="addItemRender">
+					<!--<action method="addItemRender">
 		                <type>default</type>
 		                <block>rewards/checkout_cart_item_renderer</block>
 		                <template>rewards/checkout/cart/item/default.phtml</template>
@@ -82,10 +82,10 @@
 		                <type>configurable</type>
 		                <block>rewards/checkout_cart_item_renderer_configurable</block>
 		                <template>rewards/checkout/cart/item/default.phtml</template>
-		            </action>               
-<!--<action method="addItemRender"><type>simple</type><block>checkout/cart_item_renderer</block><template>checkout/cart/item/default.phtml</template></action>
+		            </action>  -->             
+<action method="addItemRender"><type>simple</type><block>checkout/cart_item_renderer</block><template>checkout/cart/item/default.phtml</template></action>
                     <action method="addItemRender"><type>grouped</type><block>checkout/cart_item_renderer_grouped</block><template>checkout/cart/item/default.phtml</template></action>
-                    <action method="addItemRender"><type>configurable</type><block>checkout/cart_item_renderer_configurable</block><template>checkout/cart/item/default.phtml</template></action>-->
+                    <action method="addItemRender"><type>configurable</type><block>checkout/cart_item_renderer_configurable</block><template>checkout/cart/item/default.phtml</template></action>
 
                     <block type="core/text_list" name="checkout.cart.top_methods" as="top_methods" translate="label">
                         <label>Payment Methods Before Checkout Button</label>
