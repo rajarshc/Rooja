@@ -106,16 +106,23 @@
 		});
 			
 	});
-
 jQuery(function ($) {
+
+	var removed = {};
 
 	$('.remove-item').live('click', function () {
 
 		var $parent	= $(this).closest('.item'),
 			count	= $('.product-details > table td:first > strong').text();
 
-		alert(count);
+		if (!removed[$parent]) {
+			removed[$parent] = true;
 
+			var $a		= $('#myBag a'),
+				current	= $a.text().match(/\((\d)\)/)[1],
+				total	= parseInt(current) + parseInt(count),
+				newText	= "My Bag (" + total + ")";
+		}
 
 	});
 
