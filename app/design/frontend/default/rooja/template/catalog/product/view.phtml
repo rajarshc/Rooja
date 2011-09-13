@@ -379,7 +379,6 @@ echo '<span>' . $likes = $xml->link_stat->like_count . '</span>';
                url:      "/rbanh?id=<?php echo $_product->getId(); ?>&url=<?php echo urlencode($_SERVER['REQUEST_URI']); ?>",
 			   dataType: "json",
 			   success: function(data){
-				   console.log(x);
 				 jQuery('#likeThis').find('span:last').text(data.numLikes);
                  jQuery('.currentPrice').find('span:last').text(' ' + formatCurrency(data.newPrice));
 				
