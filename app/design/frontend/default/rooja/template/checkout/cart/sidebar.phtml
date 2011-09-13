@@ -108,7 +108,7 @@
 	});
 jQuery(function ($) {
 
-	var $ = jQuery;
+	console.log($);
 
 	var removed = {};
 
@@ -119,8 +119,8 @@ jQuery(function ($) {
 
 		console.log($parent);
 
-		if (!removed[$parent]) {
-			removed[$parent] = true;
+		if (!removed[$parent[0]]) {
+			removed[$parent[0]] = true;
 
 			var $a		= $('#myBag a'),
 				current	= $a.text().match(/\((\d)\)/)[1],
