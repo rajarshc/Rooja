@@ -37,9 +37,11 @@
 				<script type="text/javascript">
 					(function ($) {
 
+						console.log($, "HEY");
+
 						$('#addToBagBtn').click(function () {
 
-							var quantity = $('#qty');
+							var quantity = $('#qty').val();
 
 							console.log(quantity);
 
