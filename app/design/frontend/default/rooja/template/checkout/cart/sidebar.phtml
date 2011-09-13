@@ -91,8 +91,11 @@
 <script type="text/javascript">
 	jQuery(document).ready(function(){
 		jQuery("#myBag").click(function() {
-			jQuery("#sidebarCart").slideToggle();
-			return false;
+			if($('#shipping-new-address-form').is(":visible")){
+				jQuery("#sidebarCart").slideUp();
+				return false;
+			}
+			
 			});
 		jQuery("#closerBtn").click(function() {
 			        jQuery("#sidebarCart").slideUp();
