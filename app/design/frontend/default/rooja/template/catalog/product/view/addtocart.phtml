@@ -35,7 +35,7 @@
         <label for="qty"><?php echo $this->__('Quantity') ?></label>
 		<?php endif; ?>
 				<script type="text/javascript">
-					(function ($) {
+					jQuery(function ($) {
 
 						$('#product_addtocart_form').submit(function () {
 
@@ -51,7 +51,7 @@
 
 						});
 
-					})(jQuery);
+					});
 				</script>
 				</section>
 				    <button class="tr" id="addToBagBtn" onclick="productAddToCartForm.submit()"><span><?php echo $this->__('Add to Cart') ?></span></button>
