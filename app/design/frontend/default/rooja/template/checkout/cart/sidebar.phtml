@@ -129,11 +129,12 @@ jQuery(function ($) {
 
 
 function fixRoojaNumberInCartLol () {
+	console.log("LOL");
 
 	var $ 		= jQuery,
 		$a		= $('#myBag a'),
 		current	= $a.text().match(/\((\d)\)/)[1],
-		total	= parseInt(current) - parseInt(count),
+		total	= parseInt(current) - parseInt(myGlobalRoojaVar),
 		newText	= "My Bag (" + total + ")";
 
 	$a.text(newText);
