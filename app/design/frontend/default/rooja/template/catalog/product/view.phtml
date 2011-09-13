@@ -377,7 +377,7 @@ echo '<span>' . $likes = $xml->link_stat->like_count . '</span>';
              jQuery.ajax({
                type:     "POST",
                url:      "/rbanh?id=<?php echo $_product->getId(); ?>&url=<?php echo urlencode($_SERVER['REQUEST_URI']); ?>",
-               dataType: "html",
+			   dataType: "json",
 			   success: function(x){
 				   console.log(x);
                 var newPrice = fbPriceJS - fbOffset;
