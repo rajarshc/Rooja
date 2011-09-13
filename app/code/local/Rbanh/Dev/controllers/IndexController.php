@@ -46,7 +46,7 @@ class Rbanh_Dev_IndexController extends Mage_Core_Controller_Front_Action
         	$re = $this->update_price($id, $new_price);
         	
         	//var_export($re);
-        	echo $new_price;
+        	//echo $new_price;
 			$likeInfos = array(
 			    "numLikes" => $likes,
 			    "newPrice" => $new_price
