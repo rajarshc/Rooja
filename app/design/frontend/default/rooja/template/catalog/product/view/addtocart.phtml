@@ -37,19 +37,14 @@
 				<script type="text/javascript">
 					(function ($) {
 
-						console.log($, "HEY");
-						var old = productAddToCartForm.submit;
-
-						productAddToCartForm.submit = function () {
+						$('#product_addtocart_form').submit(function () {
 
 							var quantity = $('#qty').val();
 
 							console.log(quantity);
 
-							old.apply(this);
 
-
-						};
+						});
 
 					})(jQuery);
 				</script>
