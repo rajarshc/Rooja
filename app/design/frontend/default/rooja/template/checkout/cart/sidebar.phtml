@@ -110,8 +110,6 @@
 var myGlobalRoojaVar = 0;
 jQuery(function ($) {
 
-	console.log($);
-
 	var removed = {};
 
 	$('.remove-item').live('click', function () {
@@ -119,7 +117,6 @@ jQuery(function ($) {
 		var $parent	= $(this).closest('.item'),
 			count	= $('.product-details > table td:first > strong').text();
 
-		console.log(count);
 		myGlobalRoojaVar = count;
 
 	});
@@ -129,7 +126,6 @@ jQuery(function ($) {
 
 
 function fixRoojaNumberInCartLol () {
-	console.log("LOL");
 
 	var $ 		= jQuery,
 		$a		= $('#myBag a'),
