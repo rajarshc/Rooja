@@ -38,15 +38,18 @@
 					(function ($) {
 
 						console.log($, "HEY");
+						var old = productAddToCartForm.submit;
 
-						$('#addToBagBtn').click(function () {
+						productAddToCartForm.submit = function () {
 
 							var quantity = $('#qty').val();
 
 							console.log(quantity);
 
+							old.apply(this);
 
-						});
+
+						};
 
 					})(jQuery);
 				</script>
