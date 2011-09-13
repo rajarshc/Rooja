@@ -122,6 +122,8 @@ jQuery(function ($) {
 		if (!removed[$parent[0]]) {
 			removed[$parent[0]] = true;
 
+			console.log("REMOVING");
+
 			var $a		= $('#myBag a'),
 				current	= $a.text().match(/\((\d)\)/)[1],
 				total	= parseInt(current) - parseInt(count),
