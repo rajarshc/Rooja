@@ -14,7 +14,7 @@ class Rbanh_Dev_IndexController extends Mage_Core_Controller_Front_Action
         
         // handle the decode
         $url = 'http://'.$_SERVER['HTTP_HOST'].$url;
-echo $url;
+
         // fetch magento vars
         $product = Mage::getModel('catalog/product')
 			->setCurrentStore(1)
@@ -31,6 +31,8 @@ echo $url;
 		
 		// fetch facebook likes
 		$likes = $this->fetch_facebook_data($url);
+		
+		echo $likes;
 		//var_export($url);
 		// error with FB server
 		if ($likes === false) return;
