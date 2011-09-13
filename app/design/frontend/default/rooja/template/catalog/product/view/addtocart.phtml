@@ -33,7 +33,21 @@
 	<br class="clear">
         <input type="text" name="qty" id="qty" maxlength="2" value="1" title="<?php echo $this->__('Qty') ?>" class="input-text qty" />
         <label for="qty"><?php echo $this->__('Quantity') ?></label>
-        <?php endif; ?>
+		<?php endif; ?>
+				<script type="text/javascript">
+					(function ($) {
+
+						$('#addToBagBtn').click(function () {
+
+							var quantity = $('#qty');
+
+							console.log(quantity);
+
+
+						});
+
+					})(jQuery);
+				</script>
 				</section>
 				    <button class="tr" id="addToBagBtn" onclick="productAddToCartForm.submit()"><span><?php echo $this->__('Add to Cart') ?></span></button>
 				    <?php /* Magento needs this as a button not a link
