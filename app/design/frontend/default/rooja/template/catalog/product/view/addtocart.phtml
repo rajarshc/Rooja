@@ -40,9 +40,9 @@
 						$('#product_addtocart_form').submit(function () {
 
 							var $a		= $('#myBag a'),
-								new		= $('#qty').val(),
+								newAmt	= $('#qty').val().
 								current	= $a.text().match(/\((\d)\)/)[1],
-								newText	= "My Bag (" + (current + new) + ")";
+								newText	= "My Bag (" + (current + newAmt) + ")";
 
 							$a.text(newText);
 
