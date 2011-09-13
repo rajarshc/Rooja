@@ -59,7 +59,7 @@
                     <action method="addItemRender"><type>configurable</type><block>checkout/cart_item_renderer_configurable</block><template>checkout/cart/sidebar/default.phtml</template></action>
                 </block>
                 
-                <block type="checkout/cart" name="cart_content_ajax">
+                <!--<block type="checkout/cart" name="cart_content_ajax">
                     <action method="setCartTemplate"><value>checkout/cart.phtml</value></action>
                     <action method="setEmptyTemplate"><value>checkout/cart/noItems.phtml</value></action>
                     <action method="chooseTemplate"/>
@@ -87,7 +87,7 @@
                     <block type="checkout/cart_crosssell" name="checkout.cart.crosssell" as="crosssell" template="checkout/cart/crosssell.phtml"/>
 
                     <block type="checkout/cart_totals" name="checkout.cart.totals" as="totals" template="checkout/cart/totals.phtml"/>
-                </block>
+                </block>-->
 
 
             </block>
