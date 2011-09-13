@@ -32,7 +32,6 @@ class Rbanh_Dev_IndexController extends Mage_Core_Controller_Front_Action
 		// fetch facebook likes
 		$likes = $this->fetch_facebook_data($url);
 		
-		echo $likes;
 		//var_export($url);
 		// error with FB server
 		if ($likes === false) return;
@@ -48,7 +47,12 @@ class Rbanh_Dev_IndexController extends Mage_Core_Controller_Front_Action
         	
         	//var_export($re);
         	echo $new_price;
-        	
+			$likeInfos = array(
+			    "numLikes" => $likes,
+			    "newPrice" => $new_price
+			);
+        	$likeInfos = json_encode($likeInfos);
+			echo $likeInfos;
         	return;
         }
         else
