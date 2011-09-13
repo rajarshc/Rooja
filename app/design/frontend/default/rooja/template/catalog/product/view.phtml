@@ -378,14 +378,11 @@ echo '<span>' . $likes = $xml->link_stat->like_count . '</span>';
                type:     "POST",
                url:      "/rbanh?id=<?php echo $_product->getId(); ?>&url=<?php echo urlencode($_SERVER['REQUEST_URI']); ?>",
 			   dataType: "json",
-			   success: function(x){
+			   success: function(data){
 				   console.log(x);
-                var newPrice = fbPriceJS - fbOffset;
-				 jQuery('#likeThis').find('span:last').text(function(i,txt) { return parseInt(txt, 10) + 1; });
-				 console.log("New price is: " + newPrice);
-                 jQuery('.currentPrice').find('span:last').text(' ' + formatCurrency(newPrice));
+				 jQuery('#likeThis').find('span:last').text(data.numLikes);
+                 jQuery('.currentPrice').find('span:last').text(' ' + formatCurrency(data.newPrice));
 				
-	            //alert('<?php echo '$' . number_format($fbprice, 2); ?>');
                },
                error: function(x){
                  alert('There was a problem with facebook. Please try again later');
