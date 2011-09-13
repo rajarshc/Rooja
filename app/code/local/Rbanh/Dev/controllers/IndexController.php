@@ -14,7 +14,8 @@ class Rbanh_Dev_IndexController extends Mage_Core_Controller_Front_Action
         
         // handle the decode
         $url = 'http://'.$_SERVER['HTTP_HOST'].$url;
-        
+        error_log($url);
+
         // fetch magento vars
         $product = Mage::getModel('catalog/product')
 			->setCurrentStore(1)
