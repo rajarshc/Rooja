@@ -91,12 +91,8 @@
 <script type="text/javascript">
 	jQuery(document).ready(function(){
 		jQuery("#myBag").click(function() {
-			if($('#sidebarCart').is(":visible")){
-				jQuery("#sidebarCart").slideUp();return false;
-			}
-			else{jQuery("#sidebarCart").slideDown();return false;}
-			
-			
+			jQuery("#sidebarCart").slideToggle();
+			return false;
 			});
 		jQuery("#closerBtn").click(function() {
 			        jQuery("#sidebarCart").slideUp();
