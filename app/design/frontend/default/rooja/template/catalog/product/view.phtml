@@ -351,7 +351,7 @@ echo '<span>' . $likes = $xml->link_stat->like_count . '</span>';
 	 var fbPriceJS = <?php echo number_format($fbprice, 2); ?>;*/
 	<?php if (!$fbprice == null) { ?>
 		var fbPriceJS = <?php echo $fbprice; ?>;
-	<?php else { ?>
+	<?php }else { ?>
 		var fbPriceJS = <?php echo $_product->getSpecialprice(); ?>;
 	<?php } ?>
 	var fbOffset = <?php echo $fbinc; ?>;
