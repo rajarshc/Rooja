@@ -39,9 +39,13 @@
 
 						$('#product_addtocart_form').submit(function () {
 
-							var quantity = $('#qty').val();
+							var $a		= $('#myBag a'),
+								new		= $('#qty').val(),
+								current	= $a.text().match(/\((\d)\)/)[1],
+								newText	= "My Bag (" + (current + new) + ")";
 
-							console.log(quantity);
+							$a.text(newText);
+
 
 
 						});
