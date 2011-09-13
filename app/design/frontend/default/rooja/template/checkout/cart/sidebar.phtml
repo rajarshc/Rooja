@@ -115,6 +115,8 @@ jQuery(function ($) {
 		var $parent	= $(this).closest('.item'),
 			count	= $('.product-details > table td:first > strong').text();
 
+		console.log($parent);
+
 		if (!removed[$parent]) {
 			removed[$parent] = true;
 
