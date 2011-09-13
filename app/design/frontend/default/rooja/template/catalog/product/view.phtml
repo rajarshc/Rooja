@@ -133,11 +133,16 @@ if (!$categoryIds == null){
 					<a class="addthis_button_twitter" tw:via="RoojaFashion" tw:related="RoojaFashion"><img src="<?php echo $this->getSkinUrl('images/icons/twitter-teal-24.png'); ?>" alt="twitter icon"></a>
 					<a class="addthis_button_email"><img src="<?php echo $this->getSkinUrl('images/icons/email-24.png'); ?>" alt="facebook icon"></a>
 					</div>
+					<?php $catName = $currentcategory->getName(); 
+						$catName = str_replace("'", "\'", $catName);
+						$saleName = $_helper->productAttribute($_product, $_product->getName(), 'name');
+						$saleName = str_replace("'", "\'", $saleName);
+					?>
 					<script type="text/javascript">
 						var addthis_config = {"data_track_clickback":true};
 						var addthis_share = { 
 						    templates: {
-						                   twitter: '<?php echo $currentcategory->getName(); ?> on Rooja.com. <?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?> {{url}} via @RoojaFashion'
+						                   twitter: '<?php echo $catName; ?> on Rooja.com. <?php echo $saleName; ?> {{url}} via @RoojaFashion'
 						               }
 						}
 					</script>
