@@ -59,13 +59,13 @@
 			$list.prepend('<option selected="selected" disabled="disabled">Choose one:</option>');
 			
 			$list.change(function(){
-				billing.save();
 				if($('#shipping-new-address-form').is(":visible")){
 					$('#shippingSaveBtn').removeClass("btnPressed");
 					$('#shipping-new-address-form').removeClass("infoSubmitted");
 					$('#shippingSaveBtn').show();
+					billing.save();
 				}
-				else{$('#shippingSaveBtn').hide();shipping.save();}
+				else{$('#shippingSaveBtn').hide();shipping.save();billing.save();}
 			});
 			
 			$("#shippingSaveBtn").click(function() {
