@@ -108,7 +108,7 @@ function sendoptions(url){
             postBody: '',
             onException: function (xhr, e)
             {
-                alert('Exception : ' + e);
+                //alert('Exception : ' + e);
             },
             onComplete: function (xhr)
             {
@@ -235,7 +235,7 @@ function sendcart(url, type, qty_to_insert){
                     parameters : Form.serialize("product_addtocart_form"),
                     onException: function (xhr, e)
                     {
-                        alert('Exception : ' + e);
+                        //alert('Exception : ' + e);
                     },
                     onComplete: function (xhr)
                     {
@@ -298,7 +298,7 @@ function sendcart(url, type, qty_to_insert){
                 parameters: 'qty='+qty_to_insert,
                 onException: function (xhr, e)
                 {
-                    alert('Exception : ' + e);
+                    //alert('Exception : ' + e);
                 },
                 onComplete: function (xhr)
                 {
@@ -388,7 +388,7 @@ function cartdelete(url){
         postBody: '',
         onException: function (xhr, e)
         {
-            alert('Exception : ' + e);
+            //alert('Exception : ' + e);
         },
         onComplete: function (xhr)
         {
