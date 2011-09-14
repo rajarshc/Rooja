@@ -59,11 +59,11 @@
 			$list.prepend('<option selected="selected" disabled="disabled">Choose one:</option>');
 			
 			$list.change(function(){
-				//billing.save();
 				if($('#shipping-new-address-form').is(":visible")){
 					$('#shippingSaveBtn').removeClass("btnPressed");
 					$('#shipping-new-address-form').removeClass("infoSubmitted");
 					$('#shippingSaveBtn').show();
+					
 				}
 				else{$('#shippingSaveBtn').hide();shipping.save();}
 			});
@@ -76,12 +76,17 @@
 			 $(this).addClass("btnPressed");
 			 $('#billing-new-address-form').addClass("infoSubmitted");
 			});
+			$("#billingSaveBtn2").click(function() {
+			 $(this).addClass("btnPressed");
+			 $('#billing-new-address-form').addClass("infoSubmitted");
+			});
 			
 			$("#billing-address-select").change(function() {
 			 if($('#billing-new-address-form').is(":visible")){
 				$('#billingSaveBtn').removeClass("btnPressed");
 				$('#billing-new-address-form').removeClass("infoSubmitted");
 				$('#billingSaveBtn').show();
+				$('#billingSaveBtn2').hide();
 			}
 			else{
 				$('#billingSaveBtn').hide();
