@@ -148,7 +148,7 @@ function loggedInBilling()
 	                   <input type="text" name="billing[telephone]" value="<?php echo $this->htmlEscape($this->getAddress()->getTelephone()) ?>" title="<?php echo $this->__('Telephone') ?>" class="required-entry input-text" id="billing:telephone" />
                </div>
            </li>
-               <button type="button" class="button right" onclick="billing.save()" id="billingSaveBtn2" style="display:none;"><span>Save this Billing Address</span></button>
+               <button type="button" class="button right" onclick="billing.save()" id="billingSaveBtn2"><span>Save this Billing Address</span></button>
                 
                 
             <?php if ($this->isCustomerLoggedIn() && $this->customerHasAddresses()):?>
