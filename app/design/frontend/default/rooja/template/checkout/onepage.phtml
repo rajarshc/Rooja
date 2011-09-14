@@ -63,9 +63,9 @@
 					$('#shippingSaveBtn').removeClass("btnPressed");
 					$('#shipping-new-address-form').removeClass("infoSubmitted");
 					$('#shippingSaveBtn').show();
-					billing.save();
+					//billing.save();
 				}
-				else{$('#shippingSaveBtn').hide();shipping.save();billing.save();}
+				else{$('#shippingSaveBtn').hide();shipping.save();//billing.save();}
 			});
 			
 			$("#shippingSaveBtn").click(function() {
@@ -82,6 +82,7 @@
 				$('#billingSaveBtn').removeClass("btnPressed");
 				$('#billing-new-address-form').removeClass("infoSubmitted");
 				$('#billingSaveBtn').show();
+				$('#billingSaveBtn2').hide();
 			}
 			else{
 				$('#billingSaveBtn').hide();
