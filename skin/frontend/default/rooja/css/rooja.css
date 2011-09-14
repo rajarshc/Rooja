@@ -799,7 +799,7 @@ a[href$=".doc"]:after {content: " (DOC)";}
 	margin: 0 auto;
 	margin-top: 20px;
 }
-.btnPressed#billingSaveBtn span,.btnPressed#shippingSaveBtn span{background-color:#000;}
+.btnPressed#billingSaveBtn span,.btnPressed#shippingSaveBtn span,.btnPressed#billingSaveBtn2 span{background-color:#000;}
 
 .billing_section {width: 50%;}
 
