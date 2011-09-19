@@ -53,6 +53,7 @@ class Mage_Avenues_Model_Standard extends Mage_Payment_Model_Method_Abstract
         }
 
         $billingAddress = $order->getBillingAddress();
+		$shippingAddress = $order->getShippingAddress();
 
         $streets = $billingAddress->getStreet();
         $street = isset($streets[0]) && $streets[0] != ''
@@ -85,14 +86,24 @@ class Mage_Avenues_Model_Standard extends Mage_Payment_Model_Method_Abstract
                         'product_name'     => $transDescription,
                         'language'         => $this->getConfig()->getLanguage(),
                         'billing_cust_name'           => $billingAddress->getFirstname(),
-                        's_name'           => $billingAddress->getLastname(),
+                        'billing_last_name'           => $billingAddress->getLastname(),
                         'billing_cust_address'           => $street,
                         'billing_cust_city'             => $billingAddress->getCity(),
                         'billing_cust_state'            => $billingAddress->getRegionModel()->getCode(),
-                        'billing_zip_code'              => $billingAddress->getPostcode(),
+                        'billing_cust_zip'              => $billingAddress->getPostcode(),
                         'billing_cust_country'          => $billingAddress->getCountryModel()->getIso3Code(),
                         'billing_cust_tel'            => $billingAddress->getTelephone(),
                         'billing_cust_email'            => $email,
+
+						'delivery_cust_name'           => $shippingAddress->getFirstname(),
+                        'delivery_last_name'           => $shippingAddress->getLastname(),
+                        'delivery_cust_address'           => $shippingAddress->getStreetFull(),
+                        'delivery_cust_city'             => $shippingAddress->getCity(),
+                        'delivery_cust_state'            => $shippingAddress->getRegionModel()->getCode(),
+                        'delivery_cust_zip'              => $shippingAddress->getPostcode(),
+                        'delivery_cust_country'          => $shippingAddress->getCountryModel()->getIso3Code(),
+                        'delivery_cust_tel'            => $shippingAddress->getTelephone(),
+                        
                         'cb_url'           => $this->getNotificationURL(),
                         'cb_type'          => 'P', // POST method used (G - GET method)
                         'decline_url'      => $this->getFailureURL(),

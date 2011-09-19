@@ -11,7 +11,7 @@
 		$referrerPercent = $referrerCount * 10;
 		$awayFrom10 = 10 - $referrerCount;
 	?>
-	<h3 class="fr" id="howClose">Invite <?php echo $awayFrom10 ?> more friends to get Free Standard Shipping for 2 months. <br>Bonus: Rs. 1000 credit when your friend makes first Rs.1000 purchase within 30 days of joining.</h3>
+	<h3 class="fr" id="howClose"><?php if($referrerCount == 10){ echo "Congratulations. Enjoy Free Shipping for 2 months"; }else{ ?>Invite <?php echo $awayFrom10 ?> more friends to get Free Standard Shipping for 2 months.<?php } ?><br>Bonus: Rs. 1000 credit when your friend makes first Rs.1000 purchase within 30 days of joining.</h3>
 	<span id="referralBar" class="clear"><span id="numReferrals" style="width:<?php echo $referrerPercent; ?>%;"></span></span>
 	
   
