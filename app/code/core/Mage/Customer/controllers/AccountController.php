@@ -373,10 +373,11 @@ class Mage_Customer_AccountController extends Mage_Core_Controller_Front_Action
 
         $customer->sendNewAccountEmail($isJustConfirmed ? 'confirmed' : 'registered');
 
-        $successUrl = Mage::getUrl('*/*/index', array('_secure'=>true));
+        //$successUrl = Mage::getUrl('*/*/index', array('_secure'=>true));
         if ($this->_getSession()->getBeforeAuthUrl()) {
             $successUrl = $this->_getSession()->getBeforeAuthUrl(true);
         }
+		$successUrl = Mage::getUrl('/q?welcome=yes', array('_secure'=>true));
         return $successUrl;
     }
 
