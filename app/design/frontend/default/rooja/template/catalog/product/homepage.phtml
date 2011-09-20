@@ -61,9 +61,9 @@ function timeBetweenNowAndDeadline($deadline) {
         else{$hours = $rest / 3600;}
     }
 
-    if($days > 0){$days = $days.' days and ';}
+    if($days > 0){$days = $days.' days';}
     else{$days = false;}
-    if($hours > 0){$hours = $hours.' hours ';}
+    if($hours > 0){$hours = $hours.' and hours ';}
     else{$hours = false;}
     if($minutes > 0){$minutes = $minutes.'m, ';}
     else{$minutes = false;}
