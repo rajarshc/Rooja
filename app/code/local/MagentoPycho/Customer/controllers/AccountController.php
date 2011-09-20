@@ -53,4 +53,28 @@ class MagentoPycho_Customer_AccountController extends Mage_Customer_AccountContr
         
         $this->_redirectUrl($session->getBeforeAuthUrl(true));        
     }
+
+    /**
+     * Add welcome message and send new account email.
+     * Returns success URL
+     *
+     * @param Mage_Customer_Model_Customer $customer
+     * @param bool $isJustConfirmed
+     * @return string
+     */
+    protected function _welcomeCustomer(Mage_Customer_Model_Customer $customer, $isJustConfirmed = false)
+    {
+        $this->_getSession()->addSuccess(
+            $this->__('Thank you for registering with %s.', Mage::app()->getStore()->getFrontendName())
+        );
+
+        $customer->sendNewAccountEmail($isJustConfirmed ? 'confirmed' : 'registered');
+
+        
+        if ($this->_getSession()->getBeforeAuthUrl()) {
+            $successUrl = $this->_getSession()->getBeforeAuthUrl(true);
+        }
+		$successUrl = Mage::getUrl('/q?welcome=yes', array('_secure'=>true));
+        return $successUrl;
+    }
 }
