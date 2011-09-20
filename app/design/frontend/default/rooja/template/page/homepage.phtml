@@ -112,6 +112,7 @@ if($_category->getId() !=5){
 					$enddate = date('y-m-d', strtotime($c->getSale_end_date())) . ' ' . $c->getSale_end_time() . ':00';
 
 					//var_dump($c);
+					if(timeBetweenNowAndDeadline($enddate) != 0){
 					if ($enddate > $today && $enddate < $fivedays) {
 						if ($i % 2 == 0){
 						echo '<article class="saleDetails fl noMargin">';
@@ -126,6 +127,7 @@ if($_category->getId() !=5){
 					}
 				}
             }
+}
         }
 }
     }
