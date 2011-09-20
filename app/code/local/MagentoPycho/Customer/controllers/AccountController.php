@@ -74,7 +74,7 @@ class MagentoPycho_Customer_AccountController extends Mage_Customer_AccountContr
         if ($this->_getSession()->getBeforeAuthUrl()) {
             $successUrl = $this->_getSession()->getBeforeAuthUrl(true);
         }
-		$successUrl = Mage::getUrl('/q?welcome=yes', array('_secure'=>true));
+		$successUrl = Mage::getUrl('/welcome', array('_secure'=>true));
         return $successUrl;
     }
 }
