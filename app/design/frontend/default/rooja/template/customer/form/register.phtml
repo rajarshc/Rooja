@@ -45,6 +45,17 @@ jQuery(function() {
 		// fire your own change event after 100 or so milliseconds
 		jQuery('input[type="text"]').change();
 	}, 100);
+		jQuery('ul.slideshow li').fadeOut(0);
+		jQuery("'ul.slideshow li:nth-child("+nextIndex+")'").addClass('show').fadeIn(fadeDuration);
+		var timer = setInterval(function () {
+			nextIndex = currentIndex+1;
+			if(nextIndex > jQuery('ul.slideshow li').length) {
+				nextIndex = 1;
+			}
+			jQuery("'ul.slideshow li:nth-child("+nextIndex+")'").addClass('show').fadeIn(fadeDuration);
+			jQuery("'ul.slideshow li:nth-child("+currentIndex+")'").fadeOut(fadeDuration).removeClass('show');
+			currentIndex = nextIndex;
+		},slideDuration);
 	
 });
 </script>
@@ -197,14 +208,10 @@ jQuery(function() {
 </section><!--End Content-->
 </div>
 <section id="brands">
-	<div id="brandCol1" class="">
-		<img src="<?php echo $this->getSkinUrl('images/splash/logos/1.png') ?>">
-	</div>
-	<div id="brandCol2" class="">
-		<img src="<?php echo $this->getSkinUrl('images/splash/logos/2.png') ?>">
-	</div>
-	<div id="brandCol3" class="">
-		<img src="<?php echo $this->getSkinUrl('images/splash/logos/3.png') ?>">
-	</div>
+	<ul class="slideshow">
+		<li><img src="<?php echo $this->getSkinUrl('images/splash/logos/1.png') ?>"></li>
+		<li><img src="<?php echo $this->getSkinUrl('images/splash/logos/2.png') ?>"></li>
+		<li><img src="<?php echo $this->getSkinUrl('images/splash/logos/3.png') ?>"></li>
+		</ul>
 </section>
 </div>
