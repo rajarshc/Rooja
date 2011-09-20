@@ -95,63 +95,7 @@ if(!Mage::getSingleton('customer/session')->isLoggedIn() && ($agent !="facebooke
 	<div class="container">
 		<section id="endingSoon" class="col3 fl">
 			<h2>Sales Ending Soon</h2>
-			<?php
-			function timeBetweenNowAndDeadline($deadline) {
-			    $deadline = strtotime($deadline);
-				$currentDate = date("U");
-			    $diff = $deadline-$currentDate;
-			    $seconds = 0;
-			    $hours   = 0;
-			    $minutes = 0;
-
-			    if($diff % 86400 <= 0){$days = $diff / 86400;}  // 86,400 seconds in a day
-			    if($diff % 86400 > 0)
-			    {
-			        $rest = ($diff % 86400);
-			        $days = ($diff - $rest) / 86400;
-			        if($rest % 3600 > 0)
-			        {
-			            $rest1 = ($rest % 3600);
-			            $hours = ($rest - $rest1) / 3600;
-			            if($rest1 % 60 > 0)
-			            {
-			                $rest2 = ($rest1 % 60);
-			            $minutes = ($rest1 - $rest2) / 60;
-			            $seconds = $rest2;
-			            }
-			            else{$minutes = $rest1 / 60;}
-			        }
-			        else{$hours = $rest / 3600;}
-			    }
-
-			    if($days > 0){$days = $days.' days';}
-			    else{$days = false;}
-			    if($hours > 0){
-					if($days!=false){
-						$hours = ' and '.$hours.' hours ';
-					}
-					else{
-						$hours = $hours.' hours ';
-					}
-				}
-			    else{$hours = false;}
-			    if($minutes > 0){$minutes = $minutes.' minutes';}
-			    else{$minutes = false;}
-			    $seconds = $seconds.'s'; // always be at least one second
-
-				if($days==0 && $hours == 0 && $minutes == 0){
-					return 0;
-				}
-				elseif($days==0 && $hours == 0){
-					return $minutes;
-				}
-				else{
-					return $days.''.$hours;	
-				}
-
-			}
-
-			?>
+			
 <?php 
 $i = 1;
 $categories = Mage::helper('catalog/category')->getStoreCategories();
@@ -169,7 +113,7 @@ if($_category->getId() !=5){
 					$enddate = date('y-m-d', strtotime($c->getSale_end_date())) . ' ' . $c->getSale_end_time() . ':00';
 
 					//var_dump($c);
-					if(timeBetweenNowAndDeadline($enddate) != 0){
+					
 					if ($enddate > $today && $enddate < $fivedays) {
 						if ($i % 2 == 0){
 						echo '<article class="saleDetails fl noMargin">';
@@ -184,7 +128,7 @@ if($_category->getId() !=5){
 					}
 				}
             }
-}
+
         }
 }
     }
