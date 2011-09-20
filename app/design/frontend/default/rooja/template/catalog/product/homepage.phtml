@@ -72,11 +72,17 @@ function timeBetweenNowAndDeadline($deadline) {
 		}
 	}
     else{$hours = false;}
-    if($minutes > 0){$minutes = $minutes.'m, ';}
+    if($minutes > 0){$minutes = $minutes.' minutes';}
     else{$minutes = false;}
     $seconds = $seconds.'s'; // always be at least one second
-
-    return $days.''.$hours;
+	
+	if($days==0 && $hours == 0){
+		return $minutes;
+	}
+	else{
+		return $days.''.$hours;	
+	}
+    
 }
 
 ?>
