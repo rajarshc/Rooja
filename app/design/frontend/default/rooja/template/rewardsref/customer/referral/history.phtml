@@ -25,7 +25,7 @@
                     <?php ?><td><?php echo $_friend->getReferralName() ?></td><?php ?>
                     <td><?php echo $_friend->getReferralEmail() ?></td>
                     <!--<td><?php echo $_friend->getReferralChildId() ? $this->__('yes') : $this->__('no') ?></td>-->
-                    <td class="a-left"><?php echo $this->getStatusCaption( (int)($_friend->getReferralStatus()) ); ?> - <?php echo $this->(int)($_friend->getReferralStatus()); ?></td>
+                    <td class="a-left"><?php echo $this->getStatusCaption( (int)($_friend->getReferralStatus()) ); ?> - <?php echo (int)($_friend->getReferralStatus()); ?></td>
                     <td><?php echo $this->getAccumulatedReferralPoints($_friend); ?></td>
                 </tr>
             <?php endforeach; ?>
