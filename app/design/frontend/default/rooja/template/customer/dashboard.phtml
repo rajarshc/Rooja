@@ -28,7 +28,11 @@
     <h2><?php echo $this->__('My Dashboard') ?></h2>
     <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
     <?php echo $this->getChildHtml('hello') ?>
-    <?php echo $this->getChildHtml('top') ?>
+
+	<?php echo $this->getChildHtml('progress_bar'); ?>
+    
+	<?php echo $this->getChildHtml('top') ?>
+
     <div class="box-account box-info">
         
             <h2><?php echo $this->__('Account Information') ?></h2>
