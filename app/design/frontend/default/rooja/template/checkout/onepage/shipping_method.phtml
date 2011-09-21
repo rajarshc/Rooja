@@ -47,3 +47,16 @@
 	    
         </div>
     </form>
+<script type="text/javascript">
+		jQuery(document).ready(function(){
+				if (jQuery("#s_method_freeshipping_freeshipping:checked").length > 0){ 
+					jQuery("#checkoutStep2").show();
+				}
+				if (jQuery("#s_method_flatrate_flatrate:checked").length > 0){ 
+					jQuery("#checkoutStep2").show();
+				}
+				jQuery("#s_method_freeshipping_freeshipping, #s_method_flatrate_flatrate").click(function() {
+					jQuery("#checkoutStep2").show();
+				});
+		});
+</script>
