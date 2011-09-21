@@ -378,7 +378,7 @@ class Mage_Customer_AccountController extends Mage_Core_Controller_Front_Action
         if ($this->_getSession()->getBeforeAuthUrl()) {
             $successUrl = $this->_getSession()->getBeforeAuthUrl(true);
         }
-		$successUrl = Mage::getUrl('welcome', array('_secure'=>true));
+		$successUrl = Mage::getUrl('q?first=welcome', array('_secure'=>true));
         return $successUrl;
     }
 
