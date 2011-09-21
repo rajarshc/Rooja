@@ -228,7 +228,7 @@ Customer account home dashboard layout
         <reference name="my.account.wrapper">
             <block type="customer/account_dashboard" name="customer_account_dashboard" template="customer/account/dashboard.phtml">
                 <block type="customer/account_dashboard_hello" name="customer_account_dashboard_hello" as="hello" template="customer/account/dashboard/hello.phtml"/>
-<block type="rewardsref/customer_referral_history" name="progress_bar" template="rewardsref/customer/referral/progress_bar.phtml" />
+				<block type="rewardsref/customer_referral_history" name="progress_bar" template="rewardsref/customer/referral/progress_bar.phtml" />
 				<block type="sales/order_recent" name="recent_orders" as="recentorders" template="sales/order/recent.phtml"/>
                 <block type="core/template" name="customer_account_dashboard_top" as="top" />
                 <block type="customer/account_dashboard_info" name="customer_account_dashboard_info" as="info" template="customer/account/dashboard/info.phtml"/>
