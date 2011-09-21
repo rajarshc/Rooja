@@ -1,6 +1,11 @@
 
     <?php $_referred = $this->getReferred();
-		
+		$numSignedUp=0;
+		foreach ($_referred as $_friend):
+			if((int)($_friend->getReferralStatus()) ==1){
+				$numSignedUp++;
+			}
+		endforeach;
 	?>
    
 <?php if($this->showHistory()): ?>
@@ -12,6 +17,7 @@
 		$referrerCount = count($_referred);
 		$referrerPercent = $referrerCount * 10;
 		$awayFrom10 = 10 - $referrerCount;
+		echo $numSignedUp;
 	?>
 	<h3 class="fr" id="howClose"><?php if($referrerCount > 9){ echo "Congratulations. Enjoy Free Shipping for 2 months. Use coupon code <span>ROFSVIPOJA</span> at checkout."; }else{ ?>Invite <?php echo $awayFrom10 ?> more friends to get Free Standard Shipping for 2 months.<?php } ?><br>Bonus: Rs. 1000 credit when your friend makes first Rs.1000 purchase within 30 days of joining.</h3>
 	<span id="referralBar" class="clear"><span id="numReferrals" style="width:<?php echo $referrerPercent; ?>%;"></span></span>
