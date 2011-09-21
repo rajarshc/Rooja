@@ -1187,6 +1187,8 @@ li#opc-review, #opc-payment {
 .opc .allow .step-title { cursor:pointer; }
 /*.opc .allow .step-title a { display:block; }*/
 
+.step-title .stepNum{padding-right:10px;font-weight:bold;font-size:18px;}
+
 .opc .active {}
 .opc .active .step-title {background-color:#fff; cursor:default; }
 /*.opc .active .step-title h2 {margin: 9px 0 -5px -14px; color:#431f4b;}*/
