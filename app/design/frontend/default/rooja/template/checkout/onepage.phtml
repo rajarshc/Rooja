@@ -144,7 +144,7 @@ if(!$validate) { ?>
 	<?php if($i==4) { echo '</ul></li><li id="checkoutStep2"><ul>';}?>
     <li id="opc-<?php echo $_stepId ?>" class="section <?php echo !empty($_stepInfo['allow'])?'allow':'' ?> <?php echo !empty($_stepInfo['complete'])?'saved':'' ?>">
         <div class="step-title">
-            <h2><?php echo $_stepInfo['label'] ?></h2>
+            <h2><span class="stepNum"><?php echo $i; ?></span><?php echo $_stepInfo['label'] ?></h2>
 	    <a href="#"><?php echo $this->__('Edit') ?></a>
         </div>
         <div id="checkout-step-<?php echo $_stepId ?>" class="step a-item"> 
