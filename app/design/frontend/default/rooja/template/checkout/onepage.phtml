@@ -37,7 +37,10 @@
 			if ($("#s_method_flatrate_flatrate:checked").length > 0){ 
 				$("#checkoutStep2").show();
 			}
-			$("#s_method_freeshipping_freeshipping, #s_method_flatrate_flatrate").click(function() {
+			$("#s_method_freeshipping_freeshipping").click(function() {
+				$("#checkoutStep2").show();
+			});
+			$("#s_method_flatrate_flatrate").click(function() {
 				$("#checkoutStep2").show();
 			});
 			
