@@ -1157,7 +1157,7 @@ form#discount-coupon-form .discount h2, .shipping h2  {font-size:14px;margin: 0 
 .opc li.section { border:1px solid #fff; border-bottom:0; }
 
 #checkoutStep1 {float:left; width:470px;}
-#checkoutStep2 {float:right; width:470px;display:none;}
+#checkoutStep2 {float:right; width:470px;/*display:none;*/}
 
 .opc .buttons-set.disabled button.button { display:none; }
 .opc .buttons-set .please-wait { height:21px; line-height:21px; }
