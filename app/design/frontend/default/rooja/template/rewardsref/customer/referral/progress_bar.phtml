@@ -15,9 +15,10 @@
 	<span id="referralBar" class="clear"><span id="numReferrals" style="width:<?php echo $referrerPercent; ?>%;"></span></span>
 	
 	<?php
+		if($referrerCount>0){
 		$groupId = Mage::getSingleton("customer/session")->getCustomerGroupId(); 
-		echo $groupId;
-	//$this->setData('group_id', $groupId);
+		$this->setData('group_id', 5);
+		}
 	?>
   
 <?php endif ?>
