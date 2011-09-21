@@ -57,7 +57,7 @@ if(!Mage::getSingleton('customer/session')->isLoggedIn() && ($agent !="facebooke
 		$firstVisit =  $_GET['first'];
 		echo $firstVisit;
 			
-					if($firstVisit!='visited'){
+					if($firstVisit=='welcome'){
 					    Mage::getSingleton('core/session')->setFirstVisit('visited');
 	 ?>
 			<div class="hiw-container">
