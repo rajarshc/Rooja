@@ -45,6 +45,15 @@ abstract class TBT_RewardsReferral_Model_Referral_Abstract extends TBT_RewardsRe
                 }
                 //@nelkaake Added on Wednesday July 21, 2010: 
                 $parent = $this->getParentCustomer();
+				$parentId = $this->getReferralParentId();
+				$parentCount = count($parent->getReferred());
+				if($parentCount>0){
+					$customer = Mage::getModel('customer/customer')->load($parentId);
+					if ($customer->getId()) {
+					    $customer->setData('group_id', 5);
+					    $customer->save(); 
+					}
+				}
                 if ($parent->getRewardsrefNotifyOnReferral()) {
                     $msg = $this->getReferralTransferMessage($newCustomer);
                     $this->sendConfirmation($parent, $newCustomer->getEmail(), $newCustomer->getName(), $msg);

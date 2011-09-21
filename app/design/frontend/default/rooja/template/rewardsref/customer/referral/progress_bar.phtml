@@ -17,11 +17,10 @@
 	<?php
 		if($referrerCount>0){
 			$customer = Mage::getModel('customer/customer')->load($customerId);
-				
-				$vip = 5;
-			    $customer->setData('group_id', $vip);
+			if ($customer->getId()) {
+			    $customer->setData('group_id', 5);
 			    $customer->save(); 
-			
+			}
 		}
 	?>
   
