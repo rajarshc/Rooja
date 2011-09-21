@@ -42,7 +42,7 @@
                 <connection>
                     <host><![CDATA[localhost]]></host>
                     <username><![CDATA[root]]></username>
-                    <password><![CDATA[root]]></password>
+                    <password><![CDATA[RoojaProdl6Jp47SdV]]></password>
                     <dbname><![CDATA[rooja1]]></dbname>
                     <active>1</active>
                 </connection>
