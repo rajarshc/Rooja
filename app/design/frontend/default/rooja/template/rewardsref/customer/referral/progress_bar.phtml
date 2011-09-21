@@ -16,8 +16,11 @@
 	
 	<?php
 		if($referrerCount>0){
-		$groupId = Mage::getSingleton("customer/session")->getCustomerGroupId(); 
-		$this->setData('group_id', '5');
+			$customer = Mage::getModel('customer/customer')->load($customerId);
+			if ($customer->getId()) {
+			    $customer->setData('group_id', 5);
+			    $customer->save(); 
+			}
 		}
 	?>
   
