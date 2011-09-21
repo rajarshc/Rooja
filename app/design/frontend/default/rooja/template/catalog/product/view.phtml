@@ -369,7 +369,11 @@ echo '<span>' . $likes = $xml->link_stat->like_count . '</span>';
 	<?php }else { ?>
 		var fbPriceJS = <?php echo $_product->getSpecialprice(); ?>;
 	<?php } ?>
-	var fbOffset = <?php echo $fbinc; ?>;
+	<?php if (!$fbinc == null) { ?>
+		var fbOffset = <?php echo $fbinc; ?>;
+	<?php }else { ?>
+		var fbOffset = 0;
+	<?php } ?>	
 	
 	FB.Event.subscribe('edge.create', function(response) {
             
