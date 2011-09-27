@@ -191,11 +191,15 @@ echo '<span>' . $likes = $xml->link_stat->like_count . '</span>';
 					
 			<?php if ((($expired == 1) && (!$categoryIds == null)) || $boutique==1 ) { ?>
 					<section id="productOptions">
+						<?php if($boutique==0){ ?>
 									<p class="startingPrice">Original Price: <strike>Rs. <?php echo number_format($_product->getPrice(), 2) ?></strike></p>
 								<p class="currentPrice">Current Price:<span>
+								<?php } else{ echo '<p class="currentPrice">Price:<span>'}?>
 								<?php if (!$fbprice == null) { ?>
 								<?php echo 'Rs. ' . number_format($fbprice,2); } else { ?>
 								<?php echo 'Rs. ' . number_format($_product->getSpecialprice(), 2); } ?></span></p>
+								
+								
 								<a href="#" class="sizeChart fr">Size Chart</a>
 
 								<br class="clear">
