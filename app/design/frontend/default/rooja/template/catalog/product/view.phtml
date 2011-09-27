@@ -77,9 +77,10 @@ if (!$categoryIds == null){
 <?php if (!$categoryIds == null){
 	$enddate = strtotime(date('y-m-d', strtotime($currentcategory->getSale_end_date())) . ' ' . $currentcategory->getSale_end_time() . ':00');
 	$today = strtotime(date('y-m-d H:i:s'));
-	if ($enddate > $today && $boutique!=true) {
+	if (($enddate > $today) && $boutique!=true) {
 		$expired = 1;
 	}
+	if($boutique){echo "boutique";}
  }; ?>
 <script type="text/javascript">
     var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
