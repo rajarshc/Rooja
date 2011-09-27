@@ -66,10 +66,8 @@ $expired = 1;
 		<?php if (!$enddate == null) {
 				if ($expired == 1) { 
 		echo '<p class="saleEnding">This sale ends ' . date('F jS \a\t g:ia', $enddate);
-		} else { 
-			if($boutique==0{
-				echo '<p class="saleEnding">This sale has expired!</p>';
-			}
+		} elseif($boutique==0) { 
+		echo '<p class="saleEnding">This sale has expired!</p>';
 		}
 		} ?>
 		<?php //var_export($_category); ?>
