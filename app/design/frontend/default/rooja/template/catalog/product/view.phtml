@@ -80,7 +80,7 @@ if (!$categoryIds == null){
 	if (($enddate > $today) && $boutique!=true) {
 		$expired = 1;
 	}
-	if($boutique){echo "boutique";}
+	if($boutique){$expired = 0;}
  }; ?>
 <script type="text/javascript">
     var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
