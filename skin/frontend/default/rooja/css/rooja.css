@@ -631,7 +631,7 @@ h3 .product-name {
 .product .productCore .productName{display:none;color:#fff;padding:6px 10px;background:url(../images/bgs/gray-opacity-photo-diag.png) repeat;text-align:right;position:absolute;bottom:40px;width:210px;margin-left:-10px;}
 .productCore .numLikes{float:left;margin-top:10px;background:url(../images/icons/thumbs-up.png) no-repeat top left;padding-left:28px;height:20px;line-height:20px;font-size:1.2em;color:#fff;}
 .productCore .price{float:right;text-align:right;width:140px;font-family:"ltc-bodoni-175-1","ltc-bodoni-175-2", georgia, serif;color:#b4adb3;font-size:1.4em;margin-bottom:0;}
-.boutiqueSale .productCore .price{margin-top:8px;}
+.boutiqueSale .productCore .price{margin-top:10px;}
 .productCore .price span.livePrice{font-size:1.71em;display:block; color:#fff;text-decoration: none;}
 .productCore .price span {text-decoration:line-through;}
 .productCore.soldOut .price{text-decoration:none;}
