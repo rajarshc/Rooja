@@ -34,6 +34,11 @@
 <?php
     $_helper    = $this->helper('catalog/output');
     $_category  = $this->getCurrentCategory();
+	//get parent id
+	$boutique = 0;
+	$parentCat = Mage::getBlockSingleton('catalog/navigation')->getCurrentCategory()->parent_id;
+	if($parentCat==5){$boutique = 1;echo "boutique";}
+	
     $_imgHtml   = '';
     if ($_imgUrl = $_category->getImageUrl()) {
         $_imgHtml = '<p class="category-image"><img src="'.$_imgUrl.'" alt="'.$this->htmlEscape($_category->getName()).'" title="'.$this->htmlEscape($_category->getName()).'" /></p>';

@@ -35,10 +35,7 @@
 <?php
     $_productCollection=$this->addAttribute('rl_price')->getLoadedProductCollection();
     $_helper = $this->helper('catalog/output');
-	//get parent id
-	$boutique = 0;
-	$parentCat = Mage::getBlockSingleton('catalog/navigation')->getCurrentCategory()->parent_id;
-	if($parentCat==5){$boutique = 1;echo "boutique";}
+	
 ?> 
 <?php if(!$_productCollection->count()): ?>
 <section id="saleProducts" class="col3 fl">
