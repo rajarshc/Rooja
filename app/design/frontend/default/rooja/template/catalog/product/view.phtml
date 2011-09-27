@@ -64,7 +64,7 @@ jQuery(function() {
 //get parent id
 $boutique = false;
 $parentCat = Mage::getBlockSingleton('catalog/navigation')->getCurrentCategory()->parent_id;
-if($parentCat==5){$boutique = true;echo "boutique";}
+if($parentCat==5){$boutique = true;}
 	
 if (!$categoryIds == null){
 	foreach($categoryIds as $categoryId) {
@@ -77,7 +77,7 @@ if (!$categoryIds == null){
 <?php if (!$categoryIds == null){
 	$enddate = strtotime(date('y-m-d', strtotime($currentcategory->getSale_end_date())) . ' ' . $currentcategory->getSale_end_time() . ':00');
 	$today = strtotime(date('y-m-d H:i:s'));
-	if ($enddate > $today) {
+	if ($enddate > $today && !$boutique) {
 		$expired = 1;
 	}
  }; ?>
