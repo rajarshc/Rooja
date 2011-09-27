@@ -66,6 +66,7 @@ foreach ($categories as $_category){
     echo '<li><a href="'.$_category->getURL().'">' . $_category->getName() . '</a>';
     echo '<div><ul>';
         $_category->getId(); // category id
+		if($_category->getId() !=5){
         foreach($_category->getChildren() as $subcategory){
 		$c = Mage::getModel('catalog/category')->load($subcategory->getId());
             if($c->getIsActive()){ // check if category is active
@@ -108,6 +109,14 @@ foreach ($categories as $_category){
 				}
             }
         }
+}else{
+	foreach($_category->getChildren() as $subcategory){
+	$c = Mage::getModel('catalog/category')->load($subcategory->getId());
+        if($c->getIsActive()){ // check if category is active
+			echo '<li><a href="'. $c->getURL() .'">' . $c->getName() . '</a></li>';
+		}
+	}
+}
 					$j=1;
 
 	echo '</ul></div></li>';
