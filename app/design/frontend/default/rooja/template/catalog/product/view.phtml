@@ -159,6 +159,7 @@ if (!$categoryIds == null){
 			</section>
 			
 			<section id="purchaseProduct" class="col1 fl noMargin">
+				<?php if($boutique==0){ ?>
 				<section id="reverseAuction">
 					
 					<p id="likeThis">
@@ -185,9 +186,10 @@ echo '<span>' . $likes = $xml->link_stat->like_count . '</span>';
 						<p>Want to see the price drop? Like this item!</p>
 					</figure>
 				</section>
-
+			
+			<?php } ?>
 					
-			<?php if (($expired == 1) && (!$categoryIds == null)) { ?>
+			<?php if ((($expired == 1) && (!$categoryIds == null)) || $boutique==1 ) { ?>
 					<section id="productOptions">
 									<p class="startingPrice">Original Price: <strike>Rs. <?php echo number_format($_product->getPrice(), 2) ?></strike></p>
 								<p class="currentPrice">Current Price:<span>
@@ -212,7 +214,7 @@ echo '<span>' . $likes = $xml->link_stat->like_count . '</span>';
 
 
 
-			<?php if ($expired != 1) {?>
+			<?php if ($expired != 1 && $boutique==0) {?>
 
 						<section id="purchaseProduct" class="col1 fl noMargin">
 									<p id="expired">Expired</p>
