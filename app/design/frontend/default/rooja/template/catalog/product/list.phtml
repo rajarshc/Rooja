@@ -35,7 +35,7 @@
 <?php
     $_productCollection=$this->addAttribute('rl_price')->getLoadedProductCollection();
     $_helper = $this->helper('catalog/output');
-	
+	echo $boutique;
 ?> 
 <?php if(!$_productCollection->count()): ?>
 <section id="saleProducts" class="col3 fl">
