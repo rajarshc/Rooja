@@ -80,7 +80,7 @@ if (!$categoryIds == null){
 	if (($enddate > $today) && $boutique==0) {
 		$expired = 1;
 	}
-	if($boutique==1){$expired = 0;}
+	
  }; ?>
 <script type="text/javascript">
     var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
@@ -96,11 +96,13 @@ if (!$categoryIds == null){
 			<?php if ($expired == 1) { ?>
 				<h2 id="saleDetails"><?php echo $currentcategory->getName(); ?> ends <?php echo date('F jS \a\t g:ia', $enddate); ?></h2>
 			<?php } else { ?>
-				<h2 id="saleDetails">This sale has expired!</h2>
+				<?php if($boutique==0){ ?>
+					<h2 id="saleDetails">This sale has expired!</h2>
+				<?php }else{ ?>
+					<h2 id="saleDetails"><?php echo $currentcategory->getName(); ?></h2>
+				<?php } ?>
 			<?php } ?>
-		<?php } else { ?>
-		<h2 id="saleDetails">This sale has expired!</h2>
-		<?php } ?>
+		
 		<?php if (!$categoryIds == null){ ?>
 		<a href="<?php echo $currentcategory->getUrl(); ?>" class="backTo fl" title="Back to sale page">Back to sale page</a>
 		<?php }else { ?>
