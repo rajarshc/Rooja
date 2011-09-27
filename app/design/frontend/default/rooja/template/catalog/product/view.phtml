@@ -62,9 +62,9 @@ jQuery(function() {
 </script>
 <?php $categoryIds = $_product->getCategoryIds();
 //get parent id
-$boutique = false;
+$boutique = 0;
 $parentCat = Mage::getBlockSingleton('catalog/navigation')->getCurrentCategory()->parent_id;
-if($parentCat==5){$boutique = true;}
+if($parentCat==5){$boutique = 1;}
 	
 if (!$categoryIds == null){
 	foreach($categoryIds as $categoryId) {
@@ -77,10 +77,10 @@ if (!$categoryIds == null){
 <?php if (!$categoryIds == null){
 	$enddate = strtotime(date('y-m-d', strtotime($currentcategory->getSale_end_date())) . ' ' . $currentcategory->getSale_end_time() . ':00');
 	$today = strtotime(date('y-m-d H:i:s'));
-	if (($enddate > $today) && $boutique!=true) {
+	if (($enddate > $today) && $boutique==0) {
 		$expired = 1;
 	}
-	if($boutique){$expired = 0;}
+	if($boutique==1){$expired = 0;}
  }; ?>
 <script type="text/javascript">
     var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
@@ -88,7 +88,7 @@ if (!$categoryIds == null){
 <?php echo $this->getChildHtml('topcart'); ?>
     <form action="<?php echo $this->getSubmitUrl($_product) ?>" method="post" id="product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
 
-<section id="saleDetails"><?php echo $boutique; ?>
+<section id="saleDetails">
 	<div class="container">
 		<a href="#mainFooter" class="needAssistance fr noMargin" title="Need Assistance? Talk to a live rep"><img src="<?php echo $this->getSkinUrl('images/icons/question-mark.png'); ?>" alt="Question mark icon"> Need Assistance</a>
 <div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
