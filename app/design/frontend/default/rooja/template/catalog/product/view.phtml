@@ -102,7 +102,9 @@ if (!$categoryIds == null){
 					<h2 id="saleDetails"><?php echo $currentcategory->getName(); ?></h2>
 				<?php } ?>
 			<?php } ?>
-		
+		<?php } else { ?>
+		<h2 id="saleDetails">This sale has expired!</h2>
+		<?php } ?>
 		<?php if (!$categoryIds == null){ ?>
 		<a href="<?php echo $currentcategory->getUrl(); ?>" class="backTo fl" title="Back to sale page">Back to sale page</a>
 		<?php }else { ?>
