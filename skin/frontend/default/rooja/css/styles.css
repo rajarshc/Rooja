@@ -153,7 +153,7 @@ ul,ol         { list-style:none; }
 
 /* Global Styles ========================================================================= */
 /* Form Elements */
-input,select,textarea,button { font:12px Arial, Helvetica, sans-serif; vertical-align:middle; color:#000; }
+input,select,textarea,button { font:12px Arial, Helvetica, sans-serif; vertical-align:middle; color:#000;cursor:pointer; }
 input.input-text,select,textarea { background:#fff; border:1px solid #ddd; }
 input.input-text,textarea { padding:2px; }
 select { padding:1px; }

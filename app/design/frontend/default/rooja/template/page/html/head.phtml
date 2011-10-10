@@ -61,7 +61,7 @@ P.S. Hurry!"/>
 <meta property="og:url" content="<?php echo $this->helper('core/url')->getCurrentUrl() ?>"/>
 <meta property="og:description" content="Visit rooja.com now and check out this designer sale, plus many more great designers at up to 60% off retail. Discover new sales every day and get access to their luxury boutique. Membership is free, and you’re invited."/>
 <?php if(trim(Mage::registry('current_category')->getImageUrl()=="")): ?>
-<meta property="og:image" content="http://rooja.com/_images/rooja-logo-fb.png"/>
+<meta property="og:image" content="<?php echo $this->getSkinUrl('images/icons/rooja-logo-fb.png') ?>" />
 <?php else: ?>
 <meta property="og:image" content="<?php echo trim(Mage::registry('current_category')->getImageUrl())?>"/>
 <?php endif; ?>
@@ -76,7 +76,7 @@ P.S. Hurry!"/>
 <meta property="og:description" content="Thought of you guys when I saw this. Visit Rooja.com its got some good fashion picks from internationally known designers and brands at up to 60% off. You can thank me later, for now join the club. Membership is free ;) 
 
 P.S. Hurry!"/>
-<meta property="og:image" content="http://rooja.com/_images/rooja-logo-fb.png"/>
+<meta property="og:image" content="<?php echo $this->getSkinUrl('images/icons/rooja-logo-fb.png') ?>"/>
 <?php endif; ?>
 <?php if(Mage::app()->getFrontController()->getRequest()->getRouteName() == 'customer' || Mage::app()->getFrontController()->getRequest()->getRouteName() == 'rewardsref') : ?>
 	<meta property="og:title" content="Join Rooja, a members only shopping club and luxury boutique."/>

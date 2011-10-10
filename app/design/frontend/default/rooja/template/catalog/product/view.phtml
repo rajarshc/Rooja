@@ -159,7 +159,7 @@ if (!$categoryIds == null){
 			</section>
 			
 			<section id="purchaseProduct" class="col1 fl noMargin">
-				<?php if($boutique==0){ ?>
+				
 				<section id="reverseAuction">
 					
 					<p id="likeThis">
@@ -173,27 +173,22 @@ $xml = file_get_contents($url);
 $xml = simplexml_load_string($xml);
 echo '<span>' . $likes = $xml->link_stat->like_count . '</span>';
 ?> people like this</p>
-					<?php /* hidding this 
-					<a href="#" id="likeBtn" class="tr fr">Like this item</a></p>
-					*/ ?>
-										<?php /* To be finalized
-
-					<?php echo 'rl_floor:' . $_helper->productAttribute($_product, $_product->getRl_floor(), 'rl_floor') ?>
-					<?php echo 'rl_inc:' . $_helper->productAttribute($_product, $_product->getRl_inc(), 'rl_inc') ?>
-					<?php echo 'rl_price:' . $_helper->productAttribute($_product, $_product->getRl_price(), 'rl_price') ?>
-					*/ ?>
+					
+					<?php if($boutique==0){ ?>
 					<figure id="likeDetails" class="sideAd">
 						<p>Want to see the price drop? Like this item!</p>
 					</figure>
+					<?php } ?>
 				</section>
 			
-			<?php } ?>
+			
 					
 			<?php if ((($expired == 1) && (!$categoryIds == null)) || $boutique==1 ) { ?>
 					<section id="productOptions">
-						<?php if($boutique==0){ ?>
-									<p class="startingPrice">Original Price: <strike>Rs. <?php echo number_format($_product->getPrice(), 2) ?></strike></p>
-								<p class="currentPrice">Current Price:<span>
+							<?php if(!$_product->getPrice()==null){ ?>
+							<p class="startingPrice">Original Price: <strike>Rs. <?php echo number_format($_product->getPrice(), 2) ?></strike></p><?php } ?>
+								<?php if($boutique==0){ ?>
+									<p class="currentPrice">Current Price:<span>
 								<?php } else{ echo '<p class="currentPrice">Price:<span>';}?>
 								<?php if (!$fbprice == null) { ?>
 								<?php echo 'Rs. ' . number_format($fbprice,2); } else { ?>
@@ -358,7 +353,8 @@ echo '<span>' . $likes = $xml->link_stat->like_count . '</span>';
 		<br class="clear">
 	</div>
 </section>
-				<script type="text/javascript">
+<?php if($boutique==0){ ?>
+<script type="text/javascript">
 				function formatCurrency(num) {
 					num = num.toString().replace(/\D/g,'');
 					if(isNaN(num))
@@ -409,6 +405,7 @@ echo '<span>' . $likes = $xml->link_stat->like_count . '</span>';
    
      
 </script>
+<?php } ?>
 <script type="text/javascript">
 	jQuery(document).ready(function(){
 			jQuery("a#detailsTab").click(

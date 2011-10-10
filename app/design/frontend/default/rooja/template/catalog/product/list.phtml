@@ -47,7 +47,9 @@
 <?php else: ?>
 <section id="saleProducts" class="col3 fl<?php if($boutique==1){echo ' boutiqueSale';}?>">
     <?php $i=1; foreach ($_productCollection as $_product): ?>
-	<?php $fbprice = $_helper->productAttribute($_product, $_product->getRl_price(), 'rl_price'); ?>
+	<?php $fbprice = $_helper->productAttribute($_product, $_product->getRl_price(), 'rl_price');
+	 	$thePrice = $_product->getPrice();
+	?>
 	<?php //echo $fbprice; ?>
 	<?php //var_export($_product); ?>
 		<article class="product col1 fl <?php if ($i % 3 == 0){ echo 'noMargin'; } ?>">
@@ -74,7 +76,7 @@ echo $likes = $xml->link_stat->like_count;
 					<?php echo 'Rs. ' . number_format($_product->getSpecialprice(), 2); } ?>
 				
 				</span><span> 
-				<?php if(!$_product->isSaleable()){ echo 'Sold Out'; } elseif($boutique==0) { echo 'Rs. ' . number_format($_product->getPrice(), 2); } ?></span></p>
+				<?php if(!$_product->isSaleable()){ echo 'Sold Out'; } elseif(!$thePrice==null) { echo 'Rs. ' . number_format($thePrice, 2); } ?></span></p>
 				<h2 class="productName"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h2>
 			</article>
 		</article>
