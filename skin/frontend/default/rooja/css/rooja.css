@@ -23,7 +23,7 @@ body{
 	font-size: .625em;
 	line-height:.625em;
 	color:#000;
-	background:;
+	min-width:1000px;
 }
 html, body {height: 100%;}
 
@@ -698,7 +698,8 @@ h2#saleDetails{color:#c60;margin:22px 0 5px;}
 .more-views{display:block;float:left;width:75px;margin-right:10px;}
 .more-views h2{display:none;}
 .more-views ul li{/*float:left;*/}
-.more-views ul li img{border:1px solid #ccc;margin-bottom:5px;}
+.more-views ul li img{border:1px solid #fff;margin-bottom:5px;}
+.more-views ul li a:hover img{border:1px solid #431f4c;margin-bottom:5px;}
 
 #gallery .product-image-zoom{position:relative;width:395px;height:640px;overflow:hidden;float:right;}
 #gallery .product-image-zoom img{position:absolute;top:0;left:0;}
