@@ -11,7 +11,7 @@
  
     if($_POST['email']!='' && valid_email($_POST['email'])==TRUE && $_POST['yourName']!='')
     {
-        $to = "support@rooja.in";
+        $to = "emerson@gophilosophie.com";
         $headers =  'From: '. clean_var($_POST['contactEmail']) .''. "\r\n" .
                 'Reply-To: '. clean_var($_POST['contactEmail']) .'' . "\r\n" .
         $subject = "[Rooja] ". clean_var($_POST['subject']);
@@ -23,10 +23,10 @@
 			header( "Location: http://rooja.com/" );
         }
         else {
-            header( "Location: http://rooja.com/" );
+            header( "Location: http://rooja.com/error" );
         }
     }
     else {
-         header( "Location: http://rooja.com/" );
+         header( "Location: http://rooja.com/error" );
     }
 ?>
