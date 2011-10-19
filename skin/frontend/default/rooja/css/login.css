@@ -339,7 +339,7 @@ p {font-size:1.3em;line-height:1.5em;margin-bottom:16px;}.static h2, .static h3{
     font-family: helvetica, arial, sans-serif;
 }
 #contactWrapper form textarea{height:70px;}
-#submitBtn{
+#contactWrapper form input#submitBtn{
     width:100px;
     text-align:center;
     background-color:#2e1a33;
