@@ -29,14 +29,14 @@ li.error-msg, li.success-msg {
 .register .error-msg{text-align:left;padding-left:10px;}
 .register .error-msg li{margin-bottom:8px;}
 
-#notifyWrapper div.wrapper, #aboutWrapper div.wrapper{
+#notifyWrapper div.wrapper, #aboutWrapper div.wrapper, #contactWrapper div.wrapper{
     width:380px;
     padding:15px;
     background:#51315c;
     background:rgba(81,49,92,.9);
     margin:50px auto 0;
 }
-#aboutWrapper div.wrapper{margin:0;background:#51315c;}
+#aboutWrapper div.wrapper, #contactWrapper div.wrapper{margin:0;background:#51315c;}
 
 #loginTabs{margin:-45px 0 0px -15px;}
 #loginTabs ul li{display:inline;}
