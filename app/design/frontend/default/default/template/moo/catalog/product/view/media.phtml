@@ -30,6 +30,10 @@
 <script type="text/javascript">
 	jQuery(document).ready(function(){
 		jQuery("#cloudZoom").bind("click", function(){return false;});
+		jQuery(".more-views ul li").bind("click", function(){
+			jQuery(".more-views ul li").removeClass('selected');
+			jQuery(this).addClass('selected');
+		});
 	});
 </script>
 
