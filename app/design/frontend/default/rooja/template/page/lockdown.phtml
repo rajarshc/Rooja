@@ -159,7 +159,7 @@ P.S. Hurry!"/>
 		<section id="content" class="body static">
 			<h2 id="contactHeader" class="tr">Contact Us</h2>
 			<p>For general inquiries, help &amp; support and press and media requests please use the form below or email us at <a href="mailto:support@rooja.in">support@rooja.in</a>.</p>
-			<form method="post" action="http://clients.actsofphilosophie.com/rooja/contact-submit.php">
+			<form method="post" action="<?php echo $this->getSkinUrl('contact-submit.php') ?>">
 				<label for="yourName">Your Name:</label>
 				<input type="text" id="yourName" name="yourName">
 
