@@ -100,6 +100,11 @@ h1#logo{
     width:303px;height:16px;
     margin-bottom:15px;
 }
+#contactHeader{
+    background-image:url(../_images/contact-us.png);
+    width:161px;height:19px;
+    margin-bottom:18px;
+}
 
 form{
 /*    border-bottom:5px solid #3b2243;*/
@@ -315,7 +320,35 @@ a.selected{color:;}
 h1 {font-size: ; color:  ; margin-bottom: ; font-weight:bold;}
 h2 {font-size: 1.8em; color:  ; margin-bottom: ; font-weight:bold;}
 h3 {font-size: 1.5em; font-weight: bold; color:  ; margin: ;}
-p {font-size:1.3em;line-height:1.5em;margin-bottom:16px;}
+p {font-size:1.3em;line-height:1.5em;margin-bottom:16px;}.static h2, .static h3{
+    margin:18px 0;
+}
+
+#contactWrapper form input, #contactWrapper form textarea{
+    background-color:#684e70;
+    background-image:none;
+    color:#2e1a33;
+    font-size:1.4em;
+    width:360px;
+    padding:6px 10px;
+    height:auto;
+    margin:0 0 18px;
+    text-indent:0;
+    outline:none;
+    border:none;
+    font-family: helvetica, arial, sans-serif;
+}
+#contactWrapper form textarea{height:70px;}
+#submitBtn{
+    width:100px;
+    text-align:center;
+    background-color:#2e1a33;
+    color:#ddd;
+    text-transform:uppercase;
+    font-size:1.6em;
+    padding:10px;
+    cursor:pointer;
+}
 
 /* UTILITY CLASSES */
 .fl {float: left;}
