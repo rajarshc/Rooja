@@ -702,8 +702,9 @@ h2#saleDetails{color:#c60;margin:22px 0 5px;}
 .more-views ul li a:hover img{border:1px solid #431f4c;margin-bottom:5px;}
 
 #gallery .product-image-zoom{position:relative;width:395px;height:640px;overflow:hidden;float:right;}
-#gallery .product-image-zoom img{position:absolute;top:0;left:0;}
-#gallery .product-image-zoom #wrap{z-index:0 !important;}
+#gallery .product-image-zoom img{position:absolute;top:0;left:0;cursor:move !important;}
+#gallery .product-image-zoom a{cursor:move !important;}
+#gallery .product-image-zoom #wrap{z-index:0 !important;cursor:move !important;}
 
 .awrma-account{width:535px;}
 .awrma-account .form-list{margin:20px 0;}
