@@ -48,12 +48,12 @@ li.error-msg, li.success-msg {
 #mainHeader.login{padding-top:15px;margin-top:30px;}
 h1#logo{
     background-image:url(../images/splash/rooja-logo.png);
-    width:179px;height:85px;
+    width:179px;height:87px;
     margin:0px auto 12px;
 }
 #highlight{
-    background-image:url(../images/splash/about-blurb3.png);
-     width:353px;height:12px;
+    background-image:url(../images/splash/about-blurb4.png);
+     width:314px;height:35px;
      margin:0 auto 38px;
 }
 #members{
