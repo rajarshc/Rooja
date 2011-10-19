@@ -41,7 +41,7 @@
 
 <style type="text/css">
 	.product-img-box .more-views li.slide-current a{ border:2px solid #aaa; }
-	.product-img-box .product-image-zoom img { cursor: pointer; }
+	.product-img-box .product-image-zoom img { cursor: move; }
 	#slide-loader{ visibility:hidden; position:absolute; top:auto; left:auto; right:2px; bottom:2px; }
 </style>
 
@@ -86,7 +86,7 @@ return false;
     <ul>
     <?php foreach ($_gallery as $_image): ?>
         <li>
-            <a href="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'image', $_image->getFile()); ?>" onclick="slide('<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'image', $_image->getFile())->keepFrame(false)->resize($_resize) ?>',<?php echo ($s = isset($s) ? ++$s : 0) ?>,'<?php echo $this->getGalleryUrl($_image) ?>'); return false;"><img src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image->getFile())->keepFrame(false)->resize(75); ?>" alt="<?php echo $this->htmlEscape($_image->getLabel()) ?>" title="<?php echo $this->htmlEscape($_image->getLabel()) ?>" /></a>
+            <a href="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'image', $_image->getFile()); ?>" onclick="slide('<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'image', $_image->getFile())->keepFrame(false)->resize($_resize) ?>',<?php echo ($s = isset($s) ? ++$s : 0) ?>,'<?php echo $this->getGalleryUrl($_image) ?>'); return false;"><img src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image->getFile())->keepFrame(false)->resize(75,112); ?>" alt="<?php echo $this->htmlEscape($_image->getLabel()) ?>" title="<?php echo $this->htmlEscape($_image->getLabel()) ?>" /></a>
         </li>
     <?php endforeach; ?>
     </ul>
