@@ -59,7 +59,7 @@
 $i = 1;
 $j = 1;
 $categories = Mage::helper('catalog/category')->getStoreCategories();
-$fivedays = date('y-m-d H:G:00', strtotime("+5 days"));
+$twodays = date('y-m-d H:G:00', strtotime("+2 days"));
 $today = date('y-m-d H:G:00');
 foreach ($categories as $_category){
     if($_category->hasChildren()){
@@ -74,7 +74,7 @@ foreach ($categories as $_category){
 	                $startdate = date('y-m-d', strtotime($c->getSale_start_date())) . ' ' . $c->getSale_start_time() . ':00';
 					$enddate = date('y-m-d', strtotime($c->getSale_end_date())) . ' ' . $c->getSale_end_time() . ':00';
 					//var_dump($c);
-					if ($enddate > $today && $enddate > $fivedays && $startdate < $today) {
+					if ($enddate > $today && $enddate > $twodays && $startdate < $today) {
 						if ($i == 1) {
 							echo '<li class="navSectTitle">New Sales</li>';
 							echo '<li><a href="'. $c->getURL() .'">' . $c->getName() . '</a></li>';
@@ -97,7 +97,7 @@ foreach ($categories as $_category){
 	                $startdate = date('y-m-d', strtotime($c->getSale_start_date())) . ' ' . $c->getSale_start_time() . ':00';
 					$enddate = date('y-m-d', strtotime($c->getSale_end_date())) . ' ' . $c->getSale_end_time() . ':00';
 					//var_dump($c);
-					if ($enddate > $today && $enddate < $fivedays && $startdate < $today) {
+					if ($enddate > $today && $enddate < $twodays && $startdate < $today) {
 						if ($j == 1) {
 							echo '<li class="navSectTitle">Ending Soon</li>';
 							echo '<li><a href="'. $c->getURL() .'">' . $c->getName() . '</a></li>';
