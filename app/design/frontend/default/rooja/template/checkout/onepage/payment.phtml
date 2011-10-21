@@ -79,3 +79,15 @@ var payment = new Payment('co-payment-form', '<?php echo $this->getUrl('checkout
     payment.currentMethod = "<?php echo $this->getChild('methods')->getSelectedMethodCode() ?>";
 //]]>
 </script>
+<script type="text/javascript">
+	 // add functionality for the onclicks here
+	  jQuery("#p_method_cashondelivery").click(function() {
+		jQuery("#hintText").html('We verify all Cash on Delivery orders over the phone after you have made a purchase and start processing the order. Our customer service team will contact you within 24 hours and alternatively you can call us at +91-11-45673347 to verify your order. Failing verification of the order will result in a cancellation. Failure to accept a verified order will revoke your Cash On Delivery privileges on future orders.');
+		jQuery("#hintImg").html('<img src="<?php echo $this->getSkinUrl('images/cod.png'); ?>" alt="Security" id="secureLogos">');
+	  });
+
+	  jQuery("#p_method_Avenues_standard").click(function() {
+		jQuery("#hintText").html('You will be redirected to CCAvenue our secure online payment-processing partner.');
+	   jQuery("#hintImg").html('<img src="<?php echo $this->getSkinUrl('images/cc.png'); ?>" alt="Security" id="secureLogos">');
+	  });
+</script>
