@@ -40,7 +40,7 @@ if(!window.toogleVisibilityOnObjects) {
 
         } else {
             objects.each(function(item){
-                $(item).invoke('hide');
+                //$(item).invoke('hide');
                 $$('#' + item + ' .input-text').each(function(sitem) {
                     sitem.addClassName('validation-passed');
                 });
@@ -109,7 +109,7 @@ billing.onSave = function(evt){
             <label for="allow_gift_messages"><?php echo $this->__('Yes') ?></label>
         </p>
     </div>
-    <div class="gift-messages-form" id="allow-gift-message-container">
+    <div class="gift-messages-form" id="allow-gift-message-container" style="display:none;">
         <div class="inner-box">
             <?php if ($this->isMessagesAvailable()): ?>
                 <h4><?php echo $this->__('Gift Options for the Entire Order.'); ?></h4>
