@@ -40,7 +40,7 @@ if(!window.toogleVisibilityOnObjects) {
 
         } else {
             objects.each(function(item){
-                //$(item).hide();
+                $(item).invoke('hide');
                 $$('#' + item + ' .input-text').each(function(sitem) {
                     sitem.addClassName('validation-passed');
                 });
