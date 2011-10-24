@@ -43,11 +43,10 @@
 			$("#s_method_flatrate_flatrate").click(function() {
 				$("#checkoutStep2").show();
 			});*/
-			console.log('here');
-			alert('hey');
+			
 			$("#co-payment-form input").change(function() {
 				
-				console.log('change', $(this));
+				alert('change' + $(this).attr('id'));
 				
 				if($('#p_method_cashondelivery').is(':checked')) { 
 					$("#hintText").html('We verify all Cash on Delivery orders over the phone after you have made a purchase and start processing the order. Our customer service team will contact you within 24 hours and alternatively you can call us at +91-11-45673347 to verify your order. Failing verification of the order will result in a cancellation. Failure to accept a verified order will revoke your Cash On Delivery privileges on future orders.');
