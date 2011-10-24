@@ -585,7 +585,7 @@ h3 .product-name {
 .homeAd p{margin-bottom:0px;}
 
 #extraSales{overflow:hidden;padding-bottom:30px;}
-#endingSoon h2{text-transform:uppercase;color:#c60;margin:15px 0;overflow:hidden;}
+#endingSoon h2, #boutiquesHome h2{text-transform:uppercase;color:#c60;margin:15px 0;overflow:hidden;}
 
 .saleDetails{margin-right:18px;text-align:center;}
 .saleDetails img{margin-bottom:15px;}
