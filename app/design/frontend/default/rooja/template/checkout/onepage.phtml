@@ -44,7 +44,7 @@
 				$("#checkoutStep2").show();
 			});*/
 			
-			$("#co-payment-form input").change(function() {
+			$("#co-payment-form input").live('change', function() {
 				
 				alert('change' + $(this).attr('id'));
 				
