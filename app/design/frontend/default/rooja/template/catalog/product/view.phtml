@@ -142,8 +142,10 @@ if (!$categoryIds == null){
 					</div>
 					<?php $catName = $currentcategory->getName(); 
 						$catName = str_replace("'", "\'", $catName);
+						$catName = str_replace('"', '\"', $catName);
 						$saleName = $_helper->productAttribute($_product, $_product->getName(), 'name');
 						$saleName = str_replace("'", "\'", $saleName);
+						$saleName = str_replace('"', '\"', $saleName);
 					?>
 					<script type="text/javascript">
 						var addthis_config = {"data_track_clickback":true};
