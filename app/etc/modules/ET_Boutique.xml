@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Rooja
+ *
+ * Adding boutiques feature Page
+ *
+ */
+-->
+<config>
+  <modules>
+    <ET_Boutique>
+      <active>true</active>
+        <codePool>local</codePool>
+    </ET_Boutique>
+  </modules>
+</config>

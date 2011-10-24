@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<config>
+
+  <modules>
+    <ET_Boutique>
+      <version>0.1.0</version>
+    </ET_Boutique>
+  </modules>
+
+  <global>
+    <resources>
+
+      <!-- Declaring module setup handler -->
+      <!-- [start] -->
+      <et_boutique_setup>
+        <setup>
+          <module>ET_Boutique</module>
+ 			<class>Mage_Catalog_Model_Resource_Eav_Mysql4_Setup</class>
+        </setup>
+        <connection>
+          <use>core_setup</use>
+        </connection>
+      </et_boutique_setup>
+      <!-- [End] -->
+
+      <et_boutique_write>
+        <connection>
+          <use>core_write</use>
+        </connection>
+      </et_boutique_write>
+
+      <et_boutique_read>
+        <connection>
+          <use>core_read</use>
+        </connection>
+      </et_boutique_read>
+
+    </resources>
+  </global>
+</config>

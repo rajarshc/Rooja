@@ -184,6 +184,7 @@ foreach ($sortedArrayByDates as $date => $array)
 <br class="clear" />
 		<section id="boutiquesHome" class="clear">
 			<h2>Boutiques</h2>
+			
 			<?php 
 			$i = 1;
 			$categories = Mage::helper('catalog/category')->getStoreCategories();
@@ -194,7 +195,7 @@ foreach ($sortedArrayByDates as $date => $array)
 			        foreach($_category->getChildren() as $subcategory){
 					$c = Mage::getModel('catalog/category')->load($subcategory->getId());
 			            if($c->getIsActive()){ // check if category is active
-						
+							if ($c->getSale_start_time() == 'Y' || $c->getSale_start_time() == 'Yes' ) {
 								
 									echo '<article class="saleDetails fl">';
 									
