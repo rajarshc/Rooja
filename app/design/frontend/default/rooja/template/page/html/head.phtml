@@ -33,8 +33,6 @@
 
 <!--Default OG Meta tags-->
 <meta property="og:site_name" content="Rooja Fashion"/>
-<meta property="og:locality" content="India"/>
-<meta property="og:country-name:" content="India"/>
 <meta property="fb:app_id" content="117824744984092"/>
 
 
@@ -63,7 +61,7 @@ P.S. Hurry!"/>
 <?php if(trim(Mage::registry('current_category')->getImageUrl()=="")): ?>
 <meta property="og:image" content="<?php echo $this->getSkinUrl('images/icons/rooja-logo-fb.png') ?>" />
 <?php else: ?>
-<meta property="og:image" content="<?php echo trim(Mage::registry('current_category')->getImageUrl())?>"/>
+<meta property="og:image" content="<?php echo trim(Mage::registry('current_category')->getThumbnailUrl())?>"/>
 <?php endif; ?>
 <?php endif; ?>
 <?php endif; ?>
