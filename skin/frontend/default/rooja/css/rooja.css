@@ -598,7 +598,7 @@ h3 .product-name {
 .upcomingDate h4{padding:0 0 8px;border-bottom:1px solid #555;margin-bottom:8px;}
 .upcomingDate ul li{font-size:1.3em;padding-bottom:2px;line-height:1.1em;}
 
-#boutiquesHome{margin-top:15px;}
+#boutiquesHome{margin-top:15px;overflow:hidden;}
 
 /* ~~~~~ SALES  ~~~~~ */
 #saleInfo{padding-top:25px;}
