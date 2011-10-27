@@ -348,6 +348,7 @@ p {font-size:1.3em;line-height:1.5em;margin-bottom:16px;}.static h2, .static h3{
     font-size:1.6em;
     padding:10px;
     cursor:pointer;
+    border:none;
 }
 
 /* UTILITY CLASSES */
