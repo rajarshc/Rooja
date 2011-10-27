@@ -458,9 +458,11 @@ function formatCurrency(num) {
 			 function() {$(".shipping").show();$(".details").hide(); $("#detailsTab").removeClass('selected'); $("#shippingTab").addClass('selected');return false;}
 		);
 		$("a.sizeChart").fancybox({
+			autoScale: true,
 			titleShow: false,
 			padding: 20,
-			overlayColor: "#111"
+			overlayColor: "#111",
+			type: "inline"
 		});
 		
 	});
