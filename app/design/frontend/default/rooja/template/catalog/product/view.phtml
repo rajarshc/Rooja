@@ -41,6 +41,13 @@
 	   '//connect.facebook.net/en_US/all.js';
 	 document.getElementById('fb-root').appendChild(e);
 	}());
+	function addslashes(str) {
+	  str=str.replace(/\'/g,'\\\'');
+	  str=str.replace(/\"/g,'\\"');
+	  str=str.replace(/\\/g,'\\\\');
+	  str=str.replace(/\0/g,'\\0');
+	return str;
+	}
 </script>
 <script type="text/javascript" src="/magento.visual.attribute.js"></script>
 
@@ -143,18 +150,19 @@ if (!$categoryIds == null){
 					<?php $catName = $currentcategory->getName(); 
 						//$catName = str_replace("'", "\'", $catName);
 						//$catName = str_replace('"', '\"', $catName);
-						$catName = addslashes($catName);
+						
 						$saleName = $_helper->productAttribute($_product, $_product->getName(), 'name');
-						echo addslashes($saleName);
-						//echo $saleName;
+						
 						//$saleName = str_replace("'", "\'", $saleName);
 						//$saleName = str_replace('"', '\"', $saleName);
 					?>
 					<script type="text/javascript">
+						var catName = addslashes(<?php echo $catName; ?>);
+						var saleName = addslashes(<?php echo $saleName; ?>);
 						var addthis_config = {"data_track_clickback":true};
 						var addthis_share = { 
 						    templates: {
-						                   twitter: '<?php echo $catName; ?> on Rooja.com. <?php echo $saleName; ?> {{url}} via @RoojaFashion'
+						                   twitter: catName + ' on Rooja.com. '+ saleName + ' {{url}} via @RoojaFashion'
 						               }
 						}
 					</script>
