@@ -445,7 +445,30 @@ function formatCurrency(num) {
 </script>
 <?php } ?>
 <script type="text/javascript">
-	jQuery(document).ready(function(){
+(function ($) {
+	
+	$(document).ready(function() {
+
+		$("a#detailsTab").click(
+			 function() {$(".shipping").hide(); $(".details").show(); $("#detailsTab").addClass('selected'); $("#shippingTab").removeClass('selected');return false;}
+		);
+		$("a#shippingTab").click(
+			 function() {$(".shipping").show();$(".details").hide(); $("#detailsTab").removeClass('selected'); $("#shippingTab").addClass('selected');return false;}
+		);
+		$("a.sizeChart").fancybox({
+			autoScale: true,
+			titleShow: false,
+			href: jQuery('.sizeChartCont').html(),
+			overlayColor: "#111",
+			type: "inline"
+		});
+		
+	});
+
+})(jQ);
+</script>
+<script type="text/javascript">
+	/*jQuery(document).ready(function(){
 			jQuery("a#detailsTab").click(
 				 function() {jQuery(".shipping").hide(); jQuery(".details").show(); jQuery("#detailsTab").addClass('selected'); jQuery("#shippingTab").removeClass('selected');return false;}
 			);
@@ -459,14 +482,14 @@ function formatCurrency(num) {
 				overlayColor: "#111",
 				type: "inline"
 			});
-			/*jQuery('a.sizeChart').live('click', function(){
+			jQuery('a.sizeChart').live('click', function(){
 				newwindow=window.open("", "mywindow1",'height=400,width=500');
 				var sizeWindowContent = jQuery('.sizeChartCont').html();
 				newwindow.document.write(sizeWindowContent);
 				
 				if (window.focus) {newwindow.focus();}
 				return false;
-			});*/
-	 });
+			});
+	 });*/
 			
 </script>
