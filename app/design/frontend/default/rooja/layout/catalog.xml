@@ -184,10 +184,12 @@ Product view
         <reference name="head">
             <action method="addJs"><script>varien/product.js</script></action>
             <action method="addJs"><script>varien/configurable.js</script></action>
-
+			<action method="addJs"><script>jquery/jquery.fancybox-1.3.4.pack.js</script></action>
+			<action method="addCss"><stylesheet>css/jquery.fancybox-1.3.4.css</stylesheet></action>
             <action method="addItem"><type>js_css</type><name>calendar/calendar-win2k-1.css</name><params/><!--<if/><condition>can_load_calendar_js</condition>--></action>
             <action method="addItem"><type>js</type><name>calendar/calendar.js</name><!--<params/><if/><condition>can_load_calendar_js</condition>--></action>
             <action method="addItem"><type>js</type><name>calendar/calendar-setup.js</name><!--<params/><if/><condition>can_load_calendar_js</condition>--></action>
+<action method="addJs"><script>jquery/jquery.fancybox-1.3.4.pack.js</script></action>
         </reference>
         <reference name="content">
             <block type="catalog/product_view" name="product.info" template="catalog/product/view.phtml">
