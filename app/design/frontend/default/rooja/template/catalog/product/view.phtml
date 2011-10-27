@@ -453,14 +453,31 @@ function formatCurrency(num) {
 				 function() {jQuery(".shipping").show();jQuery(".details").hide(); jQuery("#detailsTab").removeClass('selected'); jQuery("#shippingTab").addClass('selected');return false;}
 			);
 	
-			jQuery('a.sizeChart').live('click', function(){
+			/*jQuery('a.sizeChart').live('click', function(){
 				newwindow=window.open("", "mywindow1",'height=400,width=500');
 				var sizeWindowContent = jQuery('.sizeChartCont').html();
 				newwindow.document.write(sizeWindowContent);
 				
 				if (window.focus) {newwindow.focus();}
 				return false;
-			});
+			});*/
 	 });
 			
+</script>
+<script type="text/javascript">
+(function ($) {
+	
+	$(document).ready(function() {
+
+		$("a.sizeChart").fancybox({
+			autoScale: true,
+			titleShow: false,
+			href: ".sizeChartCont",
+			overlayColor: "#111",
+			type: "inline"
+		});
+		
+	});
+
+})(jQ);
 </script>
