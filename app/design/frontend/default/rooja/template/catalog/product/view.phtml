@@ -362,7 +362,7 @@ function formatCurrency(num) {
   var cents;
   var i;
 
-  num = num.toString().replace(/\$|\,/g, '');
+  num = num.toString().replace(/\Rs.|\,/g, '');
   if (isNaN(num)) {
     num = "0";
   }
