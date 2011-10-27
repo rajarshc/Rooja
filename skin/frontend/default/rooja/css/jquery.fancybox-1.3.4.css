@@ -86,6 +86,11 @@
 	margin-bottom:35px;
 }
 
+.catalog-product-view #fancybox-content{
+    background-color:#fff;
+    padding:20px;
+}
+
 #fancybox-hide-sel-frame {
 	position: absolute;
 	top: 0;
