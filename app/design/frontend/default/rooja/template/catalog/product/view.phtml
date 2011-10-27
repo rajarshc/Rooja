@@ -448,7 +448,9 @@ function formatCurrency(num) {
 (function ($) {
 	
 	$(document).ready(function() {
-
+		if(!$('.sizeChartCont').html()){
+			$("a.sizeChart").hide();
+		}
 		$("a#detailsTab").click(
 			 function() {$(".shipping").hide(); $(".details").show(); $("#detailsTab").addClass('selected'); $("#shippingTab").removeClass('selected');return false;}
 		);
