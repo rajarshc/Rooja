@@ -362,7 +362,7 @@ function formatCurrency(num) {
   var cents;
   var i;
 
-  num = num.toString().replace(/\Rs.|\,/g, '');
+  num = num.toString().replace(/\$|\,/g, '');
   if (isNaN(num)) {
     num = "0";
   }
@@ -378,7 +378,7 @@ function formatCurrency(num) {
     num = num.substring(0, num.length - (4 * i + 3)) + ',' + num.substring(num.length - (4 * i + 3));
   }
 
-  return (((sign) ? '' : '-') + '$' + num + '.' + cents);
+  return (((sign) ? '' : '-') + 'Rs.' + num + '.' + cents);
 }
 				/*function formatCurrency(num) {
 					num = num.toString().replace(/\D/g,'');
