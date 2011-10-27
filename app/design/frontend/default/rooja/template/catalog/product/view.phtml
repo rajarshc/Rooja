@@ -357,7 +357,30 @@ echo '<span>' . $likes = $xml->link_stat->like_count . '</span>';
 </section>
 <?php if($boutique==0){ ?>
 <script type="text/javascript">
-				function formatCurrency(num) {
+function toCurrency(num) {
+  var sign;
+  var cents;
+  var i;
+
+  num = num.toString().replace(/\$|\,/g, '');
+  if (isNaN(num)) {
+    num = "0";
+  }
+  sign = (num == (num = Math.abs(num)));
+  num = Math.floor(num * 100 + 0.50000000001);
+  cents = num % 100;
+  num = Math.floor(num / 100).toString();
+  if (cents < 10) {
+    cents = '0' + cents;
+  }
+
+  for (i = 0; i < Math.floor((num.length - (1 + i)) / 3); i++) {
+    num = num.substring(0, num.length - (4 * i + 3)) + ',' + num.substring(num.length - (4 * i + 3));
+  }
+
+  return (((sign) ? '' : '-') + '$' + num + '.' + cents);
+}
+				/*function formatCurrency(num) {
 					num = num.toString().replace(/\D/g,'');
 					if(isNaN(num))
 					num = "0";
@@ -371,7 +394,7 @@ echo '<span>' . $likes = $xml->link_stat->like_count . '</span>';
 					num = num.substring(0,num.length-(4*i+3))+','+
 					num.substring(num.length-(4*i+3));
 					return (((sign)?'':'-') + 'Rs. ' + num + '.' + cents);
-				}
+				}*/
 	//jQuery.noConflict();
 	 /*var fbOffset = <?php echo number_format($fbinc, 2); ?>;
 	 var fbPriceJS = <?php echo number_format($fbprice, 2); ?>;*/
