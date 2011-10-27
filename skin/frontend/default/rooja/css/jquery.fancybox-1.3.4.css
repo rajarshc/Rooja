@@ -89,6 +89,11 @@
 .catalog-product-view #fancybox-content{
     background-color:#fff;
     padding:20px;
+    border-color:#fff;
+}
+.catalog-product-view #fancybox-content div{
+    overflow:hidden !important;
+    font-size:13px;
 }
 
 #fancybox-hide-sel-frame {
