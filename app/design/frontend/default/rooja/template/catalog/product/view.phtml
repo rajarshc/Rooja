@@ -141,11 +141,13 @@ if (!$categoryIds == null){
 					<a class="addthis_button_email"><img src="<?php echo $this->getSkinUrl('images/icons/email-24.png'); ?>" alt="facebook icon"></a>
 					</div>
 					<?php $catName = $currentcategory->getName(); 
-						$catName = str_replace("'", "\'", $catName);
-						$catName = str_replace('"', '\"', $catName);
+						//$catName = str_replace("'", "\'", $catName);
+						//$catName = str_replace('"', '\"', $catName);
+						$catName = addslashes($catName);
 						$saleName = $_helper->productAttribute($_product, $_product->getName(), 'name');
-						$saleName = str_replace("'", "\'", $saleName);
-						$saleName = str_replace('"', '\"', $saleName);
+						$saleName = addslashes($saleName);
+						//$saleName = str_replace("'", "\'", $saleName);
+						//$saleName = str_replace('"', '\"', $saleName);
 					?>
 					<script type="text/javascript">
 						var addthis_config = {"data_track_clickback":true};
