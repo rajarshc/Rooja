@@ -157,8 +157,8 @@ if (!$categoryIds == null){
 						  str=str.replace(/\0/g,'\\0');
 							return str;
 						}
-						var catName = addslashes(<?php echo $catName; ?>);
-						var saleName = addslashes(<?php echo $saleName; ?>);
+						var catName = addslashes("<?php echo $catName; ?>");
+						var saleName = addslashes("<?php echo $saleName; ?>");
 						var addthis_config = {"data_track_clickback":true};
 						var addthis_share = { 
 						    templates: {
