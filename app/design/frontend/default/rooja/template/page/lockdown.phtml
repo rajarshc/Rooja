@@ -159,20 +159,20 @@ P.S. Hurry!"/>
 		<section id="content" class="body static">
 			<h2 id="contactHeader" class="tr">Contact Us</h2>
 			<p>For general inquiries, help &amp; support and press and media requests please use the form below or email us at <a href="mailto:support@rooja.in">support@rooja.in</a>.</p>
-			<form method="post" action="<?php echo $this->getSkinUrl('contact-submit.php') ?>">
-				<label for="yourName">Your Name:</label>
-				<input type="text" id="yourName" name="yourName">
-
+			
+			<form action="<?php echo $this->getFormAction(); ?>" id="contactForm" method="post">
+				<label for="name">Your Name:</label>
+				<input name="name" id="name" title="<?php echo Mage::helper('contacts')->__('Name') ?>" class="input-text required-entry" type="text" />
 				<label for="contactEmail">Your Email:</label>
-				<input type="text" id="contactEmail" name="contactEmail">
+				<input name="email" id="contactEmail" title="<?php echo Mage::helper('contacts')->__('Email') ?>" class="input-text required-entry validate-email" type="text" />
+				<textarea name="comment" id="comment" title="<?php echo Mage::helper('contacts')->__('Comment') ?>" class="required-entry input-text" cols="5" rows="3" placeholder="Your Message"></textarea>
+			                
+			        <input type="text" name="hideit" id="hideit" value="" style="display:none !important;" />
+			        <button type="submit" title="<?php echo Mage::helper('contacts')->__('Submit') ?>" id="submitBtn" class="button"><span><span><?php echo Mage::helper('contacts')->__('Send') ?></span></span></button>
 
-				<label for="subject">Your Subject:</label>
-				<input type="text" id="subject" name="subject">
 
-				<textarea id="message" name="message" placeholder="Your Message"></textarea>
-
-				<input type="submit" id="submitBtn" value="send">
-			</form>
+	</form>
+	
 
 			<h2 id="socialMedia" class="tr">Social Media</h2>
 			<a href="http://twitter.com/roojafashion" class="twitter-follow-button" data-button="grey" data-text-color="#FFFFFF" data-link-color="#00AEFF" data-show-count="false">Follow @roojafashion</a>
@@ -190,3 +190,13 @@ P.S. Hurry!"/>
 <?php echo $this->getAbsoluteFooter() ?>
 </body>
 </html>
+<script type="text/javascript">
+//<![CDATA[
+    var contactForm = new VarienForm('contactForm', true);
+//]]>
+
+	//REDIRECTS PAGE TO A THANK YOU PAGE!
+		elem = $("contactForm"); 
+		elem.writeAttribute('action', 'thankyou'); 
+
+</script>
