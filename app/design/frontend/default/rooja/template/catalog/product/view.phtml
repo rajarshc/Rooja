@@ -209,7 +209,7 @@ echo '<span>' . $likes = $xml->link_stat->like_count . '</span>';
 								<?php echo 'Rs. ' . number_format($_product->getSpecialprice(), 2); } ?></span></p>
 								
 								
-								<a href="#" class="sizeChart fr">Size Chart</a>
+								<a href="#sizeChartCont" class="sizeChart fr">Size Chart</a>
 
 								<br class="clear">
 								<?php if ($_product->isSaleable() && $this->hasOptions()) { ?>
@@ -448,7 +448,7 @@ function formatCurrency(num) {
 (function ($) {
 	
 	$(document).ready(function() {
-		if(!$('.sizeChartCont').html()){
+		if(!$('#sizeChartCont').html()){
 			$("a.sizeChart").hide();
 		}
 		$("a#detailsTab").click(
@@ -460,7 +460,6 @@ function formatCurrency(num) {
 		$("a.sizeChart").fancybox({
 			titleShow: false,
 			padding: 20,
-			content: $('.sizeChartCont').html(),
 			overlayColor: "#111"
 		});
 		
