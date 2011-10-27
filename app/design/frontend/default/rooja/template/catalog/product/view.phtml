@@ -395,7 +395,7 @@ echo '<span>' . $likes = $xml->link_stat->like_count . '</span>';
 			   dataType: "json",
 			   success: function(data){
 				 jQuery('#likeThis').find('span:last').text(data.numLikes);
-                 jQuery('.currentPrice').find('span:last').text(' ' + formatCurrency(data.newPrice));
+                 jQuery('.currentPrice').find('span:last').text(' ' + (data.newPrice));
 				
                },
                error: function(x){
