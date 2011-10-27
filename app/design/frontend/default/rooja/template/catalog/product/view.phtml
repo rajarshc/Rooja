@@ -155,7 +155,7 @@ if (!$categoryIds == null){
 						  str=str.replace(/\"/g,'\\"');
 						  str=str.replace(/\\/g,'\\\\');
 						  str=str.replace(/\0/g,'\\0');
-						  str=str.replace(/\&quot;/g,'\\"');
+						  str=str.replace(/\&quot;/g,'\"');
 							return str;
 						}
 						var catName = addslashes("<?php echo $catName; ?>");
