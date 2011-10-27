@@ -145,8 +145,8 @@ if (!$categoryIds == null){
 						//$catName = str_replace('"', '\"', $catName);
 						$catName = addslashes($catName);
 						$saleName = $_helper->productAttribute($_product, $_product->getName(), 'name');
-						$saleName = addslashes($saleName);
-						echo $saleName;
+						echo addslashes($saleName);
+						//echo $saleName;
 						//$saleName = str_replace("'", "\'", $saleName);
 						//$saleName = str_replace('"', '\"', $saleName);
 					?>
