@@ -160,7 +160,7 @@ P.S. Hurry!"/>
 			<h2 id="contactHeader" class="tr">Contact Us</h2>
 			<p>For general inquiries, help &amp; support and press and media requests please use the form below or email us at <a href="mailto:support@rooja.in">support@rooja.in</a>.</p>
 			
-			<form action="<?php echo $this->getFormAction(); ?>" id="contactForm" method="post">
+			<form action="/contacts/index/post" id="contactForm" method="post">
 				<label for="name">Your Name:</label>
 				<input name="name" id="name" title="<?php echo Mage::helper('contacts')->__('Name') ?>" class="input-text required-entry" type="text" />
 				<label for="contactEmail">Your Email:</label>
@@ -168,7 +168,7 @@ P.S. Hurry!"/>
 				<textarea name="comment" id="comment" title="<?php echo Mage::helper('contacts')->__('Comment') ?>" class="required-entry input-text" cols="5" rows="3" placeholder="Your Message"></textarea>
 			                
 			        <input type="text" name="hideit" id="hideit" value="" style="display:none !important;" />
-			        <button type="submit" title="<?php echo Mage::helper('contacts')->__('Submit') ?>" id="submitBtn" class="button"></button>
+			        <button type="submit" title="<?php echo Mage::helper('contacts')->__('Submit') ?>" class="button"><span><span><?php echo Mage::helper('contacts')->__('Send!') ?></span></span></button>
 
 
 	</form>
