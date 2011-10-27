@@ -91,7 +91,8 @@
     border-color:#fff;
 }
 .catalog-product-view #fancybox-content div{
-    overflow:hidden !important;
+    min-width:520px;
+    min-height:480px;
     font-size:13px;
 }
 
