@@ -41,13 +41,6 @@
 	   '//connect.facebook.net/en_US/all.js';
 	 document.getElementById('fb-root').appendChild(e);
 	}());
-	function addslashes(str) {
-	  str=str.replace(/\'/g,'\\\'');
-	  str=str.replace(/\"/g,'\\"');
-	  str=str.replace(/\\/g,'\\\\');
-	  str=str.replace(/\0/g,'\\0');
-	return str;
-	}
 </script>
 <script type="text/javascript" src="/magento.visual.attribute.js"></script>
 
@@ -157,6 +150,13 @@ if (!$categoryIds == null){
 						//$saleName = str_replace('"', '\"', $saleName);
 					?>
 					<script type="text/javascript">
+						function addslashes(str) {
+						  str=str.replace(/\'/g,'\\\'');
+						  str=str.replace(/\"/g,'\\"');
+						  str=str.replace(/\\/g,'\\\\');
+						  str=str.replace(/\0/g,'\\0');
+							return str;
+						}
 						var catName = addslashes(<?php echo $catName; ?>);
 						var saleName = addslashes(<?php echo $saleName; ?>);
 						var addthis_config = {"data_track_clickback":true};
