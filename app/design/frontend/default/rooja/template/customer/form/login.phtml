@@ -106,13 +106,13 @@
 </header><!--End Header-->
 <section id="content" class="body">
 	<div id="loginCont">
-	  
+	  <?php  echo $this->getMessagesBlock()->getGroupedHtml() ?>
 	<h2 id="members" class="tr">Members Sign In</h2>
 	<a href="<?php echo $this->getForgotPasswordUrl() ?>" id="forgetPass">Forgot your password?</a>
 	
     <form action="<?php echo $this->getPostActionUrl() ?>" method="post" id="login-form">
         <div class="col2-set">
-	<?php  echo $this->getMessagesBlock()->getGroupedHtml() ?>
+	
 			<ul class="form-list">
                 <li>
                     <label for="email" class="required">Email Address</label>
