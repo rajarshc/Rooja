@@ -63,7 +63,9 @@ echo '<span class="numLeft">'.$stock_count.'</span>';
 				<?php if($boutique==0){ ?><span class="numLikes">
 				
 				<?php $source_url = $_product->getProductUrl();
-$url = "http://api.facebook.com/restserver.php?method=links.getStats&urls=".urlencode($source_url);
+				$source_url = urlencode($source_url);
+				$source_url = str_replace("%3F___SID%3DU", "", $source_url);
+$url = "http://api.facebook.com/restserver.php?method=links.getStats&urls=".$source_url;
 $xml = file_get_contents($url);
 $xml = simplexml_load_string($xml);
 echo $likes = $xml->link_stat->like_count;
