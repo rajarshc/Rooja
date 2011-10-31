@@ -1,0 +1,93 @@
+<?php
+$currencyMapJson = $this->getCurrencyMapJson();
+$ruleMapJson = json_encode($this->getRuleSettingsMap());
+$pid = $this->getProduct()->getId();
+$pid_suffix = $this->getIdSuffix();
+?>
+
+<!-- Interface -->
+<div id="tbt-rewards-redemption" class="redeem_section" style="display:none;" >
+    <span class="use_points">
+        <?php echo $this->__('Use Your Points') . ':'; ?>
+    </span>
+    <select name="redemption_rule" id="tbt-rewards-redemption_selector" class="redemption_selector" style="display:none;"> </select>
+    <div id="tbt-rewards-redemption_uses" class="redemption_uses_container" style="display:none;"> 
+        <input name="redemption_uses" id="tbt-rewards-redemption-uses-input-count" style="display:none;"/>
+        <div class="slider">
+            <table cellspacing="0" cellpadding="0">
+                <tbody>
+                    <tr>
+                        <td style="vertical-align: middle" class="btn-slider-reduce-points-container">
+                            <img id="slider_reduce_points" class="btn-slider-reduce-points"
+                                 alt="<?php echo $this->__('Spend one point less'); ?>" 
+                                 src="<?php echo $this->getSkinUrl('images/rewards/slider/decr_points.gif'); ?>" 
+                                 onclick="rewards_redeamer.slider_setValueBy(-1)" 
+                                 />
+                        </td>
+                        <td>
+                            <div id="tbt-rewards-redemption-sliderRail" class="sliderRail">
+                                <a id="tbt-rewards-redemption-sliderHandle" class="sliderHandle ui-slider-handle ui-state-default" style="left:0px; top:0px;" ></a>
+                            </div>
+                        </td>
+                        <td style="vertical-align: middle" class="btn-slider-reduce-points-container">
+                            <img id="slider_increase_points" class="btn-slider-increase-points" 
+                                 alt="<?php echo $this->__('Spend one point more'); ?>" 
+                                 src="<?php echo $this->getSkinUrl('images/rewards/slider/incr_points.gif'); ?>" 
+                                 onclick="rewards_redeamer.slider_setValueBy(+1)"
+                                 />
+                        </td>
+                        <td valign="top">
+                            <div id="tbt-rewards-redemption-sliderCaption" class="sliderCaption" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <script type="text/javascript"> 
+            var tbt_rewards_translation_total = "<?php echo $this->__('Total'); ?>";
+            var tbt_rewards_translation_now = "<?php echo $this->__('Now'); ?>";
+            var tbt_rewards_translation_ajaxError = "<?php echo $this->__('Problem accessing server, please check your internet connection.'); ?>";
+
+            var currency_map = <?php echo $currencyMapJson ?>;
+            var rewards_redeamer = null;
+
+            //  document.observe("dom:loaded", function() {
+            // wait for full winddow to load
+            Event.observe(window, 'load', function() {
+                var lables_product_cost =  $$('div.product-essential div.price-box *.price-as-configured', 'div.product-essential div.price-box *.regular-price', 'div.product-essential div.price-box *.special-price');
+                // add all locations to show the rewards redemption
+                lables_product_cost.each( function(box){  
+                    box.insert({after:'<span class="tbt-rewards-redemption-total-redemption"/>'});
+                });
+                // add all locations to show the itemcost * qty = total 
+                lables_product_cost.each( function(box){  
+                    box.insert({after: '<span class="tbt-rewards-redemption-total-cost-at-qty"/>'});
+                });
+                
+                var dom = {
+                    redemption: $('tbt-rewards-redemption'),
+                    redemption_selector: $('tbt-rewards-redemption_selector'),
+                    redemption_uses: $('tbt-rewards-redemption_uses'),
+                    redemption_uses_input_count: $('tbt-rewards-redemption-uses-input-count'),
+                    redemption_uses_sliderHandle: $('tbt-rewards-redemption-sliderHandle'),
+                    redemption_uses_sliderRail: $('tbt-rewards-redemption-sliderRail'),
+                    redemption_uses_sliderCaption: $('tbt-rewards-redemption-sliderCaption'),
+                    lables_product_cost_before_redemption : lables_product_cost,
+                    lables_total_cost_at_qty : $$('*.tbt-rewards-redemption-total-cost-at-qty'),
+                    lables_total_redemption : $$('*.tbt-rewards-redemption-total-redemption'),
+                    //lable_product_price: $('product-price-<?php echo $pid; ?><?php echo $pid_suffix; ?>'),
+                    input_quantity : $('qty')
+                };
+                var ruleMap = <?php echo $ruleMapJson ?>;
+                var ajax_getRuleSettings = '<?php echo $this->getUrl("rewards/product_view_redeem/getProductPriceRuleSettings"); ?>';
+                rewards_redeamer = new TBT_Rewards_JS_Catalog_Product_View_Redemption( dom, ruleMap, currency_map, optionsPrice , ajax_getRuleSettings );
+
+                new Form.Observer('product_addtocart_form', 0.3, function(form, value){
+                    rewards_redeamer.onFormChanged();
+                });
+
+            });
+        </script>
+
+    </div>
+</div>
