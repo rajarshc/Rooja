@@ -163,6 +163,8 @@ P.S. Hurry!"/>
 			<form action="/contacts/index/post" id="contactForm" method="post">
 				<label for="name">Your Name:</label>
 				<input name="name" id="name" title="<?php echo Mage::helper('contacts')->__('Name') ?>" class="input-text required-entry" type="text" />
+				<label for="subject">Subject:</label>
+				<input name="subject" id="subject" title="<?php echo Mage::helper('contacts')->__('Subject') ?>" class="input-text required-entry" type="text" />
 				<label for="contactEmail">Your Email:</label>
 				<input name="email" id="contactEmail" title="<?php echo Mage::helper('contacts')->__('Email') ?>" class="input-text required-entry validate-email" type="text" />
 				<textarea name="comment" id="comment" title="<?php echo Mage::helper('contacts')->__('Comment') ?>" class="required-entry input-text" cols="5" rows="3" placeholder="Your Message"></textarea>
