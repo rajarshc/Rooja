@@ -1,0 +1,45 @@
+
+<div class="box-info">
+    <form action="<?php echo $this->getUrl('rewardsref/customer/invite/') ?>" method="post" id="form-validate">
+    
+        <?php if($this->hasPredictedSignupPoints()): ?>
+            <?php echo $this->__("You could up to %s for when your referral signs up.", $this->getPredictedSignupPoints()); ?>
+        <?php endif; ?>
+        
+        <?php if($this->hasPredictedFirstOrderPoints()): ?>
+            <?php echo $this->__("You could up to %s for when your referral makes their first order.", $this->getPredictedFirstOrderPoints()); ?>
+        <?php endif; ?>
+        
+        <fieldset class="group-select" style="margin-bottom: 0px;">
+                <h4 class="legend"><?php echo $this->__('Invite One Person') ?></h4>
+            <ul>
+                <li>
+                    <div class="input-box">
+                        <label for="telephone"><?php echo $this->__("Friend's name") ?> <span class="required">*</span></label><br />
+                        <input type="text" name="name" value="" title="<?php echo $this->__("Friend' name") ?>" class="required-entry input-text" id="name" />
+                    </div>
+                    <div class="input-box">
+                        <label for="fax"><?php echo $this->__("Friend's email address") ?> <span class="required">*</span></label><br />
+                        <input type="text" name="email" id="email" title="<?php echo $this->__("Friend's email address") ?>" value="" class="required-entry input-text" />
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <label for="msg"><?php echo $this->__('Short Message') ?> </label><br />
+                        <textarea name="msg"  title="<?php echo $this->__('Short Message') ?>" class="input-text" id="msg" ></textarea>
+                    </div>
+                </li>
+            </ul>
+        <div class="button-set" style="margin-top:0px">
+            <p class="required"><?php echo $this->__('* Required Fields') ?></p>
+            <!--<a href="<?php echo $this->getBackUrl() ?>" class="left">&laquo; <?php echo $this->__('Back') ?></a>-->
+            <button class="form-button" type="submit"><span><?php echo $this->__('Send') ?></span></button>
+        </div>
+        </fieldset>
+    </form>
+    
+    <script type="text/javascript">
+        var dataForm = new VarienForm('form-validate', true);
+    </script>
+
+</div>
