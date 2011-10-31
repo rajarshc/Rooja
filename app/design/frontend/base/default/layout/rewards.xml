@@ -48,7 +48,7 @@ Customer account pages, rendered for all tabs in dashboard
             <action method="addLink" translate="label" module="rewards" ifconfig="rewards/general/layoutsactive">
                 <name>rewards</name>
                 <path>rewards/customer</path>
-                <label>My Points and Rewards</label>
+                <label>My Credits and Rewards</label>
             </action>
         </reference>
     </customer_account>
