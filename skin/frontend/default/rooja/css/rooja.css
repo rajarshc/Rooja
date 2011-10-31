@@ -239,7 +239,9 @@ ul#myAccount li ul li a{
 	display:block;
 	padding:8px 15px;
 	width:105px;
-	background-image:none;
+}
+ul#myAccount li.welcome-top ul li a{
+    background-image:none;
 }
 ul#myAccount li ul li a:hover{
 	background-color: #431f4c;
