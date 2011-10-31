@@ -47,13 +47,13 @@ $colspan = 4;
 ?>
 <?php if ($this->getOrder()->hasPointsEarning()): ?>
     <tr class="order-points-earned">
-        <td colspan="<?php echo $colspan; ?>" class="a-right caption"><?php echo $this->__('Points Earned') ?></td>
+        <td colspan="4" class="a-right caption"><?php echo $this->__('Points Earned') ?></td>
         <td class="last a-right"><span class="amount"><?php echo $this->getPointsEarnedString() ?></span></td>
     </tr>
 <?php endif; ?>
 <?php if ($this->getOrder()->hasPointsSpending()): ?>
     <tr class="order-points-spent">
-        <td colspan="<?php echo $colspan; ?>" class="a-right caption"><?php echo $this->__('Points Spent') ?></td>
+        <td colspan="4" class="a-right caption"><?php echo $this->__('Points Spent') ?></td>
         <td class="last a-right"><span class="amount"><?php echo $this->getPointsSpentString() ?></span></td>
     </tr>
 <?php endif; ?>

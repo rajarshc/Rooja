@@ -47,7 +47,7 @@ $colspan = $this->getColSpan();
 ?>
 <?php if ($this->getOrder()->hasPointsEarning()): ?>
     <tr class="order-print-points-earned">
-        <td colspan="3" align="right" style="padding:3px 9px;" class="a-right caption" <?php echo $this->getLabelProperties(); ?>><?php echo $this->__('Credits Earned') ?></td>
+        <td colspan="4" align="right" style="padding:3px 9px;" class="a-right caption" <?php echo $this->getLabelProperties(); ?>><?php echo $this->__('Credits Earned') ?></td>
         <td align="right" style="padding:3px 9px;" class="last a-right" <?php echo $this->getValueProperties(); ?>><span class="amount"><?php echo $this->getPointsEarnedString() ?></span></td>
     </tr>
 <?php endif; ?>
