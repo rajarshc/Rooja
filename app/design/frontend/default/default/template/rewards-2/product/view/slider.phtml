@@ -1,0 +1,64 @@
+
+<script type="text/javascript">
+
+    // Other PHP content ///////////////
+    var currency_map  = <?php echo $this->getCurrencyMapJson(); ?>;
+
+    function feignPriceChange() {
+    
+    }
+
+</script>
+
+<div class="slider" onmouseup="sliderNotSliding()">
+    <table cellspacing="0" cellpadding="0">
+        <tbody>
+            <tr>
+                <td style="vertical-align:middle" class="btn-slider-reduce-points-container">
+                    <img class="btn-slider-reduce-points" alt="<?php echo $this->__('Spend one point less'); ?>" 
+                         src="<?php echo $this->getSkinUrl('images/rewards/slider/decr_points.gif'); ?>" 
+                         id="slider_reduce_points"
+                         onclick="rSlider.slider.setValue(rSlider.slider.value-1)" 
+                         style="position:relative; top:5px;" />
+                </td>
+                <td>
+                    <div class="sliderRail" id="sliderRail">
+                        <a style="left: 0%;" class="sliderHandle ui-slider-handle ui-state-default" id="sliderHandle"
+                           onmousedown="sliderSliding()"  
+                           onmouseup="sliderNotSliding()"></a>
+                    </div>
+                </td>
+                <td style="vertical-align: middle" class="btn-slider-reduce-points-container">
+                    <img class="btn-slider-increase-points" 
+                         alt="<?php echo $this->__('Spend one point more'); ?>" 
+                         src="<?php echo $this->getSkinUrl('images/rewards/slider/incr_points.gif'); ?>" 
+                         id="slider_reduce_points"
+                         onclick="rSlider.slider.setValue(rSlider.slider.value+1)" 
+                         style="position:relative; top:5px;" />
+                </td>
+                <td valign="top">
+                    <div id="sliderCaption" class="sliderCaption" >
+                        <?php echo ''; ?>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <input type="hidden" name="redemption_uses" id="redemption_rule_uses"/>
+</div>
+<script type="text/javascript">
+    document.observe("dom:loaded", function() {
+        rSlider = new PointsSlider('sliderHandle', 'sliderRail', 'sliderCaption', 'redemption_rule_uses');
+    });
+
+    // Functions for changing the cursor on the slider
+    function sliderSliding() {
+        $('sliderRail').addClassName('sliderRail-sliding'); 
+        $('sliderHandle').addClassName('sliderHandle-sliding');
+    }
+
+    function sliderNotSliding() {
+        $('sliderRail').removeClassName('sliderRail-sliding'); 
+        $('sliderHandle').removeClassName('sliderHandle-sliding');
+    }
+</script>
