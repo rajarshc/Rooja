@@ -45,14 +45,13 @@
 ?>
 
 <div class="mypoints-page">
-    <div class="mypoints-page-head page-head">
-        <h3><?php echo $this->__('My Points and Rewards') ?></h3>
-    </div>
+   <h1>My Credits and Rewards</h1>
+    
     <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
     <?php echo $this->getChildHtml('summary'); ?>  
     <div class="clear clearer"></div>
-    <?php echo $this->getChildHtml('sendpoints'); ?>
-    <?php echo $this->getChildHtml('redeemcatalog'); ?>
+    <?php /* echo $this->getChildHtml('sendpoints'); ?>
+    <?php echo $this->getChildHtml('redeemcatalog'); */ ?>
     <div class="clear clearer"></div>
     <div class="mypoints-transfers-earnings">
         <?php echo $this->getChildHtml('earnings'); ?> 

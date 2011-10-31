@@ -44,8 +44,8 @@
 ?>
 <?php if ($this->showSpendings()): ?>
     <tr>
-        <td colspan="1">          
-            <div class="caption"><?php echo $this->__('You Will Spend:') ?></div>
+        <td class="a-right" colspan="4">          
+            <div class="caption"><?php echo $this->__('Credits to Apply') ?></div>
         </td>
         <td class="a-right cart-points-total_spent"> 
             <div class="points-amount">
@@ -57,7 +57,7 @@
         <td class="a-right cart-points-total_spent cart-points-spending_warnings" colspan="<?php echo $this->getColspan() + 1; ?>">          
             <?php if ($this->getShowNEPWarning()): ?>
                 <div class="warning rewards-nep">
-                    <?php echo $this->__("Not Enough Points!"); ?>
+                    <?php echo $this->__("Not Enough Credits!"); ?>
                 </div>
             <?php endif; ?>
             <?php if ($this->getShowMinOrderWarning()): ?>

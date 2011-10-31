@@ -1,0 +1,13 @@
+
+<script language="javascript" type="text/javascript">
+    document.observe("dom:loaded", function() {
+        if($('item_discounts_td')) {
+            var itemsdiscount = $('item_discounts_td').up();
+            var subtotal = itemsdiscount.previous();
+            var subtotal_innerhtml = subtotal.innerHTML;
+            var itemsdiscount_innerhtml = itemsdiscount.innerHTML;
+            itemsdiscount.innerHTML = subtotal_innerhtml;
+            subtotal.innerHTML = itemsdiscount_innerhtml;
+        }
+    });
+</script>

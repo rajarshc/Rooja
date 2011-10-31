@@ -69,21 +69,16 @@
             } else {
                 var can_use = rule_options[rule_id]['can_use_rule'];
                 var amt = rule_options[rule_id]['points_amt']; 
-                var curr = rule_options[rule_id]['points_currency_id'];
-                
-                var qty = parseInt($('qty').getValue());
-                // fix NaN or bad value
-                if( false == (qty > 0) )
-                    qty = 1;
-                
-                var uses = parseInt($('redemption_rule_uses').getValue());
-                // fix NaN or bad value
-                if( false == (uses > 0) )
-                    uses = 1;
-                
+                var curr = rule_options[rule_id]['points_currency_id']; 
+                var qty = parseInt($('qty').value == "" ? 1 : $('qty').value);
+                var uses = parseInt($('redemption_rule_uses').value == "" ? 1 : $('redemption_rule_uses').value);
                 if (customer_points) {
-                    if(customer_points[curr] >= qty*amt*uses) {
-                        return true;
+                    if(qty > 0) {
+                        if(customer_points[curr] >= qty*amt*uses) {
+                            return true;
+                        } else {
+                            return false;
+                        }
                     } else {
                         return false;
                     }
