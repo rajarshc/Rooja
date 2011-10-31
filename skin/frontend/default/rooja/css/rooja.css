@@ -169,7 +169,7 @@ ul#myAccount li{
 }
 
 ul#myAccount li.welcome-top {
-	padding: 36px 12px 27px 20px;
+	padding: 36px 10px 27px 20px;
 	/*background: url("../images/icons/arrow-nav-white.png") no-repeat 135px 34px;*/
 	margin: -26px 0 0 0;
 }
@@ -209,7 +209,7 @@ ul#myAccount li a{
 }
 ul#myAccount li.welcome-top a{
     background: url("../images/icons/arrow-nav-white.png") no-repeat right center;
-    padding-right:12px;
+    padding-right:15px;
 }
 
 ul#myAccount li ul {
@@ -239,6 +239,7 @@ ul#myAccount li ul li a{
 	display:block;
 	padding:8px 15px;
 	width:105px;
+	background-image:none;
 }
 ul#myAccount li ul li a:hover{
 	background-color: #431f4c;
