@@ -49,7 +49,7 @@
 
 <?php $enddate = strtotime(date('y-m-d', strtotime($_category->getSale_end_date())) . ' ' . $_category->getSale_end_time() . ':00'); 
 $today = strtotime(date('y-m-d H:i:s'));
-if (timeBetweenNowAndDeadline($enddate) == 0) {
+if (timeBetweenNowAndDeadline($enddate) != 0) {
 $expired = 1;
 }
 
