@@ -108,10 +108,10 @@ if($_category->getId() !=5){
 		$c = Mage::getModel('catalog/category')->load($subcategory->getId());
             if($c->getIsActive()){ // check if category is active
 				$twodays = date('y-m-d H:G:00', strtotime("+2 days"));
-				$today = date('y-m-d H:G:00');
+				$today = strtotime(date('y-m-d H:i:s'));
 				if (!$c->getSale_start_date() == null) {
-	                $startdate = date('y-m-d', strtotime($c->getSale_start_date())) . ' ' . $c->getSale_start_time() . ':00';
-					$enddate = date('y-m-d', strtotime($c->getSale_end_date())) . ' ' . $c->getSale_end_time() . ':00';
+	                $startdate = strtotime(date('y-m-d', strtotime($c->getSale_start_date())) . ' ' . $c->getSale_start_time() . ':00');
+					$enddate = strtotime(date('y-m-d', strtotime($c->getSale_end_date())) . ' ' . $c->getSale_end_time() . ':00');
 
 					//var_dump($c);
 					if(timeBetweenNowAndDeadline($enddate) != 0){
@@ -148,10 +148,10 @@ foreach ($categories as $_category){
 		foreach($_category->getChildren() as $subcategory){
 			$c = Mage::getModel('catalog/category')->load($subcategory->getId());
 			if (!$c->getSale_start_date() == null) {
-				$tendays = date('y-m-d H:G:00', strtotime("+10 days"));
-				$today = date('y-m-d H:G:00');
-				$startdate = date('y-m-d', strtotime($c->getSale_start_date())) . ' ' . $c->getSale_start_time() . ':00';
-				$enddate = date('y-m-d', strtotime($c->getSale_end_date())) . ' ' . $c->getSale_end_time() . ':00';
+				$tendays = strtotime(date('y-m-d H:G:00', strtotime("+10 days")));
+				$today = strtotime(date('y-m-d H:i:s'));
+				$startdate = strtotime(date('y-m-d', strtotime($c->getSale_start_date())) . ' ' . $c->getSale_start_time() . ':00');
+				$enddate = strtotime(date('y-m-d', strtotime($c->getSale_end_date())) . ' ' . $c->getSale_end_time() . ':00');
 				if ($startdate > $today && $startdate < $tendays) {
 					$sortedArrayByDates[strtotime($c->getSale_start_date())][] = $c->getName();
 				}
