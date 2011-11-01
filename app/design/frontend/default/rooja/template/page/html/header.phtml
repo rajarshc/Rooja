@@ -99,7 +99,7 @@ foreach ($categories as $_category){
 	                $startdate = date('y-m-d', strtotime($c->getSale_start_date())) . ' ' . $c->getSale_start_time() . ':00';
 					
 					$enddate = strtotime(date('y-m-d', strtotime($c->getSale_end_date())) . ' ' . $c->getSale_end_time() . ':00'); 
-					if ($enddate < $todayDone) {
+					
 					//var_dump($c);
 					if ($enddate > $todayDone && $enddate < $twodays && $startdate < $todayDone) {
 						if ($j == 1) {
@@ -111,7 +111,7 @@ foreach ($categories as $_category){
 					$j++;
 					}
 				}
-				}
+				
             }
         }
 }else{
