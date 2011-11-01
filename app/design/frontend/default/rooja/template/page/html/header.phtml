@@ -74,7 +74,7 @@ foreach ($categories as $_category){
             if($c->getIsActive()){ // check if category is active
 				if (!$c->getSale_start_date() == null) {
 	                $startdate = date('y-m-d', strtotime($c->getSale_start_date())) . ' ' . $c->getSale_start_time() . ':00';
-					$enddate = date('y-m-d', strtotime($c->getSale_end_date())) . ' ' . $c->getSale_end_time() . ':00';
+					$enddate = strtotime(date('y-m-d', strtotime($c->getSale_end_date())) . ' ' . $c->getSale_end_time() . ':00');
 					//var_dump($c);
 					if ($enddate > $today && $enddate > $twodays && $startdate < $today) {
 						if ($i == 1) {
@@ -97,7 +97,8 @@ foreach ($categories as $_category){
             if($c->getIsActive()){ // check if category is active
 				if (!$c->getSale_start_date() == null) {
 	                $startdate = date('y-m-d', strtotime($c->getSale_start_date())) . ' ' . $c->getSale_start_time() . ':00';
-					$enddate = date('y-m-d', strtotime($c->getSale_end_date())) . ' ' . $c->getSale_end_time() . ':00';
+					
+					$enddate = strtotime(date('y-m-d', strtotime($c->getSale_end_date())) . ' ' . $c->getSale_end_time() . ':00'); 
 					if ($enddate < $todayDone) {
 					//var_dump($c);
 					if ($enddate > $today && $enddate < $twodays && $startdate < $today) {
