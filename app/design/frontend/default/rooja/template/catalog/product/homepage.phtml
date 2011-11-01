@@ -34,7 +34,7 @@
 </p></div>
 <?php
 function timeBetweenNowAndDeadline($deadline) {
-    $deadline = strtotime($deadline);
+    //$deadline = strtotime($deadline);
 	$currentDate = date("U");
     $diff = $deadline-$currentDate;
     $seconds = 0;
