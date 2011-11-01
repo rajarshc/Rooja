@@ -76,7 +76,7 @@ foreach ($categories as $_category){
 	                $startdate = date('y-m-d', strtotime($c->getSale_start_date())) . ' ' . $c->getSale_start_time() . ':00';
 					$enddate = strtotime(date('y-m-d', strtotime($c->getSale_end_date())) . ' ' . $c->getSale_end_time() . ':00');
 					//var_dump($c);
-					if ($enddate > $today && $enddate > $twodays && $startdate < $today) {
+					if ($enddate > $todayDone && $enddate > $twodays && $startdate < $today) {
 						if ($i == 1) {
 							echo '<li class="navSectTitle">New Sales</li>';
 							echo '<li><a href="'. $c->getURL() .'">' . $c->getName() . '</a></li>';
@@ -101,7 +101,7 @@ foreach ($categories as $_category){
 					$enddate = strtotime(date('y-m-d', strtotime($c->getSale_end_date())) . ' ' . $c->getSale_end_time() . ':00'); 
 					if ($enddate < $todayDone) {
 					//var_dump($c);
-					if ($enddate > $today && $enddate < $twodays && $startdate < $today) {
+					if ($enddate > $todayDone && $enddate < $twodays && $startdate < $todayDone) {
 						if ($j == 1) {
 							echo '<li class="navSectTitle">Ending Soon</li>';
 							echo '<li><a href="'. $c->getURL() .'">' . $c->getName() . '</a></li>';
