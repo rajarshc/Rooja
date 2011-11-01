@@ -60,8 +60,8 @@
 $i = 1;
 $j = 1;
 $categories = Mage::helper('catalog/category')->getStoreCategories();
-$twodays = date('y-m-d H:G:00', strtotime("+2 days"));
-$today = date('y-m-d H:G:00');
+$twodays = strtotime(date('y-m-d H:G:00', strtotime("+2 days")));
+$today = strtotime(date('y-m-d H:G:00'));
 $todayDone = strtotime(date('y-m-d H:i:s'));
 foreach ($categories as $_category){
     if($_category->hasChildren()){
