@@ -72,7 +72,7 @@ foreach ($categories as $_category){
 		$c = Mage::getModel('catalog/category')->load($subcategory->getId());
             if($c->getIsActive()){ // check if category is active
 				if (!$c->getSale_start_date() == null) {
-	                $startdate = date('y-m-d', strtotime($c->getSale_start_date())) . ' ' . $c->getSale_start_time() . ':00';
+	                $startdate = strtotime(date('y-m-d', strtotime($c->getSale_start_date())) . ' ' . $c->getSale_start_time() . ':00');
 					$enddate = strtotime(date('y-m-d', strtotime($c->getSale_end_date())) . ' ' . $c->getSale_end_time() . ':00');
 					//var_dump($c);
 					if ($enddate > $today && $enddate > $twodays && $startdate < $today) {
