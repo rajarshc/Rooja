@@ -112,10 +112,8 @@ if($_category->getId() !=5){
 				if (!$c->getSale_start_date() == null) {
 	                $startdate = strtotime(date('y-m-d', strtotime($c->getSale_start_date())) . ' ' . $c->getSale_start_time() . ':00');
 					$enddate = strtotime(date('y-m-d', strtotime($c->getSale_end_date())) . ' ' . $c->getSale_end_time() . ':00');
-
-					//var_dump($c);
-					if(timeBetweenNowAndDeadline($enddate) != 0){
-					if ($enddate > $today && $enddate < $twodays) {
+				
+					if (timeBetweenNowAndDeadline($enddate) != 0 && $enddate < $twodays) {
 						if ($i % 2 == 0){
 						echo '<article class="saleDetails fl noMargin">';
 						} else {
@@ -129,7 +127,6 @@ if($_category->getId() !=5){
 					}
 				}
             }
-}
         }
 }
     }
