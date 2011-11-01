@@ -104,7 +104,7 @@ foreach ($categories as $_category){
 				if (!$c->getSale_start_date() == null) {
 	                $startdate = strtotime(date('y-m-d', strtotime($c->getSale_start_date())) . ' ' . $c->getSale_start_time() . ':00');
 					$enddate = strtotime(date('y-m-d', strtotime($c->getSale_end_date())) . ' ' . $c->getSale_end_time() . ':00');
-					//if(timeBetweenNowAndDeadline($enddate) != 0){
+					if(timeBetweenNowAndDeadline($enddate) != 0){
 					if (($enddate > $today && $enddate < $fivedays && $startdate < $today) || ($enddate > $today && $enddate > $fivedays && $startdate < $today)) {
 						if($i == 3){
 							?>
@@ -124,7 +124,7 @@ foreach ($categories as $_category){
                 <h2<?php if($i%2==1) echo " class='blackBg'"; ?>><?php echo $c->getName(); ?></h2>
 				<p>Sale ends in <?php echo timeBetweenNowAndDeadline($enddate); ?></p>
             </article>
-				<?php } $i++; }}}}}}  } ?>			
+				<?php } $i++; }}}}}}  }} ?>			
 
 
 <script type="text/javascript">
