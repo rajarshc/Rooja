@@ -55,12 +55,14 @@
 	<h2 id="logo"><a href="/index.php" class="tr">Rooja Fashion</a></h2>
 	<nav id="mainNav">
 <ul>
+
 <?php 
 $i = 1;
 $j = 1;
 $categories = Mage::helper('catalog/category')->getStoreCategories();
 $twodays = date('y-m-d H:G:00', strtotime("+2 days"));
 $today = date('y-m-d H:G:00');
+$todayDone = strtotime(date('y-m-d H:i:s'));
 foreach ($categories as $_category){
     if($_category->hasChildren()){
     echo '<li><a href="'.$_category->getURL().'">' . $_category->getName() . '</a>';
@@ -96,6 +98,7 @@ foreach ($categories as $_category){
 				if (!$c->getSale_start_date() == null) {
 	                $startdate = date('y-m-d', strtotime($c->getSale_start_date())) . ' ' . $c->getSale_start_time() . ':00';
 					$enddate = date('y-m-d', strtotime($c->getSale_end_date())) . ' ' . $c->getSale_end_time() . ':00';
+					if ($enddate <= $todayDone) {
 					//var_dump($c);
 					if ($enddate > $today && $enddate < $twodays && $startdate < $today) {
 						if ($j == 1) {
@@ -106,6 +109,7 @@ foreach ($categories as $_category){
 						}
 					$j++;
 					}
+				}
 				}
             }
         }

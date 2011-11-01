@@ -99,7 +99,7 @@ foreach ($categories as $_category){
         foreach($_category->getChildren() as $subcategory){
 		$c = Mage::getModel('catalog/category')->load($subcategory->getId());
             if($c->getIsActive()){ // check if category is active
-				$fivedays = date('y-m-d H:G:00', strtotime("+5 days"));
+				$fivedays = date('y-m-d H:G:00', strtotime("+2 days"));
 				$today = date('y-m-d H:G:00');
 				if (!$c->getSale_start_date() == null) {
 	                $startdate = date('y-m-d', strtotime($c->getSale_start_date())) . ' ' . $c->getSale_start_time() . ':00';
