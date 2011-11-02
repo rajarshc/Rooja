@@ -101,7 +101,7 @@ class Mage_Contacts_IndexController extends Mage_Core_Controller_Front_Action
                     ->setReplyTo($post['email'])
                     ->sendTransactional(
                         Mage::getStoreConfig(self::XML_PATH_EMAIL_TEMPLATE),
-                        Mage::getStoreConfig(self::XML_PATH_EMAIL_SENDER),
+                        $post['email'],
                         Mage::getStoreConfig(self::XML_PATH_EMAIL_RECIPIENT),
                         null,
                         array('data' => $postObject)
