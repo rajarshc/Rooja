@@ -37,7 +37,7 @@ class Mage_Checkout_Block_Onepage_Billing extends Mage_Checkout_Block_Onepage_Ab
     protected function _construct()
     {
         $this->getCheckout()->setStepData('billing', array(
-            'label'     => Mage::helper('checkout')->__('Billing Information'),
+            'label'     => Mage::helper('checkout')->__('Billing Address'),
             'is_show'   => $this->isShow()
         ));
 

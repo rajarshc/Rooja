@@ -131,7 +131,7 @@ function loggedInShipping()
 	</li>
             
         <?php if ($this->isCustomerLoggedIn() && $this->customerHasAddresses()):?>
-            <li class="no-display"><input type="checkbox" name="shipping[save_in_address_book]" value="1" title="<?php echo $this->__('Save in address book') ?>" id="shipping:save_in_address_book" onchange="shipping.setSameAsBilling(false);"<?php //if ($this->getAddress()->getSaveInAddressBook()):?> checked="checked"<?php //endif;?> /> <label for="shipping:save_in_address_book"><?php echo $this->__('Save in address book') ?></label></li>
+            <li class="no-display"><input type="checkbox" name="shipping[save_in_address_book]" value="1" title="<?php echo $this->__('Save in address book') ?>" id="shipping:save_in_address_book" onchange="shipping.setSameAsBilling(false);" checked="checked" /> <label for="shipping:save_in_address_book"><?php echo $this->__('Save in address book') ?></label></li>
         <?php else:?>
             <li class="no-display"><input type="hidden" name="shipping[save_in_address_book]" value="1" /></li>
         <?php endif;?>
@@ -144,7 +144,7 @@ function loggedInShipping()
 
     <div id="shipping-buttons-container">
   <!-- <a href="#" class="back left" onclick="checkout.back(); return false;">Back</a> -->
-<button type="button" class="form-button right button" onclick="shipping.save()" id="shippingSaveBtn" style="display:none;" ><span>Ship to this Address</span></button>
+<button type="button" class="form-button right button" onclick="shipping.save()" id="shippingSaveBtn" style="display:none;" ><span>Save &amp; Continue</span></button>
         <span id="shipping-please-wait" style="opacity:0;filter: alpha(opacity = 0);" class="please-wait">
             <img src="<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif') ?>" class="v-middle" alt="" /> &nbsp; <?php echo $this->__('Loading next step...') ?> &nbsp;
         </span>
