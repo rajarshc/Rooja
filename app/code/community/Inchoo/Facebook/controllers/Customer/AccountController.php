@@ -126,7 +126,7 @@ class Inchoo_Facebook_Customer_AccountController extends Mage_Core_Controller_Fr
     		return;
 		}
 		
-		$this->_getCustomerSession()->addError($this->__('Facebook profile can\'t provide all required info, please register and then connect with Facebook for fast login.'));
+		$this->_getCustomerSession()->addError($this->__('It doesn\'t look like that email address is registered on Rooja. Please login or press on the Get Invited tab to sign up for our beta list.'));
 		$this->_redirect('customer/account/login');
 		//registration needed
 		/*
