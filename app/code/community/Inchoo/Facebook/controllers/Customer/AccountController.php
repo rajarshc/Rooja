@@ -127,7 +127,7 @@ class Inchoo_Facebook_Customer_AccountController extends Mage_Core_Controller_Fr
 		}
 		
 		//registration needed
-		
+		/*
 		$randomPassword = $customer->generatePassword(8);
 		
 		$customer	->setId(null)
@@ -206,7 +206,7 @@ class Inchoo_Facebook_Customer_AccountController extends Mage_Core_Controller_Fr
 			
 			$this->_redirect('customer/account/create');
 			
-		}
+		}*/
 
     }
 	
