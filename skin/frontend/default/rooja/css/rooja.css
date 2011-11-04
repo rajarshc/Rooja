@@ -72,13 +72,14 @@ body:before {
 
 #mainNav{
 	float: left;
-	/*width: 350px;*/
+	width: 350px;
 	height:70px;
 	margin: -10px 0px 0px 22px;
+	position:relative;
 }
 
 #mainNav ul {
-    width: 384px;
+    width: 350px;
 }
 
 #mainNav ul li{
@@ -88,6 +89,8 @@ body:before {
 	padding: 32px 25px 10px 15px;
 	background: url("../images/icons/arrow-nav-dark.png") no-repeat scroll 90% 50%;
 }
+#mainNav ul li.last{margin-right:0;}
+
 #mainNav ul li:hover{
 	background: url("../images/icons/arrow-nav-white.png") no-repeat  scroll 90% 50%;
 	background-color: #220f26;
@@ -159,7 +162,7 @@ body:before {
 }
 #accountLinks{
 	float: right;
-	margin: 15px 0px 0px 10px;
+	margin: 15px 0px 0px 0px;
 }
 ul#myAccount{float:left;}
 ul#myAccount li{
@@ -169,7 +172,7 @@ ul#myAccount li{
 }
 
 ul#myAccount li.welcome-top {
-	padding: 36px 10px 27px 20px;
+	padding: 36px 10px 27px 15px;
 	/*background: url("../images/icons/arrow-nav-white.png") no-repeat 135px 34px;*/
 	margin: -26px 0 0 0;
 }

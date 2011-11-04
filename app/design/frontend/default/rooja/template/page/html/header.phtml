@@ -99,7 +99,11 @@ $twodays = strtotime(date('y-m-d H:G:00', strtotime("+2 days")));
 $today = strtotime(date('y-m-d H:i:s'));
 foreach ($categories as $_category){
     if($_category->hasChildren()){
-    echo '<li><a href="'.$_category->getURL().'">' . $_category->getName() . '</a>';
+		if($_category->getId() !=5){
+    		echo '<li><a href="'.$_category->getURL().'">' . $_category->getName() . '</a>';
+		}else{
+			echo '<li class="last"><a href="'.$_category->getURL().'">' . $_category->getName() . '</a>';
+		}
     echo '<div><ul>';
         $_category->getId(); // category id
 		if($_category->getId() !=5){
