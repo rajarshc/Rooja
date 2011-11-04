@@ -219,10 +219,10 @@ ul#myAccount li ul {
 	position: absolute;
 	background: #220f26;
 	z-index: 15;
-	width: 135px;
+	width: 143px;
 	top: 68px;
 	border-top:1px solid #431f4c;
-	margin-left:-20px;
+	margin-left:-15px;
 }
 ul#myAccount li:hover ul {display: block;}
 

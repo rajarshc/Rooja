@@ -316,9 +316,9 @@ class Mage_Newsletter_Model_Subscriber extends Mage_Core_Model_Abstract
             if ($isConfirmNeed === true
                 && $isOwnSubscribes === false
             ) {
-                $this->sendConfirmationRequestEmail();
+                //$this->sendConfirmationRequestEmail();
             } else {
-                $this->sendConfirmationSuccessEmail();
+                //$this->sendConfirmationSuccessEmail();
             }
 
             return $this->getStatus();
