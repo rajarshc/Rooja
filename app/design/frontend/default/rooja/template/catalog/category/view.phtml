@@ -76,7 +76,7 @@ $expired = 1;
 	    <?php endif; ?>
 
 		<div class="shareThis">
-			<h4>Share this sale with your friends</h4>
+			<h4>Share this <?php if($boutique==0){ echo 'sale';} else{echo 'boutique'};?> with your friends</h4>
 			<!-- AddThis Button BEGIN -->
 			<div class="addthis_toolbox addthis_default_style" addthis:title="Shop the <?php echo $_helper->categoryAttribute($_category, $_category->getName(), 'name') ?> sale at Rooja." addthis:description="Visit rooja.com now and check out this designer sale, plus many more great designers at up to 60% off retail. Discover new sales every day and get access to their luxury boutique. Membership is free, and you’re invited.">
 			<a class="addthis_button_facebook"><img src="<?php echo $this->getSkinUrl('images/icons/facebook-blue-24.png'); ?>" alt="facebook icon"></a>
