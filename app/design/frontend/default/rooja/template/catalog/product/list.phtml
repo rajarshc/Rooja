@@ -74,11 +74,11 @@ echo $likes = $xml->link_stat->like_count;
 				</span><?php } ?>
 				<p class="price"><span class="livePrice">
 				<?php if (!$fbprice == null) { ?>
-					<?php echo 'Rs. ' . number_format($fbprice, 2); } else { ?>
-					<?php echo 'Rs. ' . number_format($_product->getSpecialprice(), 2); } ?>
+					<?php echo 'Rs. ' . number_format($fbprice, 2); } elseif(!$_product->getSpecialprice()==null) { ?>
+					<?php echo 'Rs. ' . number_format($_product->getSpecialprice(), 2); }else{ echo'Rs. ' . number_format($thePrice, 2); } ?>
 				
 				</span><span> 
-				<?php if(!$_product->isSaleable()){ echo 'Sold Out'; } elseif($thePrice!=0.00) { echo 'Rs. ' . number_format($thePrice, 2); } ?></span></p>
+				<?php if(!$_product->isSaleable()){ echo 'Sold Out'; } elseif(!$_product->getSpecialprice()==null) { echo 'Rs. ' . number_format($thePrice, 2); } ?></span></p>
 				<h2 class="productName"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h2>
 			</article>
 		</article>
