@@ -199,7 +199,7 @@ echo '<span>' . $likes = $xml->link_stat->like_count . '</span>';
 					
 			<?php if ((($expired == 1) && (!$categoryIds == null)) || $boutique==1 ) { ?>
 					<section id="productOptions">
-							<?php if(!$_product->getPrice()==0.00){ ?>
+							<?php if($_product->getPrice()!=0.00){ ?>
 							<p class="startingPrice">Original Price: <strike>Rs. <?php echo number_format($_product->getPrice(), 2) ?></strike></p><?php } ?>
 								<?php if($boutique==0){ ?>
 									<p class="currentPrice">Current Price:<span>
