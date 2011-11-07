@@ -78,7 +78,7 @@ echo $likes = $xml->link_stat->like_count;
 					<?php echo 'Rs. ' . number_format($_product->getSpecialprice(), 2); } ?>
 				
 				</span><span> 
-				<?php if(!$_product->isSaleable()){ echo 'Sold Out'; } elseif(!$thePrice==null || !$thePrice==0) { echo 'Rs. ' . number_format($thePrice, 2); } ?></span></p>
+				<?php if(!$_product->isSaleable()){ echo 'Sold Out'; } elseif(!$thePrice==null || !$thePrice==0.00) { echo 'Rs. ' . number_format($thePrice, 2); } ?></span></p>
 				<h2 class="productName"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h2>
 			</article>
 		</article>
