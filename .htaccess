@@ -95,7 +95,7 @@ SetEnvIfNoCase Request_URI \.(?:gif|jpe?g|png)$ no-gzip dont-vary
 Header append Vary User-Agent env=!dont-vary
 
 # enable resulting html compression
-php_flag zlib.output_compression on
+#php_flag zlib.output_compression on
 
 </IfModule>
 
