@@ -1,5 +1,5 @@
 <?
-php_info();/*
+phpinfo();/*
 extension_check(array( 
 	'curl',
 	'dom', 
