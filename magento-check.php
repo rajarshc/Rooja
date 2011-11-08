@@ -1,4 +1,5 @@
 <?
+php_info();/*
 extension_check(array( 
 	'curl',
 	'dom', 
@@ -55,5 +56,5 @@ function extension_check($extensions) {
 		echo '<ul>'.$pass.'</ul>';
 
 	}
-}
+}*/
 ?>
