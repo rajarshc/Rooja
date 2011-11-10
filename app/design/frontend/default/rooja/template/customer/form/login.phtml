@@ -35,11 +35,6 @@
 <script type="text/javascript">
 (function ($) {
 	
-	var fadeDuration=2000;
-	var slideDuration=4000;
-	var currentIndex=1;
-	var nextIndex=1;
-	
 	$(document).ready(function() {
 		
 		try {
@@ -76,19 +71,57 @@
 			return false;
 		});
 		
-		$('ul.slideshow li').fadeOut(0);
-		$("'ul.slideshow li:nth-child("+nextIndex+")'").addClass('show').fadeIn(fadeDuration);
-		var timer = setInterval(function () {
-			nextIndex = currentIndex+1;
-			if(nextIndex > $('ul.slideshow li').length) {
-				nextIndex = 1;
-			}
-			$("'ul.slideshow li:nth-child("+nextIndex+")'").addClass('show').fadeIn(fadeDuration);
-			$("'ul.slideshow li:nth-child("+currentIndex+")'").fadeOut(fadeDuration).removeClass('show');
-			currentIndex = nextIndex;
-		},slideDuration);
+		
+		
+		/*****************
+		 ** CROSSFADER! **
+		 *****************/
+		 
+		// Setup some vars for crossfader
+		var fadeDuration = 2000,
+    	    slideDuration = 4000,
+    	    currentIndex = 0,
+    	    nextIndex = 1;
+    	
+		// Hide all and fade in first
+		$('ul.slideshow li').hide();
+		$('ul.slideshow li').eq(currentIndex).fadeIn(fadeDuration);
+		
+		setTimeout(function () {
+		    crossFadeImages(currentIndex, nextIndex)
+		}, slideDuration);
+		
+		
+        // setInterval(function () {
+        //  nextIndex = currentIndex+1;
+        //  if(nextIndex > ) {
+        //      nextIndex = 1;
+        //  }
+        //  $("'ul.slideshow li:nth-child("+nextIndex+")'").addClass('show').fadeIn(fadeDuration);
+        //  $("'ul.slideshow li:nth-child("+currentIndex+")'").fadeOut(fadeDuration).removeClass('show');
+        //  currentIndex = nextIndex;
+        // }, slideDuration);
 	
 	});
+	
+	
+	function crossFadeImages (current, next) {
+	    var $slideshow = $('ul.slideshow li');
+	    
+	    $slideshow.eq(current).fadeOut(fadeDuration);
+	    $slideshow.eq(next).fadeIn(fadeDuration);
+	    
+	    current = next;
+	    next++;
+	    if (next >= $slideshow.length()) {
+	        next = 0;
+	    }
+	    
+	    setTimeout(function () {
+	        crossFadeImages(current, next);
+	    }, slideDuration);
+	    
+	}
 	
 })(jQ);
 </script>
