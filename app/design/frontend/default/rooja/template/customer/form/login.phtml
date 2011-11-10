@@ -78,18 +78,16 @@
 		 *****************/
 		 
 		// Setup some vars for crossfader
-		var fadeDuration = 2000,
-    	    slideDuration = 4000,
-    	    currentIndex = 0,
+		var currentIndex = 0,
     	    nextIndex = 1;
     	
 		// Hide all and fade in first
 		$('ul.slideshow li').hide();
-		$('ul.slideshow li').eq(currentIndex).fadeIn(fadeDuration);
+		$('ul.slideshow li').eq(currentIndex).fadeIn(2000);
 		
 		setTimeout(function () {
 		    crossFadeImages(currentIndex, nextIndex)
-		}, slideDuration);
+		}, 4000);
 		
 		
         // setInterval(function () {
@@ -108,8 +106,8 @@
 	function crossFadeImages (current, next) {
 	    var $slideshow = $('ul.slideshow li');
 	    
-	    $slideshow.eq(current).fadeOut(fadeDuration);
-	    $slideshow.eq(next).fadeIn(fadeDuration);
+	    $slideshow.eq(current).fadeOut(2000);
+	    $slideshow.eq(next).fadeIn(2000);
 	    
 	    current = next;
 	    next++;
@@ -119,7 +117,7 @@
 	    
 	    setTimeout(function () {
 	        crossFadeImages(current, next);
-	    }, slideDuration);
+	    }, 4000);
 	    
 	}
 	
