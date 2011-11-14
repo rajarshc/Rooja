@@ -292,16 +292,19 @@ echo '<span>' . $likes = $xml->link_stat->like_count . '</span>';
                 $current_url = $this->helper('core/url')->getCurrentUrl();*/
             ?> 
 
-           				
-<?php
-
-if ($this->helper('catalog/data')->getCategory()) {
-        $_ccat = $this->helper('catalog/data')->getCategory();
-    } else {
-        $_ccats = $this->helper('catalog/data')->getProduct()->getCategoryIds();
-        $_ccat = Mage::getModel('catalog/category')->load($_ccats[0]);
-    }
-				   //$category = $this->helper('catalog/data')->getCategory();
+           	<?php /* 
+				<section id="prevNextLinks">
+					<?php if ($current_url == $prev_url) {} else { ?>
+						<a href="<?= $prev_url; ?>" class="fl" id="prevProduct"><p>Prev</p> <div class="contain"><img src="/media/catalog/product/<?php echo $prev_image; ?>"></div></a>
+					<?php } ?>
+					<?php if ($current_url == $next_url) {} else { ?>
+						<a href="<?= $next_url; ?>" class="fr" id="nextProduct"><p>Next</p> <div class="contain"><img src="/media/catalog/product/<?php echo $next_image; ?>"></div></a>
+					<?php } ?>
+				</section> */?>
+				
+				<div id="product-navigation">
+				            <?php
+				          $category = $this->helper('catalog/data')->getCategory();
 
 				    $visibility_model = new Mage_Catalog_Model_Product_Visibility();
 				    $category_products = $category->getProductCollection();    
@@ -338,16 +341,24 @@ if ($this->helper('catalog/data')->getCategory()) {
 				    else {
 				        $_prev_prod = NULL;
 				    }
+
 				?>
 
-				<section id="prevNextLinks">
-					<?php if ($current_url == $prev_url) {} else { ?>
-						<a href="<?= $prev_url; ?>" class="fl" id="prevProduct"><p>Prev</p> <div class="contain"><img src="/media/catalog/product/<?php echo $prev_image; ?>"></div></a>
-					<?php } ?>
-					<?php if ($current_url == $next_url) {} else { ?>
-						<a href="<?= $next_url; ?>" class="fr" id="nextProduct"><p>Next</p> <div class="contain"><img src="/media/catalog/product/<?php echo $next_image; ?>"></div></a>
-					<?php } ?>
-				</section>
+				<div class="navigation">
+				    <?php if($_prev_prod): ?>
+				        <div class="prev_model"><a href="<?php print $_prev_prod->getUrlPath()?>">Previous</a></div>
+				    <?php endif; ?>
+				    <?php $categories = $_product->getCategoryIds(); ?>
+				            <?php foreach($categories as $k => $_category_id): ?>
+				               <?php $_category = Mage::getModel('catalog/category')->load($_category_id) ?>
+
+				               <a href="<?php echo $_category->getUrl() ?>"><?php echo $this->__('Back to') ?> - <?php echo $_category->getName() ?></a>
+				            <?php endforeach; ?> 
+				    <?php if($_next_prod): ?>
+				        <div class="next_model"><a href="<?php print $_next_prod->getUrlPath()?>">Next</a></div>
+				    <?php endif; ?>
+				</div> 
+				<div class="clear"></div>
 			</section>
 		</section>
 		<br class="clear">
