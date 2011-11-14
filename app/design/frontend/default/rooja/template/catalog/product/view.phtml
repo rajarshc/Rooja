@@ -329,6 +329,7 @@ echo '<span>' . $likes = $xml->link_stat->like_count . '</span>';
 				    // get the next product url
 				    if( isset($cat_prod_ids[$_next_pos]) ) {
 				        $_next_prod = Mage::getModel('catalog/product')->load( $cat_prod_ids[$_next_pos] );
+						$next_image = $_next_prod->getThumbnail();
 				    }
 				    else {
 				        $_next_prod = NULL;
@@ -337,27 +338,22 @@ echo '<span>' . $likes = $xml->link_stat->like_count . '</span>';
 				    // get the prev product url
 				    if( isset($cat_prod_ids[$_prev_pos]) ) {
 				        $_prev_prod = Mage::getModel('catalog/product')->load( $cat_prod_ids[$_prev_pos] );
+						$prev_image = $_prev_prod->getThumbnail();
 				    }
 				    else {
 				        $_prev_prod = NULL;
 				    }
 
 				?>
-
-				<div class="navigation">
-				    <?php if($_prev_prod): ?>
-				        <div class="prev_model"><a href="<?php print $_prev_prod->getUrlPath()?>">Previous</a></div>
-				    <?php endif; ?>
-				    <?php $categories = $_product->getCategoryIds(); ?>
-				            <?php foreach($categories as $k => $_category_id): ?>
-				               <?php $_category = Mage::getModel('catalog/category')->load($_category_id) ?>
-
-				               <a href="<?php echo $_category->getUrl() ?>"><?php echo $this->__('Back to') ?> - <?php echo $_category->getName() ?></a>
-				            <?php endforeach; ?> 
-				    <?php if($_next_prod): ?>
-				        <div class="next_model"><a href="<?php print $_next_prod->getUrlPath()?>">Next</a></div>
-				    <?php endif; ?>
-				</div> 
+				<section id="prevNextLinks">
+					<?php if($_prev_prod): ?>
+						<a href="<?php print $_prev_prod->getUrlPath()?>" class="fl" id="prevProduct"><p>Prev</p> <div class="contain"><img src="/media/catalog/product/<?php echo $prev_image; ?>"></div></a>
+					<?php endif; ?>
+					<?php if($_next_prod): ?>
+						<a href="<?php print $_next_prod->getUrlPath()?>" class="fr" id="nextProduct"><p>Next</p> <div class="contain"><img src="/media/catalog/product/<?php echo $next_image; ?>"></div></a>
+					<?php endif; ?>
+				</section>
+				
 				<div class="clear"></div>
 			</section>
 		</section>
