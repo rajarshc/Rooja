@@ -46,7 +46,7 @@
 <?php // Product page ?>
 <!--Product page OG Meta tags-->
 <meta property="og:title" content="Shop the <?php echo trim(Mage::registry('current_product')->getName())?> sale at Rooja.com"/>
-<meta property="og:type" content="product"/>
+<!--<meta property="og:type" content="product"/>-->
 <meta property="og:url" content="<?php echo $this->helper('core/url')->getCurrentUrl() ?>"/>
 <meta property="og:description" content="Like my pick? visit Rooja.com. Find many more fashion items at up to 60% off retail. The website requires membership. Good news: membership is free. :) . 
 P.S. Hurry!"/>
@@ -55,7 +55,7 @@ P.S. Hurry!"/>
 <?php // Category page ?>
 <!--Category page OG Meta tags-->
 <meta property="og:title" content="Shop the <?php echo trim(Mage::registry('current_category')->getName())?> sale at Rooja."/>
-<meta property="og:type" content="product"/>
+<!--<meta property="og:type" content="product"/>-->
 <meta property="og:url" content="<?php echo $this->helper('core/url')->getCurrentUrl() ?>"/>
 <meta property="og:description" content="Visit rooja.com now and check out this designer sale, plus many more great designers at up to 60% off retail. Discover new sales every day and get access to their luxury boutique. Membership is free, and you’re invited."/>
 <?php if(trim(Mage::registry('current_category')->getImageUrl()=="")): ?>
@@ -69,7 +69,7 @@ P.S. Hurry!"/>
 <?php if(Mage::getSingleton('cms/page')->getIdentifier() == 'home'  && Mage::app()->getFrontController()->getRequest()->getRouteName() == 'cms' ) : ?>
 <!--Home page OG Meta tags-->
 <meta property="og:title" content="Join Rooja, a members only shopping club and luxury boutique."/>
-<meta property="og:type" content="product"/>
+<!--<meta property="og:type" content="product"/>-->
 <meta property="og:url" content="<?php echo $this->helper('core/url')->getCurrentUrl() ?>"/>
 <meta property="og:description" content="Thought of you guys when I saw this. Visit Rooja.com its got some good fashion picks from internationally known designers and brands at up to 60% off. You can thank me later, for now join the club. Membership is free ;) 
 
@@ -78,7 +78,7 @@ P.S. Hurry!"/>
 <?php endif; ?>
 <?php if(Mage::app()->getFrontController()->getRequest()->getRouteName() == 'customer' || Mage::app()->getFrontController()->getRequest()->getRouteName() == 'rewardsref') : ?>
 	<meta property="og:title" content="Join Rooja, a members only shopping club and luxury boutique."/>
-	<meta property="og:type" content="product"/>
+	<!--<meta property="og:type" content="product"/>-->
 	<meta property="og:url" content="<?php echo $this->helper('core/url')->getCurrentUrl() ?>"/>
 	<meta property="og:description" content="Thought of you guys when I saw this. Visit Rooja.com its got some good fashion picks from internationally known designers and brands at up to 60% off. You can thank me later, for now join the club. Membership is free ;) 
 
