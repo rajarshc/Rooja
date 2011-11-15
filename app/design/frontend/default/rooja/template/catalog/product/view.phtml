@@ -244,63 +244,6 @@ echo '<span>' . $likes = $xml->link_stat->like_count . '</span>';
 
 			<?php } ?>
 
-
-
-<?php
-                /**
-                 * Determine the previous/next link and link to current category
-                 */
-               /* if ($this->helper('catalog/data')->getCategory()) {
-                    $_ccat = $this->helper('catalog/data')->getCategory();
-                } else {
-                    $_ccats = $this->helper('catalog/data')->getProduct()->getCategoryIds();
-                    $_ccat = Mage::getModel('catalog/category')->load($_ccats[0]);
-                } 
-                $ppos         = $_ccat->getProductsPosition();
-                arsort($ppos);
-                $current_pid  = $this->helper('catalog/data')->getProduct()->getId();
-                // build array from products positions
-                $plist = array();
-                foreach ($ppos as $pid => $pos) {
-                    $plist[] = $pid;
-                }
-                $curpos   = array_search($current_pid, $plist);
-                // get link for prev product
-                $previd   = isset($plist[$curpos+1])? $plist[$curpos+1] : $current_pid;
-                $product  = Mage::getModel('catalog/product')->load($previd);
-                $prevpos  = $curpos;
-                while (!$product->isVisibleInCatalog()) {
-                    $prevpos += 1;
-                    $nextid   = isset($plist[$prevpos])? $plist[$prevpos] : $current_pid;
-                    $product  = Mage::getModel('catalog/product')->load($nextid);
-                }
-                $prev_image = $product->getThumbnail();
-                $prev_url = $product->getProductUrl();
-                // get link for next product
-                $nextid   = isset($plist[$curpos-1])? $plist[$curpos-1] : $current_pid;
-                $product  = Mage::getModel('catalog/product')->load($nextid);
-                $nextpos  = $curpos;
-                while (!$product->isVisibleInCatalog()) {
-                    $nextpos -= 1;
-                    $nextid   = isset($plist[$nextpos])? $plist[$nextpos] : $current_pid;
-                    $product  = Mage::getModel('catalog/product')->load($nextid);
-                }
-                $next_url = $product->getProductUrl();
-                $next_image = $product->getThumbnail();
-                // get link for current category
-                $more_url = $_ccat->getUrl(); 
-                $current_url = $this->helper('core/url')->getCurrentUrl();*/
-            ?> 
-
-           	<?php /* 
-				<section id="prevNextLinks">
-					<?php if ($current_url == $prev_url) {} else { ?>
-						<a href="<?= $prev_url; ?>" class="fl" id="prevProduct"><p>Prev</p> <div class="contain"><img src="/media/catalog/product/<?php echo $prev_image; ?>"></div></a>
-					<?php } ?>
-					<?php if ($current_url == $next_url) {} else { ?>
-						<a href="<?= $next_url; ?>" class="fr" id="nextProduct"><p>Next</p> <div class="contain"><img src="/media/catalog/product/<?php echo $next_image; ?>"></div></a>
-					<?php } ?>
-				</section> */?>
 				
 				<div id="product-navigation">
 				            <?php
