@@ -1037,6 +1037,8 @@ a#backToCart{
     color:#431F4C;
 }
 
+a#backToCart:hover{color:#000;}
+
 
 /* Shopping Cart Table */
 .cart-table .item-msg { font-size:10px; }
