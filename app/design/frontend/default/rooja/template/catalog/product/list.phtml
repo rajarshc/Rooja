@@ -53,6 +53,18 @@
 	<?php //echo $fbprice; ?>
 	<?php //var_export($_product); ?>
 		<article class="product col1 fl <?php if ($i % 3 == 0){ echo 'noMargin'; } ?>">
+			<?php if($_product->getTypeId() == "configurable"):
+			$total = 0;
+			$ids = $_product->getTypeInstance()->getUsedProductIds();
+			foreach ($ids as $id) :
+			    $simpleproduct = Mage::getModel('catalog/product')->load($id); ?>             
+			<?php $total = $total + (int)Mage::getModel('cataloginventory/stock_item')->loadByProduct($simpleproduct)->getQty(); ?>
+			<?php endforeach; ?>
+			<?php if ($total <= 2 && $total > 0) {
+				echo '<span class="numLeft">'.$total.'</span>';
+			} ?>
+			<?php endif; ?>
+			
 		<?php $stock_count = (int) Mage::getModel('cataloginventory/stock_item')->loadByProduct($_product)->getQty();
 if ($stock_count <= 2 && $stock_count > 0) {
 echo '<span class="numLeft">'.$stock_count.'</span>';
