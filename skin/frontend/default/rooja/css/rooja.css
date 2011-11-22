@@ -580,8 +580,9 @@ h3 .product-name {
 }
 #checkoutQuestions{
     font-size:1.2em;
-    margin-top:-15px;
+    margin-top:-20px;
 }
+#checkoutQuestions a{font-weight:bold;}
 
 
 /* ~~~~~ HOME ~~~~~ */
