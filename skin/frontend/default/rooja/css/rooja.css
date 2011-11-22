@@ -584,6 +584,7 @@ h3 .product-name {
 }
 #checkoutQuestions a{font-weight:bold;}
 
+#checkoutQuestions a:hover{color:#c60;}
 
 /* ~~~~~ HOME ~~~~~ */
 #liveSales{background:url(../images/bgs/black-diag.png) repeat; /*background:#000;*/ overflow:hidden;padding:30px 0;}
