@@ -575,6 +575,13 @@ h3 .product-name {
 
 #ccHintText,#codHintText{display:none;}
 #checkout-review-load .reviewbuttoncont {margin-top:20px;}
+#checkoutHeader{
+    margin-top:25px;
+}
+#checkoutQuestions{
+    font-size:1.2em;
+    margin-top:-15px;
+}
 
 
 /* ~~~~~ HOME ~~~~~ */
