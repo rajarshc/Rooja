@@ -346,10 +346,10 @@ echo '<span>' . $likes = $xml->link_stat->like_count . '</span>';
 					                $current_url = $this->helper('core/url')->getCurrentUrl();
 					            ?>
 								<section id="prevNextLinks">
-									<?php if(!$current_url == $prev_url): ?>
+									<?php if($current_url != $prev_url): ?>
 										<a href="<?php echo $prev_url; ?>" class="fl" id="prevProduct"><p>Prev</p> <div class="contain"><img src="/media/catalog/product/<?php echo $prev_image; ?>"></div></a>
 									<?php endif; ?>
-									<?php if(!$current_url == $prev_url): ?>
+									<?php if($current_url != $next_url): ?>
 										<a href="<?php echo $next_url; ?>" class="fr" id="nextProduct"><p>Next</p> <div class="contain"><img src="/media/catalog/product/<?php echo $next_image; ?>"></div></a>
 									<?php endif; ?>
 								</section>
