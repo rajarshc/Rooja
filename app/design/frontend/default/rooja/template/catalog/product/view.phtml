@@ -344,13 +344,12 @@ echo '<span>' . $likes = $xml->link_stat->like_count . '</span>';
 					                // get link for current category
 					                $more_url = $_ccat->getUrl(); 
 					                $current_url = $this->helper('core/url')->getCurrentUrl();
-									echo "<p>current url: " . $current_url . "</p><p>prev url: " . $prev_url . "</p>";
 					            ?>
 								<section id="prevNextLinks">
-									<?php if ($current_url == $prev_url) {} else { ?>
+									<?php if (!$current_url == $prev_url) { ?>
 										<a href="<?= $prev_url; ?>" class="fl" id="prevProduct"><p>Prev</p> <div class="contain"><img src="/media/catalog/product/<?php echo $prev_image; ?>"></div></a>
 									<?php } ?>
-									<?php if ($current_url == $next_url) {} else { ?>
+									<?php if (!$current_url == $next_url) { ?>
 										<a href="<?= $next_url; ?>" class="fr" id="nextProduct"><p>Next</p> <div class="contain"><img src="/media/catalog/product/<?php echo $next_image; ?>"></div></a>
 									<?php } ?>
 								</section>
