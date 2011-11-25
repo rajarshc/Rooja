@@ -541,8 +541,9 @@ a.closer {
 #pageContent .std ul, #pageContent .std ol{font-size:1.2em;line-height:1.4em;list-style:disc outside;margin:0 0 20px 30px;}
 #pageContent .std  ul li, #pageContent .std  ol li{padding-bottom:5px;}
 p.question{margin:0;font-weight:bold;color:#431f4c;}
-#tocLinks{font-size:1.2em;line-height:2em;}
-#tocLinks a:hover{color:#431f4c;}
+#tocLinks{font-size:1.3em;line-height:2em;}
+#tocLinks a{color:#431f4c;}
+#tocLinks a:hover{color:#000;text-decoration:underline;}
 
 .main{padding-bottom:20px;}
 
