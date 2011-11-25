@@ -43,7 +43,7 @@ li.error-msg, li.success-msg {
 #loginTabs ul li a{float:left;margin-right:1px;width:90px;height:30px;}
 #loginTabs ul li a.selected{background-position:bottom left;}
 #loginTabs ul li a#loginTab{background-image:url(../images/splash/btns/login.png);}
-#loginTabs ul li a#getInvitedTab{background-image:url(../images/splash/btns/get-invited.png);}
+#loginTabs ul li a#getInvitedTab{background-image:url(../images/splash/btns/get-membership.png);width:130px;}
 
 #mainHeader.login{padding-top:15px;margin-top:30px;}
 h1#logo{
