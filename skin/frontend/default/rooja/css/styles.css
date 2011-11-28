@@ -379,7 +379,7 @@ h2.print {
 .shipping-tracking-popup h2{
     margin-bottom:25px;
 }
-.tracking-table-popup th, .tracking-table-popup td{padding:12px 8px;}
+.tracking-table-popup th, .tracking-table-popup td{padding:12px 8px !important;}
 
 /* Sorter */
 .sorter { border:1px solid #ddd; padding:5px; margin:5px 0; }
