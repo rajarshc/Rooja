@@ -31,7 +31,8 @@
             <?php endforeach; ?>
         </tbody>
     </table>
-
+	<?php echo $this->getPagerHtml(); ?>
+	
     <script type="text/javascript">decorateTable('referred-friends-table')</script>
     <?php else: ?>
         <p><?php echo $this->__("You don't have any referrals yet."); ?></p>
