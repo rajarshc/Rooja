@@ -374,6 +374,12 @@ h2.print {
 .pager .pages ol { display:inline; }
 .pager .pages li { display:inline; }
 .pager .pages .current {}
+.pager .pages .i-previous, .pager .pages  .i-next{display:none;}
+
+.shipping-tracking-popup h2{
+    margin-bottom:25px;
+}
+.tracking-table-popup th, .tracking-table-popup td{padding:12px 8px;}
 
 /* Sorter */
 .sorter { border:1px solid #ddd; padding:5px; margin:5px 0; }
