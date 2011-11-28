@@ -367,10 +367,10 @@ h2.print {
 	}
 
 /* Pager */
-.pager {  padding:5px 0; margin:8px 0; text-align:center; }
+.pager {  padding:5px 0; margin:15px 0 8px; text-align:center; }
 .pager .amount { float:left;margin-bottom:0; }
-.pager .limiter { float:right; }
-.pager .pages { margin:0 135px; }
+.pager .limiter { float:right;font-size:12px; }
+.pager .pages { margin:0 135px; font-size:12px; }
 .pager .pages ol { display:inline; }
 .pager .pages li { display:inline; }
 .pager .pages .current {}
