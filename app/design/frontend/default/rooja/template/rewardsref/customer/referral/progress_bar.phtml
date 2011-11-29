@@ -16,6 +16,7 @@
 	<?php 
 		$referrerCount = count($_referred);
 		$referrerPercent = $referrerCount * 10;
+		if($referrerPercent>100){$referrerPercent=100;}
 		$awayFrom10 = 10 - $referrerCount;
 		//echo $numSignedUp;
 	?>
