@@ -710,7 +710,7 @@ h2#saleDetails{color:#c60;margin:22px 0 5px;}
 #commentsRelated h3{color:#fff;margin-bottom:22px;}
 
 #related ul li{display:inline;}
-#related ul li a{position:relative;float:left;display:block;margin:0 5px 5px 0px;max-height: 114px;overflow: hidden;}
+#related ul li a{position:relative;float:left;display:block;margin:0 5px 5px 0px;max-height: 171px;overflow: hidden;}
 #related ul li span.numLikes{position:absolute;z-index:10;bottom:0;right:0;background:url(../images/bgs/purp-opacity-photo-diag.png) repeat;padding:6px 10px; color:#fff;font-size:1.2em;}
 #related ul li span.numLikes img{margin-right:3px;}
 
