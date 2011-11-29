@@ -380,6 +380,7 @@ h2.print {
     margin-bottom:25px;
 }
 .tracking-table-popup th, .tracking-table-popup td{padding:12px 8px !important;}
+.tracking-table-popup td{line-height:16px;}
 
 /* Sorter */
 .sorter { border:1px solid #ddd; padding:5px; margin:5px 0; }
