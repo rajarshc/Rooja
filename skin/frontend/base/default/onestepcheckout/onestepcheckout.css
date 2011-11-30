@@ -102,6 +102,9 @@ ul.onestepcheckout-custom-options {
 
 #onestepcheckout-form label {
     font-weight: normal !important;
+    font-size:1.3em;
+    margin-bottom:10px;
+    line-height:1.2em;
 }
 
 .onestepcheckout-summary,.onestepcheckout-totals {
