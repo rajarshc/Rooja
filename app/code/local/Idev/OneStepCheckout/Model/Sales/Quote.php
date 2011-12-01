@@ -1,5 +1,5 @@
 <?php
-class  Idev_OneStepCheckout_Model_Sales_Quote extends Mage_Sales_Model_Quote
+class  Idev_OneStepCheckout_Model_Sales_Quote extends TBT_Rewards_Model_Sales_Quote
 {
 
     /**
