@@ -821,6 +821,17 @@ div.onestepcheckout-comments textarea {
 }
 
 #onestepcheckout-coupon-add{
-    background-color:#431F4C;
-    padding:5px;
+    height: 40px;
+    background: #431F4C;
+    padding: 2px 10px;
+    font: normal 12px/40px Arial, Helvetica, sans-serif;
+    text-align: center;
+    white-space: nowrap;
+    color: white;
+    width: auto;
+    color:#fff;
+}
+
+#onestepcheckout-coupon-add:hover{
+    background-color:#000;
 }
