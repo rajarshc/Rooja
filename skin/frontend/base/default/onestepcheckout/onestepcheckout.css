@@ -84,9 +84,8 @@ select.address-select {
 }
 
 ul.onestepcheckout-custom-options {
-    margin: 0;
+    margin: 6px 0 0 30px;
     padding: 0;
-    margin-left: 20px;
     list-style-type: disc;
 }
 
@@ -117,7 +116,8 @@ ul.onestepcheckout-custom-options {
 
 .onestepcheckout-summary th,.onestepcheckout-summary,.onestepcheckout-summary td,.onestepcheckout-totals td
     {
-    padding: 3px 0;
+    padding: 8px 0;
+    font-size:13px;
 }
 
 .onestepcheckout-summary th {
@@ -360,7 +360,7 @@ fieldset.group-select {
 .shipment-methods dd {
     font-style:italic;
     margin-bottom: 10px;
-    margin-top: 7px;
+    margin-top: 20px;
     font-size:14px;
 }
 
@@ -394,6 +394,7 @@ p.checkout-choose-payment-method {
 }
 #checkout-payment-method-load dt label{
     float:left;
+    width:240px;
 }
 
 div.onestepcheckout-shipping-method {
@@ -438,7 +439,7 @@ p.onestepcheckout-numbers-4 {
 div.onestepcheckout-skin-magento .onestepcheckout-numbers {
     padding-top: 0px !important;
     padding-left: 28px !important;
-    height: 25px !important;
+    height: 15px !important;
     text-transform: capitalize !important;
     color: #F18200 !important;
     font-size: 13px !important;
