@@ -227,7 +227,7 @@ span.required{color:#d68536;}
 .form-list input.input-text { width:254px; }
 .form-list textarea { width:254px; height:10em; }
 .form-list select { width:200px; }
-.form-list li.wide .input-box { width:535px; }
+.form-list li.wide .input-box { width:458px; }
 .form-list li.wide input.input-text { width:100%; }
 .form-list li.wide-2 input.input-text { width:94%; }
 .form-list li.wide textarea { width:529px; }
