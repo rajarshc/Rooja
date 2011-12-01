@@ -207,7 +207,8 @@ $(".payment-methods input").live('change', function() {
             <?php endif; ?>
 
             <?php echo $this->getChildHtml('choose-payment-method'); ?>
-
+			<p id="hintText"></p>
+			<div id="hintImg"></div>
             <div class="tool-tip" id="payment-tool-tip" style="display:none;">
                 <div class="btn-close">
                     <a href="javascript:void(0);" id="payment-tool-tip-close"><img src="<?php echo $this->getSkinUrl('images/btn_window_close.gif') ?>" alt="<?php echo $this->__('Close') ?>" /></a>
