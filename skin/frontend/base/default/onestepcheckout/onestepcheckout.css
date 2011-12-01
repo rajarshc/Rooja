@@ -126,7 +126,7 @@ ul.onestepcheckout-custom-options {
     border-top: 1px solid #BEBCB7;
 }
 
-/*.onestepcheckout-totals td,.onestepcheckout-summary td,*/.table.onestepcheckout-summary td.total {
+/*.onestepcheckout-totals td,.onestepcheckout-summary td,*/table.onestepcheckout-summary td.total {
     border-bottom: 1px solid #BEBCB7;
 }
 .onestepcheckout-totals tr{
