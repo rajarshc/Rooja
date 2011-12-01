@@ -104,7 +104,7 @@ ul.onestepcheckout-custom-options {
     font-weight: normal !important;
     font-size:1.3em;
     margin-bottom:10px;
-    line-height:1.2em;
+    line-height:1.3em;
 }
 
 .onestepcheckout-summary,.onestepcheckout-totals {
@@ -355,12 +355,13 @@ fieldset.group-select {
 .group-select li {
     padding: 4px 0;
 }
+.shipment-methods{margin-bottom:20px;}
 
 .shipment-methods dd {
-    font-weight: bold;
-    margin: 0 !important;
-    margin-bottom: 3px;
+    font-style:italic;
+    margin-bottom: 10px;
     margin-top: 7px;
+    font-size:14px;
 }
 
 p.checkout-choose-payment-method,p.checkout-choose-shipping-method {
@@ -381,6 +382,18 @@ p.checkout-choose-payment-method {
 
 .payment-methods dd li {
     padding: 0;
+}
+
+#checkout-payment-method-load dt{
+    display:block;
+    margin-bottom:4px;
+}
+#checkout-payment-method-load dt input.radio{
+    float:left;
+    margin-right:10px;
+}
+#checkout-payment-method-load dt label{
+    float:left;
 }
 
 div.onestepcheckout-shipping-method {
