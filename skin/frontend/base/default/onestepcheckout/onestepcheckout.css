@@ -126,10 +126,12 @@ ul.onestepcheckout-custom-options {
     border-top: 1px solid #BEBCB7;
 }
 
-.onestepcheckout-totals td,.onestepcheckout-summary td {
+/*.onestepcheckout-totals td,*/.onestepcheckout-summary td {
     border-bottom: 1px solid #BEBCB7;
 }
-
+.onestepcheckout-totals tr{
+    border-top: 1px solid #BEBCB7;
+}
 h1.onestepcheckout-title {
     font-size: 20px;
     text-transform: uppercase;
