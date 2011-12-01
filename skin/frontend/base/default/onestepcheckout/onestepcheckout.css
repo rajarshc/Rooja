@@ -675,12 +675,11 @@ div.onestepcheckout-comments textarea {
 }
 
 .checkoutcontainer li.shipping-address-title {
-    font-family: Arial;
-    font-size: 16px;
-    text-transform: uppercase;
-    color: #404040;
+    color: #F18200;
+    font-size: 13px;
     font-weight: bold;
-    padding-top: 5px;
+    text-transform:capitalize;
+    padding-top:25px;
 }
 
 .onestepcheckout-giftmessagecontainer {
