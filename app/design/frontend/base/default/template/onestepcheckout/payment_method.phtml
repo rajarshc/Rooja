@@ -159,10 +159,7 @@ payment.switchMethod(payment.currentMethod);
 <script>
 (function ($) {
 	$(document).ready(function(){
-		if($('#p_method_Avenues_standard').is(':checked')) { 
-			$("#hintText").html('You will be redirected to CCAvenue our secure online payment-processing partner.');
-			$("#hintImg").html('<img src="<?php echo $this->getSkinUrl('images/cc.png'); ?>" alt="Security" id="secureLogos">');
-		}
+	
 $(".payment-methods input").live('change', function() {
 	
 	if($('#p_method_cashondelivery').is(':checked')) { 

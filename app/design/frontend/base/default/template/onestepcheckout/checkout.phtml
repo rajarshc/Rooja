@@ -7,8 +7,9 @@ $helper = Mage::helper('onestepcheckout/checkout');
 <?php if(!$this->canCheckout() || !$this->validateMinimumAmount()): ?>
     <?php if($this->settings['checkout_title']): ?>
         <h1 class="onestepcheckout-title"><?php echo $this->settings['checkout_title']; ?></h1>
+		<span class="fr" id="checkoutQuestions">Questions? <a href="/contact">Contact Us</a></span>
     <?php endif; ?>
-	<span class="fr" id="checkoutQuestions">Questions? <a href="/contact">Contact Us</a></span>
+	
     <?php if($this->canCheckout() && !$this->validateMinimumAmount()): ?>
     <p><?php echo Mage::getStoreConfig('sales/minimum_order/description'); ?></p>
     <p><a href="<?php echo $this->getUrl(''); ?>"><?php echo $this->__('Back to homepage'); ?></a></p>
