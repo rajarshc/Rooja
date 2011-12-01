@@ -830,6 +830,7 @@ div.onestepcheckout-comments textarea {
     color: white;
     width: auto;
     color:#fff;
+    border:none;
 }
 
 #onestepcheckout-coupon-add:hover{
