@@ -129,9 +129,9 @@ ul.onestepcheckout-custom-options {
 /*.onestepcheckout-totals td,.onestepcheckout-summary td,*/table.onestepcheckout-summary tr {
     border-bottom: 1px solid #BEBCB7;
 }
-.onestepcheckout-totals tr{
+/*.onestepcheckout-totals tr{
     border-top: 1px solid #BEBCB7;
-}
+}*/
 h1.onestepcheckout-title {
     font-size: 20px;
     text-transform: uppercase;
