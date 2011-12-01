@@ -835,3 +835,15 @@ div.onestepcheckout-comments textarea {
 #onestepcheckout-coupon-add:hover{
     background-color:#000;
 }
+
+#onestepcheckout-coupon-remove{
+    height: 40px;
+    background: #D68533;
+    padding: 2px 10px;
+    font: normal 12px/40px Arial, Helvetica, sans-serif;
+    text-align: center;
+    white-space: nowrap;
+    color: white;
+    width: auto;
+    margin: 0;
+}
