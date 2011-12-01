@@ -26,7 +26,7 @@
 ?>
 
 <?php if (!($_shippingRateGroups = $this->getShippingRates())): ?>
-    <strong><?php echo $this->__('Sorry, no quotes are available for this order at this time.') ?></strong>
+    <p><strong><?php echo $this->__('Sorry, no quotes are available for this order at this time.') ?></strong></p>
 <?php else: ?>
     <?php if (count($_shippingRateGroups)=='1' && Mage::getStoreConfig('onestepcheckout/general/hide_shipping_method')):?>
         <dl class="shipment-methods" style="display: none">
