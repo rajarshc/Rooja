@@ -439,7 +439,7 @@ p.onestepcheckout-numbers-4 {
 div.onestepcheckout-skin-magento .onestepcheckout-numbers {
     padding-top: 0px !important;
     padding-left: 28px !important;
-    height: 15px !important;
+    height: 18px !important;
     text-transform: capitalize !important;
     color: #F18200 !important;
     font-size: 13px !important;
@@ -818,4 +818,9 @@ div.onestepcheckout-comments textarea {
 }
 .checkout-agreements .agreement-content {
     overflow:scroll;
+}
+
+#onestepcheckout-coupon-add{
+    background-color:#431F4C;
+    padding:5px;
 }
