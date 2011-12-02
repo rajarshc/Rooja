@@ -194,8 +194,11 @@ Mage::log("5");
 
     public function setCustomerAsLoggedIn($customer)
     {
+	Mage::log("1");
         $this->setCustomer($customer);
+Mage::log("2");
         Mage::dispatchEvent('customer_login', array('customer'=>$customer));
+Mage::log("3");
         return $this;
     }
 
