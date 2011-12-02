@@ -93,6 +93,10 @@ abstract class Mage_Eav_Model_Entity_Attribute_Abstract extends Mage_Core_Model_
     {
         $this->_init('eav/entity_attribute');
     }
+	public function __destruct()
+	{
+	    unset($this->_backend);
+	}
 
     /**
      * Load attribute data by code
