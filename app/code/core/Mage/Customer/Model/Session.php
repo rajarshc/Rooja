@@ -176,13 +176,17 @@ class Mage_Customer_Model_Session extends Mage_Core_Model_Session_Abstract
      */
     public function login($username, $password)
     {
+	Mage::log("1");
         /** @var $customer Mage_Customer_Model_Customer */
         $customer = Mage::getModel('customer/customer')
             ->setWebsiteId(Mage::app()->getStore()->getWebsiteId());
-
+Mage::log("2");
         if ($customer->authenticate($username, $password)) {
+	Mage::log("3");
             $this->setCustomerAsLoggedIn($customer);
+Mage::log("4");
             $this->renewSession();
+Mage::log("5");
             return true;
         }
         return false;
