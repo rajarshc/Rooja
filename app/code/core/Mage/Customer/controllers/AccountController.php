@@ -124,43 +124,57 @@ class Mage_Customer_AccountController extends Mage_Core_Controller_Front_Action
      */
     public function loginPostAction()
     {
+	Mage::log("1");
         if ($this->_getSession()->isLoggedIn()) {
+	Mage::log("2");
             $this->_redirect('*/*/');
+Mage::log("3");
             return;
         }
         $session = $this->_getSession();
-
+		Mage::log("4");
         if ($this->getRequest()->isPost()) {
+	Mage::log("5");
             $login = $this->getRequest()->getPost('login');
             if (!empty($login['username']) && !empty($login['password'])) {
+	Mage::log("6");
                 try {
                     $session->login($login['username'], $login['password']);
+Mage::log("7");
                     if ($session->getCustomer()->getIsJustConfirmed()) {
+	Mage::log("8");
                         $this->_welcomeCustomer($session->getCustomer(), true);
                     }
                 } catch (Mage_Core_Exception $e) {
+	Mage::log("9");
                     switch ($e->getCode()) {
                         case Mage_Customer_Model_Customer::EXCEPTION_EMAIL_NOT_CONFIRMED:
+Mage::log("10");
                             $value = Mage::helper('customer')->getEmailConfirmationUrl($login['username']);
                             $message = Mage::helper('customer')->__('This account is not confirmed. <a href="%s">Click here</a> to resend confirmation email.', $value);
                             break;
                         case Mage_Customer_Model_Customer::EXCEPTION_INVALID_EMAIL_OR_PASSWORD:
+Mage::log("11");
                             $message = $e->getMessage();
                             break;
                         default:
+Mage::log("12");
                             $message = $e->getMessage();
                     }
                     $session->addError($message);
                     $session->setUsername($login['username']);
                 } catch (Exception $e) {
+	Mage::log("13");
                     // Mage::logException($e); // PA DSS violation: this exception log can disclose customer password
                 }
             } else {
+	Mage::log("14");
                 $session->addError($this->__('Login and password are required.'));
             }
         }
-
+Mage::log("15");
         $this->_loginPostRedirect();
+Mage::log("16");
     }
 
     /**
