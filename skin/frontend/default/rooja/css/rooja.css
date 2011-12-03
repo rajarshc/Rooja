@@ -742,6 +742,12 @@ h2#saleDetails{color:#c60;margin:22px 0 5px;}
 }
 
 .mypoints-transfers-spendings{margin-top:15px;}
+.mypoints-page h4{
+    text-transform:none;
+    color:#cc6600;
+    font-family:arial, helvetica, sans-serif;
+    font-weight:bold;
+}
 
 /* ~~~~~ Typography ~~~~~ */
 
