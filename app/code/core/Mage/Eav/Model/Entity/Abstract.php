@@ -643,7 +643,6 @@ abstract class Mage_Eav_Model_Entity_Abstract
                 $exception->setAttributeCode($attrCode)->setPart($part);
                 throw $exception;
             }
-			$attribute->__destruct();
         }
         return $results;
     }
@@ -1126,7 +1125,6 @@ abstract class Mage_Eav_Model_Entity_Abstract
             } else if (!$this->_isAttributeValueEmpty($attribute, $v)) {
                 $insert[$attrId] = $v;
             }
-			$this->unsetAttributes();
         }
 
         $result = compact('newObject', 'entityRow', 'insert', 'update', 'delete');
