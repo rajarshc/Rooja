@@ -267,6 +267,12 @@ h1#about{
     margin:18px 0; 
 }
 
+#roojaPromises{
+    background-image:url(../images/splash/roojas-products.png);
+    width:254px;height:19px;
+    margin:18px 0; 
+}
+
 #whyRooja{
     background-image:url(../images/splash/why-rooja.png);
     width:165px;height:19px;
