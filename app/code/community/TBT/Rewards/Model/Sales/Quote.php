@@ -279,7 +279,6 @@ class TBT_Rewards_Model_Sales_Quote extends Mage_Sales_Model_Quote {
 		}
 		
 		$order_items = $this->getAllItems ();
-		$is_login_notice_given = false;
 		
 		$catalog_transfers = $this->_getCatalogTransfersSingleton ();
 		foreach ( $order_items as $item ) {
@@ -301,18 +300,10 @@ class TBT_Rewards_Model_Sales_Quote extends Mage_Sales_Model_Quote {
 			if (! empty ( $earned_point_totals )) {
 				if ($this->_getRewardsSession ()->isCustomerLoggedIn ()) {
 					$catalog_transfers->addEarnedPoints ( $earned_point_totals );
-				} 
-
-				//TODO:Fix for bug 108, will be moved for abstraction in the rewards session
-				else if ($this->_getRewardsSession ()->isAdminMode ()) {
+				} elseif ($this->_getRewardsSession ()->isAdminMode ()) {     //TODO:Fix for bug 108, will be moved for abstraction in the rewards session
 					$catalog_transfers->addEarnedPoints ( $earned_point_totals );
-				} 
-
-				else {
-					if (! $is_login_notice_given) {
-						Mage::getSingleton ( 'core/session' )->addNotice ( Mage::helper ( 'rewards' )->__ ( 'If you had created a customer account, you would have earned points for this order.' ) );
-						$is_login_notice_given = true;
-					}
+				} else {
+				    // TODO Not customer, not admin so possible via API or something, so no points and no message.
 				}
 			}
 		}
@@ -453,6 +444,23 @@ class TBT_Rewards_Model_Sales_Quote extends Mage_Sales_Model_Quote {
 		return $highest_priority_rule;
 	}
 	
+        
+        /*
+         * Return an address associated with this quote
+         * returns null if none available
+         * 
+         * @return Mage_Sales_Model_Quote_Address
+         */
+        protected function _getAssociatedAddress() {
+            $address = null;
+            if ($this->isVirtual()) {
+                $address = $this->getBillingAddress();
+            } else {
+                $address = $this->getShippingAddress();
+            }
+            return $address;
+        }
+	
 	/**
 	 * Calculates the maximum points usable using spending rules 
 	 * for this quote model.
@@ -480,10 +488,9 @@ class TBT_Rewards_Model_Sales_Quote extends Mage_Sales_Model_Quote {
 			
 			$quote_total_before_discounts = $quote_total;
 			//echo("Discountable total is $quote_total_before_discounts + {$this->getShippingAddress()->getDiscountAmount()} + $spendings_discount = {$quote_total}.");
-			
 
 			//@nelkaake Added on Wednesday May 5, 2010:  Subtract any nonspending discounts
-			$quote_total += $this->getShippingAddress ()->getDiscountAmount ();
+			$quote_total += $this->_getAssociatedAddress()->getDiscountAmount ();
 			
 			if (($salesrule->getSimpleAction () == 'by_percent' && $quote_total > 0) || $salesrule->getSimpleAction () != 'by_percent') {
 				$quote_total += $spendings_discount;

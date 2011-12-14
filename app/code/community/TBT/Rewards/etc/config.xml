@@ -2,7 +2,7 @@
 <config>
     <modules>
         <TBT_Rewards>
-            <version>1.6.0.0</version>
+            <version>1.6.0.4</version>
         </TBT_Rewards>
     </modules>
     <admin>
@@ -778,6 +778,11 @@
             </email>
         </template>
         
+        <pdf>
+            <totals>
+                <points_discount><model>rewards/sales_pdf_points_discount</model></points_discount>
+            </totals>
+        </pdf>
     </global>
     
      
@@ -843,7 +848,7 @@
     </rewards>   
      <global>
         <events>
-            <newsletter_subscriber_save_before>
+            <model_save_before>
                 <observers>
                     <tbt_rewards_model_newsletter_subscriber_save_before>
                         <type>singleton</type>
@@ -851,8 +856,8 @@
                         <method>beforeSaveSubscription</method>
                     </tbt_rewards_model_newsletter_subscriber_save_before>
                 </observers>
-            </newsletter_subscriber_save_before>
-            <newsletter_subscriber_save_after>
+            </model_save_before>
+            <model_save_after>
                 <observers>
                     <tbt_rewards_model_newsletter_subscriber_save_after>
                         <type>singleton</type>
@@ -860,7 +865,7 @@
                         <method>afterSaveSubscription</method>
                     </tbt_rewards_model_newsletter_subscriber_save_after>
                 </observers>
-            </newsletter_subscriber_save_after>
+            </model_save_after>
         </events>
     </global>
     <!-- END Newletter Rewards Components END-->
@@ -884,7 +889,7 @@
     </rewards>
     <global>
         <events>
-            <review_save_after>
+            <model_save_after>
                 <observers>
                     <tbt_rewards_model_review_observer_save_after>
                         <type>singleton</type>
@@ -892,8 +897,8 @@
                         <method>afterSaveReview</method>
                     </tbt_rewards_model_review_observer_save_after>
                 </observers>
-            </review_save_after>
-            <review_load_after>
+            </model_save_after>
+            <model_load_after>
                 <observers>
                     <tbt_rewards_model_review_observer_load_after>
                         <type>singleton</type>
@@ -901,7 +906,7 @@
                         <method>afterLoadReview</method>
                     </tbt_rewards_model_review_observer_load_after>
                 </observers>
-            </review_load_after>
+            </model_load_after>
             <core_block_abstract_prepare_layout_after>
                 <observers>
                     <tbt_rewards_model_review_add_tab>
@@ -950,7 +955,7 @@
     </rewards> 
     <global>
         <events>
-            <tag_save_after>
+            <model_save_after>
                 <observers>
                     <tbt_rewards_model_tag_observer_save_after>
                         <type>singleton</type>
@@ -958,8 +963,8 @@
                         <method>afterSaveTag</method>
                     </tbt_rewards_model_tag_observer_save_after>
                 </observers>
-            </tag_save_after>
-            <tag_load_after>
+            </model_save_after>
+            <model_load_after>
                 <observers>
                     <tbt_rewards_model_tag_observer_load_after>
                         <type>singleton</type>
@@ -967,7 +972,7 @@
                         <method>afterLoadTag</method>
                     </tbt_rewards_model_tag_observer_load_after>
                 </observers>
-            </tag_load_after>
+            </model_load_after>
             <core_block_abstract_prepare_layout_after>
                 <observers>
                     <tbt_rewards_model_tag_add_tab>
@@ -1072,6 +1077,9 @@
                 <product_view_page_tag_points>0</product_view_page_tag_points>
                 <shopping_cart_under_coupon>0</shopping_cart_under_coupon>
                 <customer_dashboard_summary>0</customer_dashboard_summary>
+                <checkout_onepage_warnguest>1</checkout_onepage_warnguest>
+                <product_view_warnguest>1</product_view_warnguest>
+                <product_listing>1</product_listing>
             </autointegration>
             <InitialTransferStatus>
                 <AfterOrder>4</AfterOrder>
@@ -1122,6 +1130,10 @@
                 <is_log_birthday_enabled>1</is_log_birthday_enabled>
             </birthday>
 
+            <checkout>
+                <enable_paypal_checkout_fee>1</enable_paypal_checkout_fee>
+            </checkout>
+			
             <!-- Annual Limit Feature
             <anualRedemptionLimit>
                 <is_enabled>0</is_enabled>
@@ -1145,8 +1157,11 @@
         <tests>
             <rewards>
                 <suites>
-                    <database>TBT_Rewards_Model_Test_Suite_Rewards_Database</database>
-                    <template>TBT_Rewards_Model_Test_Suite_Rewards_Template</template>
+                    <database_tables>TBT_Rewards_Model_Test_Suite_Rewards_Database_Tables</database_tables>
+                    <!--<database_schema>TBT_Rewards_Model_Test_Suite_Rewards_Database_Schema</database_schema>-->
+                    <module_issue>TBT_Rewards_Model_Test_Suite_Rewards_Module_Issue</module_issue>
+                    <template_points>TBT_Rewards_Model_Test_Suite_Rewards_Template_Points</template_points>
+                    <template_migration>TBT_Rewards_Model_Test_Suite_Rewards_Template_Migration</template_migration>
                 </suites>
             </rewards>
         </tests>

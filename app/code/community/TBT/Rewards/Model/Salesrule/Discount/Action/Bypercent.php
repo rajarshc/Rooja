@@ -46,27 +46,8 @@ class TBT_Rewards_Model_Salesrule_Discount_Action_Bypercent extends TBT_Rewards_
 
 	
 	public function applyDiscounts(&$cartRules, $address, $item, $rule, $qty) {
-
-		//@nelkaake -a 28/11/10: First calculate the total discount on the cart
-		if (! isset ( $cartRules [$rule->getId ()] )) {
-			$cartRules [$rule->getId ()] = $this->calcCartDiscount ( $item, $address, $rule, $qty );
-			
-		}
-		
-		//@nelkaake: This should never go under 0;
-		if ($cartRules [$rule->getId ()] <= 0) {
-			return array(0,0);
-		}
 		
 		list ( $discountAmount, $baseDiscountAmount ) = $this->calcItemDiscount ( $item, $address, $rule, $cartRules, $qty );
-	
-		if($cartRules [$rule->getId ()] - $baseDiscountAmount >= 0) {
-			$cartRules [$rule->getId ()] -= $baseDiscountAmount;
-		} else {
-			$baseDiscountAmount = $cartRules [$rule->getId ()];
-			$discountAmount = $item->getQuote()->getStore()->convertPrice($baseDiscountAmount);
-			$cartRules [$rule->getId ()] = 0;
-		}
 	
 		//@nelkaake -a 11/03/11: Save our discount due to spending points
 		if ($rule->getPointsAction () == TBT_Rewards_Model_Salesrule_Actions::ACTION_DISCOUNT_BY_POINTS_SPENT) {
@@ -152,7 +133,7 @@ class TBT_Rewards_Model_Salesrule_Discount_Action_Bypercent extends TBT_Rewards_
             $points_spent = Mage::getSingleton('rewards/session')->getPointsSpending();
             $discountPercent = (($rule->getDiscountAmount() * floor(($points_spent / $rule->getPointsAmount()))) / 100);
         } else {
-            $rulePercent = (float) $rule->getDiscountAmount() / 100;
+            $discountPercent = (float) $rule->getDiscountAmount() / 100;
         }
         
         $discountPercent = min($discountPercent, 1);
@@ -197,11 +178,8 @@ class TBT_Rewards_Model_Salesrule_Discount_Action_Bypercent extends TBT_Rewards_
 		$store = $item->getQuote ()->getStore ();
 		
         $rulePercent = $this->_getRulePercent($rule);
-        
-		$quoteAmount = $quote->getStore ()->convertPrice ( $cartRules [$rule->getId ()] );
-		$quoteAmountBase = $cartRules [$rule->getId ()];
 
-		list($item_row_total, $item_base_row_total) = $this->_getDiscountableRowTotal($address, $item, $rule);				
+		list($item_row_total, $item_base_row_total) = $this->_getDiscountableRowTotal($address, $item, $rule);
 		
 		$discountAmount = ($item_row_total ) * $rulePercent;
 		$baseDiscountAmount = ($item_base_row_total) * $rulePercent;

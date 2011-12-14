@@ -98,7 +98,7 @@
                         </layoutsactive>
                         <!-- canHaveNegativePtsBalance translate="label comment">
                             <label>Negative Point Balances Allowed</label>
-                            <comment><![CDATA[If enabled, the system will allow customers to aquire a negative point balance in any point currency.]]></comment>
+                            <comment><![CDATA[If enabled, the system will allow customers to acquire a negative point balance in any point currency.]]></comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>20</sort_order>
@@ -128,7 +128,7 @@
                         </doIgnoreCDWhenCR>
                         <doIgnoreCDWhenSCR translate="label comment">
                             <label>Disable Earnings When Points Used In Cart</label>
-                            <comment><![CDATA[If enabled, the customer will not earn any catalog distribution points if the customer makes a shopping cart redemption for a partical shopping cart.]]></comment>
+                            <comment><![CDATA[If enabled, the customer will not earn any catalog distribution points if the customer makes a shopping cart redemption for a particular shopping cart.]]></comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>50</sort_order>
@@ -309,11 +309,23 @@
                                 Click here
                                 </a> for manual integration instructions.
                             ]]></comment>
-                            <sort_order>20</sort_order>
                             <sort_order>10</sort_order>
                             <frontend_type>select</frontend_type>   <source_model>adminhtml/system_config_source_yesno</source_model>
                             <show_in_default>1</show_in_default>    <show_in_website>1</show_in_website>    <show_in_store>1</show_in_store>
                         </header_points_balance>
+                        
+                        <product_listing translate="label comment">
+                            <label>Catalog product listing</label>
+                            <comment><![CDATA[
+                                <a href="sweettoothrewards.com/wiki/index.php/Display_points_in_the_catalog_product_listing_pages" target="Display_points_in_the_customer_account_dashboard">
+                                Click here
+                                </a> for manual integration instructions.
+                            ]]></comment>
+                            <sort_order>28</sort_order>
+                            <frontend_type>select</frontend_type>   <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>    <show_in_website>1</show_in_website>    <show_in_store>1</show_in_store>
+                        </product_listing>
+                        
                         
                         <product_view_page_product_points translate="label comment">
                             <label>Product earned/spent section into product info pages</label>
@@ -724,6 +736,26 @@
                     </fields>
                 </expire>
                 
+             
+                <checkout translate="label">
+                    <label><![CDATA[Checkout]]></label>
+                    <sort_order>53</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <enable_paypal_checkout_fee translate="label comment">
+                            <label>Enable PayPal Standard Tax-only Checkout Fee</label>
+                            <comment><![CDATA[If this option is enabled, a 0.01 amount (in the base currency of the store) is added to the checkout total to allow the PayPal Standard checkout to proceed when the user is discounting the product completely and only paying for the remaining tax amount. This function is needed because PayPal Standard (Website Payments Standard) does not allow checkouts to occur if the customer is only paying for the tax amount. ]]></comment>
+                            <frontend_type>select</frontend_type>  
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enable_paypal_checkout_fee>    
+                    </fields>
+                </checkout>
                 <migration translate="label">
                     <label>Migration Utilities</label>
                     <sort_order>350</sort_order>

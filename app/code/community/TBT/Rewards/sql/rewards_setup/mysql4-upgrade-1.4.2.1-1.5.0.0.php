@@ -1,9 +1,10 @@
 <?php
 $installer = $this;
 
-$installer->startSetup ();
+$installer->startSetup();
 
-Mage::helper ( 'rewards/mysql4_install' )->attemptQuery ( $installer, "
+Mage::helper( 'rewards/mysql4_install' )->attemptQuery( $installer, 
+    "
 CREATE TABLE IF NOT EXISTS `{$this->getTable('rewards_catalogrule_label')}` (
   `label_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `rule_id` int(10) unsigned NOT NULL,
@@ -21,10 +22,6 @@ CREATE TABLE IF NOT EXISTS `{$this->getTable('rewards_catalogrule_label')}` (
 " );
 
 // Either the index is being built for the first time, or the database is being recoverd for Sweet Tooth 
-Mage::helper('rewards/customer_points_index')->invalidate();
+Mage::helper( 'rewards/customer_points_index' )->invalidate();
 
-$msg_title = "Sweet Tooth was upgraded to version 1.5!";
-$msg_desc = "Sweet Tooth has been updated to version 1.5.0.0 for the first time.";
-Mage::helper ( 'rewards/mysql4_install' )->createInstallNotice ( $msg_title, $msg_desc );
-
-$installer->endSetup (); 
+$installer->endSetup(); 

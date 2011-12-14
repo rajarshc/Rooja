@@ -85,6 +85,7 @@ class TBT_Rewards_Model_WikiHints extends Mage_Core_Model_Abstract {
 		} else if ($element instanceof Varien_Data_Form_Element_Abstract) {
 			$linkHtml = $this->generateLink($element->getId(), $pageTitle, $sectionTitle, $linkTitle);			
 			$element->setData('after_element_html', $linkHtml);
+			$element->setFieldsetHtmlClass('rewards-wikihinted');
 		}
 		
 		return $element;		

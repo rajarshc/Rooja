@@ -92,7 +92,7 @@ class TBT_Rewards_Model_Observer_Sales_Order_Payment_Cancel {
 	 */
 	protected function _cancelDispatchedMsgs() {
         Mage::getSingleton ( 'core/session' )->getMessages()->deleteMessageByIdentifier('TBT_Rewards_Model_Observer_Sales_Order_Save_After_Create(pending points)');
-        Mage::getSingleton ( 'core/session' )->addSuccess ( Mage::helper ( 'rewards' )->__ ( 'Successfully cancelled pending point transactions' ) );
+       // Mage::getSingleton ( 'core/session' )->addSuccess ( Mage::helper ( 'rewards' )->__ ( 'Successfully cancelled pending point transactions' ) );
         
 	     return $this;
 	}

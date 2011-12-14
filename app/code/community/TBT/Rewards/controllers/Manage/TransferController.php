@@ -53,6 +53,10 @@ class TBT_Rewards_Manage_TransferController extends TBT_Rewards_Manage_Sweettoot
 		return $this;
 	}
 	
+    protected function _isAllowed() {
+        return Mage::getSingleton ( 'admin/session' )->isAllowed ( 'rewards/customer/transfers' );
+    }
+	
 	public function indexAction() {
 		$this->_initAction ()->renderLayout ();
 	}

@@ -63,8 +63,7 @@ class TBT_Rewards_Block_Product_View_Points extends TBT_Rewards_Block_Product_Vi
 	 * @return string cache key
 	 */
 	protected function _genCacheKey() {
-            $key = (string)$this->getCacheKey();
-            
+                        
             $nameInLayout = $this->getNameInLayout();
             $blockType = $this['type'];
             $product_id = $this->getProduct ()->getId ();
@@ -72,7 +71,7 @@ class TBT_Rewards_Block_Product_View_Points extends TBT_Rewards_Block_Product_Vi
             $customer_group_id = $this->_getRS ()->getCustomerGroupId ();
             $lang = Mage::getStoreConfig('general/locale/code');
 
-            $key = "{$key}_rewards_product_view_points_{$nameInLayout}_{$blockType}_{$product_id}_{$website_id}_{$customer_group_id}_{$lang}";
+            $key = "rewards_product_view_points_{$nameInLayout}_{$blockType}_{$product_id}_{$website_id}_{$customer_group_id}_{$lang}";
             if ($this->_getRS ()->isCustomerLoggedIn ()) {
     		    $customer = Mage::getModel('rewards/customer')->getRewardsCustomer($this->_getRS()->getCustomer());
     			$pts = (string)$customer->getPointsSummary();

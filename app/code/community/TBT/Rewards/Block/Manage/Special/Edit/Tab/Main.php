@@ -62,7 +62,7 @@ class TBT_Rewards_Block_Manage_Special_Edit_Tab_Main extends Mage_Adminhtml_Bloc
 		
 		$fieldset->addField ( 'name', 'text', array ('name' => 'name', 'label' => Mage::helper ( 'salesrule' )->__ ( 'Rule Name' ), 'title' => Mage::helper ( 'salesrule' )->__ ( 'Rule Name' ), 'required' => true ) );
 		
-		$fieldset->addField ( 'description', 'textarea', array ('name' => 'description', 'label' => Mage::helper ( 'salesrule' )->__ ( 'Description' ), 'title' => Mage::helper ( 'salesrule' )->__ ( 'Description' ), 'style' => 'width: 98%; height: 100px;' ) );
+		$fieldset->addField ( 'description', 'textarea', array ('name' => 'description', 'label' => Mage::helper ( 'salesrule' )->__ ( 'Description' ), 'title' => Mage::helper ( 'salesrule' )->__ ( 'Description' ), 'style' => 'height: 100px;' ) );
 		
 		$fieldset->addField ( 'is_active', 'select', array ('label' => Mage::helper ( 'salesrule' )->__ ( 'Status' ), 'title' => Mage::helper ( 'salesrule' )->__ ( 'Status' ), 'name' => 'is_active', 'required' => true, 'options' => array ('1' => Mage::helper ( 'salesrule' )->__ ( 'Active' ), '0' => Mage::helper ( 'salesrule' )->__ ( 'Inactive' ) ) ) );
 		

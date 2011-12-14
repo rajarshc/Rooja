@@ -208,8 +208,8 @@ class TBT_Rewards_Model_Redeem extends Mage_Core_Model_Abstract {
 		}
 		
 		// @nelkaake -a 16/11/10: Tax calculation methods
-		$tax = $this->_calculator->calcTaxAmount ( $item->getRowTotal (), $item->getTaxPercent (), false );
-		$baseTax = $this->_calculator->calcTaxAmount ( $item->getBaseRowTotal (), $item->getTaxPercent (), false );
+		$tax = $this->_calculator->calcTaxAmount ( $item->getRowTotal (), $item->getTaxPercent (), false, false );
+		$baseTax = $this->_calculator->calcTaxAmount ( $item->getBaseRowTotal (), $item->getTaxPercent (), false, false );
 		
 		$item->setTaxAmount ( $tax );
 		$item->setBaseTaxAmount ( $baseTax );
@@ -219,8 +219,10 @@ class TBT_Rewards_Model_Redeem extends Mage_Core_Model_Abstract {
 		
 		//@nelkaake -a 26/01/11: We don't set this so that we can later use the row total including tax to find out 
 		// how much of the order was discounted due to catalog redemption rules.
+
 		$item->setRowTotalInclTax ( $item->getRowTotal () + $tax );
 		$item->setBaseRowTotalInclTax ( $item->getBaseRowTotal () + $baseTax );
+		
 		
 		return $this;
 	}
@@ -273,7 +275,7 @@ class TBT_Rewards_Model_Redeem extends Mage_Core_Model_Abstract {
 	}
 	
 	/**
-	 * Retenders the item's redemption rules and final row total and returns it.
+	 * Renders the item's redemption rules and final row total and returns it.
 	 * @param Mage_Sales_Model_Quote_Item $item
 	 * @return array a map of the new item redemption data: 
 	 * array('redemptions_data'=>{...}, 'row_total'=>float)
@@ -406,6 +408,10 @@ class TBT_Rewards_Model_Redeem extends Mage_Core_Model_Abstract {
 	 * @param Mage_Sales_Model_Quote_Item $item
 	 */
 	public function getTotalCatalogDiscount($item) {
+		
+	    // Reset if OSC to fix a bug #1124
+	    $this->_resetTotalsIfOSC($item);
+				
 		if (Mage::helper ( 'tax' )->priceIncludesTax ()) {
 			$row_total = $item->getRowTotalInclTax ();
 			$row_total_after = $this->getRowTotalAfterRedemptionsInclTax ( $item );
@@ -418,6 +424,27 @@ class TBT_Rewards_Model_Redeem extends Mage_Core_Model_Abstract {
 		$catalog_discount = $row_total_after - $row_total;
 		return $catalog_discount;
 	}
+
+    /**
+     * Make sure we're calculating the discount based on the original row_total, not one which we previously modified.
+     * For now looks like we only need to do this for OneStepCheckout, so we'll address it there only.
+     * 
+     * @param Mage_Sales_Model_Quote_Item $item
+     * @return $this;
+     */
+    protected function _resetTotalsIfOSC($item) {
+        
+        if ( ! Mage::getConfig()->getModuleConfig( 'Idev_OneStepCheckout' ) ) {
+            return $this;
+        }
+        if ( ! Mage::getConfig()->getModuleConfig( 'Idev_OneStepCheckout' )->is( 'active', 'true' ) ) {
+            return $this;
+        }
+        
+        $this->resetRowTotals( $item );
+        
+        return $this;
+    }
 	
 	/**
 	 * 
@@ -438,6 +465,12 @@ class TBT_Rewards_Model_Redeem extends Mage_Core_Model_Abstract {
 			// do nothing
 		}
 		
+		if (!Mage::helper ( 'rewards' )->isBaseMageVersionAtLeast ( '1.4' )) {
+			// only happens in Magento 1.3
+			$rowTotalInclTax = $item->getRowTotalBeforeRedemptions () * (1 + ($item->getTaxPercent () / 100));
+			$item->setRowTotalBeforeRedemptionsInclTax ($rowTotalInclTax);			
+		}		
+		
 		return $this;
 	}
 	
@@ -454,4 +487,23 @@ class TBT_Rewards_Model_Redeem extends Mage_Core_Model_Abstract {
 		
 		return $this;
 	}
+	
+	/**
+	* Resets the following item attributes by calling $item->calcRowTotal followed by _calcTaxAmounts():
+	* 	row_total,
+	*	base_row_total,
+	*	row_total_incl_tax,
+	*	base_row_total_incl_tax,
+	*	tax_amount,
+	*	base_tax_amount,	
+	*	taxable_amount,
+	*	base_taxable_amount	 
+	* @param Mage_Sales_Model_Quote_Item $item
+	*/
+	public function resetRowTotals($item){
+		$item->calcRowTotal();
+		$this->_calcTaxAmounts($item);		
+
+		return $this;
+	}	
 }

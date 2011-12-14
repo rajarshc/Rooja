@@ -224,7 +224,7 @@ class TBT_Rewards_Block_Product_View_Points_Abstract extends Mage_Core_Block_Tem
 			}
 		
 		} catch ( Exception $e ) {
-			die ( "An error occured trying to apply the redemption while adding the product to your cart: " . $e->getMessage () );
+			die ( "An error occurred trying to apply the redemption while adding the product to your cart: " . $e->getMessage () );
 		}
 		Varien_Profiler::stop ( 'TBT_Rewards:: Get Redeemable Options' );
 		return $applicable_rules;

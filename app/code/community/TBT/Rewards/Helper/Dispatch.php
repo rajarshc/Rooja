@@ -74,4 +74,19 @@ class TBT_Rewards_Helper_Dispatch extends Mage_Core_Helper_Abstract {
         return $result->getIsValid();
     }
     
+    /**
+     * In Magento 1.3.3 and lower the data is stored as getObject(), but in newer versions
+     * the data is stored as getDataObject.
+     * @param Varien_Event_Observer $o
+     * @return Mage_Core_Model_Abstract
+     */
+    public function getEventObject(Varien_Event_Observer $o) {
+        $obj = $o->getEvent()->getDataObject();
+        if ( ! Mage::helper('rewards/version')->isBaseMageVersionAtLeast("1.4.0.0") ) {
+            $obj = $o->getEvent()->getObject();
+        }
+        
+        return $obj;
+    }
+    
 }

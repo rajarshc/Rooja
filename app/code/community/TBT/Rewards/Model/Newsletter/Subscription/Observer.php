@@ -8,30 +8,36 @@ class TBT_Rewards_Model_Newsletter_Subscription_Observer extends Varien_Object {
 	 */
 	protected $_rsubscriber = null;
 	protected $_wasSubscribed = false;
-	
-	/**
-	 * 
-	 * @param Varien_Event_Observer $o
-	 */
-	public function beforeSaveSubscription($o) {
-		$subscriberInst = $o->getEvent ()->getDataObject ();
-		$this->_rsubscriber = Mage::getModel ( 'rewards/newsletter_subscriber_wrapper' )->wrap ( $subscriberInst );
-		$this->_wasSubscribed = $subscriberInst->isSubscribed ();
+
+    /**
+     * 
+     * @param Varien_Event_Observer $o
+     */
+    public function beforeSaveSubscription($o) {
+        $subscriberInst = $o->getEvent()->getObject();
+        
+        if ( ! ($subscriberInst instanceof Mage_Newsletter_Model_Subscriber) ) return $this;
+        
+        $this->_rsubscriber = Mage::getModel('rewards/newsletter_subscriber_wrapper')->wrap($subscriberInst);
+        $this->_wasSubscribed = $subscriberInst->isSubscribed ();
 		// save whether or not the user has already subscribed
 		return $this;
-	}
-	
-	/**
-	 * 
-	 * @param Varien_Event_Observer $o
-	 */
-	public function afterSaveSubscription($o) {
-		$newSubscriberInst = $o->getEvent ()->getDataObject ();
-		$newRSubscriberInst = Mage::getModel ( 'rewards/newsletter_subscriber_wrapper' )->wrap ( $newSubscriberInst );
-		// We got a call back but the model appears to be different
-		if ($newRSubscriberInst->getCustomer ()->getId () != $this->_rsubscriber->getCustomer ()->getId ()) {
-			return $this;
-		}
+    }
+
+    /**
+     * 
+     * @param Varien_Event_Observer $o
+     */
+    public function afterSaveSubscription($o) {
+        $newSubscriberInst = $o->getEvent()->getObject();
+        
+        if ( ! ($newSubscriberInst instanceof Mage_Newsletter_Model_Subscriber) ) return $this;
+        
+        $newRSubscriberInst = Mage::getModel('rewards/newsletter_subscriber_wrapper')->wrap($newSubscriberInst);
+        // We got a call back but the model appears to be different
+        if ( $newRSubscriberInst->getCustomer()->getId() != $this->_rsubscriber->getCustomer()->getId() ) {
+            return $this;
+        }
 		
 		// check whether or not the user had already subscribed before saving.  If so, call the 
 		// newsletter signup transfer model

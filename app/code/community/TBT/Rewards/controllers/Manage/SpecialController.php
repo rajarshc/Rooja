@@ -56,6 +56,10 @@ class TBT_Rewards_Manage_SpecialController extends TBT_Rewards_Manage_Sweettooth
 		return $this;
 	}
 	
+    protected function _isAllowed() {
+        return Mage::getSingleton ( 'admin/session' )->isAllowed ( 'rewards/rules' );
+    }
+	
 	public function deleteAction() {
 		if ($id = $this->getRequest ()->getParam ( 'id' )) {
 			try {
@@ -134,6 +138,9 @@ _addContent ( $block )->_addLeft ( $this->getLayout ()->createBlock ( 'rewards/m
 			}
 			if (is_array ( $data ['website_ids'] )) {
 				$data ['website_ids'] = implode ( ',', $data ['website_ids'] );
+			}
+			if (!$data['is_onhold_enabled']) {
+			    $data['onhold_duration'] = 0;
 			}
 			if (isset ( $data ['rule'] ['actions'] )) {
 				$data ['actions'] = $data ['rule'] ['actions'];

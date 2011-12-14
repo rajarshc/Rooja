@@ -14,31 +14,36 @@ class TBT_Rewards_Model_Customer_Customer_Observer extends Varien_Object
 	 */
 	public function customerAfterLoad(Varien_Event_Observer $observer)
 	{
-	    $customer = $this->_loadCustomer($observer->getEvent()->getDataObject());
-	    $customer->loadCollections();
-	}
-	
-	/**
-	 * AfterSave for customer
-	 * @param Varien_Event_Observer $observer
-	 */
-	public function customerAfterSave(Varien_Event_Observer $observer)
-	{
-	    $customer = $this->_loadCustomer($observer->getEvent()->getDataObject());
-    	//If the customer is new (hence not having an id before) get applicable rules,
+		if(! Mage::helper('rewards/version')->isBaseMageVersionAtLeast("1.3.3")) {
+		    $review = $o->getEvent ()->getObject ();
+		}
+        $customer = $this->_loadCustomer(Mage::helper('rewards/dispatch')->getEventObject($observer));
+        $customer->loadCollections();
+    }
+
+    /**
+     * AfterSave for customer
+     * @param Varien_Event_Observer $observer
+     */
+    public function customerAfterSave(Varien_Event_Observer $observer) {
+        $customer_obj = $observer->getEvent()->getCustomer();
+        $customer = Mage::getModel('rewards/customer')->getRewardsCustomer($customer_obj);
+        //If the customer is new (hence not having an id before) get applicable rules,
         //and create a transfer for each one
         $isNew = false;
-        if ($customer->isNewCustomer($customer->getId())) {
+        if ( $customer->isNewCustomer($customer->getId()) ) {
             $isNew = true;
             $this->oldId = $customer->getId(); //This stops multiple triggers of this function
             $customer->createTransferForNewCustomer(); //@TODO Change to separate transfer model
         }
         Mage::getSingleton('rewards/session')->setCustomer($customer);
-        if ($isNew) {
+        if ( $isNew ) {
             Mage::getSingleton('rewards/session')->triggerNewCustomerCreate($customer);
-            Mage::dispatchEvent('rewards_new_customer_create', array('customer' => &$customer));
+            Mage::dispatchEvent('rewards_new_customer_create', array(
+                'customer' => &$customer
+            ));
         }
-	}
+    }
 	
 	/**
 	 * BeforeSave for customer
@@ -46,9 +51,9 @@ class TBT_Rewards_Model_Customer_Customer_Observer extends Varien_Object
 	 */
 	public function customerBeforeSave(Varien_Event_Observer $observer)
 	{
-	    $customer = $this->_loadCustomer($observer->getEvent()->getDataObject());
-		$oldId = $customer->getId();
-        if (!empty($oldId)) {
+        $customer = $this->_loadCustomer(Mage::helper('rewards/dispatch')->getEventObject($observer));
+        $oldId = $customer->getId();
+        if ( ! empty($oldId) ) {
             $this->oldId = $oldId;
         }
 	}
@@ -71,7 +76,7 @@ class TBT_Rewards_Model_Customer_Customer_Observer extends Varien_Object
 	 */
 	private function _loadCustomer(Mage_Customer_Model_Customer $customer)
 	{
-	    return Mage::getModel('rewards/customer')->load($customer);
+	    return Mage::getModel('rewards/customer')->getRewardsCustomer($customer);
 	}
 	
 }

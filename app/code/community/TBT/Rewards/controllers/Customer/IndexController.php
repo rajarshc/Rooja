@@ -45,6 +45,10 @@
  */
 class TBT_Rewards_Customer_IndexController extends Mage_Core_Controller_Front_Action {
 	
+    protected function _isAllowed() {
+        return Mage::getSingleton ( 'admin/session' )->isAllowed ( 'rewards/customer/customer' );
+    }
+    
 	public function indexAction() {
 		$this->loadLayout ();
 		

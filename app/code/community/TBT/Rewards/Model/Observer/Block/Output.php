@@ -59,6 +59,7 @@ class TBT_Rewards_Model_Observer_Block_Output extends Varien_Object {
 		$this->appendRewardsHeader ( $block, $transport );
 		$this->appendCartPointsSpender ( $block, $transport );
 		$this->appendPointsSummary ( $block, $transport );
+		$this->appendToCatalogListing ( $block, $transport );
 		
 		return $this;
 	}
@@ -126,4 +127,86 @@ class TBT_Rewards_Model_Observer_Block_Output extends Varien_Object {
 		
 		return $this;
 	}
+	
+	
+	/**
+	 * Appends the points balance in the header somewhere
+	 * @param Mage_Catalog_Block_Product_List $block
+	 * @param Varien_Object $transport
+	 */
+	public function appendToCatalogListing($block, $transport) {
+        // Should we be checking this auto-integration?
+        if(!Mage::getStoreConfigFlag('rewards/autointegration/product_listing')) {
+            return $this;
+        }
+        
+	    // Block is a price block.
+		if(!( $block instanceof Mage_Catalog_Block_Product_List )) {
+            return $this;
+        }
+        
+		
+		$all_products = $block->getLoadedProductCollection();
+		
+		$html = $transport->getHtml ();
+		
+		$html = $this->_getNewCatalogListingHtml($html, $all_products);
+		
+	    $transport->setHtml ( $html );
+		
+		return $this;
+		
+	}
+	
+	/**
+	 * 
+	 * @param string $html
+	 * @param Mage_Eav_Model_Entity_Collection_Abstract $all_products
+	 */
+	protected function _getNewCatalogListingHtml($html, $all_products) {
+	    
+	    $is_list_mode_display = strpos($html, 'class="products-list" id="products-list">') !== false;
+	    
+		foreach($all_products as $_product) {
+    		$product_id = $_product->getId();
+		    
+    		$predict_points_block = Mage::getBlockSingleton('rewards/product_predictpoints');
+        	$predict_points_block->setProduct($_product); 
+        	$st_html = $predict_points_block->toHtml();
+    		
+    		//  If no content, dont integrate
+    		if(empty($st_html)) {
+    		    continue;
+    	    }
+		
+    		// Check that content is not already integrated.
+    		if(strpos($html, $st_html) !== false) {
+    		    continue; 
+    	    }
+    	    
+    		
+    		$replaced_html = null;
+    		if(Mage::helper('rewards/version')->isMageEnterprise()){
+                $pattern = '/(<button )[^>]*(product\/'.  $product_id  .'\/)(.*)(<\/button>)/isU';
+    		} else {
+    		    if($is_list_mode_display) {
+                    $pattern = '/(<ul class="add-to-links">)((\s)*)(<li>)((\s)*)(<a href=")[^>]*(product\/'.  $product_id  .'\/)(.*)(<\/a>)(.*)(<\/li>)((\s)*)(<\/ul>)/isU';
+    		    } else {
+                    $pattern = '/(<div class="actions">)((\s)*)(<button )[^>]*(product\/'.  $product_id  .'\/)(.*)(<\/button>)(.*)(<\/div>)/isU';
+    		    }
+    		}
+    		
+            $replacement = $st_html.'${0}';
+            $replaced_html = preg_replace($pattern, $replacement, $html);
+    		
+            if(!empty($replaced_html)) {
+                $html = $replaced_html;  
+            }
+            
+		}
+	    return $html;
+		
+	}
+	
+	
 }

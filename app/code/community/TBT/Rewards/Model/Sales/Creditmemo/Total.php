@@ -35,7 +35,7 @@
  * @package    TBT_Rewards
  * @author     WDCA Sweet Tooth Team <contact@wdca.ca>
  */
-class TBT_Rewards_Model_Sales_Creditmemo_Total extends TBT_Rewards_Model_Sales_Order_Total_Abstract {
+class TBT_Rewards_Model_Sales_Creditmemo_Total extends Mage_Sales_Model_Order_Creditmemo_Total_Abstract {
 	/**
 	 * Collect reward total for invoice
 	 *
@@ -59,5 +59,34 @@ class TBT_Rewards_Model_Sales_Creditmemo_Total extends TBT_Rewards_Model_Sales_O
 		$creditmemo->setBaseGrandTotal ( $creditmemo->getBaseGrandTotal () - $acc_diff_base );
 		
 		return $this;
+	}
+	
+	/**
+	 * Fetches the regular and base discount amounts due to 
+	 * catalog redemption rules.
+	 * TODO: perhaps this should be moved to a helper (along with TBT_Rewards_Model_Sales_Order_Total_Abstract) but
+	 * I'm not sure which helper would be best for it.
+	 * @param TBT_Rewards_Model_Sales_Order $order
+	 */
+	protected function getAccumulatedDiscounts($order) {
+		//@nelkaake -a 17/02/11: if the rewards discount amount field is not found
+		// use the legacy code to find the discount aqmount using the row total
+		if (! $order->getRewardsDiscountAmount ()) {
+			return 0; //$this->_getDiscountsByRowTotalInclTax($order);
+		}
+		
+		$acc_diff = $order->getRewardsDiscountAmount (); // + $order->getRewardsDiscountTaxAmount(); 
+		$acc_diff = $order->getStore ()->roundPrice ( $acc_diff );
+		
+		$acc_diff_base = $order->getRewardsBaseDiscountAmount ();
+		$acc_diff_base = $order->getStore ()->roundPrice ( $acc_diff_base );
+		
+		// @nelkaake to deal with a bug in PHP that allows negative zero amounts after rounding.
+		if ($acc_diff == - 0)
+			$acc_diff = 0;
+		if ($acc_diff_base == - 0)
+			$acc_diff_base = 0;
+		
+		return array ($acc_diff, $acc_diff_base );
 	}
 }

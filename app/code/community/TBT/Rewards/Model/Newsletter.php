@@ -52,34 +52,36 @@ class TBT_Rewards_Model_Newsletter extends Mage_Newsletter_Model_Subscriber {
 	 */
 	protected $_rsubscriber = null;
 	protected $_wasSubscribed = false;
-	
-	/**
-	 * 
-	 * @param Varien_Event_Observer $o
-	 */
-	public function beforeSaveSubscription($o) {
-		$subscriberInst = $o->getEvent ()->getDataObject ();
-		$this->_wasSubscribed = $subscriberInst->isSubscribed ();
-		// save whether or not the user has already subscribed
-		return $this;
-	}
-	
-	/**
-	 * @deprecated using TBT_Rewards_Model_Newsletter_Subscription_Observer instead
-	 * @param Varien_Event_Observer $o
-	 */
-	public function afterSaveSubscription($o) {
-		$newSubscriberInst = $o->getEvent ()->getDataObject ();
-		
-		// check whether or not the user had already subscribed before saving.  If so, call the 
-		// newsletter signup transfer model
-		if ($newSubscriberInst->isSubscribed () && ! $this->_wasSubscribed) {
-			Mage::dispatchEvent ( 'rewards_newsletter_new_subscription', array ('subscriber' => $newSubscriberInst ) );
-			$this->rewardForNewSubscription ();
-		}
-		
-		return $this;
-	}
+
+    /**
+     * 
+     * @param Varien_Event_Observer $o
+     */
+    public function beforeSaveSubscription($o) {
+        $subscriberInst = Mage::helper('rewards/dispatch')->getEventObject($o);
+        $this->_wasSubscribed = $subscriberInst->isSubscribed();
+        // save whether or not the user has already subscribed
+        return $this;
+    }
+
+    /**
+     * @deprecated using TBT_Rewards_Model_Newsletter_Subscription_Observer instead
+     * @param Varien_Event_Observer $o
+     */
+    public function afterSaveSubscription($o) {
+        $newSubscriberInst = Mage::helper('rewards/dispatch')->getEventObject($o);
+        
+        // check whether or not the user had already subscribed before saving.  If so, call the 
+        // newsletter signup transfer model
+        if ( $newSubscriberInst->isSubscribed() && ! $this->_wasSubscribed ) {
+            Mage::dispatchEvent('rewards_newsletter_new_subscription', array(
+                'subscriber' => $newSubscriberInst
+            ));
+            $this->rewardForNewSubscription();
+        }
+        
+        return $this;
+    }
 	
 	/**
 	 * Loops through each Special rule. If it applies, create a new pending transfer.

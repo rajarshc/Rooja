@@ -15,7 +15,7 @@ class TBT_Rewards_Model_Customer_Indexer_Observer extends Varien_Object {
     	        return $this;
     	    }
     	    
-    		$transfer = $observer->getEvent ()->getDataObject ();
+    		$transfer = Mage::helper('rewards/dispatch')->getEventObject($observer);
     	    
     		Mage::helper('rewards/debug_profiler')->start('TBT_Rewards::Customer Points Index - Update usable points balance.');
     		
@@ -126,25 +126,19 @@ class TBT_Rewards_Model_Customer_Indexer_Observer extends Varien_Object {
 	
          // If the customer exists in the order, use that. If not, use the session customer from the rewards model.
         if ($order) {
-            Mage::helper('rewards/debug')->log("Got order");
             if( $order ->getCustomer() ) {
                 // The index session dispatch requires a rewards model, so we should load that.
                 $session_customer = $order->getCustomer();
-                Mage::helper('rewards/debug')->log("Sess cust =  {$session_customer->getId()}");
                 if (! ($session_customer instanceof TBT_Rewards_Model_Customer)) {
                     $session_customer = Mage::getModel('rewards/customer')->getRewardsCustomer( $session_customer );
                 }
-                Mage::helper('rewards/debug')->log("ORder does not have ses cust, so reloading one from order id {$order->getCustomerId()} to give =  {$session_customer->getId()}");
             } else {
                 $session_customer = Mage::getModel('rewards/customer')->load( $order->getCustomerId() );
-                Mage::helper('rewards/debug')->log("ORder does not have ses cust, so reloading one from order id {$order->getCustomerId()} to give =  {$session_customer->getId()}");
             }
         } else {
             $session_customer = $this->_getRewardsSess()->getSessionCustomer();
-            Mage::helper('rewards/debug')->log("ORder given not valid");
         }
         
-        Mage::helper('rewards/debug')->log("Sess cust =  {$session_customer->getId()}");
         return $session_customer;
 	}
 	

@@ -77,7 +77,7 @@ class TBT_Rewards_Customer_SendpointsController extends Mage_Core_Controller_Fro
 			}
 			
 			if ($currency_id == null) {
-				if (Mage::getSingleton ( 'customer/session' )->getCustomer ()->getNumCurrencies () == 1) {
+				if (Mage::getSingleton ( 'rewards/session' )->getCustomer ()->getNumCurrencies () == 1) {
 					$currency_ids = Mage::getSingleton ( 'rewards/currency' )->getAvailCurrencyIds ();
 					$currency_id = $currency_ids [0];
 				} else {

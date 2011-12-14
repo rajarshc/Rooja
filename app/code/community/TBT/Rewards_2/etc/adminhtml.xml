@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <!-- menu and ACL components are in the config.xml because this type of file is not supported by Magento 1.3.3 or less -->
+</config>

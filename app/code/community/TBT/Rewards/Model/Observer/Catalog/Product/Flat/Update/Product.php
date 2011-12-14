@@ -61,26 +61,7 @@ class TBT_Rewards_Model_Observer_Catalog_Product_Flat_Update_Product {
 		//Mage::log("Update rewards rule information on product(s)");
 		//@nelkaake Friday March 12, 2010 03:48:20 PM : Was this was a product save/delete/update request?
 		//@nelkaake Changed on Wednesday September 29, 2010: Some Magento stores dont parse the controller action properly so it applies all rules on save.  Fixed by checking passed product
-		$target_product_id = null;
-		
-		$action = $observer->getControllerAction ();
-		if ($action) {
-			$request = $action->getRequest ();
-			$target_product_id = $request->getParam ( "id" );
-			if (! $target_product_id)
-				$target_product_id = null; //if no product id available, reset our assumption because this must be some other unrecognized request.
-		}
-		
-		$product = $observer->getProduct ();
-		if ($product) {
-			$target_product_id = $product->getEntityId ();
-			if (! $target_product_id)
-				$target_product_id = null;
-		
-		//if no product id
-		//available, reset our assumption because this must be some other
-		//unrecognized request.
-		}
+		$target_product_id = $this->_locatedProductId($observer);
 		
 		//@nelkaake Changed on Wednesday September 22, 2010:
 		$this->updateRulesHashForDay ( Mage::helper ( 'rewards/datetime' )->yesterday (), $target_product_id );
@@ -90,6 +71,53 @@ class TBT_Rewards_Model_Observer_Catalog_Product_Flat_Update_Product {
 		Varien_Profiler::stop ( "TBT_Rewards:: Update rewards rule information on product(s)" );
 		return $this;
 	}
+
+	/**
+	 * Attempts to retreive a product ID from the observer or the previously dispatch observer.
+	 * @param unknown_type $observer
+	 */
+    protected function _locatedProductId($observer) {
+        
+        $target_product_id = null;
+        
+        $event = $observer->getEvent();
+        
+        $action = $observer->getControllerAction();
+        if ( $action ) {
+            $request = $action->getRequest();
+            $target_product_id = $request->getParam( "id" );
+            if ( ! $target_product_id ) $target_product_id = null; //if no product id available, reset our assumption because this must be some other unrecognized request.
+        }
+        
+        $product = $observer->getProduct();
+        if ( empty( $product ) && $event instanceof Varien_Event ) {
+            $product = $event->getProduct();
+        }
+        
+        if ( $product ) {
+            $target_product_id = $product->getEntityId();
+            if ( ! $target_product_id ) $target_product_id = null;
+        
+        }
+        
+        if ( $target_product_id ) {
+            // IF a product ID was fetched, set it into the registry
+            if ( Mage::registry( 'rewards_catalogrule_apply_product_id_memory' ) ) {
+                Mage::unregister( 'rewards_catalogrule_apply_product_id_memory' );
+            }
+            Mage::register( 'rewards_catalogrule_apply_product_id_memory', $target_product_id );
+        } else {
+            // IF a product ID was NOT fetched, attempt to get it from the registry
+            if ( Mage::registry( 'rewards_catalogrule_apply_product_id_memory' ) ) {
+                $target_product_id = Mage::registry( 'rewards_catalogrule_apply_product_id_memory' );
+                // After pulling it from the registry, remove it from the registry so the next immediate action does not recall this.
+                Mage::unregister( 'rewards_catalogrule_apply_product_id_memory' );
+            }
+        }
+        
+        return $target_product_id;
+    }
+	
 	
 	//@nelkaake Added on Wednesday September 22, 2010:
 	public function updateRulesHashForDay($now, $target_product_id = null) {

@@ -51,7 +51,7 @@
     <td style="<?php echo $this->getTotal()->getStyle() ?>" class="a-right cart-points-total_item_discounts">
         <?php if ($this->getRenderingArea() == $this->getTotal()->getArea()): ?><span class="rendering_area"><?php endif; ?>
             <?php echo $this->helper('checkout')->formatPrice($this->getTotal()->getValue()) ?>
-            <?php if ($this->getRenderingArea() == $this->getTotal()->getArea()): ?></</span>><?php endif; ?>
+            <?php if ($this->getRenderingArea() == $this->getTotal()->getArea()): ?></span><?php endif; ?>
 
         <script language="javascript" type="text/javascript">
             // WOw is this ever a hack, but it's pretty much the only sane

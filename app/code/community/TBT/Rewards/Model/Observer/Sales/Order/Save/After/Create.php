@@ -68,7 +68,7 @@ class TBT_Rewards_Model_Observer_Sales_Order_Save_After_Create {
             $this->_processPendingMsgs($order);
         }
 		
-		$this->_cleanUpTempData();
+		$this->_cleanUpTempData($order);
 		
 		return $this;
 	}
@@ -76,7 +76,7 @@ class TBT_Rewards_Model_Observer_Sales_Order_Save_After_Create {
 	/**
 	 * Cleans up temporary data, cart points usage data and memory notes to process the points.
 	 */
-	protected function _cleanUpTempData() {
+	protected function _cleanUpTempData($order) {
 		$catalog_transfers = Mage::getSingleton ( 'rewards/observer_sales_catalogtransfers' );
 		
 		// Clear memory of points redeemed transfers and order
@@ -85,13 +85,17 @@ class TBT_Rewards_Model_Observer_Sales_Order_Save_After_Create {
 		
 		
 		$cart_transfers = Mage::getSingleton ( 'rewards/observer_sales_carttransfers' );
-                    
+     
+		//@nelkaake Monday March 29, 2010 03:55:05 AM : Reset points spending
+		//@mhadianfard: to prevent race condition when observer is called more than once, do a check before clearing 
+		if ($order->getIncrementId () == $cart_transfers->getIncrementId ()) {
+		    Mage::getSingleton ( 'rewards/session' )->setPointsSpending ( 0 );
+		}
+		
+		
 		// Clear memory of points transfers and order
 		$cart_transfers->clearIncrementId ();
 		$cart_transfers->clearCartPoints ();
-		
-		//@nelkaake Monday March 29, 2010 03:55:05 AM : Reset points spending
-		Mage::getSingleton ( 'rewards/session' )->setPointsSpending ( 0 );
 		
 		return $this;
 	}
@@ -238,7 +242,7 @@ class TBT_Rewards_Model_Observer_Sales_Order_Save_After_Create {
     		}
     		
     		// If no point samount was retrieved, continue on to the next redemption
-    		if (is_array ( $points )) {
+    		if (!is_array ( $points )) {
     		    continue;
     		}
     		

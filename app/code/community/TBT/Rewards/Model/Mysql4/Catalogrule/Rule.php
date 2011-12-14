@@ -93,15 +93,21 @@ class TBT_Rewards_Model_Mysql4_CatalogRule_Rule extends Mage_CatalogRule_Model_M
 	 *
 	 * @param   int|string $date
 	 * @param   int $wId
-	 * @param   int $gId
+	 * @param   int $gId if gId is set as null then filtering on group is skipped
 	 * @param   int $pId
 	 * @return  array | false	applicable redemption rules hash.
 	 */
 	public function getApplicableRedemptionRewards($date, $wId, $gId, $pId) {
 		$date = $this->formatDate ( $date, false );
 		$read = $this->_getReadAdapter ();
-		$select = $read->select ()->from ( $this->getTable ( 'catalogrule/rule_product_price' ), 'rules_hash' )->where ( 'rule_date=?', $date )->where ( 'website_id=?', $wId )->where ( 'customer_group_id=?', $gId )->where ( 'product_id=?', $pId );
-		$rules_hash = $read->fetchOne ( $select );
+
+                if ( $gId===null ) {
+                    $select = $read->select ()->from ( $this->getTable ( 'catalogrule/rule_product_price' ), 'rules_hash' )->where ( 'rule_date=?', $date )->where ( 'website_id=?', $wId )->where ( 'product_id=?', $pId );
+                } else {
+                    $select = $read->select ()->from ( $this->getTable ( 'catalogrule/rule_product_price' ), 'rules_hash' )->where ( 'rule_date=?', $date )->where ( 'website_id=?', $wId )->where ( 'customer_group_id=?', $gId )->where ( 'product_id=?', $pId );
+                }
+                
+                $rules_hash = $read->fetchOne ( $select );
 		if ($rules_hash) {
 			$rules = Mage::helper ( 'rewards' )->unhashIt ( $rules_hash );
 		} else {
@@ -112,7 +118,7 @@ class TBT_Rewards_Model_Mysql4_CatalogRule_Rule extends Mage_CatalogRule_Model_M
 		}
 		return $rules;
 	}
-	
+        
 	/**
 	 * Returns the applicable reward array from the catalog product price table.
 	 *

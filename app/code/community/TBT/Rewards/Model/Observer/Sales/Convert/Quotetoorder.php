@@ -131,10 +131,20 @@ class TBT_Rewards_Model_Observer_Sales_Convert_Quotetoorder implements TBT_Rewar
 			return $this;
 		}
 		
+		if ($event->getItem ()->getRowTotalAfterRedemptions () == null || $event->getItem ()->getRowTotalAfterRedemptionsInclTax () == null){
+			$item = $event->getItem (); 
+			$redeemModel = Mage::getModel('rewards/redeem');
+			$item->setRowTotalAfterRedemptions($redeemModel->getRowTotalAfterRedemptions($item));
+			$item->setRowTotalAfterRedemptionsInclTax($redeemModel->getRowTotalAfterRedemptionsInclTax($item));			
+		}
+		
 		$event->getOrderItem ()->setEarnedPointsHash ( $event->getItem ()->getEarnedPointsHash () );
 		$event->getOrderItem ()->setRedeemedPointsHash ( $event->getItem ()->getRedeemedPointsHash () );
 		$event->getOrderItem ()->setRowTotalBeforeRedemptions ( $event->getItem ()->getRowTotalBeforeRedemptions () );
 		$event->getOrderItem ()->setRowTotalBeforeRedemptionsInclTax ( $event->getItem ()->getRowTotalBeforeRedemptionsInclTax () );
+		$event->getOrderItem ()->setRowTotalAfterRedemptions ( $event->getItem ()->getRowTotalAfterRedemptions () );
+		$event->getOrderItem ()->setRowTotalAfterRedemptionsInclTax ( $event->getItem ()->getRowTotalAfterRedemptionsInclTax () );		
+		$event->getOrderItem ()->setRowTotalWithDiscount($event->getItem ()->getRowTotalWithDiscount());
 		
 		return $this;
 	}

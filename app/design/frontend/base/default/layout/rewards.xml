@@ -48,7 +48,7 @@ Customer account pages, rendered for all tabs in dashboard
             <action method="addLink" translate="label" module="rewards" ifconfig="rewards/general/layoutsactive">
                 <name>rewards</name>
                 <path>rewards/customer</path>
-                <label>My Credits and Rewards</label>
+                <label>My Points and Rewards</label>
             </action>
         </reference>
     </customer_account>
@@ -62,9 +62,9 @@ Customer account pages, rendered for all tabs in dashboard
                 <block type="rewards/customer_transfers_spendings" name="customer.spendings" as="spendings" />
                 <block type="rewards/customer_transfers_earnings" name="customer.earnings" as="earnings" />
                 <block type="rewards/customer_sendpoints" name="customer.sendpoints" as="sendpoints"  
-            	 		template="rewards/customer/sendpoints.phtml" />
+                        template="rewards/customer/sendpoints.phtml" />
                 <block type="rewards/customer_redeemcatalog" name="customer.redeemcatalog" as="redeemcatalog" 
-            	 		template="rewards/customer/redeemcatalog.phtml" />
+                        template="rewards/customer/redeemcatalog.phtml" />
             </block>
         </reference>
     </rewards_customer_index>
@@ -73,22 +73,22 @@ Customer account pages, rendered for all tabs in dashboard
     <catalog_product_view>           
         <reference name="head">
             <action method="addCss" ifconfig="rewards/general/layoutsactive">
-                <stylesheet>css/rewards/slider.css</stylesheet>						
+                <stylesheet>css/rewards/slider.css</stylesheet>                     
             </action>
-            <action method="addJs" ifconfig="rewards/general/layoutsactive">		
-                <script>tbt/rewards/util.js</script>							
+            <action method="addJs" ifconfig="rewards/general/layoutsactive">        
+                <script>tbt/rewards/util.js</script>                            
             </action>
-           <action method="addJs" ifconfig="rewards/general/layoutsactive">		
-                <script>tbt/rewards/catalog/product/view/redeemer.js</script>		
+           <action method="addJs" ifconfig="rewards/general/layoutsactive">     
+                <script>tbt/rewards/catalog/product/view/redeemer.js</script>       
             </action>
-            <action method="addJs" ifconfig="rewards/general/layoutsactive">		
-                <script>tbt/scriptaculous/SmoothSlider.js</script>					
+            <action method="addJs" ifconfig="rewards/general/layoutsactive">        
+                <script>tbt/scriptaculous/SmoothSlider.js</script>                  
             </action>
-            <action method="addJs" ifconfig="rewards/general/layoutsactive">		
-                <script>tbt/rewards/points/RedemptionSlider.js</script>					
+            <action method="addJs" ifconfig="rewards/general/layoutsactive">        
+                <script>tbt/rewards/points/RedemptionSlider.js</script>                 
             </action>
-            <action method="addJs" ifconfig="rewards/general/layoutsactive">		
-                <script>tbt/rewards/catalog/product/view/PointsSlider.js</script>	
+            <action method="addJs" ifconfig="rewards/general/layoutsactive">        
+                <script>tbt/rewards/catalog/product/view/PointsSlider.js</script>   
             </action>
         </reference>
         <reference name="content">
@@ -144,7 +144,7 @@ Customer account pages, rendered for all tabs in dashboard
     <catalog_product_view>           
         <reference name="product.info.extrahint">
             <block type="rewards/integrated_product_view_points" name="rewards.integrated.product.view.points" as="rewards_points" 
-            	   template="rewards/product/view/points.phtml" >
+                   template="rewards/product/view/points.phtml" >
                 <block type="rewards/product_view_points_earned" name="rewards.product.view.points.earned" as="points_earned" 
                     template="rewards/product/view/points_earned.phtml" />
                 <block type="rewards/product_view_points_redeemed" name="rewards.product.view.points.redeemed" as="points_redeemed" 
@@ -174,7 +174,7 @@ Customer account pages, rendered for all tabs in dashboard
     <!-- @nelkaake END Points Amount in Product Info Page for Product Points -->
     
     <!-- @nelkaake BEGIN Shopping cart autointegrated content  -->
-   	<checkout_cart_index>
+    <checkout_cart_index>
         <!-- Mage_Checkout -->
         <reference name="checkout.cart.coupon">
             <block type="core/template" name="rewards_js_points_captions" as="rewards_cartpoints_spender_js" template="rewards/js/captions.phtml" />
@@ -189,17 +189,17 @@ Customer account pages, rendered for all tabs in dashboard
     <!-- @nelkaake BEGIN Customer dashboard autointegrated content  -->
     <customer_account_index >
         <reference name="customer_account_dashboard_top">
-        	<block type="rewards/integrated_customer_summary" name="rewards.points.customer.summary" 
-        	       as="rewards_points_summary" before="customer_account_dashboard_top" />
+            <block type="rewards/integrated_customer_summary" name="rewards.points.customer.summary" 
+                   as="rewards_points_summary" before="customer_account_dashboard_top" />
         </reference>
     </customer_account_index>
     <!-- @nelkaake END Customer dashboard autointegrated content -->
     
     <catalog_product_view>
-	    <reference name="product.info.additional">
-	    	<block type="rewards/integrated_special_tag" name="rewards_tag_points" as="rewards_tag_points" 
-	    			template="rewards/special/tag.phtml"  after="product_tag_list" />
-	    </reference>
+        <reference name="product.info.additional">
+            <block type="rewards/integrated_special_tag" name="rewards_tag_points" as="rewards_tag_points" 
+                    template="rewards/special/tag.phtml"  after="product_tag_list" />
+        </reference>
     </catalog_product_view>
     <!-- @nelkaake AUTOINTEGRATED END -->
     <default>
@@ -208,7 +208,7 @@ Customer account pages, rendered for all tabs in dashboard
                 <stylesheet>css/rewards/skin.css</stylesheet>
             </action>
             <action method="addCss" ifconfig="rewards/general/layoutsactive">
-                <stylesheet>css/rewards/catalog.css</stylesheet>						
+                <stylesheet>css/rewards/catalog.css</stylesheet>                        
             </action>
         </reference>
         <!-- TBT_Rewards Sidebox (sidebar) -->
@@ -223,7 +223,7 @@ Customer account pages, rendered for all tabs in dashboard
             <block type="core/template" name="js_points_captions" template="rewards/js/captions.phtml" />
             <!-- @sweber COMING SOON (ST 1.4): block type="rewards/checkout_cart_overspent" name="catalog_points_overspent" as="catalogpoints-overspent" template="rewards/checkout/cart/overspent.phtml" /-->
             <reference name="checkout.cart">
-            	<!-- block type="rewards/checkout_cart" name="points_cart_box" as="cartpoints" template="rewards/checkout/cart.phtml" /-->
+                <!-- block type="rewards/checkout_cart" name="points_cart_box" as="cartpoints" template="rewards/checkout/cart.phtml" /-->
                 <block type="rewards/checkout_cart" name="points_cart_minibox" as="cartpoints_spender" template="rewards/checkout/cartmini.phtml" >
                     <block type="rewards/checkout_cart_slider" name="points_cart_box.slider" as="points_slider" template="rewards/checkout/cart/slider.phtml" />
                     <block type="core/template" name="points_cart_box.js" as="minicart_js" template="rewards/checkout/minicart_js.phtml" />
@@ -233,23 +233,23 @@ Customer account pages, rendered for all tabs in dashboard
             </reference>
         </reference> 
     </checkout_cart_index>
-	
+    
     <checkout_cart_index>
         <reference name="head">
             <action method="addCss" ifconfig="rewards/general/layoutsactive">
-                <stylesheet>css/rewards/checkout/minicart.css</stylesheet>						
+                <stylesheet>css/rewards/checkout/minicart.css</stylesheet>                      
             </action>
             <action method="addCss" ifconfig="rewards/general/layoutsactive">
-                <stylesheet>css/rewards/slider.css</stylesheet>						
+                <stylesheet>css/rewards/slider.css</stylesheet>                     
             </action>
-            <action method="addJs" ifconfig="rewards/general/layoutsactive">		
-                <script>tbt/rewards/util.js</script>							
+            <action method="addJs" ifconfig="rewards/general/layoutsactive">        
+                <script>tbt/rewards/util.js</script>                            
             </action>
-            <action method="addJs" ifconfig="rewards/general/layoutsactive">		
-                <script>tbt/scriptaculous/SmoothSlider.js</script>					
+            <action method="addJs" ifconfig="rewards/general/layoutsactive">        
+                <script>tbt/scriptaculous/SmoothSlider.js</script>                  
             </action>
-            <action method="addJs" ifconfig="rewards/general/layoutsactive">		
-                <script>tbt/rewards/points/RedemptionSlider.js</script>					
+            <action method="addJs" ifconfig="rewards/general/layoutsactive">        
+                <script>tbt/rewards/points/RedemptionSlider.js</script>                 
             </action>
         </reference>
         <reference name="checkout.cart">
@@ -285,7 +285,7 @@ Customer account pages, rendered for all tabs in dashboard
             </action>
         </reference>
     </checkout_cart_index>
-	
+    
     
     <!-- Displays a warning if the csutomer is using the multishipping interface since multishipping points earning/spending are not currently supported. -->
     <checkout_multishipping>
@@ -307,7 +307,7 @@ Customer account pages, rendered for all tabs in dashboard
 
     <!--
     In Magento 1.3.x and lower...
-	//@nelkaake -a 14/12/10: 
+    //@nelkaake -a 14/12/10: 
     -->
     <sales_order_print> 
         <reference name="sales.order.print" >
@@ -327,7 +327,7 @@ Customer account pages, rendered for all tabs in dashboard
                 <action method="setColSpan">
                     <value>4</value>
                 </action>
-            </block>
+             </block>
         </reference>
     </sales_order_view>
     <!-- END    -->
@@ -351,7 +351,7 @@ Customer account pages, rendered for all tabs in dashboard
     </sales_order_print>    
     <sales_order_view>
         <reference name="order_totals">
-            <block type="rewards/sales_order_print_points" name="order_points" template="rewards/sales/order/print/points.phtml" >
+            <block type="rewards/sales_order_print_points" name="order_points" template="rewards/sales/order/view/points.phtml" >
                 <action method="setColSpan">
                     <value>4</value>
                 </action>
@@ -367,12 +367,13 @@ Customer account pages, rendered for all tabs in dashboard
                     <value>1</value>
                 </action>
                 <action method="setColSpan">
-                    <value>1</value>
+                    <value>3</value>
                 </action>
+                <action method="setLabelProperties"><value>colspan="3" align="right" style="padding:3px 9px"</value></action>
+                <action method="setValueProperties"><value>align="right" style="padding:3px 9px"</value></action>
             </block>
-        </reference>    
+        </reference>
     </sales_email_order_items>
-    
     
     <sales_order_invoice>
         <reference name="invoice_totals">
@@ -382,7 +383,7 @@ Customer account pages, rendered for all tabs in dashboard
                     <value>4</value>
                 </action>
             </block>
-        </reference>       
+        </reference>
     </sales_order_invoice>
     
     <sales_order_printinvoice>
@@ -401,9 +402,33 @@ Customer account pages, rendered for all tabs in dashboard
             <block type="rewards/sales_order_invoice_points" name="invoice_points_discount" as="invoice_points_discount" 
                     template="rewards/sales/order/invoice/points.phtml" >
                 <action method="setColSpan">
-                    <value>1</value>
+                    <value>3</value>
                 </action>
+                <action method="setLabelProperties"><value>colspan="3" align="right" style="padding:3px 9px"</value></action>
+                <action method="setValueProperties"><value>align="right" style="padding:3px 9px"</value></action>
             </block>
         </reference>       
     </sales_email_order_invoice_items>
+    
+    
+    <customer_account_create>
+        <reference name="customer.form.register.fields.before">
+        </reference>
+    </customer_account_create>
+    
+    <checkout_onepage_index>
+        <reference name="checkout.onepage.payment.methods_additional">
+        </reference>
+    </checkout_onepage_index>
+    
+    
+    <checkout_onepage_index>
+        <reference name="checkout.onepage.login.before">
+            <block type="rewards/integrated_checkout_onepage_warnguest" 
+                name="rewards.checkout.onepage.warnguest" 
+                as="rewards_checkout_onepage_warnguest" 
+                template="rewards/checkout/onepage/warnguest.phtml" ></block>
+        </reference>
+    </checkout_onepage_index>
+    
 </layout>

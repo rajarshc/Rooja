@@ -51,6 +51,10 @@ class TBT_Rewards_Manage_Customer_PointsController extends Mage_Adminhtml_Contro
 		return $this;
 	}
 	
+    protected function _isAllowed() {
+        return Mage::getSingleton ( 'admin/session' )->isAllowed ( 'rewards/customer/customer' );
+    }
+	
 	public function indexAction() {
 		$this->_initAction ()->_addContent ( $this->getLayout ()->createBlock ( 'rewards/manage_customer_points' ) )->renderLayout ();
 	}
@@ -98,11 +102,11 @@ class TBT_Rewards_Manage_Customer_PointsController extends Mage_Adminhtml_Contro
 			}
 			
 			if ($numSuccessfulTransfers > 0) {
-				$success = $this->__ ( "Successfully transfered %s to %s customer(s).", Mage::getModel ( 'rewards/points' )->set ( $currencyId, $quantity ), $numSuccessfulTransfers );
+				$success = $this->__ ( "Successfully transferred %s to %s customer(s).", Mage::getModel ( 'rewards/points' )->set ( $currencyId, $quantity ), $numSuccessfulTransfers );
 				Mage::getSingleton ( 'core/session' )->addSuccess ( $success );
 			}
 		} catch ( Exception $e ) {
-			Mage::getSingleton ( 'core/session' )->addError ( $this->__ ( 'Woops, ran into error while trying to process your request: ' ) . $e->getMessage () );
+			Mage::getSingleton ( 'core/session' )->addError ( $this->__ ( 'Whoops, ran into error while trying to process your request: ' ) . $e->getMessage () );
 		}
 		$this->_redirect ( '*/*/' );
 	}

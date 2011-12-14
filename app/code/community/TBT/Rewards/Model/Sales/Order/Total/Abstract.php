@@ -41,6 +41,8 @@ abstract class TBT_Rewards_Model_Sales_Order_Total_Abstract extends Mage_Sales_M
 	/**
 	 * Fetches the regular and base discount amounts due to 
 	 * catalog redemption rules.
+	 * TODO: perhaps this should be moved to a helper (along with TBT_Rewards_Model_Sales_Creditmemo_Total) but
+	 * I'm not sure which helper would be best for it.
 	 * @param TBT_Rewards_Model_Sales_Order $order
 	 */
 	protected function getAccumulatedDiscounts($order) {

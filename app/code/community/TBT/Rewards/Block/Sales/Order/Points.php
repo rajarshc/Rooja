@@ -43,7 +43,7 @@
  * @package    TBT_Rewards
  * @author     WDCA Sweet Tooth Team <contact@wdca.ca>
  */
-abstract class TBT_Rewards_Block_Sales_Order_Points extends TBT_Rewards_Block_Sales_Order_Abstract {
+class TBT_Rewards_Block_Sales_Order_Points extends TBT_Rewards_Block_Sales_Order_Abstract {
 	
 	/**
 	 * Returns a string containing the total number of points sepnt for this order. 
@@ -79,17 +79,27 @@ abstract class TBT_Rewards_Block_Sales_Order_Points extends TBT_Rewards_Block_Sa
 		
 		return $rewards_discount_amount_str;
 	}
-	
-	
-	/**
-	 * Returns true if catalog points were spent on this order. 
-	 * @return boolean
-	 */
-	public function hasCatalogSpendingDiscount() {
-	    $csd = $this->getCatalogSpendingDiscount();
-	    return !empty($csd);
-	}
 
+    /**
+     * Returns true if catalog points were spent on this order. 
+     * @return boolean
+     */
+    public function hasCatalogSpendingDiscount() {
+        $csd = $this->getOrder()->getRewardsDiscountAmount();
+        
+        //convert it to float if it's not already empty, just in case we have a string like '0.000'.
+        $csd = empty( $csd )   ?   $csd   :   ((float) $csd);
+        
+        return ! empty( $csd );
+    }
+
+	
+	public function getTotalsBlockName() {
+	    return 'order_points';
+	}
+	public function getTotalsCode() {
+	    return 'rewards';
+	}
 	
 	
 }

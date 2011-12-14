@@ -156,7 +156,7 @@ class TBT_Rewards_Block_Product_Price extends Mage_Catalog_Block_Product_Price {
 		try {
 			$applicable_rules = $product->getRedeemableOptions ( $this->getCurrentCustomer (), $product );
 		} catch ( Exception $e ) {
-			die ( "An error occured trying to apply the redemption while adding the product to your cart: " . $e->getMessage () );
+			die ( "An error occurred trying to apply the redemption while adding the product to your cart: " . $e->getMessage () );
 		}
 		Varien_Profiler::stop ( 'TBT_Rewards:: Get Redeemable Options' );
 		return $applicable_rules;

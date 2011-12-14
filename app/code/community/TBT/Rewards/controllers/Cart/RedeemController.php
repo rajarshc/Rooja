@@ -162,7 +162,7 @@ class TBT_Rewards_Cart_RedeemController extends Mage_Core_Controller_Front_Actio
 				} else {
 					//if (is_null($rule->getPointsCurrencyId()) || $rule->getPointsCurrencyId() == "") continue;        
 					if ($customer_point_balance [$rule->getPointsCurrencyId ()] < $rule->getPointsAmount ()) {
-						$this->_getSess ()->addError ( $this->__ ( "You do have have enough %s Points.", $currency_captions [$rule->getPointsCurrencyId ()] ) . "<br/>\n" . $this->__ ( "The rule entitled '%s' was not applied to your cart.", $rule->getName () ) );
+						$this->_getSess ()->addError ( $this->__ ( "You do have enough %s Points.", $currency_captions [$rule->getPointsCurrencyId ()] ) . "<br/>\n" . $this->__ ( "The rule entitled '%s' was not applied to your cart.", $rule->getName () ) );
 						$flag = false;
 					} else {
 						$applied = Mage::getModel ( 'rewards/salesrule_list_applied' )->initQuote ( $quote );
@@ -185,7 +185,7 @@ class TBT_Rewards_Cart_RedeemController extends Mage_Core_Controller_Front_Actio
 				$this->_getSess ()->addSuccess ( $this->__ ( "All requested reward redemptions were applied to your cart" ) );
 			}
 		} catch ( Exception $e ) {
-			$this->_getSess ()->addError ( $this->__ ( "An error occured while trying to apply the redemption to your cart." ) );
+			$this->_getSess ()->addError ( $this->__ ( "An error occurred while trying to apply the redemption to your cart." ) );
 			$this->_getSess ()->addError ( $this->__ ( $e->getMessage () ) );
 		}
 		Varien_Profiler::stop ( "TBT_Rewards:: Add shopping cart redemption to cart" );
@@ -239,7 +239,7 @@ class TBT_Rewards_Cart_RedeemController extends Mage_Core_Controller_Front_Actio
 				$this->_getSess ()->addSuccess ( $this->__ ( "All requested reward redemptions were removed from your cart" ) );
 			}
 		} catch ( Exception $e ) {
-			$this->_getSess ()->addError ( $this->__ ( "An error occured while trying to remove the redemption from your cart." ) );
+			$this->_getSess ()->addError ( $this->__ ( "An error occurred while trying to remove the redemption from your cart." ) );
 			$this->_getSess ()->addError ( $this->__ ( $e->getMessage () ) );
 		}
 		Varien_Profiler::stop ( "TBT_Rewards:: remove shopping cart redemption from cart" );

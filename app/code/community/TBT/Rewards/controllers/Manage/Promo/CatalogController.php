@@ -303,7 +303,7 @@ class TBT_Rewards_Manage_Promo_CatalogController extends TBT_Rewards_Manage_Swee
 	}
 	
 	protected function _isAllowed() {
-		return Mage::getSingleton ( 'admin/session' )->isAllowed ( 'promo/catalog' );
+		return Mage::getSingleton ( 'admin/session' )->isAllowed ( 'rewards/rules' );
 	}
 	
 	public function preDispatch() {

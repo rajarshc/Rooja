@@ -151,6 +151,8 @@ class TBT_Rewards_Helper_Version extends Mage_Core_Helper_Abstract {
          * 1.9 | 1.8 | 1.5
          */
 		if ($this->isMageEnterprise()) {
+		    if (version_compare ( $version, '1.11.0', '>=' ))
+		        return '1.6.0';
 			if (version_compare ( $version, '1.9.1', '>=' ))
 				return '1.5.0';
 			if (version_compare ( $version, '1.9.0', '>=' ))

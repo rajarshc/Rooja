@@ -29,7 +29,13 @@ class TBT_Rewards_Debug_ExpiryController extends TBT_Rewards_Debug_AbstractContr
 	
 	public function expirePointsAction() {
 		// loads the customer id #1 by default or takes it from the parameter
-		$customer_id = $this->getRequest ()->getParam ( 'customer_id', 1 );
+		$customer_id = $this->getRequest ()->getParam ( 'customer_id', null );
+        
+		if (!$customer_id) {
+            die("Please specify a customer ID as /customer_id/## .");
+        }
+        
+        
 		$c = Mage::getModel ( 'rewards/customer' )->load ( $customer_id );
 		
 		if ($c->hasPoints ()) {
@@ -62,6 +68,36 @@ class TBT_Rewards_Debug_ExpiryController extends TBT_Rewards_Debug_AbstractContr
 			}
 		}
 	}
+    
+    
+	public function checkNotificationsAction() {
+		// loads the customer id #1 by default or takes it from the parameter
+		$customer_id = $this->getRequest ()->getParam ( 'customer_id', null );
+        
+		if (!$customer_id) {
+            die("Please specify a customer ID as /customer_id/## .");
+        }
+        
+        
+		$c = Mage::getModel ( 'rewards/customer' )->load ( $customer_id );
+		
+		if (!$c->getId ()) {
+            die("Customer {$customer_id} does not exist.");
+        }
+        
+		if (!$c->hasPoints ()) {
+            die("Customer {$customer_id} doesnt have any points to expire.");
+        }
+        
+        $expires_on = time() - 3600;
+        
+		$expires_on_date = Mage::helper ( 'core' )->formatDate ( new Zend_Date ( $expires_on, Zend_Date::TIMESTAMP ) );
+		$template = Mage::helper ( 'rewards/expiry' )->getWarning1EmailTemplate ( $c->getStoreId () );
+		$this->sendWarningEmail ( $c, $template, 55 );
+        
+        die("done.");
+	}
+    
 	
 	public function checkNotifications($c, $expires_in_days) {
 		if ($expires_in_days == Mage::helper ( 'rewards/expiry' )->getWarning1Days ( $c->getStoreId () )) {

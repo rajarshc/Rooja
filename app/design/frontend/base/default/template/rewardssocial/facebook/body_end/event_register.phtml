@@ -1,12 +1,13 @@
-<?php
-?>
 <script type="text/javascript"> 
-document.observe("dom:loaded", function() {
+window.oldFbAsyncInit = window.fbAsyncInit || function(){};
+window.fbAsyncInit = function() {
+	window.oldFbAsyncInit();
+	
 	var notification_elem = $('facebook-like-rewards-notification');
 	var flr = new FacebookLikeReward('<?php echo $this->getRewardUrl() ?>', $('facebook-like-rewards-notification-content'), '<?php echo $this->getPageKey(); ?>', $('facebook-like-rewards-ajax-loading'));
 	
-	eval(function(p,a,c,k,e,d){e=function(c){return c.toString(36)};if(!''.replace(/^/,String)){while(c--){d[c.toString(a)]=k[c]||c.toString(a)}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('2.1.0(\'8.9\',3(4){2.1.0(\'6.b\',3(4){7.a()});2.1.0(\'6.c\',3(4){7.e()});d(5){5.f()}});',16,16,'subscribe|Event|FB|function|response|notification_elem|edge|flr|xfbml|render|onLike|create|remove|if|onUnLike|show'.split('|'),0,{}))
+	eval(function(p,a,c,k,e,d){e=function(c){return c.toString(36)};if(!''.replace(/^/,String)){while(c--){d[c.toString(a)]=k[c]||c.toString(a)}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('2.1.0(\'8.9\',3(4){2.1.0(\'6.b\',3(4){7.a()});2.1.0(\'6.c\',3(4){7.e()});d(5){5.f()}});',16,16,'subscribe|Event|FB|function|response|notification_elem|edge|flr|xfbml|render|onLike|create|remove|if|onUnLike|show'.split('|'),0,{}));
 
-});
+};
 
 </script>

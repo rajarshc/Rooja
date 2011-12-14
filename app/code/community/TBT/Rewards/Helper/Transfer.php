@@ -698,19 +698,24 @@ class TBT_Rewards_Helper_Transfer extends Mage_Core_Helper_Abstract {
 				// instantiate an item rule and dump its data
 				$item_rule = $this->getSalesRule ( $item_rule_id );
 				
-				if ($item_rule->getId () == $required_id) {
-					// add this associated item's quantity-price to the running total
-					if ($prices_include_tax) {
-						$price += $item->getBaseRowTotal () + $item->getBaseTaxAmount ();
-					} else {
-						$price += $item->getBaseRowTotal ();
-					}
-					break;
-				}
-			}
-			//@nelkaake Added on Wednesday May 5, 2010:             
-			if (Mage::helper ( 'rewards/config' )->calcCartPointsAfterDiscount ()) {
-				$price -= $item->getBaseDiscountAmount ();
+				if ($item_rule->getId () == $required_id) {             
+					if (Mage::helper ( 'rewards/config' )->calcCartPointsAfterDiscount ()) {						
+						// add this associated item's quantity-price to the running total
+						if ($prices_include_tax) {
+							$price += Mage::helper('rewards/price')->getReversedCurrencyPrice($item->getRowTotalAfterRedemptionsInclTax());
+						} else {													
+							$price += Mage::helper('rewards/price')->getReversedCurrencyPrice($item->getRowTotalAfterRedemptions());
+						}																		
+					} else {						
+						// add this associated item's quantity-price to the running total
+						if ($prices_include_tax) {
+							$price += Mage::helper('rewards/price')->getReversedCurrencyPrice($item->getRowTotalBeforeRedemptionsInclTax());
+						} else {													
+							$price += Mage::helper('rewards/price')->getReversedCurrencyPrice($item->getRowTotalBeforeRedemptions());
+						}																								
+					}	
+					break;														
+				}				
 			}
 		}
 		

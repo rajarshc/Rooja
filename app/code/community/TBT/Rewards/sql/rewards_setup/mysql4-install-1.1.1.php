@@ -2,9 +2,13 @@
 
 $installer = $this;
 
-$installer->startSetup ();
+$installer->startSetup();
 
-Mage::helper ( 'rewards/mysql4_install' )->attemptQuery ( $installer, "
+// Clear cache.
+Mage::helper( 'rewards/mysql4_install' )->prepareForDb();
+
+Mage::helper( 'rewards/mysql4_install' )->attemptQuery( $installer, 
+    "
 CREATE TABLE IF NOT EXISTS `{$this->getTable('rewards_currency')}` (
     `rewards_currency_id` INT(11) NOT NULL AUTO_INCREMENT,
     `caption` VARCHAR(100) NOT NULL,
@@ -22,7 +26,8 @@ CREATE TABLE IF NOT EXISTS `{$this->getTable('rewards_currency')}` (
 
 " );
 
-Mage::helper ( 'rewards/mysql4_install' )->attemptQuery ( $installer, "
+Mage::helper( 'rewards/mysql4_install' )->attemptQuery( $installer, 
+    "
 CREATE TABLE IF NOT EXISTS `{$this->getTable('rewards_customer')}` (
     `rewards_customer_id` INT(11) NOT NULL AUTO_INCREMENT,
     `rewards_currency_id` INT(11) NOT NULL,
@@ -31,7 +36,8 @@ CREATE TABLE IF NOT EXISTS `{$this->getTable('rewards_customer')}` (
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 " );
 
-Mage::helper ( 'rewards/mysql4_install' )->attemptQuery ( $installer, "
+Mage::helper( 'rewards/mysql4_install' )->attemptQuery( $installer, 
+    "
 CREATE TABLE IF NOT EXISTS `{$this->getTable('rewards_special')}` (
     `rewards_special_id` INT(11) NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(255) NOT NULL DEFAULT '',
@@ -51,7 +57,8 @@ CREATE TABLE IF NOT EXISTS `{$this->getTable('rewards_special')}` (
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 " );
 
-Mage::helper ( 'rewards/mysql4_install' )->attemptQuery ( $installer, "
+Mage::helper( 'rewards/mysql4_install' )->attemptQuery( $installer, 
+    "
 CREATE TABLE IF NOT EXISTS `{$this->getTable('rewards_store_currency')}` (
     `rewards_store_currency_id` INT(11) NOT NULL AUTO_INCREMENT,
     `currency_id` INT(11) NOT NULL,
@@ -60,7 +67,8 @@ CREATE TABLE IF NOT EXISTS `{$this->getTable('rewards_store_currency')}` (
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 " );
 
-Mage::helper ( 'rewards/mysql4_install' )->attemptQuery ( $installer, "
+Mage::helper( 'rewards/mysql4_install' )->attemptQuery( $installer, 
+    "
 CREATE TABLE IF NOT EXISTS `{$this->getTable('rewards_transfer')}` (
     `rewards_transfer_id` INT(11) NOT NULL AUTO_INCREMENT,
     `customer_id` INT(11) NOT NULL,
@@ -79,7 +87,8 @@ CREATE TABLE IF NOT EXISTS `{$this->getTable('rewards_transfer')}` (
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 " );
 
-Mage::helper ( 'rewards/mysql4_install' )->attemptQuery ( $installer, "
+Mage::helper( 'rewards/mysql4_install' )->attemptQuery( $installer, 
+    "
 CREATE TABLE IF NOT EXISTS `{$this->getTable('rewards_transfer_reference')}` (
     `rewards_transfer_reference_id` INT(11) NOT NULL AUTO_INCREMENT,
     `reference_type` INT(11) NOT NULL,
@@ -91,36 +100,65 @@ CREATE TABLE IF NOT EXISTS `{$this->getTable('rewards_transfer_reference')}` (
 " );
 
 // Add foreign key constraint to points transfers table
-Mage::helper ( 'rewards/mysql4_install' )->attemptQuery($installer, "
-    ALTER TABLE `{$this->getTable('rewards_transfer_reference')}` 
-        ADD CONSTRAINT `rewards_transfer_reference_fk` 
-        	FOREIGN KEY (`rewards_transfer_id`) 
-            REFERENCES `{$this->getTable('rewards_transfer')}` (`rewards_transfer_id`) ON DELETE CASCADE ON UPDATE NO ACTION;
-");
+Mage::helper( 'rewards/mysql4_install' )->addFKey( $installer, 'rewards_transfer_reference_fk', 
+    $this->getTable( 'rewards_transfer_reference' ), 'rewards_transfer_id', $this->getTable( 'rewards_transfer' ), 'rewards_transfer_id', 
+    'CASCADE', 'NO ACTION' );
 
-
-Mage::helper ( 'rewards/mysql4_install' )->attemptQuery ( $installer, "
+Mage::helper( 'rewards/mysql4_install' )->attemptQuery( $installer, 
+    "
 INSERT INTO `{$this->getTable('rewards_currency')}` (`caption`,`value`,`active`,`image`,`image_width`,`image_height`,`image_write_quantity`,`font`,`font_size`,`font_color`)
-    SELECT 'Gold','1','1','','','','','','',''
+    SELECT '','1','1','','','','','','',''
         FROM dual
     WHERE NOT EXISTS (
         SELECT * FROM `{$this->getTable('rewards_currency')}`
     );
 " );
 
-Mage::helper ( 'rewards/mysql4_install' )->addColumns ( $installer, $this->getTable ( 'catalogrule' ), array ("`points_action` VARCHAR(25)", "`points_currency_id` INT(11)", "`points_amount` INT(11)", "`points_amount_step` FLOAT(9,2) DEFAULT '1'", "`points_amount_step_currency_id` INT(11)", "`points_max_qty` INT(11)", "`points_catalogrule_simple_action` VARCHAR(32)", "`points_catalogrule_discount_amount` DECIMAL(12,4)", "`points_catalogrule_stop_rules_processing` TINYINT(1) DEFAULT '1'" ) );
+Mage::helper( 'rewards/mysql4_install' )->addColumns( $installer, $this->getTable( 'catalogrule' ), 
+    array(
+        "`points_action` VARCHAR(25)", 
+        "`points_currency_id` INT(11)", 
+        "`points_amount` INT(11)", 
+        "`points_amount_step` FLOAT(9,2) DEFAULT '1'", 
+        "`points_amount_step_currency_id` INT(11)", 
+        "`points_max_qty` INT(11)", 
+        "`points_catalogrule_simple_action` VARCHAR(32)", 
+        "`points_catalogrule_discount_amount` DECIMAL(12,4)", 
+        "`points_catalogrule_stop_rules_processing` TINYINT(1) DEFAULT '1'"
+    ) );
 
-Mage::helper ( 'rewards/mysql4_install' )->addColumns ( $installer, $this->getTable ( 'catalogrule_product_price' ), array ("`rules_hash` TEXT" ) );
+Mage::helper( 'rewards/mysql4_install' )->addColumns( $installer, $this->getTable( 'catalogrule_product_price' ), 
+    array(
+        "`rules_hash` TEXT"
+    ) );
 
-Mage::helper ( 'rewards/mysql4_install' )->addColumns ( $installer, $this->getTable ( 'sales_flat_quote' ), array ("`cart_redemptions` TEXT", "`applied_redemptions` TEXT" ) );
+Mage::helper( 'rewards/mysql4_install' )->addColumns( $installer, $this->getTable( 'sales_flat_quote' ), 
+    array(
+        "`cart_redemptions` TEXT", 
+        "`applied_redemptions` TEXT"
+    ) );
 
-Mage::helper ( 'rewards/mysql4_install' )->addColumns ( $installer, $this->getTable ( 'sales_flat_quote_item' ), array ("`earned_points_hash` TEXT", "`redeemed_points_hash` TEXT", "`row_total_before_redemptions` DECIMAL(12,4) NOT NULL DEFAULT '0'" ) );
+Mage::helper( 'rewards/mysql4_install' )->addColumns( $installer, $this->getTable( 'sales_flat_quote_item' ), 
+    array(
+        "`earned_points_hash` TEXT", 
+        "`redeemed_points_hash` TEXT", 
+        "`row_total_before_redemptions` DECIMAL(12,4) NOT NULL DEFAULT '0'"
+    ) );
 
-Mage::helper ( 'rewards/mysql4_install' )->addColumns ( $installer, $this->getTable ( 'salesrule' ), array ("`points_action` VARCHAR(25)", "`points_currency_id` INT(11)", "`points_amount` INT(11)", "`points_amount_step` FLOAT(9,2) DEFAULT '1'", "`points_amount_step_currency_id` INT(11)", "`points_qty_step` INT(11) DEFAULT '1'", "`points_max_qty` INT(11)" ) );
+Mage::helper( 'rewards/mysql4_install' )->addColumns( $installer, $this->getTable( 'salesrule' ), 
+    array(
+        "`points_action` VARCHAR(25)", 
+        "`points_currency_id` INT(11)", 
+        "`points_amount` INT(11)", 
+        "`points_amount_step` FLOAT(9,2) DEFAULT '1'", 
+        "`points_amount_step_currency_id` INT(11)", 
+        "`points_qty_step` INT(11) DEFAULT '1'", 
+        "`points_max_qty` INT(11)"
+    ) );
 
 $msg_title = "Sweet Tooth was successfully installed!";
-$msg_desc = "Sweet Tooth was successfully installed on your store.";
-Mage::helper ( 'rewards/mysql4_install' )->createInstallNotice ( $msg_title, $msg_desc );
+$msg_desc = "Sweet Tooth was successfully installed on your store.  Remember to go to the Sweet Tooth configuration and enter in your license key under Registration Information section.";
+Mage::helper( 'rewards/mysql4_install' )->createInstallNotice( $msg_title, $msg_desc );
 
-$installer->endSetup (); 
+$installer->endSetup(); 
 

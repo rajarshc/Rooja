@@ -49,34 +49,40 @@ class TBT_Rewards_Model_Review_Transfer extends TBT_Rewards_Model_Transfer {
 	protected function _getReviewValidator() {
 		return Mage::getSingleton ( 'rewards/review_validator' );
 	}
-	
-	/**
-	 * Do the points transfer for the review
-	 *
-	 * @param  TBT_Rewards_Model_Review_Wrapper $review
-	 * @param  int $rule       : Special Rule
-	 * @return boolean            : whether or not the point-transfer succeeded
-	 */
-	public function transferReviewPoints($review, $rule) {
-		$num_points = $rule->getPointsAmount ();
-		$currency_id = $rule->getPointsCurrencyId ();
-		$review_id = $review->getId ();
-		$rule_id = $rule->getId ();
-		$transfer = $this->initTransfer ( $num_points, $currency_id, $rule_id );
-		
-		if (! $transfer) {
-			return false;
-		}
-		
-		// get the default starting status - usually Pending
-		if (! $transfer->setStatus ( null, Mage::helper ( 'rewards/config' )->getInitialTransferStatusAfterReview () )) {
-			// we tried to use an invalid status... is getInitialTransferStatusAfterReview() improper ??
-			return false;
-		}
-		
-		$transfer->setReviewId ( $review_id )->setComments ( Mage::getStoreConfig ( 'rewards/transferComments/reviewOrRatingEarned' ) )->setCustomerId ( Mage::getModel ( 'review/review' )->load ( $review_id )->getCustomerId () )->save ();
-		
-		return true;
-	}
+
+    /**
+     * Do the points transfer for the review
+     *
+     * @param  Mage_Review_Model_Review $review
+     * @param  int $rule       : Special Rule
+     * @return boolean            : whether or not the point-transfer succeeded
+     */
+    public function transferReviewPoints($review, $rule) {
+        $num_points = $rule->getPointsAmount();
+        $currency_id = $rule->getPointsCurrencyId();
+        $review_id = $review->getId();
+        $rule_id = $rule->getId();
+        $transfer = $this->initTransfer($num_points, $currency_id, $rule_id);
+        
+        $customer_id = $review->getCustomerId();
+        
+        if ( ! $transfer ) {
+            return false;
+        }
+        
+        // get the default starting status - usually Pending
+        if ( ! $transfer->setStatus(null, Mage::helper('rewards/config')->getInitialTransferStatusAfterReview()) ) {
+            // we tried to use an invalid status... is getInitialTransferStatusAfterReview() improper ??
+            return false;
+        }
+        
+        $transfer->setReviewId($review_id)
+            ->setComments(Mage::getStoreConfig('rewards/transferComments/reviewOrRatingEarned'))
+            ->setCustomerId($customer_id)
+            ->save();
+        
+        return true;
+    }
+
 
 }

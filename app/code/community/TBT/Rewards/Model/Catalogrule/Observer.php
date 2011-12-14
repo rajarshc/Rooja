@@ -289,8 +289,10 @@ class TBT_Rewards_Model_Catalogrule_Observer extends Mage_CatalogRule_Model_Obse
 					$qty = isset ( $itemInfo ['qty'] ) ? ( float ) $itemInfo ['qty'] : false;
 				}
 				
-				// Since the cart has changed, reset our before-redemptions value and let Sweet Tooth recalculate the discount amount.
-				Mage::getSingleton ( 'rewards/redeem' )->resetBeforeDiscount ( $item );
+				if (Mage::helper ( 'rewards' )->isBaseMageVersionAtLeast ( '1.4' )) {
+					// Since the cart has changed, reset our before-redemptions value and let Sweet Tooth recalculate the discount amount.
+					Mage::getSingleton ( 'rewards/redeem' )->resetBeforeDiscount ( $item );
+				}
 				
 				$refactorItems [] = $item;
 			}
@@ -340,7 +342,7 @@ class TBT_Rewards_Model_Catalogrule_Observer extends Mage_CatalogRule_Model_Obse
 		} catch ( Exception $e ) {
 			Mage::helper ( 'rewards' )->notice ( $e->getMessage () );
 			Mage::logException ( $e );
-			Mage::getSingleton ( 'core/session' )->addError ( Mage::helper ( 'rewards' )->__ ( "An error occured trying to apply the redemption while adding the product to your cart: " ) . $e->getMessage () );
+			Mage::getSingleton ( 'core/session' )->addError ( Mage::helper ( 'rewards' )->__ ( "An error occurred trying to apply the redemption while adding the product to your cart: " ) . $e->getMessage () );
 		}
 		
 		return $this;
@@ -447,7 +449,7 @@ class TBT_Rewards_Model_Catalogrule_Observer extends Mage_CatalogRule_Model_Obse
 			
 			}
 		} catch ( Exception $e ) {
-			Mage::getSingleton ( 'core/session' )->addError ( Mage::helper ( 'rewards' )->__ ( "An error occured trying to apply the redemption while adding the product to your cart: " ) . $e->getMessage () );
+			Mage::getSingleton ( 'core/session' )->addError ( Mage::helper ( 'rewards' )->__ ( "An error occurred trying to apply the redemption while adding the product to your cart: " ) . $e->getMessage () );
 		}
 	}
 }

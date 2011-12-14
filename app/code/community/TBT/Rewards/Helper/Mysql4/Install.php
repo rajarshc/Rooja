@@ -34,6 +34,39 @@ class TBT_Rewards_Helper_Mysql4_Install extends Mage_Core_Helper_Abstract {
 		}
 		return $this;
 	}
+	/**
+	 * Attempt to add a foreign key constraint on two tables
+	 *
+	 * @param unknown_type $installer
+	 * @param string $table1_name
+	 * @param string $column1
+	 * @param string $table2_name
+	 * @param string $column2=null (uses column1 if null)
+	 * @param string $on_delete='CASCADE'
+	 * @param string $on_update='NO ACTION'
+	 * @return TBT_Rewards_Helper_Mysql4_Install
+	 */
+	public function addFKey(&$installer, $key_name, $table1_name, $column1, $table2_name, $column2=null, $on_delete='NO ACTION', $on_update='NO ACTION') {
+		try {
+            if(empty($column2)) {
+                $column2 = $column1;
+            }
+            $installer->getConnection()
+                ->addConstraint(
+                    $key_name,
+                    $table1_name, 
+                    $column1,
+                    $table2_name, 
+                    $column2,
+                    $on_delete, 
+                    $on_update
+            );
+		} catch ( Exception $ex ) {
+			$this->addInstallProblem ( $ex );
+		}
+		
+		return $this;
+	}
 	
 	/**
 	 * Adds an exception problem to the stack of problems that may
@@ -177,6 +210,27 @@ class TBT_Rewards_Helper_Mysql4_Install extends Mage_Core_Helper_Abstract {
 	}
 	
 	/**
+	 * Clears cache and prepares anything that needs to generally happen before running DB install scripts.
+	 */
+	public function prepareForDb() { 
+	    
+		try {
+		    
+		    if(Mage::helper('rewards/version')->isBaseMageVersionAtLeast('1.4')) {
+                Mage::app()->getCacheInstance()->flush();
+                
+		    } else { // version is 1.3.3 or lower.
+                Mage::app()->getCache()->clean();
+		    }
+		    
+		} catch ( Exception $ex ) {
+			$this->addInstallProblem ( "Problem clearing cache:". $ex );
+		}
+		
+        return $this;
+	}
+	
+	/**
 	 * @return Mage_Eav_Model_Entity_Setup
 	 */
 	protected function _getSetupSingleton() {
@@ -185,4 +239,6 @@ class TBT_Rewards_Helper_Mysql4_Install extends Mage_Core_Helper_Abstract {
 		}
 		return $this->_setup;
 	}
+	
+	
 }

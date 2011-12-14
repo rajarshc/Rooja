@@ -47,7 +47,7 @@ class TBT_Rewards_Block_System_Config_Deleteall extends TBT_Rewards_Block_System
 	public function getButtonData($buttonBlock) {
 		$params = array ('website' => $buttonBlock->getRequest ()->getParam ( 'website' ) );
 		$url = Mage::helper ( 'adminhtml' )->getUrl ( 'rewardsadmin/manage_migration/deleteall', $params );
-		$msg = Mage::helper ( 'rewards' )->__ ( "Are you sure you would like to delete all Sweet Tooth rules?  Unless you haveve made a back-up, this is irreversable..." );
+		$msg = Mage::helper ( 'rewards' )->__ ( "Are you sure you would like to delete all Sweet Tooth rules?  Unless you have made a back-up, this is irreversible..." );
 		$data = array ('label' => Mage::helper ( 'rewards' )->__ ( 'Delete All' ), 'onclick' => 'if(confirm(\'' . $msg . '\')) { setLocation(\'' . $url . '\'); }', 'class' => '' );
 		return $data;
 	}

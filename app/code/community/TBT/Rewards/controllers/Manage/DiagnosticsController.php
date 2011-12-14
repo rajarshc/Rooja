@@ -58,6 +58,7 @@ class TBT_Rewards_Manage_DiagnosticsController extends Mage_Adminhtml_Controller
         
         
         $this->_clearDbInstallMemory($conn, 'rewards_setup');
+        $this->_clearDbInstallMemory($conn, 'rewardssocial_setup');
         
     	echo "Done.";
     	flush();

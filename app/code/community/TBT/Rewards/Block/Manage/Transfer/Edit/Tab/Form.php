@@ -156,7 +156,7 @@ class TBT_Rewards_Block_Manage_Transfer_Edit_Tab_Form extends Mage_Adminhtml_Blo
 		$comments_field = $fieldset->addField ( 'comments', 'editor', array (
 			'name' => 'comments', 'label' => Mage::helper ( 'rewards' )->__ ( 'Comments/Notes' ), 
 			'title' => Mage::helper ( 'rewards' )->__ ( 'Comments/Notes' ), 
-			'style' => 'width:700px; height:200px;', 
+			'style' => 'width:88%; height:200px;', 
 			'class' => 'wikihints-justify' ) 
 	    );
 		

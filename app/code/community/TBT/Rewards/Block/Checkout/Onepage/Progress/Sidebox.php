@@ -109,9 +109,7 @@ class TBT_Rewards_Block_Checkout_Onepage_Progress_Sidebox extends Mage_Checkout_
 	public function assureTotals() {
 		if ($this->getHasAssuredTotals ())
 			return $this;
-		if (Mage::helper ( 'rewards' )->isBaseMageVersionAtLeast ( '1.4.0.0' )) {
-			$this->getQuote ()->collectTotals ();
-		}
+		$this->getQuote ()->collectTotals ();
 		$this->setHasAssuredTotals ( true );
 		return $this;
 	}

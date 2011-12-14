@@ -48,16 +48,16 @@ class TBT_Rewards_Model_Checkout_Rewardearned extends Mage_Sales_Model_Quote_Add
 	public function __construct() {
 		$this->setCode ( 'rewardearned' );
 	}
-	
-	public function fetch(Mage_Sales_Model_Quote_Address $address) {
-		// Only display for the shipping address quote
-		if ($address->getAddressType () == Mage_Sales_Model_Quote_Address::TYPE_BILLING) {
-			return true;
-		}
-		
-		$address->addTotal ( array ('code' => $this->getCode (), 'title' => Mage::helper ( 'sales' )->__ ( 'Points Earned' ) ) );
-		return $this;
-	}
+
+    public function fetch(Mage_Sales_Model_Quote_Address $address) {
+        if ( $address->getAddressType() == Mage_Sales_Model_Quote_Address::TYPE_SHIPPING ) return $this;
+        
+        $address->addTotal( array(
+            'code' => $this->getCode(), 
+            'title' => Mage::helper( 'sales' )->__( 'Points Earned' )
+        ) );
+        return $this;
+    }
 	
 	/**
 	 * This triggers right after the subtotal is calulated

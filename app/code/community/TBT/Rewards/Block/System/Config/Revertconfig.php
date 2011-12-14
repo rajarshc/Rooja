@@ -47,7 +47,7 @@ class TBT_Rewards_Block_System_Config_Revertconfig extends TBT_Rewards_Block_Sys
 	public function getButtonData($buttonBlock) {
 		$params = array ('website' => $buttonBlock->getRequest ()->getParam ( 'website' ) );
 		$url = Mage::helper ( 'adminhtml' )->getUrl ( 'rewardsadmin/manage_migration/revertconfig', $params );
-		$msg = Mage::helper ( 'rewards' )->__ ( "Are you sure you would like to revert all Sweet Tooth config?  Unless you have made a back-up, this is irreversable..." );
+		$msg = Mage::helper ( 'rewards' )->__ ( "Are you sure you would like to revert all Sweet Tooth config?  Unless you have made a back-up, this is irreversible..." );
 		$data = array ('label' => Mage::helper ( 'rewards' )->__ ( 'Revert Settings' ), 'onclick' => 'if(confirm(\'' . $msg . '\')) { setLocation(\'' . $url . '\'); }', 'class' => '' );
 		return $data;
 	}

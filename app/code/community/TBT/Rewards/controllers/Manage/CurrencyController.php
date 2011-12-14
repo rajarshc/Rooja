@@ -52,6 +52,10 @@ class TBT_Rewards_Manage_CurrencyController extends Mage_Adminhtml_Controller_Ac
 		return $this;
 	}
 	
+    protected function _isAllowed() {
+        return Mage::getSingleton ( 'admin/session' )->isAllowed ( 'rewards/cfg/currency' );
+    }
+	
 	public function indexAction() {
 		$this->_initAction ()->renderLayout ();
 	}
@@ -161,13 +165,13 @@ class TBT_Rewards_Manage_CurrencyController extends Mage_Adminhtml_Controller_Ac
 	}
 	
 	public function deleteAction() {
-		Mage::getSingleton ( 'adminhtml/session' )->addError ( Mage::helper ( 'adminhtml' )->__ ( 'Can not delete currency. Available in future upgrades of Sweet Tooth.' ) );
+		Mage::getSingleton ( 'adminhtml/session' )->addError ( Mage::helper ( 'adminhtml' )->__ ( 'Cannot delete currency. Available in future upgrades of Sweet Tooth.' ) );
 		$this->_redirect ( '*/*/' );
 	}
 	
 	public function massDeleteAction() {
 		
-		Mage::getSingleton ( 'adminhtml/session' )->addError ( Mage::helper ( 'adminhtml' )->__ ( 'Can not execute a mass delete' ) );
+		Mage::getSingleton ( 'adminhtml/session' )->addError ( Mage::helper ( 'adminhtml' )->__ ( 'Cannot execute a mass delete' ) );
 		$this->_redirect ( '*/*/' );
 	}
 	

@@ -48,23 +48,24 @@ class TBT_Rewards_Model_Sales_Quote_Address_Total_Rewards extends Mage_Sales_Mod
 	public function __construct() {
 		$this->setCode ( 'rewards' );
 	}
-	
-	/**
-	 * Triggers AFTER collection methods, only when Magento is trying to show the total amount.
-	 * @see Mage_Sales_Model_Quote_Address_Total_Abstract::fetch()
-	 */
-	public function fetch(Mage_Sales_Model_Quote_Address $address) {
-		// Only display for the shipping address quote
-		if ($address->getAddressType () == Mage_Sales_Model_Quote_Address::TYPE_BILLING) {
-			return $this;
-		}
-		
-		if ($this->discount_amt != 0) {
-			$address->addTotal ( array ('code' => $this->getCode (), 'title' => Mage::helper ( 'sales' )->__ ( 'Item Discounts' ), 'value' => $this->discount_amt )//This is for display only
- );
-		}
-		return $this;
-	}
+
+    /**
+     * Triggers AFTER collection methods, only when Magento is trying to show the total amount.
+     * @see Mage_Sales_Model_Quote_Address_Total_Abstract::fetch()
+     */
+    public function fetch(Mage_Sales_Model_Quote_Address $address) {
+        if ( $address->getAddressType() == Mage_Sales_Model_Quote_Address::TYPE_SHIPPING ) return $this;
+        
+        if ( $this->discount_amt != 0 ) {
+            $address->addTotal( array(
+                'code' => $this->getCode(), 
+                'title' => Mage::helper( 'sales' )->__( 'Item Discounts' ), 
+                'value' => $this->discount_amt
+            ) );
+        }
+        
+        return $this;
+    }
 	
 	/**
 	 * This triggers right after the subtotal is calculated
@@ -119,7 +120,12 @@ class TBT_Rewards_Model_Sales_Quote_Address_Total_Rewards extends Mage_Sales_Mod
 			if ($item->getRowTotalBeforeRedemptions () == null && $item->getRewardsCatalogDiscount () == null) {
 				$this->_getRedeemer ()->resetItemDiscounts ( $item );
 			}
-			
+
+			if (!Mage::helper ( 'rewards' )->isBaseMageVersionAtLeast ( '1.4' )) {				
+				$item->setRowTotalBeforeRedemptions ($item->getRowTotal ());
+				$item->setRowTotalBeforeRedemptionsInclTax ($item->getRowTotalInclTax ());
+			}
+						
 			$catalog_discount = $this->_getRedeemer ()->getTotalCatalogDiscount ( $item );
 			
 			$catalog_discount_rounded = $address->getQuote ()->getStore ()->roundPrice ( $catalog_discount );
@@ -128,6 +134,13 @@ class TBT_Rewards_Model_Sales_Quote_Address_Total_Rewards extends Mage_Sales_Mod
 			
 			//@nelkaake -a 17/02/11: TODO implement this field for items in the DB so it can be saved
 			$item->setRewardsCatalogDiscount ( $catalog_discount );
+			
+			$row_total_after_redeem = $this->_getRedeemer ()->getRowTotalAfterRedemptions($item);
+			$item->setRowTotalAfterRedemptions($row_total_after_redeem);
+			
+			$row_total_after_redeem_incl_tax = $this->_getRedeemer ()->getRowTotalAfterRedemptionsInclTax($item);
+			$item->setRowTotalAfterRedemptionsInclTax($row_total_after_redeem_incl_tax);
+			
 			
 			$acc_diff += $catalog_discount;
 			

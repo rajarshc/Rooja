@@ -39,36 +39,43 @@
  * class.  As of Sweet Tooth 1.5.0.3, this replaces the rewrite of the Mage_Paypal_Model_Standard class with TBT_Rewards_Model_Paypal_Standard
  * The rewrite is still there for versions of Magento lower than 1.4.1.0 since those previous versions do not dispatch the paypal_prepare_line_items
  * event (and don't have the Mage_Paypal_Model_Cart class actually)  
- *   
+ * 
  * @category   TBT
  * @package    TBT_Rewards
  * @author     WDCA Sweet Tooth Team <contact@wdca.ca>
  */
 class TBT_Rewards_Model_Paypal_Observer extends Varien_Object {
-	
+
     /**
      * Prepare the catalog redemption rule discounts 
      * @param $o observer object
      * 
      * @return    TBT_Rewards_Model_Paypal_Observer  
-     */                   
-	public function prepare($o) {
-        $event = $o->getEvent();    
+     */
+    public function prepare($o) {
+        // Only run for Magento 1.4.2.x and higher
+        if ( ! Mage::helper('rewards/version')->isBaseMageVersionAtLeast('1.4.2') ) {
+            return $this;
+        }
         
-        $ppCart = $event->getPaypalCart();   
+        $event = $o->getEvent();
+        
+        $ppCart = $event->getPaypalCart();
         $pps = Mage::getModel('rewards/paypal_standard');
+        
+        // IF the paypal cart object is not defined, we may be in a bad observer dispatch or Magento 1.4.1 (when the had crappy params for the observer)
+        if ( ! $ppCart ) return $this;
         
         $_quote = $ppCart->getSalesEntity();
         $discountAmount = $pps->getDiscountDisplacement($_quote);
         
-        if($discountAmount <= 0) {
+        if ( $discountAmount <= 0 ) {
             return $this; // no discount needed
         }
-                
-        // This actually adds to the total for that totals item.  This adds the $discountAmount value to the total discounts to be deducted.
-        $ppCart->updateTotal(Mage_Paypal_Model_Cart::TOTAL_DISCOUNT, $discountAmount );
         
-        //Mage::log("prepare - 4");
+        // This actually adds to the total for that totals item.  This adds the $discountAmount value to the total discounts to be deducted.
+        $ppCart->updateTotal(Mage_Paypal_Model_Cart::TOTAL_DISCOUNT, $discountAmount);
+        
         return $this;
     }
 }

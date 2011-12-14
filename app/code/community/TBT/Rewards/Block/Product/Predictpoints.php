@@ -90,7 +90,6 @@ class TBT_Rewards_Block_Product_Predictpoints extends Mage_Core_Block_Template {
 	 * @nelkaake -a 5/11/10:
 	 */
 	protected function _genCacheKey() {
-            $key = (string)$this->getCacheKey();
             
             $nameInLayout = $this->getNameInLayout();
             $blockType = $this['type'];
@@ -99,7 +98,7 @@ class TBT_Rewards_Block_Product_Predictpoints extends Mage_Core_Block_Template {
             $customer_group_id = $this->_getRS ()->getCustomerGroupId ();
             $lang = Mage::getStoreConfig('general/locale/code');
 
-            $key = "{$key}rewards_product_predictpoints_{$nameInLayout}_{$blockType}_{$product_id}_{$website_id}_{$customer_group_id}_{$lang}";
+            $key = "rewards_product_predictpoints_{$nameInLayout}_{$blockType}_{$product_id}_{$website_id}_{$customer_group_id}_{$lang}";
 
             if ($this->_getRS ()->isCustomerLoggedIn ()) {
     		    $customer = Mage::getModel('rewards/customer')->getRewardsCustomer($this->_getRS()->getCustomer());
@@ -107,7 +106,7 @@ class TBT_Rewards_Block_Product_Predictpoints extends Mage_Core_Block_Template {
                 $pts = strtolower(str_replace(' ', '_', $pts));
                 $pts = preg_replace ( '/[^a-z0-9_]/', '', $pts );
                 $key = $key . "_{$pts}";
-            }
+            }            
             return $key;
 	}
 	

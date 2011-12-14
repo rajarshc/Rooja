@@ -224,7 +224,7 @@ class TBT_Rewards_Manage_Promo_QuoteController extends TBT_Rewards_Manage_Sweett
 	}
 	
 	protected function _isAllowed() {
-		return Mage::getSingleton ( 'admin/session' )->isAllowed ( 'promo/quote' );
+		return Mage::getSingleton ( 'admin/session' )->isAllowed ( 'rewards/rules' );
 	}
 	
 	public function preDispatch() {
