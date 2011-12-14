@@ -1150,6 +1150,12 @@ a#backToCart:hover{color:#000;}
 .gift-message-row .btn-close { float:right; }
 .gift-message dt strong { font-weight:bold; }
 
+.onestepcheckout-giftmessages{
+    margin-top:15px;
+}
+#gift-message-whole-message{
+    width:265px !important;
+}
 /* Checkout Agreements */
 .checkout-agreements {}
 .checkout-agreements li { margin:10px 0; }
