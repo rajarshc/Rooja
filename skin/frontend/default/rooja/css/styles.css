@@ -90,6 +90,10 @@ ul,ol         { list-style:none; }
 .giftnote {
 	font-weight:bold;
 }
+
+.register form .form-list label{
+    color:#2E1A33;
+}
 /* ======================================================================================= */
 
 
