@@ -24,10 +24,21 @@
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 ?>
+
 <?php
     $_item = $this->getItem();
     $isVisibleProduct = $_item->getProduct()->isVisibleInSiteVisibility();
+	$session = Mage::getSingleton("core/session",  array("name"=>"frontend"));
+	$isValidAjaxAdd = $session->getData("isValidAjaxAdd");
+	$currentProduct = $session->getData("currentProduct");
+	
+	if($_options = $this->getOptionList())
+	{
+	 
+	}
+
 ?>
+
 <li class="item">
     <?php if ($this->hasProductUrl()): ?>
         <a href="<?php echo $this->getProductUrl()?>" title="<?php echo $this->htmlEscape($this->getProductName()) ?>" class="product-image"><img src="<?php echo $this->getProductThumbnail()->resize(56,84)->setWatermarkSize('30x10'); ?>" width="56" height="84" alt="<?php echo $this->htmlEscape($this->getProductName()) ?>" /></a>
@@ -35,11 +46,36 @@
         <span class="product-image"><img src="<?php echo $this->getProductThumbnail()->resize(56,84)->setWatermarkSize('30x10'); ?>" width="56" height="84" alt="<?php echo $this->htmlEscape($this->getProductName()) ?>" /></span>
     <?php endif; ?>
     <div class="product-details">
-        <p class="product-name"><?php if ($this->hasProductUrl()): ?><a href="<?php echo $this->getProductUrl() ?>"><?php endif; ?><?php echo $this->htmlEscape($this->getProductName()) ?><?php if ($_options = $this->getOptionList()):?>
-	    <span class="productOptions">(
+        <p class="product-name"><?php if ($this->hasProductUrl()): ?><a href="<?php echo $this->getProductUrl() ?>"><?php endif; ?><?php echo $this->htmlEscape($this->getProductName()) ?>
+		
+		<?php if ($_options = $this->getOptionList()):?>
+        <div style="border:solid 1px #fff; display:none">
+                <?php 
+				/*
+				$attributeValue = Mage::getModel('catalog/product')
+                            ->load(499)
+                            ->getAttributeText('size');
+				
+				 echo "Attributes : <pre>";
+				 print_r($attributeValue);
+				 echo "</pre>";
+				 */
+				?>
+        </div>
+                
+	    <span class="productOptions" style="color:#fff">(
 	            <?php foreach ($_options as $_option) : ?>
 	            <?php $_formatedOptionValue = $this->getFormatedOptionValue($_option) ?>
-	            <?php echo $this->htmlEscape($_option['label']) ?> - <?php echo $_formatedOptionValue['value'] ?>
+                <?php 
+				/*
+				 echo "Options : <pre>";
+				 print_r($_formatedOptionValue);
+				 echo "</pre>";
+				*/
+				?>
+	            <?php echo $this->htmlEscape($_option['label']) ?> - <?php echo $_formatedOptionValue['value'];
+				$size = $_formatedOptionValue['value'];
+				?>
 	                
 	         
 	            <?php endforeach; ?>)</span>
@@ -49,7 +85,53 @@
 		<table width="100%" border="0">
 			<tr>
 				<td width="500px">
+				<div style="overflow:hidden; display:block; margin:0 0 5px; padding:5px 0px;">
 		        Quantity in Cart: <strong><?php echo $this->getQty() ?></strong>     <?php if ($isVisibleProduct): ?>
+                
+				</div>
+				
+<?php 
+if(!($this->getOptionList()))
+{
+  if($_item->getProductId()==$currentProduct)
+  {
+	if($isValidAjaxAdd=="no")
+	{ ?>
+	<div style="color: red; display: block; font-size: 10px; overflow: hidden; padding: 5px 0;">
+	 This product cannot be added any more..!!
+	</div>
+  <?php 
+    $session->setData("isValidAjaxAdd","yes");
+	} 
+  }
+}
+else
+{
+ $associatedArray = $session->getData("detailsArray");
+ foreach($associatedArray as $ass)
+ {
+  if($ass['id']==$_item->getProductId())
+  {
+	if($ass['size']==$size)
+	{
+	 if($ass['allow']=="no")
+	 {
+	  echo '<div style="color: red; display: block; font-size: 10px; overflow: hidden; padding: 5px 0;">This product cannot be added any more..!!</div>';
+	  $ar = array();
+	  $session->setData("detailsArray",$ar);
+	 }
+	}
+  }
+ }//for each
+ 
+ ?>
+ 
+ <?php
+}
+?>
+
+<input type="hidden" class="hidden" value="<?php echo $this->getQty(); ?>" />
+
 			        <!--<a href="<?php echo $this->getConfigureUrl() ?>" title="<?php echo $this->__('Edit item') ?>" class="btn-edit"><?php echo $this->__('Edit item')?></a>-->
 			        <?php endif ?>
 			    

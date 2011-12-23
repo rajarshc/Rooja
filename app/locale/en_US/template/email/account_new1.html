@@ -1,0 +1,50 @@
+<!--@subject Welcome, {{var customer.name}}! @-->
+<!--@vars
+{"store url=\"\"":"Store Url",
+"skin url=\"images/logo_email.gif\" _area='frontend'":"Email Logo Image",
+"htmlescape var=$customer.name":"Customer Name",
+"store url=\"customer/account/\"":"Customer Account Url",
+"var customer.email":"Customer Email",
+"htmlescape var=$customer.password":"Customer Password"}
+@-->
+
+<html>
+<head>
+<title>Welcome to Rooja!</title>
+
+<meta httpequiv="ContentType" content="text/html; charset=iso88591">
+</head>
+<table id="Table_01" width="650" height="638" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse;font-family: Helvetica, Arial, sans-serif;font-size: 13px;color: #111;line-height: 18px;margin: 0 auto;">
+	<tr style="border-collapse: collapse;font-family: Helvetica, Arial, sans-serif;font-size: 13px;color: #111;line-height: 18px;">
+		<td colspan="2" style="border-collapse: collapse;font-family: Helvetica, Arial, sans-serif;font-size: 13px;color: #111;line-height: 18px;">
+			 <a href="{{store url=""}}"><img src="{{skin url="images/email/new-account_02.jpg" _area='frontend'}}" width="650" height="180" alt="" style="display: block;padding: 10px 10px 10px 0;"></a></td>
+	</tr>
+	<tr style="border-collapse: collapse;font-family: Helvetica, Arial, sans-serif;font-size: 13px;color: #111;line-height: 18px;">
+		<td style="border-collapse: collapse;font-family: Helvetica, Arial, sans-serif;font-size: 13px;color: #111;line-height: 18px;">
+			<img src="{{skin url="images/email/new-account_03.jpg" _area='frontend'}}" width="336" height="375" alt="" style="display: block;padding: 10px 10px 10px 0;"></td>
+		<td style="border-collapse: collapse;font-family: Helvetica, Arial, sans-serif;font-size: 13px;color: #111;line-height: 18px;">
+		<img src="{{skin url="images/email/register.jpg" _area='frontend'}}" alt="Thanks for Registering!" style="display: block;padding: 10px 10px 10px 0;">
+		The hottest apparel and accessories	from leading international designers are now at your fingertips.
+
+		<img src="{{skin url="images/email/account.jpg" _area='frontend'}}" alt="Account Features" style="display: block;padding: 10px 10px 10px 0;">
+<ul style="list-style: square;">
+	<li style="list-style: square;">Proceed through checkout faster when making a purchase</li>
+	<li style="list-style: square;">Check the status of orders</li>
+	<li style="list-style: square;">View past orders</li>
+	<li style="list-style: square;">Make changes to your <a href="{{store url="customer/account/"}}" style="color:#000; text-decoration:underline;">account information</a></li>
+	<li style="list-style: square;">Change your password</li>
+	<li style="list-style: square;">Store alternative addresses (for shipping to multiple family members and friends!)</li>	
+	</ul>
+	<br />
+	<a href="http://www.rooja.com"><img src="{{skin url="images/email/start.jpg" _area='frontend'}}" alt="start shopping!" /><a>
+	
+	</td></tr>
+	<tr style="border-collapse: collapse;font-family: Helvetica, Arial, sans-serif;font-size: 13px;color: #111;line-height: 18px;">
+		<td colspan="2" id="footer" style="border-collapse: collapse;font-family: Helvetica, Arial, sans-serif;font-size: 11px;color: #111;line-height: 18px;">
+			<img src="{{skin url="images/email/break.jpg" _area='frontend'}}" alt="" style="display: block;padding: 10px 10px 10px 0;">
+			If you have any questions about your account or any other matter, please feel free to contact us at support@rooja.com or by phone at {{config path='general/store_information/phone'}}.
+		</td>
+	</tr>
+</table>
+
+</html>

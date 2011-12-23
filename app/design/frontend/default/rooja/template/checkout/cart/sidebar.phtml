@@ -50,6 +50,7 @@
 	
     <?php if(count($_items)): ?>
       
+       
         <ol id="cart-sidebar" class="mini-products-list">
 			<li class="item cart-sidebar-header"><table width="100%" border="0">
 				<tr>
@@ -63,6 +64,7 @@
 						</tr>
 					</table>		
 			</li>
+        <?php // echo "Items Array : <pre>"; print_r($_items); echo "</pre>"; ?>
         <?php foreach($_items as $_item): ?>
             <?php echo $this->getItemHtml($_item) ?>
         <?php endforeach; ?>
@@ -88,8 +90,15 @@
 	</div>
 	</div>
 <?php endif;?>
+
 <script type="text/javascript">
+
+
+document.getElementById("myBag").innerHTML = '<a class="dotted" href="/checkout/cart">My Bag (<?php printf("%d",Mage::getModel('checkout/cart')->getQuote()->getItemsQty()); ?>)</a>';
+
+
 	jQuery(document).ready(function(){
+							
 		/*jQuery("#myBag").click(function() {
 			if(jQuery('#sidebarCart').is(":visible")){
 				jQuery("#sidebarCart").slideUp();
@@ -97,9 +106,13 @@
 			}
 			else{
 				jQuery("#sidebarCart").slideDown();
+
 				return false;	
 			}
 			});*/
+		
+		
+		
 		jQuery("#closerBtn, .continueShoppingLink").click(function() {
 			        jQuery("#sidebarCart").slideUp();
 			        return false;
@@ -130,9 +143,18 @@ function fixRoojaNumberInCartLol () {
 	var $ 		= jQuery,
 		$a		= $('#myBag a'),
 		current	= $a.text().match(/\((\d)\)/)[1],
-		total	= parseInt(current) - parseInt(myGlobalRoojaVar),
-		newText	= "My Bag (" + total + ")";
-
+		total	= parseInt(current) - parseInt(myGlobalRoojaVar);
+		
+		if(isNaN(total))
+		{
+			newText	= "My Bag (0)";
+		}
+		else
+		{
+			newText	= "My Bag (" + total + ")";
+		}
+		
+		
 	$a.text(newText);
 }
 

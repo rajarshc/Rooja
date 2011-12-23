@@ -1,0 +1,141 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+
+/**
+ * Shoping cart sidebar
+ *
+ * @see Mage_Checkout_Block_Cart_Sidebar
+ */
+
+?>
+<?php if ($this->getIsNeedToDisplaySideBar()):?>
+<div class="block block-cart" id="sidebarCart">
+    <?php $_cartQty = $this->getSummaryCount() ?>
+	<div class="hiw-container" id="topCart">
+		<div class="howitworks">
+		
+    <div class="block-content">
+    <?php if ($_cartQty>0): ?>
+        
+
+	
+    <?php endif ?>
+    <?php if($_cartQty && $this->isPossibleOnepageCheckout()): ?>
+    
+    <?php endif ?>
+    <?php $_items = $this->getItems() ?>
+	
+    <?php if(count($_items)): ?>
+      
+        <ol id="cart-sidebar" class="mini-products-list">
+			<li class="item cart-sidebar-header"><table width="100%" border="0">
+				<tr>
+					<td width="430px">
+						Product
+						</td>
+						<td width="300px">
+						Price
+						</td>
+						<td></td>
+						</tr>
+					</table>		
+			</li>
+        <?php foreach($_items as $_item): ?>
+            <?php echo $this->getItemHtml($_item) ?>
+        <?php endforeach; ?>
+        </ol>
+        <script type="text/javascript">decorateList('cart-sidebar', 'none-recursive')</script>
+    <?php else: ?>
+        <p class="empty"><?php echo $this->__('You have no items in your shopping cart.') ?></p>
+    <?php endif ?>
+	<div class="subtotal">
+        <p class="miniCartSubtotal">Cart Subtotal</p> <span class="miniCartSubtotalPrice"><?php echo Mage::helper('checkout')->formatPrice($this->getSubtotal()) ?></span>
+        <?php if ($_subtotalInclTax = $this->getSubtotalInclTax()): ?>
+            <br />(<?php echo Mage::helper('checkout')->formatPrice($_subtotalInclTax) ?> <?php echo Mage::helper('tax')->getIncExcText(true) ?>)
+        <?php endif; ?><br /><br /><a href="#" class="continueShoppingLink">Continue Shopping</a>
+<a href="/checkout/cart/" id="checkoutBtn">Proceed to Cart</a>
+    </div>
+<div class="clear"></div>
+    </div>
+
+</div>
+
+
+	<div class="closer" id="closerBtn"><a href="#" class="closer">Close</a></div>
+	</div>
+	</div>
+<?php endif;?>
+<script type="text/javascript">
+	jQuery(document).ready(function(){
+		/*jQuery("#myBag").click(function() {
+			if(jQuery('#sidebarCart').is(":visible")){
+				jQuery("#sidebarCart").slideUp();
+				return false;
+			}
+			else{
+				jQuery("#sidebarCart").slideDown();
+				return false;	
+			}
+			});*/
+		jQuery("#closerBtn, .continueShoppingLink").click(function() {
+			        jQuery("#sidebarCart").slideUp();
+			        return false;
+		});
+			
+	});
+
+var myGlobalRoojaVar = 0;
+jQuery(function ($) {
+
+	var removed = {};
+
+	$('.remove-item').live('click', function () {
+
+		var $parent	= $(this).closest('.item'),
+			count	= $('.product-details > table td:first > strong').text();
+
+		myGlobalRoojaVar = count;
+
+	});
+
+
+});
+
+
+function fixRoojaNumberInCartLol () {
+
+	var $ 		= jQuery,
+		$a		= $('#myBag a'),
+		current	= $a.text().match(/\((\d)\)/)[1],
+		total	= parseInt(current) - parseInt(myGlobalRoojaVar),
+		newText	= "My Bag (" + total + ")";
+
+	$a.text(newText);
+}
+
+			
+</script>
+

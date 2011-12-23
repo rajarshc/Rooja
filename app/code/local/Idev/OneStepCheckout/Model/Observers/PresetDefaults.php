@@ -32,10 +32,10 @@ class Idev_OneStepCheckout_Model_Observers_PresetDefaults extends Mage_Core_Mode
 
         $quote = $observer->getEvent()->getQuote();
 
-        if(Mage::getStoreConfig('onestepcheckout/general/rewrite_checkout_links', $quote->getStore())) {
+        if(Mage::getStoreConfig('onestepcheckout/general/rewrite_checkout_links')) {
             $this->setAddressDefaults($observer);
             $this->setShippingDefaults($observer);
-            $this->setPaymentDefaults($observer);
+            //$this->setPaymentDefaults($observer);
         }
 
         return $this;
@@ -49,7 +49,7 @@ class Idev_OneStepCheckout_Model_Observers_PresetDefaults extends Mage_Core_Mode
      */
     public function setShippingIfDifferent(Varien_Event_Observer $observer){
 
-        $quote = $observer->getEvent()->getQuote();
+       /*  $quote = $observer->getEvent()->getQuote();
 
         if(!Mage::getStoreConfig('onestepcheckout/general/rewrite_checkout_links', $quote->getStore())) {
             return $this;
@@ -80,7 +80,7 @@ class Idev_OneStepCheckout_Model_Observers_PresetDefaults extends Mage_Core_Mode
         if ($quote->hasItems() && ((! empty($codes) && ! in_array($currentMethod, $codes)) || (array_key_exists($currentMethod, $prices) && $oldPrice != $prices[$currentMethod]))) {
             $quote->getShippingAddress()->setShippingMethod('');
         }
-
+ */
         return $this;
     }
 
