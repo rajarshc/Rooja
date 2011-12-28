@@ -22,8 +22,4 @@ class Idev_OneStepCheckout_Block_Summary extends Mage_Checkout_Block_Cart_Totals
     {
         return $this->getQuote()->getTotals();
     }
-
-    public function getGrandTotal(){
-        return $this->getQuote()->getGrandTotal();
-    }
 }

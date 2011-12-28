@@ -1,0 +1,48 @@
+
+
+<script type="text/javascript">
+    function toggleRedeemPointsTip(event){
+        if($('redeem_points_tip')){
+            $('redeem_points_tip').toggle();
+            centerWindow($('redeem_points_tip'));
+        }
+        Event.stop(event);
+    }
+    function closeRedeemPointsTip() {
+        $('redeem_points_tip').hide(); 
+        centerWindow($('redeem_points_tip'));
+    }
+    function openRedeemPointsTip() {
+        $('redeem_points_tip').show(); 
+        centerWindow($('redeem_points_tip'));
+    }
+    
+    function centerWindow(element) {
+        if($(element) != null) {
+            var topint = 0;
+            var leftint = 0;
+            if(typeof window.innerHeight != 'undefined') {
+                topint =  Math.round(document.viewport.getScrollOffsets().top + 
+                    ((window.innerHeight - $(element).getHeight()))/2);
+                leftint = Math.round(document.viewport.getScrollOffsets().left + 
+                    ((window.innerWidth - $(element).getWidth()))/2);
+            } else {
+                topint = Math.round(document.body.scrollTop + 
+                    (($$('body')[0].clientHeight - $(element).getHeight()))/2);
+                leftint = Math.round(document.body.scrollLeft + 
+                    (($$('body')[0].clientWidth - $(element).getWidth()))/2);
+            }
+            $(element).style.top = Math.max(15, topint) +'px';
+            $(element).style.left = Math.max(15, leftint) +'px';
+        }
+    }
+    
+    document.observe("dom:loaded", function() {
+        if($('redeem_points_tip_close')){    
+            Event.observe($('redeem_points_tip_close'), 'click', toggleRedeemPointsTip); 
+        }
+        if($('redeem_points_tip')){    
+            new Draggable('redeem_points_tip', {handle:'redeem_points_tip_titlebar'});
+        }
+    });
+</script>

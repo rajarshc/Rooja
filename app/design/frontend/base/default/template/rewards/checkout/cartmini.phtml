@@ -3,9 +3,9 @@ $cant_use_points = (($this->getMinSpendablePoints() == $this->getMaxSpendablePoi
 ?>
 
 <?php if($this->hasCartPointsData()): ?>
-<div class="discount-codes box rewards-box-spend-minicart discount" style="padding: 0 0 25px 0;">
+<div class="discount-codes box rewards-box-spend-minicart discount">
     <div class="rewards-box-spend-header">
-        <h4 style="padding: 0 0 10px;"><?php echo $this->__('Spend your points'); ?></h4>
+        <h2><?php echo $this->__('Spend your points'); ?></h2>
     </div>
     <div class="box-content">
 <?php if($this->needsLogin()): ?>
@@ -25,8 +25,8 @@ $cant_use_points = (($this->getMinSpendablePoints() == $this->getMaxSpendablePoi
             <div class="cartSlider">
                 <?php echo $this->getChildHtml('points_slider'); ?>
             </div>
-            <input type="checkbox" name="use_all_points" style="width:16px;" onclick="toggleUseAllPoints(this.checked)"/>&nbsp;
-            <label for="use_all_points" id="use_all_points"><?php echo $this->__('Use your points on this order'); ?></label>
+            <input type="checkbox" name="use_all_points" id="use_all_points" onclick="toggleUseAllPoints(this.checked)"/>&nbsp;
+            <label for="use_all_points"><?php echo $this->__('Maximize my discount with points'); ?></label>
         <?php else: ?>
             <?php if($cant_use_points): ?>
                 <span class="points_slider_msg"><?php echo $this->__("You can't spend any more points in this cart."); ?></span>

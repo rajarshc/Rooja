@@ -1,0 +1,9 @@
+<config>
+    <modules>
+        <Idev_OneStepCheckout>
+            <active>true</active>
+            <codePool>local</codePool>
+            <depends>TBT_Rewards</depends>
+        </Idev_OneStepCheckout>
+    </modules>
+</config>

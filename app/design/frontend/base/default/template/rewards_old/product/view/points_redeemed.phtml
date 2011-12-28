@@ -1,0 +1,133 @@
+<?php
+$ruleOptions = $this->getRedeemableOptions();
+$ruleMap = $this->getApplicableRulesMap();
+$c = Mage::helper('rewards/currency');
+$pid = $this->getProduct()->getId();
+$pid_suffix = $this->getIdSuffix();
+$show_reduced_price = true;
+$show_discount_in_uses_selector = true;
+$show_slider = true;
+// TODO: hide the redemption drop down and show the slider with a minimum value of "0"
+//$use_slider_for_single_redemption = true;
+?>
+
+<div class="divider"></div>
+
+<script type="text/javascript">
+
+    // Configurations ///////////////
+    var show_lowest_price = <?php echo $show_reduced_price ? 'true' : 'false'; ?>;
+    var show_discount_in_uses_selector = <?php echo $show_discount_in_uses_selector ? 'true' : 'false'; ?>;
+
+    // Other PHP content ///////////////
+
+    var original_product_price = "<?php echo $this->getOriginalPrice(); ?>";
+    var rule_options = <?php echo json_encode($ruleMap); ?>;
+    var base_product_id = <?php echo $pid; ?>;
+    var is_configurable_product = <?php echo (int) $this->getProduct()->isConfigurable(); ?>;
+    var customer_points = <?php echo ($this->getCurrentCustomer() ? json_encode($this->getCurrentCustomer()->getPoints()) : "false"); ?>;
+    var do_hide_old_price = false;
+    var default_guest_points = <?php echo $this->getDefaultGuestPoints(); ?>;
+
+    var new_price_dom_id = 'product-price-<?php echo $pid; ?><?php echo $pid_suffix; ?>';
+    var old_price_dom_id = 'old-price-<?php echo $pid; ?><?php echo $pid_suffix; ?>';
+    var slider_mode = <?php echo $show_slider ? 'true' : 'false'; ?>;
+</script>
+<?php if (sizeof($ruleOptions) > 0): ?>
+    <script type="text/javascript">
+        document.observe("dom:loaded", function() {
+            // save base productPrice
+            <?php if(  Mage::helper('rewards/version')->isMageVersionAtLeast('1.4.1.1')  ): ?>
+            optionsPrice.productPriceBeforeRedemptions = optionsPrice.productPrice;
+            if( (optionsPrice.includeTax && optionsPrice.includeTax != 'false') && !optionsPrice.showIncludeTax && optionsPrice.defaultTax > 0) {
+            	optionsPrice.productPriceBeforeRedemptions = optionsPrice.productPrice / (1+ (optionsPrice.defaultTax/100));
+            }
+            <?php else:  ?>
+            optionsPrice.productPriceBeforeRedemptions = optionsPrice.productPrice;
+            <?php endif;  ?>
+
+                
+        	
+            // add listener to all form select boxes
+            $$('#product_addtocart_form select').each( function(e){
+                e.observe("change", function(e) {
+                    updateUsesInterface();
+                });
+            }
+        );
+        	  
+        });
+        function updateUsesInterface() {
+            var rule_id = $('redemption_rule').value;
+            if(slider_mode) {
+                feignPriceChange(rule_id);
+                rSlider.changeRule(rule_id);
+                rSlider.changeRule(rule_id); // fix creation order error in SmoothSlider.js where translateToPx() needs slider/DOM before call
+            } else {
+                if(formElem.id == 'redemption_rule_uses') {
+                    feignPriceChange(rule_id);
+                } else if(formElem.id == 'redemption_rule') {
+                    updateRemptionUsesSelector(rule_id, false);
+                    feignPriceChange(rule_id);
+                    updateRemptionUsesSelector(rule_id, false);
+                } else {
+                    var val = $('redemption_rule_uses').value;
+                    updateRemptionUsesSelector(rule_id, val);
+                    feignPriceChange(rule_id);
+                    if(formElem.id.indexOf("attribute") == 0) {
+                        updateRemptionUsesSelector(rule_id, val);
+                    } else {
+                        updateRemptionUsesSelector(rule_id, false);
+                    }
+                }
+            }
+        }
+        function getRedemptionUses() {
+            var uses;
+            if(slider_mode) {
+                uses = rSlider.getUses();
+            } else {
+                uses = $('redemption_rule_uses').value;
+            }
+            return uses;
+        }
+            
+
+    </script>
+<?php endif; ?>
+
+<div class="redeem_section">
+    <span class="use_points">
+        <?php echo $this->__('Use Your Points') . ':'; ?>
+    </span>
+    <select name="redemption_rule" id="redemption_rule" 
+            class="redemption_selector validate-can_use_points validate-has_enough_points">
+        <option value="" selected="selected"></option>
+        <?php foreach ($ruleOptions as $ruleOption): ?>
+            <?php if (isset($ruleOption['rule_id'])): ?>
+                <option value="<?php echo $ruleOption['rule_id']; ?>">
+                    <?php echo $ruleOption['caption'] . " (" . $this->__('costs') . " " . $ruleOption['points'] . ")"; ?>
+                </option>
+            <?php endif; ?>
+        <?php endforeach; ?>
+    </select>
+    <div id="redemption_rule_uses_container" class="redemption_uses_container" style="display:none;">
+        <?php if ($show_slider): ?>
+            <?php echo $this->getChildHtml('points_slider'); ?>
+            <?php echo $this->getChildHtml('points_slider_js'); ?>
+        <?php else: ?>
+            <select class="redemption_uses_selector" 
+                    id="redemption_rule_uses" name="redemption_uses">
+            </select>
+            <span class="redemption_rule_uses_caption" id="redemption_rule_uses_caption" ></span>
+
+            <script type="text/javascript">
+                document.observe("dom:loaded", function() {
+                    usesSelect = $('redemption_rule_uses'); 
+                    usesCaption = $('redemption_rule_uses_caption'); 
+                    usesContainer = $('redemption_rule_uses_container');
+                });
+            </script>
+        <?php endif; ?>
+    </div>
+</div>
