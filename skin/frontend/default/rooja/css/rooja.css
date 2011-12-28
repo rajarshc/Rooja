@@ -748,6 +748,11 @@ h2#saleDetails{color:#c60;margin:22px 0 5px;}
     font-family:arial, helvetica, sans-serif;
     font-weight:bold;
 }
+.cartSlider_caption{
+    top:0px !important;
+    margin-top:5px !important;
+    font-size:12px !important;
+}
 
 /* ~~~~~ Typography ~~~~~ */
 
