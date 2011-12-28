@@ -43,16 +43,16 @@
  */
 ?>
 <?php if ($this->showSpendings()): ?>
-    <tr>
+   <?php /*  <tr>
         <td class="a-right cart-points-total_spent" colspan="4">          
-            <div class="caption"><?php //echo $this->__('You Will Spend:') ?></div>
+            <div class="caption"><?php echo $this->__('You Will Spend:') ?></div>
         </td>
         <td class="a-right cart-points-total_spent"> 
             <div class="points-amount">
-                <?php //echo $this->getPointsSpent() ?>
+                <?php echo $this->getPointsSpent() ?>
             </div>
         </td>
-    </tr>
+    </tr>*/?>
     <tr>
         <td class="a-right cart-points-total_spent cart-points-spending_warnings" colspan="<?php echo $this->getColspan() + 1; ?>">          
             <?php if ($this->getShowNEPWarning()): ?>
