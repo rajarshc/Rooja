@@ -1,0 +1,1 @@
+Please see http://www.getsweettooth.com/wiki/index.php/Database_Architecture for the latest database architecture.
