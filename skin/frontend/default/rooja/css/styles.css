@@ -220,6 +220,7 @@ p.control input.radio { margin-right:6px; }
 .form-list label { text-align:left; color:#000; position:relative; z-index:0; }
 .form-list label.required {}
 span.required{color:#d68536;}
+#billing_address_list .input-region .required, #shipping_address_list .input-region .required{display:inline !important;}
 .form-list label.required em { float:right; font-style:normal; color:#d68536; position:absolute; top:0; right:-8px; }
 .form-list li.control label { float:none; }
 .form-list li.control input.radio,
