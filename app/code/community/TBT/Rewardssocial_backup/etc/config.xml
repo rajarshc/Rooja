@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<config>
+
+    <modules>
+        <TBT_Rewardssocial>
+            <version>1.0.0.2</version>
+        </TBT_Rewardssocial>
+    </modules>
+    <admin>
+        <routers>
+            <rewardssocialadmin>
+                <use>admin</use>
+                <args>
+                    <module>TBT_Rewardssocial</module>
+                    <frontName>rewardssocialadmin</frontName>
+                </args>
+            </rewardssocialadmin>
+        </routers>
+    </admin>
+    
+    <frontend>
+        <routers>
+            <rewardssocial>
+                <use>standard</use>
+                <args>
+                    <module>TBT_Rewardssocial</module>
+                    <frontName>rewardssocial</frontName>
+                </args>
+            </rewardssocial>
+        </routers>
+        
+        <layout>
+            <updates>
+                <rewardssocial>
+                    <file>rewardssocial.xml</file>
+                </rewardssocial>
+            </updates>
+        </layout>
+    </frontend>
+   
+    <global>
+    
+        <events>
+	        <rewardssocial_facebook_like_action>
+	            <observers>
+	                <tbt_rewardssocial_model_facebook_like_observer>
+	                    <type>singleton</type>
+	                    <class>rewardssocial/facebook_like_observer</class>
+	                    <method>facebookLikeAction</method>
+	                </tbt_rewardssocial_model_facebook_like_observer>
+	            </observers>
+	        </rewardssocial_facebook_like_action>
+            <controller_action_predispatch_rewardsadmin_manage_special_save>
+                <observers>
+                    <rewardssocial_facebook_customer_behavior_rule_pre_dispatch>
+                        <type>singleton</type>
+                        <class>rewardssocial/facebook_like_observer</class>
+                        <method>checkFacebookSettings</method>
+                    </rewardssocial_facebook_customer_behavior_rule_pre_dispatch>
+                </observers>
+            </controller_action_predispatch_rewardsadmin_manage_special_save>
+	    </events>
+    
+	   <resources>
+	       <rewardssocial_setup>
+	           <setup>
+	               <module>TBT_Rewardssocial</module>
+	               <class>TBT_Rewardssocial_Model_Resource_Mysql4_Setup</class>
+	           </setup>
+	           <connection>
+	               <use>core_setup</use>
+	           </connection>
+	       </rewardssocial_setup>
+	       <rewardssocial_write>
+	           <connection>
+	               <use>core_write</use>
+	           </connection>
+	       </rewardssocial_write>
+	       <rewardssocial_read>
+	           <connection>
+	               <use>core_read</use>
+	           </connection>
+	       </rewardssocial_read>
+	   </resources>
+        <blocks>
+            <rewardssocial>
+                <class>TBT_Rewardssocial_Block</class>
+            </rewardssocial>
+        </blocks>
+        <helpers>
+            <rewardssocial>
+                <class>TBT_Rewardssocial_Helper</class>
+            </rewardssocial>
+            <rewardsfb>
+                <class>TBT_Rewardssocial_Helper_Facebook</class>
+            </rewardsfb>
+        </helpers>
+        <models>
+            <rewardssocial>
+                <class>TBT_Rewardssocial_Model</class>
+                <resourceModel>rewardssocial_mysql4</resourceModel>
+            </rewardssocial>
+            <rewardsfb>
+                <class>TBT_Rewardssocial_Model_Facebook_Api</class>
+            </rewardsfb>
+            <rewardssocial_mysql4>
+                <class>TBT_Rewardssocial_Model_Mysql4</class>
+                <entities>
+                    <facebook_like>
+                        <table>rewardssocial_facebook_like</table>
+                    </facebook_like>
+                </entities>
+            </rewardssocial_mysql4>
+        </models>
+        
+        <events>
+            <rewards_transfer_vestation>
+                <observers>
+                    <tbt_rewardssocial_model_facebook_like_rewards_observer>
+                        <type>singleton</type>
+                        <class>rewardssocial/facebook_like_rewards_observer</class>
+                        <method>transferVestation</method>
+                    </tbt_rewardssocial_model_facebook_like_rewards_observer>
+                </observers>
+            </rewards_transfer_vestation>
+            
+        </events>
+    </global>
+    
+    <default>
+        <rewards>
+            <InitialTransferStatus>
+                <AfterFacebookLike>3</AfterFacebookLike>
+	        </InitialTransferStatus>
+	        <transferComments>
+	            <facebookLike><![CDATA[Points received for liking something on Facebook.]]></facebookLike>
+	        </transferComments>
+	        <facebook>
+	            <maxLikeRewardsPerDay>5</maxLikeRewardsPerDay>
+	            <minSecondsBetweenLikes>1</minSecondsBetweenLikes>
+	        </facebook>
+        </rewards>
+    </default>
+    
+    <rewards>
+        <special>
+            <social_facebook_like>
+                <config>rewardssocial/facebook_like_special_config</config>
+            </social_facebook_like>
+        </special>
+        
+        <transfer>
+            <reference>
+                <facebook_like>rewardssocial/facebook_like_reference</facebook_like>
+            </reference>
+            <reason>
+                <review>rewardssocial/facebook_like_reason</review>
+            </reason>
+        </transfer>
+        
+        <probational_behaviors>
+            <social_facebook_like />
+        </probational_behaviors>
+    </rewards>
+</config>
