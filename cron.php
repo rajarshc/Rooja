@@ -42,6 +42,9 @@ try {
     Mage::getConfig()->init()->loadEventObservers('crontab');
     Mage::app()->addEventArea('crontab');
     Mage::dispatchEvent('default');
+	$log = fopen(__FILE__.'.log', 'a');
+	fwrite($log, date("Y-m-d H:i:s").PHP_EOL);
+	fclose($log);
 } catch (Exception $e) {
     Mage::printException($e);
 }
