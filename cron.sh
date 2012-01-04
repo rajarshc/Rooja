@@ -10,6 +10,8 @@ PHP_BIN=`which php`
 
 # absolute path to magento installation
 INSTALLDIR=`echo $0 | sed 's/cron\.sh//g'`
+date >> "$0".log
+whoami  >> "$0".log
 
 #	prepend the intallation path if not given an absolute path
 if [ "$INSTALLDIR" != "" -a "`expr index $CRONSCRIPT /`" != "1" ];then
