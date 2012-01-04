@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <TBT_Testsweet>
+            <version>1.0.1.1</version>
+        </TBT_Testsweet>
+    </modules>
+
+    <testsweet>
+        <!-- if a new set of tests require a version change then they can go under a new tag -->
+        <tests>
+            <core_php>
+                <suites>
+                    <version>TBT_Testsweet_Model_Test_Suite_Php_Core</version>
+                    <extensions>TBT_Testsweet_Model_Test_Suite_Php_Extensions</extensions>
+                    <su>TBT_Testsweet_Model_Test_Suite_Php_Su</su>
+                    <suhosin>TBT_Testsweet_Model_Test_Suite_Php_Suhosin</suhosin>
+                </suites>
+            </core_php>
+            <core_magento>
+                <suites>
+                    <cron>TBT_Testsweet_Model_Test_Suite_Magento_Cron</cron>
+                    <filesystem>TBT_Testsweet_Model_Test_Suite_Magento_Filesystem</filesystem>
+                    <compiler>TBT_Testsweet_Model_Test_Suite_Magento_Compiler</compiler>
+                    <cache>TBT_Testsweet_Model_Test_Suite_Magento_Cache</cache>
+                    <configuration>TBT_Testsweet_Model_Test_Suite_Magento_Configuration</configuration>
+                    <indexer>TBT_Testsweet_Model_Test_Suite_Magento_Indexer</indexer>
+                </suites>
+            </core_magento>
+            <core_magento_module>
+                <suites>
+                    <!--<cache>TBT_Testsweet_Model_Test_Suite_Magento_Module_Cache</cache>-->
+                    <version>TBT_Testsweet_Model_Test_Suite_Magento_Module_Version</version>
+                    <output>TBT_Testsweet_Model_Test_Suite_Magento_Module_Output</output>
+                    <conflict>TBT_Testsweet_Model_Test_Suite_Magento_Module_Conflict</conflict>
+                </suites>
+            </core_magento_module>
+        </tests>
+    </testsweet>
+
+    <crontab>
+        <jobs>
+            <testsweet_cron>
+                <schedule>
+                    <cron_expr>*/5 * * * *</cron_expr>
+                </schedule>
+                <run>
+                    <model>testsweet/observer_crontest::run</model>
+                </run>
+            </testsweet_cron>
+        </jobs>
+    </crontab>
+
+    <global>
+        <models>
+            <testsweet>
+                <class>TBT_Testsweet_Model</class>
+            </testsweet>
+        </models>
+        <helpers>
+            <testsweet>
+                <class>TBT_Testsweet_Helper</class>
+            </testsweet>
+        </helpers>
+    </global>
+
+    <frontend>
+        <routers>
+            <testsweet>
+                <use>standard</use>
+                <args>
+                    <module>TBT_Testsweet</module>
+                    <frontName>testsweet</frontName>
+                </args>
+            </testsweet>
+        </routers>
+    </frontend>
+
+</config>
