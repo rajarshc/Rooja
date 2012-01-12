@@ -1,0 +1,11 @@
+<config>
+	<modules>
+		<IG_CashOnDelivery>
+			<active>true</active>
+			<codePool>community</codePool>
+			<depends>
+				<Mage_Payment />
+			</depends>
+		</IG_CashOnDelivery>
+	</modules>
+</config>
