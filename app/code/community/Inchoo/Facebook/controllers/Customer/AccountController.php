@@ -2,9 +2,11 @@
 /**
  * Facebook Customer account controller
  *
- * @category   Inchoo
- * @package    Inchoo_Facebook
- * @author     Ivan Weiler <ivan.weiler@gmail.com>
+ * @category    Inchoo
+ * @package     Inchoo_Facebook
+ * @author      Ivan Weiler <ivan.weiler@gmail.com>
+ * @copyright   Inchoo (http://inchoo.net)
+ * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 class Inchoo_Facebook_Customer_AccountController extends Mage_Core_Controller_Front_Action
 {
@@ -21,10 +23,10 @@ class Inchoo_Facebook_Customer_AccountController extends Mage_Core_Controller_Fr
 
 	public function connectAction()
     {
-
+    	
     	if(!$this->_getSession()->validate()) {
     		$this->_getCustomerSession()->addError($this->__('Facebook connection failed.'));
-    		$this->_redirect('/');
+    		$this->_redirect('customer/account');
     		return;
     	}
     	
@@ -33,7 +35,7 @@ class Inchoo_Facebook_Customer_AccountController extends Mage_Core_Controller_Fr
     	$customer = Mage::getModel('customer/customer');
     	
     	$collection = $customer->getCollection()
-    	 			->addAttributeToFilter('facebook_uid', (string)$this->_getSession()->getUid())
+    	 			->addAttributeToFilter('facebook_uid', $this->_getSession()->getUid())
     				->setPageSize(1);
     				
     	if($customer->getSharingConfig()->isWebsiteScope()) {
@@ -60,7 +62,7 @@ class Inchoo_Facebook_Customer_AccountController extends Mage_Core_Controller_Fr
 			$this->_getCustomerSession()->addSuccess(
 				$this->__('Your Facebook account has been successfully connected. Now you can fast login using Facebook Connect anytime.')
 			);
-			$this->_redirect('/');
+			$this->_redirect('customer/account');
 			return;
         }
         
@@ -73,18 +75,17 @@ class Inchoo_Facebook_Customer_AccountController extends Mage_Core_Controller_Fr
 			}
 			//
 			$this->_getCustomerSession()->setCustomerAsLoggedIn($uidCustomer);
-			//$this->_redirectReferer();
-			$this->_redirect('/');
+			$this->_redirectReferer();
 			return;        	
         }
         
 		
         //let's go with e-mail
         
-        try{
+        try {
         	$standardInfo = $this->_getSession()->getClient()->call("/me");
         	
-		}catch(Mage_Core_Exception $e){
+		} catch(Mage_Core_Exception $e) {
     		$this->_getCustomerSession()->addError(
     			$this->__('Facebook connection failed.') .
     			' ' . 
@@ -122,14 +123,12 @@ class Inchoo_Facebook_Customer_AccountController extends Mage_Core_Controller_Fr
 			$this->_getCustomerSession()->addSuccess(
 				$this->__('Your Facebook account has been successfully connected. Now you can fast login using Facebook Connect anytime.')
 			);
-			$this->_redirect('/');
+			$this->_redirect('customer/account');
     		return;
 		}
 		
-		$this->_getCustomerSession()->addError($this->__('Sorry your Facebook account is not associated with any Rooja account. Please request an invite and try again.'));
-		$this->_redirect('customer/account/login');
 		//registration needed
-		/*
+		
 		$randomPassword = $customer->generatePassword(8);
 		
 		$customer	->setId(null)
@@ -137,12 +136,11 @@ class Inchoo_Facebook_Customer_AccountController extends Mage_Core_Controller_Fr
 					->setFirstname($standardInfo['first_name'])
 					->setLastname($standardInfo['last_name'])
 					->setEmail($standardInfo['email'])
-					->setData( 'group_id', 4)
 					->setPassword($randomPassword)
 					->setConfirmation($randomPassword)
 					->setFacebookUid($this->_getSession()->getUid());
 
-		//FB: Show my sex in my profile.
+		//FB: Show my sex in my profile
 		if(isset($standardInfo['gender']) && $gender=Mage::getResourceSingleton('customer/customer')->getAttribute('gender')){
 			$genderOptions = $gender->getSource()->getAllOptions();
 			foreach($genderOptions as $option){
@@ -153,7 +151,7 @@ class Inchoo_Facebook_Customer_AccountController extends Mage_Core_Controller_Fr
 			}
 		}
 		
-		//FB: Show my full birthday in my profile.
+		//FB: Show my full birthday in my profile
        	if(isset($standardInfo['birthday']) && count(explode('/',$standardInfo['birthday']))==3){
 			
        		$dob = $standardInfo['birthday'];
@@ -193,7 +191,7 @@ class Inchoo_Facebook_Customer_AccountController extends Mage_Core_Controller_Fr
 			$customer->sendNewAccountEmail();
 			
 			$this->_getCustomerSession()->setCustomerAsLoggedIn($customer);
-			$this->_redirect('/');
+			$this->_redirect('customer/account');
 			return;
 		
 		//else set form data and redirect to registration
@@ -208,7 +206,7 @@ class Inchoo_Facebook_Customer_AccountController extends Mage_Core_Controller_Fr
 			
 			$this->_redirect('customer/account/create');
 			
-		}*/
+		}
 
     }
 	

@@ -2,9 +2,11 @@
 /**
  * Facebook connect template block
  * 
- * @category   Inchoo
- * @package    Inchoo_Facebook
- * @author     Ivan Weiler <ivan.weiler@gmail.com>
+ * @category    Inchoo
+ * @package     Inchoo_Facebook
+ * @author      Ivan Weiler <ivan.weiler@gmail.com>
+ * @copyright   Inchoo (http://inchoo.net)
+ * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 class Inchoo_Facebook_Block_Template extends Mage_Core_Block_Template
 {
@@ -26,7 +28,7 @@ class Inchoo_Facebook_Block_Template extends Mage_Core_Block_Template
 	
 	public function getRequiredPermissions()
 	{
-		return json_encode('email');
+		return json_encode('email,user_birthday');
 	}
 	
 	public function isEnabled()
