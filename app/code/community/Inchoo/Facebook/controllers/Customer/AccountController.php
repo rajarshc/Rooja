@@ -204,11 +204,11 @@ class Inchoo_Facebook_Customer_AccountController extends Mage_Core_Controller_Fr
 				}
 			}
 			
-			$this->_redirect('customer/account/create');*/
-			$this->_getCustomerSession()->addError($this->__('Rooja Fashion is currently invite only. You can get on the list by clicking on the Get Invited Tab!'));
+			$this->_redirect('customer/account/create');
 			
 		}
-
+		*/
+		$this->_getCustomerSession()->addError($this->__('Rooja Fashion is currently invite only. You can get on the list by clicking on the Get Invited Tab!'));
     }
 	
 	private function _getCustomerSession()
