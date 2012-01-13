@@ -1,0 +1,38 @@
+
+.rewards-box-spend-minicart h5 {
+    margin-top: 12px; 
+    color: rgb(51, 51, 51); /* grey */
+    margin-bottom: 0px; 
+    font-size: 13px;
+}
+.rewards-box-spend-minicart .more-ways-to-spend {
+}
+
+.rewards-box-spend-minicart .more-ways-to-spend-also {
+    margin-top: 12px;
+}
+
+
+
+
+.rewards-box-spend-minicart h5.minicart-slider-header {
+}
+
+.rewards-box-spend-minicart h5.more-ways-to-spend-header {
+    margin-bottom: 4px;
+}
+
+.rewards-box-spend-minicart h5.more-ways-to-spend-header {
+    margin-bottom: 4px;
+}
+
+.rewards-box-spend-minicart .more-ways-to-spend label {
+    font-weight: normal;
+}
+
+.rewards-opc-please-wait {
+    margin-left: 22px; /* changed 3/3/2010 6:47:09 AM */
+    margin-top: 22px; 
+}
+
+
