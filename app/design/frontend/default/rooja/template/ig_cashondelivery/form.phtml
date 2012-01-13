@@ -1,7 +1,6 @@
 <?php
 $_code		= $this->getMethodCode();
 $_extra_fee	= $this->getMethod()->getExtraFee();
-$_extra_fee	= 10;
 $_extra_fee_excl = $this->getQuote()->getStore()->convertPrice(Mage::helper('tax')->getShippingPrice($_extra_fee, $this->helper('tax')->displayShippingPriceIncludingTax(), $this->getAddress()), true);
 $_extra_fee_incl = $this->getQuote()->getStore()->convertPrice(Mage::helper('tax')->getShippingPrice($_extra_fee, true, $this->getAddress()), true);
 ?>
