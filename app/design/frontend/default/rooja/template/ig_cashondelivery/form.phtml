@@ -1,17 +1,17 @@
 <?php
 $_code		= $this->getMethodCode();
 $_extra_fee	= $this->getMethod()->getExtraFee();
-
 $_extra_fee_excl = $this->getQuote()->getStore()->convertPrice(Mage::helper('tax')->getShippingPrice($_extra_fee, $this->helper('tax')->displayShippingPriceIncludingTax(), $this->getAddress()), true);
 $_extra_fee_incl = $this->getQuote()->getStore()->convertPrice(Mage::helper('tax')->getShippingPrice($_extra_fee, true, $this->getAddress()), true);
 ?>
 <fieldset class="form-list">
 	<ul id="payment_form_<?php echo $_code ?>" style="display:none;">
+		<?php if($_extra_fee > 0 && $_extra_fee != null) {?>
 		<li>
 			<?php echo $this->__('You will be charged an extra fee of %s', $_extra_fee_excl) ?>
 			<?php if ($this->helper('tax')->displayShippingBothPrices() && ($_extra_fee_incl != $_extra_fee_excl)) { ?>
 				(<?php echo $this->__('Incl. Tax'); ?> <?php echo $_extra_fee_incl; ?>)
 			<?php } ?>
-		</li>
+		</li><?php } ?>
 	</ul>
 </fieldset>
