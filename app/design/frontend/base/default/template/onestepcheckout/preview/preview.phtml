@@ -30,7 +30,7 @@ if(!empty($checkoutHelper->settings['addressreview']['enable_addressreview'])):?
         $baddresses = array();
         $saddresses = array();
         $i = 0;
-        foreach($this->getParentBlock()->getQuote()->getCustomer()->getAddresses() as $address){
+        foreach(Mage::getSingleton('checkout/session')->getQuote()->getCustomer()->getAddresses() as $address){
             foreach($address->getData() as $key=>$value){
                 if(!in_array($key,$blacklist)){
                     if($key == 'street'){

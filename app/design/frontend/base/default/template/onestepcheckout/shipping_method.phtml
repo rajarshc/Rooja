@@ -24,9 +24,9 @@
  * @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 ?>
-	
+
 <?php if (!($_shippingRateGroups = $this->getShippingRates())): ?>
-    <p><strong><?php echo $this->__('Sorry, no quotes are available for this order at this time.') ?></strong></p>
+    <strong><?php echo $this->__('Sorry, no quotes are available for this order at this time.') ?></strong>
 <?php else: ?>
     <?php if (count($_shippingRateGroups)=='1' && Mage::getStoreConfig('onestepcheckout/general/hide_shipping_method')):?>
         <dl class="shipment-methods" style="display: none">
@@ -82,18 +82,3 @@
         </dl>
     <?php endif; ?>
 <?php endif; ?>
-<script type="text/javascript">
-//<![CDATA[
-
-var url = '<?php echo $this->getUrl('onestepcheckout/ajax/set_methods_separate', array('_secure'=>true)); ?>';
-var update_payments = <?php echo $this->settings['enable_update_payment_on_shipping'] ? 'true' : 'false'; ?>;
-
-$$('dl.shipment-methods input').invoke('observe', 'click', get_separate_save_methods_function(url, update_payments));
-
-$$('dl.shipment-methods input').invoke('observe', 'click', function() {
-    $$('div.onestepcheckout-shipment-method-error').each(function(item) {
-        new Effect.Fade(item);
-    });
-});
-//]]>
-</script>

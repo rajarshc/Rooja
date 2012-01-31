@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Idev_OneStepCheckout>
-            <version>4.0.2</version>
+            <version>4.0.4</version>
         </Idev_OneStepCheckout>
     </modules>
     <frontend>
@@ -37,6 +37,15 @@
                     </onestepcheckout_set_shipping_defaults>
                 </observers>
               </sales_quote_collect_totals_after>
+              <customer_login>
+                <observers>
+                    <onestepcheckout_set_shipping_defaults_on_login>
+                        <type>model</type>
+                        <class>Idev_OneStepCheckout_Model_Observers_PresetDefaults</class>
+                        <method>setDefaultsOnLogin</method>
+                    </onestepcheckout_set_shipping_defaults_on_login>
+                </observers>
+              </customer_login>
               <controller_action_layout_render_before_onestepcheckout_index_index>
                 <observers>
                     <onestepcheckout_check_valid>
@@ -44,6 +53,11 @@
                         <class>Idev_OneStepCheckout_Helper_Data</class>
                         <method>checkValid</method>
                     </onestepcheckout_check_valid>
+                    <onestepcheckout_compare_address_defaults>
+                        <type>model</type>
+                        <class>Idev_OneStepCheckout_Model_Observers_PresetDefaults</class>
+                        <method>compareDefaultsFromCart</method>
+                    </onestepcheckout_compare_address_defaults>
                 </observers>
               </controller_action_layout_render_before_onestepcheckout_index_index>
         </events>

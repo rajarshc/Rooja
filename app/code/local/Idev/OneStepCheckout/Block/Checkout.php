@@ -355,7 +355,7 @@ class Idev_OneStepCheckout_Block_Checkout extends Mage_Checkout_Block_Onepage_Ab
             $shipping_data = $checkoutHelper->load_exclude_data($shipping_data);
 
             if(!empty($billing_data)){
-                $this->getQuote()->getBillingAddress()->addData($billing_data);
+                $this->getQuote()->getBillingAddress()->addData($billing_data)->implodeStreetAddress();
             }
 
             if($this->differentShippingAvailable()) {
@@ -375,6 +375,7 @@ class Idev_OneStepCheckout_Block_Checkout extends Mage_Checkout_Block_Onepage_Ab
                     $billing_data['confirm_password'] = $password;
                     $this->getQuote()->getCustomer()->setData('password', $password);
                     $this->getQuote()->setData('password_hash',Mage::getModel('customer/customer')->encryptPassword($password));
+
                 }
 
 
@@ -386,6 +387,15 @@ class Idev_OneStepCheckout_Block_Checkout extends Mage_Checkout_Block_Onepage_Ab
                         $this->getQuote()->setData('password_hash',Mage::getModel('customer/customer')->encryptPassword($password));
                     }
                 }
+
+            }
+
+            if($this->_isLoggedIn() || $registration_mode == 'require_registration' || $registration_mode == 'auto_generate_account' || (!empty($billing_data['customer_password']) && !empty($billing_data['confirm_password']))){
+                //handle this as Magento handles subscriptions for registered users (no confirmation ever)
+                $subscribe_newsletter = $this->getRequest()->getPost('subscribe_newsletter');
+                if(!empty($subscribe_newsletter)){
+                    $this->getQuote()->getCustomer()->setIsSubscribed(1);
+                }
             }
 
 
@@ -396,6 +406,11 @@ class Idev_OneStepCheckout_Block_Checkout extends Mage_Checkout_Block_Onepage_Ab
             if(!empty($billing_data['customer_password']) && !empty($billing_data['confirm_password']))   {
                 // Trick to allow saving of
                 $this->getOnepage()->saveCheckoutMethod('register');
+                $customerData= array_intersect($billing_data, $this->getQuote()->getBillingAddress()->getData());
+                $this->getQuote()->getCustomer()->addData($customerData);
+                foreach($customerData as $key => $value){
+                    $this->getQuote()->setData('customer_'.$key, $value);
+                }
             }
 
             $customerSession = Mage::getSingleton('customer/session');
@@ -649,16 +664,15 @@ class Idev_OneStepCheckout_Block_Checkout extends Mage_Checkout_Block_Onepage_Ab
 
 
         if(!$this->hasFormErrors()) {
-            // Handle newsletter
-            $subscribe_newsletter = $this->getRequest()->getPost('subscribe_newsletter');
 
-            if($this->settings['enable_newsletter'])    {
-                if($subscribe_newsletter && $subscribe_newsletter == '1' )  {
+            if($this->settings['enable_newsletter']) {
+                // Handle newsletter
+                $subscribe_newsletter = $this->getRequest()->getPost('subscribe_newsletter');
+                $registration_mode = $this->settings['registration_mode'];
+                if(!empty($subscribe_newsletter) && ($registration_mode != 'require_registration' && $registration_mode != 'auto_generate_account') && !$this->getRequest()->getPost('create_account'))  {
                     $model = Mage::getModel('newsletter/subscriber');
                     $result = $model->loadByEmail($this->email);
-
-                    if($result->getId() === NULL)   {
-                        // Not subscribed, OK to subscribe
+                    if(!$result->getId()){
                         Mage::getModel('newsletter/subscriber')->subscribe($this->email);
                     }
                 }
@@ -675,8 +689,6 @@ class Idev_OneStepCheckout_Block_Checkout extends Mage_Checkout_Block_Onepage_Ab
 
                 $this->_saveOrder();
                 $this->log[] = 'Saving order as a logged in customer';
-
-
 
             }
             else    {
@@ -1056,5 +1068,28 @@ class Idev_OneStepCheckout_Block_Checkout extends Mage_Checkout_Block_Onepage_Ab
         $fields = $tmp ;
 
         return $fields;
+    }
+
+    /**
+     * check if e-mail address is subscribed to newsletter
+     *
+     * @param $email string
+     * @return boolean
+     */
+    public function isSubscribed ($email = null)
+    {
+        $isSubscribed = false;
+
+        if (! empty($email)) {
+            try {
+                $result = Mage::getModel('newsletter/subscriber')->loadByEmail(
+                $email);
+                if (is_object($result) && $result->getSubscriberStatus() == 1) {
+                    $isSubscribed = true;
+                }
+            } catch (Exception $e) {}
+        }
+
+        return $isSubscribed;
     }
 }

@@ -32,10 +32,85 @@ class Idev_OneStepCheckout_Model_Observers_PresetDefaults extends Mage_Core_Mode
 
         $quote = $observer->getEvent()->getQuote();
 
-        if(Mage::getStoreConfig('onestepcheckout/general/rewrite_checkout_links')) {
+        if(Mage::getStoreConfig('onestepcheckout/general/rewrite_checkout_links', $quote->getStore())) {
             $this->setAddressDefaults($observer);
             $this->setShippingDefaults($observer);
-            //$this->setPaymentDefaults($observer);
+            $this->setPaymentDefaults($observer);
+        }
+
+        return $this;
+    }
+
+    /**
+     * If customer logs in and there are default data that is different from entered data we need to reset defaults
+     *
+     * @param Varien_Event_Observer $observer
+     */
+    public function setDefaultsOnLogin(Varien_Event_Observer $observer) {
+
+        $quote = Mage::getSingleton('checkout/session')->getQuote();
+        if(is_object($quote)){
+            $currentBilling = $this->hasDataSet($quote->getBillingAddress());
+            $currentPrimaryBilling = $this->hasDataSet($quote->getCustomer()->getPrimaryBillingAddress());
+            $difference  = array_diff($currentPrimaryBilling, $currentBilling);
+            if(!empty($currentBilling) && !empty($difference)){
+                foreach($this->defaultFields as $field){
+                    $quote->getBillingAddress()->setData($field, '');
+                    $quote->getShippingAddress()->setData($field, '');
+                }
+            }
+            $observer->getEvent()->setQuote($quote);
+            if(Mage::getStoreConfig('onestepcheckout/general/rewrite_checkout_links')) {
+                $this->setAddressDefaults($observer);
+                $this->setShippingDefaults($observer);
+                $this->setPaymentDefaults($observer);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * If you have aquired a quote from cart and you are having saved addresses then you can get wrong shipping methods
+     *
+     * @param Varien_Event_Observer $observer
+     */
+    public function compareDefaultsFromCart(Varien_Event_Observer $observer) {
+
+        $quote = Mage::getSingleton('checkout/session')->getQuote();
+
+        if(is_object($quote)){
+
+            //extract the data from quote
+            $currentBilling = $this->hasDataSet($quote->getBillingAddress());
+            $currentShipping = $this->hasDataSet($quote->getShippingAddress());
+
+            $sameAsBilling = $quote->getShippingAddress()->getSameAsBilling();
+
+            if(Mage::getSingleton('customer/session')->isLoggedIn()){
+                if($sameAsBilling){
+                    $difference = array_diff($currentBilling, $currentShipping);
+                    if(!empty($difference)){
+                        $quote->getShippingAddress()->addData($difference)->implodeStreetAddress()->setCollectShippingRates(true);
+                    }
+                } else {
+                    $selectedAddress = $quote->getShippingAddress()->getCustomerAddressId();
+                    if($selectedAddress){
+                        $currentShippingOriginal = $this->hasDataSet($quote->getCustomer()->getAddressById($selectedAddress));
+                    }
+                    $difference = array_diff($currentShippingOriginal, $currentShipping);
+                    if(!empty($difference)){
+                        $quote->getShippingAddress()->addData($difference)->implodeStreetAddress()->setCollectShippingRates(true);
+                    }
+                }
+            } else {
+                if($sameAsBilling){
+                    $difference = array_diff($currentBilling, $currentShipping);
+                    if(!empty($difference)){
+                        $quote->getShippingAddress()->addData($difference)->implodeStreetAddress()->setCollectShippingRates(true);
+                    }
+                }
+            }
         }
 
         return $this;
@@ -49,7 +124,7 @@ class Idev_OneStepCheckout_Model_Observers_PresetDefaults extends Mage_Core_Mode
      */
     public function setShippingIfDifferent(Varien_Event_Observer $observer){
 
-       /*  $quote = $observer->getEvent()->getQuote();
+        $quote = $observer->getEvent()->getQuote();
 
         if(!Mage::getStoreConfig('onestepcheckout/general/rewrite_checkout_links', $quote->getStore())) {
             return $this;
@@ -61,26 +136,9 @@ class Idev_OneStepCheckout_Model_Observers_PresetDefaults extends Mage_Core_Mode
             return $this;
         }
 
-        $currentMethod = $quote->getShippingAddress()->getShippingMethod();
-        $oldPrice = $quote->getShippingAddress()->getBaseShippingInclTax();
-        $prices = array();
-        $codes = array();
-
         //request rate calculation
-        $quote->getShippingAddress()->setCollectShippingRates(true)->collectShippingRates();
+        $quote->getShippingAddress()->collectShippingRates();
 
-        foreach ($this->getEstimateRates($quote) as $rates) {
-            foreach ($rates as $rate) {
-                $prices[$rate->getCode()] = $rate->getPrice();
-                $codes[] = $rate->getCode();
-            }
-        }
-
-        //if (cart has items && ((rates are available && current method is not available in available rates) || (current price exists && current price is different)))
-        if ($quote->hasItems() && ((! empty($codes) && ! in_array($currentMethod, $codes)) || (array_key_exists($currentMethod, $prices) && $oldPrice != $prices[$currentMethod]))) {
-            $quote->getShippingAddress()->setShippingMethod('');
-        }
- */
         return $this;
     }
 
@@ -118,10 +176,10 @@ class Idev_OneStepCheckout_Model_Observers_PresetDefaults extends Mage_Core_Mode
             $currentPrimaryShipping = $this->hasDataSet($quote->getCustomer()->getPrimaryShippingAddress());
 
             //and if we have data we set it to default
-            if (! empty($currentBilling)) {
+            if (empty($currentBilling)) {
                 $newBilling = $currentPrimaryBilling;
             }
-            if (! empty($currentShipping)) {
+            if (empty($currentShipping)) {
                 $newShipping = $currentPrimaryShipping;
             }
         }
@@ -138,7 +196,7 @@ class Idev_OneStepCheckout_Model_Observers_PresetDefaults extends Mage_Core_Mode
 
         //only add if there is nothing here
         if (empty($currentShipping) && ! empty($newShipping)) {
-            $quote->getShippingAddress()->addData($newShipping)->setCollectShippingRates(true)->collectShippingRates();
+            $quote->getShippingAddress()->addData($newShipping);
             $quote->getShippingAddress()->setSameAsBilling(Mage::getStoreConfig('onestepcheckout/general/enable_different_shipping_hide', $quote->getStore()));
         }
 
@@ -256,7 +314,9 @@ class Idev_OneStepCheckout_Model_Observers_PresetDefaults extends Mage_Core_Mode
 
         //if we have only one rate available select it no matter what the default is
         if ($codeCount === 1) {
-            $newCode = current($codes);
+            if(Mage::getStoreConfig('onestepcheckout/general/default_shipping_if_one', $quote->getStore())){
+                $newCode = current($codes);
+            }
         }
 
         if (! empty($codes) && (empty($oldCode) || ! in_array($oldCode, $codes))) {
@@ -323,6 +383,7 @@ class Idev_OneStepCheckout_Model_Observers_PresetDefaults extends Mage_Core_Mode
                     }
                     try {
                         $quote->getPayment()->setMethod($newCode)->getMethodInstance();
+                        Mage::register('osc_p_payment', $newCode);
                     } catch ( Exception $e ) {
                         Mage::logException($e);
                     }
@@ -330,6 +391,7 @@ class Idev_OneStepCheckout_Model_Observers_PresetDefaults extends Mage_Core_Mode
             }
         }
 
+        $quote->setOscPaymentPreset(true);
         return $this;
     }
 
@@ -341,20 +403,55 @@ class Idev_OneStepCheckout_Model_Observers_PresetDefaults extends Mage_Core_Mode
      */
     public function getPaymentMethods(Mage_Sales_Model_Quote $quote) {
 
-        if (is_null($this->_paymentMethodsBlock)) {
-            $this->_paymentMethodsBlock = Mage::getBlockSingleton('checkout/Onepage_Payment_Methods');
-        }
-
         $methods = $this->_methods;
         if (empty($methods)) {
-            $methodInstances = $this->_paymentMethodsBlock->setQuote($quote)->getMethods();
-            foreach ($methodInstances as $methodItem) {
-                $methods[] = $methodItem->getCode();
+            $store = $quote ? $quote->getStoreId() : null;
+            $methodInstances = Mage::helper('payment')->getStoreMethods($store, $quote);
+            $total = $quote->getGrandTotal();
+            foreach ($methodInstances as $key => $method) {
+                if ($this->_canUseMethod($method, $quote)
+                        && ($total != 0
+                                || $method->getCode() == 'free'
+                                || ($quote->hasRecurringItems() && $method->canManageRecurringProfiles()))) {
+                    $methods[] = $method->getCode();
+                } else {
+                    unset($methods[$key]);
+                }
             }
+
             $this->_methods = $methods;
         }
-
         return $this->_methods;
+    }
+
+    /**
+     * Check if method can be used
+     *
+     * @param unknown_type $method
+     * @param unknown_type $quote
+     * @return boolean
+     */
+    protected function _canUseMethod($method, $quote)
+    {
+        if (!$method->canUseForCountry($quote->getBillingAddress()->getCountry())) {
+            return false;
+        }
+
+        if (method_exists($method,'canUseForCurrency') && !$method->canUseForCurrency(Mage::app()->getStore()->getBaseCurrencyCode())) {
+            return false;
+        }
+
+        /**
+         * Checking for min/max order total for assigned payment method
+         */
+        $total = $quote->getBaseGrandTotal();
+        $minTotal = $method->getConfigData('min_order_total');
+        $maxTotal = $method->getConfigData('max_order_total');
+
+        if((!empty($minTotal) && ($total < $minTotal)) || (!empty($maxTotal) && ($total > $maxTotal))) {
+            return false;
+        }
+        return true;
     }
 
     /**

@@ -4,31 +4,11 @@ $step_counter = 1;
 $helper = Mage::helper('onestepcheckout/checkout');
 
 ?>
-<script>
-(function ($) {
-	$(document).ready(function(){
-	
-$(".payment-methods input").live('change', function() {
-	
-	if($('#p_method_cashondelivery').is(':checked')) { 
-		$("#hintText").html('We verify all Cash on Delivery orders over the phone after you have made a purchase and start processing the order. Our customer service team will contact you within 24 hours and alternatively you can call us at +91-8080622277 to verify your order. Failing verification of the order will result in a cancellation. Failure to accept a verified order will revoke your Cash On Delivery privileges on future orders. <br><br>The maximum limit for a COD order is Rs 20,000 outside of New Delhi and Gurgaon.');
-		$("#hintImg").html('<img src="<?php echo $this->getSkinUrl('images/cod.png'); ?>" alt="Security" id="secureLogos">');
-	}
-	if($('#p_method_Avenues_standard').is(':checked')) { 
-		$("#hintText").html('You will be redirected to CCAvenue our secure online payment-processing partner.');
-		$("#hintImg").html('<img src="<?php echo $this->getSkinUrl('images/veri-2.png'); ?>" alt="Security" id="secureLogos">');
-	}
-});
-
-});
-})(jQuery);
-</script>
 <?php if(!$this->canCheckout() || !$this->validateMinimumAmount()): ?>
     <?php if($this->settings['checkout_title']): ?>
         <h1 class="onestepcheckout-title"><?php echo $this->settings['checkout_title']; ?></h1>
-		<span class="fr" id="checkoutQuestions">Questions? <a href="/contact">Contact Us</a></span>
     <?php endif; ?>
-	
+
     <?php if($this->canCheckout() && !$this->validateMinimumAmount()): ?>
     <p><?php echo Mage::getStoreConfig('sales/minimum_order/description'); ?></p>
     <p><a href="<?php echo $this->getUrl(''); ?>"><?php echo $this->__('Back to homepage'); ?></a></p>
@@ -43,7 +23,6 @@ $(".payment-methods input").live('change', function() {
 
 <?php if($this->settings['checkout_title']): ?>
     <h1 class="onestepcheckout-title"><?php echo $this->settings['checkout_title']; ?></h1>
-<span class="fr" id="checkoutQuestions"><!--Questions? <a href="/contact">Contact Us</a>-->NEED HELP ? Call +91-8080622277 | <a href="mailto:support@rooja.in" target="_blank">Email Customer Care</a> | <a href="/shipping-policy">Shipping Information</a> | <a href="/returns-and-exchanges">Return Policy</a></span>
 <?php endif; ?>
 
 <?php if($this->settings['checkout_description']): ?>
@@ -166,7 +145,7 @@ $(".payment-methods input").live('change', function() {
             <?php else:?>
                 <div class="onestepcheckout-shipping-method">
                     <p class="onestepcheckout-numbers onestepcheckout-numbers-<?php echo $step_counter++; ?>"><?php echo $this->__('Shipping method'); ?></p>
-					<p><strong>Free Shipping on orders more than Rs. 5000</strong></p>
+
                     <?php if(isset($this->formErrors['shipping_method']) && $this->formErrors['shipping_method']): ?>
                     <div class="onestepcheckout-error onestepcheckout-shipment-method-error">
                         <?php echo $this->__('Please choose a shipping method.'); ?>
@@ -207,8 +186,7 @@ $(".payment-methods input").live('change', function() {
             <?php endif; ?>
 
             <?php echo $this->getChildHtml('choose-payment-method'); ?>
-			<p id="hintText"></p>
-			<div id="hintImg"></div>
+
             <div class="tool-tip" id="payment-tool-tip" style="display:none;">
                 <div class="btn-close">
                     <a href="javascript:void(0);" id="payment-tool-tip-close"><img src="<?php echo $this->getSkinUrl('images/btn_window_close.gif') ?>" alt="<?php echo $this->__('Close') ?>" /></a>
@@ -257,8 +235,14 @@ $(".payment-methods input").live('change', function() {
                     var payment_methods = $$('div.payment-methods').first();
                     var summary = $$('div.onestepcheckout-summary').first();
 
-                    shipping_methods.update('<div class="loading-ajax">&nbsp;</div>');
-                    payment_methods.update('<div class="loading-ajax">&nbsp;</div>');
+                    if(shipping_methods){
+                        shipping_methods.update('<div class="loading-ajax">&nbsp;</div>');
+                    }
+
+                    if(payment_methods){
+                        payment_methods.update('<div class="loading-ajax">&nbsp;</div>');
+                    }
+
                     summary.update('<div class="loading-ajax">&nbsp;</div>');
 
                     new Ajax.Request(url, {
@@ -269,39 +253,42 @@ $(".payment-methods input").live('change', function() {
 
                                 var response = transport.responseText.evalJSON();
 
-                                shipping_methods.hide();
-                                shipping_methods.update(response.shipping_method);
-                                shipping_methods.show();
-
-                                payment_methods.hide();
-                                payment_methods.update(response.payment_method);
-                                payment_methods.show();
-
-                                paymentContainer = $('container_payment_method_' + payment.currentMethod)
-                                paymentForm = $('payment_form_' + payment.currentMethod)
-
-                                if(paymentContainer != null){
-                                    paymentContainer.show();
-                                }
-                                if(paymentForm != null){
-                                    paymentForm.show();
-                                }
-
                                 var url = '<?php echo $this->getUrl('onestepcheckout/ajax/set_methods_separate', array('_secure'=>true)); ?>';
                                 var update_payments = <?php echo $this->settings['enable_update_payment_on_shipping'] ? 'true' : 'false'; ?>;
-                                $$('dl.shipment-methods input').invoke('observe', 'click', get_separate_save_methods_function(url, update_payments));
-                                $$('dl.shipment-methods input').invoke('observe', 'click', function() {
-                                    $$('div.onestepcheckout-shipment-method-error').each(function(item) {
-                                        new Effect.Fade(item);
-                                    });
-                                });
 
-                                $$('div.payment-methods input[name^=payment\[method\]]').invoke('observe', 'click', get_separate_save_methods_function(url));
-                                $$('div.payment-methods input[name^=payment\[method\]]').invoke('observe', 'click', function() {
-                                    $$('div.onestepcheckout-payment-method-error').each(function(item) {
-                                        new Effect.Fade(item);
+                                if(shipping_methods){
+                                    shipping_methods.hide();
+                                    shipping_methods.update(response.shipping_method);
+                                    shipping_methods.show();
+                                    $$('dl.shipment-methods input').invoke('observe', 'click', get_separate_save_methods_function(url, update_payments));
+                                    $$('dl.shipment-methods input').invoke('observe', 'click', function() {
+                                        $$('div.onestepcheckout-shipment-method-error').each(function(item) {
+                                            new Effect.Fade(item);
+                                        });
                                     });
-                                });
+                                }
+
+                                if(payment_methods){
+                                    payment_methods.hide();
+                                    payment_methods.update(response.payment_method);
+                                    payment_methods.show();
+
+                                    paymentContainer = $('container_payment_method_' + payment.currentMethod)
+                                    paymentForm = $('payment_form_' + payment.currentMethod)
+
+                                    if(paymentContainer != null){
+                                        paymentContainer.show();
+                                    }
+                                    if(paymentForm != null){
+                                        paymentForm.show();
+                                    }
+                                    $$('div.payment-methods input[name^=payment\[method\]]').invoke('observe', 'click', get_separate_save_methods_function(url));
+                                    $$('div.payment-methods input[name^=payment\[method\]]').invoke('observe', 'click', function() {
+                                        $$('div.onestepcheckout-payment-method-error').each(function(item) {
+                                            new Effect.Fade(item);
+                                        });
+                                    });
+                                }
 
                                 summary.hide();
                                 summary.update(response.summary);
@@ -343,8 +330,13 @@ $(".payment-methods input").live('change', function() {
                     var payment_methods = $$('div.payment-methods').first();
                     var summary = $$('div.onestepcheckout-summary').first();
 
-                    shipping_methods.update('<div class="loading-ajax">&nbsp;</div>');
-                    payment_methods.update('<div class="loading-ajax">&nbsp;</div>');
+                    if(shipping_methods){
+                        shipping_methods.update('<div class="loading-ajax">&nbsp;</div>');
+                    }
+
+                    if(payment_methods){
+                        payment_methods.update('<div class="loading-ajax">&nbsp;</div>');
+                    }
                     summary.update('<div class="loading-ajax">&nbsp;</div>');
 
                     new Ajax.Request(url, {
@@ -359,40 +351,43 @@ $(".payment-methods input").live('change', function() {
                                     $('onestepcheckout-coupon-remove').hide();
                                 }
 
-                                shipping_methods.hide();
-                                shipping_methods.update(response.shipping_method);
-                                shipping_methods.show();
-
-                                payment_methods.hide();
-                                payment_methods.update(response.payment_method);
-                                payment_methods.show();
-
-                                paymentContainer = $('container_payment_method_' + payment.currentMethod)
-                                paymentForm = $('payment_form_' + payment.currentMethod)
-
-                                if(paymentContainer != null){
-                                    paymentContainer.show();
-                                }
-
-                                if(paymentForm != null){
-                                    paymentForm.show();
-                                }
-
                                 var url = '<?php echo $this->getUrl('onestepcheckout/ajax/set_methods_separate', array('_secure'=>true)); ?>';
                                 var update_payments = <?php echo $this->settings['enable_update_payment_on_shipping'] ? 'true' : 'false'; ?>;
-                                $$('dl.shipment-methods input').invoke('observe', 'click', get_separate_save_methods_function(url, update_payments));
-                                $$('dl.shipment-methods input').invoke('observe', 'click', function() {
-                                    $$('div.onestepcheckout-shipment-method-error').each(function(item) {
-                                        new Effect.Fade(item);
-                                    });
-                                });
 
-                                $$('div.payment-methods input[name^=payment\[method\]]').invoke('observe', 'click', get_separate_save_methods_function(url));
-                                $$('div.payment-methods input[name^=payment\[method\]]').invoke('observe', 'click', function() {
-                                    $$('div.onestepcheckout-payment-method-error').each(function(item) {
-                                        new Effect.Fade(item);
+                                if(shipping_methods){
+                                    shipping_methods.hide();
+                                    shipping_methods.update(response.shipping_method);
+                                    shipping_methods.show();
+                                    $$('dl.shipment-methods input').invoke('observe', 'click', get_separate_save_methods_function(url, update_payments));
+                                    $$('dl.shipment-methods input').invoke('observe', 'click', function() {
+                                        $$('div.onestepcheckout-shipment-method-error').each(function(item) {
+                                            new Effect.Fade(item);
+                                        });
                                     });
-                                });
+                                }
+
+                                if(payment_methods){
+                                    payment_methods.hide();
+                                    payment_methods.update(response.payment_method);
+                                    payment_methods.show();
+
+                                    paymentContainer = $('container_payment_method_' + payment.currentMethod)
+                                    paymentForm = $('payment_form_' + payment.currentMethod)
+
+                                    if(paymentContainer != null){
+                                        paymentContainer.show();
+                                    }
+
+                                    if(paymentForm != null){
+                                        paymentForm.show();
+                                    }
+                                    $$('div.payment-methods input[name^=payment\[method\]]').invoke('observe', 'click', get_separate_save_methods_function(url));
+                                    $$('div.payment-methods input[name^=payment\[method\]]').invoke('observe', 'click', function() {
+                                        $$('div.onestepcheckout-payment-method-error').each(function(item) {
+                                            new Effect.Fade(item);
+                                        });
+                                    });
+                                }
 
                                 summary.hide();
                                 summary.update(response.summary);
@@ -440,8 +435,13 @@ $(".payment-methods input").live('change', function() {
                     var payment_methods = $$('div.payment-methods').first();
                     var summary = $$('div.onestepcheckout-summary').first();
 
-                    shipping_methods.update('<div class="loading-ajax">&nbsp;</div>');
-                    payment_methods.update('<div class="loading-ajax">&nbsp;</div>');
+                    if(shipping_methods){
+                        shipping_methods.update('<div class="loading-ajax">&nbsp;</div>');
+                    }
+
+                    if(payment_methods){
+                        payment_methods.update('<div class="loading-ajax">&nbsp;</div>');
+                    }
                     summary.update('<div class="loading-ajax">&nbsp;</div>');
 
                     new Ajax.Request(url+Math.random(1000), {
@@ -452,39 +452,42 @@ $(".payment-methods input").live('change', function() {
 
                                 var response = transport.responseText.evalJSON();
 
-                                shipping_methods.hide();
-                                shipping_methods.update(response.shipping_method);
-                                shipping_methods.show();
-
-                                //payment_methods.hide();
-                                payment_methods.update(response.payment_method);
-                                //payment_methods.show();
-
-                                paymentContainer = $('container_payment_method_' + payment.currentMethod)
-                                paymentForm = $('payment_form_' + payment.currentMethod)
-
-                                if(paymentContainer != null){
-                                    paymentContainer.show();
-                                }
-                                if(paymentForm != null){
-                                    paymentForm.show();
-                                }
-
                                 var url = '<?php echo $this->getUrl('onestepcheckout/ajax/set_methods_separate', array('_secure'=>true)); ?>';
                                 var update_payments = <?php echo $this->settings['enable_update_payment_on_shipping'] ? 'true' : 'false'; ?>;
-                                $$('dl.shipment-methods input').invoke('observe', 'click', get_separate_save_methods_function(url, update_payments));
-                                $$('dl.shipment-methods input').invoke('observe', 'click', function() {
-                                    $$('div.onestepcheckout-shipment-method-error').each(function(item) {
-                                        new Effect.Fade(item);
-                                    });
-                                });
 
-                                $$('div.payment-methods input[name^=payment\[method\]]').invoke('observe', 'click', get_separate_save_methods_function(url));
-                                $$('div.payment-methods input[name^=payment\[method\]]').invoke('observe', 'click', function() {
-                                    $$('div.onestepcheckout-payment-method-error').each(function(item) {
-                                        new Effect.Fade(item);
+                                if(shipping_methods){
+                                    shipping_methods.hide();
+                                    shipping_methods.update(response.shipping_method);
+                                    shipping_methods.show();
+                                    $$('dl.shipment-methods input').invoke('observe', 'click', get_separate_save_methods_function(url, update_payments));
+                                    $$('dl.shipment-methods input').invoke('observe', 'click', function() {
+                                        $$('div.onestepcheckout-shipment-method-error').each(function(item) {
+                                            new Effect.Fade(item);
+                                        });
                                     });
-                                });
+                                }
+
+                                if(payment_methods){
+                                    //payment_methods.hide();
+                                    payment_methods.update(response.payment_method);
+                                    //payment_methods.show();
+
+                                    paymentContainer = $('container_payment_method_' + payment.currentMethod)
+                                    paymentForm = $('payment_form_' + payment.currentMethod)
+
+                                    if(paymentContainer != null){
+                                        paymentContainer.show();
+                                    }
+                                    if(paymentForm != null){
+                                        paymentForm.show();
+                                    }
+                                    $$('div.payment-methods input[name^=payment\[method\]]').invoke('observe', 'click', get_separate_save_methods_function(url));
+                                    $$('div.payment-methods input[name^=payment\[method\]]').invoke('observe', 'click', function() {
+                                        $$('div.onestepcheckout-payment-method-error').each(function(item) {
+                                            new Effect.Fade(item);
+                                        });
+                                    });
+                                }
 
                                 if(response.success) {
                                     summary.update(response.summary);
@@ -519,8 +522,13 @@ $(".payment-methods input").live('change', function() {
                     var payment_methods = $$('div.payment-methods').first();
                     var summary = $$('div.onestepcheckout-summary').first();
 
-                    shipping_methods.update('<div class="loading-ajax">&nbsp;</div>');
-                    payment_methods.update('<div class="loading-ajax">&nbsp;</div>');
+                    if(shipping_methods){
+                        shipping_methods.update('<div class="loading-ajax">&nbsp;</div>');
+                    }
+
+                    if(payment_methods){
+                        payment_methods.update('<div class="loading-ajax">&nbsp;</div>');
+                    }
                     summary.update('<div class="loading-ajax">&nbsp;</div>');
 
                     new Ajax.Request(url, {
@@ -530,39 +538,42 @@ $(".payment-methods input").live('change', function() {
                             if(transport.status == 200) {
                                 var response = transport.responseText.evalJSON();
 
-                                shipping_methods.hide();
-                                shipping_methods.update(response.shipping_method);
-                                shipping_methods.show();
-
-                                payment_methods.hide();
-                                payment_methods.update(response.payment_method);
-                                payment_methods.show();
-
-                                paymentContainer = $('container_payment_method_' + payment.currentMethod)
-                                paymentForm = $('payment_form_' + payment.currentMethod)
-
-                                if(paymentContainer != null){
-                                    paymentContainer.show();
-                                }
-                                if(paymentForm != null){
-                                    paymentForm.show();
-                                }
-
                                 var url = '<?php echo $this->getUrl('onestepcheckout/ajax/set_methods_separate', array('_secure'=>true)); ?>';
                                 var update_payments = <?php echo $this->settings['enable_update_payment_on_shipping'] ? 'true' : 'false'; ?>;
-                                $$('dl.shipment-methods input').invoke('observe', 'click', get_separate_save_methods_function(url, update_payments));
-                                $$('dl.shipment-methods input').invoke('observe', 'click', function() {
-                                    $$('div.onestepcheckout-shipment-method-error').each(function(item) {
-                                        new Effect.Fade(item);
-                                    });
-                                });
 
-                                $$('div.payment-methods input[name^=payment\[method\]]').invoke('observe', 'click', get_separate_save_methods_function(url));
-                                $$('div.payment-methods input[name^=payment\[method\]]').invoke('observe', 'click', function() {
-                                    $$('div.onestepcheckout-payment-method-error').each(function(item) {
-                                        new Effect.Fade(item);
+                                if(shipping_methods){
+                                    shipping_methods.hide();
+                                    shipping_methods.update(response.shipping_method);
+                                    shipping_methods.show();
+                                    $$('dl.shipment-methods input').invoke('observe', 'click', get_separate_save_methods_function(url, update_payments));
+                                    $$('dl.shipment-methods input').invoke('observe', 'click', function() {
+                                        $$('div.onestepcheckout-shipment-method-error').each(function(item) {
+                                            new Effect.Fade(item);
+                                        });
                                     });
-                                });
+                                }
+
+                                if(payment_methods){
+                                    $$('div.payment-methods input[name^=payment\[method\]]').invoke('observe', 'click', get_separate_save_methods_function(url));
+                                    $$('div.payment-methods input[name^=payment\[method\]]').invoke('observe', 'click', function() {
+                                        $$('div.onestepcheckout-payment-method-error').each(function(item) {
+                                            new Effect.Fade(item);
+                                        });
+                                    });
+                                    payment_methods.hide();
+                                    payment_methods.update(response.payment_method);
+                                    payment_methods.show();
+
+                                    paymentContainer = $('container_payment_method_' + payment.currentMethod)
+                                    paymentForm = $('payment_form_' + payment.currentMethod)
+
+                                    if(paymentContainer != null){
+                                        paymentContainer.show();
+                                    }
+                                    if(paymentForm != null){
+                                        paymentForm.show();
+                                    }
+                                }
 
                                 if(response.success){
                                     $('id_giftcardcode').setValue('')
@@ -603,7 +614,8 @@ $(".payment-methods input").live('change', function() {
             </div>
         <?php endif; ?>
 
-        <?php if($this->settings['enable_newsletter']): ?>
+        <?php $customerEmail = (($this->isCustomerLoggedIn())) ? $this->getQuote()->getCustomer()->getEmail() : false ;?>
+        <?php if($this->settings['enable_newsletter'] && !$this->isSubScribed($customerEmail)): ?>
             <div class="onestepcheckout-enable-newsletter">
                 <input type="checkbox" id="id_subscribe_newsletter" name="subscribe_newsletter" value="1" <?php if($this->settings['newsletter_default_checked']): ?>checked="checked"<?php endif; ?> />
                 <label for="id_subscribe_newsletter"><?php echo $this->__('Subscribe to our newsletter'); ?></label>
@@ -748,31 +760,38 @@ $(".payment-methods input").live('change', function() {
             <?php endif;?>
             <?php echo $this->getChildHtml('agreements') ?>
             <script type="text/javascript">
-                var termsmodals = new Object;
+                    var termsmodals = new Object;
+                    <?php if($this->settings['enable_textarea']):?>
+                        $$('div.agreement-content').each(
+                                function(element){
+                                    element.id = 'agreement-div-' + element.up('li').down('input').id;
+                                    $$('body')[0].insert(element);
+                                });
+                    <?php endif;?>
 
-                $$('.checkout-agreements li p input').each(
-                    function(elem){
-                        elem.addClassName('required-entry');
-                        <?php if($this->settings['enable_textarea']):?>
-                        window.termsmodals[elem.id] = new Control.Modal(elem.up().previous(),{
-                            overlayOpacity: 0.75,
-                            className: 'modal',
-                            fade: true,
-                            closeOnClick: true,
-                            height: 400,
-                            width: 700,
-                        });
-                        <?php endif;?>
-                    }
-                );
-                <?php if($this->settings['enable_textarea']):?>
-                $$('.checkout-agreements li p label').each(
-                    function(elem){
-                        elem.up().insert('<a href="javascript:void(0);" onclick="termsmodals[\'' + elem.htmlFor + '\'].open();">' + elem.innerHTML + '</a>');
-                        elem.hide();
-                    }
-                );
-                <?php endif;?>
+                    $$('.checkout-agreements li p input').each(
+                        function(elem){
+                            elem.addClassName('required-entry');
+                            <?php if($this->settings['enable_textarea']):?>
+                            window.termsmodals[elem.id] = new Control.Modal($('agreement-div-' + elem.id),{
+                                overlayOpacity: 0.75,
+                                className: 'modal',
+                                fade: true,
+                                closeOnClick: true,
+                                height: 400,
+                                width: 700
+                            });
+                            <?php endif;?>
+                        }
+                    );
+                    <?php if($this->settings['enable_textarea']):?>
+                    $$('.checkout-agreements li p label').each(
+                        function(elem){
+                            elem.up().insert('<a href="javascript:void(0);" onclick="termsmodals[\'' + elem.htmlFor + '\'].open();">' + elem.innerHTML + '</a>');
+                            elem.hide();
+                        }
+                    );
+                    <?php endif;?>
             </script>
         <?php endif;?>
         <?php
@@ -782,11 +801,8 @@ $(".payment-methods input").live('change', function() {
         ?>
 
         <div class="onestepcheckout-place-order-wrapper">
-            <button type="button" title="<?php echo $this->__('Place order now'); ?>" id="onestepcheckout-place-order" class="large orange onestepcheckout-button onestepcheckout-place-order" onclick="javasctipt:void(0);"><span><span><?php echo $this->__('Place order now'); ?></span></span></button>
+            <button type="button" title="<?php echo $this->__('Place order now'); ?>" id="onestepcheckout-place-order" class="large orange onestepcheckout-button onestepcheckout-place-order" onclick="javascript:void(0);"><span><span><?php echo $this->__('Place order now'); ?></span></span></button>
         </div>
-
-        <?php echo $this->getChildHtml('preview');?>
-
     </div>
     <div style="clear: both;">&nbsp;</div>
 </div>
@@ -888,13 +904,13 @@ Validation.add('validate-email', '<?php echo $this->__('This is a required field
     <div class="onestepcheckout-popup-footer">&nbsp;</div>
 </div>
 <script>
-var termsPopup = new Control.Modal($('onestepcheckout-toc-popup'), {
-    overlayOpacity: 0.65,
-    fade: true,
-    fadeDuration: 0.3
-});
+Event.observe(window, 'load', function() {
 
-document.observe('dom:loaded', function() {
+    var termsPopup = new Control.Modal($('onestepcheckout-toc-popup'), {
+        overlayOpacity: 0.65,
+        fade: true,
+        fadeDuration: 0.3
+    });
 
     $('onestepcheckout-toc-link').observe('click', function(e) {
         e.preventDefault();
@@ -953,8 +969,8 @@ Event.observe(window, 'load', function() {
     }
     else    {
 
-        var already_placing_order = false;
-        var review = false;
+        already_placing_order = false;
+        review = false;
 
         /* Handle place order click event */
         $$('.onestepcheckout-place-order').each(function(elem){
@@ -1079,8 +1095,8 @@ Event.observe(window, 'load', function() {
 
         }
     }
-
-   get_separate_save_methods_function(url);
+   //submit what's available on load
+   get_separate_save_methods_function(url)();
 
 <?php if($this->differentShippingAvailable()): ?>
     $('billing:use_for_shipping_yes').observe('click', function(e)  {

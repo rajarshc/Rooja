@@ -133,6 +133,21 @@ class Idev_OneStepCheckout_AjaxController extends Mage_Core_Controller_Front_Act
             $response['message'] = $this->__('Can not apply coupon code.');
         }
 
+
+
+
+        $html = $this->getLayout()
+        ->createBlock('checkout/onepage_shipping_method_available')
+        ->setTemplate('onestepcheckout/shipping_method.phtml')
+        ->toHtml();
+
+        $response['shipping_method'] = $html;
+
+
+        $html = $this->getLayout()
+        ->createBlock('checkout/onepage_payment_methods','choose-payment-method')
+        ->setTemplate('onestepcheckout/payment_method.phtml');
+
         if(Mage::helper('onestepcheckout')->isEnterprise() && Mage::helper('customer')->isLoggedIn()){
 
             $customerBalanceBlock = $this->getLayout()->createBlock('enterprise_customerbalance/checkout_onepage_payment_additional', 'customerbalance', array('template'=>'onestepcheckout/customerbalance/payment/additional.phtml'));
@@ -149,22 +164,12 @@ class Idev_OneStepCheckout_AjaxController extends Mage_Core_Controller_Front_Act
             ;
         }
 
+        if(Mage::helper('onestepcheckout')->isEnterprise()){
+            $giftcardScripts = $this->getLayout()->createBlock('enterprise_giftcardaccount/checkout_onepage_payment_additional', 'giftcardaccount_scripts', array('template'=>'onestepcheckout/giftcardaccount/onepage/payment/scripts.phtml'));
+            $html->append($giftcardScripts);
+        }
 
-        $html = $this->getLayout()
-        ->createBlock('checkout/onepage_shipping_method_available')
-        ->setTemplate('onestepcheckout/shipping_method.phtml')
-        ->toHtml();
-
-        $response['shipping_method'] = $html;
-
-        $giftcardScripts = $this->getLayout()->createBlock('enterprise_giftcardaccount/checkout_onepage_payment_additional', 'giftcardaccount_scripts', array('template'=>'onestepcheckout/giftcardaccount/onepage/payment/scripts.phtml'));
-        $html = $this->getLayout()
-        ->createBlock('checkout/onepage_payment_methods')
-        ->append($giftcardScripts)
-        ->setTemplate('onestepcheckout/payment_method.phtml')
-        ->toHtml();
-
-        $response['payment_method'] = $html;
+        $response['payment_method'] = $html->toHtml();
 
           // Add updated totals HTML to the output
         $html = $this->getLayout()
@@ -274,14 +279,16 @@ class Idev_OneStepCheckout_AjaxController extends Mage_Core_Controller_Front_Act
 
         $response['shipping_method'] = $html;
 
-        $giftcardScripts = $this->getLayout()->createBlock('enterprise_giftcardaccount/checkout_onepage_payment_additional', 'giftcardaccount_scripts', array('template'=>'onestepcheckout/giftcardaccount/onepage/payment/scripts.phtml'));
         $html = $this->getLayout()
         ->createBlock('checkout/onepage_payment_methods')
-        ->append($giftcardScripts)
-        ->setTemplate('onestepcheckout/payment_method.phtml')
-        ->toHtml();
+        ->setTemplate('onestepcheckout/payment_method.phtml');
 
-        $response['payment_method'] = $html;
+        if(Mage::helper('onestepcheckout')->isEnterprise()){
+            $giftcardScripts = $this->getLayout()->createBlock('enterprise_giftcardaccount/checkout_onepage_payment_additional', 'giftcardaccount_scripts', array('template'=>'onestepcheckout/giftcardaccount/onepage/payment/scripts.phtml'));
+            $html->append($giftcardScripts);
+        }
+
+        $response['payment_method'] = $html->toHtml();
 
         $this->getResponse()->setBody(Zend_Json::encode($response));
     }
@@ -488,11 +495,14 @@ class Idev_OneStepCheckout_AjaxController extends Mage_Core_Controller_Front_Act
             ->append($rewardPointsBlock)
             ->append($rewardPointsBlockScripts)
             ;
+
         }
 
-        $giftcardScripts = $this->getLayout()->createBlock('enterprise_giftcardaccount/checkout_onepage_payment_additional', 'giftcardaccount_scripts', array('template'=>'onestepcheckout/giftcardaccount/onepage/payment/scripts.phtml'));
-        $this->getLayout()->getBlock('choose-payment-method')
+        if(Mage::helper('onestepcheckout')->isEnterprise()){
+            $giftcardScripts = $this->getLayout()->createBlock('enterprise_giftcardaccount/checkout_onepage_payment_additional', 'giftcardaccount_scripts', array('template'=>'onestepcheckout/giftcardaccount/onepage/payment/scripts.phtml'));
+            $this->getLayout()->getBlock('choose-payment-method')
             ->append($giftcardScripts);
+        }
 
         $this->renderLayout();
 
@@ -597,9 +607,11 @@ class Idev_OneStepCheckout_AjaxController extends Mage_Core_Controller_Front_Act
             ;
         }
 
-        $giftcardScripts = $this->getLayout()->createBlock('enterprise_giftcardaccount/checkout_onepage_payment_additional', 'giftcardaccount_scripts', array('template'=>'onestepcheckout/giftcardaccount/onepage/payment/scripts.phtml'));
-        $this->getLayout()->getBlock('choose-payment-method')
+        if(Mage::helper('onestepcheckout')->isEnterprise()){
+            $giftcardScripts = $this->getLayout()->createBlock('enterprise_giftcardaccount/checkout_onepage_payment_additional', 'giftcardaccount_scripts', array('template'=>'onestepcheckout/giftcardaccount/onepage/payment/scripts.phtml'));
+            $this->getLayout()->getBlock('choose-payment-method')
             ->append($giftcardScripts);
+        }
 
         $this->renderLayout();
     }

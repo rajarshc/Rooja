@@ -89,14 +89,14 @@ $billingFields['country_id'] = '
 <?php if(!$this->settings['exclude_region']): ?>
     <?php $billingFields['region_id'] = '
         <div class="input-box input-region'.((in_array('region', $formErrors)) ? ' input-error' : '').'">
-            <label for="billing:region">State/Province <span class="required">*</span></label><br/>
+            <label for="billing:region">'.$this->__('State/Province').' <span class="required">*</span></label><br/>
             <select id="billing:region_id" name="billing[region_id]" title="'.$this->__('State/Province').'" class="validate-select" style="display:none">
                 <option value="">'.$this->__('Please select region, state or province').'</option>
             </select>
             <script type="text/javascript">
                 $("billing:region_id").setAttribute("defaultValue",  "'.$dataHelper->clearDash($this->getQuote()->getBillingAddress()->getRegionId()).'");
             </script>
-            <input type="text" id="billing:region" name="billing[region]" value="'.$this->htmlEscape($dataHelper->clearDash($this->getQuote()->getBillingAddress()->getRegion())).'"  title="State/Province" class="required-entry input-text" style="display:none" />
+            <input type="text" id="billing:region" name="billing[region]" value="'.$this->htmlEscape($dataHelper->clearDash($this->getQuote()->getBillingAddress()->getRegion())).'"  title="'.$this->__('State/Province').'" class="required-entry input-text" style="display:none" />
         </div>';
     ?>
 <?php endif; ?>
@@ -139,7 +139,9 @@ $billingFields['country_id'] = '
 <?php
     $_taxvat = false;
     try {
-        $_taxvat = $this->getLayout()->createBlock('euvat/widget_taxvat');
+        if(Mage::getStoreConfig('onestepcheckout/exclude_fields/enable_pillwaxeuvat_support')){
+            $_taxvat = $this->getLayout()->createBlock('euvat/widget_taxvat');
+        }
     } catch (Exception $e) {
     }
     if(!is_object($_taxvat)){
@@ -154,7 +156,7 @@ $billingFields['country_id'] = '
 <?php endif; ?>
 
 <?php
-   /* try {
+    try {
         $_dob = $this->getLayout()->createBlock('customer/widget_dob');
     } catch (Exception $e) {
         $_dob = false;
@@ -219,7 +221,7 @@ $billingFields['country_id'] = '
             </div>
         </li>';
     ?>
-<?php endif;*/ ?>
+<?php endif; ?>
 
 <?php if ($this->isCustomerLoggedIn() && $this->customerHasAddresses()):?>
     <?php $billingFields['save_in_address_book'] = '

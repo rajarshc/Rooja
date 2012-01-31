@@ -84,8 +84,9 @@ select.address-select {
 }
 
 ul.onestepcheckout-custom-options {
-    margin: 6px 0 0 30px;
+    margin: 0;
     padding: 0;
+    margin-left: 20px;
     list-style-type: disc;
 }
 
@@ -101,9 +102,6 @@ ul.onestepcheckout-custom-options {
 
 #onestepcheckout-form label {
     font-weight: normal !important;
-    font-size:1.3em;
-    margin-bottom:10px;
-    line-height:1.3em;
 }
 
 .onestepcheckout-summary,.onestepcheckout-totals {
@@ -116,9 +114,7 @@ ul.onestepcheckout-custom-options {
 
 .onestepcheckout-summary th,.onestepcheckout-summary,.onestepcheckout-summary td,.onestepcheckout-totals td
     {
-    padding: 8px 0;
-    font-size:13px;
-    line-height:1.2em;
+    padding: 3px 0;
 }
 
 .onestepcheckout-summary th {
@@ -126,12 +122,10 @@ ul.onestepcheckout-custom-options {
     border-top: 1px solid #BEBCB7;
 }
 
-/*.onestepcheckout-totals td,.onestepcheckout-summary td,*/table.onestepcheckout-summary tr {
+.onestepcheckout-totals td,.onestepcheckout-summary td {
     border-bottom: 1px solid #BEBCB7;
 }
-/*.onestepcheckout-totals tr{
-    border-top: 1px solid #BEBCB7;
-}*/
+
 h1.onestepcheckout-title {
     font-size: 20px;
     text-transform: uppercase;
@@ -358,13 +352,12 @@ fieldset.group-select {
 .group-select li {
     padding: 4px 0;
 }
-.shipment-methods{margin-bottom:20px;}
 
 .shipment-methods dd {
-    font-style:italic;
-    margin-bottom: 10px;
-    margin-top: 20px;
-    font-size:14px;
+    font-weight: bold;
+    margin: 0 !important;
+    margin-bottom: 3px;
+    margin-top: 7px;
 }
 
 p.checkout-choose-payment-method,p.checkout-choose-shipping-method {
@@ -385,19 +378,6 @@ p.checkout-choose-payment-method {
 
 .payment-methods dd li {
     padding: 0;
-}
-
-#checkout-payment-method-load dt{
-    display:block;
-    margin-bottom:4px;
-}
-#checkout-payment-method-load dt input.radio{
-    float:left;
-    margin-right:10px;
-}
-#checkout-payment-method-load dt label{
-    float:left;
-    width:240px;
 }
 
 div.onestepcheckout-shipping-method {
@@ -442,7 +422,7 @@ p.onestepcheckout-numbers-4 {
 div.onestepcheckout-skin-magento .onestepcheckout-numbers {
     padding-top: 0px !important;
     padding-left: 28px !important;
-    height: 18px !important;
+    height: 25px !important;
     text-transform: capitalize !important;
     color: #F18200 !important;
     font-size: 13px !important;
@@ -678,11 +658,12 @@ div.onestepcheckout-comments textarea {
 }
 
 .checkoutcontainer li.shipping-address-title {
-    color: #F18200;
-    font-size: 13px;
+    font-family: Arial;
+    font-size: 16px;
+    text-transform: uppercase;
+    color: #404040;
     font-weight: bold;
-    text-transform:capitalize;
-    padding-top:25px;
+    padding-top: 5px;
 }
 
 .onestepcheckout-giftmessagecontainer {
@@ -784,6 +765,7 @@ div.onestepcheckout-comments textarea {
     border: 2px solid white;
     padding: 15px 40px 20px 40px;
     margin: 0 auto;
+    text-align: left;
     box-shadow: 1px 2px 6px rgba(0,0,0, 0.5);
     -moz-box-shadow: 1px 2px 6px rgba(0,0,0, 0.5);
     -webkit-box-shadow: 1px 2px 6px rgba(0,0,0, 0.5);
@@ -819,36 +801,7 @@ div.onestepcheckout-comments textarea {
     margin: 0;
     padding: 0;
 }
-.checkout-agreements .agreement-content {
-    overflow:scroll;
-}
-
-#onestepcheckout-coupon-add{
-    height: 40px;
-    background: #431F4C;
-    padding: 2px 10px;
-    font: normal 12px/30px Arial, Helvetica, sans-serif;
-    text-align: center;
-    color: white;
-    color:#fff;
-    border:none;
-    cursor:pointer;
-}
-
-#onestepcheckout-coupon-add:hover{
-    background-color:#000;
-}
-
-#onestepcheckout-coupon-remove{
-    height: 40px;
-    background: #D68533;
-    padding: 2px 10px;
-    font: normal 12px/30px Arial, Helvetica, sans-serif;
-    text-align: center;
-    white-space: nowrap;
-    color: white;
-    width: auto;
-    margin: 0;
-    border:none;
-    cursor:pointer;
+.agreement-content {
+    overflow: auto;
+    text-align:left;
 }

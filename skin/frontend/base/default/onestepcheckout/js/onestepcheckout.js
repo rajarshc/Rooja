@@ -99,50 +99,64 @@ var OneStepCheckoutLoginPopup = Class.create({
 
     bindEventHandlers: function() {
         /* First bind the link for opening the popup */
-        this.popup_link.observe('click', function(e) {
-            e.preventDefault();
-            this.popup.open();
-        }.bind(this));
+        if(this.popup_link){
+            this.popup_link.observe('click', function(e) {
+                e.preventDefault();
+                this.popup.open();
+            }.bind(this));
+        }
 
         /* Link for closing the popup */
-        this.popup_container.select('p.close a').invoke(
-            'observe', 'click', function(e) {
-            this.popup.close();
-        }.bind(this));
+        if(this.popup_container){
+            this.popup_container.select('p.close a').invoke(
+                'observe', 'click', function(e) {
+                this.popup.close();
+            }.bind(this));
+        }
 
         /* Link to switch between states */
-        this.login_link.observe('click', function(e) {
-            e.preventDefault();
-            this.forgot_password_container.hide();
-            this.login_container.show();
-            this.mode = 'login';
-        }.bind(this));
+        if(this.login_link){
+            this.login_link.observe('click', function(e) {
+                e.preventDefault();
+                this.forgot_password_container.hide();
+                this.login_container.show();
+                this.mode = 'login';
+            }.bind(this));
+        }
 
         /* Link to switch between states */
-        this.forgot_password_link.observe('click', function(e) {
-            e.preventDefault();
-            this.login_container.hide();
-            this.forgot_password_container.show();
-            this.mode = 'forgot';
-        }.bind(this));
+        if(this.forgot_password_link){
+            this.forgot_password_link.observe('click', function(e) {
+                e.preventDefault();
+                this.login_container.hide();
+                this.forgot_password_container.show();
+                this.mode = 'forgot';
+            }.bind(this));
+        }
 
         /* Now bind the submit button for logging in */
-        this.login_button.observe(
-            'click', this.login_handler.bind(this));
+        if(this.login_button){
+            this.login_button.observe(
+                'click', this.login_handler.bind(this));
+        }
 
         /* Now bind the submit button for forgotten password */
-        this.forgot_password_button.observe('click',
-            this.forgot_password_handler.bind(this));
+        if(this.forgot_password_button){
+            this.forgot_password_button.observe('click',
+                this.forgot_password_handler.bind(this));
+        }
 
         /* Handle return keypress when open */
-        this.popup.observe('afterOpen', function(e) {
-            document.observe('keypress', this.keypress_handler);
-        }.bind(this));
+        if(this.popup){
+            this.popup.observe('afterOpen', function(e) {
+                document.observe('keypress', this.keypress_handler);
+            }.bind(this));
 
-        this.popup.observe('afterClose', function(e) {
-            this.resetPopup();
-            document.stopObserving('keypress', this.keypress_handler);
-        }.bind(this));
+            this.popup.observe('afterClose', function(e) {
+                this.resetPopup();
+                document.stopObserving('keypress', this.keypress_handler);
+            }.bind(this));
+        }
 
     },
 
@@ -509,6 +523,12 @@ function get_separate_save_methods_function(url, update_payments)
         var shipping_method = $RF(form, 'shipping_method');
         var payment_method = $RF(form, 'payment[method]');
         var totals = get_totals_element();
+
+        var freeMethod = $('p_method_free');
+        if(freeMethod){
+            payment.reloadcallback = true;
+            payment.countreload = 1;
+        }
 
         totals.update('<div class="loading-ajax">&nbsp;</div>');
 
