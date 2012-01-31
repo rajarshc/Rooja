@@ -190,6 +190,8 @@ $(".payment-methods input").live('change', function() {
                 </div>
             <?php endif; ?>
             <?php echo $this->getChildHtml('choose-payment-method'); ?>
+			<p id="hintText"></p>
+			<div id="hintImg"></div>
         <?php else: ?>
             <p class="onestepcheckout-numbers onestepcheckout-numbers-<?php echo $step_counter++; ?>"><?php echo $this->__('Payment method'); ?></p>
             <?php if(isset($this->formErrors['payment_method']) && $this->formErrors['payment_method']): ?>
