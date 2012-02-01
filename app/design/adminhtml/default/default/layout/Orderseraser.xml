@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+   
+    <orderseraser_adminhtml_orderseraser_index>
+        <reference name="content">
+            <block type="orderseraser/orderseraser" name="orderseraser" />
+        </reference>
+    </orderseraser_adminhtml_orderseraser_index>
+
+</layout>

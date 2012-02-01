@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+
+<config>
+    <modules>
+        <Wyomind_Orderseraser>
+            <version>2.0.2</version>
+        </Wyomind_Orderseraser>
+    </modules>
+  	<admin>
+        <routers>
+			<orderseraser>
+				<use>admin</use>
+				<args>
+					<module>Wyomind_Orderseraser</module>
+					<frontName>orderseraser</frontName>
+				</args>
+			</orderseraser>
+        </routers>
+    </admin>
+	<adminhtml>
+		<layout>
+			<updates>
+				<orderseraser>
+					<file>orderseraser.xml</file>
+				</orderseraser>
+			</updates>
+		</layout>
+		 <menu>
+            <sales>
+                <children>
+                    <orderseraser translate="title" module="orderseraser">
+                        <title>Orders eraser ***</title>
+                        <sort_order>1</sort_order>
+                        <action>orderseraser/adminhtml_orderseraser</action>
+                    </orderseraser>
+                </children>
+            </sales>
+        </menu>
+		<acl>
+			<resources>
+				<all>
+					<title>Allow Everything</title>
+				</all>
+				<admin>
+					<children>
+						<sales>
+							<children>
+								<order>
+									<children>
+										<actions>
+											<children>
+												<delete translate="title">
+													<title>Delete (Orders Eraser)</title>
+												</delete>
+											</children>		
+										</actions>											
+									</children>
+								</order>
+							</children>
+						</sales>
+					</children>
+				</admin>
+			</resources>
+		</acl>
+		
+    </adminhtml>   
+    <global>
+        <models>
+            <orderseraser>
+                <class>Wyomind_Orderseraser_Model</class>
+                <resourceModel>orderseraser_mysql4</resourceModel>
+            </orderseraser>
+            <orderseraser_mysql4>
+                <class>Wyomind_Orderseraser_Model_Mysql4</class>
+                <entities>
+                    <orderseraser>
+                        <table>orderseraser</table>
+                    </orderseraser>
+                </entities>
+            </orderseraser_mysql4>
+        </models>		<resources>
+            <orderseraser_setup>
+                <setup>
+                    <module>Wyomind_Orderseraser</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </orderseraser_setup>
+            <orderseraser_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </orderseraser_write>
+            <orderseraser_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </orderseraser_read>
+        </resources>
+       <blocks>
+          	<adminhtml>
+                <rewrite>
+                    <sales_order_grid>Wyomind_Orderseraser_Block_Enhancedgrid_Grid</sales_order_grid>
+                </rewrite>
+            </adminhtml>
+             <orderseraser>
+                	<class>Wyomind_Orderseraser_Block</class>
+           	</orderseraser>
+        </blocks>
+         <helpers>
+            <orderseraser>
+                <class>Wyomind_Orderseraser_Helper</class>
+            </orderseraser>
+        </helpers>
+       
+        
+    </global>
+   
+    
+</config>
+
+
+
+         
+     
+       

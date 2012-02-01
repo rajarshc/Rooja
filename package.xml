@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package>
+    <name>Wyomind_OrdersEraser</name>
+    <version>2.0.2</version>
+    <stability>stable</stability>
+    <license>GPL</license>
+    <channel>community</channel>
+    <extends/>
+    <summary>Orders eraser allows you to clean your sales database by deleting useless orders and linked invoices and/or shipping in once.</summary>
+    <description>Orders eraser allows you to clean your sales database by deleting useless orders and linked invoices and/or shipping in once.</description>
+    <notes>none</notes>
+    <authors><author><name>Pierre</name><user>auto-converted</user><email>contact@wyomind.com</email></author></authors>
+    <date>2011-03-16</date>
+    <time>10:27:52</time>
+    <contents><target name="magedesign"><dir name="adminhtml"><dir name="default"><dir name="default"><dir name="layout"><file name="Orderseraser.xml" hash="7ecc56d5dd2d7a14ae9e4445efe4fd1e"/></dir></dir></dir></dir></target><target name="mageetc"><dir name="modules"><file name="Wyomind_Orderseraser.xml" hash="c8103aabbb8d9961415e6e347ee587dc"/></dir></target><target name="magelocal"><dir name="Wyomind"><dir name="Orderseraser"><dir name="Block"><file name="Orderseraser.php" hash="3c0098cacb0aba9a8a00ca0c0ae4e287"/><dir name="Enhancedgrid"><file name="Grid.php" hash="44caf8975104c93eda3baef4dd671a30"/></dir><dir name="Erasergrid"><file name="Grid.php" hash="2e0998d4532392829bfdf5993f2544b3"/></dir></dir><dir name="controllers"><dir name="Adminhtml"><file name="OrderseraserController.php" hash="9e97cc33825d5bda5bb0a57eb8ee1797"/></dir></dir><dir name="etc"><file name="config.xml" hash="18f0b1d09c0ff0d29e173cd08b868010"/></dir><dir name="Helper"><file name="Data.php" hash="9f2bab1860e9521a04f8cecf906a7acc"/></dir><dir name="Model"><file name="Orderseraser.php" hash="5ef877a60d98b8cdb6b84df654acea93"/></dir></dir></dir></target></contents>
+    <compatible/>
+    <dependencies/>
+</package>
