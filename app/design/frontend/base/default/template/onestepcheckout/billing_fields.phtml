@@ -155,7 +155,7 @@ $billingFields['country_id'] = '
     ?>
 <?php endif; ?>
 
-<?php
+<?php /*
     try {
         $_dob = $this->getLayout()->createBlock('customer/widget_dob');
     } catch (Exception $e) {
@@ -221,7 +221,7 @@ $billingFields['country_id'] = '
             </div>
         </li>';
     ?>
-<?php endif; ?>
+<?php endif;*/ ?>
 
 <?php if ($this->isCustomerLoggedIn() && $this->customerHasAddresses()):?>
     <?php $billingFields['save_in_address_book'] = '
