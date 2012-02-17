@@ -31,7 +31,7 @@
 <?php if($_product->isSaleable()) { ?>
         <?php if(!$_product->isGrouped()): ?>
 	<br class="clear">
-        <input type="text" name="qty" id="qty" maxlength="2" value="1" disabled="disabled" title="<?php echo $this->__('Qty') ?>" class="input-text qty" />
+        <input type="text" name="qty" id="qty" maxlength="2" value="1" title="<?php echo $this->__('Qty') ?>" class="input-text qty" />
         <label for="qty"><?php echo $this->__('Quantity') ?></label>
 		<?php endif; ?>
 				<script type="text/javascript">
