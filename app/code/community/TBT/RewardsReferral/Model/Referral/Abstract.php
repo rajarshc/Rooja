@@ -1,4 +1,39 @@
 <?php
+/**
+ * WDCA - Sweet Tooth
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the WDCA SWEET TOOTH POINTS AND REWARDS 
+ * License, which extends the Open Software License (OSL 3.0).
+ * The Sweet Tooth License is available at this URL: 
+ *      http://www.wdca.ca/sweet_tooth/sweet_tooth_license.txt
+ * The Open Software License is available at this URL: 
+ *      http://opensource.org/licenses/osl-3.0.php
+ * 
+ * DISCLAIMER
+ * 
+ * By adding to, editing, or in any way modifying this code, WDCA is 
+ * not held liable for any inconsistencies or abnormalities in the 
+ * behaviour of this code. 
+ * By adding to, editing, or in any way modifying this code, the Licensee
+ * terminates any agreement of support offered by WDCA, outlined in the 
+ * provided Sweet Tooth License. 
+ * Upon discovery of modified code in the process of support, the Licensee 
+ * is still held accountable for any and all billable time WDCA spent 
+ * during the support process.
+ * WDCA does not guarantee compatibility with any other framework extension. 
+ * WDCA is not responsbile for any inconsistencies or abnormalities in the
+ * behaviour of this code if caused by other framework extension.
+ * If you did not receive a copy of the license, please send an email to 
+ * contact@wdca.ca or call 1-888-699-WDCA(9322), so we can send you a copy 
+ * immediately.
+ * 
+ * @category   [TBT]
+ * @package    [TBT_Rewards]
+ * @copyright  Copyright (c) 2009 Web Development Canada (http://www.wdca.ca)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
 
 /**
  * Referral Model
@@ -17,7 +52,15 @@ abstract class TBT_RewardsReferral_Model_Referral_Abstract extends TBT_RewardsRe
 
     public abstract function getReferralTransferMessage($newCustomer);
 
-    //@nelkaake Added on Wednesday May 5, 2010: If $always_save is true the system will always save the referral model
+    public abstract function triggerEvent( Mage_Customer_Model_Customer $customer);
+    
+    /**
+     * @deprecated moved logic into child classes under function triggerEvent
+     * 
+     * @param type $newCustomer
+     * @param type $always_save @nelkaake Added on Wednesday May 5, 2010: - If $always_save is true the system will always save the referral model
+     * @return TBT_RewardsReferral_Model_Referral_Abstract 
+     */
     public function trigger($newCustomer, $always_save=false) {
         $this->loadByEmail($newCustomer->getEmail());
         //@nelkaake Added on Saturday June 26, 2010: Attempt to load the referral model through the session e-mail
@@ -45,15 +88,6 @@ abstract class TBT_RewardsReferral_Model_Referral_Abstract extends TBT_RewardsRe
                 }
                 //@nelkaake Added on Wednesday July 21, 2010: 
                 $parent = $this->getParentCustomer();
-				$parentId = $this->getReferralParentId();
-				$parentCount = count($parent->getReferred());
-				if($parentCount>0){
-					$customer = Mage::getModel('customer/customer')->load($parentId);
-					if ($customer->getId()) {
-					    $customer->setData('group_id', 5);
-					    $customer->save(); 
-					}
-				}
                 if ($parent->getRewardsrefNotifyOnReferral()) {
                     $msg = $this->getReferralTransferMessage($newCustomer);
                     $this->sendConfirmation($parent, $newCustomer->getEmail(), $newCustomer->getName(), $msg);
@@ -65,6 +99,10 @@ abstract class TBT_RewardsReferral_Model_Referral_Abstract extends TBT_RewardsRe
         return $this;
     }
 
+    /**
+     *
+     * @return TBT_Rewards_Model_Customer 
+     */
     public function getParentCustomer() {
         if (!$this->hasData('parent_customer')) {
             $id = $this->getReferralParentId();
@@ -74,18 +112,27 @@ abstract class TBT_RewardsReferral_Model_Referral_Abstract extends TBT_RewardsRe
         return $this->getData('parent_customer');
     }
 
+    /**
+     * Get the accumulated points earned from this referral object
+     * @param TBT_RewardsReferral_Model_Referral_Abstract $referralobj
+     * @return TBT_Rewards_Model_Points 
+     */
     public function getAccumulatedPoints($referralobj) {
-        $col = Mage::getModel('rewardsref/transfer')
-                ->getCollection()
-                ->addFieldToFilter('reference_id', $referralobj->getReferralChildId())
-                ->addFieldToFilter('reference_type', TBT_RewardsReferral_Model_Transfer::REFERENCE_REFERRAL)
-                ->addFieldToFilter('customer_id', $referralobj->getReferralParentId())
-                ->selectOnlyPosTransfers()
-                ->sumPoints();
-        $points_earned = Mage::getModel('rewards/points');
-        foreach ($col as $points) {
-            $points_earned->add($points->getCurrencyId(), (int) $points->getPointsCount());
-        }
+        $references = Mage::getResourceModel( 'rewardsref/referral_transfer_reference_collection' );
+        $points_earned = $references->getAccumulatedPoints( $referralobj );
+        
+        return $points_earned;
+    }
+
+    /**
+     * @param TBT_RewardsReferral_Model_Referral_Abstract $referralobj
+     * @return TBT_Rewards_Model_Points 
+     */
+    public function getPendingReferralPoints($referralobj) {
+        
+        $references = Mage::getResourceModel( 'rewardsref/referral_transfer_reference_collection' );
+        $points_earned = $references->getPendingReferralPoints( $referralobj );
+        
         return $points_earned;
     }
 

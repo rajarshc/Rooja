@@ -3,6 +3,32 @@
     <sections>
         <rewards translate="label" module="rewardsref">
             <groups>
+                <autointegration translate="label">
+                    <fields>
+                        <customer_register_referral_field translate="label comment">
+                            <label>Customer sign-up page</label>
+                            <comment><![CDATA[
+                                <a href="https://sweettoothrewards.com/wiki/index.php/Referral_Theme_Integration" target="customer_register_referral_field">
+                                Click here
+                                </a> for manual integration instructions.
+                            ]]></comment>
+                            <sort_order>120</sort_order>
+                            <frontend_type>select</frontend_type>   <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>    <show_in_website>1</show_in_website>    <show_in_store>1</show_in_store>
+                        </customer_register_referral_field>
+                        <onepage_billing_register_referral_field translate="label comment">
+                            <label>Onepage checkout customer sign-up section</label>
+                            <comment><![CDATA[
+                                <a href="https://sweettoothrewards.com/wiki/index.php/Referral_Theme_Integration" target="onepage_billing_register_referral_field">
+                                Click here
+                                </a> for manual integration instructions.
+                            ]]></comment>
+                            <sort_order>130</sort_order>
+                            <frontend_type>select</frontend_type>   <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>    <show_in_website>1</show_in_website>    <show_in_store>1</show_in_store>
+                        </onepage_billing_register_referral_field>
+                    </fields>
+                </autointegration>
                 <referral translate="label">
                     <label>Referral Program</label>
                     <sort_order>70</sort_order>
@@ -108,6 +134,16 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </show_referral_code>
+                        <show_referral_short_code translate="label comment">
+                            <label>Display short affiliate code</label>
+                            <comment><![CDATA[If enabled, this will display the short affiliate ID number in the affiliate’s My Referrals dashboard instead of the standard ~50 character code. Displaying the affiliate ID makes it easier for referrals to refer the affiliate, but might give away when the affiliate joined the site.]]></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>73</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </show_referral_short_code>
                         <show_referral_url translate="label comment">
                             <label>Enable refer by URL</label>
                             <comment><![CDATA[Enable referring other customers by referral url.]]>
@@ -195,6 +231,28 @@
                         </referralOrder>
                     </fields>
                 </transferComments>
+                <InitialTransferStatus translate="label">
+                    <fields>
+                        <ReferralFirstOrder translate="label">
+                            <label>Referral First Order</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>rewards/system_config_statuslist</source_model>
+                            <sort_order>23</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </ReferralFirstOrder>
+                        <ReferralOrder translate="label">
+                            <label>Referral Order</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>rewards/system_config_statuslist</source_model>
+                            <sort_order>26</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </ReferralOrder>
+                    </fields>
+                </InitialTransferStatus>
             </groups>
         </rewards>
     </sections>

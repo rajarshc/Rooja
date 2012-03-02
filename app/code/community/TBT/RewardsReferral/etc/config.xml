@@ -2,7 +2,7 @@
 <config>
     <modules>
         <TBT_RewardsReferral>
-            <version>3.0.0.1</version>
+            <version>3.1.0.0</version>
         </TBT_RewardsReferral>
     </modules>
     <admin>
@@ -66,6 +66,15 @@
     </frontend>
     <global>
         <events>
+            <sales_order_invoice_pay>
+                <observers>
+                    <tbt_rewardsreferral_model_observer_sales_order_invoice_pay>
+                        <type>singleton</type>
+                        <class>rewardsref/observer_sales_order_invoice_pay</class>
+                        <method>approvePoints</method>
+                    </tbt_rewardsreferral_model_observer_sales_order_invoice_pay>
+                </observers>
+            </sales_order_invoice_pay>
             <controller_action_predispatch_customer_account_createpost>
                 <observers>
                     <rewardsref_before_createaccount>
@@ -84,9 +93,40 @@
                     </rewardsref_before_onepage_billingsave>
                 </observers>
             </controller_action_predispatch_checkout_onepage_saveBilling>
+            <controller_action_predispatch_rewardsadmin_manage_diagnostics_reinstalldb>
+                <observers>
+                    <rewardsref_before_rewards_manage_diagnostics_reinstalldb>
+                        <type>singleton</type>
+                        <class>rewardsref/observer_rewards_diagnostics</class>
+                        <method>reinstalldb</method>
+                    </rewardsref_before_rewards_manage_diagnostics_reinstalldb>
+                </observers>
+            </controller_action_predispatch_rewardsadmin_manage_diagnostics_reinstalldb>
+            
+            <core_block_abstract_prepare_layout_after>
+                <observers>
+                    <tbt_rewardsref_model_observer_sales_order_edit_tab>
+                        <type>singleton</type>
+                        <class>rewardsref/observer_sales_order_edit_tab</class>
+                        <method>addTab</method>
+                    </tbt_rewardsref_model_observer_sales_order_edit_tab>
+                </observers>
+            </core_block_abstract_prepare_layout_after>
+
+            <!-- This observer  -->
+            <core_block_abstract_to_html_after>
+                <observers>
+                    <tbt_rewardsref_model_observer_block_register>
+                        <type>singleton</type>
+                        <class>rewardsref/observer_block_register</class>
+                        <method>afterOutput</method>
+                    </tbt_rewardsref_model_observer_block_register>
+                </observers>
+            </core_block_abstract_to_html_after>
+            
         </events>
     </global>
-	
+    
     <adminhtml>
         <translate>
             <modules>
@@ -217,15 +257,16 @@
         </special>
         <transfer>
             <reference>
+                <referral_order>rewardsref/transfer_reference_referral_order</referral_order>
                 <referral>rewardsref/transfer_reference_referral</referral>
             </reference>
             <reason>
                 <referral_signup>rewardsref/transfer_reason_signup</referral_signup>
                 <referral_firstorder>rewardsref/transfer_reason_firstorder</referral_firstorder>
                 <referral_order>rewardsref/transfer_reason_order</referral_order>
-            </reason>
+            </reason>            
         </transfer>
-    </rewards>     
+    </rewards>
     
     
     <frontend>
@@ -243,31 +284,38 @@
     
     <default>
         <rewards>
+            <autointegration>
+                <customer_register_referral_field>1</customer_register_referral_field>
+                <onepage_billing_register_referral_field>1</onepage_billing_register_referral_field>
+            </autointegration>
             <referral>
                 <referral_show>1</referral_show>
                 <subscription_email_template>rewards_referral_subscription_email_template</subscription_email_template>
                 <subscription_email_identity>support</subscription_email_identity>
                 <subscription_email_use_sender_email>1</subscription_email_use_sender_email>
-                <confirmation_email_template>rewards_referral_subscription_email_template</confirmation_email_template>
+                <confirmation_email_template>rewards_referral_confirmation_email_template</confirmation_email_template>
                 <confirmation_email_identity>support</confirmation_email_identity>
-                
                 <show_in_onepage_checkout>1</show_in_onepage_checkout>
                 <show_in_register>1</show_in_register>
-                
                 <show_referral_email>1</show_referral_email>
                 <show_referral_code>1</show_referral_code>
+                <show_referral_short_code>0</show_referral_short_code>
                 <show_referral_url>1</show_referral_url>
                 <show_invite_form>1</show_invite_form>
                 <show_preferences>1</show_preferences>
                 <show_history>1</show_history>
-                
-                <affiliate_redirect_url></affiliate_redirect_url>
+                <affiliate_redirect_url></affiliate_redirect_url>                
             </referral>
             <transferComments>
                 <referralSignup>A referred customer signed up to the site.</referralSignup>
                 <referralFirstOrder>A referred customer made a first order.</referralFirstOrder>
                 <referralOrder>Commission received from an order that a referred customer made.</referralOrder>
             </transferComments>
+            <InitialTransferStatus>
+                <ReferralSignup>5</ReferralSignup>
+                <ReferralFirstOrder>4</ReferralFirstOrder>
+                <ReferralOrder>4</ReferralOrder>
+            </InitialTransferStatus>
         </rewards>
     </default>
 </config>

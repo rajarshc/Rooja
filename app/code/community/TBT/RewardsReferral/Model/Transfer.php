@@ -60,32 +60,56 @@ class TBT_RewardsReferral_Model_Transfer extends TBT_Rewards_Model_Transfer {
         return $this;
     }
 
-    public function create($num_points, $currency_id, $earnerCustomerId, $referredCustomerId, $comments="", $reason_id=1) {
-        if ($num_points <= 0)
-            return $this;
-        $transfer = &$this;
-
-        $customer_id = $earnerCustomerId;
-        // ALWAYS ensure that we only give an integral amount of points
-        $num_points = floor($num_points);
-
-        $this->setReferredFriendId($referredCustomerId);
-
-        $transfer->setReasonId($reason_id);
-        //get the default starting status - usually Pending
-        if (!$transfer->setStatus(null, TBT_Rewards_Model_Transfer_Status::STATUS_APPROVED)) {
+    /**
+     *
+     * @param type $num_points
+     * @param type $currency_id
+     * @param type $earnerCustomerId
+     * @param type $referredCustomerId
+     * @param type $comment
+     * @param type $reason_id
+     * @param type $transferStatus TBT_Rewards_Model_Transfer_Status::STATUS_APPROVED
+     * @param type $referenceOrderId link transfer to order
+     * @return TBT_RewardsReferral_Model_Transfer
+     */
+    public function create($num_points, $currency_id, $earnerCustomerId, $referredCustomerId, $comment = "", 
+            $reason_id = TBT_Rewards_Model_Transfer_Reason::REASON_CUSTOMER_DISTRIBUTION, 
+            $transferStatus = TBT_Rewards_Model_Transfer_Status::STATUS_APPROVED, 
+            $referenceOrderId = null) {
+        
+     // ALWAYS ensure that we only give an integral amount of points
+        $num_points = floor( $num_points );
+        if ( $num_points <= 0 ) {
             return $this;
         }
-
-        $transfer->setId(null)
-                ->setCreationTs(now())
-                ->setLastUpdateTs(now())
-                ->setCurrencyId($currency_id)
-                ->setQuantity($num_points)
-                ->setComments($comments)
-                ->setCustomerId($customer_id)
+        
+        $this->setReferredFriendId( $referredCustomerId );
+        $this->setReasonId( $reason_id );
+        if ( ! $this->setStatus( null, $transferStatus ) ) {
+            return $this;
+        }
+        
+        $this->setId( null )
+            ->setCreationTs( now() )
+            ->setLastUpdateTs( now() )
+            ->setCurrencyId( $currency_id )
+            ->setQuantity( $num_points )
+            ->setComments( $comment )
+            ->setCustomerId( $earnerCustomerId )
+            ->save();
+        
+        // link point transfer to an order
+        if ( ! empty( $referenceOrderId ) ) {
+            $transferId = $this->getId();
+            $transferReference = Mage::getModel( 'rewards/transfer_reference' );
+            $transferReference->setReferenceId( $referenceOrderId )
+                ->setReferenceType( TBT_RewardsReferral_Model_Transfer_Reference_Referral_Order::REFERENCE_TYPE_ID )
+                ->setRewardsTransferId( $transferId )
+                ->setRuleId( null )
                 ->save();
-
+            
+        }
+        
         return $this;
     }
 

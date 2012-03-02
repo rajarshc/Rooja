@@ -64,7 +64,7 @@ class TBT_RewardsReferral_Model_Transfer_Reason_Firstorder extends TBT_Rewards_M
     }
 
     public function getDistributionReasons() {
-        return array();
+        return array(self::REASON_TYPE_ID => Mage::helper('rewardsref')->__('Referral First Order'));
     }
 
     public function getRedemptionReasons() {
@@ -72,7 +72,7 @@ class TBT_RewardsReferral_Model_Transfer_Reason_Firstorder extends TBT_Rewards_M
     }
 
     public function getAllReasons() {
-        return array();
+        return array(self::REASON_TYPE_ID => Mage::helper('rewardsref')->__('Referral First Order'));
     }
 
 }

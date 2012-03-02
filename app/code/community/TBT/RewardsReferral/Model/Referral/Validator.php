@@ -15,7 +15,7 @@ class TBT_RewardsReferral_Model_Referral_Validator extends Mage_Core_Model_Abstr
     }
 
     /**
-     * If this doesn't throw any exceptions all the data in the model are fine.
+     * If this doesn't throw any exceptions, all the data in the model is fine.
      * //@nelkaake (add) on 1/11/10:      
      * @throws Exception
      */
@@ -32,7 +32,7 @@ class TBT_RewardsReferral_Model_Referral_Validator extends Mage_Core_Model_Abstr
         if ($referral_email == $new_customer_email) {
             throw new Exception(Mage::helper('rewardsref')->__("Referral e-mail and customer e-mail may not be the same."));
         }
-        // Referral is model is okay because it passed all checks         '
+        // Referral model is okay because it passed all checks         '
         return $this;
     }
 

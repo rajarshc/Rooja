@@ -37,21 +37,21 @@ class TBT_RewardsReferral_Block_Manage_Referrals_Grid extends Mage_Adminhtml_Blo
     protected function _prepareColumns() {
 
         $this->addColumn('id', array(
-            'header' => Mage::helper('rewardsref')->__('Referral ID'),
+            'header' => Mage::helper('rewardsref')->__('Referral Link ID'),
             'align' => 'right',
             'width' => '50px',
             'index' => 'rewardsref_referral_id',
         ));
 
         $this->addColumn('referral_parent_id', array(
-            'header' => Mage::helper('rewardsref')->__('Customer ID'),
+            'header' => Mage::helper('rewardsref')->__('Affiliate Customer ID'),
             'align' => 'right',
             'width' => '50px',
             'index' => 'referral_parent_id',
         ));
 
         $this->addColumn('parent_name', array(
-            'header' => Mage::helper('rewardsref')->__('Customer Name'),
+            'header' => Mage::helper('rewardsref')->__('Affiliate Name'),
             'index' => 'referral_parent_id',
             'width' => '220px',
             'renderer' => 'rewardsref/manage_grid_renderer_referrer',

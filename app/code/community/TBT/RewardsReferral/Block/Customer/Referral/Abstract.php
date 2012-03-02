@@ -36,52 +36,35 @@ class TBT_RewardsReferral_Block_Customer_Referral_Abstract extends Mage_Core_Blo
         return $p;
     }
 
+    public function getPendingReferralPoints($referralobj) {
+        $p = Mage::getModel('rewardsref/referral_signup')->getPendingReferralPoints($referralobj);
+        return $p;
+    }
+
     public function getStatusCaption($status_id) {
         return Mage::getSingleton('rewardsref/referral_status')->getStatusCaption($status_id);
     }
 
-    //@nelkaake Added on Saturday June 26, 2010: 
     public function getCustomer() {
         return Mage::getSingleton('rewards/session')->getCustomer();
     }
 
-    //@nelkaake Added on Saturday June 26, 2010: 
     public function getReferralEmail() {
-        $email = $this->getCustomer()->getEmail();
-        return $email;
+        return (string)$this->getCustomer()->getEmail();
     }
 
-    //@nelkaake Added on Saturday June 26, 2010: 
     public function getReferralCode() {
-        $email = $this->getReferralEmail();
-        $code = Mage::helper('rewardsref/code')->getcode($email);
-        return $code;
+        return (string)Mage::helper('rewardsref/code')->getCode($this->getReferralEmail());
+    }
+    
+    public function getReferralShortCode() {
+        return (string)Mage::helper('rewardsref/shortcode')->getCode($this->getCustomer()->getId());
     }
 
-    //@nelkaake Added on Saturday June 26, 2010: 
     public function getReferralUrl() {
-        //@nelkaake Added on Tuesday July 27, 2010: TODO move this to a URL helper class so that it can be included in e-mails and other modules
-        switch (Mage::helper('rewardsref')->getReferralUrlStyle()) {
-            case TBT_RewardsReferral_Helper_Data::REWARDSREF_URL_STYLE_EMAIL:
-                $url_data = array(
-                    'email' => urlencode($this->getReferralEmail()),
-                );
-                break;
-            case TBT_RewardsReferral_Helper_Data::REWARDSREF_URL_STYLE_CODE:
-                $url_data = array(
-                    'code' => urlencode($this->getReferralCode()),
-                );
-                break;
-            default:
-                $url_data = array(
-                    'id' => urlencode(Mage::getSingleton('rewards/session')->getCustomerId()),
-                );
-        }
-        $url = $this->getUrl('rewardsref/index/refer', $url_data);
-        return $url;
+        return (string)Mage::helper('rewardsref/url')->getUrl($this->getCustomer());
     }
 
-    //@nelkaake Added on Saturday June 26, 2010: 
     public function showSendReferralForm() {
         return Mage::getStoreConfigFlag('rewards/referral/show_invite_form');
     }
@@ -92,6 +75,10 @@ class TBT_RewardsReferral_Block_Customer_Referral_Abstract extends Mage_Core_Blo
 
     public function showReferralCode() {
         return Mage::getStoreConfigFlag('rewards/referral/show_referral_code');
+    }
+    
+    public function showReferralShortCode() {
+        return Mage::getStoreConfigFlag('rewards/referral/show_referral_short_code');
     }
 
     public function showReferralEmail() {

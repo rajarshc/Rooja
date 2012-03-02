@@ -6,6 +6,7 @@ class TBT_RewardsReferral_Model_Referral_Status extends Varien_Object {
         $options = array(
             1 => Mage::helper('rewardsref')->__('Signed Up'),
             2 => Mage::helper('rewardsref')->__('Made First Order'),
+            3 => Mage::helper('rewardsref')->__('Made Order'),
             0 => Mage::helper('rewardsref')->__('Message Sent'),
         );
         return $options;

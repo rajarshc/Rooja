@@ -2,16 +2,30 @@
 
 class TBT_RewardsReferral_Model_Observer_Createaccount extends Varien_Object {
 
+    /**
+     * Observer called when an account is being created the standard way
+     * @param unknown_type $o
+     */
     public function beforeCreate($o) {
         $this->attemptReferralCheck($o);
         return $this;
     }
 
+    /**
+     * Observer called when an account is being created through the checkout
+     * @param unknown_type $o
+     */
     public function beforeSaveBilling($o) {
         $this->attemptReferralCheck($o, 'billing');
         return $this;
     }
 
+    /**
+     * Base observer method that gets called by above observer methods whenever an account is being created in the frontend.
+     * @param unknown_type $o
+     * @param unknown_type $subfield
+     * @throws Exception
+     */
     protected function attemptReferralCheck($o, $subfield=null) {
         try {
             //@nelkaake The customer is already logged in so there is no need to create referral links

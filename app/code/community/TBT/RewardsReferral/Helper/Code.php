@@ -5,7 +5,7 @@
  *
  * @nelkaake Added on Saturday June 26, 2010:  
  * @category   TBT
- * @package    TBT_Rewards
+ * @package    TBT_RewardsReferral
  * @author     WDCA Sweet Tooth Team <contact@wdca.ca>
  */
 class TBT_RewardsReferral_Helper_Code extends Mage_Core_Helper_Abstract {
@@ -21,7 +21,7 @@ class TBT_RewardsReferral_Helper_Code extends Mage_Core_Helper_Abstract {
         $code = base64_encode($code);
         return $code;
     }
-
+    
     //@nelkaake Added on Saturday June 26, 2010: 
     protected function _getEncrypter() {
         return Mage::getSingleton('core/encryption');
@@ -34,16 +34,20 @@ class TBT_RewardsReferral_Helper_Code extends Mage_Core_Helper_Abstract {
     public function check_email_address($email) {
         return Mage::helper('rewardsref/validation')->isValidEmail($email);
     }
-
+    
+    /**
+     * Return back an e-mail address from a referral code/e-mail that is provided. 
+     * @param unknown_type $refstr
+     */
     public function parseEmailFromReferralString($refstr) {
-
-        //@nelkaake Added on Thursday July 8, 2010: If it's a valid e-mail return the e-mail address
         if ($this->check_email_address($refstr)) {
             $email = strtolower(trim($refstr));
+        } elseif ( Mage::helper('rewardsref/shortcode')->isValid($refstr) ) {
+            $email = Mage::helper('rewardsref/shortcode')->getEmail($refstr) ;
         } else {
             $email = $this->getEmail($refstr);
         }
-        return $email;
+        return $email;        
     }
 
     //@nelkaake Added on Thursday July 8, 2010: Sets the referral into the session
@@ -59,4 +63,22 @@ class TBT_RewardsReferral_Helper_Code extends Mage_Core_Helper_Abstract {
         return Mage::getSingleton('core/session')->getReferrerEmail();
     }
 
+
+
+    /**
+     * Fetches the affiliate customer model from the session if it exists
+     * @return TBT_Rewards_Model_Customer
+     */
+    public function getReferringCustomer() {
+        $affiliate_email = $this->getReferral();
+        $affiliate = Mage::getModel( 'rewards/customer' )->setStore( Mage::app()->getStore() );
+        
+        if(empty($affiliate_email)) {
+            return $affiliate;
+        }
+        
+        $affiliate->loadByEmail($affiliate_email);
+        
+        return $affiliate;
+    }
 }

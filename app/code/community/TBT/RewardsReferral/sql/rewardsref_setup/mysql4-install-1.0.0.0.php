@@ -24,7 +24,19 @@ CREATE TABLE IF NOT EXISTS `{$this->getTable('rewardsref_referral')}` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 ");
-
+    
+$setup = new Mage_Eav_Model_Entity_Setup('core_setup');
+$setup->addAttribute('customer', 'rewardsref_notify_on_referral', array(
+    'label' => Mage::helper('rewardsref')->__('Notify on Referral'),
+    'type' => 'int',
+    'input' => 'select',
+    'visible' => true,
+    'required' => false,
+    'position' => 1,
+    'default' => 1,
+    'default_value' => 1,
+    'source' => "rewardsref/attribute_notify",
+));
 
 $installer->endSetup();
 

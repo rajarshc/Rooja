@@ -40,25 +40,33 @@
  * Transfer Reference
  *
  * @category   TBT
- * @package    TBT_Rewards
+ * @package    TBT_RewardsReferral
  * @author     WDCA Sweet Tooth Team <contact@wdca.ca>
  */
 class TBT_RewardsReferral_Model_Transfer_Reference_Referral extends TBT_Rewards_Model_Transfer_Reference_Abstract {
     const REFERENCE_TYPE_ID = 20;
     protected $_transferCellRenderer = 'rewardsref/customer_transfers_referral_cell';
+    
     /*
      * in the format [reference_type] => renderer
      */
-
     public function getTRefCellRenderers() {
         return array(self::REFERENCE_TYPE_ID => $this->_transferCellRenderer);
     }
 
     public function loadReferenceInformation(&$transfer) {
+        /*
+        $this->_data['referral_id'] = $transfer->getReferenceId();
+         */
         return $this;
     }
 
     public function clearReferences(&$transfer) {
+        /*
+            if ($transfer->hasData ( 'referral_id' )) {
+                $transfer->unsetData ( 'referral_id' );
+            }
+        */
         return $this;
     }
 

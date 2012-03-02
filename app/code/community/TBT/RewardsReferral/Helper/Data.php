@@ -4,7 +4,7 @@
  * Helper Data
  *
  * @category   TBT
- * @package    TBT_Rewards
+ * @package    TBT_RewardsReferral
  * @author     WDCA Sweet Tooth Team <contact@wdca.ca>
  */
 class TBT_RewardsReferral_Helper_Data extends Mage_Core_Helper_Abstract {
