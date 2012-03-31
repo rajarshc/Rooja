@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+
+<config>
+	<modules>
+		<Katana_Tax>
+			<version>0.1.0</version>
+		</Katana_Tax>
+    </modules>
+		 <global>        
+			<models> 
+				<tax>
+					<rewrite>
+							<sales_pdf_grandtotal>Katana_Tax_Model_Sales_Pdf_Grandtotal</sales_pdf_grandtotal>
+						</rewrite>
+				</tax>
+			</models>
+	</global>
+</config>
+
+
+
+
