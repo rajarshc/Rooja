@@ -1,0 +1,8 @@
+If your server has trouble to understand the virtual path, you may have to modify the file config.php, change the following line to point to the /class/ folder with a real path
+Si votre serveur a des problèmes à comprendre le chemin virtual, vous pouvez modifier le fichier config.php, changez la ligne suivante pour qu'elle redirige vers le dossier /class/ avec le chemin complet
+$class_dir = '../class';
+change it for / changez la pour
+$class_dir = 'C:/where/barcode_gen/is_installed/class';
+
+Start with code39.php and you will be able to generate barcodes
+Commencez avec code39.php et vous serez capable de générer des codes barres

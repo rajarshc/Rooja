@@ -50,9 +50,6 @@ class Katana_Tax_Model_Sales_Pdf_Grandtotal extends Mage_Tax_Model_Sales_Pdf_Gra
         $tax = $this->getOrder()->formatPriceTxt($this->getSource()->getTaxAmount());
         $fontSize = $this->getFontSize() ? $this->getFontSize() : 7;
 
-        if ($config->displaySalesFullSummary($store)) {
-           $totals = array_merge($totals, $this->getFullTaxInfo());
-        }
 
         $totals[] = array(
             'amount'    => $this->getAmountPrefix().$tax,
@@ -64,6 +61,12 @@ class Katana_Tax_Model_Sales_Pdf_Grandtotal extends Mage_Tax_Model_Sales_Pdf_Gra
             'label'     => Mage::helper('tax')->__('Grand Total (Incl. Tax)') . ':',
             'font_size' => $fontSize
         );
+		
+        if ($config->displaySalesFullSummary($store)) {
+           $totals = array_merge($totals, $this->getFullTaxInfo());
+        }
+		
+		
         return $totals;
     }
 }
