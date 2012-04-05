@@ -412,7 +412,7 @@ class Katana_Sales_Model_Order_Pdf_Invoice extends Mage_Sales_Model_Order_Pdf_In
 		// Draw (or save) the image into PNG format.
 		$drawing->finish(BCGDrawing::IMG_FORMAT_PNG);
 		// RENAME FILE
-		$pngFile = str_replace(".tmp", ".png", $barcodeFile);
+		$pngFile = $barcodeFile . ".png";
 		rename($barcodeFile, $pngFile);
 		
 		$image = Zend_Pdf_Image::imageWithPath($pngFile);
