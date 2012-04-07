@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<Katana_Adminhtml>
+			<version>0.0.1</version>
+		</Katana_Adminhtml>
+	</modules>
+	 <global>        
+		<blocks> 
+			<adminhtml>
+					<rewrite>
+						<sales_ordercontroller>Katana_Adminhtml_Sales_OrderController</sales_ordercontroller>
+					</rewrite>
+			</adminhtml>
+		</blocks>
+	 </global>
+   <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <Katana before="Mage_Adminhtml">Katana_Adminhtml</Katana>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+</config>

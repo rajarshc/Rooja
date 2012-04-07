@@ -112,7 +112,7 @@ class Mage_Adminhtml_Controller_Sales_Shipment extends Mage_Adminhtml_Controller
         }
     }
 
-	 public function exportshipmentsAction(){
+	 public function exportlogisticsAction(){
         $invoicesIds = $this->getRequest()->getPost('shipment_ids');
         if (!empty($shipmentIds)) {
             $shipments = Mage::getResourceModel('sales/order_shipment_collection')
