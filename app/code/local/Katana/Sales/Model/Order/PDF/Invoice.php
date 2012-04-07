@@ -140,13 +140,14 @@ class Katana_Sales_Model_Order_Pdf_Invoice extends Mage_Sales_Model_Order_Pdf_In
 
 			$totalItems = 0;
 			$breaks = 0;
+			$lineNumber = 0;
 			foreach ($invoice->getAllItems() as $item){
                 if ($item->getOrderItem()->getParentItem()) {
                     continue;
                 }
 
 				$totalItems += $item->getQty()*1;
-                if ($this->y < 35) {
+                if ($this->y < 150) {
 					// Draw box
 					$page->setFillColor(new Zend_Pdf_Color_GrayScale(0));
 					$page->drawRectangle(25, $yAfterOrder, 570, 35, Zend_Pdf_Page::SHAPE_DRAW_STROKE);
@@ -155,10 +156,19 @@ class Katana_Sales_Model_Order_Pdf_Invoice extends Mage_Sales_Model_Order_Pdf_In
 
                 /* Draw item */
 				$this->_setFontRegular($page,15);
+				$lineNumber++;
+				$item->setLineNumber($lineNumber);
                 $page = $this->_drawItem($item, $page, $order);
+				$this->y -= 5;
             }
 
             /* Add totals */
+                if ($this->y < 250) {
+					// Draw box
+					$page->setFillColor(new Zend_Pdf_Color_GrayScale(0));
+					$page->drawRectangle(25, $yAfterOrder, 570, 35, Zend_Pdf_Page::SHAPE_DRAW_STROKE);
+                    $page = $this->newPage(array('table_header' => true));
+                }
 			$this->y -= 10;
             $page = $this->insertTotals($page, $invoice);
 
