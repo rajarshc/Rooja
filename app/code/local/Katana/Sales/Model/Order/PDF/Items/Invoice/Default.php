@@ -55,9 +55,38 @@ class Katana_Sales_Model_Order_Pdf_Items_Invoice_Default extends Mage_Sales_Mode
             'feed'  => 45
         ));
 
+        $lines[0][] = array(
+            'text' => $item->getLineNumber(),
+			'font_size' => $fontSize,
+			'align' => 'left',
+            'feed' => 30,
+        );
+		
+        // custom options
+        $options = $this->getItemOptions();
+		
+		$optionsText = array();
+        if ($options) {
+            foreach ($options as $option) {
+                // draw options label
+                $text = $option['label'] . ":";
+
+                if ($option['value']) {
+                    $_printValue = isset($option['print_value']) ? $option['print_value'] : strip_tags($option['value']);
+                    $values = explode(', ', $_printValue);
+                    foreach ($values as $value) {
+						$text .= $value;
+                    }
+                }
+				$optionsText[] = $text;
+            }
+        }
+				
+		$productName = array_merge(Mage::helper('core/string')->str_split($item->getName(), 35, true, true), $optionsText);
+		
         // draw Product name
         $lines[0][] = array(
-            'text' => Mage::helper('core/string')->str_split($item->getName(), 35, true, true),
+            'text' => $productName,
 			'font_size' => $fontSize,
 			'align' => 'left',
             'feed' => 135,
@@ -120,33 +149,10 @@ class Katana_Sales_Model_Order_Pdf_Items_Invoice_Default extends Mage_Sales_Mode
 			'width' => 40
         );
 
-        // custom options
-        $options = $this->getItemOptions();
-        if ($options && false) {
-            foreach ($options as $option) {
-                // draw options label
-                $lines[][] = array(
-                    'text' => Mage::helper('core/string')->str_split(strip_tags($option['label']), 70, true, true),
-                    'font' => 'italic',
-                    'feed' => 35
-                );
-
-                if ($option['value']) {
-                    $_printValue = isset($option['print_value']) ? $option['print_value'] : strip_tags($option['value']);
-                    $values = explode(', ', $_printValue);
-                    foreach ($values as $value) {
-                        $lines[][] = array(
-                            'text' => Mage::helper('core/string')->str_split($value, 50, true, true),
-                            'feed' => 40
-                        );
-                    }
-                }
-            }
-        }
 
         $lineBlock = array(
             'lines'  => $lines,
-            'height' =>25,
+            'height' =>15,
         );
 		
         $page = $pdf->drawLineBlocks($page, array($lineBlock), array('table_header' => true));
