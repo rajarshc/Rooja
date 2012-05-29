@@ -18,7 +18,6 @@ class Cutehits_Customer_AccountController extends Mage_Customer_AccountControlle
         $this->loadLayout();
         $this->_initLayoutMessages('customer/session');
         $this->_initLayoutMessages('catalog/session'); 
-		echo "Hai";
         $this->renderLayout();
     }
      public function preDispatch()
