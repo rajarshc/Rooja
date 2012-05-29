@@ -47,7 +47,9 @@ class Mage_XmlConnect_CustomerController extends Mage_XmlConnect_Controller_Acti
 
         if ($request->isPost()) {
             $user = $request->getParam('username');
-            $pass = $request->getParam('password');
+            $pass = $request->getParam('password'); 
+			
+			echo $user; echo $pass; exit;
             try {
                 if ($session->login($user, $pass)) {
                     if ($session->getCustomer()->getIsJustConfirmed()) {
@@ -73,7 +75,7 @@ class Mage_XmlConnect_CustomerController extends Mage_XmlConnect_Controller_Acti
                 $this->_message($this->__('Customer authentication problem.'), self::MESSAGE_STATUS_ERROR);
             }
         } else { 
-		echo "HELLO DUDE";
+		
             $this->_message($this->__('Login and password are required.'), self::MESSAGE_STATUS_ERROR);
         }
     }
