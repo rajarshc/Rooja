@@ -125,11 +125,6 @@ class Mage_Customer_Model_Customer extends Mage_Core_Model_Abstract
            'password' => $password,
         )); 
 		
-		print_r(array(
-           'model'    => $this,
-           'password' => $password,
-        )); 
-		exit;
         return true;
     }
 

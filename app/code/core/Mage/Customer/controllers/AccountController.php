@@ -66,6 +66,9 @@ class Mage_Customer_AccountController extends Mage_Core_Controller_Front_Action
         }
 
         $action = $this->getRequest()->getActionName();
+		
+		echo $action; exit;
+		
         $pattern = '/^(create|login|logoutSuccess|forgotpassword|forgotpasswordpost|confirm|confirmation)/i';
         if (!preg_match($pattern, $action)) {
             if (!$this->_getSession()->authenticate($this)) {
