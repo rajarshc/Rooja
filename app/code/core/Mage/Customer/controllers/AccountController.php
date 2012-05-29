@@ -67,7 +67,6 @@ class Mage_Customer_AccountController extends Mage_Core_Controller_Front_Action
 
         $action = $this->getRequest()->getActionName();
 		
-		echo $action; exit;
 		
         $pattern = '/^(create|login|logoutSuccess|forgotpassword|forgotpasswordpost|confirm|confirmation)/i';
         if (!preg_match($pattern, $action)) {
@@ -158,7 +157,8 @@ class Mage_Customer_AccountController extends Mage_Core_Controller_Front_Action
                 } catch (Exception $e) {
                     // Mage::logException($e); // PA DSS violation: this exception log can disclose customer password
                 }
-            } else {
+            } else { 
+					echo "Hello Dude";
                 $session->addError($this->__('Login and password are required.'));
             }
         }
