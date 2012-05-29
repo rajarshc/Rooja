@@ -130,7 +130,13 @@ class Mage_Customer_AccountController extends Mage_Core_Controller_Front_Action
         }
         $session = $this->_getSession();
         if ($this->getRequest()->isPost()) {
-            $login = $this->getRequest()->getPost('login');
+            $login = $this->getRequest()->getPost('login'); 
+			
+			echo $login['username'];
+			echo "<br />";
+			echo $login['password'];
+			exit;
+			
             if (!empty($login['username']) && !empty($login['password'])) {
                 try {
                     $session->login($login['username'], $login['password']);
