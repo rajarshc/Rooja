@@ -109,7 +109,7 @@ class Mage_Customer_AccountController extends Mage_Core_Controller_Front_Action
      * Customer login form page
      */
     public function loginAction()
-    {  echo "HAI WORLD"; exit();
+    {   echo "ITS MY TEST"; exit;
 		
         if ($this->_getSession()->isLoggedIn()) {
             $this->_redirect('*/*/');
