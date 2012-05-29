@@ -134,7 +134,9 @@ class Mage_Customer_AccountController extends Mage_Core_Controller_Front_Action
         if ($this->getRequest()->isPost()) {
             $login = $this->getRequest()->getPost('login'); 
 						
-            if (!empty($login['username']) && !empty($login['password'])) {
+            if (!empty($login['username']) && !empty($login['password'])) { 
+			
+			echo $login['username']; echo $login['password']; exit;
                 try {
                     $session->login($login['username'], $login['password']);
                     if ($session->getCustomer()->getIsJustConfirmed()) {

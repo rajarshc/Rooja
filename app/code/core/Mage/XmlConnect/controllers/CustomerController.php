@@ -49,7 +49,6 @@ class Mage_XmlConnect_CustomerController extends Mage_XmlConnect_Controller_Acti
             $user = $request->getParam('username');
             $pass = $request->getParam('password'); 
 			
-			echo $user; echo $pass; exit;
             try {
                 if ($session->login($user, $pass)) {
                     if ($session->getCustomer()->getIsJustConfirmed()) {
