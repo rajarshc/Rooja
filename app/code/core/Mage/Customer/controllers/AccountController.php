@@ -139,7 +139,24 @@ class Mage_Customer_AccountController extends Mage_Core_Controller_Front_Action
 			
 			
                 try {
-                    $session->login($login['username'], $login['password']);
+                    $session->login($login['username'], $login['password']); 
+					
+					/* MY edit place begin */
+					//$collection = Mage::getModel('customer/customer');
+					//$customerCollection = Mage::getModel('customer/customer')->setData('email',$login['username']); 
+					//print_r($customerCollection); exit;
+					
+					$customer = Mage::getModel("customer/customer");
+						//$customer->website_id = $websiteid;
+						//$customer->setStore($store);
+						$customer->loadByEmail($login['username']);
+						$address = Mage::getModel("Customer/Entity_Address_Collection");
+						$address->setCustomerFilter($customer);
+						$addtess->load();
+						print_r($addtess); exit;
+					/* MY edit place end */
+					
+					
                     if ($session->getCustomer()->getIsJustConfirmed()) {
                         $this->_welcomeCustomer($session->getCustomer(), true);
                     }
