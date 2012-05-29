@@ -158,7 +158,6 @@ class Mage_Customer_AccountController extends Mage_Core_Controller_Front_Action
                     // Mage::logException($e); // PA DSS violation: this exception log can disclose customer password
                 }
             } else { 
-					echo "Hello Dude";
                 $session->addError($this->__('Login and password are required.'));
             }
         }

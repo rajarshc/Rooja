@@ -72,7 +72,8 @@ class Mage_XmlConnect_CustomerController extends Mage_XmlConnect_Controller_Acti
             } catch (Exception $e) {
                 $this->_message($this->__('Customer authentication problem.'), self::MESSAGE_STATUS_ERROR);
             }
-        } else {
+        } else { 
+		echo "HELLO DUDE";
             $this->_message($this->__('Login and password are required.'), self::MESSAGE_STATUS_ERROR);
         }
     }
