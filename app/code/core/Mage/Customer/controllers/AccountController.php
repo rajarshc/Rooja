@@ -125,7 +125,7 @@ class Mage_Customer_AccountController extends Mage_Core_Controller_Front_Action
      * Login post action
      */
     public function loginPostAction()
-    {
+    { echo "this"; exit;
         if ($this->_getSession()->isLoggedIn()) {
             $this->_redirect('*/*/');
             return;
@@ -136,7 +136,7 @@ class Mage_Customer_AccountController extends Mage_Core_Controller_Front_Action
 						
             if (!empty($login['username']) && !empty($login['password'])) { 
 			
-			echo $login['username']; echo $login['password']; exit;
+			
                 try {
                     $session->login($login['username'], $login['password']);
                     if ($session->getCustomer()->getIsJustConfirmed()) {
