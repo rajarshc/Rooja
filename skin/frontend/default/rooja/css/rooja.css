@@ -835,6 +835,8 @@ a[href$=".doc"]:after {content: " (DOC)";}
 .discount .buttons-set {position: absolute;right:0;float: right;top:0;}
 .saleDetails a span {height: 105px;overflow: hidden;display: block;margin: 0 0 15px;}
 
+.boutiqueDetails a span {height: 189px;overflow: hidden;display: block;margin: 0 5px 5px 0px;}
+
 /** One step checkout */
 #sidebarCart{display:none;}
 

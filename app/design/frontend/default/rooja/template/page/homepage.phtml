@@ -94,10 +94,42 @@ if(!Mage::getSingleton('customer/session')->isLoggedIn() && ($agent !="facebooke
 </section>
 <section id="extraSales">
 	<div class="container">
-		<section id="endingSoon" class="col3 fl">
+		<section id="endingSoon" class="clear">
+			<h2>Boutiques</h2>
+<?php 
+			$i = 1;
+			$categories = Mage::helper('catalog/category')->getStoreCategories();
+			foreach ($categories as $_category){
+			    if($_category->hasChildren()){
+			        $_category->getId(); // category id
+					if($_category->getId() ==5){
+			        foreach($_category->getChildren() as $subcategory){
+					$c = Mage::getModel('catalog/category')->load($subcategory->getId());
+			            if($c->getIsActive()){ // check if category is active
+							if ($c->getSale_start_time() == 'Y' || $c->getSale_start_time() == 'Yes' ) {
+								
+									echo '<article class="boutiqueDetails fl noMargin">';
+									
+									echo '<a href="'. $c->getURL() .'"><span><img src="/media/catalog/category/'. $c->getImage() .'"></span></a>';
+									
+									$i++;
+									
+						            echo '</article>';
+								}
+			            }
+			        }
+			}
+			    }
+			}
+			?>			
+			
+</section>
+		
+<br class="clear" />
+		<section id="boutiquesHome" class="col3 fl">
 			<h2>Sales Ending Soon</h2>
 			
-<?php 
+			<?php 
 $i = 1;
 $categories = Mage::helper('catalog/category')->getStoreCategories();
 foreach ($categories as $_category){
@@ -132,8 +164,11 @@ if($_category->getId() !=5){
     }
 }
 ?>
-</section>
-		<section id="upcomingSales" class="col1 fr noMargin">
+			
+		</section>
+	
+	
+	<section id="upcomingSales" class="col1 fr noMargin">
 			<h2>Upcoming</h2>
 <?php 
 $i = 1;
@@ -178,37 +213,11 @@ foreach ($sortedArrayByDates as $date => $array)
 }
 ?>
 		</section>
-<br class="clear" />
-		<section id="boutiquesHome" class="clear">
-			<h2>Boutiques</h2>
-			
-			<?php 
-			$i = 1;
-			$categories = Mage::helper('catalog/category')->getStoreCategories();
-			foreach ($categories as $_category){
-			    if($_category->hasChildren()){
-			        $_category->getId(); // category id
-					if($_category->getId() ==5){
-			        foreach($_category->getChildren() as $subcategory){
-					$c = Mage::getModel('catalog/category')->load($subcategory->getId());
-			            if($c->getIsActive()){ // check if category is active
-							if ($c->getSale_start_time() == 'Y' || $c->getSale_start_time() == 'Yes' ) {
-								
-									echo '<article class="saleDetails fl">';
-									
-									echo '<a href="'. $c->getURL() .'"><span><img src="/media/catalog/category/'. $c->getImage() .'"></span></a>';
-									echo '<h3><a href="'. $c->getURL() .'">' . $c->getName() . '</a></h3>';
-									$i++;
-								}
-			            }
-			        }
-			}
-			    }
-			}
-			?>
-		</section>
-	</div>
+		</div>
 </section>
+
+
+
 <script>
     jQuery(function(){
 	

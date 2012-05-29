@@ -36,7 +36,7 @@ class Phoenix_CashOnDelivery_Model_Quote_Total extends Mage_Sales_Model_Quote_Ad
 
 
 
-            if (!$address->getQuote()->getPayment()->hasData()) {
+            if (is_object($address->getQuote()->getPayment()) && !$address->getQuote()->getPayment()->hasData('method_instance')) {
                 return $this;
 
             }

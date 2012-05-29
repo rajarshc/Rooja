@@ -126,7 +126,7 @@ class Mage_Customer_AccountController extends Mage_Core_Controller_Front_Action
      * Login post action
      */
     public function loginPostAction()
-    {  echo "ITS MY TEST"; exit;
+    { 
         if ($this->_getSession()->isLoggedIn()) {
             $this->_redirect('*/*/');
             return;
