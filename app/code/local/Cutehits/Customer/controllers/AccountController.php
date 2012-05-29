@@ -17,7 +17,8 @@ class Cutehits_Customer_AccountController extends Mage_Customer_AccountControlle
         $this->getResponse()->setHeader('Login-Required', 'true');
         $this->loadLayout();
         $this->_initLayoutMessages('customer/session');
-        $this->_initLayoutMessages('catalog/session');
+        $this->_initLayoutMessages('catalog/session'); 
+		echo "Hai";
         $this->renderLayout();
     }
      public function preDispatch()
