@@ -1,4 +1,4 @@
-﻿  
+﻿   
 WDCA SWEET TOOTH™ POINTS AND REWARDS SYSTEM
 END USER LICENSE AGREEMENT (“AGREEMENT”)
 ________________________________________
@@ -101,4 +101,4 @@ Software is accessed and used either for production purposes.
 Sweet Tooth™ rewards and points system, provided solely in source code, including associated technical documentation, and all bug fix updates thereof furnished to Licensee as part of Support Services. 
 
 “Term” means the period commencing upon WDCA’s electronic delivery of the
-Software to Licensee and expiring on the date set out in the Ordering Schedule, unless extended by the mutual written consent of both parties.
+Software to Licensee and expiring on the date set out in the Ordering Schedule, unless extended by the mutual written consent of both parties. TEST
