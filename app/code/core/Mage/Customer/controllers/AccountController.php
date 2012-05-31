@@ -141,25 +141,12 @@ class Mage_Customer_AccountController extends Mage_Core_Controller_Front_Action
                 try {
                     $session->login($login['username'], $login['password']); 
 					
-					/* MY edit place begin */
-					//$collection = Mage::getModel('customer/customer');
-					//$customerCollection = Mage::getModel('customer/customer')->setData('email',$login['username']); 
-					//print_r($customerCollection); exit;
-					
-					$customer = Mage::getModel("customer/customer");
-						//$customer->website_id = $websiteid;
-						//$customer->setStore($store);
-						$customer->loadByEmail($login['username']);
-						$address = Mage::getModel("Customer/Entity_Address_Collection");
-						$address->setCustomerFilter($customer);
-						$addtess->load();
-						print_r($addtess); exit;
-					/* MY edit place end */
-					
-					
                     if ($session->getCustomer()->getIsJustConfirmed()) {
                         $this->_welcomeCustomer($session->getCustomer(), true);
                     }
+					
+					$data = $session->getCustomer()->getData();
+					
                 } catch (Mage_Core_Exception $e) {
                     switch ($e->getCode()) {
                         case Mage_Customer_Model_Customer::EXCEPTION_EMAIL_NOT_CONFIRMED:
@@ -181,7 +168,19 @@ class Mage_Customer_AccountController extends Mage_Core_Controller_Front_Action
                 $session->addError($this->__('Login and password are required.'));
             }
         }
-        $this->_loginPostRedirect();
+		
+        $this->_loginPostRedirect(); 
+		
+		if($data["gender"]==1)
+			{
+					$this->_redirect('men/comune-men.html');
+					
+			}
+			else if($data["gender"]==2)
+			{  
+					$this->_redirect('women/fendi-sunglasses-women.html'); 
+					
+			} 
     }
 
     /**
