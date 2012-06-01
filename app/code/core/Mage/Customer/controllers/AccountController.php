@@ -171,16 +171,6 @@ class Mage_Customer_AccountController extends Mage_Core_Controller_Front_Action
 		
         $this->_loginPostRedirect(); 
 		
-		/*if($data["gender"]==1)
-			{
-					$this->_redirect('men/comune-men.html');
-					
-			}
-			else if($data["gender"]==2)
-			{  
-					$this->_redirect('women/fendi-sunglasses-women.html'); 
-					
-			} */
     }
 
     /**
