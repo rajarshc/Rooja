@@ -168,9 +168,7 @@ class Mage_Customer_AccountController extends Mage_Core_Controller_Front_Action
                 $session->addError($this->__('Login and password are required.'));
             }
         }
-		
         $this->_loginPostRedirect(); 
-		
     }
 
     /**
