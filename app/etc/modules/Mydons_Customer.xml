@@ -1,0 +1,8 @@
+<config>
+	<modules>
+		<Mydons_Customer>
+			<codePool>local</codePool>
+			<active>true</active>	
+		</Mydons_Customer>
+	</modules>
+</config>

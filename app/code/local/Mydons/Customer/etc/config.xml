@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<Mydons_Customer>
+			<version>0.1.0</version>		
+		</Mydons_Customer>
+	</modules>
+	<global>
+		<fieldsets>
+			<customer_account>
+				<mobile><create>1</create><update>1</update></mobile>
+			</customer_account>
+		</fieldsets>
+	   <models>
+	   		<Mydons_Customer>
+				<class>Mydons_Customer_Model</class>
+			</Mydons_Customer>
+	   </models>		
+		<helpers>
+			<Mydons_Customer>
+				<class>Mydons_Customer_Helper</class>
+			</Mydons_Customer>
+		</helpers>
+		<resources>
+			<customerattribute_setup>
+				<setup>
+					<module>Mydons_Customer</module>
+					<class>Mydons_Customer_Model_Entity_Setup</class>
+				</setup>
+			</customerattribute_setup>
+		</resources>
+	</global>
+</config>
