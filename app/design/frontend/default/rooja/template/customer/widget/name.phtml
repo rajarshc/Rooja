@@ -85,9 +85,9 @@
     </div> 
     
     <div class="field phone_number">
-        <label for="<?php echo $this->getFieldId('mobile')?>" class="required"><?php echo $this->__('Mobile') ?><em>*</em></label>
+        <label for="<?php echo $this->getFieldId('mobile')?>" class="required"><?php echo $this->__('Mobile') ?></label>
         <div class="input-box">
-            <input type="text" id="<?php echo $this->getFieldId('mobile')?>" name="<?php echo $this->getFieldName('mobile')?>" value="<?php echo $this->htmlEscape($this->getObject()->getMobile()) ?>" title="<?php echo $this->__('mobile') ?>" class="input-text required-entry" <?php if (!$this->helper('customer')->isLoggedIn() ) {echo 'placeholder="Mobile *"';} ?> <?php echo $this->getFieldParams() ?> />
+            <input type="text" id="<?php echo $this->getFieldId('mobile')?>" name="<?php echo $this->getFieldName('mobile')?>" value="<?php echo $this->htmlEscape($this->getObject()->getMobile()) ?>" title="<?php echo $this->__('mobile') ?>" class="input-text required-entry" <?php if (!$this->helper('customer')->isLoggedIn() ) {echo 'placeholder="Mobile "';} ?> <?php echo $this->getFieldParams() ?> />
         </div>
     </div>
     
