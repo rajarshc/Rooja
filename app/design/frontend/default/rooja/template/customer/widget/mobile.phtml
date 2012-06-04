@@ -24,15 +24,9 @@
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 ?>
-
-
-<label for="<?php echo $this->getFieldId('gender')?>"<?php if ($this->isRequired()) echo ' class="required"' ?>><?php if ($this->isRequired()) echo '<em>*</em>' ?><?php echo $this->__('Gender') ?></label>
-<div class="input-box">
-    <select id="<?php echo $this->getFieldId('gender')?>" name="<?php echo $this->getFieldName('gender')?>" title="<?php echo $this->__('Gender') ?>"<?php if ($this->isRequired()):?> class="validate-select"<?php endif; ?> <?php echo $this->getFieldParams() ?>>
-        <?php $options = Mage::getResourceSingleton('customer/customer')->getAttribute('gender')->getSource()->getAllOptions();?>
-        <?php $value = $this->getGender();?>
-        <?php foreach ($options as $option):?>
-            <option value="<?php echo $option['value'] ?>"<?php if ($option['value'] == $value) echo ' selected="selected"' ?>><?php echo $option['label'] ?></option>
-        <?php endforeach;?>
-    </select>
-</div>
+	<div class="field phone_number">
+        <label for="<?php echo $this->getFieldId('mobile')?>" class="required"><?php echo $this->__('Mobile') ?></label>
+        <div class="input-box">
+            <input type="text" id="<?php echo $this->getFieldId('mobile')?>" name="<?php echo $this->getFieldName('mobile')?>" value="<?php echo $this->htmlEscape($this->getObject()->getMobile()) ?>" title="<?php echo $this->__('mobile') ?>" class="input-text required-entry" <?php if (!$this->helper('customer')->isLoggedIn() ) {echo 'placeholder="Mobile "';} ?> <?php echo $this->getFieldParams() ?> />
+        </div>
+    </div>

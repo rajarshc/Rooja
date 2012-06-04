@@ -188,6 +188,9 @@ jQuery(function() {
                         </div>
                     </div>
                 </li>
+                
+  <?php echo $this->getLayout()->createBlock('customer/widget_mobile')->setObject($this->getFormData())->toHtml() ?>                
+                
 				<?php $_gender = $this->getLayout()->createBlock('customer/widget_gender') ?>
 	            <?php if ($_gender->isEnabled()): ?>
 	                <li id="gender"><?php echo $_gender->setGender($this->getFormData()->getGender())->toHtml() ?></li>
