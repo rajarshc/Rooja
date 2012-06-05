@@ -851,3 +851,9 @@ a[href$=".doc"]:after {content: " (DOC)";}
 .billing_section {width: 50%;}
 
 a#toggleShipping {font-size:14px; margin: 0 0 0 4px;padding: 5px 0;}
+
+#container_payment_method_cashondelivery fieldset{ float:left!important; background:url("/skin/frontend/default/rooja/images/cash_on_delivery_field_set.png"); width:265px; height:132px; display:none;  }
+
+#container_payment_method_cashondelivery fieldset ul{ padding:15px;  }
+
+#checkout_page_custom_text_display{ font-size:13px; color:#2b71c2; margin:15px 0px;    }
