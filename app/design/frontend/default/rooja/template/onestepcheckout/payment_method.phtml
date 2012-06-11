@@ -125,14 +125,14 @@ $subtotal = $totals["subtotal"]->getValue();
 			{ 
 			j('#s_method_shippingrates_Freeshipping').attr("checked","checked");	
 			j('#s_method_shippingrates_Flatrate').removeAttr('checked'); 
-			
-			j('#s_method_shippingrates_Freeshipping').attr('disabled',true);
-			j('#s_method_shippingrates_Flatrate').attr('disabled',true);
 
-			j('#s_method_shippingrates_Freeshipping').show();		
-			j('label[for="s_method_shippingrates_Freeshipping"]').show();			
+			j('#s_method_shippingrates_Freeshipping').hide();		
+			j('label[for="s_method_shippingrates_Freeshipping"]').hide();			
 			j('#s_method_shippingrates_Flatrate').hide();		
-			j('label[for="s_method_shippingrates_Flatrate"]').hide();			
+			j('label[for="s_method_shippingrates_Flatrate"]').hide();	
+
+			j('label[for="shipping_shippingrates_Freeshipping"]').show();			
+			j('label[for="shipping_shippingrates_Flatrate"]').hide();			
 			} 
 
 			if(selectedVal)
@@ -143,14 +143,14 @@ $subtotal = $totals["subtotal"]->getValue();
 				j('#s_method_shippingrates_Flatrate').attr("checked","checked");			
 		
 				j('#s_method_shippingrates_Freeshipping').removeAttr('checked');
-
-				j('#s_method_shippingrates_Freeshipping').attr('disabled',true);
-				j('#s_method_shippingrates_Flatrate').attr('disabled',true);
 				
 				j('#s_method_shippingrates_Freeshipping').hide();		
 				j('label[for="s_method_shippingrates_Freeshipping"]').hide();								
-				j('#s_method_shippingrates_Flatrate').show();
-				j('label[for="s_method_shippingrates_Flatrate"]').show();										
+				j('#s_method_shippingrates_Flatrate').hide();
+				j('label[for="s_method_shippingrates_Flatrate"]').hide();										
+				
+				j('label[for="shipping_shippingrates_Freeshipping"]').hide();			
+				j('label[for="shipping_shippingrates_Flatrate"]').show();			
 				}
 				if(subtotal > 2000)
 				{
@@ -158,14 +158,15 @@ $subtotal = $totals["subtotal"]->getValue();
 				j('#s_method_shippingrates_Freeshipping').attr("checked","checked");				
 
 				j('#s_method_shippingrates_Flatrate').removeAttr('checked'); 
-
-				j('#s_method_shippingrates_Freeshipping').attr('disabled',true);
-				j('#s_method_shippingrates_Flatrate').attr('disabled',true);
 				
-				j('#s_method_shippingrates_Freeshipping').show();		
-				j('label[for="s_method_shippingrates_Freeshipping"]').show();								
+				j('#s_method_shippingrates_Freeshipping').hide();		
+				j('label[for="s_method_shippingrates_Freeshipping"]').hide();								
 				j('#s_method_shippingrates_Flatrate').hide();
 				j('label[for="s_method_shippingrates_Flatrate"]').hide();										
+
+				j('label[for="shipping_shippingrates_Freeshipping"]').show();			
+				j('label[for="shipping_shippingrates_Flatrate"]').hide();			
+				
 				}
 			}
 		});
@@ -179,14 +180,14 @@ $subtotal = $totals["subtotal"]->getValue();
 		j('#container_payment_method_cashondelivery fieldset').show();
 		
 		j('#s_method_shippingrates_Freeshipping').removeAttr('checked');
-
-		j('#s_method_shippingrates_Freeshipping').attr('disabled',true);
-		j('#s_method_shippingrates_Flatrate').attr('disabled',true);
 		
 		j('#s_method_shippingrates_Freeshipping').hide();		
 		j('label[for="s_method_shippingrates_Freeshipping"]').hide();								
-		j('#s_method_shippingrates_Flatrate').show();
-		j('label[for="s_method_shippingrates_Flatrate"]').show();										
+		j('#s_method_shippingrates_Flatrate').hide();
+		j('label[for="s_method_shippingrates_Flatrate"]').hide();										
+
+		j('label[for="shipping_shippingrates_Freeshipping"]').hide();			
+		j('label[for="shipping_shippingrates_Flatrate"]').show();			
 		}
 		
 		if(subtotal > 2000)
@@ -197,13 +198,13 @@ $subtotal = $totals["subtotal"]->getValue();
 
 		j('#s_method_shippingrates_Flatrate').removeAttr('checked'); 
 		
-		j('#s_method_shippingrates_Freeshipping').attr('disabled',true);
-		j('#s_method_shippingrates_Flatrate').attr('disabled',true);
-		
-		j('#s_method_shippingrates_Freeshipping').show();		
-		j('label[for="s_method_shippingrates_Freeshipping"]').show();								
+		j('#s_method_shippingrates_Freeshipping').hide();		
+		j('label[for="s_method_shippingrates_Freeshipping"]').hide();								
 		j('#s_method_shippingrates_Flatrate').hide();
 		j('label[for="s_method_shippingrates_Flatrate"]').hide();										
+
+		j('label[for="shipping_shippingrates_Freeshipping"]').show();			
+		j('label[for="shipping_shippingrates_Flatrate"]').hide();			
 		}
 	});
 	
@@ -212,16 +213,16 @@ $subtotal = $totals["subtotal"]->getValue();
 		j('#s_method_shippingrates_Freeshipping').attr("checked","checked");		
 		j('#s_method_shippingrates_Flatrate').removeAttr('checked');
 
-
-		j('#s_method_shippingrates_Freeshipping').attr('disabled',true);
-		j('#s_method_shippingrates_Flatrate').attr('disabled',true);
-
-		j('#s_method_shippingrates_Freeshipping').show();		
-		j('label[for="s_method_shippingrates_Freeshipping"]').show();			
+		j('#s_method_shippingrates_Freeshipping').hide();		
+		j('label[for="s_method_shippingrates_Freeshipping"]').hide();			
 		j('#s_method_shippingrates_Flatrate').hide();		
-		j('label[for="s_method_shippingrates_Flatrate"]').hide();			
+		j('label[for="s_method_shippingrates_Flatrate"]').hide();	
+		
+		j('label[for="shipping_shippingrates_Freeshipping"]').show();			
+		j('label[for="shipping_shippingrates_Flatrate"]').hide();			
+		
 	});
-	</script>
+</script>
 
 <script type="text/javascript">
 //<![CDATA[
@@ -284,3 +285,29 @@ payment.switchMethod(payment.currentMethod);
 <?php echo $this->getChildHtml('giftcardaccount_scripts');?>
 //]]>
 </script>
+
+<script type="text/javascript" language="javascript">
+		j(document).live(function() { 
+			wantedrow = 3;
+			wantedtd = 1; 
+			introw = 1;
+			inttd = 1;
+			j('.onestepcheckout-totals tr').each(function() {
+				if(introw == wantedrow) 
+				{
+					var tr = this;
+					j('td', tr).each(function()
+					{
+						if(inttd == wantedtd) 
+						{                      
+							j(this).attr('colSpan', '4')
+						}
+						inttd++;
+					});
+				}
+				introw++;
+			});
+			
+		});
+</script>
+
