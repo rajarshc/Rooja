@@ -166,7 +166,7 @@ $(".payment-methods input").live('change', function() {
             <?php else:?>
                 <div class="onestepcheckout-shipping-method">
                     <p class="onestepcheckout-numbers onestepcheckout-numbers-<?php echo $step_counter++; ?>"><?php echo $this->__('Shipping method'); ?></p>
-					<p><strong>Free Shipping on orders more than Rs. 5000</strong></p>
+					<p><strong>Free Shipping on orders more than Rs. 2000</strong></p>
                     <?php if(isset($this->formErrors['shipping_method']) && $this->formErrors['shipping_method']): ?>
                     <div class="onestepcheckout-error onestepcheckout-shipment-method-error">
                         <?php echo $this->__('Please choose a shipping method.'); ?>
