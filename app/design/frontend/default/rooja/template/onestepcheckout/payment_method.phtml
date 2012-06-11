@@ -106,21 +106,122 @@ if($helper->settings['hide_nonfree_payment_methods'])   {
     <?php endif;?>
 </div>
 
+<?php // Get subtotal for shopping cart price rule filtering.
+$totals = Mage::getSingleton('checkout/cart')->getQuote()->getTotals();
+$subtotal = $totals["subtotal"]->getValue();
+ ?>
 <script type="text/javascript">
-	var j = jQuery.noConflict();
+	var j = jQuery.noConflict(); 
+	var subtotal=<?php echo $subtotal; ?>
+	
+		//alert(subtotal);
 
 		j(document).ready(function() {
 		  	var selectedVal = j('#p_method_cashondelivery').is(':checked');
+
+			var creditCard = j('#p_method_Avenues_standard').is(':checked');
+			
+			if(creditCard)
+			{ 
+			j('#s_method_shippingrates_Freeshipping').attr("checked","checked");	
+			j('#s_method_shippingrates_Flatrate').removeAttr('checked'); 
+			
+			j('#s_method_shippingrates_Freeshipping').attr('disabled',true);
+			j('#s_method_shippingrates_Flatrate').attr('disabled',true);
+
+			j('#s_method_shippingrates_Freeshipping').show();		
+			j('label[for="s_method_shippingrates_Freeshipping"]').show();			
+			j('#s_method_shippingrates_Flatrate').hide();		
+			j('label[for="s_method_shippingrates_Flatrate"]').hide();			
+			} 
+
 			if(selectedVal)
 			{
-			j('#container_payment_method_cashondelivery fieldset').show();
+				if(subtotal < 2000)
+				{
+				j('#container_payment_method_cashondelivery fieldset').show();
+				j('#s_method_shippingrates_Flatrate').attr("checked","checked");			
+		
+				j('#s_method_shippingrates_Freeshipping').removeAttr('checked');
+
+				j('#s_method_shippingrates_Freeshipping').attr('disabled',true);
+				j('#s_method_shippingrates_Flatrate').attr('disabled',true);
+				
+				j('#s_method_shippingrates_Freeshipping').hide();		
+				j('label[for="s_method_shippingrates_Freeshipping"]').hide();								
+				j('#s_method_shippingrates_Flatrate').show();
+				j('label[for="s_method_shippingrates_Flatrate"]').show();										
+				}
+				if(subtotal > 2000)
+				{
+				j('#container_payment_method_cashondelivery fieldset').show();
+				j('#s_method_shippingrates_Freeshipping').attr("checked","checked");				
+
+				j('#s_method_shippingrates_Flatrate').removeAttr('checked'); 
+
+				j('#s_method_shippingrates_Freeshipping').attr('disabled',true);
+				j('#s_method_shippingrates_Flatrate').attr('disabled',true);
+				
+				j('#s_method_shippingrates_Freeshipping').show();		
+				j('label[for="s_method_shippingrates_Freeshipping"]').show();								
+				j('#s_method_shippingrates_Flatrate').hide();
+				j('label[for="s_method_shippingrates_Flatrate"]').hide();										
+				}
 			}
 		});
 
-	j("#p_method_cashondelivery").click(function() {
+	j("#p_method_cashondelivery").click(function() { 
+
+		if(subtotal < 2000)
+		{
+		j('#p_method_cashondelivery').attr("checked","checked");
+		j('#s_method_shippingrates_Flatrate').attr("checked","checked");
 		j('#container_payment_method_cashondelivery fieldset').show();
+		
+		j('#s_method_shippingrates_Freeshipping').removeAttr('checked');
+
+		j('#s_method_shippingrates_Freeshipping').attr('disabled',true);
+		j('#s_method_shippingrates_Flatrate').attr('disabled',true);
+		
+		j('#s_method_shippingrates_Freeshipping').hide();		
+		j('label[for="s_method_shippingrates_Freeshipping"]').hide();								
+		j('#s_method_shippingrates_Flatrate').show();
+		j('label[for="s_method_shippingrates_Flatrate"]').show();										
+		}
+		
+		if(subtotal > 2000)
+		{
+		j('#p_method_cashondelivery').attr("checked","checked");
+		j('#s_method_shippingrates_Freeshipping').attr("checked","checked");
+		j('#container_payment_method_cashondelivery fieldset').show();
+
+		j('#s_method_shippingrates_Flatrate').removeAttr('checked'); 
+		
+		j('#s_method_shippingrates_Freeshipping').attr('disabled',true);
+		j('#s_method_shippingrates_Flatrate').attr('disabled',true);
+		
+		j('#s_method_shippingrates_Freeshipping').show();		
+		j('label[for="s_method_shippingrates_Freeshipping"]').show();								
+		j('#s_method_shippingrates_Flatrate').hide();
+		j('label[for="s_method_shippingrates_Flatrate"]').hide();										
+		}
 	});
-</script>
+	
+	j("#p_method_Avenues_standard").click(function() {
+		j('#p_method_Avenues_standard').attr("checked","checked");
+		j('#s_method_shippingrates_Freeshipping').attr("checked","checked");		
+		j('#s_method_shippingrates_Flatrate').removeAttr('checked');
+
+
+		j('#s_method_shippingrates_Freeshipping').attr('disabled',true);
+		j('#s_method_shippingrates_Flatrate').attr('disabled',true);
+
+		j('#s_method_shippingrates_Freeshipping').show();		
+		j('label[for="s_method_shippingrates_Freeshipping"]').show();			
+		j('#s_method_shippingrates_Flatrate').hide();		
+		j('label[for="s_method_shippingrates_Flatrate"]').hide();			
+	});
+	</script>
 
 <script type="text/javascript">
 //<![CDATA[
