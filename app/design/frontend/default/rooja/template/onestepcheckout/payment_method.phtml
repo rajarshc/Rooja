@@ -285,29 +285,3 @@ payment.switchMethod(payment.currentMethod);
 <?php echo $this->getChildHtml('giftcardaccount_scripts');?>
 //]]>
 </script>
-
-<script type="text/javascript" language="javascript">
-		j(document).live(function() { 
-			wantedrow = 3;
-			wantedtd = 1; 
-			introw = 1;
-			inttd = 1;
-			j('.onestepcheckout-totals tr').each(function() {
-				if(introw == wantedrow) 
-				{
-					var tr = this;
-					j('td', tr).each(function()
-					{
-						if(inttd == wantedtd) 
-						{                      
-							j(this).attr('colSpan', '4')
-						}
-						inttd++;
-					});
-				}
-				introw++;
-			});
-			
-		});
-</script>
-
