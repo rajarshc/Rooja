@@ -36,43 +36,42 @@
 <?php 
 $i = 0;
 $categories = Mage::helper('catalog/category')->getStoreCategories(); 
+$first_index = 0;
+$second_index = 0;
 
 foreach ($categories as $_category) 
 { 
-
     if($_category->hasChildren())
 	{
-
         $_category->getId(); // category id  
-		
 		if($_category->getId() !=5)
 		{  
-				
+						
         foreach($_category->getChildren() as $subcategory)
 		{ 
 		
-		$c = Mage::getModel('catalog/category')->load($subcategory->getId()); 
-		
-		$product_parent_id = $c['parent_id'];
-		
-		//code for current user gender get
-		$session = Mage::getSingleton('customer/session'); 
-		$customer = $session->getCustomer();
-		if($customer['gender']=='1')
-		{
-			$gender='1';
-			$category_id='4';
-		}
-		else if($customer['gender']=='2')
-		{
-			$gender='2';
-			$category_id='58';
-		}
-		else
-		{
-			$gender='2';
-			$category_id='58';
-		}
+			$c = Mage::getModel('catalog/category')->load($subcategory->getId()); 
+			
+			$product_parent_id = $c['parent_id'];
+			
+			//code for current user gender get
+			$session = Mage::getSingleton('customer/session'); 
+			$customer = $session->getCustomer();
+			if($customer['gender']=='1')
+			{
+				$gender='1';
+				$category_id='4';
+			}
+			else if($customer['gender']=='2')
+			{
+				$gender='2';
+				$category_id='58';
+			}
+			else
+			{
+				$gender='2';
+				$category_id='58';
+			}
 		
 
             if($c->getIsActive()) 
@@ -90,85 +89,80 @@ foreach ($categories as $_category)
 					{
 					if (($enddate > $today && $enddate < $fivedays && $startdate < $today) || ($enddate > $today && $enddate > $fivedays && $startdate < $today)) 
 					{  
-					
-					
-					//Filter the data's gender wise with category
-					if($customer['gender']==$gender && $product_parent_id==$category_id)
-					{ 
-
-						if($i == 3)
-						{ 
-							?>
-							<article class="homeAd2 fl masonry">
-								<a href="/rewardsref/customer/index/"><img src="<?php echo $this->getSkinUrl('images/graphics/spreadthelove3.jpg'); ?>" alt="Invite Friends and get cash" /></a>
-							</article>
-							<article class="homeSale size2 fl masonry">
-				                <a href="<?php echo  $c->getURL() ?>" title="View sale details for: <?php echo $c->getName(); ?>" class="product-image"><img src="/media/catalog/category/<?php echo $c->getThumbnail(); ?>" alt="" width="236px" /></a>
-				                <h2 class='blackBg'><?php echo $c->getName(); ?></h2>
-						
-								<p>Sale ends in <?php echo timeBetweenNowAndDeadline($enddate); ?></p>
-				            </article>
-				  <?php } 
-						else 
-						{ ?>
-             
-             <article class="homeSale size2 fl masonry">
-                <a href="<?php echo  $c->getURL() ?>" title="View sale details for: <?php echo $c->getName(); ?>" class="product-image"><img src="/media/catalog/category/<?php echo $c->getThumbnail(); ?>" alt="" width="236px" /></a>
-                <h2<?php if($i%2==1) echo " class='blackBg'"; ?>><?php echo $c->getName(); ?></h2>
-				<p>Sale ends in <?php echo timeBetweenNowAndDeadline($enddate); ?></p>
-            </article>
-				<?php } $i++; 
-				}   //gender filter if condition end
-				else{ 
-				
- 						if($i == 3)
-						{  
-							 
-							$another_catogory[] = '<article class="homeAd2 fl masonry">
-								<a href="/rewardsref/customer/index/"><img src="'.$this->getSkinUrl("images/graphics/spreadthelove3.jpg").'" alt="Invite Friends and get cash" /></a>
-							</article>
-							<article class="homeSale size2 fl masonry">
-				                <a href="'.$c->getURL().'" title="View sale details for:'.$c->getName().'" class="product-image"><img src="/media/catalog/category/'.$c->getThumbnail().'" alt="" width="236px" /></a>
-				                <h2 class="blackBg">'.$c->getName().'</h2>
-						
-								<p>Sale ends in '.timeBetweenNowAndDeadline($enddate).'</p>
-				            </article>';
-				   } 
-						else 
-						{ 
-             
-           $another_catogory[]='<article class="homeSale size2 fl masonry">
-                <a href="'.$c->getURL().'" title="View sale details for:'.$c->getName().'" class="product-image"><img src="/media/catalog/category/'.$c->getThumbnail().'" alt="" width="236px" /></a>
-                <h2';
-                           if($i%2==1){
-                                 $another_catogory[] =   ' class="blackBg"';
-                           }
-                           $another_catogory[] = '>'.$c->getName().'</h2>
-<p>Sale ends in '.timeBetweenNowAndDeadline($enddate).'</p>
-           </article>';
-				 } $i++; 
 			
-				} //gender filter else condition end
+					//Filter the data's gender wise with category
+				 	if($customer['gender']==$gender && $product_parent_id==$category_id)
+					{  
+						 $first_catogory[$first_index]='<article class="homeSale size2 fl masonry">
+						 <a href="'.$c->getURL().'" title="View sale details for:'.$c->getName().'" class="product-image"><img src="/media/catalog/category/'.$c->getThumbnail().'" alt="" width="236px" /></a>
+						<h2';
+								   if($i%2==1)
+								   {
+										 $first_catogory[$first_index] = $first_catogory[$first_index].' class="blackBg"';
+								   }
+				   $first_catogory[$first_index] = $first_catogory[$first_index].'>'.$c->getName().'</h2><p>Sale ends in '.timeBetweenNowAndDeadline($enddate).'</p></article>'; 
+		
+							 $i++;
+							 $first_index++; 
+							
+				}   //gender filter if condition end
+				else
+				{ 
+				   $another_catogory[$second_index]='<article class="homeSale size2 fl masonry">
+						<a href="'.$c->getURL().'" title="View sale details for:'.$c->getName().'" class="product-image"><img src="/media/catalog/category/'.$c->getThumbnail().'" alt="" width="236px" /></a>
+						<h2';
+								   if($i%2==1)
+								   {
+										 $another_catogory[$second_index] = $another_catogory[$second_index].' class="blackBg"';
+								   }
+								   
+				   $another_catogory[$second_index] = $another_catogory[$second_index].'>'.$c->getName().'</h2><p>Sale ends in '.timeBetweenNowAndDeadline($enddate).'</p></article>';
+		
+						 $i++;
+						 $second_index++; 
+				}   //gender filter else condition end 
 				
 				}
-				}
-				}
-				}
-				}
-				}
-				} 
-				
-}?>			
- 
-<?php  
-		//print the home page top colletion for oppsite gender colletion
-		$another_colletions =$another_catogory; 
-
-		foreach($another_colletions as $$var)
-		{
-		echo $$var;
+			  }
+			  }
+			  }
 		}
+	}
+} 
+}
 
+            // Printing Home Top sales Colletion for men and women vice versa.			
+			$count = 0;
+			$first_collection = $first_catogory;	 
+			
+			$love_sym = $this->getSkinUrl('images/graphics/spreadthelove3.jpg');
+			$love_categoty ='<article class="homeAd2 fl masonry"><a href="/rewardsref/customer/index/"><img src="'.$love_sym.'" alt="Invite Friends and get cash" /></a></article>';
+								
+			//printing  first colletion for loged in gender
+			foreach($first_collection as $colletion)
+			{ 
+			 echo $colletion;
+			 $count++;
+				 if($count == 3)
+				 { 
+				  // printing invite friend box
+				  echo $love_categoty;
+				 }
+			}
+
+			//print the home page top colletion for oppsite gender colletion
+			$another_colletions = $another_catogory; 
+		    $count_one = count($another_catogory);
+			foreach($another_colletions as $var)
+			{
+			echo $var;
+			$count++;
+				 if($count == 3)
+				 { 
+				  // printing invite friend box
+				  echo $love_categoty;
+				 }
+			}
 ?>
 
 <script type="text/javascript">

@@ -59,7 +59,7 @@ class Mage_Customer_Block_Widget_Mobile extends Mage_Customer_Block_Widget_Abstr
      */
     public function isRequired()
     {
-        return (bool)$this->_getAttribute('nobile')->getIsRequired();
+        return (bool)$this->_getAttribute('mobile')->getIsRequired();
     }
 
     /**
