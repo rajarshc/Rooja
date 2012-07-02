@@ -50,6 +50,7 @@ class Mage_Adminhtml_Block_Customer_Grid extends Mage_Adminhtml_Block_Widget_Gri
             ->addAttributeToSelect('email')
             ->addAttributeToSelect('created_at')
             ->addAttributeToSelect('group_id')
+			->addAttributeToSelect('mobile')
             ->joinAttribute('billing_postcode', 'customer_address/postcode', 'default_billing', null, 'left')
             ->joinAttribute('billing_city', 'customer_address/city', 'default_billing', null, 'left')
             ->joinAttribute('billing_telephone', 'customer_address/telephone', 'default_billing', null, 'left')
@@ -104,6 +105,12 @@ class Mage_Adminhtml_Block_Customer_Grid extends Mage_Adminhtml_Block_Widget_Gri
             'header'    => Mage::helper('customer')->__('Telephone'),
             'width'     => '100',
             'index'     => 'billing_telephone'
+        ));
+		
+		$this->addColumn('mobile', array(
+            'header'    => Mage::helper('customer')->__('mobile'),
+            'width'     => '100',
+            'index'     => 'mobile'
         ));
 
         $this->addColumn('billing_postcode', array(

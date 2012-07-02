@@ -1,0 +1,350 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+/**
+ * Template for Mage_Page_Block_Html
+ */
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns:fb="http://www.facebook.com/2008/fbml" xmlns:og="http://opengraphprotocol.org/schema/" xmlns="http://www.w3.org/1999/xhtml"  xml:lang="<?php echo $this->getLang() ?>" lang="<?php echo $this->getLang() ?>" dir="ltr">
+<head>
+<?php echo $this->getChildHtml('lockdownhead') ?>
+<meta property="og:title" content="Join Rooja, a members only shopping club and luxury boutique."/>
+<meta property="og:image" content="<?php echo $this->getSkinUrl('images/icons/rooja-logo-fb.png') ?>"/>
+<meta property="og:description" content="Thought of you guys when I saw this. Visit Rooja.com its got some good fashion picks from internationally known designers and brands at up to 60% off. You can thank me later, for now join the club. Membership is free ;) 
+
+P.S. Hurry!"/>
+<script type="text/javascript">
+  var _kmq = _kmq || [];
+  function _kms(u){
+    setTimeout(function(){
+      var s = document.createElement('script'); var f = document.getElementsByTagName('script')[0]; s.type = 'text/javascript'; s.async = true;
+      s.src = u; f.parentNode.insertBefore(s, f);
+    }, 1);
+  }
+  _kms('//i.kissmetrics.com/i.js');_kms('//doug1izaerwt3.cloudfront.net/90e261dfe8177c022fecc9c459eb2c4e1a6fc4d0.1.js');
+</script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-22154361-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+<script type="text/javascript">
+(function ($) {
+	
+	$(document).ready(function() {
+
+		$("a.fancyboxLink").fancybox({
+			autoScale: true,
+			titleShow: false,
+			overlayColor: "#111",
+			type: "inline"
+		});
+		
+	});
+
+})(jQ);
+</script>
+<?php Mage::getSingleton('customer/session')->setBeforeAuthUrl($this->getRequest()->getRequestUri());  //save requested URL for later redirection ?>
+<?php if(Mage::getSingleton('customer/session')->isLoggedIn() && ($agent !="facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)")) {  // if not logged in
+    header("Status: 301");
+	$base_url = Mage::getBaseUrl();
+	header('Location: '.$base_url."home"); 
+    exit; 
+	
+	} ?>
+</head>
+<body class="">
+<?php echo $this->getChildHtml('after_body_start') ?>
+	<?php echo $this->getChildHtml('global_notices') ?>
+	<?php echo $this->getChildHtml('global_messages') ?>
+
+	
+    <script src="/js/jquery.defaultvalue.js" type="text/javascript"></script> 
+<script type="text/javascript">
+(function ($) {
+	
+	$(document).ready(function() {
+		
+		try {
+		
+			$('input[type="text"], input[type="password"]').defaultValue({
+				preferPlaceholder: true
+			});
+			
+		} catch (e) {
+			// Silently dismiss ssshhhhhhhhhh!!!
+		}
+	
+		setTimeout(function() {
+			// Chrome does not fire a change event when autofilling forms
+			// To prevent weird overlap with defaultValue and Chrome autofill,
+			// fire your own change event after 100 or so milliseconds
+			$('input[type="text"]').change();
+		}, 100);
+		
+		$("a#loginTab").click(function () {
+			$("#getInvitedCont").hide();
+			$("#loginCont").show();
+			$("#loginTab").addClass('selected');
+			$("#getInvitedTab").removeClass('selected');
+			$(".messages").hide();
+			return false;
+		});
+		$("a#getInvitedTab").click(function () {
+			$("#getInvitedCont").show();
+			$("#loginCont").hide();
+			$("#loginTab").removeClass('selected');
+			$("#getInvitedTab").addClass('selected');
+			$(".messages").hide();
+			return false;
+		});
+		
+		
+		
+		/*****************
+		 ** CROSSFADER! **
+		 *****************/
+		 
+		// Setup some vars for crossfader
+		var currentIndex = 0,
+    	    nextIndex = 1;
+    	
+		// Hide all and fade in first
+		$('ul.slideshow li').hide();
+		$('ul.slideshow li').eq(currentIndex).fadeIn(2000);
+		
+		setTimeout(function () {
+		    crossFadeImages(currentIndex, nextIndex)
+		}, 4000);
+		
+	
+	});
+	
+	
+	function crossFadeImages (current, next) {
+	    var $slideshow = $('ul.slideshow li');
+	    
+	    $slideshow.eq(current).fadeOut(2000);
+	    $slideshow.eq(next).fadeIn(2000);
+	    
+	    current = next;
+	    next++;
+	    if (next >= $slideshow.length) {
+	        next = 0;
+	    }
+	    
+	    setTimeout(function () {
+	        crossFadeImages(current, next);
+	    }, 4000);
+	    
+	}
+	
+})(jQ);
+</script>
+<div id="notifyWrapper">
+<div class="wrapper">
+	<nav id="loginTabs">
+		<ul>
+			<li><a href="#loginCont" id="loginTab" class="tr selected">Login</a></li>
+			<li><a href="#getInvitedCont" id="getInvitedTab" class="tr">Get Invited</a></li>
+		</ul>
+	</nav>
+<header id="mainHeader" class="clear login">
+	<h1 id="logo" class="tr">Rooja</h1>
+	<p id="highlight" class="tr">Member&rsquo;s only shopping club. Save up to 60% off retail.</p>
+</header><!--End Header-->
+<section id="content" class="body">
+	<div id="loginCont">
+	  <?php  echo $this->getMessagesBlock()->getGroupedHtml() ?>
+	<h2 id="members" class="tr">Members Sign In</h2>
+	<a href="<?php echo Mage::getBaseUrl(); ?>customer/account/forgotpassword/" id="forgetPass">Forgot your password?</a>
+	
+    <form action="<?php echo Mage::getBaseUrl(); ?>customer/account/loginPost/" method="post" id="login-form">
+        <div class="col2-set">
+	
+			<ul class="form-list">
+                <li>
+                    <label for="email" class="required">Email Address</label>
+                    <div class="input-box">
+                        <input type="text" name="login[username]" value="<?php echo $this->htmlEscape($this->getUsername()) ?>" id="email" class="input-text required-entry validate-email" title="Email Address" placeholder="Email Address" />
+                    </div>
+                </li>
+                <li>
+                    <label for="pass" class="required">Password</label>
+                    <div class="input-box">
+                        <input type="password" name="login[password]" class="input-text required-entry validate-password" id="pass" title="Password" placeholder="Password" />
+                    </div>
+                </li>
+            </ul>
+				<button id="fBConnect" rel="facebook-connect" type="button" title="<?php echo $this->__('Connect with Facebook') ?>" class="button"></button>
+				<button type="submit" class="button tr" title="<?php echo $this->__('Login') ?>" name="send" id="send2"><span><span><?php echo $this->__('Login') ?></span></span></button>
+	</div>
+	</form>
+	<br/>
+	<p>Having trouble? Email us at <a href="mailto:support@rooja.in">support@rooja.in</a></p>
+	</div>
+	<div style="display:none" id="getInvitedCont">
+	<h2 id="earlyAccess" class="tr">Become a Member</h2>
+	<p>Join our members-only community and shop must have brands at up to 60% off retail</p>
+	<link href="http://my.betali.st/widget/y2jd9dtr.css" rel="stylesheet" /><script src="http://my.betali.st/widget/y2jd9dtr.js" id="MyBetaList"></script>
+	
+	<p class="alignRight">Free membership by invitation only.</p>
+	</div>	
+</section><!--End Content-->
+</div>
+	<section id="brands">
+		<ul class="slideshow">
+			<li><img src="<?php echo $this->getSkinUrl('images/splash/header/international-brands.png') ?>" alt="International Brands"></li>
+			<li><img src="<?php echo $this->getSkinUrl('images/splash/header/great-value.png') ?>" alt="Great Value"></li>
+			<li><img src="<?php echo $this->getSkinUrl('images/splash/header/luxury-fashion.png') ?>" alt="Luxury Fashion"></li>
+			<li><img src="<?php echo $this->getSkinUrl('images/splash/header/free-shipping.png') ?>" alt="Free Shipping"></li>
+			<li><img src="<?php echo $this->getSkinUrl('images/splash/header/free-returns.png') ?>" alt="Free Returns"></li>
+			<li><img src="<?php echo $this->getSkinUrl('images/splash/header/cash-on-delivery.png') ?>" alt="Cash on Delivery"></li>
+		</ul>
+	</section> 
+</div>
+    
+    
+	<nav id="navLinks">
+		<div class="navCont">
+		<ul>
+			<li><a href="http://rooja.com">Home</a></li>
+			<li><a href="#aboutWrapper" class="fancyboxLink">About</a></li>
+			<li><a href="https://roojacareers.resumetracker.com/public" target="_blank">Careers</a></li>
+			<li><a href="#contactWrapper" class="fancyboxLink">Contact</a></li>
+			<li><a href="http://blog.rooja.com" target="_blank">Blog</a></li>
+		</ul>
+
+		<div id="socialLinks" class="fr">
+			<a href="http://www.twitter.com/roojafashion" title="follow rooja on twitter" target="_blank" id="twitter" class="tr">Follow us on Twitter</a>
+
+			<article id="fbLikes">
+				<fb:like href="http://www.facebook.com/roojafashion" send="false" layout="button_count" width="60" show_faces="false" font="arial" ref="website"></fb:like>
+
+			</article>
+		</div>
+		</div>
+	</nav>
+	<!--Begin ABOUT section-->
+	<div style="display:none;">
+		<div id="aboutWrapper">
+			<div class="wrapper">
+		<header id="mainHeader">
+
+			<h1 id="about" class="tr">About</h1>
+			<p>Rooja.com is a membership by invitation website that holds brand specific sale events at 10 AM everyday. Each sale lasts for a few days and offers up to 60% in discounts. Best part, membership is free!</p>
+			<div class="divider"></div>
+		</header><!--End Header-->
+		<section id="content" class="body">
+			<h2 id="roojaProducts" class="tr">Rooja&rsquo;s Products</h2>
+			<p>Rooja delivers hand picked selections of apparel, accessories and shoes. We bring you the best of brands and designers from all around the world at mouth-watering prices.</p>
+
+			<div class="divider clear"></div>
+
+			<h2 id="roojaPromises" class="tr">Rooja&rsquo;s Promises:</h2>
+			<p>Strictly Imported International Brands &amp; Designers + Select Indian Designers.</p>
+			<p>Carefully chosen products.</p>
+			<p>100% Authentic Supplies.</p>
+			<p>Stringent quality control before dispatch.</p>
+			<p>Full refund or store credit? Your choice.</p>
+			<p>A customer service team that loves to interact and is hungry to serve. We are always waiting for your call.</p>
+			<div class="divider"></div>
+
+			<h2 id="roojaValues" class="tr">Rooja&rsquo;s Core Beliefs:</h2>
+			<p><em>&ldquo;Feel Special&rdquo;</em></p>
+
+			<p>We believe your observations, interactions and experiences make you special. At Rooja, we strive to create such experiences in every interaction you choose to have with us.</p>
+
+			<p><strong>Queries? Please email <a href="mailto:support@rooja.in">support@rooja.in</a></strong></p>
+
+		</section><!--End Content-->
+		</div>
+		</div>
+	</div><!--End ABOUT section-->
+	<!--Begin CONTACT section-->
+	<div style="display:none;">
+		<div id="contactWrapper">
+		<div class="wrapper">
+		<header id="mainHeader">
+			<h1 id="logo" class="tr">Rooja</h1>
+
+		</header><!--End Header-->
+		<section id="content" class="body static">
+			<h2 id="contactHeader" class="tr">Contact Us</h2>
+			<p>For general inquiries, help &amp; support and press and media requests please use the form below or email us at <a href="mailto:support@rooja.in">support@rooja.in</a>. You can also reach us at +91-8080622277 for Customer Care.</p>
+			
+			<form action="/contacts/index/post" id="contactForm" method="post">
+				<label for="name">Your Name:</label>
+				<input name="name" id="name" title="<?php echo Mage::helper('contacts')->__('Name') ?>" class="input-text required-entry" type="text" />
+				<label for="subject">Subject:</label>
+				<input name="subject" id="subject" title="<?php echo Mage::helper('contacts')->__('Subject') ?>" class="input-text required-entry" type="text" />
+				<label for="contactEmail">Your Email:</label>
+				<input name="email" id="contactEmail" title="<?php echo Mage::helper('contacts')->__('Email') ?>" class="input-text required-entry validate-email" type="text" />
+				<textarea name="comment" id="comment" title="<?php echo Mage::helper('contacts')->__('Comment') ?>" class="required-entry input-text" cols="5" rows="3" placeholder="Your Message"></textarea>
+			                
+			        <input type="text" name="hideit" id="hideit" value="" style="display:none !important;" />
+			        <button type="submit" id="submitBtn" title="<?php echo Mage::helper('contacts')->__('Submit') ?>" class="button"><span><span><?php echo Mage::helper('contacts')->__('Send!') ?></span></span></button>
+
+
+	</form>
+	
+
+			<h2 id="socialMedia" class="tr">Social Media</h2>
+			<a href="http://twitter.com/roojafashion" class="twitter-follow-button" data-button="grey" data-text-color="#FFFFFF" data-link-color="#00AEFF" data-show-count="false">Follow @roojafashion</a>
+
+		<fb:like href="http://facebook.com/roojafashion" send="false" width="350" show_faces="true" colorscheme="dark" font="arial"></fb:like>
+
+			<script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>
+			<p class="clear">Don&rsquo;t forget to follow us on <a href="http://facebook.com/roojafashion" target="_blank" title="Join us on Facebook">Facebook</a> and <a href="http://twitter.com/roojafashion" target="_blank" title="Follow us on Twitter">Twitter</a>. We will respond to your tweets and wall posts too!</p>
+		</section><!--End Content-->
+		</div>
+
+		</div>
+	</div>
+	<!--End CONTACT section-->
+<?php echo $this->getAbsoluteFooter() ?>
+</body>
+</html>
+<script type="text/javascript">
+//<![CDATA[
+    var contactForm = new VarienForm('contactForm', true);
+//]]>
+
+	//REDIRECTS PAGE TO A THANK YOU PAGE!
+	//	elem = $("contactForm"); 
+	//	elem.writeAttribute('action', 'thankyou'); 
+
+</script>

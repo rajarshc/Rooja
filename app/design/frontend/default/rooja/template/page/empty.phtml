@@ -44,7 +44,9 @@
 <?php Mage::getSingleton('customer/session')->setBeforeAuthUrl($this->getRequest()->getRequestUri());  //save requested URL for later redirection
 if(!Mage::getSingleton('customer/session')->isLoggedIn() && ($agent !="facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)")) {  // if not logged in
     header("Status: 301");
-    header('Location: '.$this->getUrl('customer/account/login')) ;  // send to the login page
+   // header('Location: '.$this->getUrl('customer/account/login')) ;  // send to the login page
+   $base_url = Mage::getBaseUrl();
+	header('Location: '.$base_url); 
     exit; 
 } ?>
 <body class="page-empty <?php echo $this->getBodyClass()?$this->getBodyClass():'' ?>">

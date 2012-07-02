@@ -60,6 +60,11 @@
 				    <template>page/1column-static.phtml</template>
 				</one_column_static>
 				
+				<one_column_home_static>
+				    <label>1 Column (Login static)</label>
+				    <template>page/1column-homestatic.phtml</template>
+				</one_column_home_static>
+				
                 <two_columns_left module="page" translate="label">
                     <label>2 columns with left bar</label>
                     <template>page/2columns-left.phtml</template>

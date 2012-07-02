@@ -169,6 +169,8 @@ class Mage_Customer_AccountController extends Mage_Core_Controller_Front_Action
             }
         }
         $this->_loginPostRedirect(); 
+		// page redirect to home page after login
+		$this->_redirect('home'); 
     }
 
     /**
