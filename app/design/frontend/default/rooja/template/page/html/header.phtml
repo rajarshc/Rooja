@@ -89,10 +89,11 @@ function timeBetweenNowAndDeadline($deadline) {
 	<div class="container">
 	<h2 id="logo"><a href="/index.php" class="tr">Rooja Fashion</a></h2>
 	<nav id="mainNav">
-<ul>
+<!-- <ul> -->
 
 <?php 
-$i = 1;
+ echo $this->getLayout()->createBlock('cms/block')->setBlockId('top_menu')->toHtml();
+/* $i = 1;
 $j = 1;
 $categories = Mage::helper('catalog/category')->getStoreCategories();
 $twodays = strtotime(date('y-m-d H:G:00', strtotime("+2 days")));
@@ -162,9 +163,9 @@ foreach ($categories as $_category){
 
 	echo '</ul></div></li>';
     }
-}
+} */
 ?>
-</ul>
+<!-- </ul> -->
 </nav>
 	<?php if(isset($_SERVER['HTTP_USER_AGENT'])){$agent = $_SERVER['HTTP_USER_AGENT'];}?>
 	<?php if($agent =="facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)"){}else{ ?>

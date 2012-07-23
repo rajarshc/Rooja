@@ -31,22 +31,35 @@
  * @see Mage_Catalog_Block_Product_List
  */
 ?>
-</p></div>
-
-<?php $top_sales = $this->homePageTopSales() ?>
-
-        <?php echo $top_sales; ?>
-        
-<script type="text/javascript">
-	jQuery(document).ready(function(){
-		jQuery(".homeSale p").hide();
-		jQuery(".homeSale").hover(function () {
-		    jQuery(this).find('p').fadeIn(500);
-		  }, 
-		  function () {
-		    jQuery(this).find('p').fadeOut(500);
-		  });
-	 });
+<section id="extraSales">
+	<div class="container">
+		<section id="endingSoon" class="clear">
+			<h2>Boutiques</h2>
+<?php 
+// this section load from Mage_Catalog_Block_Product_Homepage
+	$boutique_collction = $this->homePageBoutique();
+    echo $boutique_collction; 
+ ?>
+ 
+ </section>
+		
+<br class="clear" />
+		<section id="boutiquesHome" class="col3 fl">
+			<h2>Sales Ending Soon</h2>
 			
-</script>
-<div><p>
+			<?php $homepage_sale_ending = $this->homePageSalesEnding();
+    		echo $homepage_sale_ending; 
+			?>
+			
+		</section>
+	
+	
+	<section id="upcomingSales" class="col1 fr noMargin">
+			<h2>Upcoming</h2>
+	<?php  $homepage_upcomming_sales = $this->homePageUpcomming();
+    echo $homepage_upcomming_sales; 
+	?>
+		</section>
+		</div>
+</section>
+
