@@ -447,7 +447,7 @@ class Mage_Catalog_Block_Navigation extends Mage_Core_Block_Template
 
 
 	public function menuToplevel()
-		{
+	{
 		    $i = 1;
 			$j = 1;
 			$categories = Mage::helper('catalog/category')->getStoreCategories();
@@ -456,59 +456,36 @@ class Mage_Catalog_Block_Navigation extends Mage_Core_Block_Template
 			foreach ($categories as $_category){
 				if($_category->hasChildren()){
 					
-					$parent_cat_id = $_category->getId();
-					
-					if($parent_cat_id !=5){
+					if($_category->getId() !=5){
 						echo '<li><a href="'.$_category->getURL().'">' . $_category->getName() . '</a>';
 					}else{
 						echo '<li class="last"><a href="'.$_category->getURL().'">' . $_category->getName() . '</a>';
 					}
 				echo '<div><ul>';
-					$category_id = $_category->getId(); // category id
-					
-					if($category_id !=5){
+					$_category->getId(); // category id
+					if($_category->getId() !=5){
 					//foreach($_category->getChildren() as $subcategory){
 					//$c = Mage::getModel('catalog/category')->load($subcategory->getId());
 				$subcategory = $_category->getChildren();
 			 	$child_id_explode = explode(",",$subcategory);
-				
-				$trace_array = array();
-				$all_elements = array();
-				
-				$child_id_explode = Mage::getModel('catalog/category')->getCategories($parent_cat_id);
-				
+						
 				foreach($child_id_explode as $subcategory)
 				{    
-				//$c = Mage::getModel('catalog/category')->load($subcategory); 
-				
-				$c = $subcategory;
+				$c = Mage::getModel('catalog/category')->load($subcategory); 
 				
 						if($c->getIsActive()){ // check if category is active
 							if (!$c->getSale_start_date() == null) {
-								
-								$sale_start_date = $c->getSale_start_date();
-								
-								$startdate = strtotime(date('y-m-d', strtotime($sale_start_date)) . ' ' . $c->getSale_start_time() . ':00');
+								$startdate = strtotime(date('y-m-d', strtotime($c->getSale_start_date())) . ' ' . $c->getSale_start_time() . ':00');
 								$enddate = strtotime(date('y-m-d', strtotime($c->getSale_end_date())) . ' ' . $c->getSale_end_time() . ':00');
-
-								if (timeBetweenNowAndDeadline($enddate) != 0 && $enddate > $twodays && $startdate < $today) 
-								{
-									
-									$trace_array[] = $subcategory;
-									
-									if ($i == 1) 
-									{
+								
+								if (timeBetweenNowAndDeadline($enddate) != 0 && $enddate > $twodays && $startdate < $today) {
+									if ($i == 1) {
 										echo '<li class="navSectTitle">New Sales</li>';
 										echo '<li><a href="'. $c->getURL() .'">' . $c->getName() . '</a></li>';
-									} else 
-									{
+									} else {
 										echo '<li><a href="'. $c->getURL() .'">' . $c->getName() . '</a></li>';
 									}
 								$i++;
-								}
-								else
-								{
-								 $all_elements[] = $subcategory;
 								}
 							}
 						}
@@ -520,66 +497,28 @@ class Mage_Catalog_Block_Navigation extends Mage_Core_Block_Template
 					//foreach($_category->getChildren() as $subcategory){
 					//$c = Mage::getModel('catalog/category')->load($subcategory->getId());
 				$subcategory = $_category->getChildren();
-			 	$child_id_explode = explode(",",$subcategory);	
-				
-				$nopresent = array();
-								
-				//foreach($child_id_explode as $subcategory)
-				foreach($all_elements as $subcategory)
+			 	$child_id_explode = explode(",",$subcategory);					
+				foreach($child_id_explode as $subcategory)
 				{    
-				if(in_array($subcategory,$trace_array))
-				{
-					$nopresent[] = $subcategory;
-				}
-				else
-				{
 				$c = Mage::getModel('catalog/category')->load($subcategory); 
-				/*
-				echo "<pre>Single Object : ";
-				 print_r($c);
-				echo "</pre>";
-				exit;
-				*/
-				
-						if($c->getIsActive())
-						{ // check if category is active
-							if (!$c->getSale_start_date() == null) 
-							{
+						if($c->getIsActive()){ // check if category is active
+							if (!$c->getSale_start_date() == null) {
 								$startdate = date('y-m-d', strtotime($c->getSale_start_date())) . ' ' . $c->getSale_start_time() . ':00';
 								
 								$enddate = strtotime(date('y-m-d', strtotime($c->getSale_end_date())) . ' ' . $c->getSale_end_time() . ':00');
-								if (timeBetweenNowAndDeadline($enddate) != 0 && $enddate < $twodays && $startdate < $today) 
-								{
-									if ($j == 1) 
-									{
+								if (timeBetweenNowAndDeadline($enddate) != 0 && $enddate < $twodays && $startdate < $today) {
+									if ($j == 1) {
 										echo '<li class="navSectTitle">Ending Soon</li>';
 										echo '<li><a href="'. $c->getURL() .'">' . $c->getName() . '</a></li>';
-									} 
-									else 
-									{
+									} else {
 										echo '<li><a href="'. $c->getURL() .'">' . $c->getName() . '</a></li>';
 									}
 								$j++;
 								}
-							} //getsalestart date == null if
+							}
 							
-						}//get is active
-					  }//end else loop check for trace array
-					}//end for loop
-					
-					/*
-					echo "<pre>noarray :";
-					 print_r($nopresent);
-					echo "</pre>";
-
-					echo "<pre>allelements :";
-					 print_r($all_elements);
-					echo "</pre>";
-								
-					
-					exit;
-					*/
-					
+						}
+					}
 			}else{
 				//foreach($_category->getChildren() as $subcategory){
 				//$c = Mage::getModel('catalog/category')->load($subcategory->getId());
@@ -596,7 +535,7 @@ class Mage_Catalog_Block_Navigation extends Mage_Core_Block_Template
 								$j=1;
 			
 				echo '</ul></div></li>';
-    	}
+    }
 	} 
 		
 	}
