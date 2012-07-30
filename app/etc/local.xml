@@ -27,24 +27,6 @@
 -->
 <config>
     <global>
-		<cache>
-		  <backend>memcached</backend><!-- apc / memcached / empty=file -->
-		  <memcached><!-- memcached cache backend related config -->
-			<servers><!-- any number of server nodes can be included -->
-			  <server>
-				<host><![CDATA[127.0.0.1]]></host>
-				<port><![CDATA[11211]]></port>
-				<persistent><![CDATA[1]]></persistent>
-				</server>
-			</servers>
-			<compression><![CDATA[0]]></compression>
-			<cache_dir><![CDATA[]]></cache_dir>
-			<hashed_directory_level><![CDATA[]]></hashed_directory_level>
-			<hashed_directory_umask><![CDATA[]]></hashed_directory_umask>
-			<file_name_prefix><![CDATA[]]></file_name_prefix>
-		  </memcached>
-		</cache>
-
         <install>
             <date><![CDATA[Wed, 27 Apr 2011 19:40:08 +0000]]></date>
         </install>
@@ -58,7 +40,7 @@
             </db>
             <default_setup>
                 <connection>
-                    <host><![CDATA[10.179.170.80]]></host>
+                    <host><![CDATA[localhost]]></host>
                     <username><![CDATA[root]]></username>
                     <password><![CDATA[RoojaProdl6Jp47SdV]]></password>
                     <dbname><![CDATA[rooja1]]></dbname>
