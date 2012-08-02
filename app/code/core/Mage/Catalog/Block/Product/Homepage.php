@@ -287,6 +287,7 @@ class Mage_Catalog_Block_Product_Homepage extends Mage_Catalog_Block_Product_Abs
 	 {
 		
 		$i = 1;
+		$categories = Mage::helper('catalog/category')->getStoreCategories();
 		$sortedArrayByDates = array();
 		foreach ($categories as $_category){
 			if($_category->hasChildren()){
