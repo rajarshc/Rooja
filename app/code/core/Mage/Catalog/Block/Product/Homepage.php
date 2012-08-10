@@ -64,9 +64,21 @@ class Mage_Catalog_Block_Product_Homepage extends Mage_Catalog_Block_Product_Abs
 				$subcategory = $_category->getChildren();
 				
 				
-			 	$child_id_explode = explode(",",$subcategory);																					
+			 	$child_id_explode = explode(",",$subcategory);		
 				
-				foreach($child_id_explode as $subcategory)
+				// Sales orders are arranging the Subcategories position wise.
+				$subCategoriesSorted = array(); //We're going to make an array of the sub cats, with the array key being the position (set in the back end by dragging), then we can sort by key.
+				foreach($child_id_explode as $subCategoryId)
+				{
+					$cat = Mage::getModel('catalog/category')->load($subCategoryId);
+						if($cat->getIsActive())
+						{
+						$subCategoriesSorted[$cat->getPosition()] = $subCategoryId;
+						}
+					}
+				ksort($subCategoriesSorted);																							
+				
+				foreach($subCategoriesSorted as $subcategory)
 				{    
 					$c = Mage::getModel('catalog/category')->load($subcategory); 
 					$product_parent_id = $c['parent_id'];
@@ -204,8 +216,20 @@ class Mage_Catalog_Block_Product_Homepage extends Mage_Catalog_Block_Product_Abs
 				//	$c = Mage::getModel('catalog/category')->load($subcategory->getId());
 				$subcategory = $_category->getChildren();
 			 	$child_id_explode = explode(",",$subcategory);
+
+				// Sales orders are arranging the Subcategories position wise.
+				$subCategoriesSorted = array(); //We're going to make an array of the sub cats, with the array key being the position (set in the back end by dragging), then we can sort by key.
+				foreach($child_id_explode as $subCategoryId)
+				{
+					$cat = Mage::getModel('catalog/category')->load($subCategoryId);
+						if($cat->getIsActive())
+						{
+						$subCategoriesSorted[$cat->getPosition()] = $subCategoryId;
+						}
+					}
+				ksort($subCategoriesSorted);																							
 						
-				foreach($child_id_explode as $subcategory)
+				foreach($subCategoriesSorted as $subcategory)
 				{    
 					$c = Mage::getModel('catalog/category')->load($subcategory); 
 					

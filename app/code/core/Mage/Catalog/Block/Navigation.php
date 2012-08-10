@@ -468,8 +468,20 @@ class Mage_Catalog_Block_Navigation extends Mage_Core_Block_Template
 					//$c = Mage::getModel('catalog/category')->load($subcategory->getId());
 				$subcategory = $_category->getChildren();
 			 	$child_id_explode = explode(",",$subcategory);
-						
-				foreach($child_id_explode as $subcategory)
+
+				// Sales orders are arranging the Subcategories position wise.
+				$subCategoriesSorted = array(); //We're going to make an array of the sub cats, with the array key being the position (set in the back end by dragging), then we can sort by key.
+				foreach($child_id_explode as $subCategoryId)
+				{
+					$cat = Mage::getModel('catalog/category')->load($subCategoryId);
+						if($cat->getIsActive())
+						{
+						$subCategoriesSorted[$cat->getPosition()] = $subCategoryId;
+						}
+					}
+				ksort($subCategoriesSorted);																							
+
+				foreach($subCategoriesSorted as $subcategory)
 				{    
 				$c = Mage::getModel('catalog/category')->load($subcategory); 
 				
@@ -497,8 +509,21 @@ class Mage_Catalog_Block_Navigation extends Mage_Core_Block_Template
 					//foreach($_category->getChildren() as $subcategory){
 					//$c = Mage::getModel('catalog/category')->load($subcategory->getId());
 				$subcategory = $_category->getChildren();
-			 	$child_id_explode = explode(",",$subcategory);					
-				foreach($child_id_explode as $subcategory)
+			 	$child_id_explode = explode(",",$subcategory);		
+
+				// Sales orders are arranging the Subcategories position wise.
+				$subCategoriesSorted = array(); //We're going to make an array of the sub cats, with the array key being the position (set in the back end by dragging), then we can sort by key.
+				foreach($child_id_explode as $subCategoryId)
+				{
+					$cat = Mage::getModel('catalog/category')->load($subCategoryId);
+						if($cat->getIsActive())
+						{
+						$subCategoriesSorted[$cat->getPosition()] = $subCategoryId;
+						}
+					}
+				ksort($subCategoriesSorted);																							
+							
+				foreach($subCategoriesSorted as $subcategory)
 				{    
 				$c = Mage::getModel('catalog/category')->load($subcategory); 
 						if($c->getIsActive()){ // check if category is active
@@ -523,8 +548,22 @@ class Mage_Catalog_Block_Navigation extends Mage_Core_Block_Template
 				//foreach($_category->getChildren() as $subcategory){
 				//$c = Mage::getModel('catalog/category')->load($subcategory->getId());
 				$subcategory = $_category->getChildren();
-			 	$child_id_explode = explode(",",$subcategory);				
-				foreach($child_id_explode as $subcategory)
+			 	$child_id_explode = explode(",",$subcategory);	
+				
+				// Sales orders are arranging the Subcategories position wise.
+				$subCategoriesSorted = array(); //We're going to make an array of the sub cats, with the array key being the position (set in the back end by dragging), then we can sort by key.
+				foreach($child_id_explode as $subCategoryId)
+				{
+					$cat = Mage::getModel('catalog/category')->load($subCategoryId);
+						if($cat->getIsActive())
+						{
+						$subCategoriesSorted[$cat->getPosition()] = $subCategoryId;
+						}
+					}
+				ksort($subCategoriesSorted);																							
+
+							
+				foreach($subCategoriesSorted as $subcategory)
 				{    
 				$c = Mage::getModel('catalog/category')->load($subcategory); 
 					if($c->getIsActive()){ // check if category is active
