@@ -615,7 +615,7 @@ h3 .product-name {
 
 #upcomingSales{padding:12px 8px;background-color:#d1dddf;color:#555;margin-top:54px;width:214px;}
 #upcomingSales h2{color:#555;text-transform:uppercase;margin-bottom:25px;}
-.upcomingDate{width:96px;float:left;margin-right:20px;height:130px;}
+.upcomingDate{/*width:96px;*/float:left;margin-right:20px;/*height:130px;*/}
 .upcomingDate h4{padding:0 0 8px;border-bottom:1px solid #555;margin-bottom:8px;}
 .upcomingDate ul li{font-size:1.3em;padding-bottom:2px;line-height:1.1em;}
 

@@ -29,16 +29,19 @@
 <?php 
 $baseUrl = $this->getUrl();
 $currentUrl = $this->helper('core/url')->getCurrentUrl();
-$filterUrl = 'http://rooja.com/customer/account/create';
-$filterUrlOne = 'http://rooja.com/customer/account/create/';
+$filterUrl = $baseUrl.'customer/account/create';
+$filterUrlOne = $baseUrl.'customer/account/create/';
 
-	  if($currentUrl == $filterUrl)
+	  if(strcmp($currentUrl,$filterUrl) == 0)
 	  { 
-		$genderReqired = 1;
+	 	$genderReqired = 1; 
+		 echo "<div style='display:none'>Gender Required =".$genderReqired."</div>"; 
       }
-	  else if($currentUrl == $filterUrlOne)
+	  
+	  if(strcmp($currentUrl,$filterUrlOne) == 0)
 	  { 
-		$genderReqired = 1;
+		$genderReqired = 2;
+		 echo "<div style='display:none'>Gender Required = ".$genderReqired."</div>"; 
       }
  ?>
 
