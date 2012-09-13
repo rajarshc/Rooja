@@ -191,7 +191,9 @@ P.S. Hurry!"/>
 	  <?php  //echo $this->getMessagesBlock()->getGroupedHtml() ?>
       <?php $message1=Mage::app()->getLayout()->getMessagesBlock()
         ->setMessages(Mage::getSingleton('customer/session') 
-        ->getMessages(true))->getGroupedHtml() ; ?>
+        ->getMessages(true))->getGroupedHtml() ; 
+		echo $message1;
+		?>
 
 	<h2 id="members" class="tr">Members Sign In</h2>
 	<a href="<?php echo Mage::getBaseUrl(); ?>customer/account/forgotpassword/" id="forgetPass">Forgot your password?</a>
