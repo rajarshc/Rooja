@@ -1,109 +1,217 @@
 <?php
+
 /**
+
  * Magento
+
  *
+
  * NOTICE OF LICENSE
+
  *
+
  * This source file is subject to the Academic Free License (AFL 3.0)
+
  * that is bundled with this package in the file LICENSE_AFL.txt.
+
  * It is also available through the world-wide-web at this URL:
+
  * http://opensource.org/licenses/afl-3.0.php
+
  * If you did not receive a copy of the license and are unable to
+
  * obtain it through the world-wide-web, please send an email
+
  * to license@magentocommerce.com so we can send you a copy immediately.
+
  *
+
  * DISCLAIMER
+
  *
+
  * Do not edit or add to this file if you wish to upgrade Magento to newer
+
  * versions in the future. If you wish to customize Magento for your
+
  * needs please refer to http://www.magentocommerce.com for more information.
+
  *
+
  * @category    design
+
  * @package     base_default
+
  * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+
  */
+
 ?>
+
 <?php
+
 /**
+
  * Category view template
+
  *
+
  * @see Mage_Catalog_Block_Category_View
+
  */
+
 ?>
+
 <?php
+
     $_helper    = $this->helper('catalog/output');
+
     $_category  = $this->getCurrentCategory();
+
 	//get parent id
+
 	$boutique = 0;
+
 	$parentCat = Mage::getBlockSingleton('catalog/navigation')->getCurrentCategory()->parent_id;
+
 	if($parentCat==5){$boutique = 1;}
+
 	
+
     $_imgHtml   = '';
+
     if ($_imgUrl = $_category->getImageUrl()) {
+
         $_imgHtml = '<p class="category-image"><img src="'.$_imgUrl.'" alt="'.$this->htmlEscape($_category->getName()).'" title="'.$this->htmlEscape($_category->getName()).'" /></p>';
+
         $_imgHtml = $_helper->categoryAttribute($_category, $_imgHtml, 'image');
+
     }
+
 ?>
+
 <?php $expired = 0; ?>
 
+
+
 <?php $enddate = strtotime(date('y-m-d', strtotime($_category->getSale_end_date())) . ' ' . $_category->getSale_end_time() . ':00'); 
+
 $today = strtotime(date('y-m-d H:i:s'));
-if (timeBetweenNowAndDeadline($enddate) != 0) {
+
+if ($this->timeBetweenNowAndDeadline($enddate) != 0) {
+
 $expired = 1;
+
 }
 
+
+
 ?>
+
+
+
 
 
 <section id="saleDetails">
+
 	<div class="container">
+
 		<a href="/" class="backTo fl" title="Back to Home">Back to home</a>
+
 		<a href="#mainFooter" class="needAssistance fr" title="Need Assistance? Talk to a live rep" class="fr"><img src="<?php echo $this->getSkinUrl('images/icons/question-mark.png'); ?>" alt="Question mark icon"> Need Assistance</a>
+
 		
+
 	<section id="saleInfo" class="col1 fl clear">
+
 		<h1><?php echo $_helper->categoryAttribute($_category, $_category->getName(), 'name') ?></h1>
+
 		<?php if (!$enddate == null) {
+
 				if ($expired == 1) { 
+
 		echo '<p class="saleEnding">This sale ends ' . date('F jS \a\t g:ia', $enddate);
+
 		} elseif($boutique==0) { 
+
 		echo '<p class="saleEnding">This sale has expired!</p>';
+
 		}
+
 		} ?>
+
 		<?php //var_export($_category); ?>
+
 		<?php if($_description=$this->getCurrentCategory()->getDescription()): ?>
+
 			<p><?php echo $_helper->categoryAttribute($_category, $_description, 'description') ?></p>
+
 	    <?php endif; ?>
 
+
+
 		<div class="shareThis">
+
 			<h4>Share this <?php if($boutique==0){ echo 'sale';} else{echo 'boutique';}?> with your friends</h4>
+
 			<!-- AddThis Button BEGIN -->
-			<div class="addthis_toolbox addthis_default_style" addthis:title="Shop the <?php echo $_helper->categoryAttribute($_category, $_category->getName(), 'name') ?> sale at Rooja." addthis:description="Visit rooja.com now and check out this designer sale, plus many more great designers at up to 60% off retail. Discover new sales every day and get access to their luxury boutique. Membership is free, and you’re invited.">
+
+			<div class="addthis_toolbox addthis_default_style" addthis:title="Shop the <?php echo $_helper->categoryAttribute($_category, $_category->getName(), 'name') ?> sale at Rooja." addthis:description="Visit rooja.com now and check out this designer sale, plus many more great designers at up to 60% off retail. Discover new sales every day and get access to their luxury boutique. Membership is free, and you're invited.">
+
 			<a class="addthis_button_facebook"><img src="<?php echo $this->getSkinUrl('images/icons/facebook-blue-24.png'); ?>" alt="facebook icon"></a>
+
 			<a class="addthis_button_twitter" tw:via="RoojaFashion" tw:related="RoojaFashion"><img src="<?php echo $this->getSkinUrl('images/icons/twitter-teal-24.png'); ?>" alt="twitter icon"></a>
+
 			<a class="addthis_button_email"><img src="<?php echo $this->getSkinUrl('images/icons/email-24.png'); ?>" alt="facebook icon"></a>
+
 			</div>
+
 			<script type="text/javascript">
+
 				var addthis_config = {"data_track_clickback":true};
+
 				var addthis_share = { 
+
 				    templates: {
+
 				                twitter: '<?php echo $_helper->categoryAttribute($_category, $_category->getName(), 'name') ?> sale on Rooja today. {{url}} via @RoojaFashion'
+
 				               }
+
 				}
+
 				</script>
+
 			<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=philosophie"></script>
+
 			<!-- AddThis Button END -->
+
 		</div>
+
 		<figure id="inviteFriends" class="sideAd-orange">
+
 			<p>Invite 10 friends to Rooja and get free shipping for 2 months</p>
+
 		</figure>
+
 		
+
 		<?php echo $this->getChildHtml('sorting') ?>
+
 	</section>
+
 	
 
+
+
     <?php echo $this->getProductListHtml() ?>
+
 	<a href="#" class="backToTop fr">Back to Top</a>
+
 	<br class="clear">
+
 	</div>
+
 </section>
