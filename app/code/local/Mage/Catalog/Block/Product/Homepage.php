@@ -86,6 +86,8 @@ class Mage_Catalog_Block_Product_Homepage extends Mage_Catalog_Block_Product_Abs
 
 	{
 
+		
+
 		$this->addData(array(
 
 					'cache_lifetime'    => 9999999999,
@@ -96,9 +98,33 @@ class Mage_Catalog_Block_Product_Homepage extends Mage_Catalog_Block_Product_Abs
 
 	}
 
+	public function getCacheKeyInfo()
+
+	{
+
+		
+
+		return array(
+
+				'Product Homepage',
+
+				Mage::app()->getStore()->getId(),
+
+				Mage::getDesign()->getPackageName(),
+
+				Mage::getDesign()->getTheme('template'),
+
+				Mage::getSingleton('customer/session')->getCustomer()->getData('gender'),
+
+				'template' => $this->getTemplate()
+
+				);
+
+	}
+
 	
 
-	public function homePageTopSales()
+	public function homePageTopSales($gender,$category_id)
 
 	{
 
@@ -170,7 +196,7 @@ class Mage_Catalog_Block_Product_Homepage extends Mage_Catalog_Block_Product_Abs
 
 					
 
-					//code for current user gender get
+					/*//code for current user gender get
 
 					$session = Mage::getSingleton('customer/session'); 
 
@@ -204,7 +230,11 @@ class Mage_Catalog_Block_Product_Homepage extends Mage_Catalog_Block_Product_Abs
 
 						$category_id='58';
 
-					}
+					}*/
+
+					/*echo $gender;
+
+					echo $category_id;*/
 
 					
 
@@ -234,7 +264,7 @@ class Mage_Catalog_Block_Product_Homepage extends Mage_Catalog_Block_Product_Abs
 
 								//Filter the data's gender wise with category
 
-								if($customer['gender']==$gender && $product_parent_id==$category_id)
+								if($product_parent_id==$category_id)
 
 								{  
 
@@ -382,8 +412,6 @@ class Mage_Catalog_Block_Product_Homepage extends Mage_Catalog_Block_Product_Abs
 
 	
 
-	
-
 	/*
 
 	Boutique Collction on Home page 
@@ -427,6 +455,7 @@ class Mage_Catalog_Block_Product_Homepage extends Mage_Catalog_Block_Product_Abs
 				{
 
 					$cat = Mage::getModel('catalog/category')->load($subCategoryId);
+
 
 					if($cat->getIsActive())
 
