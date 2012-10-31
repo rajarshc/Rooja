@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+    <config>
+        <modules>
+            <Social_Login>
+                <active>true</active>
+                <codePool>local</codePool>
+            </Social_Login>
+        </modules>
+</config>

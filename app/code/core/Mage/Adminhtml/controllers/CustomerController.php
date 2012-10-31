@@ -693,7 +693,23 @@ class Mage_Adminhtml_CustomerController extends Mage_Adminhtml_Controller_Action
                 foreach ($customersIds as $customerId) {
                     $customer->reset()
                         ->load($customerId)
-                        ->delete();
+                        ->delete(); 
+						
+							$loginSocial = Mage::getModel('login/login')->getCollection();		
+							$loginSocial = $loginSocial->addFieldToFilter('customer_id', $customerId);
+							$loginSocial = $loginSocial->getData();
+							
+							if(count($loginSocial))
+							{
+								$loginId = $loginSocial[0];	
+							
+								$loginId['login_id'];
+								
+								$loginCustomer = Mage::getModel('login/login');
+								$loginCustomer->load($loginId['login_id']);		
+								$loginCustomer->delete();
+				
+							}	
                 }
                 Mage::getSingleton('adminhtml/session')->addSuccess(
                     Mage::helper('adminhtml')->__(
