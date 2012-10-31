@@ -25,48 +25,25 @@
  */
 ?>
 
+<label for="<?php echo $this->getFieldId('gender')?>"<?php if ($this->isRequired()) echo ' class="required"' ?>>
+<?php echo $this->__('Gender') ?>
+<?php if ($this->isRequired()) echo '<em>*</em>' ?> <em>*</em></label>
 
-<?php 
-$baseUrl = $this->getUrl();
-$currentUrl = $this->helper('core/url')->getCurrentUrl();
-$filterUrl = $baseUrl.'customer/account/create';
-$filterUrlOne = $baseUrl.'customer/account/create/';
-
-	  if(strcmp($currentUrl,$filterUrl) == 0)
-	  { 
-	 	$genderReqired = 1; 
-		 echo "<div style='display:none'>Gender Required =".$genderReqired."</div>"; 
-      }
-	  
-	  if(strcmp($currentUrl,$filterUrlOne) == 0)
-	  { 
-		$genderReqired = 2;
-		 echo "<div style='display:none'>Gender Required = ".$genderReqired."</div>"; 
-      }
- ?>
-
-<label for="<?php echo $this->getFieldId('gender')?>"<?php if ($this->isRequired()) echo ' class="required"' ?> 
-<?php if ($genderReqired) echo ' class="required"' ?>>
-<?php if ($this->isRequired()) echo '<em>*</em>' ?>
-<?php if ($genderReqired) echo '<em>*</em>' ?>
-<?php echo $this->__('Gender') ?></label>
 <div class="input-box">
-    <select id="<?php echo $this->getFieldId('gender')?>" name="<?php echo $this->getFieldName('gender')?>" title="<?php echo $this->__('Gender') ?>" <?php if($this->isRequired()){ ?> class="validate-select"<?php } ?> <?php echo $this->getFieldParams() ?> >
+
+    <select id="<?php echo $this->getFieldId('gender')?>" name="<?php echo $this->getFieldName('gender')?>" title="<?php echo $this->__('Gender') ?>" 
+	<?php if($this->isRequired()){ ?> class="validate-select"<?php } ?> <?php echo $this->getFieldParams() ?> >
+    
         <?php $options = Mage::getResourceSingleton('customer/customer')->getAttribute('gender')->getSource()->getAllOptions();?>
         <?php $value = $this->getGender();?>
         <?php foreach ($options as $option):?>
-            <?php 
-			if($genderReqired)
-			{
-			if($option['value'])
-			{ ?>       
-            <option value="<?php echo $option['value'] ?>"<?php if ($option['value'] == $value) echo ' selected="selected"' ?>><?php echo $option['label'] ?></option>
-            <?php 
-			}
-			}else
-			{ ?>
-            <option value="<?php echo $option['value'] ?>"<?php if ($option['value'] == $value) echo ' selected="selected"' ?>><?php echo $option['label'] ?></option>
-			<?php	} ?>
+           
+           <?php if($option['value']) { ?>
+           
+		    <option value="<?php echo $option['value'] ?>"<?php if ($option['value'] == $value) echo ' selected="selected"' ?>><?php echo $option['label'] ?></option>
+            
+	       <?php } ?>    
+			
         <?php endforeach;?>
     </select>
 </div>

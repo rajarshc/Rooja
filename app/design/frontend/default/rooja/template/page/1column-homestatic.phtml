@@ -98,7 +98,7 @@ P.S. Hurry!"/>
 	
 	$(document).ready(function() {
 		
-		try {
+		/*try {
 		
 			$('input[type="text"], input[type="password"]').defaultValue({
 				preferPlaceholder: true
@@ -106,7 +106,7 @@ P.S. Hurry!"/>
 			
 		} catch (e) {
 			// Silently dismiss ssshhhhhhhhhh!!!
-		}
+		}*/
 	
 		setTimeout(function() {
 			// Chrome does not fire a change event when autofilling forms
@@ -174,74 +174,70 @@ P.S. Hurry!"/>
 	
 })(jQ);
 </script>
-<div id="notifyWrapper">
-<div class="wrapper">
-	<nav id="loginTabs">
-		<ul>
-			<li><a href="#loginCont" id="loginTab" class="tr selected">Login</a></li>
-			<li><a href="#getInvitedCont" id="getInvitedTab" class="tr">Get Invited</a></li>
-		</ul>
-	</nav>
-<header id="mainHeader" class="clear login">
-	<h1 id="logo" class="tr">Rooja</h1>
-	<p id="highlight" class="tr">Member&rsquo;s only shopping club. Save up to 60% off retail.</p>
-</header><!--End Header-->
-<section id="content" class="body">
-	<div id="loginCont">
-	  <?php  //echo $this->getMessagesBlock()->getGroupedHtml() ?>
-      <?php $message1=Mage::app()->getLayout()->getMessagesBlock()
+
+
+<div id="rooja_login_wrapper">
+    
+    <div id="rooja_login_block">
+    
+        <div class="rooja_login_left">
+            
+            <div id="rooja_login_left_logo"></div>
+            
+            <div id="rooja_login_left_text">DISCOVER UNIQUE FASHION & PERSONAL PRODUCTS</div><!--rooja_login_left_text-->
+            
+            <div id="rooja_login_left_joinnow">
+
+              <span>Not a member yet?</span>
+
+             <div > <a href="<?php echo $this->getUrl('customer/account/create'); ?>">Join Now</a></div>
+            </div>
+            
+        </div>
+        
+        <div class="rooja_login_right">
+        
+        	<div class="rooja_login_right_memberlogin">MEMBER LOGIN</div>
+            
+               <a href="<?php echo $this->getUrl('login/facebook/index/') ?>" class="rooja_login_right_fb"></a>
+            
+            
+            <div class="rooja_login_or_img"></div>
+         
+            
+            	<div class="rooja_login_right_bottom_text">Login with your Rooja account</div>
+                
+                 <?php $message1=Mage::app()->getLayout()->getMessagesBlock()
         ->setMessages(Mage::getSingleton('customer/session') 
         ->getMessages(true))->getGroupedHtml() ; 
 		echo $message1;
 		?>
-
-	<h2 id="members" class="tr">Members Sign In</h2>
-	<a href="<?php echo Mage::getBaseUrl(); ?>customer/account/forgotpassword/" id="forgetPass">Forgot your password?</a>
-	
-    <form action="<?php echo Mage::getBaseUrl(); ?>customer/account/loginPost/" method="post" id="login-form">
-        <div class="col2-set">
-	
-			<ul class="form-list">
-                <li>
-                    <label for="email" class="required">Email Address</label>
-                    <div class="input-box">
-                        <input type="text" name="login[username]" value="<?php echo $this->htmlEscape($this->getUsername()) ?>" id="email" class="input-text required-entry validate-email" title="Email Address" placeholder="Email Address" />
-                    </div>
-                </li>
-                <li>
-                    <label for="pass" class="required">Password</label>
-                    <div class="input-box">
-                        <input type="password" name="login[password]" class="input-text required-entry validate-password" id="pass" title="Password" placeholder="Password" />
-                    </div>
-                </li>
-            </ul>
-				<button id="fBConnect" rel="facebook-connect" type="button" title="<?php echo $this->__('Connect with Facebook') ?>" class="button"></button>
-				<button type="submit" class="button tr" title="<?php echo $this->__('Login') ?>" name="send" id="send2"><span><span><?php echo $this->__('Login') ?></span></span></button>
-	</div>
-	</form>
-	<br/>
-	<p>Having trouble? Email us at <a href="mailto:support@rooja.in">support@rooja.in</a></p>
-	</div>
-	<div style="display:none" id="getInvitedCont">
-	<h2 id="earlyAccess" class="tr">Become a Member</h2>
-	<p>Join our members-only community and shop must have brands at up to 60% off retail</p>
-	<link href="http://my.betali.st/widget/y2jd9dtr.css" rel="stylesheet" /><script src="http://my.betali.st/widget/y2jd9dtr.js" id="MyBetaList"></script>
-	
-	<p class="alignRight">Free membership by invitation only.</p>
-	</div>	
-</section><!--End Content-->
-</div>
-	<section id="brands">
-		<ul class="slideshow">
-			<li><img src="<?php echo $this->getSkinUrl('images/splash/header/international-brands.png') ?>" alt="International Brands"></li>
-			<li><img src="<?php echo $this->getSkinUrl('images/splash/header/great-value.png') ?>" alt="Great Value"></li>
-			<li><img src="<?php echo $this->getSkinUrl('images/splash/header/luxury-fashion.png') ?>" alt="Luxury Fashion"></li>
-			<li><img src="<?php echo $this->getSkinUrl('images/splash/header/free-shipping.png') ?>" alt="Free Shipping"></li>
-			<li><img src="<?php echo $this->getSkinUrl('images/splash/header/free-returns.png') ?>" alt="Free Returns"></li>
-			<li><img src="<?php echo $this->getSkinUrl('images/splash/header/cash-on-delivery.png') ?>" alt="Cash on Delivery"></li>
-		</ul>
-	</section> 
-</div>
+         <form action="<?php echo Mage::getBaseUrl(); ?>customer/account/loginPost/" method="post" id="login-form">
+          
+          
+          
+         <input type="text" name="login[username]" id="email" class="input-text required-entry validate-email" placeholder="Enter your email" />
+         
+          
+        <input type="password" name="login[password]" class="input-text required-entry validate-password" id="pass" placeholder="Enter your password" />
+        
+        
+            
+            	<div class="rooja_login_right_login">
+                   <input type="submit" value="Login" />
+                    
+                   <!--<span>Forgot password?</span>--> <a href="<?php echo $this->getUrl('customer/account/forgotpassword'); ?>">Forgot password?</a>
+                </div>
+                
+                </form>
+            
+           
+            
+        </div>
+    
+    </div>
+        
+    </div>
     
     
 	<nav id="navLinks">

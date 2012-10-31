@@ -40,9 +40,9 @@ jQuery(function() {
 	var currentIndex=1;
 	var nextIndex=1;
 	
-	jQuery('input[type="text"], input[type="password"]').defaultValue({
-		preferPlaceholder: true
-	});
+	//jQuery('input[type="text"], input[type="password"]').defaultValue({
+		//preferPlaceholder: true
+	//});
 	
 	setTimeout(function() {
 		// Chrome does not fire a change event when autofilling forms
@@ -65,29 +65,56 @@ jQuery(function() {
 });
 </script>
 <div id="notifyWrapper" class="register">
-<div class="wrapper">
-<header id="mainHeader">
-	<h1 id="logo" class="tr">Rooja</h1>
-	<p id="highlight" class="tr">Apparel and accessories from leading International and Indian designers at prices you just cant get in the stores</p>
-</header><!--End Header-->
-<section id="content" class="body">
-    <h2 id="createAccount" class="tr"><?php echo $this->__('Create an Account') ?></h2>
+<div id="rooja_signup_wrapper">
+<div id="rooja_signup_cover">
+<div id="rooja_right_corner"><span>Already a member? <a href="<?php echo $this->getUrl(''); ?>">Click here</a></span></div>
+
+    <div id="rooja_signup_block">
+    	
+    
+	    <div id="rooja_signin_top">
+    
+        <div class="rooja_signup_left">
+            
+            <div id="rooja_signup_left_logo"></div>
+            
+        </div>
+        
+        <div class="rooja_signup_right">
+        
+        	<div class="rooja_signup_right_memberlogin">DISCOVER UNIQUE FASHION <br /> &amp; PERSONAL PRODUCTS</div>
+            
+        </div>
+        
+        </div>
+        
+        <div class="rooja_signup_right_fb"><a href="<?php echo $this->getUrl('login/facebook/index'); ?>"></a></div>
+        
+        <div class="rooja_signup_or"></div>
+
+        <div class="rooja_signup_right_bottom_text">Create your Rooja Account</div>
+	        
+        <div id="rooja_signup_input_block">
+        
     <?php echo $this->getChildHtml('form_fields_before')?>
-    <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+   	<div class="rooja_singup_error_msg">  <?php echo $this->getMessagesBlock()->getGroupedHtml() ?> </div>
     <form action="<?php echo $this->getPostActionUrl() ?>" method="post" id="form-validate" name="form-validate">
         <div class="fieldset">
             <input type="hidden" name="success_url" value="<?php echo $this->getSuccessUrl() ?>" />
             <input type="hidden" name="error_url" value="<?php echo $this->getErrorUrl() ?>" />
             <ul class="form-list">
                 <li class="fields">
+                <div class="rooja_signup_text">
                     <?php echo $this->getLayout()->createBlock('customer/widget_name')->setObject($this->getFormData())->toHtml() ?>
+                </div>
                 </li>
-                <li>
-                    <label for="email_address" class="required"><?php echo $this->__('Email Address') ?> *</label>
-                    <div class="input-box">
-                        <input type="text" name="email" id="email_address" value="<?php echo $this->htmlEscape($this->getFormData()->getEmail()) ?>" title="<?php echo $this->__('Email Address *') ?>" class="input-text validate-email required-entry" placeholder="Email Address" />
+                
+                <!--<li>
+                    <label for="email_address" class="required"><?php //echo $this->__('Email Address') ?> *</label>-->
+                    <div class="rooja_signup_email">
+                        <input type="text" name="email" id="email_address" title="<?php echo $this->__('Email Address *') ?>" class="input-text validate-email required-entry" placeholder="Email Address" />
                     </div>
-                </li>
+                <!--</li>-->
             <?php $_dob = $this->getLayout()->createBlock('customer/widget_dob') ?>
             <?php if ($_dob->isEnabled()): ?>
                 <li><?php echo $_dob->setDate($this->getFormData()->getDob())->toHtml() ?></li>
@@ -176,30 +203,38 @@ jQuery(function() {
             <ul class="form-list">
                 <li class="fields">
                     <div class="field">
-                        <label for="password" class="required"><?php echo $this->__('Password') ?> *</label>
-                        <div class="input-box">
-                            <input type="password" name="password" id="password" title="<?php echo $this->__('Password') ?>" class="input-text required-entry validate-password" placeholder="Password *" />
-                        </div>
-                    </div>
-                    <div class="field">
-                        <label for="confirmation" class="required"><?php echo $this->__('Confirm Password') ?> *</label>
-                        <div class="input-box">
-                            <input type="password" name="confirmation" title="<?php echo $this->__('Confirm Password') ?>" id="confirmation" class="input-text required-entry validate-cpassword" placeholder="Confirm Password *" />
+                    <div class="rooja_signup_text">
+                        <!--<label for="password" class="required"><?php //echo $this->__('Password') ?> *</label>
+                        <div class="input-box">-->
+                          <div class="rooja_signup_text_password">  <input type="password" name="password" id="password" title="<?php echo $this->__('Password') ?>" class="input-text required-entry validate-password" placeholder="Password" /> 
+                        
+                    
+                        <!--<label for="confirmation" class="required"><?php //echo $this->__('Confirm Password') ?> *</label>
+                        <div class="input-box">-->
+                        
+                           <input type="password" name="confirmation" title="<?php echo $this->__('Confirm Password') ?>" id="confirmation" class="input-text required-entry validate-cpassword" value="" placeholder="Confirm Password" /> </div>
                         </div>
                     </div>
                 </li>
                 
-  <?php echo $this->getLayout()->createBlock('customer/widget_mobile')->setObject($this->getFormData())->toHtml() ?>                
+                <div class="rooja_signup_mobile">
+                
+  				<?php echo $this->getLayout()->createBlock('customer/widget_mobile')->setObject($this->getFormData())->toHtml() ?>                
                 
 				<?php $_gender = $this->getLayout()->createBlock('customer/widget_gender') ?>
+                
+                
+                
 	            <?php if ($_gender->isEnabled()): ?>
-	                <li id="gender"><?php echo $_gender->setGender($this->getFormData()->getGender())->toHtml() ?></li>
+	                <!--<li id="gender">--><?php echo $_gender->setGender($this->getFormData()->getGender())->toHtml() ?><!--</li>-->
 	            <?php endif ?>
+                
+                </div>
 
 				        <?php if ($this->isNewsletterEnabled()): ?>
 				        <li class="control" style="display: none;">
 				            <div class="input-box">
-				                <input type="checkbox" name="is_subscribed" title="<?php echo $this->__('Sign Up for Newsletter') ?>" value="1" checked="checked" id="is_subscribed"<?php if($this->getFormData()->getIsSubscribed()): ?> checked="checked"<?php endif; ?> class="checkbox" />
+				                <input type="checkbox" name="is_subscribed" title="<?php echo $this->__('Sign Up for Newsletter') ?>" value="1" checked="checked" id="is_subscribed" <?php if($this->getFormData()->getIsSubscribed()): ?> checked="checked"<?php endif; ?> class="checkbox" />
 				            </div>
 				            <label for="is_subscribed"><?php echo $this->__('Sign Up for Newsletter') ?></label>
 				        </li>
@@ -208,21 +243,24 @@ jQuery(function() {
             </ul>
 
         </div>
-        <div class="buttons-set">
-					<input type="submit" id="submitBtn" value="Submit" name="submitBtn">
+        <!--<div class="buttons-set">-->
+        <div id="rooja_signup_left_joinnow">
+        
+					<input type="submit" value="Join Now" name="submitBtn">
         </div>
     </form>
+    
+    <div class="rooja_signup_bottom_bgcolor">              
+	          <div class="rooja_signup_bottom_tags">
+                    <div class="rooja_signup_tagtxt_free"><span>FREE SHIPPING</span></div>
+                    <div class="rooja_signup_tagtxt_cod"><span>CASH ON DELIVERY</span></div>
+                    <div class="rooja_signup_tagtxt"><span>EASY RETURNS</span></div>
+              </div>
+    </div>
 		
-</section><!--End Content-->
 </div>
-<section id="brands">
-	<ul class="slideshow">
-		<li><img src="<?php echo $this->getSkinUrl('images/splash/header/international-brands.png') ?>" alt="International Brands"></li>
-		<li><img src="<?php echo $this->getSkinUrl('images/splash/header/great-value.png') ?>" alt="Great Value"></li>
-		<li><img src="<?php echo $this->getSkinUrl('images/splash/header/luxury-fashion.png') ?>" alt="Luxury Fashion"></li>
-		<li><img src="<?php echo $this->getSkinUrl('images/splash/header/free-shipping.png') ?>" alt="Free Shipping"></li>
-		<li><img src="<?php echo $this->getSkinUrl('images/splash/header/free-returns.png') ?>" alt="Free Returns"></li>
-		<li><img src="<?php echo $this->getSkinUrl('images/splash/header/cash-on-delivery.png') ?>" alt="Cash on Delivery"></li>
-		</ul>
-</section>
+</div>
+
+</div>
+</div>
 </div>
