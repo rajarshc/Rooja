@@ -182,11 +182,11 @@ class Katana_Adminhtml_Sales_OrderController extends Mage_Adminhtml_Sales_OrderC
 
 				
 
-				
+					$remove = array(",","'",'"');
 
 					$orderItemData = array(
 
-						'product_name' => $product->getName(),
+							'product_name' => (string)str_replace($remove, '', trim($product->getName())),
 
 						'sku' => $product->getSku(),
 
@@ -194,7 +194,7 @@ class Katana_Adminhtml_Sales_OrderController extends Mage_Adminhtml_Sales_OrderC
 
 						'size' => $size,
 
-							'short_description' => trim($product->getShortDescription()),
+							'short_description' => (string)str_replace($remove, '', trim($product->getShortDescription())),
 
 						'price' => $product->getPrice(),
 
@@ -221,6 +221,7 @@ class Katana_Adminhtml_Sales_OrderController extends Mage_Adminhtml_Sales_OrderC
 				$allData->setData('');
 
 				
+
 
 				$content .= $allData->toString($template) . "\n";
 

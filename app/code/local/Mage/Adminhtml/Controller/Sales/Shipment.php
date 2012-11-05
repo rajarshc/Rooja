@@ -346,11 +346,11 @@ class Mage_Adminhtml_Controller_Sales_Shipment extends Mage_Adminhtml_Controller
 
 				
 
-								
+				$remove = array(",","'",'"');
 
 				$shippingData = array(
 
-						'shipping_address1' => implode("\n", $shipping->getStreet()),
+						'shipping_address1' => (string)str_replace($remove, '', implode("\n",$shipping->getStreet())),
 
 						'shipping_city' => $shipping->getCity(),
 
@@ -378,7 +378,9 @@ class Mage_Adminhtml_Controller_Sales_Shipment extends Mage_Adminhtml_Controller
 
 					// get product
 
-					$product = Mage::getModel('catalog/product')->load($item->getProductId());
+					$product = Mage::getModel('catalog/product')->loadByAttribute('sku',$item->getSku());
+
+					//Mage::log($item->getSku());
 
 					if ( $i==0 ){
 
