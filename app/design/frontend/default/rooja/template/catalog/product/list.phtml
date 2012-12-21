@@ -103,14 +103,16 @@ echo $likes = $xml->link_stat->like_count;
 
 <script type="text/javascript">
 	jQuery(document).ready(function(){
-		jQuery(".product").hover(function () {
+		prodHover();
+	 });
+	
+	function prodHover(){
+	    jQuery(".product").hover(function () {
 		    jQuery(this).find('.productName').fadeIn(500);
 		  }, 
 		  function () {
 		    jQuery(this).find('.productName').fadeOut(500);
-		 
 		  });
-	 });
-			
+	}	
 </script>
 <?php endif; ?>

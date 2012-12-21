@@ -25,7 +25,15 @@ jQuery.ias({
 	<?php endif; ?>
 	pagination: '.toolbar-bottom',
 	next: '.next',
-	loader: '<div style="display:block;clear:both;height:30px;width:100%;"><img src="<?php echo($this->getSkinUrl('images/ajaxscroll/loader.gif')); ?>" /> <?php echo __('Loading more products, please be patient...'); ?></div>'
+	loader: '<div style="display:block;clear:both;height:30px;width:100%;"><img src="<?php echo($this->getSkinUrl('images/ajaxscroll/loader.gif')); ?>" /> <?php echo __('Loading more products, please be patient...'); ?></div>',
+	onRenderComplete : function(items) { 
+	      jQuery(".product").hover(function () {
+		    jQuery(this).find('.productName').fadeIn(500);
+		  }, 
+		  function () {
+		    jQuery(this).find('.productName').fadeOut(500);
+		  });
+	}
 });
 </script>
 <?php endif; ?>
