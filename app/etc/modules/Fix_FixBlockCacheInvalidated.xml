@@ -1,0 +1,8 @@
+<config>
+    <modules>
+        <Fix_FixBlockCacheInvalidated>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Fix_FixBlockCacheInvalidated>
+    </modules>
+</config>

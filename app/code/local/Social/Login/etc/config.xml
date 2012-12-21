@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Social_Login>
+            <version>0.1.0</version>
+        </Social_Login>
+    </modules>
+   
+    <frontend>
+		<routers>
+            <login>
+                <use>standard</use>
+                <args>
+                    <module>Social_Login</module>
+                    <frontName>login</frontName>
+                </args>
+            </login>
+        </routers>
+	
+      <layout>
+          <updates>
+              <login module="Social_Login">
+                  <file>login.xml</file>
+              </login>
+          </updates>
+      </layout>
+    </frontend>	
+
+	
+    <global>
+	
+	<models>
+            <login>
+                <class>Social_Login_Model</class>
+                <resourceModel>login_mysql4</resourceModel>
+            </login>
+			
+            <login_mysql4>
+                <class>Social_Login_Model_Mysql4</class>
+                <entities>
+                    <login>
+                        <table>login</table>
+                    </login>
+                </entities>
+            </login_mysql4>
+        </models>
+	
+        <resources>
+            <login_setup>
+                <setup>
+                    <module>Social_Login</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </login_setup>
+			
+            <login_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </login_write>
+			
+            <login_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </login_read>
+			
+        </resources>
+		
+		  <blocks>
+            <login>
+                <class>Social_Login_Block</class>
+            </login>
+        </blocks>
+		
+        <helpers>
+            <login>
+                <class>Social_Login_Helper</class>
+            </login>
+        </helpers>
+		
+    </global>
+</config>
