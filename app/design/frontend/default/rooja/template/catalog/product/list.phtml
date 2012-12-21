@@ -96,6 +96,9 @@ echo $likes = $xml->link_stat->like_count;
 		</article>
 		<?php $i++; ?>
         <?php endforeach ?>
+        <div class="toolbar-bottom">
+            <?php echo $this->getToolbarHtml() ?>
+        </div>
 </section>
 
 <script type="text/javascript">

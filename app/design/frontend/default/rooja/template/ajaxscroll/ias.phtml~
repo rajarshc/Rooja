@@ -1,0 +1,28 @@
+<?php if (Mage::getStoreConfigFlag('catalog/frontend/useajaxscroll')): ?>
+<?php 
+$productListMode = Mage::getStoreConfig('catalog/frontend/list_mode');
+if ($productListMode == 'grid-list')
+	$productListMode = 'grid';
+elseif ($productListMode == 'list-grid')
+	$productListMode = 'list';
+if ($this->getRequest()->getParam('mode')) {
+	if($this->getRequest()->getParam('mode') == 'grid')
+		$productListMode = 'grid';
+	else
+		$productListMode = 'list';
+}
+?>
+<script type="text/javascript">
+jQuery.ias({
+	container : '.category-products',
+	<?php if ($productListMode == 'grid'): ?>
+	item: '.products-grid',
+	<?php else: ?>
+	item: '.products-list',
+	<?php endif; ?>
+	pagination: '.toolbar .pager',
+	next: '.next',
+	loader: '<img src="<?php echo($this->getSkinUrl('images/ajaxscroll/loader.gif')); ?>" /> <?php echo __('Loading more products, please be patient...'); ?>'
+});
+</script>
+<?php endif; ?>
