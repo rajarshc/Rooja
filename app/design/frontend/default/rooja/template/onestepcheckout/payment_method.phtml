@@ -73,9 +73,12 @@ if($helper->settings['hide_nonfree_payment_methods'])   {
     <?php else:?>
 
         <dl id="checkout-payment-method-load">
-        <?php foreach ($this->getMethods() as $_method): $_code = $_method->getCode() ?>
+        <?php 
+		$pm = 1;
+		foreach ($this->getMethods() as $_method): $_code = $_method->getCode() ?>
+        	<dt id="validatepayentmethods"></dt>
         <?php if($hide_nonfree_methods && $_code != 'free') continue; ?>
-            <dt>
+            <dt id="p_method_<?php echo $pm;?>">
             <?php if( sizeof($this->getMethods()) > 1 ): ?> 
 			
 			<?php if($_code=='Avenues_standard')
@@ -88,6 +91,7 @@ if($helper->settings['hide_nonfree_payment_methods'])   {
 			{
 			 ?>
              	<div id="checkout_page_custom_text_display">We will verify the order before shipping</div>
+                <div id="msgforcod"></div>
              <?php	
 			}?>
                 <input id="p_method_<?php echo $_code ?>" value="<?php echo $_code ?>" type="radio" name="payment[method]" title="<?php echo $this->htmlEscape($_method->getTitle()) ?>" class="radio validate-one-required-by-name" <?php if($this->getSelectedMethodCode()==$_code || ($hide_nonfree_methods && $_code == 'free')): ?> checked="checked"<?php endif; ?> />
@@ -101,7 +105,9 @@ if($helper->settings['hide_nonfree_payment_methods'])   {
                 <?php echo $html; ?>
             </dd>
             <?php endif; ?>
-        <?php endforeach; ?>
+        <?php 
+		$pm++;
+		endforeach; ?>
         </dl>
     <?php endif;?>
 </div>

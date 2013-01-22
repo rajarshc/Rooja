@@ -62,11 +62,11 @@ $shippingFields['country_id'] = '
 <?php if(!$this->settings['exclude_region'] ): ?>
     <?php $shippingFields['region_id'] = '
         <div class="input-box input-region'.((in_array('region', $formErrors)) ? ' input-error' : '').'">
-            <label for="shipping:region">'.$this->__('State/Province').' <span class="required">*</span></label><br/>
-            <select id="shipping:region_id" name="shipping[region_id]" title="'.$this->__('State/Province').'" class="validate-select" style="display:none">
-                <option value="">'.$this->__('Please select region, state or province').'</option>
-            </select>
-            <script type="text/javascript">
+            <label for="shipping:region">'.$this->__('State/Province').' <span class="required">*</span></label><br/>';
+			//$shippingFields['region_id'] .= '<select id="shipping:region_id" name="shipping[region_id]" title="'.$this->__('State/Province').'" class="validate-select" style="display:none"><option value="">'.$this->__('Please select region, state or province').'</option></select>';
+			$shippingFields['region_id'] .= '<select id="shipping:region_id" name="shipping[region_id]" title="'.$this->__('State/Province').'" class="validate-select"><option value="">Select State</option><option value="486">Andaman and Nicobar</option><option value="487">Andhra Pradesh</option><option value="488">Arunachal Pradesh</option><option value="489">Assam</option><option value="490">Bihar</option><option value="491">Chhattisgarh</option><option value="492">Dadra and Nagar Haveli</option><option value="493">Daman and Diu</option><option value="494">Delhi</option><option value="495">Goa</option><option value="496">Gujarat</option><option value="497">Haryana</option><option value="498">Himachal Pradesh</option><option value="499">Jammu and Kashmir</option><option value="500">Jharkhand</option><option value="501">Karnataka</option><option value="502">Kerala</option><option value="503">Lakshadweep</option><option value="504">Madhya Pradesh</option><option value="505">Maharashtra</option><option value="506">Manipur</option><option value="507">Meghalaya</option><option value="508">Mizoram</option><option value="509">Nagaland</option><option value="510">Orissa</option><option value="511">Puducherry</option><option value="512">Punjab</option><option value="513">Rajasthan</option><option value="514">Sikkim</option><option value="515">Tamil Nadu</option><option value="516">Tripura</option><option value="517">Uttarakhand</option><option value="518">Uttar Pradesh</option><option value="519">West Bengal</option></select>';
+			
+			$shippingFields['region_id'] .= '<script type="text/javascript">
                 $("shipping:region_id").setAttribute("defaultValue",  "'.$dataHelper->clearDash($this->getQuote()->getShippingAddress()->getRegionId()).'");
             </script>
             <input type="text" id="shipping:region" name="shipping[region]" value="'.$this->htmlEscape($dataHelper->clearDash($this->getQuote()->getShippingAddress()->getRegion())).'"  title="'.$this->__('State/Province').'" class="required-entry input-text" style="display:none" />
@@ -81,11 +81,14 @@ $shippingFields['country_id'] = '
         </div>';
     ?>
 <?php endif; ?>
+<script type="text/javascript">
+var j = jQuery.noConflict(); 
+</script>
 <?php if(!$this->settings['exclude_zip']): ?>
     <?php $shippingFields['postcode'] = '
         <div class="input-box input-postcode'.((in_array('postcode', $formErrors)) ? ' input-error' : '').'" >
             <label for="shipping:postcode">'.$this->__('Zip/Postal Code').' <span class="required">*</span></label><br />
-            <input type="text" title="'.$this->__('Zip/Postal Code').'" name="shipping[postcode]" id="shipping:postcode" value="'.$this->htmlEscape($dataHelper->clearDash($this->getQuote()->getShippingAddress()->getPostcode())).'" class="validate-zip-international required-entry input-text" />
+            <input type="text" title="'.$this->__('Zip/Postal Code').'" name="shipping[postcode]" id="shipping:postcode" value="'.$this->htmlEscape($dataHelper->clearDash($this->getQuote()->getShippingAddress()->getPostcode())).'" class="validate-zip-international required-entry input-text numbersonly" maxlength="6" onBlur="updatePaymentMethods();" />
         </div>';
     ?>
 <?php endif; ?>
