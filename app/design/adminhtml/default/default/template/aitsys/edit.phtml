@@ -1,0 +1,43 @@
+<?php 
+/* @var $this Aitoc_Aitsys_Block_Edit */
+?>
+<div class="content-header">
+    <table cellspacing="0">
+        <tr>
+            <td><h3><?php echo Mage::helper('aitsys')->__($this->getTitle(),$this->getVersion()) ?></h3></td><td class="form-buttons"><?php echo $this->getSaveButtonHtml() ?></td>
+         </tr>
+    </table>
+</div>
+<div class="entry-edit">
+    <?php echo $this->getInstallText()?>
+    <table class="aitsys-list">
+      <tr>
+        <td class="list">
+          <div class="form">
+            <form action="<?php echo $this->getSaveUrl() ?>" method="post" id="config_edit_form" enctype="multipart/form-data">
+                <?php echo $this->getBlockHtml('formkey')?>
+                <?php echo $this->getChildHtml('form')?>
+            </form>
+          </div>
+          [ <a href="<?php echo $this->getUrl('*/rewriter'); ?>"><?php echo $this->__('Manage Class Rewrites'); ?></a> ]
+          [ <a href="<?php echo $this->getUrl('*/patch'); ?>"><?php echo $this->__('View Customized Templates'); ?></a> ]
+          [ <a href="<?php echo $this->getUrl('*/index/permissions', array('mode' => $this->getPermLink())); ?>"><?php echo $this->__($this->getPermLinkTitle()); ?></a> ]
+        </td>
+        <td class="notifications">
+          <?php echo $this->getChildHtml('aitoc_notifications')?>
+        </td>
+      </tr>
+    </table>
+</div>
+<script type="text/javascript">
+    var configForm = new varienForm('config_edit_form');
+</script>
+<?php 
+$service = Aitoc_Aitsys_Abstract_Service::get();
+if ($service->platform()->isDebugingAllowed())
+{
+    ?>
+    <a href="<?php echo $this->getUrl('aitsys/debug/index')?>"><?php echo $this->__('Debug')?></a>
+    <?php
+}
+?>

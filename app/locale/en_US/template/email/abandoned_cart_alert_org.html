@@ -1,0 +1,61 @@
+<!--
+/**
+ * Product:     Abandoned Carts Alerts Pro for 1.3.x-1.7.0.0 - 22/05/12
+ * Package:     AdjustWare_Cartalert_3.0.7_0.2.3_383945
+ * Purchase ID: n/a
+ * Generated:   2012-11-08 13:50:47
+ * File path:   app/locale/en_US/template/email/abandoned_cart_alert.html
+ * Copyright:   (c) 2012 AITOC, Inc.
+ */
+--><!--@subject Abandoned cart alert from {{var store_name}} @-->
+
+<style type="text/css">
+    body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; }
+</style>
+
+<div style="font:11px/1.35em Verdana, Arial, Helvetica, sans-serif;">
+<table cellspacing="0" cellpadding="0" border="0" width="98%" style="margin-top:10px; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; margin-bottom:10px;">
+<tr>
+    <td align="center" valign="top">
+        <!-- [ header starts here] -->
+        <table cellspacing="0" cellpadding="0" border="0" width="650">
+            <tr>
+                <td valign="top"><a href="{{var store_url}}"><img src="{{var logo_url}}" alt="{{var logo_alt}}"  style="margin-bottom:10px;" border="0"/></a></td>
+            </tr>
+        </table>
+        <!-- [ middle starts here] -->
+        <table cellspacing="0" cellpadding="0" border="0" width="650">
+            <tr>
+                <td valign="top">
+                    <p><strong>Hello {{var customer_name}},</strong></p>
+                    <p>Thank you for stopping by {{var website_name}} and considering us for your purchase. We noticed that during your visit to our store you placed the following item(s) in your shopping cart, but did not complete the transaction.</p>
+          <p>Shopping Cart Contents: </p>
+
+                    <p>{{var products}}</p>
+{{depend real_quote}}
+                    <p><a href="{{var recover_url}}" >Recover </a><br> (url:{{var recover_url}})</p>
+{{/depend}} 
+{{depend coupon}}
+                    <p>Feel free to use this coupon: {{var coupon}}</p>
+                    <p>Please note that it expires in {{var coupon_days}} day(s)</p>
+{{/depend}} 
+
+                    <p>We are always interested in knowing what reason made you decide not to purchase at this time. If you could be so kind as to let us know if you had any issues or concerns, we would appreciate it. We are asking for feedback from you and others as to how we can make your experience at {{var website_name}} better.</p>
+
+<p>PLEASE NOTE:</p>
+<p>If you believe you completed your purchase and are wondering why it was not delivered, this email is an indication that your order was NOT completed, and that you have NOT been charged! Please return to the store in order to complete your order.</p>
+
+<p>We apologize, if you already completed your purchase and received this message by mistake.</p>
+
+<p>Again, thank you for your time and consideration in helping us improve our website.</p>
+
+<p>Sincerely,  {{var store_name}} Team</p>
+
+                     <p><a href="{{var store_url}}">{{var store_name}}</a></p>
+               </td>
+           </tr>
+       </table>
+   </td>
+</tr>
+</table>
+</div>

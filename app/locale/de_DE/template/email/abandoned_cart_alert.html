@@ -1,0 +1,61 @@
+﻿<!--
+/**
+ * Product:     Abandoned Carts Alerts Pro for 1.3.x-1.7.0.0 - 01/11/12
+ * Package:     AdjustWare_Cartalert_3.1.1_0.2.3_440060
+ * Purchase ID: n/a
+ * Generated:   2013-01-22 11:08:03
+ * File path:   app/locale/de_DE/template/email/abandoned_cart_alert.html
+ * Copyright:   (c) 2013 AITOC, Inc.
+ */
+--><!--@subject Abandoned cart alert from {{var store_name}} @-->
+
+<style type="text/css">
+    body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; }
+</style>
+
+<div style="font:11px/1.35em Verdana, Arial, Helvetica, sans-serif;">
+<table cellspacing="0" cellpadding="0" border="0" width="98%" style="margin-top:10px; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; margin-bottom:10px;">
+<tr>
+    <td align="center" valign="top">
+        <!-- [ header starts here] -->
+        <table cellspacing="0" cellpadding="0" border="0" width="650">
+            <tr>
+                <td valign="top"><a href="{{var store_url}}"><img src="{{var logo_url}}" alt="{{var logo_alt}}"  style="margin-bottom:10px;" border="0"/></a></td>
+            </tr>
+        </table>
+        <!-- [ middle starts here] -->
+        <table cellspacing="0" cellpadding="0" border="0" width="650">
+            <tr>
+                <td valign="top">
+                    <p><strong>Hallo {{var customer_name}},</strong></p>
+                    <p>Danke, dass Sie bei uns gestoppt haben  {{var website_name}} und uns fuer Shopping ausgewaehlt haben. Wir haben bemerkt, dass Sie waehrend des Besuchs in unserem Geschaeft folgende Posten zu Ihrer Kaufliste hinzugefuegt haben, Sie haben aber keine Transaktion gemacht.</p>
+          <p>Inhalt der Kaufliste:  </p>
+
+                    <p>{{var products}}</p>
+{{depend real_quote}}
+                    <p><a href="{{var recover_url}}" >Ersetzen </a><br> (url:{{var recover_url}})</p>
+{{/depend}} 
+{{depend coupon}}
+                    <p>Schaemen Sie sich nicht, diesen Kupon zu verwenden: {{var coupon}}</p>
+                    <p>Bitte notieren Sie sich, dass er in {{var coupon_days}} Tag(en) auslaeuft</p>
+{{/depend}} 
+
+                    <p>Wir interessieren uns immer dafuer, warum Sie sich entschlossen haben, dieses Mal keinen Kauf zu machen. Koennten Sie uns informieren, wenn Sie Vorschlaege zu unserer Arbeit haben. Wir bitten Sie und andere um Antwort, um Ihre Erfahrung auf {{var website_name}} besser zu machen.</p>
+
+<p>Bitte nehmen Sie zur Kenntnis:</p>
+<p>Wenn Sie sicher sind, dass Sie Ihren Kauf gemacht haben, aber man die Sachen nicht geliefert hat, dann ist dieser Email-Brief ein Indikator, dass Ihre Bestellung nicht vollendet war, und dass Sie die Bestellung nicht bezahlt haben! Bitte gehen Sie zurueck zum Geschaeft, um Ihre Bestellung zu vollenden.</p>
+
+<p>Wir entschuldigen uns, wenn Sie Ihre Bestellung erfolgreich gemacht haben und diese Mitteilung durch einen Fehler bekommen haben.</p>
+
+<p>Danke sehr fuer Ihre Zeit und fuer Ihre Entscheidung, uns zu helfen, unsere Webseite zu verbessern.</p>
+
+<p>Mit treundlichen Gruessen,  {{var store_name}} Team</p>
+
+                     <p><a href="{{var store_url}}">{{var store_name}}</a></p>
+               </td>
+           </tr>
+       </table>
+   </td>
+</tr>
+</table>
+</div>

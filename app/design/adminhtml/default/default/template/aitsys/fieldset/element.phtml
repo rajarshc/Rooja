@@ -1,0 +1,51 @@
+<?php 
+/* @var $this Aitoc_Aitsys_Block_Form_Element_Renderer */
+$module = $this->getModule();
+$license = $module->getLicense();
+$helper = Mage::helper('aitsys/license');
+/* @var $helper Aitoc_Aitsys_Helper_License */
+?>
+<?php $_element = $this->getElement() ?>
+<?php if (!$_element->getNoDisplay()): ?>
+<tr>
+    <?php if ($_element->getType()=='hidden'): ?>
+    <td colspan="3" class="hidden" valign="middle"><?php echo trim($_element->getElementHtml()) ?></td>
+    <?php else: ?>
+    <td class="label">
+        <table>
+          <tr>
+            <td>
+              <?php echo trim($_element->getLabelHtml()) ?>
+            </td>
+          </tr>
+        </table>
+    </td>
+    <td class="value">
+        <table>
+          <tr>
+            <td>
+              <?php echo trim($_element->getElementHtml()) ?>
+            </td>
+          </tr>
+        </table>
+    </td>
+    <td<?php if ($_element->getNote()): ?> class="note"<?php endif ?> id="note_<?php echo $_element->getId()?>">
+        <?php if ($_element->getNote()):?>
+        <?php echo $_element->getNote()?>
+        <?php elseif ($license): ?>
+        <table>
+          <tr>
+            <td><?php echo $helper->getStatusLabel($license)?></td>
+            <td>
+              <?php foreach ($helper->getMainActions($license) as $action):?>
+              &nbsp;
+              <a href="<?php echo $this->getUrl($action['url']['path'],$action['url']['args'])?>"><?php echo $action['title']?></a>
+              <?php endforeach;?>
+            </td>
+          </tr>
+        </table>
+        <?php endif;?>
+    </td>
+    <?php endif; ?>
+</tr>
+<?php endif; ?>

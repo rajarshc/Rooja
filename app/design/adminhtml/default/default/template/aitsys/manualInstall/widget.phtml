@@ -1,0 +1,19 @@
+<?php /* @var $this Aitoc_Aitsys_Block_ManualInstall_Widget */ ?>
+<?php echo $this->getFormInitScripts() ?>
+<div class="content-header">
+    <?php echo $this->getHeaderHtml() ?>
+    <p class="content-buttons form-buttons"><?php echo $this->getButtonsHtml('header') ?></p>
+</div>
+<div class="entry-edit">
+    <div class="form">
+      <form method="post" id="edit_form" enctype="multipart/form-data">
+      <?php echo $this->getFormHtml()?>
+      </form>
+    </div>
+    <div class="notifactions"></div>
+</div>
+
+<script type="text/javascript">
+    var editForm = new varienForm('edit_form', '<?php echo $this->getValidationUrl() ?>');;
+</script>
+<?php echo $this->getFormScripts() ?>

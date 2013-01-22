@@ -1,0 +1,110 @@
+<?php
+/**
+ * Product:     Abandoned Carts Alerts Pro for 1.3.x-1.7.0.0 - 01/11/12
+ * Package:     AdjustWare_Cartalert_3.1.1_0.2.3_440060
+ * Purchase ID: NZmnTZChS7OANNEKozm6XF7MkbUHNw6IY9fsWFBWRT
+ * Generated:   2013-01-22 11:08:03
+ * File path:   app/design/adminhtml/default/default/template/adjcartalert/info.phtml
+ * Copyright:   (c) 2013 AITOC, Inc.
+ */
+?>
+<?php
+$data = Mage::registry('quotestat_data');
+$_order = $this->getOrder();
+$_customer = $this->getParentBlock()->getCustomer();
+$_customerGroup = $this->getParentBlock()->getCustomerGroup();
+ ?>
+
+<div class="box-left">
+    <!--Order Information-->
+    <div class="entry-edit">
+        <?php if ($data->getAlertNumber()):
+            $_email = Mage::helper('adjcartalert')->__('Alert email was sent');
+        else:
+            $_email = Mage::helper('adjcartalert')->__('Alert email is not sent');
+        endif; ?>    
+        <div class="entry-edit-head">
+            <h4 class="icon-head head-account"><?php echo Mage::helper('adjcartalert')->__('Quote # %s', $data->getQuoteId()) ?> (<?php echo $_email ?>)</h4>
+        </div>
+        <div class="fieldset">
+            <table cellspacing="0" class="form-list">
+            <tr>
+                <td class="label"><label><?php echo Mage::helper('adjcartalert')->__('Cart Abandon Date') ?></label></td>
+                <td class="value"><strong><?php if($data->getCartAbandonDate()){echo Mage::app()->getLocale()->date($data->getCartAbandonDate(), Varien_Date::DATETIME_INTERNAL_FORMAT)->toString();}?></strong></td>
+            </tr>
+            
+            <tr>
+                <td class="label"><label><?php echo Mage::helper('adjcartalert')->__('Alert Date') ?> (<?php echo (int)$data->getAlertNumber();?>)</label></td>
+                <td class="value"><strong><?php if($data->getAlertDate()){echo Mage::app()->getLocale()->date($data->getAlertDate(), Varien_Date::DATETIME_INTERNAL_FORMAT)->toString();}?></strong></td>
+            </tr>
+
+            <tr>
+                <td class="label"><label><?php echo Mage::helper('adjcartalert')->__('Recovery Date') ?></label></td>
+                <td class="value"><strong><?php if($data->getRecoveryDate()){echo Mage::app()->getLocale()->date($data->getRecoveryDate(), Varien_Date::DATETIME_INTERNAL_FORMAT)->toString();}?></strong></td>
+            </tr>            
+
+<?php if($_order->getId()):?>
+            <tr>
+                <td class="label"><label><?php echo Mage::helper('adjcartalert')->__('Order Date') ?></label></td>
+                <td class="value"><strong><?php if($data->getOrderDate()){echo Mage::app()->getLocale()->date($data->getOrderDate(), Varien_Date::DATETIME_INTERNAL_FORMAT)->toString();}?></strong></td>
+            </tr>
+            <tr>
+                <td class="label"><label><?php echo Mage::helper('adjcartalert')->__('Order Status') ?></label></td>
+                <td class="value"><strong><span id="order_status"><?php echo $_order->getStatusLabel() ?></span></strong></td>
+            </tr>
+            <tr>
+                <td class="label"><label><?php echo Mage::helper('adjcartalert')->__('Purchased From') ?></label></td>
+                <td class="value"><strong><?php echo $this->getOrderStoreName() ?></strong></td>
+            </tr>
+            <?php if($_order->getRemoteIp()): ?>
+            <tr>
+                <td class="label"><label><?php echo Mage::helper('adjcartalert')->__('Placed from IP') ?></label></td>
+                <td class="value"><strong><?php echo $_order->getRemoteIp(); echo ($_order->getXForwardedFor())?' (' . $this->escapeHtml($_order->getXForwardedFor()) . ')':''; ?></strong></td>
+            </tr>
+            <?php endif; ?>
+            <?php if($_order->getGlobalCurrencyCode() != $_order->getBaseCurrencyCode()): ?>
+            <tr>
+                <td class="label"><label><?php echo Mage::helper('adjcartalert')->__('%s / %s rate:', $_order->getGlobalCurrencyCode(), $_order->getBaseCurrencyCode()) ?></label></td>
+                <td class="value"><strong><?php echo $_order->getBaseToGlobalRate() ?></strong></td>
+            </tr>
+            <?php endif; ?>
+            <?php if($_order->getBaseCurrencyCode() != $_order->getOrderCurrencyCode()): ?>
+            <tr>
+                <td class="label"><label><?php echo Mage::helper('adjcartalert')->__('%s / %s rate:', $_order->getOrderCurrencyCode(), $_order->getBaseCurrencyCode()) ?></label></td>
+                <td class="value"><strong><?php echo $_order->getBaseToOrderRate() ?></strong></td>
+            </tr>
+            <?php endif; ?>
+<?php endif; ?>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="box-right">
+    <!--Account Information-->
+    <div class="entry-edit">
+        <div class="entry-edit-head">
+            <h4 class="icon-head head-account"><?php echo Mage::helper('adjcartalert')->__('Account Information') ?></h4>
+        </div>
+        <div class="fieldset">
+            <div class="hor-scroll">
+                <table cellspacing="0" class="form-list">
+                <tr>
+                    <td class="label"><label><?php echo Mage::helper('adjcartalert')->__('Customer Name') ?></label></td>
+                    <td class="value">
+                        <strong><?php echo $this->htmlEscape($_customer->getFirstname().' '.$_customer->getLastname()) ?></strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label"><label><?php echo Mage::helper('adjcartalert')->__('Email') ?></label></td>
+                    <td class="value"><a href="mailto:<?php echo $_customer->getEmail() ?>"><strong><?php echo $_customer->getEmail() ?></strong></a></td>
+                </tr>
+                <tr>
+                    <td class="label"><label><?php echo Mage::helper('adjcartalert')->__('Customer Group') ?></label></td>
+                    <td class="value"><strong><?php echo $_customerGroup->getCustomerGroupCode() ?></strong></td>
+                </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clear"></div>

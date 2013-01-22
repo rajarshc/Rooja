@@ -1,0 +1,328 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <AdjustWare_Cartalert>
+            <version>3.1.1</version>
+        </AdjustWare_Cartalert>
+    </modules>
+    <admin>
+        <routers>
+            <adjcartalert>
+                <use>admin</use>
+                <args>
+                    <module>AdjustWare_Cartalert</module>
+                    <frontName>adjcartalert</frontName>
+                </args>
+            </adjcartalert>
+        </routers>
+    </admin>
+    <adminhtml>
+        <menu>
+            <newsletter>
+                <children>
+                    <adjcartalert translate="title" module="adjcartalert">
+                        <title>Abandoned Carts Alerts</title>
+                        <sort_order>100</sort_order>
+                        <children>
+                            <alerts translate="title" module="adjcartalert">
+                                <title>Pending Alerts</title>
+                                <action>adjcartalert/adminhtml_cartalert</action>
+                            </alerts>
+                            <history translate="title" module="adjcartalert">
+                                <title>History</title>
+                                <action>adjcartalert/adminhtml_history</action>
+                            </history>
+                            <quotestat translate="title" module="adjcartalert">
+                                <title>Abandoned Carts Statistic</title>
+                                <action>adjcartalert/adminhtml_quotestat</action>
+                            </quotestat>
+                            <dailystat translate="title" module="adjcartalert">
+                                <title>Daily Statistic</title>
+                                <action>adjcartalert/adminhtml_dailystat</action>
+                            </dailystat>
+                        </children>
+                    </adjcartalert>
+                </children>
+            </newsletter>
+        </menu>
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <newsletter>
+                            <children>
+                                <adjcartalert translate="title">
+                                    <title>Abandoned Carts Alerts</title>
+                                    <sort_order>100</sort_order>
+                                    <children>
+                                        <alerts translate="title" module="adjcartalert">
+                                            <title>Pending Alerts</title>
+                                        </alerts>
+                                        <history translate="title" module="adjcartalert">
+                                            <title>History</title>
+                                        </history>
+                                        <quotestat translate="title" module="adjcartalert">
+                                            <title>Abandoned Carts Statistic</title>
+                                        </quotestat>
+                                        <dailystat translate="title" module="adjcartalert">
+                                            <title>Daily Statistic</title>
+                                        </dailystat>
+                                    </children>
+                                </adjcartalert>
+                            </children>
+                        </newsletter>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+        <translate>
+            <modules>
+                <adjcartalert>
+                    <files>
+                        <default>AdjustWare_Cartalert.csv</default>
+                    </files>
+                </adjcartalert>
+            </modules>
+        </translate>
+        <layout>
+            <updates>
+                <AdjustWare_Cartalert>
+                    <file>adjcartalert.xml</file>
+                </AdjustWare_Cartalert>
+            </updates>
+        </layout>
+    </adminhtml>
+    <frontend>
+        <routers>
+            <adjcartalert>
+                <use>standard</use>
+                <args>
+                    <module>AdjustWare_Cartalert</module>
+                    <frontName>alerts</frontName>
+                </args>
+            </adjcartalert>
+        </routers>
+    </frontend>
+    <global>
+        <models>
+            <adjcartalert>
+                <class>AdjustWare_Cartalert_Model</class>
+                <resourceModel>adjcartalert_mysql4</resourceModel>
+            </adjcartalert>
+            <adjcartalert_mysql4>
+                <class>AdjustWare_Cartalert_Model_Mysql4</class>
+                <entities>
+                    <cartalert>
+                        <table>adjcartalert</table>
+                    </cartalert>
+                    <history>
+                        <table>adjcartalert_history</table>
+                    </history>
+                    <quotestat>
+                        <table>adjcartalert_quotestat</table>
+                    </quotestat>
+                    <dailystat>
+                        <table>adjcartalert_dailystat</table>
+                    </dailystat>
+                </entities>
+            </adjcartalert_mysql4>
+        </models>
+        <resources>
+            <adjcartalert_setup>
+                <setup>
+                    <module>AdjustWare_Cartalert</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </adjcartalert_setup>
+            <adjcartalert_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </adjcartalert_write>
+            <adjcartalert_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </adjcartalert_read>
+        </resources>
+        <blocks>
+            <adjcartalert>
+                <class>AdjustWare_Cartalert_Block</class>
+            </adjcartalert>
+            <checkout>
+                <rewrite>
+                    <onepage>AdjustWare_Cartalert_Block_Rewrite_FrontCheckoutOnepage</onepage>
+                </rewrite>
+            </checkout>
+        </blocks>
+        <helpers>
+            <adjcartalert>
+                <class>AdjustWare_Cartalert_Helper</class>
+            </adjcartalert>
+        </helpers>
+        <template>
+            <email>
+                <catalog_adjcartalert_template translate="label" module="adjcartalert">
+                    <label>Abandoned Cart: The First Follow Up</label>
+                    <file>abandoned_cart_alert.html</file>
+                    <type>html</type>
+                </catalog_adjcartalert_template>
+                <catalog_adjcartalert_template2 translate="label" module="adjcartalert">
+                    <label>Abandoned Cart: The Second Follow Up</label>
+                    <file>abandoned_cart_alert2.html</file>
+                    <type>html</type>
+                </catalog_adjcartalert_template2>
+                <catalog_adjcartalert_template3 translate="label" module="adjcartalert">
+                    <label>Abandoned Cart: The Third Follow Up</label>
+                    <file>abandoned_cart_alert3.html</file>
+                    <type>html</type>
+                </catalog_adjcartalert_template3>
+            </email>
+        </template>
+        <events>
+            <checkout_type_onepage_save_order_after>
+                <observers>
+                    <adjcartalert>
+                        <type>singleton</type>
+                        <class>adjcartalert/observer</class>
+                        <method>processOrderCreated</method>
+                    </adjcartalert>
+                </observers>
+            </checkout_type_onepage_save_order_after>
+            <checkout_type_multishipping_create_orders_single>
+                <observers>
+                    <adjcartalert>
+                        <type>singleton</type>
+                        <class>adjcartalert/observer</class>
+                        <method>processOrderCreated</method>
+                    </adjcartalert>
+                </observers>
+            </checkout_type_multishipping_create_orders_single>
+            <sales_quote_add_item>
+                <observers>
+                    <adjcartalert>
+                        <type>singleton</type>
+                        <class>adjcartalert/observer</class>
+                        <method>updateAlertsStatus</method>
+                    </adjcartalert>
+                </observers>
+            </sales_quote_add_item>
+            <sales_quote_remove_item>
+                <observers>
+                    <adjcartalert>
+                        <type>singleton</type>
+                        <class>adjcartalert/observer</class>
+                        <method>updateAlertsStatus</method>
+                    </adjcartalert>
+                </observers>
+            </sales_quote_remove_item>
+            <sales_order_place_after>
+                <observers>
+                    <adjcartalert>
+                        <type>singleton</type>
+                        <class>adjcartalert/quotestat</class>
+                        <method>onOrderCreate</method>
+                    </adjcartalert>
+                </observers>
+            </sales_order_place_after>
+            <adjustware_cartalert_alert_generate_after>
+                <observers>
+                    <adjcartalert>
+                        <type>singleton</type>
+                        <class>adjcartalert/quotestat</class>
+                        <method>onAlertGenerate</method>
+                    </adjcartalert>
+                </observers>
+            </adjustware_cartalert_alert_generate_after>
+            <adjustware_cartalert_alert_send_after>
+                <observers>
+                    <adjcartalert>
+                        <type>singleton</type>
+                        <class>adjcartalert/quotestat</class>
+                        <method>onAlertSend</method>
+                    </adjcartalert>
+                </observers>
+            </adjustware_cartalert_alert_send_after>
+            <adjustware_cartalert_cart_recovery>
+                <observers>
+                    <adjcartalert>
+                        <type>singleton</type>
+                        <class>adjcartalert/quotestat</class>
+                        <method>onCartRecovery</method>
+                    </adjcartalert>
+                </observers>
+            </adjustware_cartalert_cart_recovery>
+            <adminhtml_controller_action_predispatch_start>
+                <observers>
+                    <adjcartalert>
+                        <type>model</type>
+                        <class>adjcartalert/checkout_observer</class>
+                        <method>onAdminhtmlControllerActionPredispatchStart</method>
+                    </adjcartalert>
+                </observers>
+            </adminhtml_controller_action_predispatch_start>
+            <core_locale_set_locale>
+                <observers>
+                    <adjcartalert>
+                        <type>model</type>
+                        <class>adjcartalert/checkout_cart_observer</class>
+                        <method>onCoreLocaleSetLocale</method>
+                    </adjcartalert>
+                </observers>
+            </core_locale_set_locale>
+        </events>
+    </global>
+    <crontab>
+        <jobs>
+            <adjcartalert_create>
+                <schedule>
+                    <cron_expr>*/7 * * * *</cron_expr>
+                </schedule>
+                <run>
+                    <model>adjcartalert/observer::createCartalerts</model>
+                </run>
+            </adjcartalert_create>
+            <adjcartalert_stat>
+                <schedule>
+                    <cron_expr>*/15 * * * *</cron_expr>
+                </schedule>
+                <run>
+                    <model>adjcartalert/observer::runStat</model>
+                </run>
+            </adjcartalert_stat>
+        </jobs>
+    </crontab>
+    <default>
+        <catalog>
+            <adjcartalert>
+                <sending_enabled>0</sending_enabled>
+                <timeout>10</timeout>
+                <delay>45</delay>
+                <delay2>24</delay2>
+                <delay3>0</delay3>
+                <identity>general</identity>
+                <template>catalog_adjcartalert_template</template>
+                <template2>catalog_adjcartalert_template2</template2>
+                <template3>catalog_adjcartalert_template3</template3>
+                <stop_after_order>1</stop_after_order>
+                <stop_after_visit>1</stop_after_visit>
+                <coupon_step>none</coupon_step>
+                <coupon_type>by_percent</coupon_type>
+                <coupon_amount>5</coupon_amount>
+                <coupon_days>1</coupon_days>
+            </adjcartalert>
+        </catalog>
+    </default>
+</config>
+<!--
+/**
+ * Product:     Abandoned Carts Alerts Pro for 1.3.x-1.7.0.0 - 01/11/12
+ * Package:     AdjustWare_Cartalert_3.1.1_0.2.3_440060
+ * Purchase ID: NZmnTZChS7OANNEKozm6XF7MkbUHNw6IY9fsWFBWRT
+ * Generated:   2013-01-22 11:08:03
+ * File path:   app/code/local/AdjustWare/Cartalert/etc/config.xml
+ * Copyright:   (c) 2013 AITOC, Inc.
+ */
+-->

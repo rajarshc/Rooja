@@ -1,0 +1,13 @@
+<div class="aitsys-patch-instructions">
+
+    <?php echo $this->__('Please take the following file (If you are using a custom theme you need to use the very file from your custom theme folder instead)
+                             <pre>%s</pre> copy/rename it to <pre>%s</pre> and put the file in the folder (you might need to create all not existing folders) &mdash; <pre>%s</pre> so finally it should be like this &mdash; <pre>%s</pre>', 
+                                    $this->getSourceFile(), $this->getPatchedFileName(), $this->getDestinationDir(), $this->getDestinationFile()) ?>
+
+    <?php echo $this->__('After that please open the file for editing.'); ?><br />
+    <?php echo $this->__('You will need to add a piece (or several pieces) of code.'); ?>
+    
+    <?php echo $this->getPatchContents(); ?>
+    
+    <?php echo $this->__('Open the following file for editing (make a backup of the file first) <pre>%s</pre> find and remove the line similar to the following one &mdash; <pre>%s</pre>', $this->getPatchConfigPath(), $this->getPatchConfigLine()); ?>
+</div>

@@ -1,0 +1,98 @@
+<?php
+/**
+ * Product:     Abandoned Carts Alerts Pro for 1.3.x-1.7.0.0 - 01/11/12
+ * Package:     AdjustWare_Cartalert_3.1.1_0.2.3_440060
+ * Purchase ID: NZmnTZChS7OANNEKozm6XF7MkbUHNw6IY9fsWFBWRT
+ * Generated:   2013-01-22 11:08:03
+ * File path:   app/design/adminhtml/default/default/template/adjcartalert/quotestat.phtml
+ * Copyright:   (c) 2013 AITOC, Inc.
+ */
+?>
+<?php
+$data = Mage::registry('quotestat_data');
+$_order = $this->getOrder();
+?>
+<div>
+    <?php echo $this->getLayout()->getBlock('order_info')->toHtml(); ?>
+    <input type="hidden" name="order_id" value="<?php echo $_order->getId() ?>"/>
+
+  <?php if ($_order->getId()): ?>
+    <?php if ($_order->getIsVirtual()): ?>
+    <div class="box-right">
+    <?php else: ?>
+    <div class="box-left">
+    <?php endif; ?>
+        <!--Payment Method-->
+        <div class="entry-edit">
+            <div class="entry-edit-head">
+                <h4 class="icon-head head-payment-method"><?php echo Mage::helper('sales')->__('Payment Information') ?></h4>
+            </div>
+            <fieldset>
+                <?php echo $this->getPaymentHtml() ?>
+                <div><?php echo Mage::helper('sales')->__('Order was placed using %s', $_order->getOrderCurrencyCode()) ?></div>
+            </fieldset>
+        </div>
+    </div>
+    <?php if (!$_order->getIsVirtual()): ?>
+    <div class="box-right">
+        <!--Shipping Method-->
+        <div class="entry-edit">
+            <div class="entry-edit-head">
+                <h4 class="icon-head head-shipping-method"><?php echo Mage::helper('sales')->__('Shipping &amp; Handling Information') ?></h4>
+            </div>
+            <fieldset>
+                <?php  if ($_order->getTracksCollection()->count()) : ?>
+                <a href="#" id="linkId" onclick="popWin('<?php echo $this->helper('shipping')->getTrackingPopupUrlBySalesModel($_order) ?>','trackorder','width=800,height=600,resizable=yes,scrollbars=yes')" title="<?php echo $this->__('Track Order') ?>"><?php echo $this->__('Track Order') ?></a>
+                <br/>
+                <?php endif; ?>
+                <?php if ($_order->getShippingDescription()): ?>
+                    <strong><?php echo $this->escapeHtml($_order->getShippingDescription()) ?></strong>
+
+                    <?php if ($this->helper('tax')->displayShippingPriceIncludingTax()): ?>
+                        <?php $_excl = $this->displayShippingPriceInclTax($_order); ?>
+                    <?php else: ?>
+                        <?php $_excl = $this->displayPriceAttribute('shipping_amount', false, ' '); ?>
+                    <?php endif; ?>
+                    <?php $_incl = $this->displayShippingPriceInclTax($_order); ?>
+
+                    <?php echo $_excl; ?>
+                    <?php if ($this->helper('tax')->displayShippingBothPrices() && $_incl != $_excl): ?>
+                        (<?php echo $this->__('Incl. Tax'); ?> <?php echo $_incl; ?>)
+                    <?php endif; ?>
+                <?php else: ?>
+                    <?php echo $this->helper('sales')->__('No shipping information available'); ?>
+                <?php endif; ?>
+            </fieldset>
+        </div>
+    </div>
+    <?php endif; ?>
+    <div class="clear"></div>
+  <?php endif; ?>
+    <div class="entry-edit">
+        <div class="entry-edit-head">
+            <h4 class="icon-head head-products"><?php echo Mage::helper('sales')->__('Items Abandoned') ?></h4>
+        </div>
+    </div>
+    <?php echo $this->getLayout()->getBlock('quote_items')->toHtml() ?>
+    <div class="clear"></div>
+
+  <?php if ($_order->getId()): ?>
+    <div class="entry-edit">
+        <div class="entry-edit-head">
+            <h4 class="icon-head head-products"><?php echo Mage::helper('sales')->__('Items Ordered') ?></h4>
+        </div>
+    </div>
+    <?php echo $this->getLayout()->getBlock('order_items')->toHtml() ?>
+    <div class="clear"></div>
+
+    <div class="box-left">
+        <div class="entry-edit">
+        </div>
+    </div>
+    <div class="box-right entry-edit">
+        <div class="entry-edit-head"><h4><?php echo Mage::helper('sales')->__('Order Totals') ?></h4></div>
+        <div class="order-totals"><?php echo $this->getLayout()->getBlock('order_totals')->toHtml() ?></div>
+    </div>
+    <div class="clear"></div>
+  <?php endif; ?>    
+</div>

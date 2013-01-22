@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<config>
+	<menu>
+		    <newsletter>
+                <children>
+                    <adjcartalert translate="title" module="adjcartalert">
+                        <title>Abandoned Carts Alerts</title>
+                        <sort_order>100</sort_order>
+                        <children>
+                            <alerts translate="title" module="adjcartalert">
+                                <title>Pending Alerts</title>
+                                <action>adjcartalert/adminhtml_cartalert</action>
+                            </alerts>
+                            <history translate="title" module="adjcartalert">
+                                <title>History</title>
+                                <action>adjcartalert/adminhtml_history</action>
+                            </history>
+                        </children>
+                    </adjcartalert>
+                </children>
+            </newsletter>
+		</menu>
+		
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+            		    <newsletter>
+                            <children>
+                                <adjcartalert translate="title">
+                                    <title>Abandoned Carts Alerts</title>
+                                    <sort_order>100</sort_order>
+                                    <children>
+                                        <alerts translate="title" module="adjcartalert">
+                                            <title>Pending Alerts</title>
+                                        </alerts>
+                                        <history translate="title" module="adjcartalert">
+                                            <title>History</title>
+                                        </history>
+                                    </children>
+                                </adjcartalert>
+                            </children>
+                        </newsletter>
+                    </children>
+                </admin>
+            </resources>
+        </acl> 
+</config>
+<!--
+/**
+ * Product:     Abandoned Carts Alerts Pro for 1.3.x-1.7.0.0 - 01/11/12
+ * Package:     AdjustWare_Cartalert_3.1.1_0.2.3_440060
+ * Purchase ID: NZmnTZChS7OANNEKozm6XF7MkbUHNw6IY9fsWFBWRT
+ * Generated:   2013-01-22 11:08:03
+ * File path:   app/code/local/AdjustWare/Cartalert/etc/adminhtml.xml
+ * Copyright:   (c) 2013 AITOC, Inc.
+ */
+-->
