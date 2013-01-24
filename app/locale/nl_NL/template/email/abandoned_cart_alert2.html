@@ -1,0 +1,61 @@
+﻿<!--
+/**
+ * Product:     Abandoned Carts Alerts Pro for 1.3.x-1.7.0.0 - 01/11/12
+ * Package:     AdjustWare_Cartalert_3.1.1_0.2.3_440060
+ * Purchase ID: n/a
+ * Generated:   2013-01-22 11:08:03
+ * File path:   app/locale/nl_NL/template/email/abandoned_cart_alert2.html
+ * Copyright:   (c) 2013 AITOC, Inc.
+ */
+--><!--@subject Abandoned cart alert 2 from {{var store_name}} @-->
+
+<style type="text/css">
+    body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; }
+</style>
+
+<div style="font:11px/1.35em Verdana, Arial, Helvetica, sans-serif;">
+<table cellspacing="0" cellpadding="0" border="0" width="98%" style="margin-top:10px; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; margin-bottom:10px;">
+<tr>
+    <td align="center" valign="top">
+        <!-- [ header starts here] -->
+        <table cellspacing="0" cellpadding="0" border="0" width="650">
+            <tr>
+                <td valign="top"><a href="{{var store_url}}"><img src="{{var logo_url}}" alt="{{var logo_alt}}"  style="margin-bottom:10px;" border="0"/></a></td>
+            </tr>
+        </table>
+        <!-- [ middle starts here] -->
+        <table cellspacing="0" cellpadding="0" border="0" width="650">
+            <tr>
+                <td valign="top">
+                    <p><strong>Hallo {{var customer_name}},</strong></p>
+                    <p>Bedankt voor uw bezoek bij {{var website_name}} en dat u ons overweegt voor uw aankoop. We hebben gemerkt dat tijdens uw bezoek aan onze winkel u het volgende item(s) heeft geplaatst in uw winkelwagen, maar u hebt de transactie niet afgerond.</p>
+          <p>Inhoud van uw winkelwagen: </p>
+
+                    <p>{{var products}}</p>
+{{depend real_quote}}
+                    <p><a href="{{var recover_url}}" >Inwisselen </a><br> (url:{{var recover_url}})</p>
+{{/depend}} 
+
+{{depend coupon}}
+                    <p>Voel je vrij om deze coupon te gebruiken: {{var coupon}}</p>
+                    <p>Houd er rekening mee dat het vervalt in {{var coupon_days}} dag(en)</p>
+{{/depend}} 
+                    <p>Wij zijn altijd geinteresseerd om te weten voor welke reden u hebt besloten op dit moment niet tot aankoop over te gaan. Wij zouden het erg op prij stellen als u zo vriendelijk zou zijn om ons te laten weten of u vragen heeft en of u problemen heeft ervaart. Wij vragen om feedback van u en anderen over hoe wij uw ervaring bij {{var website_name}} kunnen verbeteren.</p>
+
+<p>LET OP:</p>
+<p>Als u denkt dat u klaar bent met de aankoop en vraagt uw af waarom het werd niet afgeleverd, deze e-mail is een indicatie dat uw bestelling was NIET afgerond, en dat u bestelling NIET in rekening is gebracht! Alstublieft, keer terug naar de winkel om uw bestelling af te ronden.</p>
+
+<p>Onze excuses, als u al klaar bent met de aankoop en deze bericht dus per ongeluk ontvangt.</p>
+
+<p>Nogmaals, wij danken u voor uw tijd en aandacht om ons te helpen onze website te verbeteren.</p>
+
+<p>Met vriendelijke groet,  {{var store_name}} Team</p>
+
+                     <p><a href="{{var store_url}}">{{var store_name}}</a></p>
+               </td>
+           </tr>
+       </table>
+   </td>
+</tr>
+</table>
+</div>

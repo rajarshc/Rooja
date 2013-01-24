@@ -311,12 +311,18 @@ div.checkoutcontainer div.input-address-short .input-text, div.checkoutcontainer
     width: 70%;
 }
 
-div.checkoutcontainer div.input-address,div.checkoutcontainer div.input-city,div.checkoutcontainer li.taxvat div.input-box
+div.checkoutcontainer div.input-address,div.checkoutcontainer li.taxvat div.input-box
     {
     width: 100% !important;
 }
-
-div.checkoutcontainer div.input-address .input-text,div.checkoutcontainer div.input-city .input-text
+div.checkoutcontainer div.input-city {
+	width: 49% !important;
+	float:left;
+}
+div.checkoutcontainer div.input-city .input-text {
+	 width: 70%;
+}
+div.checkoutcontainer div.input-address .input-text
     {
     width: 83%;
 }
@@ -327,16 +333,16 @@ div.checkoutcontainer div.input-postcode {
 }
 
 div.checkoutcontainer div.input-postcode .input-text {
-    width: 70%;
+    width: 86%;
 }
 
 div.checkoutcontainer div.input-region {
-    width: 60%;
-    float: left;
+    width: 49%;
+    float: right;
 }
 
 div.checkoutcontainer div.input-region .input-text {
-    width: 77%;
+    width: 70%;
 }
 
 div.checkoutcontainer div.input-country {
@@ -344,7 +350,7 @@ div.checkoutcontainer div.input-country {
 }
 
 div.checkoutcontainer div.input-country select {
-    width: 85%;
+    width: 88%;
 }
 
 div.checkoutcontainer div.input-region select {
@@ -405,6 +411,15 @@ div.onestepcheckout-shipping-method {
 }
 
 div.loading-ajax, div.loading-ajax-login {
+    height: 50px;
+    text-align: center;
+    background-image: url(images/ajax-loader.gif);
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+div.loading-ajax{
+	display: none!important;
     height: 50px;
     text-align: center;
     background-image: url(images/ajax-loader.gif);

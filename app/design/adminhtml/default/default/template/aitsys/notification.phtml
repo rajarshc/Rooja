@@ -1,0 +1,79 @@
+<?php
+/* @var $this Aitoc_Aitsys_Block_Notification */
+
+if ($this->isNewCollection()):
+?>
+<div class="entry-edit-head"><h4><?php echo $this->__("Aitoc Module Manager alerts")?></h4></div>
+<div class="fieldset">
+  <div class="news">
+  <?php
+  foreach ($this->getNewCollection() as $item) 
+  {
+      /* @var $item Aitoc_Aitsys_Model_Mysql4_Notification*/
+      ?>
+      <dl class="item">
+        <dt>
+            <h2><?php echo Mage::helper('core')->formatDate($item->getData('date_added'),'short',true)?>: <?php echo $item->getTitle()?></h2>
+        </dt>
+        <dd>
+            <?php echo $item->getDescription()?>
+        </dd>
+      </dl>
+      <?php
+  }
+  ?>
+  </div>
+</div>
+<?php
+$this->markNewCollection();
+endif;
+?>
+<!-- <div class="entry-edit-head"><h4><?php echo $this->__("Aitoc news")?></h4></div> -->
+<div class="fieldset">
+  <div class="news">
+  <?php
+  foreach ($this->getNews() as $item) 
+  {
+      ?>
+      <dl class="item">
+        <dt>
+            <?php
+            if (isset($item['title']) && $item['title']) 
+            {
+                ?><h2><?php echo $item['title']?></h2><?php
+            }
+            ?>
+        </dt>
+        <dd>
+          <?php echo $item['content']?>
+        </dd>
+      </dl>
+      <?php
+  }
+  ?>
+  </div>
+</div>
+<?php
+$allerts = $this->getAllertsCollection();
+if ($allerts->getSize()):
+?>
+<div class="entry-edit-head"><h4><?php echo $this->__("Aitoc Module Manager latest alerts")?></h4></div>
+<div class="fieldset">
+  <div class="news">
+  <?php
+  foreach ($allerts as $item) 
+  {
+      /* @var $item Aitoc_Aitsys_Model_Mysql4_Notification*/
+      ?>
+      <div class="item">
+        <h2><?php echo Mage::helper('core')->formatDate($item->getData('date_added'),'short',true)?>: <?php echo $item->getTitle()?></h2>
+        <?php echo $item->getDescription()?>
+      </div>
+      <?php
+  }
+  ?>
+  </div>
+</div>
+<?php
+endif; 
+?>

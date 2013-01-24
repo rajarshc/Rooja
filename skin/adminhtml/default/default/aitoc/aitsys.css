@@ -1,0 +1,69 @@
+@CHARSET "UTF-8";
+
+.aitsys-list
+{
+    width: 100%;
+}
+
+.aitsys-list .list
+{
+    width: 50%;
+}
+
+.aitsys-list .notifications
+{
+    width: 50%;
+}
+
+.license-params-table td
+{
+	padding-top:0 !important;
+	padding-bottom:0 !important;
+    padding-left:0;
+    padding-right:10px;
+}
+
+.aitoc-note-message
+{
+    font-size: 14px;
+}
+
+#license .agreements_frame
+{
+    overflow-y: scroll;
+    height: 400px;
+    
+}
+
+.aitsys-list .entry-edit #module_list .form-list td.label
+{
+    white-space: nowrap;
+    width: 200px;
+}
+
+.aitsys-list .entry-edit #module_list .form-list td.label label
+{
+    display: inline;
+    width: 100%;
+}
+
+.form-list td 
+{
+    background:none repeat scroll 0 50% transparent !important;
+    border:0 none !important;
+    padding-bottom:5px !important;
+    padding-top:5px !important;
+}
+
+.aitsys-patch-instructions
+{
+    margin-botton: 12px;
+}
+
+.aitsys-patch-instructions pre
+{
+    margin-top: 6px;
+    margin-bottom: 6px;
+    padding: 4px;
+    border: 1px solid #EB5E00;
+}

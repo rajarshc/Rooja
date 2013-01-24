@@ -1,0 +1,84 @@
+<?php /* @var $this Aitoc_Aitsys_Block_Manage_Widget */ ?>
+<?php echo $this->getFormInitScripts() ?>
+<div class="content-header">
+    <?php echo $this->getHeaderHtml() ?>
+    <p class="content-buttons form-buttons"><?php echo $this->getButtonsHtml('header') ?></p>
+</div>
+<div class="entry-edit">
+    <div class="form">
+      <form method="post" id="edit_form" enctype="multipart/form-data">
+      <?php echo $this->getFormHtml()?>
+      </form>
+    </div>
+    <div class="notifactions"></div>
+</div>
+<?php if ($this->hasFooterButtons()): ?>
+    <div class="content-footer">
+        <p class="content-buttons form-buttons"><?php echo $this->getButtonsHtml('footer') ?></p>
+    </div>
+<?php endif; ?>
+<script type="text/javascript">
+    var editForm = new varienForm('edit_form', '<?php echo $this->getValidationUrl() ?>');;
+    <?php if (!$this->tool()->platform()->isModePresetted()):?>
+    var confirmButton = $('confirm_and_install');
+    if (confirmButton)
+    {
+        var testNotice = $('test_notice');
+        var liveNotice = $('live_notice'); 
+        confirmButton.setAttribute('disabled',true);
+        confirmButton.addClassName('disabled');
+        testNotice.hide();
+        liveNotice.hide();
+        
+        var radioList = [$('installation_typetest'),$('installation_typelive')];
+        radioList.each(function(radioItem)
+        {
+            radioItem.observe('click',function(){
+                confirmButton.removeAttribute('disabled');
+                confirmButton.removeClassName('disabled');
+            });
+        });
+        
+        var tagATest = null;
+        $('installation_typetest').nextSiblings().each(function(nextItem)
+        {
+            if (tagATest)
+            {
+                return;
+            }
+            if ('a' == nextItem.tagName.toLowerCase())
+            {
+                tagATest = nextItem;
+            }
+        });
+        [tagATest,$('installation_typetest')].each(function(item){
+            item.observe('click',function()
+            {
+                testNotice.show();
+                liveNotice.hide();
+            });
+        });
+        
+        tagALive = null;
+        $('installation_typelive').nextSiblings().each(function(nextItem)
+        {
+            if (tagALive)
+            {
+                return;
+            }
+            if ('a' == nextItem.tagName.toLowerCase())
+            {
+                tagALive = nextItem;
+            }
+        });
+        [tagALive,$('installation_typelive')].each(function(item){
+            item.observe('click',function()
+            {
+                testNotice.hide();
+                liveNotice.show();
+            });
+        });
+    }
+    <?php endif;?>
+</script>
+<?php echo $this->getFormScripts() ?>

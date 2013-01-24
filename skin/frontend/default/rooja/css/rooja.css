@@ -613,11 +613,12 @@ h3 .product-name {
 .saleDetails h3{margin-bottom:10px;}
 .saleDetails p{color:#c60;}
 
-#upcomingSales{padding:12px 8px;background-color:#d1dddf;color:#555;margin-top:54px;width:214px;}
+#upcomingSales{padding:12px 8px;background-color:#d2dddf;color:#555;margin-top:54px;width:214px;}
 #upcomingSales h2{color:#555;text-transform:uppercase;margin-bottom:25px;}
-.upcomingDate{/*width:96px;*/float:left;margin-right:20px;/*height:130px;*/}
-.upcomingDate h4{padding:0 0 8px;border-bottom:1px solid #555;margin-bottom:8px;}
-.upcomingDate ul li{font-size:1.3em;padding-bottom:2px;line-height:1.1em;}
+.upcomingDate{width:96px;float:left;margin-right:20px; /*height:130px; */ }
+.upcomingDate h4{padding:0 0 8px;border-bottom:1px solid #a6b1b3;margin-bottom:8px; font-weight:bold;}
+.upcomingDate ul { padding-bottom:20px; }
+.upcomingDate ul li{font-size:1.3em;padding-bottom:7px;line-height:1.1em; font-weight:bold; }
 
 #boutiquesHome{margin-top:15px;overflow:hidden;}
 
@@ -768,7 +769,7 @@ h2 {font-size: 2.4em;line-height:1em;font-family:"ltc-bodoni-175-1","ltc-bodoni-
 h3 {font-size: 2.4em; color: #431f4c; line-height:18px; margin-bottom: 15px; font-weight:normal;font-family:"ltc-bodoni-175-1","ltc-bodoni-175-2", georgia, serif;}
 .step h3 {font-family:helvetica, arial, sans-serif; font-size:15px; font-weight: bold; margin: 13px 0 5px 0;}
 #checkout-review-table h3{font-size:13px;}
-h4{font-size:1.6em;font-family:"ltc-bodoni-175-1","ltc-bodoni-175-2", georgia, serif;font-weight:normal;line-height:1.2em; text-transform:uppercase; padding:5px 0 20px 0;}
+h4{font-size:1.6em;font-family:"ltc-bodoni-175-1","ltc-bodoni-175-2", georgia, serif;font-weight:normal;line-height:1.2em; text-transform:capitalize; padding:5px 0 20px 0;}
 p {font-size: 1.2em;line-height:1.4em;margin-bottom:20px;}
 p.saleEnding{color:#cc6600;margin-bottom:10px;}
 
@@ -857,3 +858,9 @@ a#toggleShipping {font-size:14px; margin: 0 0 0 4px;padding: 5px 0;}
 #container_payment_method_cashondelivery fieldset ul{ padding:15px;  }
 
 #checkout_page_custom_text_display{ font-size:13px; color:#431f4c; margin:15px 0px;    }
+
+#msgforcod{
+font-size: 12px;
+font-weight: bold;
+line-height: 17px;
+}

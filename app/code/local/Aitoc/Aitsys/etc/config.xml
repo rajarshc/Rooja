@@ -1,0 +1,496 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Aitoc_Aitsys>
+            <version>2.19.4</version>
+        </Aitoc_Aitsys>
+    </modules>
+    
+    <frontend>
+        <routers>
+            <aitsysfront>
+                <use>standard</use>
+                <args>
+                    <module>Aitoc_Aitsys</module>
+                    <frontName>aitsysfront</frontName>
+                </args>
+            </aitsysfront>
+        </routers>
+    </frontend>
+    
+    <admin>
+        <routers>
+            <aitsys>
+                <use>admin</use>
+                <args>
+                    <module>Aitoc_Aitsys</module>
+                    <frontName>aitsys</frontName>
+                </args>
+            </aitsys>
+        </routers>
+    </admin>
+    
+    <aitsys>
+        <events>
+        </events>
+    </aitsys>
+    
+    <adminhtml>
+        <layout>
+            <updates>
+                <aitsys>
+                    <file>aitsys.xml</file>
+                </aitsys>
+            </updates>
+        </layout>
+        <menu>
+            <system>
+                <children>
+                    <aitsys> 
+                        <title>Manage Aitoc Modules</title>
+                        <sort_order>1</sort_order>           
+                        <action>aitsys</action>
+                    </aitsys> 
+                </children>
+            </system>
+        </menu>
+        <acl>
+            <resources>
+                <all>
+                    <title>Allow Everything</title>
+                </all>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <aitsys translate="title" module="aitsys">
+                                    <title>Manage Aitoc Modules</title>
+                                    <sort_order>0</sort_order>
+                                </aitsys>
+                                <config>
+                                    <children>
+                                        <aitsys translate="title" module="aitsys">
+                                            <title>Aitoc Module Manager</title>
+                                        </aitsys>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+        <events>
+            <controller_action_predispatch>
+                <observers>
+                    <aitoc_notfications>
+                        <type>singleton</type>
+                        <class>aitsys/notification_observer</class>
+                        <method>performPreDispatch</method>
+                    </aitoc_notfications>
+                </observers>
+            </controller_action_predispatch>
+        </events>
+    </adminhtml> 
+    
+    <global>
+        <events>
+            <!-- event for custom autoload -->
+            <!-- controller_front_init_before>
+                <observers>
+                    <aitsys_rewriter_observer>
+                        <type>singleton</type>
+                        <class>aitsys/rewriter_observer</class>
+                        <method>init</method>
+                    </aitsys_rewriter_observer>
+                </observers>
+            </controller_front_init_before -->
+            
+            <resource_get_tablename>
+                <observers>
+                    <aitsys_rewriter_observer>
+                        <type>singleton</type>
+                        <class>aitsys/rewriter_observer</class>
+                        <method>init</method>
+                    </aitsys_rewriter_observer>
+                </observers>
+            </resource_get_tablename>
+            <core_collection_abstract_load_before>
+                <observers>
+                    <aitsys_rewriter_observer>
+                        <type>singleton</type>
+                        <class>aitsys/rewriter_observer</class>
+                        <method>init</method>
+                    </aitsys_rewriter_observer>
+                </observers>
+            </core_collection_abstract_load_before>
+            
+            <application_clean_cache>
+                <observers>
+                    <aitsys_rewriter_observer>
+                        <type>singleton</type>
+                        <class>aitsys/rewriter_observer</class>
+                        <method>clearCache</method>
+                    </aitsys_rewriter_observer>
+                </observers>
+            </application_clean_cache>
+            
+            <controller_action_predispatch_adminhtml_cache_flushAll>
+                <observers>
+                    <aitsys_rewriter_observer>
+                        <type>singleton</type>
+                        <class>aitsys/rewriter_observer</class>
+                        <method>clearCache</method>
+                    </aitsys_rewriter_observer>
+                </observers>
+            </controller_action_predispatch_adminhtml_cache_flushAll>
+            
+            <controller_action_predispatch_adminhtml_cache_massRefresh>
+                <observers>
+                    <aitsys_rewriter_observer>
+                        <type>singleton</type>
+                        <class>aitsys/rewriter_observer</class>
+                        <method>clearCache</method>
+                    </aitsys_rewriter_observer>
+                </observers>
+            </controller_action_predispatch_adminhtml_cache_massRefresh>
+            
+            <aitsys_module_load_install_file>
+                <observers>
+                    <aitsys_license_observer>
+                        <type>singleton</type>
+                        <class>aitsys/license_observer</class>
+                        <method>performLoadInstallFile</method>
+                    </aitsys_license_observer>
+                </observers>
+            </aitsys_module_load_install_file>
+            <aitsys_create_module_after>
+                <observers>
+                    <aitsys_module_creation_observer>
+                        <type>singleton</type>
+                        <class>aitsys/aitfilepatcher</class>
+                        <method>performCreateModuleAfter</method>
+                    </aitsys_module_creation_observer>
+                </observers>
+            </aitsys_create_module_after>
+            <aitsys_create_performer_before>
+                <observers>
+                    <aitsys_performer_creation_observer>
+                        <type>singleton</type>
+                        <class>aitsys/aitsys</class>
+                        <method>performCreateBefore</method>
+                    </aitsys_performer_creation_observer>
+                </observers>
+            </aitsys_create_performer_before>
+            <aitsys_create_performer_after>
+                <observers>
+                    <aitsys_performer_creation_observer>
+                        <type>singleton</type>
+                        <class>aitsys/aitsys</class>
+                        <method>performCreateAfter</method>
+                    </aitsys_performer_creation_observer>
+                </observers>
+            </aitsys_create_performer_after>
+            <aitsys_module_checkstatus_after>
+                <observers>
+                    <aitoc_notfications>
+                        <type>singleton</type>
+                        <class>aitsys/notification_observer</class>
+                        <method>performCheckStatusAfter</method>
+                    </aitoc_notfications>
+                </observers>
+            </aitsys_module_checkstatus_after>
+            <aitsys_generate_module_list_after>
+                <observers>
+                    <aitoc_notfications>
+                        <type>singleton</type>
+                        <class>aitsys/notification_observer</class>
+                        <method>performGenerateModuleListAfter</method>
+                    </aitoc_notfications>
+                </observers>
+            </aitsys_generate_module_list_after>
+            <admin_permissions_role_prepare_save>
+                <observers>
+                    <aitsys_module_acl_observer>
+                        <type>singleton</type>
+                        <class>aitsys/module_acl_observer</class>
+                        <method>performRolePrepareSave</method>
+                    </aitsys_module_acl_observer>
+                </observers>
+            </admin_permissions_role_prepare_save>
+            <admin_user_save_before>
+                <observers>
+                    <aitsys_module_acl_observer>
+                        <type>singleton</type>
+                        <class>aitsys/module_acl_observer</class>
+                        <method>performUserBeforeSave</method>
+                    </aitsys_module_acl_observer>
+                </observers>
+            </admin_user_save_before>
+            <aitoc_module_save_data_before>
+                <observers>
+                    <aitsys_module_acl_observer>
+                        <type>singleton</type>
+                        <class>aitsys/module_acl_observer</class>
+                        <method>performModulesBeforeSave</method>
+                    </aitsys_module_acl_observer>
+                </observers>
+            </aitoc_module_save_data_before>
+            <controller_action_postdispatch>
+                <observers>
+                    <aitoc_notfications>
+                        <type>singleton</type>
+                        <class>aitsys/notification_observer</class>
+                        <method>performPostDispatch</method>
+                    </aitoc_notfications>
+                </observers>
+            </controller_action_postdispatch>
+            <catalog_product_save_after>
+                <observers>
+                    <aitsys_clear_count_cache>
+                        <type>singleton</type>
+                        <class>aitsys/observer</class>
+                        <method>clearCountCache</method>
+                    </aitsys_clear_count_cache>
+                </observers>
+            </catalog_product_save_after>
+            <catalog_product_delete_after_done>
+                <observers>
+                    <aitsys_clear_count_cache>
+                        <type>singleton</type>
+                        <class>aitsys/observer</class>
+                        <method>clearCountCache</method>
+                    </aitsys_clear_count_cache>
+                </observers>
+            </catalog_product_delete_after_done>
+            <catalog_product_status_update>
+            <!-- observe product status update: for 1.3.x -->
+                <observers>
+                    <aitsys_clear_count_cache>
+                        <type>singleton</type>
+                        <class>aitsys/observer</class>
+                        <method>clearCountCache</method>
+                    </aitsys_clear_count_cache>
+                </observers>
+            </catalog_product_status_update>
+            <prepare_catalog_product_index_select>
+            <!-- observe product status update: for 1.4.x -->
+                <observers>
+                    <aitsys_clear_count_cache>
+                        <type>singleton</type>
+                        <class>aitsys/observer</class>
+                        <method>clearCountCache</method>
+                    </aitsys_clear_count_cache>
+                </observers>
+            </prepare_catalog_product_index_select>
+            
+            <controller_front_init_routers>
+                <observers>
+                    <aitsys_debuger_init>
+                        <type>singleton</type>
+                        <class>aitsys/observer</class>
+                        <method>debugerInit</method>
+                    </aitsys_debuger_init>
+                </observers>
+            </controller_front_init_routers>
+            
+            <controller_action_predispatch>
+                <observers>
+                    <aitsys_error_render>
+                        <type>singleton</type>
+                        <class>aitsys/observer</class>
+                        <method>errorRender</method>
+                    </aitsys_error_render>
+                </observers>
+            </controller_action_predispatch>
+        </events>
+        <resources>
+            <aitsys_setup>
+                <setup>
+                    <module>Aitoc_Aitsys</module>
+                    <class>Aitoc_Aitsys_Model_Mysql4_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+                <sql_files>
+                    <upgrade>
+                        <u1>1.0-2.0.0</u1>
+                        <u2>1.0.0-2.0.0</u2>
+                        <u3>2.7.3-2.7.4</u3>
+                        <u4>2.14.6-2.15.0</u4>
+                        <u6>2.15.5-2.15.6</u6>
+                    </upgrade>
+                    <install>
+                        <i1>2.0.0</i1>
+                    </install>
+                </sql_files>
+            </aitsys_setup>
+            
+            <aitsys_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </aitsys_write>
+            
+            <aitsys_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </aitsys_read>
+        
+        </resources>        
+    
+        <models>
+            <aitsys>
+                <class>Aitoc_Aitsys_Model</class>
+                <resourceModel>aitsys_mysql4</resourceModel>
+            </aitsys>
+            <aitsys_mysql4>
+                <class>Aitoc_Aitsys_Model_Mysql4</class>
+                <entities>
+                    <notification>
+                        <table>aitsys_notification</table>
+                    </notification>
+                    <news>
+                        <table>aitsys_news</table>
+                    </news>
+                    <performer>
+                        <table>aitsys_performer</table>
+                    </performer>
+                    <status>
+                        <table>aitsys_status</table>
+                    </status>
+                </entities>
+            </aitsys_mysql4>
+            
+            <!-- rewriteabstract is our installer tag (for internal use) -->
+            <core>
+                <rewrite>
+                    <layout>Aitoc_Aitsys_Model_Core_Layout</layout>
+                </rewrite>
+            </core>
+            
+            <compiler>
+                <rewrite>
+                    <process>Aitoc_Aitsys_Model_Compiler_Process</process>
+                </rewrite>
+            </compiler>
+        </models>
+        
+        <resources>
+            <aitsys_setup>
+                <setup>
+                    <module>Aitoc_Aitsys</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </aitsys_setup>
+            <aitsys_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </aitsys_write>
+            <aitsys_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </aitsys_read>
+        </resources>
+        
+        <blocks>
+            <aitsys>
+                <class>Aitoc_Aitsys_Block</class>
+            </aitsys>
+            
+            <!-- rewriteabstract is our installer tag (for internal use) -->
+            <core>
+                <rewriteabstract>
+                    <abstract>Aitoc_Aitsys_Model_Rewriter_Mage_Core_Block_Abstract</abstract>
+                    <template>Aitoc_Aitsys_Model_Rewriter_Mage_Core_Block_Template</template>
+                </rewriteabstract>
+            </core>
+        </blocks>
+        
+        <helpers>
+            <aitsys>
+                <class>Aitoc_Aitsys_Helper</class>
+            </aitsys>
+        </helpers>
+        
+        <cache>
+            <types>
+                <aitsys translate="label,description" module="aitsys">
+                    <label>Class Rewrites</label>
+                    <description>Class rewrites with modified inheritance.</description>
+                    <tags>aitsys</tags>
+                </aitsys>
+            </types>
+        </cache>
+        
+    </global>
+    
+    <default>
+        <aitsys>
+            <service>
+                <url>https://www.aitoc.com/api/xmlrpc</url>
+            </service>
+            <errors>
+                <seg_exceed_limit>
+                    <code>1001</code>
+                    <text><![CDATA[License Rule "%s" violated. Available License value: %s; Currently Used value: %s. %s]]></text>
+                </seg_exceed_limit>
+                <seg_config_stores_module_not_found>
+                    <code>1002</code>
+                    <text><![CDATA[Module with key "%s" was not found. Please make sure that module package is placed in correct location.]]></text>
+                </seg_config_stores_module_not_found>
+                <seg_config_stores_exceed_limit>
+                    <code>1003</code>
+                    <text><![CDATA[You can't assign more than %d store(s) to use with "%s" module. Read AITOC License agreement for details. %s]]></text>
+                </seg_config_stores_exceed_limit>
+                <seg_config_stores_cant_disable>
+                    <code>1004</code>
+                    <text><![CDATA[You can't unassign store(s) to use with "%s" module. Refer to AITOC License agreement for details. %s]]></text>
+                </seg_config_stores_cant_disable>
+                <seg_config_module_license_not_found>
+                    <code>1005</code>
+                    <text><![CDATA[The module with key "%s" has no license. Please make sure the module and license  are installed.]]></text>
+                </seg_config_module_license_not_found>
+                <seg_config_module_disabled_for_store>
+                    <code>1006</code>
+                    <text><![CDATA[You should enable module for store %s  in System/Configuration/Aitoc Module Manager. %s]]></text>
+                </seg_config_module_disabled_for_store>
+                <seg_config_module_disabled_for_website>
+                    <code>1007</code>
+                    <text><![CDATA[You should enable module for all stores of website %s in System/Configuration/Aitoc Module Manager. %s]]></text>
+                </seg_config_module_disabled_for_website>
+                <seg_config_module_disabled_for_all_stores>
+                    <code>1008</code>
+                    <text><![CDATA[You should enable module for all stores in System/Configuration/Aitoc Module Manager. %s]]></text>
+                </seg_config_module_disabled_for_all_stores>
+                <seg_config_admins_exceed_limit>
+                    <code>1009</code>
+                    <text><![CDATA[You can't apply features of "%s" module for more than %d administrator(s). To save the settings, please remove excess users from the Role. Read AITOC License agreement for details. %s]]></text>
+                </seg_config_admins_exceed_limit>
+                <seg_store_access_denied>
+                    <code>1010</code>
+                    <text><![CDATA[The module "%s" is disabled for current store]]></text>
+                </seg_store_access_denied>
+                <seg_config_admins_module_cant_enable>
+                    <code>1011</code>
+                    <text><![CDATA[You can't enable "%s" module because you exceed the limit of %d administrators. Read AITOC License agreement for details. %s]]></text>
+                </seg_config_admins_module_cant_enable>
+                <seg_license_violated>
+                    <code>1012</code>
+                    <text><![CDATA[The license for module "%s" has been violated. Module has been disabled.]]></text>
+                </seg_license_violated>
+                <seg_config_products_exceed_limit>
+                    <code>1013</code>
+                    <text><![CDATA[You can't apply features of "%s" module for more than %d product(s). Read AITOC License agreement for details. %s]]></text>
+                </seg_config_products_exceed_limit>
+            </errors>
+        </aitsys>
+    </default>
+    
+</config>

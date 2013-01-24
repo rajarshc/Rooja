@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Aitoc_Aitinstall>
+            <active>false</active>
+            <codePool>local</codePool>
+            <self_name>Manage Aitoc Modules</self_name>
+        </Aitoc_Aitinstall>
+    </modules>
+</config>

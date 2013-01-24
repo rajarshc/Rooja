@@ -1,0 +1,63 @@
+﻿<!--
+/**
+ * Product:     Abandoned Carts Alerts Pro for 1.3.x-1.7.0.0 - 01/11/12
+ * Package:     AdjustWare_Cartalert_3.1.1_0.2.3_440060
+ * Purchase ID: n/a
+ * Generated:   2013-01-22 11:08:03
+ * File path:   app/locale/it_IT/template/email/abandoned_cart_alert.html
+ * Copyright:   (c) 2013 AITOC, Inc.
+ */
+--><!--@subject Abandoned cart alert from {{var store_name}} @-->
+
+<style type="text/css">
+    body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; }
+</style>
+
+<div style="font:11px/1.35em Verdana, Arial, Helvetica, sans-serif;">
+<table cellspacing="0" cellpadding="0" border="0" width="98%" style="margin-top:10px; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; margin-bottom:10px;">
+<tr>
+    <td align="center" valign="top">
+        <!-- [ header starts here] -->
+        <table cellspacing="0" cellpadding="0" border="0" width="650">
+            <tr>
+                <td valign="top"><a href="{{var store_url}}"><img src="{{var logo_url}}" alt="{{var logo_alt}}"  style="margin-bottom:10px;" border="0"/></a></td>
+            </tr>
+        </table>
+        <!-- [ middle starts here] -->
+        <table cellspacing="0" cellpadding="0" border="0" width="650">
+            <tr>
+                <td valign="top">
+<p><strong>Ciao {{var customer_name}},</strong></p>
+                    <p>Grazie di esserti fermato a {{var website_name}} e consideratoci per i tuoi aquisti. Abbiamo notato che durante la tua visita del nostro negozio hai messo oggetto (i) seguente (i) nel tuo carrello, ma non hai completato la transazione.</p>
+          <p>contenuto di carrello: </p>
+
+                    <p>{{var products}}</p>
+{{depend real_quote}}
+                    <p><a href="{{var recover_url}}" >Riattivare </a><br> (url:{{var recover_url}})</p>
+{{/depend}} 
+
+{{depend coupon}}
+                    <p>Per favore usa questa cedola: {{var coupon}}</p>
+                    <p>Per favore nota che scade tra {{var coupon_days}} giorno(i)</p>
+{{/depend}} 
+                    <p>oi siamo sempre interessati di sapere perche` hai deciso di non fare gli acquisti questa volta. Se potresti essere gentile di farci sapere, se hai qualche problema
+o questione, saremmo molto riconoscenti se ci scrissi
+tu o altri clienti, cosi` che noi possiamo fare il nostro sito {{var website_name}} migliore..</p>
+
+<p>PREGHIAMO NOTARE:</p>
+<p>Se credi di aver completato il tuo acquisto e ti interessa perche` non e` stato consegnato, questo email e` indicazione che il tuo ordine NON e` stato completato, e tu NON hai pagato! Per favore, torna nel negozio per completare il tuo ordine.</p>
+
+<p>Chiediamo scusa, se hai gia` completato il tuo aquisto e hai ricevuti questo messaggio per sbaglio.</p>
+
+<p>Ancora una volta, grazie del tuo tempo e parere per aiutarci a migliorare il nostro sito.</p>
+
+<p>Distinti saluti,  {{var store_name}} Squadra</p>
+
+                     <p><a href="{{var store_url}}">{{var store_name}}</a></p>
+               </td>
+           </tr>
+       </table>
+   </td>
+</tr>
+</table>
+</div>

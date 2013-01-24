@@ -1,0 +1,45 @@
+<ul class="messages">
+    <li class="notice-msg">
+        <p><?php echo $this->__('Our installer creates several templates files during installation based on existing magento files with the help of our patcher.')?></p>
+        <p><?php echo $this->__('The newly created templates are automatically placed in folder - var/ait_patch/')?></p>
+    </li>
+</ul>
+<div class="grid">
+    <div class="content-header">
+        <h3><?php echo $this->__('Customized templates:')?></h3>
+    </div>
+    <table width="100%" class="data">
+        <thead>
+            <tr class="headings">
+                <td>Area</td>
+                <td>Package</td>
+                <td>Theme</td>
+                <td>File</td>
+            </tr>
+        </thead>
+        <tbody>
+            <?php 
+            foreach ($this->getAitcommonThemes() as $source => $src)
+            {
+                foreach ($src as $package => $pkg)
+                {
+                    foreach ($pkg as $theme => $thm)
+                    {
+                        foreach ($thm as $file)
+                        {
+                            ?>
+            <tr class="even pointer">
+                <td><?php echo $source?></td>
+                <td><?php echo $package?></td>
+                <td><?php echo $theme?></td>
+                <td><?php echo $file?></td>
+            </tr>
+                            <?php
+                        }
+                    }
+                }
+            }
+            ?>
+        </tbody>
+    </table>
+</div>

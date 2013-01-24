@@ -1,0 +1,376 @@
+<?php
+$formErrors = $this->getParentBlock()->formErrors;
+$formErrors = (!empty($formErrors['billing_errors'])) ? $formErrors['billing_errors'] : array();
+
+$helper = Mage::helper('onestepcheckout/checkout');
+$dataHelper = Mage::helper('onestepcheckout');
+
+    $billingFields['firstname'] = '
+        <div class="input-box input-firstname'.((in_array('firstname', $formErrors)) ? ' input-error' : '').'">
+            <label for="billing:firstname">'.$this->__('First Name').'<span class="required">*</span></label><br />
+            <input class="required-entry input-text" type="text" name="billing[firstname]" id="billing:firstname" value="'.$dataHelper->clearDash($this->getQuote()->getBillingAddress()->getFirstname()).'" />
+        </div>';
+    $billingFields['lastname'] = '
+        <div class="input-box input-lastname'.((in_array('lastname', $formErrors)) ? ' input-error' : '').'">
+            <label for="billing:lastname">'.$this->__('Last Name').' <span class="required">*</span></label><br />
+            <input class="required-entry input-text" type="text" name="billing[lastname]" id="billing:lastname" value="'.$dataHelper->clearDash($this->getQuote()->getBillingAddress()->getLastname()).'" />
+        </div>';
+    ?>
+<?php if(!$this->isCustomerLoggedIn() || in_array('email_registered', $formErrors)): ?>
+    <?php $billingFields['email'] = '
+        <div class="clearfix" id="onestepcheckout-email-error" '.((!in_array('email_registered', $formErrors)) ? 'style="display: none"' : '').'>
+            <div id="onestepcheckout-email-error-message" class="onestepcheckout-error">'.
+                ((in_array('email_registered', $formErrors)) ? $this->__('Email address already registered. Please <a href="#" onclick="login_popup.show(); return false;">login now</a> or use a different email address.') : $this->__('Invalid email address.'))
+            .'</div>
+        </div>';
+    ?>
+<?php endif; ?>
+<?php if(!$this->isCustomerLoggedIn()): ?>
+    <?php $billingFields['email'] = $billingFields['email'].'
+        <div class="input-box input-email'.((in_array('email', $formErrors)) ? ' input-error' : '').'">
+            <label for="billing:email">'.$this->__('Email Address').' <span class="required">*</span></label><br />
+            <input type="text" name="billing[email]" id="billing:email" value="'.$this->htmlEscape($dataHelper->clearDash($this->getQuote()->getBillingAddress()->getEmail())).'" title="'.$this->__('Email Address') .'" class="validate-email required-entry input-text" />
+        </div>';
+    ?>
+<?php endif; ?>
+
+
+<?php if(!$this->settings['exclude_telephone']):?>
+    <?php $billingFields['telephone'] = '
+        <div class="input-box input-telephone'.((in_array('telephone', $formErrors)) ? ' input-error' : '').'">
+            <label for="billing:telephone">'.$this->__('Telephone').' <span class="required">*</span></label><br/>
+            <input type="text" name="billing[telephone]" value="'.$this->htmlEscape($dataHelper->clearDash($this->getQuote()->getBillingAddress()->getTelephone())).'" title="'.$this->__('Telephone').'" class="required-entry input-text" id="billing:telephone" />
+        </div>';
+    ?>
+<?php endif; ?>
+
+<?php if(!$this->settings['exclude_zip']): ?>
+    <?php $billingFields['postcode'] = '
+        <div class="input-box input-postcode'.((in_array('postcode', $formErrors)) ? ' input-error' : '').'" >
+            <label for="billing:postcode">'.$this->__('Zip/Postal Code').' <span class="required">*</span></label><br />
+            <input type="text" title="'.$this->__('Zip/Postal Code').'"name="billing[postcode]" id="billing:postcode" value="'.$this->htmlEscape($dataHelper->clearDash($this->getQuote()->getBillingAddress()->getPostcode())).'" class="validate-zip-international required-entry input-text numbersonly" maxlength="6" onBlur="updatePaymentMethods();" />			
+        </div>';
+		//onkeypress="return isNumberKey(event)"
+    ?>
+<?php endif; ?>
+<?php if(!$this->settings['exclude_address']):?>
+    <?php if(Mage::getStoreConfig('onestepcheckout/exclude_fields/enable_address_fields')):?>
+        <?php
+        $addressFields = '';
+            for ($_i=1, $_n=$this->helper('customer/address')->getStreetLines(); $_i<=$_n; $_i++){
+                    $addressFields .= '<div class="input-box input-address-short'.((in_array('address', $formErrors)) ? ' input-error' : '').'">
+                    <label for="billing:street'.$_i.'">'.$this->__('Street Address '.$_i).'<span class="required">*</span></label><br />
+                    <input type="text" title="'.$this->__('Street Address '.$_i).'" name="billing[street][]" id="billing:street'.$_i.'" value="'.$this->htmlEscape($dataHelper->clearDash($this->getQuote()->getBillingAddress()->getStreet($_i))).'" class="required-entry input-text onestepcheckout-address-line" />
+                    </div>';
+            }
+            $billingFields['street'] = $addressFields;
+        ?>
+    <?php else:?>
+        <?php
+        $addressFields = '';
+            for ($_i=1, $_n=$this->helper('customer/address')->getStreetLines(); $_i<=$_n; $_i++){
+
+                    $addressFields .= '<input type="text" title="'.$this->__('Street Address '.$_i).'" name="billing[street][]" id="billing:street'.$_i.'" value="'.$this->htmlEscape($dataHelper->clearDash($this->getQuote()->getBillingAddress()->getStreet($_i))).'" class="'.(($_i == 1)? 'required-entry ' : '').'input-text onestepcheckout-address-line" />';
+                    $addressFields .= (($_i != $this->helper('customer/address')->getStreetLines()) ? '<br/>': '');
+            }
+            $billingFields['street'] = '
+                <div class="input-box input-address'.((in_array('address', $formErrors)) ? ' input-error' : '').'">
+                    <label for="billing:street1">'.$this->__('Address').'<span class="required">*</span></label><br />
+                    '.$addressFields.'
+                </div>';
+        ?>
+    <?php endif; ?>
+<?php endif; ?>
+
+<?php if(!$this->settings['exclude_country_id']):?>
+<?php
+$billingFields['country_id'] = '
+    <div class="input-box input-country'.((in_array('country', $formErrors)) ? ' input-error' : '').'">
+        <label for="billing:country_id">'.$this->__('Country').' <span class="required">*</span></label><br />
+            '.$this->getCountryHtmlSelect('billing').'
+    </div>';
+?>
+<?php else: ?>
+<?php $billingFields['country_id'] = '
+    <input type="hidden" name="billing[country_id]" id="billing:country_id" value="'.$this->settings['default_country'].'" />';
+?>
+<?php endif; ?>
+<?php if(!$this->settings['exclude_region']): ?>
+    <?php $billingFields['region_id'] = '
+        <div class="input-box input-region'.((in_array('region', $formErrors)) ? ' input-error' : '').'">
+            <label for="billing:region">'.$this->__('State/Province').' <span class="required">*</span></label><br/>
+            
+			<select style="" class="validate-select" title="State" name="billing[region_id]" id="billing:region_id" defaultvalue="">
+                <option value="">Select State</option>
+            <option value="486">Andaman and Nicobar</option><option value="487">Andhra Pradesh</option><option value="488">Arunachal Pradesh</option><option value="489">Assam</option><option value="490">Bihar</option><option value="491">Chhattisgarh</option><option value="492">Dadra and Nagar Haveli</option><option value="493">Daman and Diu</option><option value="494">Delhi</option><option value="495">Goa</option><option value="496">Gujarat</option><option value="497">Haryana</option><option value="498">Himachal Pradesh</option><option value="499">Jammu and Kashmir</option><option value="500">Jharkhand</option><option value="501">Karnataka</option><option value="502">Kerala</option><option value="503">Lakshadweep</option><option value="504">Madhya Pradesh</option><option value="505">Maharashtra</option><option value="506">Manipur</option><option value="507">Meghalaya</option><option value="508">Mizoram</option><option value="509">Nagaland</option><option value="510">Orissa</option><option value="511">Puducherry</option><option value="512">Punjab</option><option value="513">Rajasthan</option><option value="514">Sikkim</option><option value="515">Tamil Nadu</option><option value="516">Tripura</option><option value="517">Uttarakhand</option><option value="518">Uttar Pradesh</option><option value="519">West Bengal</option></select>
+			<script type="text/javascript">
+                $("billing:region_id").setAttribute("defaultValue",  "'.$dataHelper->clearDash($this->getQuote()->getBillingAddress()->getRegionId()).'");
+            </script>			
+            <input type="hidden" id="billing:region" name="billing[region]" value="'.$this->htmlEscape($dataHelper->clearDash($this->getQuote()->getBillingAddress()->getRegion())).'"  title="'.$this->__('State/Province').'" class="required-entry input-text" style="display:none" />
+        </div>';
+    ?>
+<?php endif; ?>
+<?php if(!$this->settings['exclude_city']):?>
+    <?php $billingFields['city'] = '
+        <div class="input-box input-city'.((in_array('city', $formErrors)) ? ' input-error' : '').'">
+            <label for="billing:city">'.$this->__('City').' <span class="required">*</span></label><br/>
+            <input type="text" name="billing[city]" value="'.$this->htmlEscape($dataHelper->clearDash($this->getQuote()->getBillingAddress()->getCity())).'" title="'.$this->__('City').'" class="required-entry input-text" id="billing:city" />
+        </div>';
+    ?>
+<?php endif; ?>
+<script type="text/javascript">
+var j = jQuery.noConflict(); 
+function updatePaymentMethods()
+{	
+	jQuery("#onestepcheckout-place-order").removeAttr("disabled");
+	jQuery("#onestepcheckout-place-order").css("background-color","#FF5C00"); 
+	var postal_code = '';
+
+	if(jQuery(".sameasbilling").is(':checked') == true) {
+		postal_code = jQuery(document.getElementById('billing:postcode')).val();
+		jQuery(document.getElementById('shipping:postcode')).val('');
+		
+	} else {
+		
+		postal_code = jQuery(document.getElementById('shipping:postcode')).val();
+	}
+	jQuery.post("<?php echo Mage::getBaseUrl(); ?>onestepcheckout/ajax/postalcode/",{postcode:postal_code},function(getData){
+		var responseData = getData.split("-");				
+		
+		if(responseData[0]=="2")
+		{						  
+			  jQuery("#p_method_cashondelivery").attr("checked", "false");
+			  jQuery("#p_method_cashondelivery").attr("disabled", "disabled");
+			  //jQuery("#p_method_Avenues_standard").attr("checked", "true");
+			  jQuery("#container_payment_method_cashondelivery").css("display", "none");
+			  jQuery("#msgforcod").html("#This payment method is not available for this zip code");
+			  jQuery("#msgforcod").css("color","red");
+			  //cashon delivery to hide
+			  jQuery("#p_method_2").hide();
+			  jQuery("#container_payment_method_cashondelivery").hide();
+			  
+		} else if(responseData[0]=="3") {
+			 //enable cashon delivery
+			  jQuery("#container_payment_method_cashondelivery").css("display", "block");
+			  jQuery("#p_method_cashondelivery").attr("enabled", "enabled");
+			  jQuery("#p_method_1").show();
+		} else if(responseData[0]=="4") {
+			   //both are hide
+				//jQuery(".zipformcont").fancybox().trigger('click');
+				/*
+				jQuery("#p_method_cashondelivery").removeAttr("checked");
+				jQuery("#p_method_Avenues_standard").removeAttr("checked"); 
+				
+				jQuery("#p_method_cashondelivery").attr('disabled', 'disabled');
+				jQuery("#p_method_Avenues_standard").attr('disabled', 'disabled');
+				
+				jQuery("#onestepcheckout-place-order").attr("disabled", "disabled");
+				jQuery("#onestepcheckout-place-order").css("background-color","#CCCCCC"); 
+				jQuery("#zipcode_mail_message").html('');
+				*/
+				jQuery("#p_method_1").hide();
+				jQuery("#p_method_2").hide();
+				jQuery("#container_payment_method_cashondelivery").hide();
+				payvalmsg = 'No payment methods for the entered Zip Code';
+				jQuery("#validatepayentmethods").html(payvalmsg);
+				jQuery("#validatepayentmethods").css("color","red");
+				jQuery("#validatepayentmethods").css("line-height","20px");
+				jQuery("#validatepayentmethods").css("font-size","12px");
+				jQuery("#onestepcheckout-place-order").attr("disabled", "disabled");
+				jQuery("#onestepcheckout-place-order").css("background-color","#CCCCCC"); 
+				jQuery("#azcodelink").trigger('click');
+				
+				
+				
+		}
+		if(responseData[1] == 'null') 
+		{
+				//jQuery(document.getElementById('billing:city')).val('');
+		} 
+		else 
+		{
+			
+			statename = responseData[2];
+			/*
+			statename = statename.toLowerCase();
+			statename = statename.replace(/\s/g, '');
+			stateid = '' 
+			jQuery("#billing:region_id option").each(function() {
+					// add $(this).val() to your list
+					//alert( $(this).text());
+					opn = jQuery(this).text().toLowerCase();
+					opn = opn.replace(/\s/g, '');
+					alert(opn)
+					if(opn == statename) {
+						alert(opn+"-"+statename)
+						stateid = jQuery(this).val();
+					}
+			});
+				*/
+			statename = statename.toLowerCase();
+			statename = statename.replace(/\s/g, '');
+						
+			var x=document.getElementById("billing:region_id");
+						
+			for (i=0;i<x.length;i++)
+				{				
+					opn = x.options[i].text;					
+					opn = opn.toLowerCase();				
+					opn = opn.replace(/\s/g, '');					
+					if(opn == statename) {						
+						//alert(opn +" - "+dynopn);
+						stateid = x.options[i].value;												
+					}
+					
+			}
+			
+			jQuery(document.getElementById('billing:city')).val(responseData[1]);
+			jQuery(document.getElementById('billing:region_id')).val(stateid);
+		}
+	});
+}
+jQuery(document).ready(function(){
+	jQuery(".sameasbilling").change(function() {
+		updatePaymentMethods()
+	});
+});
+ function isNumberKey(evt)
+      {
+	  	if(evt != '') {
+         	var charCode = (evt.which) ? evt.which : event.keyCode
+         	if (charCode > 31 && (charCode < 48 || charCode > 57))
+            	return false;
+          	else
+         	return true;
+		}
+      }
+</script>
+
+
+<?php if(!$this->settings['exclude_company']): ?>
+    <?php $billingFields['company'] = '
+        <div class="input-box input-company'.((in_array('company', $formErrors)) ? ' input-error' : '').'">
+            <label for="billing:company">'.$this->__('Company').'</label><br/>
+            <input type="text" name="billing[company]" value="'.$this->htmlEscape($dataHelper->clearDash($this->getQuote()->getBillingAddress()->getCompany())).'" title="'.$this->__('Company').'" class="input-text" id="billing:company" />
+        </div>';
+    ?>
+<?php endif; ?>
+
+<?php if(!$this->settings['exclude_fax']): ?>
+    <?php $billingFields['fax'] = '
+        <div class="input-box input-fax'.((in_array('fax', $formErrors)) ? ' input-error' : '').'">
+            <label for="billing:fax">'.$this->__('Fax').'</label><br/>
+            <input type="text" name="billing[fax]" value="'.$this->htmlEscape($dataHelper->clearDash($this->getQuote()->getBillingAddress()->getFax())).'" title="'.$this->__('Fax').'" class="input-text" id="billing:fax" />
+        </div>';
+    ?>
+<?php endif; ?>
+
+<?php
+    $_taxvat = false;
+    try {
+        if(Mage::getStoreConfig('onestepcheckout/exclude_fields/enable_pillwaxeuvat_support')){
+            $_taxvat = $this->getLayout()->createBlock('euvat/widget_taxvat');
+        }
+    } catch (Exception $e) {
+    }
+    if(!is_object($_taxvat)){
+        $_taxvat = $this->getLayout()->createBlock('customer/widget_taxvat');
+    }
+?>
+<?php if(is_object($_taxvat) && $_taxvat->isEnabled()): ?>
+    <?php $billingFields['taxvat'] =
+            $_taxvat->setTaxvat($this->getQuote()->getCustomerTaxvat())
+                ->setFieldIdFormat('billing:%s')->setFieldNameFormat('billing[%s]')->toHtml();
+    ?>
+<?php endif; ?>
+
+<?php /*
+    try {
+        $_dob = $this->getLayout()->createBlock('customer/widget_dob');
+    } catch (Exception $e) {
+        $_dob = false;
+    }
+?> 
+<?php 
+    try {
+        $_gender = $this->getLayout()->createBlock('customer/widget_gender');
+    } catch (Exception $e) {
+        $_gender = false;
+    }
+?>
+
+<?php if (is_object($_dob) && $_dob->isEnabled()): ?>
+    <?php $billingFields['dob'] = '
+        <div class="field">
+            '.$_dob->setDate($this->getQuote()->getCustomerDob())->setFieldIdFormat('billing:%s')->setFieldNameFormat('billing[%s]')->toHtml().'
+        </div>.';
+    ?>
+<?php endif; ?>
+<?php if (is_object($_gender) && $_gender->isEnabled()): ?>
+    <?php $billingFields['gender'] = '
+        <div class="field">
+            '.$_gender->setGender($this->getQuote()->getCustomerGender())->setFieldIdFormat('billing:%s')->setFieldNameFormat('billing[%s]')->toHtml().'
+        </div>';
+    ?>
+<?php endif ?>
+<?php if(!$this->isCustomerLoggedIn() && $helper->showCreateAccount()): ?>
+    <?php $billingFields['create_account'] = '
+        <div class="input-box">
+            <input id="id_create_account" type="checkbox" name="create_account" value="1" '.((isset($_POST['create_account']) && $_POST['create_account'] == '1') ? ' checked="checked"' : '').' />
+            <label for="id_create_account">'.$this->__('Create an account for later use').'</label>
+        </div>
+
+        <script>
+        document.observe("dom:loaded", function() {
+            $("id_create_account").observe("click", function(e) {
+                var element = e.element();
+                if(element.checked) {
+                    $("onestepcheckout-li-password").show();
+                }
+                else    {
+                    $("onestepcheckout-li-password").hide();
+                }
+
+            });
+        });
+        </script>';
+    ?>
+<?php endif; ?>
+<?php if($helper->showPasswords() && !$this->isCustomerLoggedIn()): ?>
+    <?php
+        //id="onestepcheckout-li-password"
+        $billingFields['password'] = '
+        <li id="onestepcheckout-li-password" '.(($helper->hidePasswords()) ? 'style="display: none;"':'').'>
+            <div class="input-box input-password'.((in_array('password', $formErrors)) ? ' input-error' : '').'">
+                <label for="billing:customer_password">'.$this->__('Password').'</label><br/>
+                <input type="password" class="input-text required-entry validate-password" value="'.((isset($_POST['billing']['customer_password'])) ? $_POST['billing']['customer_password'] : '').'" title="Password" id="billing:customer_password" name="billing[customer_password]"/>
+            </div>
+            <div class="input-box input-password'.((in_array('confirm_password', $formErrors)) ? ' input-error' : '').'">
+                <label for="billing:confirm_password">'.$this->__('Confirm password').'</label><br/>
+                <input type="password" class="input-text required-entry validate-cpassword" value="'.((isset($_POST['billing']['confirm_password'])) ? $_POST['billing']['confirm_password'] : '').'" id="billing:confirm_password" title="Confirm Password" name="billing[confirm_password]"/>
+            </div>
+        </li>';
+    ?>
+<?php endif;*/ ?>
+
+<?php if ($this->isCustomerLoggedIn() && $this->customerHasAddresses()):?>
+    <?php $billingFields['save_in_address_book'] = '
+        <li class="control">
+            <input type="checkbox" name="billing[save_in_address_book]" value="1" title="'.$this->__('Save in address book').'" id="billing:save_in_address_book" onchange="shipping.setSameAsBilling(false);"'.(($dataHelper->clearDash($this->getQuote()->getBillingAddress()->getSaveInAddressBook())) ? 'checked="checked"':'').' class="checkbox" /><label for="billing:save_in_address_book">'.$this->__('Save in address book').'</label>
+        </li>';
+    ?>
+<?php else:?>
+    <?php $billingFields['save_in_address_book'] = '
+        <li class="no-display"><input type="hidden" name="billing[save_in_address_book]" value="1" /></li>';
+    ?>
+<?php endif; ?>
+
+<?php $billingFields = $this->getBillingFieldsOrder($billingFields);?>
+<?php foreach($billingFields as $key => $value):?>
+    <?php if(!empty($value['has_li'])):?>
+        <?php echo implode('',$value['fields']);?>
+    <?php else:?>
+        <li class="clearfix"><?php echo implode('',$value['fields']);?></li>
+    <?php endif;?>
+<?php endforeach;?>
+

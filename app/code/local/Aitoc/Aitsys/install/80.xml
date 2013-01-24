@@ -1,0 +1,2 @@
+<?xml version="1.0"?>
+<install><product id="80" key="AdjustWare_Cartalert" version="3.1.1" license_id="12648" link_id="440060"><![CDATA[Abandoned Carts Alerts Pro]]></product><serial>NZmnTZChS7OANNEKozm6XF7MkbUHNw6IY9fsWFBWRT</serial><checkid>65889d616b0dcf2162c3a7d6476c63f2</checkid><store_url><![CDATA[http://www.aitoc.com/en/]]></store_url><service><![CDATA[https://www.aitoc.com/api/xmlrpc/]]></service><constraint><store label="Number of stores">1</store></constraint></install>

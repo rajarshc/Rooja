@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Mycustom_Fileupload>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Mycustom_Fileupload>
+    </modules>
+</config> 
