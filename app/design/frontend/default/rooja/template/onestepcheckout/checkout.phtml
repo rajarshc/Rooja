@@ -52,29 +52,32 @@ $helper = Mage::helper('onestepcheckout/checkout');
 	height:auto!important;
 }
 </style>
-<script type="text/javascript">
-//(function ($) {
-	jQuery(document).ready(function(){
+<script>
+(function ($) {
+	$(document).ready(function(){
 	
-		jQuery(".payment-methods input").live('change', function() {
+		$(".payment-methods input").live('change', function() {
 			
-			if(jQuery('#p_method_cashondelivery').is(':checked')) { 
-				jQuery("#hintText").html('We verify all Cash on Delivery orders over the phone after you have made a purchase and start processing the order. Our customer service team will contact you within 24 hours and alternatively you can call us at +91-8080622277 to verify your order. Failing verification of the order will result in a cancellation. Failure to accept a verified order will revoke your Cash On Delivery privileges on future orders. <br><br>The maximum limit for a COD order is Rs 20,000 outside of New Delhi and Gurgaon.');
-				jQuery("#hintImg").html('<img src="<?php echo $this->getSkinUrl('images/cod.png'); ?>" alt="Security" id="secureLogos">');
+			if($('#p_method_cashondelivery').is(':checked')) { 
+				$("#hintText").html('We verify all Cash on Delivery orders over the phone after you have made a purchase and start processing the order. Our customer service team will contact you within 24 hours and alternatively you can call us at +91-8080622277 to verify your order. Failing verification of the order will result in a cancellation. Failure to accept a verified order will revoke your Cash On Delivery privileges on future orders. <br><br>The maximum limit for a COD order is Rs 20,000 outside of New Delhi and Gurgaon.');
+				$("#hintImg").html('<img src="<?php echo $this->getSkinUrl('images/cod.png'); ?>" alt="Security" id="secureLogos">');
 			}
-			if(jQuery('#p_method_Avenues_standard').is(':checked')) { 
-				jQuery("#hintText").html('You will be redirected to CCAvenue our secure online payment-processing partner.');
-				jQuery("#hintImg").html('<img src="<?php echo $this->getSkinUrl('images/veri-2.png'); ?>" alt="Security" id="secureLogos">');
+			if($('#p_method_Avenues_standard').is(':checked')) { 
+				$("#hintText").html('You will be redirected to CCAvenue our secure online payment-processing partner.');
+				$("#hintImg").html('<img src="<?php echo $this->getSkinUrl('images/veri-2.png'); ?>" alt="Security" id="secureLogos">');
 			}
 			
 						
 		});
 
-		jQuery("#azcodelink").fancybox({
+		$("#azcodelink").fancybox({
 			'scrolling'     : 'no',
-			'titleShow'     : false
+			'titleShow'     : false,
+			'onClosed'      : function() {		
+				//$("#login_error").hide();
+			}
 		});
-		jQuery("#sendmail").click(function () {
+		$("#sendmail").click(function () {
 			var e = document.forms['zipcode_form'].elements;
 			var ret = 'true';
 			if(e['name'].value == '') {
@@ -115,7 +118,7 @@ $helper = Mage::helper('onestepcheckout/checkout');
 				mobile = e['mobile'].value;
 				pincode = e['pincode'].value;
 				
-				jQuery.ajax({ 
+				$.ajax({ 
 					url: "<?php echo Mage::getURL('') ?>/fileupload/Zipcodemail/zipcodemailsend", 
 					context: document.body, 
 					data: "uname="+uname+"&email="+email+"&mobile="+mobile+"&pincode="+pincode,
@@ -137,7 +140,7 @@ $helper = Mage::helper('onestepcheckout/checkout');
 			}
 		});
 		
-		jQuery(".numbersonly").keydown(function(event) {
+		$(".numbersonly").keydown(function(event) {
 				// Allow: backspace, delete, tab, escape, and enter
 				if ( event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || event.keyCode == 13 || 
 					 // Allow: Ctrl+A
@@ -155,7 +158,7 @@ $helper = Mage::helper('onestepcheckout/checkout');
 		});
 		
 	});
-// })(jQuery);
+})(jQuery);
 
 function validateEmail(sEmail) {
     var filter = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
