@@ -385,6 +385,74 @@ class Idev_OneStepCheckout_AjaxController extends Mage_Core_Controller_Front_Act
         $this->getResponse()->setBody(Zend_Json::encode($result));
 
     }
+	
+	public function postalcodeAction()
+	{ 
+		$zipcode = $this->getRequest()->getPost(); 
+		
+		$zip=$zipcode['postcode'];
+		
+	  $data = Mage::getModel('fileupload/fileupload');
+	  $data = $data->getCollection();
+	  $data->addFieldToFilter('pincode', $zip);
+	  $responseData =  $data->getData();	
+	  
+	  
+	  $count = count($responseData);
+	  
+	  if($count > 0)
+	  {   
+	  
+	  		/*echo "<pre>";
+			print_r($responseData);
+	  		echo "</pre>";		
+			
+		  $responseData[0]['location'];*/
+		  
+		  if($count == 1)
+		  {
+			  $ftype = $responseData[0]['file_type'];
+			  $location = trim($responseData[0]['location']);
+			  $state = trim($responseData[0]['state']);
+			      
+		  }
+		  else 
+		  { 
+		  	  if($responseData[0]['file_type']!=$responseData[1]['file_type'])
+			  { 
+				   $ftype=3; 
+				   $location = trim($responseData[0]['location']);
+				   $state = trim($responseData[0]['state']);
+			  }
+				   
+		 }
+		 echo $ftype."-".$location."-".$state; 
+	  }
+	  else{
+		  $ftype = 4;
+		  $location = 'null';
+		   
+		  echo $ftype."-".$location; 
+		  
+		  }
+	  
+	  
+	  /*
+	  $cnt= count($responseData);
+	 
+	  $row = 1;
+	
+	   if($responseData[0]['file_type']!=$responseData[1]['file_type'])
+	   { 
+	   $ftype=3; 
+	   }
+	   else 
+	   $ftype = $responseData[0]['file_type'];
+	  
+	  echo $ftype."-".$responseData[0]['location'];*/
+	  
+	
+	}
 
     public function save_billingAction()
     {
