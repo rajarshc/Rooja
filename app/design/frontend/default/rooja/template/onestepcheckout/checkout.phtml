@@ -72,10 +72,7 @@ $helper = Mage::helper('onestepcheckout/checkout');
 
 		jQuery("#azcodelink").fancybox({
 			'scrolling'     : 'no',
-			'titleShow'     : false,
-			'onClosed'      : function() {		
-				//$("#login_error").hide();
-			}
+			'titleShow'     : false
 		});
 		jQuery("#sendmail").click(function () {
 			var e = document.forms['zipcode_form'].elements;
