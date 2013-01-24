@@ -974,13 +974,28 @@ class Idev_OneStepCheckout_Block_Checkout extends Mage_Checkout_Block_Onepage_Ab
 
     public function getBillingFieldsOrder($fields = array()){
 
-        $fieldsAvailable = array(
+       /* $fieldsAvailable = array(
             'name' => array('fields' => array('firstname','lastname')),
             'email-phone' => array('fields' =>array('email','telephone')),
             'street' => array(),
             'country_id' => array(),
             'postcode-regionid' => array('fields' =>array('postcode','region_id')),
             'city' => array(),
+            'company-fax' => array('fields' => array('company','fax')),
+            'taxvat' => array(),
+            'dob' => array(),
+            'gender' => array(),
+            'create_account' => array(),
+            'password' => array('has_li' => 1, 'fields' => array('password','confirm_password')),
+            'save_in_address_book' => array('has_li' => 1),
+            'use_for_shipping_yes' => array(),
+        ); */
+		$fieldsAvailable = array(
+            'name' => array('fields' => array('firstname','lastname')),
+            'email-phone-postcode' => array('fields' =>array('email','telephone', 'postcode')),
+            'street' => array(),
+            'country_id' => array(),
+            'city-regionid' => array('fields' =>array('city','region_id')),
             'company-fax' => array('fields' => array('company','fax')),
             'taxvat' => array(),
             'dob' => array(),
@@ -1026,13 +1041,22 @@ class Idev_OneStepCheckout_Block_Checkout extends Mage_Checkout_Block_Onepage_Ab
     }
 
     public function getShippingFieldsOrder($fields = array()){
-        $fieldsAvailable = array(
+        /*$fieldsAvailable = array(
             'name' => array('fields' => array('firstname','lastname')),
             'telephone' => array(),
             'street' => array(),
             'country_id' => array(),
             'postcode-regionid' => array('fields' =>array('postcode','region_id')),
             'city' => array(),
+            'company-fax' => array('fields' => array('company','fax')),
+            'save_in_address_book' => array('has_li' => 1),
+        );*/
+		$fieldsAvailable = array(
+            'name' => array('fields' => array('firstname','lastname')),
+            'telephone-postcode' => array('fields' => array('telephone','postcode')),
+            'street' => array(),
+            'city-regionid' => array('fields' =>array('city','region_id')),
+			'country_id' => array(),
             'company-fax' => array('fields' => array('company','fax')),
             'save_in_address_book' => array('has_li' => 1),
         );
