@@ -1,0 +1,59 @@
+<ul class="messages">
+<?php $fileStatus = $_REQUEST['fstatus'];
+	  $data_cnt   = $_REQUEST['data_cnt']; 
+		  
+	if($fileStatus==2)
+	{ 
+	?>
+    <li class="error-msg">
+     <ul><li><span>
+     Invalid File Format. Upload Excel File.   
+     </span></li></ul></li>
+    <?php 
+	}
+	else if($fileStatus==1)
+	{
+	?>
+    <li class="success-msg"><ul><li><span> 
+	<?php echo $data_cnt; ?> Row Datas Stored In The Database. 
+    </span></li></ul></li>
+    <?php
+	}
+	?>
+</ul>
+
+<h3 class="icon-head head-newsletter-list">Shipping Excel File Upload ( NON COD )</h3>
+<div style="border:solid 2px #ccc;"></div>
+<div style="padding-top:10px;">
+<script>
+		function checkfile()
+		{
+			var file=document.getElementById('file').value;
+			
+			if(file=="")
+			{
+				alert("Please Browse File");
+				return false;
+			}
+			return true;
+		}
+</script>
+<?php $AdminCurrentUrl = $this->helper('core/url')->getCurrentUrl(); ?>
+<?php $AdminCurrentUrl; 
+$key_data = explode("_",$AdminCurrentUrl);
+$admin_key = explode("/",$key_data[1]);
+$key = $admin_key[3]; 
+ if($key)
+ {
+	 $key_data = explode("?",$key);
+	 $key = $key_data[0];
+	 $key;
+  }
+?>
+
+<form action="<?php echo $this->getUrl('fileupload/index/upload') ?>" name="file_submit"  method="post" onSubmit="return checkfile()" enctype="multipart/form-data" >
+<input type="file" name="file" id="file"  />
+<input type="hidden" name="admin_url" id="admin_url" value="<?php echo $key; ?>"  />
+<input type="submit" name="submit" value="Submit" class="form-button"  />
+</form>
+</div>

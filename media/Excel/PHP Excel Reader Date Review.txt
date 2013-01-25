@@ -1,0 +1,22 @@
+Php Excel reader:
+-------------------------
+
+
+functionality:
+
+
+1. Date conversion :the excel files can only to take on following format to read the excel reader
+
+DD/MM/YYYY 			[31/01/2011]
+DD/MM/YY				[31/01/11]
+
+DD-MMM-YYYY			[08-Dec-2011]
+DD-MMM-YY				[08-Dec-11]
+
+The Program only written for following methods;
+
+
+The excel default format is : DD/MM/YYYY or YY
+
+so every file upload to chech or change the format in excel sheet.
+

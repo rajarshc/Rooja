@@ -25,18 +25,11 @@
 				<sort_order>71</sort_order>               
 				<children>
 					<items module="fileupload">
-						<title>Shipping Zipcode Import</title>
+						<title>Shipping File Upload</title>
 						<sort_order>0</sort_order>
 						<action>fileupload/adminhtml_fileupload</action>
 					</items>
-					<itemsone module="fileupload">
-						<title>Shipment Order Tracking Export</title>
-						<sort_order>1</sort_order>
-						<action>fileupload/adminhtml_shipmenttrackexport</action>
-					</itemsone>
-					
 				</children>
-				
 			</fileupload>
 		</menu>
 		
@@ -106,6 +99,8 @@
             </fileupload_read>
 			
         </resources>
+		
+        
 		
         <helpers>
             <fileupload>

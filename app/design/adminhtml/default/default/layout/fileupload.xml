@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <fileupload_adminhtml_fileupload_index>
+        <reference name="content">
+            <block type="core/template" template="fileupload/fileupload.phtml" name="fileupload" />
+        </reference>
+    </fileupload_adminhtml_fileupload_index>
+	
+	
+	 <fileupload_adminhtml_shipmenttrackexport_index>
+        <reference name="content">
+            <block type="core/template" template="fileupload/shipmenttrackexport.phtml" name="fileupload" />
+        </reference>
+    </fileupload_adminhtml_shipmenttrackexport_index>
+	
+</layout>
