@@ -19,19 +19,7 @@
     </admin>
 	
     <adminhtml>
-		<menu>
-			<fileupload module="fileupload">
-				<title>Fileupload</title>
-				<sort_order>71</sort_order>               
-				<children>
-					<items module="fileupload">
-						<title>Shipping File Upload</title>
-						<sort_order>0</sort_order>
-						<action>fileupload/adminhtml_fileupload</action>
-					</items>
-				</children>
-			</fileupload>
-		</menu>
+		
 		
 		<acl>
 			<resources>
