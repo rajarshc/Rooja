@@ -1,0 +1,61 @@
+﻿<!--
+/**
+ * Product:     Abandoned Carts Alerts Pro for 1.3.x-1.7.0.0 - 01/11/12
+ * Package:     AdjustWare_Cartalert_3.1.1_0.2.3_440060
+ * Purchase ID: n/a
+ * Generated:   2012-12-18 12:00:15
+ * File path:   app/locale/fr_FR/template/email/abandoned_cart_alert3.html
+ * Copyright:   (c) 2012 AITOC, Inc.
+ */
+--><!--@subject Abandoned cart alert 3 from {{var store_name}} @-->
+
+<style type="text/css">
+    body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; }
+</style>
+
+<div style="font:11px/1.35em Verdana, Arial, Helvetica, sans-serif;">
+<table cellspacing="0" cellpadding="0" border="0" width="98%" style="margin-top:10px; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; margin-bottom:10px;">
+<tr>
+    <td align="center" valign="top">
+        <!-- [ header starts here] -->
+        <table cellspacing="0" cellpadding="0" border="0" width="650">
+            <tr>
+                <td valign="top"><a href="{{var store_url}}"><img src="{{var logo_url}}" alt="{{var logo_alt}}"  style="margin-bottom:10px;" border="0"/></a></td>
+            </tr>
+        </table>
+        <!-- [ middle starts here] -->
+        <table cellspacing="0" cellpadding="0" border="0" width="650">
+            <tr>
+                <td valign="top">
+                     <p><strong>Bonjour {{var customer_name}},</strong></p>
+                    <p>Merci pour votre visite de {{var website_name}} et votre intention de faire l'achat chez nous. et votre intention de faire l'achat chez nous
+
+                    <p>{{var products}}</p>
+{{depend real_quote}}
+                    <p><a href="{{var recover_url}}" >Recupere </a><br> (url:{{var recover_url}})</p>
+{{/depend}} 
+
+{{depend coupon}}
+                    <p>Recupere: {{var coupon}}</p>
+                    <p>S'il vous plait, faites attention qu'il est valide a  {{var coupon_days}} jour(s)</p>
+{{/depend}} 
+
+                    <p>Nous sommes toujours interesses de savoir pour quelle raison vous avez decide de ne pas acheter en ce moment.Si vous pouviez avoir la gentillesse de nous faire savoir si vous avez des questions ou des preoccupations, nous vous en serions reconnaissants.Nous vous demandons de nous informer comment nous pouvons faire de votre experience a{{var website_name}} a mieux.</p>
+
+<p>FAITES ATTENTION, S'IL VOUS PLAIT:</p>
+<p>Si vous pensez que vous avez complete votre achat et vous vous demandez pourquoi il n'a pas ete livre, cet e-mail est une indication que votre commande N'A PAS ETE ACHEVE, et que vous N'AVEZ PAS ETE facture! S'il vous plait retourner au magasin afin de completer votre commander.</p>
+
+<p>Nous nous excusons, si vous avez deja effectue votre achat et avez recu ce message par erreur .</p>
+
+<p>Encore une fois, nous vous remercions pour votre temps et votre consideration pour nous aider a ameliorer notre site Web.</p>
+
+<p>Sincerement,  {{var store_name}} Equipe</p>
+
+                     <p><a href="{{var store_url}}">{{var store_name}}</a></p>
+               </td>
+           </tr>
+       </table>
+   </td>
+</tr>
+</table>
+</div>

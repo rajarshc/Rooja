@@ -1,0 +1,72 @@
+<?php
+/* @var $this Aitoc_Aitsys_Block_Debug_List */
+?>
+<table class="debug-list">
+    <thead>
+        <tr>
+            <td>
+                <a href="<?php echo $this->getUrl('*/*/runAll')?>"><?php echo $this->__('Run All')?></a>
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($this->getUniqueTests() as $test):?>
+        <tr>
+            <th>
+                <?php echo $test->getLabel()?>
+            </th>
+            <td> 
+                <form action="<?php echo $this->getSaveUrl($test)?>" method="post">
+                    <?php echo $this->getBlockHtml('formkey')?>
+                    <dl class="methods">
+                        <?php foreach ($test->getFormList() as $method => $items):?>
+                            <dt><?php echo $method?></dt>
+                            <dd>
+                                <ul>
+                                    <?php foreach ($items as $param => $info):?>
+                                    <li>
+                                        <input type="hidden" name="<?php echo $this->makeParamKey($test,$method,$param)?>[type]" 
+                                               value="<?php echo $info['type']?>"/>
+                                        <label><?php echo $param?>:</label>
+                                        <?php
+                                        switch($info['type'])
+                                        {
+                                            case 'scalar':
+                                            ?>
+                                            <input type="text" name="<?php echo $this->makeParamKey($test,$method,$param)?>[value]"
+                                                   value="<?php echo htmlspecialchars($info['value'])?>"/>
+                                            <?php
+                                            break;
+                                            case 'json':
+                                            ?>
+                                            <textarea name="<?php echo $this->makeParamKey($test,$method,$param)?>[value]"
+                                             ><?php echo htmlspecialchars($info['value'])?></textarea>
+                                            <?php
+                                            break;
+                                        }
+                                        ?>
+                                        <dl class="fields">
+                                            <dt><?php echo $this->__('Default:')?></dt>
+                                            <dd class="default-value"><?php echo $info['default'] ? htmlspecialchars($info['default']) : '&nbsp;'?></dd>
+                                            <dt><?php echo $this->__('Status:')?></dt>
+                                            <dd><?php echo $info['required'] ? $this->__('required') : $this->__('optional')?></dd>
+                                        </dl>
+                                    </li>
+                                    <?php endforeach;?>
+                                </ul>
+                            </dd>
+                        <?php endforeach;?>
+                    </dl>
+                    <input type="submit" name="save_button" value="<?php echo $this->__('Save')?>"/>
+                    <input type="submit" name="reset_button" value="<?php echo $this->__('Reset to default')?>"/>
+                    <input type="submit" name="run_button" value="<?php echo $this->__('Run')?>"/>
+                    <input type="submit" name="saverun_button" value="<?php echo $this->__('Save & Run')?>"/>
+                </form>
+            </td>
+            <td>
+                
+            </td>
+        </tr>
+        <?php endforeach;?>
+    </tbody>
+</table>

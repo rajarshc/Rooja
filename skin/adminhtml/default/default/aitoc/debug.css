@@ -1,0 +1,85 @@
+@CHARSET "UTF-8";
+
+table.debug-list
+{
+    width: 98%;
+}
+
+table.debug-list tbody th
+{
+    font-size: 18px;
+}
+
+table.debug-list dl.fields dt
+{
+    float: left;
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
+table.debug-list ul li label
+{
+    font-size: 16px;
+    font-style: italic;
+    display: block; 
+    float: left;
+    margin-right: 6px;
+}
+
+table.debug-list ul li input
+{
+    width: 300px;
+}
+
+table.debug-list ul li textarea 
+{
+    width: 500px;
+    height: 200px;
+}
+
+table.debug-list ul li dl.fields dd.default-value
+{
+    width: 500px;
+    font-size: 10px;
+}
+
+table.debug-list dl.methods
+{
+    width: 700px;
+}
+
+table.debug-list dl.methods dt
+{
+    font-weight: bold;
+    font-size: 16px;
+}
+
+table.debug-list dl.methods dd
+{
+    margin-left: 100px;
+}
+
+table.debug-list dl.fields dt
+{
+    font-weight: normal;
+    font-size: 12px;
+    width: 50px;
+}
+
+table.debug-list dl.fields dd
+{
+    margin-left: 0px;
+}
+
+table.debug-list dl.methods ul li
+{
+    margin-bottom: 15px;
+    padding-top: 4px;
+    border-top: 1px solid;
+}
+
+table.debug-list tbody th
+{
+    width: 300px;
+    margin-left: 10px;
+}
