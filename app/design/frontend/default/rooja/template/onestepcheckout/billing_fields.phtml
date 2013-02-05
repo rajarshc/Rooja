@@ -223,9 +223,13 @@ function updatePaymentMethods()
 					}
 					
 			}
-			
-			jQuery(document.getElementById('billing:city')).val(responseData[1]);
-			jQuery(document.getElementById('billing:region_id')).val(stateid);
+			if(jQuery(".sameasbilling").is(':checked') == true) {
+				jQuery(document.getElementById('billing:city')).val(responseData[1]);
+				jQuery(document.getElementById('billing:region_id')).val(stateid);
+			} else {
+				jQuery(document.getElementById('shipping:city')).val(responseData[1]);
+				jQuery(document.getElementById('shipping:region_id')).val(stateid);
+			}
 		}
 	});
 }
