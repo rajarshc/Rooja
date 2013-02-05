@@ -118,14 +118,17 @@ $subtotal = $totals["subtotal"]->getValue();
  ?>
 <script type="text/javascript">
 	var j = jQuery.noConflict(); 
-	var subtotal=<?php echo $subtotal; ?>
+	//var subtotal=<?php echo $subtotal; ?>
 	
 		//alert(subtotal);
 
 		j(document).ready(function() {
-		  	var selectedVal = j('#p_method_cashondelivery').is(':checked');
+			UpdateShipMethod();
+		  	/*var selectedVal = j('#p_method_cashondelivery').is(':checked');
 
 			var creditCard = j('#p_method_Avenues_standard').is(':checked');
+			
+			
 			
 			if(creditCard)
 			{ 
@@ -175,8 +178,10 @@ $subtotal = $totals["subtotal"]->getValue();
 				
 				}
 			}
+			*/
+			
 		});
-
+/*
 	j("#p_method_cashondelivery").click(function() { 
 
 		if(subtotal < 2000)
@@ -228,6 +233,8 @@ $subtotal = $totals["subtotal"]->getValue();
 		j('label[for="shipping_shippingrates_Flatrate"]').hide();			
 		
 	});
+	
+	*/
 </script>
 
 <script type="text/javascript">

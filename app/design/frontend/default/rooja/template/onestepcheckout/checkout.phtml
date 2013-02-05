@@ -177,9 +177,11 @@ $items = Mage::getSingleton('checkout/session')->getQuote()->getAllItems();
 ?>
 <div id="zipcode_container" style="display:none;">
 
-<script>
-document.getElementById("billing:postcode").value = '';
-document.getElementById("billing:postcode").focus = '';
+<script language="javascript" type="text/javascript">
+if(document.getElementById("billing:postcode")) {
+	document.getElementById("billing:postcode").value = '';
+	document.getElementById("billing:postcode").focus = '';
+}
 </script>
  
 	<div id="zipcodewelcomemessage"><p>Thanks for shopping at Rooja!  We value your business.  Currently, our logistics partners have limitations servicing the entered pincode.  We are committed to having you experience Rooja.  Options - 1) Provide an alternate PIN code OR 2) Please submit your order request to Customer Care and someone will get back to you within 24-48 hours.</p></div>
@@ -1236,10 +1238,52 @@ if($$('div.input-error').length > 0) {
     <?php endif; ?>
 //]]>
 </script>
-<?php endif; ?>
-
-
+<?php endif; 
+$totals = Mage::getSingleton('checkout/cart')->getQuote()->getTotals();
+$subtotal = $totals["subtotal"]->getValue();
+?>
 <script type="text/javascript">
+
+function UpdateShipMethod() {
+	var subtotal=<?php echo $subtotal; ?>;
+	
+	j('#s_method_shippingrates_Freeshipping').hide();
+	j('#s_method_shippingrates_Flatrate').hide();
+	
+	j('label[for="s_method_shippingrates_Freeshipping"]').hide();
+	j('label[for="shipping_shippingrates_Freeshipping"]').hide();
+	j('label[for="s_method_shippingrates_Flatrate"]').hide();
+	j('label[for="shipping_shippingrates_Flatrate"]').hide();
+	j('#container_payment_method_cashondelivery fieldset').hide();
+
+
+	if(j('#p_method_Avenues_standard').is(':checked')) {
+					
+		j('#s_method_shippingrates_Freeshipping').attr("checked","checked");
+		j('#s_method_shippingrates_Flatrate').removeAttr('checked');
+		
+		j('label[for="shipping_shippingrates_Freeshipping"]').show();
+		
+		
+	} 
+	if(j('#p_method_cashondelivery').is(':checked')) {
+		j('#container_payment_method_cashondelivery fieldset').show();
+		if(subtotal > 2000) {
+			j('#s_method_shippingrates_Freeshipping').attr("checked","checked");
+			j('#s_method_shippingrates_Flatrate').removeAttr('checked');
+			
+			j('label[for="shipping_shippingrates_Freeshipping"]').show();
+		
+
+		} else {		
+			j('#s_method_shippingrates_Flatrate').attr("checked","checked");
+			j('#s_method_shippingrates_Freeshipping').removeAttr('checked');
+			
+			j('label[for="shipping_shippingrates_Flatrate"]').show();
+	
+		}
+   } 
+}
 
 Event.observe(window, 'load', function() {
     if ($$('div.shopping-cart-totals').length == 1) {
@@ -1308,6 +1352,11 @@ Event.observe(window, 'load', function() {
         var update_payments = <?php echo $this->settings['enable_update_payment_on_shipping'] ? 'true' : 'false'; ?>;
 
         $$('dl.shipment-methods input').invoke('observe', 'click', get_separate_save_methods_function(url, update_payments));
+		$$('div.payment-methods input[name="payment\[method\]"]').invoke('observe', 'click', function() {
+            //alert("Updating Ship method")
+			UpdateShipMethod();
+        });
+		
         $$('div.payment-methods input[name="payment\[method\]"]').invoke('observe', 'click', get_separate_save_methods_function(url));
 
         $$('div.payment-methods input[name="payment\[method\]"]').invoke('observe', 'click', function() {
@@ -1374,6 +1423,7 @@ Event.observe(window, 'load', function() {
         }
     }
    //submit what's available on load
+   
    get_separate_save_methods_function(url)();
 
 <?php if($this->differentShippingAvailable()): ?>
