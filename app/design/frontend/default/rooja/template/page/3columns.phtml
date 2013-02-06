@@ -35,20 +35,20 @@
 <?php echo $this->getChildHtml('head') ?>
 </head>
 <?php /* AM EDIT - Redirect to Login Page */ ?>
-<?php if(Mage::getSingleton('customer/session')->isLoggedIn() && (Mage::getSingleton('customer/session')->getCustomerGroupId() == 4)){ ?>
-<?php header("Status: 301"); header('Location: '.$this->getUrl('unapproved')) ; exit; } ?> 
+<?php //if(Mage::getSingleton('customer/session')->isLoggedIn() && (Mage::getSingleton('customer/session')->getCustomerGroupId() == 4)){ ?>
+<?php //header("Status: 301"); //header('Location: '.$this->getUrl('unapproved')) ; //exit; } ?> 
 <?php if(isset($_SERVER['HTTP_USER_AGENT'])){
     $agent = $_SERVER['HTTP_USER_AGENT'];
 }
 ?>
-<?php Mage::getSingleton('customer/session')->setBeforeAuthUrl($this->getRequest()->getRequestUri());  //save requested URL for later redirection
-if(!Mage::getSingleton('customer/session')->isLoggedIn() && ($agent !="facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)")) {  // if not logged in
-    header("Status: 301");
+<?php //Mage::getSingleton('customer/session')->setBeforeAuthUrl($this->getRequest()->getRequestUri());  //save requested URL for later redirection
+//if(!Mage::getSingleton('customer/session')->isLoggedIn() && ($agent !="facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)")) {  // if not logged in
+    //header("Status: 301");
    // header('Location: '.$this->getUrl('customer/account/login')) ;  // send to the login page
-   $base_url = Mage::getBaseUrl();
-	header('Location: '.$base_url); 
-    exit; 
-} ?>
+   //$base_url = Mage::getBaseUrl();
+	//header('Location: '.$base_url); 
+    //exit; 
+//} ?>
 <body<?php echo $this->getBodyClass()?' class="'.$this->getBodyClass().'"':'' ?>>
 <?php echo $this->getChildHtml('after_body_start') ?>
 <!-- <div class="wrapper"> -->
@@ -71,5 +71,23 @@ if(!Mage::getSingleton('customer/session')->isLoggedIn() && ($agent !="facebooke
         <?php echo $this->getChildHtml('before_body_end') ?>
 <!-- </div> -->
 <?php echo $this->getAbsoluteFooter() ?>
+
+<!-- Google Code for Remarketing tag -->
+<!-- Remarketing tags may not be associated with personally identifiable information or placed on pages related to sensitive categories. For instructions on adding this tag and more information on the above requirements, read the setup guide: google.com/ads/remarketingsetup -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 997818953;
+var google_conversion_label = "0R3TCJeG0gQQyYTm2wM";
+var google_custom_params = window.google_tag_params;
+var google_remarketing_only = true;
+/* ]]> */
+</script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/997818953/?value=0&amp;label=0R3TCJeG0gQQyYTm2wM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
 </body>
 </html>
