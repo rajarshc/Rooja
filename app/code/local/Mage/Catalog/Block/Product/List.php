@@ -74,11 +74,11 @@ class Mage_Catalog_Block_Product_List extends Mage_Catalog_Block_Product_Abstrac
 
 	{
 
-		$this->addData(array('cache_lifetime' => 9999999999,
+		/*$this->addData(array('cache_lifetime' => 9999999999,
 
 					'cache_tags'        => $this->getCacheTags(),
 
-					'cache_key'        => $this->getCacheKey()));
+					'cache_key'        => $this->getCacheKey()));*/
 
 	}
 

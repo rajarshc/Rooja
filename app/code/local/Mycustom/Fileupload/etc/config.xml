@@ -19,26 +19,7 @@
     </admin>
 	
     <adminhtml>
-		<menu>
-			<fileupload module="fileupload">
-				<title>Fileupload</title>
-				<sort_order>71</sort_order>               
-				<children>
-					<items module="fileupload">
-						<title>Shipping Zipcode Import</title>
-						<sort_order>0</sort_order>
-						<action>fileupload/adminhtml_fileupload</action>
-					</items>
-					<itemsone module="fileupload">
-						<title>Shipment Order Tracking Export</title>
-						<sort_order>1</sort_order>
-						<action>fileupload/adminhtml_shipmenttrackexport</action>
-					</itemsone>
-					
-				</children>
-				
-			</fileupload>
-		</menu>
+		
 		
 		<acl>
 			<resources>
@@ -106,6 +87,8 @@
             </fileupload_read>
 			
         </resources>
+		
+        
 		
         <helpers>
             <fileupload>

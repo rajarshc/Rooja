@@ -1,0 +1,12 @@
+<a href="<?php echo $this->getUrl('*/*')?>"><?php echo $this->__('Back')?></a>
+<?php
+$debugger = $this->getDebugger();
+#echo $debuger->getTestdoxInfo();
+#echo $debuger->getStoryData();
+echo "<pre>".$debugger->getTextInfo()."</pre>";
+?>
+<hr/>
+<?php
+echo "<pre>".join("\n",$debugger->getResults())."</pre>";
+?>
+<a href="<?php echo $this->getUrl('*/*')?>"><?php echo $this->__('Back')?></a>

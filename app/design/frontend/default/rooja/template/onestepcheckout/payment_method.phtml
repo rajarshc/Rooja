@@ -123,9 +123,12 @@ $subtotal = $totals["subtotal"]->getValue();
 		//alert(subtotal);
 
 		j(document).ready(function() {
-		  	var selectedVal = j('#p_method_cashondelivery').is(':checked');
+			UpdateShipMethod();
+		  	/*var selectedVal = j('#p_method_cashondelivery').is(':checked');
 
 			var creditCard = j('#p_method_Avenues_standard').is(':checked');
+			
+			
 			
 			if(creditCard)
 			{ 
@@ -175,8 +178,10 @@ $subtotal = $totals["subtotal"]->getValue();
 				
 				}
 			}
+			*/
+			
 		});
-
+/*
 	j("#p_method_cashondelivery").click(function() { 
 
 		if(subtotal < 2000)
@@ -228,6 +233,8 @@ $subtotal = $totals["subtotal"]->getValue();
 		j('label[for="shipping_shippingrates_Flatrate"]').hide();			
 		
 	});
+	
+	*/
 </script>
 
 <script type="text/javascript">
@@ -264,6 +271,7 @@ $$('#checkout-payment-method-load dt input').invoke('observe', 'click', function
 
         if(element !== null && container !== null)    {
             container.show();
+			$('#container_payment_method_cashondelivery fieldset').show();
             $(name).show();
         }
     }

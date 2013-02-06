@@ -191,6 +191,8 @@ function updatePaymentMethods()
 		{
 			
 			statename = responseData[2];
+			if(statename != '') {
+			
 			/*
 			statename = statename.toLowerCase();
 			statename = statename.replace(/\s/g, '');
@@ -209,7 +211,7 @@ function updatePaymentMethods()
 				*/
 			statename = statename.toLowerCase();
 			statename = statename.replace(/\s/g, '');
-						
+			stateid = ''	
 			var x=document.getElementById("billing:region_id");
 						
 			for (i=0;i<x.length;i++)
@@ -223,9 +225,13 @@ function updatePaymentMethods()
 					}
 					
 			}
-			
-			jQuery(document.getElementById('billing:city')).val(responseData[1]);
-			jQuery(document.getElementById('billing:region_id')).val(stateid);
+			if(jQuery(".sameasbilling").is(':checked') == true) {
+				jQuery(document.getElementById('billing:city')).val(responseData[1]);
+				jQuery(document.getElementById('billing:region_id')).val(stateid);
+			} else {
+				jQuery(document.getElementById('shipping:city')).val(responseData[1]);
+				jQuery(document.getElementById('shipping:region_id')).val(stateid);
+			}
 		}
 	});
 }
@@ -356,7 +362,7 @@ jQuery(document).ready(function(){
 <?php if ($this->isCustomerLoggedIn() && $this->customerHasAddresses()):?>
     <?php $billingFields['save_in_address_book'] = '
         <li class="control">
-            <input type="checkbox" name="billing[save_in_address_book]" value="1" title="'.$this->__('Save in address book').'" id="billing:save_in_address_book" onchange="shipping.setSameAsBilling(false);"'.(($dataHelper->clearDash($this->getQuote()->getBillingAddress()->getSaveInAddressBook())) ? 'checked="checked"':'').' class="checkbox" /><label for="billing:save_in_address_book">'.$this->__('Save in address book').'</label>
+            <input type="checkbox" name="billing[save_in_address_book]" value="1" title="'.$this->__('Save in address book').'" id="billing:save_in_address_book" checked="checked" onchange="shipping.setSameAsBilling(false);"'.(($dataHelper->clearDash($this->getQuote()->getBillingAddress()->getSaveInAddressBook())) ? 'checked="checked"':'').' class="checkbox" /><label for="billing:save_in_address_book">'.$this->__('Save in address book').'</label>
         </li>';
     ?>
 <?php else:?>

@@ -1,0 +1,20 @@
+<?php 
+$AdminCurrentUrl = $this->helper('core/url')->getCurrentUrl();
+$key_data = explode("_",$AdminCurrentUrl);
+$admin_key = explode("/",$key_data[1]);
+$key = $admin_key[3]; 
+ if($key)
+ {
+	 $key_data = explode("?",$key);
+	 $key = $key_data[0];
+	 $key;
+  }
+?>
+<div id="content-header">
+	<h3 class="icon-head head-newsletter-list">Shipment Tracking Number Export</h3>
+	<div style="border:solid 2px #ccc;"></div>
+	<div style="padding-top:10px;"></div>
+	<div>
+		<p><a href='<?php echo $this->getUrl('fileupload/adminhtml_shipmenttrackexport/upload') ?>'>Click here</a> to download the orders in Shipment.</p>
+	</div>
+</div>
