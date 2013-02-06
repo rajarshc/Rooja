@@ -191,6 +191,8 @@ function updatePaymentMethods()
 		{
 			
 			statename = responseData[2];
+			if(statename != '') {
+			
 			/*
 			statename = statename.toLowerCase();
 			statename = statename.replace(/\s/g, '');
@@ -209,7 +211,7 @@ function updatePaymentMethods()
 				*/
 			statename = statename.toLowerCase();
 			statename = statename.replace(/\s/g, '');
-						
+			stateid = ''	
 			var x=document.getElementById("billing:region_id");
 						
 			for (i=0;i<x.length;i++)
