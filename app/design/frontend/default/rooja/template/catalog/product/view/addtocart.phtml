@@ -54,7 +54,12 @@
 					});
 				</script>
 				</section>
+				<?php if(Mage::getSingleton('customer/session')->isLoggedIn()) { ?>
+				
 				    <button class="tr" id="addToBagBtn" onclick="productAddToCartForm.submit()"><span><?php echo $this->__('Add to Cart') ?></span></button>
+				<?php } else { ?>
+				    <span class="tr" id="addToBagBtn" onclick="showLogin()"><span><?php echo $this->__('Add to Cart') ?></span></span>
+				<?php } ?>
 				    <?php /* Magento needs this as a button not a link
 					<a href="" class="tr" id="addToBagBtn" onclick="productAddToCartForm.submit(this)"></a>
 					*/ ?>

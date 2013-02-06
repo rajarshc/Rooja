@@ -1,70 +1,467 @@
-<?php
+<?php /** * Magento * * NOTICE OF LICENSE * * This source file is subject to the
+Academic Free License (AFL 3.0) * that is bundled with this package in the file
+LICENSE_AFL.txt. * It is also available through the world-wide-web at this URL:
+* http://opensource.org/licenses/afl-3.0.php * If you did not receive a copy of
+the license and are unable to * obtain it through the world-wide-web, please send
+an email * to license@magentocommerce.com so we can send you a copy immediately.
+* * DISCLAIMER * * Do not edit or add to this file if you wish to upgrade Magento
+to newer * versions in the future. If you wish to customize Magento for your * needs
+please refer to http://www.magentocommerce.com for more information. * * @category
+design * @package base_default * @copyright Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+* @license http://opensource.org/licenses/afl-3.0.php Academic Free License (AFL
+3.0) */ /** * @var Mage_Page_Block_Html_Header $this */ ?> <?php ?>
 
-/**
+<script type="text/javascript">
+(function ($) {
+	
+	$(document).ready(function() {
+		
+		/*try {
+		
+			$('input[type="text"], input[type="password"]').defaultValue({
+				preferPlaceholder: true
+			});
+			
+		} catch (e) {
+			// Silently dismiss ssshhhhhhhhhh!!!
+		}*/
+	
+		setTimeout(function() {
+			// Chrome does not fire a change event when autofilling forms
+			// To prevent weird overlap with defaultValue and Chrome autofill,
+			// fire your own change event after 100 or so milliseconds
+			$('input[type="text"]').change();
+		}, 100);
+		
+		$("a#loginTab").click(function () {
+			$("#getInvitedCont").hide();
+			$("#loginCont").show();
+			$("#loginTab").addClass('selected');
+			$("#getInvitedTab").removeClass('selected');
+			$(".messages").hide();
+			return false;
+		});
+		$("a#getInvitedTab").click(function () {
+			$("#getInvitedCont").show();
+			$("#loginCont").hide();
+			$("#loginTab").removeClass('selected');
+			$("#getInvitedTab").addClass('selected');
+			$(".messages").hide();
+			return false;
+		});
+		
+		
+		
+		/*****************
+		 ** CROSSFADER! **
+		 *****************/
+		 
+		// Setup some vars for crossfader
+		var currentIndex = 0,
+    	    nextIndex = 1;
+    	
+		// Hide all and fade in first
+		$('ul.slideshow li').hide();
+		$('ul.slideshow li').eq(currentIndex).fadeIn(2000);
+		
+		setTimeout(function () {
+		    crossFadeImages(currentIndex, nextIndex)
+		}, 4000);
+		
+	
+	});
+	
+	
+	function crossFadeImages (current, next) {
+	    var $slideshow = $('ul.slideshow li');
+	    
+	    $slideshow.eq(current).fadeOut(2000);
+	    $slideshow.eq(next).fadeIn(2000);
+	    
+	    current = next;
+	    next++;
+	    if (next >= $slideshow.length) {
+	        next = 0;
+	    }
+	    
+	    setTimeout(function () {
+	        crossFadeImages(current, next);
+	    }, 4000);
+	    
+	}
+	if (Mage.Cookies.get('Visited') == "Yes")
+	{
+		<?php if(!Mage::getSingleton('customer/session')->isLoggedIn()) { ?>
+            setTimeout(showLogin,10000);
+        <?php } ?>
+	}else
+	{
+		Mage.Cookies.set('Visited', 'Yes');
+		<?php if(!Mage::getSingleton('customer/session')->isLoggedIn()) { ?>
+            setTimeout(showJoin,10000);
+        <?php } ?>
+	}
+	
+    Placeholders.init({
+        live: true,
+        hideOnFocus: true
+    });
+	
+})(jQuery);
 
- * Magento
+function showLogin(){
+    jQuery("#rooja_login_wrapper").fadeIn();
+}
 
- *
+function showJoin(){
+    jQuery("#rooja_signup_wrapper").fadeIn();
+}
 
- * NOTICE OF LICENSE
+function clearError(){
+    jQuery(".messages").hide();
+}
 
- *
+ 
+ /*Ajax Login Function */
+function loginAjax() {
+	var valid = new Validation('login-form');
+	 if(valid.validate()){
+	    var request = new Ajax.Request(
+		 "<?php echo Mage::getBaseUrl(); ?>" + "customer/account/ajaxLogin",
+		{
+		    method:'post',
+		    onComplete: function(){
+		       
+		    },
+		    onSuccess: function(transport){
+		       if (transport && transport.responseText){
+			     try{
+			        response = eval('(' + transport.responseText + ')');
+			      }
+			      catch (e) {
+				    response = {};
+			      }
+			    }
+			
+			    if (response.success){
+			        jQuery('#step1').hide();
+			        jQuery('#step2').show();
+			        setTimeout("window.location= '<?php echo $this->helper('core/url')->getCurrentUrl(); ?>'",1000);
+			    }else{
+			        if ((typeof response.message) == 'string') {
+				        jQuery('.messages').html('<span>' + response.message + '</span>');
+				        jQuery(".messages").show();
+			        } 
+			        return false;
+			    }
+		    },
+		    
+		    onFailure: function(){
+		            jQuery('.messages').html('<span>Failed</span>');
+		            jQuery(".messages").show();
+		    },
+		    parameters: Form.serialize('login-form'),
+		    
+		    onLoading: function(){
+		        jQuery('.messages').html('<img src="<?php echo $this->getSkinUrl(); ?>/images/ajax-loader-arrows.gif" />');
+                jQuery(".messages").show(); 
+		    }
+		});
+	  }else{
+	        return false;
+	  }			  
+}
 
- * This source file is subject to the Academic Free License (AFL 3.0)
+/*Forget Password Function */
+function forgetpass(){	
+	var req2 = new Ajax.Request("<?php echo Mage::getBaseUrl(); ?>" + "customer/account/ajaxForgotPassword/",
+	 {
+		method:'post',
+		parameters: $('forgot-form').serialize(true) ,
+		onSuccess: function(transport){
+		   var response = eval('(' + transport.responseText + ')');
+		   if(response.success){
+			  jQuery('.messages').html('<span>' + response.message + '</span>');
+		      jQuery(".messages").show();
+		   }else{
+			  jQuery('.messages').html('<span>' + response.message + '</span>');
+		      jQuery(".messages").show();
+		   }
+		},
+		onFailure: function(){jQuery('.messages').html('Failed...');
+		      jQuery(".messages").show();
+		},
+		onLoading: function(){
+	        jQuery('.messages').html('<img src="<?php echo $this->getSkinUrl(); ?>/images/ajax-loader-arrows.gif" />');
+            jQuery(".messages").show(); 
+	    }
+	 });
 
- * that is bundled with this package in the file LICENSE_AFL.txt.
+}
 
- * It is also available through the world-wide-web at this URL:
+/*check email*/
+function checkEmail(){
+	var req2 = new Ajax.Request("<?php echo Mage::getBaseUrl(); ?>" + "customer/account/ajaxCheckEmail/",
+	 {
+		method:'post',
+		parameters: {email: jQuery('#email_address').val()},
+		onSuccess: function(transport){
+		   var response = eval('(' + transport.responseText + ')');
+		   if(response.success){
+		      jQuery(".messages").hide();
+			  jQuery('#joinStep1').hide();
+			  jQuery('#joinStep2').show();
+		   }else{
+			  jQuery('.messages').html('<span>' + response.message + '</span>');
+		      jQuery(".messages").show();
+		   }
+		},
+		onFailure: function(){jQuery('.messages').html('<span>Failed</span>');
+		      jQuery(".messages").show();
+		},
+		onLoading: function(){
+	        jQuery('.messages').html('<img src="<?php echo $this->getSkinUrl(); ?>/images/ajax-loader-arrows.gif" />');
+            jQuery(".messages").show(); 
+	    }
+	 });
 
- * http://opensource.org/licenses/afl-3.0.php
+}
 
- * If you did not receive a copy of the license and are unable to
+/*Ajax Register Customer Function */
+function registerAjax() {		
+	 var valid = new Validation('regis-form');
+	 if(valid.validate()){
+		  var request = new Ajax.Request(
+		"<?php echo Mage::getBaseUrl(); ?>" + "customer/account/ajaxCreate",
+		{
+			method:'post',
+			onComplete: function(){
+			   
+			},
+			onSuccess: function(transport){
+			   if (transport && transport.responseText){
+			 try{
+				response = eval('(' + transport.responseText + ')');
+			  }
+			  catch (e) {
+				response = {};
+			  }
+			}
+			
+			if (response.success){
+			       jQuery('#joinStep1').hide();
+			       jQuery('#joinStep2').hide();
+			       jQuery('#joinStep3').show();
+				   setTimeout("window.location= '<?php echo $this->helper('core/url')->getCurrentUrl(); ?>'",1000);
+			    }else{
+				if ((typeof response.message) == 'string') {
+				    jQuery('.messages').html('<span>' + response.message + '</span>');
+		            jQuery(".messages").show();
+				} 
+				return false;
+			}
+			},
+			onFailure: function(){
+			  jQuery('.messages').html('<span>Failed</span>');
+		      jQuery(".messages").show();
+			},
+			parameters: Form.serialize('regis-form'),
+			onLoading: function(){
+		        jQuery('.messages').html('<img src="<?php echo $this->getSkinUrl(); ?>/images/ajax-loader-arrows.gif" />');
+                jQuery(".messages").show(); 
+		    }
+		}
+		  );
+	  }else{
+	 
+		return false;
+	  }
+}
+//<![CDATA[
+    var contactForm = new VarienForm('contactForm', true);
+//]]>
 
- * obtain it through the world-wide-web, please send an email
 
- * to license@magentocommerce.com so we can send you a copy immediately.
+</script>
 
- *
-
- * DISCLAIMER
-
- *
-
- * Do not edit or add to this file if you wish to upgrade Magento to newer
-
- * versions in the future. If you wish to customize Magento for your
-
- * needs please refer to http://www.magentocommerce.com for more information.
-
- *
-
- * @category    design
-
- * @package     base_default
-
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
-
- * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
-
- */
-
-/**
-
- * @var Mage_Page_Block_Html_Header $this
-
- */
-
-?>
-
-<?php
-
-
-
-?>
-
+<div id="rooja_login_wrapper" style="display: none;">
+    <div id="rooja_login_block">
+        <div id="step1" class="rooja_login_bg">
+            <div class="rooja_login_left_logo">
+            </div>
+            <div class="rooja_login_left_text">
+                DISCOVER UNIQUE FASHION & PERSONAL PRODUCTS</div>
+            <!--rooja_login_left_text-->
+            <div class="rooja_login_right_memberlogin">
+                WELCOME TO ROOJA!</div>
+            <a href="<?php echo $this->getUrl('login/facebook/index/') ?>" class="rooja_login_right_fb">
+            </a>
+            <div class="rooja_login_or_img">
+            </div>
+            <div class="rooja_login_right_bottom_text">
+                Login with your Rooja account</div>
+                <div class="messages"></div>
+            <?php $message1=Mage::app()->getLayout()->getMessagesBlock() ->setMessages(Mage::getSingleton('customer/session')
+            ->getMessages(true))->getGroupedHtml() ; echo $message1; ?>
+            <form id="login-form" onsubmit="if (this.checkValidity()){loginAjax()};return false;" >
+                <div class="rooja_login_fields">
+                    <input type="email" name="login[username]" id="email" class="input-text required-entry validate-email"
+                        placeholder="Enter your email" required title="<?php echo $this->__('Email Address *') ?>"/>
+                    <input type="password" name="login[password]" class="input-text required-entry validate-password"
+                        id="pass" placeholder="Enter your password" required pattern=".{6,}" title="<?php echo $this->__('Password - Minimum Length 6') ?>" />
+                        <br />
+                    <button>Login</button><br />
+                    <div id="forgetPass">
+                        Forgot your password? <a href="#" onclick="clearError();jQuery('#step1').hide();jQuery('#step2').hide();jQuery('#forgetStep').show();">Click here</a>
+                    </div>
+                </div>
+            </form>
+            <div class="rooja_login_left_joinnow">
+                <span>Not a member?</span> <a href="#" onclick="clearError();jQuery('#rooja_login_wrapper').hide();jQuery('#rooja_signup_wrapper').show();jQuery('#joinStep1').show();jQuery('#joinStep2').hide();jQuery('#joinStep3').hide();">
+                    Click here to join Rooja</a>
+            </div>
+        </div>
+        
+        <div id="step2" class="rooja_login_bg" style="display: none">
+                <div class="rooja_login_left_logo">
+                </div>
+                <div class="rooja_login_left_text">
+                    DISCOVER UNIQUE FASHION & PERSONAL PRODUCTS</div>
+                <!--rooja_login_left_text-->
+                <div class="rooja_login_thanks">
+                    HELLO!</div>
+                <div class="rooja_login_intro">
+                    It's nice to see you again.<br />                    Signing in now.</div>
+                <div class="rooja_login_redirect">
+                    <img src="<?php echo $this->getSkinUrl(); ?>/images/ajax-loader_2.gif" /><br /><br />
+                    Redirecting to Homepage</div>
+         </div>
+         
+         <div id="forgetStep" class="rooja_login_bg" style="display: none">
+                <div class="rooja_login_left_logo">
+                </div>
+                <div class="rooja_login_left_text">
+                    DISCOVER UNIQUE FASHION & PERSONAL PRODUCTS</div>
+                <!--rooja_login_left_text-->
+                <div class="rooja_forget_pass">
+                    RETRIEVE YOUR PASSWORD HERE</div>
+                <div class="messages"></div>
+                <div class="rooja_forget_text">
+                    Enter your email below and we will send you a new password.</div>
+                <form id="forgot-form" name="forgot-form" onsubmit="if (this.checkValidity()){forgetpass()};return false;">
+                <input type="hidden" name="success_url" value="" />
+                <input type="hidden" name="error_url" value="<?php echo $this->getUrl() ?>" />
+                <div class="rooja_forget_email">
+                    <input type="email" id="forgot_email" name="forgotemail" title="<?php echo $this->__('Email Address *') ?>"
+                        class="input-text validate-email required-entry" placeholder="Email Address" required/>
+                    <button>Submit</button>
+                </div>
+               </form>
+               
+               <div class="rooja_login_left_joinnow">
+                    <span>Already a member?</span> <a href="#" onclick="clearError();jQuery('#forgetStep').hide();jQuery('#step1').show();">
+                        Click here to login</a>
+                </div>
+         </div>
+            
+        <div class="rooja_signup_bottom_tags">
+            <span class="span1">FREE SHIPPING</span> <span class="span2">CASH ON DELIVERY</span>
+            <span class="span3">FREE RETURNS</span>
+        </div>
+    </div>
+</div>
+<div id="rooja_signup_wrapper" style="display: none;">
+    <div id="rooja_signup_block">
+        <form id="regis-form" name="regis-form" onsubmit="if (this.checkValidity()){registerAjax()};return false;">
+            <div id="joinStep1" class="rooja_login_bg">
+                <div class="rooja_login_left_logo">
+                </div>
+                <div class="rooja_login_left_text">
+                    DISCOVER UNIQUE FASHION & PERSONAL PRODUCTS</div>
+                <!--rooja_login_left_text-->
+                <div class="rooja_signup_right_memberlogin">
+                    JOIN NOW</div>
+                <div class="rooja_signup_right_bottom_text">
+                    Curated Sales. Exclusive Products. Up to 70% off.</div>
+                <a href="<?php echo $this->getUrl('login/facebook/index/') ?>"
+                    class="rooja_signup_right_fb"></a>
+                <div class="rooja_login_or_img">
+                </div>
+                <div class="rooja_login_right_bottom_text">
+                    Enter your email for instant access</div>
+                <div class="messages"></div>
+                <div class="rooja_signup_email">
+                    <input type="text" name="email" id="email_address" title="<?php echo $this->__('Email Address *') ?>"
+                        class="input-text validate-email required-entry" placeholder="Email Address" />
+                    <button type="button" onclick="checkEmail()">
+                        Join Now >></button>
+                </div>
+                <div class="rooja_login_left_joinnow">
+                    <span>Already a member?</span> <a href="#" onclick="clearError();jQuery('#rooja_signup_wrapper').hide();jQuery('#forgetStep').hide();jQuery('#rooja_login_wrapper').show();">
+                        Click here to login</a>
+                </div>
+            </div>
+            <div id="joinStep2" class="rooja_login_bg" style="display: none">
+                <div class="rooja_login_left_logo">
+                </div>
+                <div class="rooja_login_left_text">
+                    DISCOVER UNIQUE FASHION & PERSONAL PRODUCTS</div>
+                <!--rooja_login_left_text-->
+                <div class="rooja_signup_right_memberlogin">
+                    Just a few more details</div>
+                <div class="rooja_signup_right_bottom_text">
+                    And you can start shopping :)</div>
+                    <div class="messages"></div>
+                <input type="hidden" name="success_url" value="" />
+                <input type="hidden" name="error_url" value="<?php echo $this->getUrl() ?>" />
+                <div class="rooja_signup_text">
+                    <input type="text" id="firstname" name="firstname" value="" title="First Name" class="input-text required-entry"
+                        placeholder="First Name" required />
+                    <input type="text" id="lastname" name="lastname" value="" title="Last Name" class="input-text required-entry"
+                        placeholder="Last Name" required />
+                </div>
+                <div class="rooja_signup_text_password">
+                    <input type="password" name="password" id="password" title="<?php echo $this->__('Password - Minimum Length 6') ?>" class="input-text required-entry validate-password" placeholder="Password" required pattern=".{6,}" onchange="document.forms['regis-form'].confirmation.pattern = this.value;"/>
+                    <input type="password" name="confirmation" title="<?php echo $this->__('Confirm Password - Minimum Length 6') ?>" id="confirmation" class="input-text required-entry validate-cpassword" value=""
+                        placeholder="Confirm Password" required pattern=".{6,}" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Password & Confirm Password do not match!' : '');" />
+                </div>
+                <div class="rooja_signup_gender">
+                    <span>What's your gender:</span>
+                    <input type="radio" name="gender" value="1" required>Male
+                    <input type="radio" name="gender" value="2" required>Female
+                </div>
+                <div id="rooja_signup_left_joinnow">
+                    <button>START SHOPPING</button>
+                </div>
+                <div class="rooja_login_left_joinnow">
+                    <span>Already a member?</span> <a href="#" onclick="clearError();jQuery('#rooja_signup_wrapper').hide();jQuery('#forgetStep').hide();jQuery('#rooja_login_wrapper').show();">
+                        Click here to login</a>
+                </div>
+            </div>
+            <div id="joinStep3" class="rooja_login_bg" style="display: none">
+                <div class="rooja_login_left_logo">
+                </div>
+                <div class="rooja_login_left_text">
+                    DISCOVER UNIQUE FASHION & PERSONAL PRODUCTS</div>
+                <!--rooja_login_left_text-->
+                <div class="rooja_login_thanks">
+                    THANKS FOR JOINING!</div>
+                <div class="rooja_login_intro">
+                    Its very nice to meet you, welcome to Rooja.</div>
+                <div class="rooja_login_redirect">
+                    <img src="<?php echo $this->getSkinUrl(); ?>/images/ajax-loader_2.gif" /><br />
+                    <br />
+                    Redirecting to Homepage</div>
+            </div>
+        </form>
+        <div class="rooja_signup_bottom_tags">
+            <span class="span1">FREE SHIPPING</span> <span class="span2">CASH ON DELIVERY</span>
+            <span class="span3">FREE RETURNS</span>
+        </div>
+    </div>
+</div>
 <div id="wrap">
-
-<header id="mainHeader">
+    <header id="mainHeader">
 
 	<div class="container">
 
@@ -92,9 +489,10 @@
 
 <?php $session = Mage::getSingleton('customer/session');
 
-
+$customer="";
 
 if($session->isLoggedIn()) {$customer = $session->getCustomer();}
+else {$customer = "Guest";}
 
 ?>
 
@@ -106,8 +504,9 @@ if($session->isLoggedIn()) {$customer = $session->getCustomer();}
 
 			<li class="ignore-item"><a href="/rewardsref/customer/index/">Invite Friends and Earn Free Shipping</a></li>
 
-			<li class="welcome-top"><a href="#" title="">Welcome <?php echo substr($customer->getFirstname(), 0, 12); ?></a>
+			<li class="welcome-top"><a href="#" title="">Welcome <?php if($session->isLoggedIn()) { echo substr($customer->getFirstname(), 0, 12);} else { echo $customer; } ?></a>
 
+                <?php if($session->isLoggedIn()) { ?>
 				<ul>
 
 					<li><a href="/customer/account" title="">My Account</a></li>
@@ -115,6 +514,13 @@ if($session->isLoggedIn()) {$customer = $session->getCustomer();}
 					<li><a href="/customer/account/logout" title="">Sign Out</a></li>
 
 				</ul>
+				<?php } else { ?>
+				    <ul>
+
+					    <li><a href="#" title="" onclick="jQuery('#rooja_login_wrapper').show();jQuery('#rooja_signup_wrapper').hide();">Login</a></li>
+
+				    </ul>
+				<?php } ?>
 
 			</li>
 
@@ -134,6 +540,6 @@ if($session->isLoggedIn()) {$customer = $session->getCustomer();}
 
 	</div>
 
-</header><!--End Header-->
-
-<div id="mainContentWrap">
+</header>
+    <!--End Header-->
+    <div id="mainContentWrap">
