@@ -193,44 +193,45 @@ function updatePaymentMethods()
 			statename = responseData[2];
 			if(statename != '') {
 			
-			/*
-			statename = statename.toLowerCase();
-			statename = statename.replace(/\s/g, '');
-			stateid = '' 
-			jQuery("#billing:region_id option").each(function() {
-					// add $(this).val() to your list
-					//alert( $(this).text());
-					opn = jQuery(this).text().toLowerCase();
-					opn = opn.replace(/\s/g, '');
-					alert(opn)
-					if(opn == statename) {
-						alert(opn+"-"+statename)
-						stateid = jQuery(this).val();
-					}
-			});
-				*/
-			statename = statename.toLowerCase();
-			statename = statename.replace(/\s/g, '');
-			stateid = ''	
-			var x=document.getElementById("billing:region_id");
+				/*
+				statename = statename.toLowerCase();
+				statename = statename.replace(/\s/g, '');
+				stateid = '' 
+				jQuery("#billing:region_id option").each(function() {
+						// add $(this).val() to your list
+						//alert( $(this).text());
+						opn = jQuery(this).text().toLowerCase();
+						opn = opn.replace(/\s/g, '');
+						alert(opn)
+						if(opn == statename) {
+							alert(opn+"-"+statename)
+							stateid = jQuery(this).val();
+						}
+				});
+					*/
+				statename = statename.toLowerCase();
+				statename = statename.replace(/\s/g, '');
+				stateid = ''	
+				var x=document.getElementById("billing:region_id");
+							
+				for (i=0;i<x.length;i++)
+					{				
+						opn = x.options[i].text;					
+						opn = opn.toLowerCase();				
+						opn = opn.replace(/\s/g, '');					
+						if(opn == statename) {						
+							//alert(opn +" - "+dynopn);
+							stateid = x.options[i].value;												
+						}
 						
-			for (i=0;i<x.length;i++)
-				{				
-					opn = x.options[i].text;					
-					opn = opn.toLowerCase();				
-					opn = opn.replace(/\s/g, '');					
-					if(opn == statename) {						
-						//alert(opn +" - "+dynopn);
-						stateid = x.options[i].value;												
-					}
-					
-			}
-			if(jQuery(".sameasbilling").is(':checked') == true) {
-				jQuery(document.getElementById('billing:city')).val(responseData[1]);
-				jQuery(document.getElementById('billing:region_id')).val(stateid);
-			} else {
-				jQuery(document.getElementById('shipping:city')).val(responseData[1]);
-				jQuery(document.getElementById('shipping:region_id')).val(stateid);
+				}
+				if(jQuery(".sameasbilling").is(':checked') == true) {
+					jQuery(document.getElementById('billing:city')).val(responseData[1]);
+					jQuery(document.getElementById('billing:region_id')).val(stateid);
+				} else {
+					jQuery(document.getElementById('shipping:city')).val(responseData[1]);
+					jQuery(document.getElementById('shipping:region_id')).val(stateid);
+				}
 			}
 		}
 	});
