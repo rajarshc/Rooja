@@ -58,7 +58,9 @@ Mage::Log("aaa");
         	
         <?php
 		
-		$firstVisit =  $_GET['first'];
+		if (isset($_GET['first'])){
+			$firstVisit = $_GET['first'];
+		}
 		//echo $firstVisit;
 			
 					if($firstVisit=='welcome/'){

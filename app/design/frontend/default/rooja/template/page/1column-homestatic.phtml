@@ -77,6 +77,9 @@ P.S. Hurry!"/>
 
 })(jQ);
 </script>
+<?php if (!isset($agent))
+	$agent = "";
+?>
 <?php Mage::getSingleton('customer/session')->setBeforeAuthUrl($this->getRequest()->getRequestUri());  //save requested URL for later redirection ?>
 <?php if(Mage::getSingleton('customer/session')->isLoggedIn() && ($agent !="facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)")) {  // if not logged in
     header("Status: 301");

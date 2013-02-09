@@ -169,7 +169,8 @@ function loginAjax() {
 		});
 	  }else{
 	        return false;
-	  }			  
+	  }
+	  return false;
 }
 
 /*Forget Password Function */
@@ -196,7 +197,7 @@ function forgetpass(){
             jQuery(".messages").show(); 
 	    }
 	 });
-
+    return false;
 }
 
 /*check email*/
@@ -224,6 +225,7 @@ function checkEmail(){
             jQuery(".messages").show(); 
 	    }
 	 });
+	 return false;
 
 }
 
@@ -276,6 +278,7 @@ function registerAjax() {
 	 
 		return false;
 	  }
+	  return false;
 }
 //<![CDATA[
     var contactForm = new VarienForm('contactForm', true);
@@ -303,7 +306,7 @@ function registerAjax() {
                 <div class="messages"></div>
             <?php $message1=Mage::app()->getLayout()->getMessagesBlock() ->setMessages(Mage::getSingleton('customer/session')
             ->getMessages(true))->getGroupedHtml() ; echo $message1; ?>
-            <form id="login-form" onsubmit="if (this.checkValidity()){loginAjax()};return false;" >
+            <form id="login-form" onsubmit="return loginAjax();" >
                 <div class="rooja_login_fields">
                     <input type="email" name="login[username]" id="email" class="input-text required-entry validate-email"
                         placeholder="Enter your email" required title="<?php echo $this->__('Email Address *') ?>"/>
@@ -348,7 +351,7 @@ function registerAjax() {
                 <div class="messages"></div>
                 <div class="rooja_forget_text">
                     Enter your email below and we will send you a new password.</div>
-                <form id="forgot-form" name="forgot-form" onsubmit="if (this.checkValidity()){forgetpass()};return false;">
+                <form id="forgot-form" name="forgot-form" onsubmit="return forgetpass();">
                 <input type="hidden" name="success_url" value="" />
                 <input type="hidden" name="error_url" value="<?php echo $this->getUrl() ?>" />
                 <div class="rooja_forget_email">
@@ -372,7 +375,7 @@ function registerAjax() {
 </div>
 <div id="rooja_signup_wrapper" style="display: none;">
     <div id="rooja_signup_block">
-        <form id="regis-form" name="regis-form" onsubmit="if (this.checkValidity()){registerAjax()};return false;">
+        <form id="regis-form" name="regis-form" onsubmit="return registerAjax();">
             <div id="joinStep1" class="rooja_login_bg">
                 <div class="rooja_login_left_logo">
                 </div>
