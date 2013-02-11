@@ -877,7 +877,7 @@ class Idev_OneStepCheckout_Block_Checkout extends Mage_Checkout_Block_Onepage_Ab
 
 
         try {
-			//Comment - suggessted by One Step support team for 0 order issue
+			//Comment - suggessted by One Step support team for 0 order issue in live
             //$this->getOnepage()->getQuote()->setTotalsCollectedFlag(false)->collectTotals();
             $order = $this->getOnepage()->saveOrder();
         } catch(Exception $e)   {
