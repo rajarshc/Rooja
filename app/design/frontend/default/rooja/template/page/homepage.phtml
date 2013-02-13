@@ -34,6 +34,11 @@
 <html xmlns:fb="http://www.facebook.com/2008/fbml" xmlns:og="http://opengraphprotocol.org/schema/" xmlns="http://www.w3.org/1999/xhtml"  xml:lang="<?php echo $this->getLang() ?>" lang="<?php echo $this->getLang() ?>" dir="ltr">
 <head>
 <?php echo $this->getChildHtml('head') ?>
+<meta property="og:title" content="Join Rooja, a members only shopping club and luxury boutique."/>
+<meta property="og:image" content="<?php echo $this->getSkinUrl('images/icons/rooja-logo-fb.png') ?>"/>
+<meta property="og:description" content="Thought of you guys when I saw this. Visit Rooja.com its got some good fashion picks from internationally known designers and brands at up to 60% off. You can thank me later, for now join the club. Membership is free ;) 
+
+P.S. Hurry!"/>
 </head>
 <?php /* AM EDIT - Redirect to Login Page */ ?>
 <?php //if(Mage::getSingleton('customer/session')->isLoggedIn() && (Mage::getSingleton('customer/session')->getCustomerGroupId() == 4)){ ?>
@@ -41,7 +46,7 @@
 <?php if(isset($_SERVER['HTTP_USER_AGENT'])){
     $agent = $_SERVER['HTTP_USER_AGENT'];
 }
-Mage::Log("aaa");
+//Mage::Log("aaa");
 ?>
 <?php Mage::getSingleton('customer/session')->setBeforeAuthUrl($this->getRequest()->getRequestUri());  //save requested URL for later redirection
 //if(!Mage::getSingleton('customer/session')->isLoggedIn() && ($agent !="facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)")) {  // if not logged in
@@ -57,7 +62,7 @@ Mage::Log("aaa");
         <?php echo $this->getChildHtml('header') ?>
         	
         <?php
-		
+		$firstVisit ="";
 		if (isset($_GET['first'])){
 			$firstVisit = $_GET['first'];
 		}
