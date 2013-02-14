@@ -77,6 +77,9 @@ P.S. Hurry!"/>
 
 })(jQ);
 </script>
+<?php if (!isset($agent))
+	$agent = "";
+?>
 <?php Mage::getSingleton('customer/session')->setBeforeAuthUrl($this->getRequest()->getRequestUri());  //save requested URL for later redirection ?>
 <?php if(Mage::getSingleton('customer/session')->isLoggedIn() && ($agent !="facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)")) {  // if not logged in
     header("Status: 301");
@@ -86,7 +89,7 @@ P.S. Hurry!"/>
 	
 	} ?>
 </head>
-<body class="">
+<body class="login">
 <div class="loginwrapper">
 <?php echo $this->getChildHtml('after_body_start') ?>
 	<?php echo $this->getChildHtml('global_notices') ?>
@@ -246,9 +249,7 @@ P.S. Hurry!"/>
 		<ul>
 			<li><a href="http://rooja.com">Home</a></li>
 			<li><a href="#aboutWrapper" class="fancyboxLink">About</a></li>
-			<li><a href="https://roojacareers.resumetracker.com/public" target="_blank">Careers</a></li>
 			<li><a href="#contactWrapper" class="fancyboxLink">Contact</a></li>
-			<li><a href="http://blog.rooja.com" target="_blank">Blog</a></li>
 		</ul>
 
 		<div id="socialLinks" class="fr">

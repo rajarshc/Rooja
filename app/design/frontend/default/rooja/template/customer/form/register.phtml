@@ -65,36 +65,36 @@ jQuery(function() {
 });
 </script>
 <div id="notifyWrapper" class="register">
-<div id="rooja_signup_wrapper">
-<div id="rooja_signup_cover">
-<div id="rooja_right_corner"><span>Already a member? <a href="<?php echo $this->getUrl(''); ?>">Click here</a></span></div>
+<div id="rooja_signup_wrapper_create">
+<div id="rooja_signup_cover_create">
+<div id="rooja_right_corner_create"><span>Already a member? <a href="<?php echo $this->getUrl(''); ?>">Click here</a></span></div>
 
-    <div id="rooja_signup_block">
+    <div id="rooja_signup_block_create">
     	
     
-	    <div id="rooja_signin_top">
+	    <div id="rooja_signin_top_create">
     
-        <div class="rooja_signup_left">
+        <div class="rooja_signup_left_create">
             
-            <div id="rooja_signup_left_logo"></div>
-            
-        </div>
-        
-        <div class="rooja_signup_right">
-        
-        	<div class="rooja_signup_right_memberlogin">DISCOVER UNIQUE FASHION <br /> &amp; PERSONAL PRODUCTS</div>
+            <div id="rooja_signup_left_logo_create"></div>
             
         </div>
         
+        <div class="rooja_signup_right_create">
+        
+        	<div class="rooja_signup_right_memberlogin_create">DISCOVER UNIQUE FASHION <br /> &amp; PERSONAL PRODUCTS</div>
+            
         </div>
         
-        <div class="rooja_signup_right_fb"><a href="<?php echo $this->getUrl('login/facebook/index'); ?>"></a></div>
+        </div>
         
-        <div class="rooja_signup_or"></div>
+        <div class="rooja_signup_right_fb_create"><a href="<?php echo $this->getUrl('login/facebook/index'); ?>"></a></div>
+        
+        <div class="rooja_signup_or_create"></div>
 
-        <div class="rooja_signup_right_bottom_text">Create your Rooja Account</div>
+        <div class="rooja_signup_right_bottom_text_create">Create your Rooja Account</div>
 	        
-        <div id="rooja_signup_input_block">
+        <div id="rooja_signup_input_block_create">
         
     <?php echo $this->getChildHtml('form_fields_before')?>
    	<div class="rooja_singup_error_msg">  <?php echo $this->getMessagesBlock()->getGroupedHtml() ?> </div>
@@ -104,14 +104,14 @@ jQuery(function() {
             <input type="hidden" name="error_url" value="<?php echo $this->getErrorUrl() ?>" />
             <ul class="form-list">
                 <li class="fields">
-                <div class="rooja_signup_text">
+                <div class="rooja_signup_text_create">
                     <?php echo $this->getLayout()->createBlock('customer/widget_name')->setObject($this->getFormData())->toHtml() ?>
                 </div>
                 </li>
                 
                 <!--<li>
                     <label for="email_address" class="required"><?php //echo $this->__('Email Address') ?> *</label>-->
-                    <div class="rooja_signup_email">
+                    <div class="rooja_signup_email_create">
                         <input type="text" name="email" id="email_address" title="<?php echo $this->__('Email Address *') ?>" class="input-text validate-email required-entry" placeholder="Email Address" />
                     </div>
                 <!--</li>-->
@@ -206,7 +206,7 @@ jQuery(function() {
                     <div class="rooja_signup_text">
                         <!--<label for="password" class="required"><?php //echo $this->__('Password') ?> *</label>
                         <div class="input-box">-->
-                          <div class="rooja_signup_text_password">  <input type="password" name="password" id="password" title="<?php echo $this->__('Password') ?>" class="input-text required-entry validate-password" placeholder="Password" /> 
+                          <div class="rooja_signup_text_password_create">  <input type="password" name="password" id="password" title="<?php echo $this->__('Password') ?>" class="input-text required-entry validate-password" placeholder="Password" /> 
                         
                     
                         <!--<label for="confirmation" class="required"><?php //echo $this->__('Confirm Password') ?> *</label>
@@ -244,17 +244,17 @@ jQuery(function() {
 
         </div>
         <!--<div class="buttons-set">-->
-        <div id="rooja_signup_left_joinnow">
+        <div id="rooja_signup_left_joinnow_create">
         
 					<input type="submit" value="Join Now" name="submitBtn">
         </div>
     </form>
     
-    <div class="rooja_signup_bottom_bgcolor">              
-	          <div class="rooja_signup_bottom_tags">
-                    <div class="rooja_signup_tagtxt_free"><span>FREE SHIPPING</span></div>
-                    <div class="rooja_signup_tagtxt_cod"><span>CASH ON DELIVERY</span></div>
-                    <div class="rooja_signup_tagtxt"><span>EASY RETURNS</span></div>
+    <div class="rooja_signup_bottom_bgcolor_create">              
+	          <div class="rooja_signup_bottom_tags_create">
+                    <div class="rooja_signup_tagtxt_free_create"><span>FREE SHIPPING</span></div>
+                    <div class="rooja_signup_tagtxt_cod_create"><span>CASH ON DELIVERY</span></div>
+                    <div class="rooja_signup_tagtxt_create"><span>EASY RETURNS</span></div>
               </div>
     </div>
 		
@@ -263,10 +263,11 @@ jQuery(function() {
 
 </div>
 </div>
-</div>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script> 
-<script src="http://webcloud.se/code/jQuery-Placeholder/jquery.placeholder.js"></script> 
-<script> 
-var j = jQuery.noConflict();
-	j('input[placeholder], textarea[placeholder]').placeholder(); 
+</div> 
+<script>
+jQuery(document).ready(function(){
+	Placeholders.init({
+        live: true,
+        hideOnFocus: true
+    });});
 </script>

@@ -90,7 +90,7 @@ class Mage_Catalog_Block_Product_Homepage extends Mage_Catalog_Block_Product_Abs
 
 		$this->addData(array(
 
-					'cache_lifetime'    => 9999999999,
+					'cache_lifetime'    => false,
 
 					'cache_tags'        => array("product_homepage")
 
@@ -104,7 +104,7 @@ class Mage_Catalog_Block_Product_Homepage extends Mage_Catalog_Block_Product_Abs
 
 		
 
-		return array(
+		$shortCacheId =  array(
 
 				'Product Homepage',
 
@@ -116,12 +116,42 @@ class Mage_Catalog_Block_Product_Homepage extends Mage_Catalog_Block_Product_Abs
 
 				Mage::getSingleton('customer/session')->getCustomer()->getData('gender'),
 
-				'template' => $this->getTemplate()
+				'template' => $this->getTemplate(),
+				$this->getCurrenCategoryKey()
 
 				);
+				
+		$cacheId = $shortCacheId;
+		
+		$shortCacheId = array_values($shortCacheId);
+		$shortCacheId = implode('|', $shortCacheId);
+		$shortCacheId = md5($shortCacheId);
+		
+		$cacheId['category_path'] = $this->getCurrenCategoryKey();
+		$cacheId['short_cache_id'] = $shortCacheId;
+		
+		return $cacheId;
 
 	}
-
+	/**
+		 * Get current category key
+		 *
+		 * @return mixed
+		 */
+	public function getCurrenCategoryKey()
+	{
+		if (!$this->_currentCategoryKey) {
+			$category = Mage::registry('current_category');
+			if ($category) {
+				$this->_currentCategoryKey = $category->getPath();
+			} else {
+				$this->_currentCategoryKey = Mage::app()->getStore()->getRootCategoryId();
+			}
+		}
+		
+		return $this->_currentCategoryKey;
+	}
+	
 	
 
 	public function homePageTopSales($gender,$category_id)
