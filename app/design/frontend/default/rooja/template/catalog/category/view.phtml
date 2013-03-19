@@ -84,7 +84,7 @@
 
     if ($_imgUrl = $_category->getImageUrl()) {
 
-        $_imgHtml = '<p class="category-image"><img src="'.$_imgUrl.'" alt="'.$this->htmlEscape($_category->getName()).'" title="'.$this->htmlEscape($_category->getName()).'" /></p>';
+        $_imgHtml = '<p class="category-image"><img src="'.$_imgUrl.'" alt="'.$_category->getName().'" title="'.$_category->getName().'" /></p>';
 
         $_imgHtml = $_helper->categoryAttribute($_category, $_imgHtml, 'image');
 
