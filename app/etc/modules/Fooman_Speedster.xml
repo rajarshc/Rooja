@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Fooman_Speedster>
-            <active>true</active>
+            <active>false</active>
             <codePool>community</codePool>
         </Fooman_Speedster>        
     </modules>
