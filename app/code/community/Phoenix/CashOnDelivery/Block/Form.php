@@ -24,11 +24,13 @@ class Phoenix_CashOnDelivery_Block_Form extends Mage_Payment_Block_Form
         $this->setTemplate('cashondelivery/form.phtml');
     }
 
-    public function getQuote(){
+    public function getQuote()
+    {
         return $this->getMethod()->getInfoInstance()->getQuote();
     }
 
-    public function getShippingAddress(){
+    public function getShippingAddress()
+    {
         return $this->getQuote()->getShippingAddress();
     }
 

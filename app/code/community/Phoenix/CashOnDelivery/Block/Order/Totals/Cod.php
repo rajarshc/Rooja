@@ -18,18 +18,18 @@
 class Phoenix_CashOnDelivery_Block_Order_Totals_Cod extends Mage_Core_Block_Abstract
 {
 
-   public function initTotals()
-    {       
+    public function initTotals()
+    {
         $parent = $this->getParentBlock();
         $this->_order   = $parent->getOrder();
-        if($this->_order->getCodFee()){
+        if ($this->_order->getCodFee()) {
             $cod = new Varien_Object();
             $cod->setLabel($this->__('Cash on Delivery'));
             $cod->setValue($this->_order->getCodFee());
             $cod->setBaseValue($this->_order->getBaseCodFee());
             $cod->setCode('cod_fee');
 
-            if (Mage::helper('cashondelivery')->displayCodBothPrices()){
+            if (Mage::helper('cashondelivery')->displayCodBothPrices()) {
                 $cod->setLabel($this->__('Cash on Delivery fee (Excl.Tax)'));
 
                 $codIncl = new Varien_Object();
@@ -38,18 +38,17 @@ class Phoenix_CashOnDelivery_Block_Order_Totals_Cod extends Mage_Core_Block_Abst
                 $codIncl->setBaseValue($this->_order->getBaseCodFee()+$this->_order->getBaseCodTaxAmount());
                 $codIncl->setCode('cod_fee_incl');
                 
-                $parent->addTotalBefore($cod,'tax');
-                $parent->addTotalBefore($codIncl,'tax');
-            }elseif(Mage::helper('cashondelivery')->displayCodFeeIncludingTax()){                
+                $parent->addTotalBefore($cod, 'tax');
+                $parent->addTotalBefore($codIncl, 'tax');
+            } elseif (Mage::helper('cashondelivery')->displayCodFeeIncludingTax()) {
                 $cod->setValue($this->_order->getCodFee()+$this->_order->getCodTaxAmount());
                 $cod->setBaseValue($this->_order->getBaseCodFee()+$this->_order->getBaseCodTaxAmount());                
-                $parent->addTotalBefore($cod,'tax');
-            }else{
-                $parent->addTotalBefore($cod,'tax');
+                $parent->addTotalBefore($cod, 'tax');
+            } else {
+                $parent->addTotalBefore($cod, 'tax');
             }
         }
 
-        return $this;        
+        return $this;
     }
-
 }

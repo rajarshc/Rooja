@@ -26,7 +26,7 @@
             <codePool>community</codePool>
             <depends>
                 <Mage_Payment />
-            </depends>
+            </depends>            
         </Phoenix_CashOnDelivery>
     </modules>
 </config>

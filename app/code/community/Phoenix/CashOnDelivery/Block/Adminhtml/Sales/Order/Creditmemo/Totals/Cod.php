@@ -21,13 +21,13 @@ class Phoenix_CashOnDelivery_Block_Adminhtml_Sales_Order_Creditmemo_Totals_Cod e
     public function initTotals()
     {
         $parent = $this->getParentBlock();        
-        if($this->_invoice->getCodFee()){
+        if ($this->_invoice->getCodFee()) {
             $cod = new Varien_Object();
             $cod->setLabel($this->__('Refund Cash on Delivery fee'));
             $cod->setValue($parent->getSource()->getCodFee());
             $cod->setBaseValue($parent->getSource()->getBaseCodFee());
             $cod->setCode('cod_fee');            
-            $parent->addTotalBefore($cod,'adjustment_positive');
+            $parent->addTotalBefore($cod, 'adjustment_positive');
         }
 
         return $this;

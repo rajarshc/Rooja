@@ -55,7 +55,7 @@ class Phoenix_CashOnDelivery_Block_Checkout_Cod extends Mage_Checkout_Block_Tota
     public function getCodFeeIncludeTax()
     {
         $codFeeInclTax = 0;
-        foreach ($this->getTotal()->getAddress()->getQuote()->getAllShippingAddresses() as $address){
+        foreach ($this->getTotal()->getAddress()->getQuote()->getAllShippingAddresses() as $address) {
             $codFeeInclTax += $address->getCodFee() + $address->getCodTaxAmount();
         }
         return $codFeeInclTax;
@@ -69,7 +69,7 @@ class Phoenix_CashOnDelivery_Block_Checkout_Cod extends Mage_Checkout_Block_Tota
     public function getCodFeeExcludeTax()
     {
         $codFeeExclTax = 0;
-        foreach ($this->getTotal()->getAddress()->getQuote()->getAllShippingAddresses() as $address){
+        foreach ($this->getTotal()->getAddress()->getQuote()->getAllShippingAddresses() as $address) {
             $codFeeExclTax += $address->getCodFee();
         }
         return $codFeeExclTax;

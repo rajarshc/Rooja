@@ -18,18 +18,16 @@
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-class Phoenix_CashOnDelivery_Model_Quote_TaxTotal extends Mage_Sales_Model_Quote_Address_Total_Tax {
-
+class Phoenix_CashOnDelivery_Model_Quote_TaxTotal extends Mage_Sales_Model_Quote_Address_Total_Tax
+{
     const CONFIG_XML_PATH_COD_TAX_CLASS =    'tax/classes/cod_tax_class';
     const CONFIG_XML_PATH_COD_INCLUDES_TAX = 'tax/calculation/cod_includes_tax';
     const CONFIG_XML_PATH_DISPLAY_COD = 'tax/display/cod_fee';
 
     public function collect(Mage_Sales_Model_Quote_Address $address)
     {
-
-        $paymentMethod = Mage::app()->getFrontController()->getRequest()->getParam('payment');
-        $paymentMethod = Mage::app()->getStore()->isAdmin() && isset($paymentMethod['method']) ? $paymentMethod['method'] : null;
-        if ($paymentMethod != 'cashondelivery' && (!count($address->getQuote()->getPaymentsCollection()) || !$address->getQuote()->getPayment()->hasMethodInstance())){            
+        $collection = $address->getQuote()->getPaymentsCollection();
+        if ($collection->count() <= 0 || $address->getQuote()->getPayment()->getMethod() == null) {
             return $this;
         }
 
@@ -50,7 +48,12 @@ class Phoenix_CashOnDelivery_Model_Quote_TaxTotal extends Mage_Sales_Model_Quote
 
         $taxCalculationModel = Mage::getSingleton('tax/calculation');
         /* @var $taxCalculationModel Mage_Tax_Model_Calculation */
-        $request = $taxCalculationModel->getRateRequest($address, $address->getQuote()->getBillingAddress(), $custTaxClassId, $store);
+        $request = $taxCalculationModel->getRateRequest(
+            $address,
+            $address->getQuote()->getBillingAddress(),
+            $custTaxClassId,
+            $store
+        );
         $codTaxClass = Mage::helper('cashondelivery')->getCodTaxClass($store);
 
         $codTax      = 0;
@@ -99,20 +102,24 @@ class Phoenix_CashOnDelivery_Model_Quote_TaxTotal extends Mage_Sales_Model_Quote
         /**
          * Modify subtotal
          */
-        if (Mage::getSingleton('tax/config')->displayCartSubtotalBoth($store) || Mage::getSingleton('tax/config')->displayCartSubtotalInclTax($store)) {
+        if (Mage::getSingleton('tax/config')->displayCartSubtotalBoth($store) ||
+            Mage::getSingleton('tax/config')->displayCartSubtotalInclTax($store)) {
             if ($address->getSubtotalInclTax() > 0) {
                 $subtotalInclTax = $address->getSubtotalInclTax();
             } else {
-                $subtotalInclTax = $address->getSubtotal()+$address->getTaxAmount()-$address->getShippingTaxAmount()-$address->getCodTaxAmount();
+                $subtotalInclTax = $address->getSubtotal()+ $address->getTaxAmount() -
+                    $address->getShippingTaxAmount() - $address->getCodTaxAmount();
             }            
 
-            $address->addTotal(array(
-                'code'      => 'subtotal',
-                'title'     => Mage::helper('sales')->__('Subtotal'),
-                'value'     => $subtotalInclTax,
-                'value_incl_tax' => $subtotalInclTax,
-                'value_excl_tax' => $address->getSubtotal(),
-            ));
+            $address->addTotal(
+                array(
+                    'code'      => 'subtotal',
+                    'title'     => Mage::helper('sales')->__('Subtotal'),
+                    'value'     => $subtotalInclTax,
+                    'value_incl_tax' => $subtotalInclTax,
+                    'value_excl_tax' => $address->getSubtotal()
+                )
+            );
         }
         return $this;
     }

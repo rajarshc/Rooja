@@ -22,10 +22,26 @@
 -->
 <config>
    <sections>
+        <sales>
+            <groups>
+                <totals_sort>
+                    <fields>
+                        <cashondelivery translate="label" module="cashondelivery">
+                            <label>Cash on Delivery fee</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </cashondelivery>
+                    </fields>
+                </totals_sort>
+            </groups>
+        </sales>
         <payment>
             <groups>
                 <cashondelivery translate="label" module="payment">
-                    <label>Cash On Delivery</label>
+                    <label>Cash on Delivery</label>
                     <frontend_type>text</frontend_type>
                     <sort_order>1</sort_order>
                     <show_in_default>1</show_in_default>
@@ -92,7 +108,23 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                        </shippingspecificcountry>                        
+                        </shippingspecificcountry>
+                        <min_order_total translate="label">
+                            <label>Minimum Order Total</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>74</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </min_order_total>
+                        <max_order_total translate="label">
+                            <label>Maximum Order Total</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>78</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </max_order_total>
                         <inlandcosts translate="label">
                             <label>Costs for inland shipping</label>
                             <frontend_type>text</frontend_type>

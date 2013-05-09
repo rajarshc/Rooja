@@ -23,7 +23,7 @@
 <config>
     <modules>
         <Phoenix_CashOnDelivery>
-            <version>1.0.2</version>
+            <version>1.0.6</version>
         </Phoenix_CashOnDelivery>
     </modules>
 
@@ -82,6 +82,9 @@
                     <cashondelivery_tax>
                         <class>cashondelivery/invoice_tax</class>
                     </cashondelivery_tax>
+                    <subtotal>
+                      <class>cashondelivery/invoice_subtotal</class>
+                    </subtotal>
                 </totals>
             </order_invoice>
             <order_creditmemo>
@@ -115,7 +118,7 @@
         <pdf>
             <totals>
                 <cashondelivery translate="title">
-                    <title>Cash On Delivery fee</title>
+                    <title>Cash on Delivery fee</title>
                     <source_field>cod_fee</source_field>
                     <font_size>7</font_size>
                     <display_zero>0</display_zero>
@@ -127,12 +130,17 @@
     </global>
 
     <default>
+        <sales>
+            <totals_sort>
+                <cashondelivery>35</cashondelivery>
+            </totals_sort>
+        </sales>
         <payment>
             <cashondelivery>
                 <active>0</active>
                 <model>cashondelivery/cashOnDelivery</model>
                 <order_status>1</order_status>
-                <title>Cash On Delivery</title>
+                <title>Cash on Delivery</title>
                 <allowspecific>0</allowspecific>
                 <shippingallowspecific>0</shippingallowspecific>
                 <disallowspecificshippingmethods>0</disallowspecificshippingmethods>

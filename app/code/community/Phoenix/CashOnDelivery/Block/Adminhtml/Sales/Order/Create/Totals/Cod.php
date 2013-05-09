@@ -23,7 +23,8 @@
  * 
  */
 
-class Phoenix_CashOnDelivery_Block_Adminhtml_Sales_Order_Create_Totals_Cod extends Mage_Adminhtml_Block_Sales_Order_Create_Totals_Default
+class Phoenix_CashOnDelivery_Block_Adminhtml_Sales_Order_Create_Totals_Cod
+    extends Mage_Adminhtml_Block_Sales_Order_Create_Totals_Default
 {
     protected $_template = 'cashondelivery/sales/order/create/totals/cod.phtml';
 

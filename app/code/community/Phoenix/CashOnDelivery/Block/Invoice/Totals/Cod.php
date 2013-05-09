@@ -22,14 +22,14 @@ class Phoenix_CashOnDelivery_Block_Invoice_Totals_Cod extends Mage_Core_Block_Ab
     {
         $parent = $this->getParentBlock();
         $this->_invoice   = $parent->getInvoice();
-        if($this->_invoice->getCodFee()){
+        if ($this->_invoice->getCodFee()) {
             $cod = new Varien_Object();
             $cod->setLabel($this->__('Cash on Delivery fee'));
             $cod->setValue($this->_invoice->getCodFee());
             $cod->setBaseValue($this->_invoice->getBaseCodFee());
             $cod->setCode('cod_fee');
 
-            if (Mage::helper('cashondelivery')->displayCodBothPrices()){
+            if (Mage::helper('cashondelivery')->displayCodBothPrices()) {
                 $cod->setLabel($this->__('Cash on Delivery fee (Excl.Tax)'));
 
                 $codIncl = new Varien_Object();
@@ -38,14 +38,14 @@ class Phoenix_CashOnDelivery_Block_Invoice_Totals_Cod extends Mage_Core_Block_Ab
                 $codIncl->setBaseValue($this->_invoice->getBaseCodFee()+$this->_invoice->getBaseCodTaxAmount());
                 $codIncl->setCode('cod_fee_incl');
 
-                $parent->addTotalBefore($cod,'tax');
-                $parent->addTotalBefore($codIncl,'tax');
-            }elseif(Mage::helper('cashondelivery')->displayCodFeeIncludingTax()){
+                $parent->addTotalBefore($cod, 'tax');
+                $parent->addTotalBefore($codIncl, 'tax');
+            } elseif (Mage::helper('cashondelivery')->displayCodFeeIncludingTax()) {
                 $cod->setValue($this->_invoice->getCodFee()+$this->_invoice->getCodTaxAmount());
                 $cod->setBaseValue($this->_invoice->getBaseCodFee()+$this->_invoice->getBaseCodTaxAmount());
-                $parent->addTotalBefore($cod,'tax');
-            }else{
-                $parent->addTotalBefore($cod,'tax');
+                $parent->addTotalBefore($cod, 'tax');
+            } else {
+                $parent->addTotalBefore($cod, 'tax');
             }
         }
 

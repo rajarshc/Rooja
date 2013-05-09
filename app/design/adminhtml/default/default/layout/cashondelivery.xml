@@ -68,6 +68,12 @@
             <block name="cod_fee" type="cashondelivery/invoice_totals_cod" before="tax"/>
         </reference>
     </adminhtml_sales_order_invoice_new>
+    
+    <adminhtml_sales_order_invoice_updateqty>
+        <reference name="invoice_totals">
+            <block name="cod_fee" type="cashondelivery/invoice_totals_cod" before="tax"/>
+        </reference>
+    </adminhtml_sales_order_invoice_updateqty>
 
     <adminhtml_sales_order_creditmemo_new>
         <reference name="sales.order.view.totals.main">

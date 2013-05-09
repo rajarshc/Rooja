@@ -25,7 +25,7 @@ class Phoenix_CashOnDelivery_Model_Creditmemo_Total extends Mage_Sales_Model_Ord
 
         $order = $cm->getOrder();
 
-        if ($order->getPayment()->getMethodInstance()->getCode() != 'cashondelivery'){
+        if ($order->getPayment()->getMethodInstance()->getCode() != 'cashondelivery') {
             return $this;
         }
 
@@ -38,16 +38,16 @@ class Phoenix_CashOnDelivery_Model_Creditmemo_Total extends Mage_Sales_Model_Ord
         $baseCodFeeInvoiced = $order->getBaseCodFeeInvoiced();
         $codFeeInvoiced = $order->getCodFeeInvoiced();
 
-        if ($cm->getInvoice()){
+        if ($cm->getInvoice()) {
             $invoice = $cm->getInvoice();
             $baseCodFeeToCredit = $invoice->getBaseCodFee();
             $codFeeToCredit = $invoice->getCodFee();
-        }else{
+        } else {
             $baseCodFeeToCredit = $baseCodFeeInvoiced;
             $codFeeToCredit = $codFeeInvoiced;
         }
 
-        if (!$baseCodFeeToCredit > 0){
+        if (!$baseCodFeeToCredit > 0) {
             return $this;
         }
 

@@ -24,11 +24,11 @@ class Phoenix_CashOnDelivery_Model_Invoice_Total extends Mage_Sales_Model_Order_
     {
         $order = $invoice->getOrder();
 
-        if ($order->getPayment()->getMethodInstance()->getCode() != 'cashondelivery'){
+        if ($order->getPayment()->getMethodInstance()->getCode() != 'cashondelivery') {
             return $this;
         }
 
-        if (!$order->getCodFee()){
+        if (!$order->getCodFee()) {
             return $this;
         }
 
