@@ -177,7 +177,7 @@ if (!$categoryIds == null){
 				<section id="reverseAuction">
 					
 					<p id="likeThis">
-					<fb:like layout="button_count" width="60" style="margin:3px 0 0;float:left" title="Rooja: <?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?>"></fb:like>
+					<fb:like layout="button_count" width="60" style="margin:3px 4px 0;float:left" title="Rooja: <?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?>"></fb:like>
 					
 					
 					<?php
@@ -185,7 +185,7 @@ if (!$categoryIds == null){
 $url = "http://api.facebook.com/restserver.php?method=links.getStats&urls=".urlencode($source_url);
 $xml = file_get_contents($url);
 $xml = simplexml_load_string($xml);
-echo '<span>' . $likes = $xml->link_stat->like_count . '</span>';
+echo '<span>' .  '</span>';
 ?> people like this</p>
 					
 					<?php if($boutique==0){ ?>
