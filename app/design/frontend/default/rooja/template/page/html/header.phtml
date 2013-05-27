@@ -11,6 +11,23 @@ design * @package base_default * @copyright Copyright (c) 2010 Magento Inc. (htt
 * @license http://opensource.org/licenses/afl-3.0.php Academic Free License (AFL
 3.0) */ /** * @var Mage_Page_Block_Html_Header $this */ ?> <?php ?>
 
+
+ <script type="text/javascript">
+    var _kmq = _kmq || [];
+    var _kmk = _kmk || '7f1af07d4746e34caa6679fe0c879c2f6cabe6c5';
+    function _kms(u){
+    setTimeout(function(){
+    var d = document, f = d.getElementsByTagName('script')[0],
+    s = d.createElement('script');
+    s.type = 'text/javascript'; s.async = true; s.src = u;
+    f.parentNode.insertBefore(s, f);
+    }, 1);
+    }
+    _kms('//i.kissmetrics.com/i.js');
+    _kms('//doug1izaerwt3.cloudfront.net/' + _kmk + '.1.js');
+    </script>
+
+
 <script type="text/javascript">
 (function ($) {
 	
@@ -92,13 +109,14 @@ design * @package base_default * @copyright Copyright (c) 2010 Magento Inc. (htt
 	if (Mage.Cookies.get('Visited') == "Yes")
 	{
 		<?php if(!Mage::getSingleton('customer/session')->isLoggedIn()) { ?>
-            setTimeout(showLogin,10000);
+            setTimeout(showLogin,000);
         <?php } ?>
 	}else
 	{
 		Mage.Cookies.set('Visited', 'Yes');
 		<?php if(!Mage::getSingleton('customer/session')->isLoggedIn()) { ?>
-            setTimeout(showJoin,10000);
+			<?php if(!$closed) ?>
+            	setTimeout(showJoin,000);
         <?php } ?>
 	}
 	
@@ -121,6 +139,23 @@ function clearError(){
     jQuery(".messages").hide();
 }
 
+function displayclose(parameter){
+	if(parameter)
+		jQuery("#closebutton").show();
+	else
+		jQuery("#closebutton1").show();
+}
+
+function removeclose(parameter){
+	if(parameter)
+		jQuery("#closebutton").hide();
+	else
+		jQuery("#closebutton1").hide();
+}
+
+function donotshowwrapper(){
+	$closed=true;
+}
  
  /*Ajax Login Function */
 function loginAjax() {
@@ -288,8 +323,10 @@ function registerAjax() {
 </script>
 
 <div id="rooja_login_wrapper" style="display: none;">
-    <div id="rooja_login_block">
+    <div id="rooja_login_block" onmouseover = "displayclose(true);" onmouseout = "removeclose(true);">men
         <div id="step1" class="rooja_login_bg">
+<!-- <a style = "font-family: Times New Roman ; position: absolute; right:5px ; top :15px; color : black; font-size: 25px" href="#" onclick = "clearError();jQuery('#rooja_login_wrapper').hide();">X</a> -->
+<a style = "position: absolute; right:0px ; top :6px" href="#" onclick = "clearError();jQuery('#rooja_login_wrapper').hide();donotshowwrapper();"><img id = "closebutton" style = "display:none" src="<?php echo $this->getSkinUrl('images/icons/close.png');?>" alt="CLOSE" width = "20" height = "20"></a>
             <div class="rooja_login_left_logo">
             </div>
             <div class="rooja_login_left_text">
@@ -334,7 +371,8 @@ function registerAjax() {
                 <div class="rooja_login_thanks">
                     HELLO!</div>
                 <div class="rooja_login_intro">
-                    It's nice to see you again.<br />                    Signing in now.</div>
+                    It's nice to see you again.<br />
+                    Signing in now.</div>
                 <div class="rooja_login_redirect">
                     <img src="<?php echo $this->getSkinUrl(); ?>/images/ajax-loader_2.gif" /><br /><br />
                     Redirecting to Homepage</div>
@@ -374,7 +412,9 @@ function registerAjax() {
     </div>
 </div>
 <div id="rooja_signup_wrapper" style="display: none;">
-    <div id="rooja_signup_block">
+    <div id="rooja_signup_block" onmouseover = "displayclose(false);" onmouseout = "removeclose(false);">
+<!-- <a style = "font-family: Times New Roman ; position: absolute; right:5px ; top :10px; color : black; font-size: 25px" href="#" onclick = "clearError();jQuery('#rooja_signup_wrapper').hide();">X</a> -->
+<a style = "position: absolute; right:0px ; top :0px" href="#" onclick = "clearError();jQuery('#rooja_signup_wrapper').hide();donotshowwrapper();"><img id = "closebutton1" style = "display:none" src="<?php echo $this->getSkinUrl('images/icons/close.png');?>" alt="CLOSE" width = "20" height = "20"></a>
         <form id="regis-form" name="regis-form" onsubmit="return registerAjax();">
             <div id="joinStep1" class="rooja_login_bg">
                 <div class="rooja_login_left_logo">
@@ -491,9 +531,9 @@ function registerAjax() {
 	<?php if($agent =="facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)"){}else{ ?>
 
 <?php $session = Mage::getSingleton('customer/session');
+$closed;
 
 $customer="";
-
 if($session->isLoggedIn()) {$customer = $session->getCustomer();}
 else {$customer = "Guest";}
 
