@@ -58,10 +58,10 @@
             </db>
             <default_setup>
                 <connection>
-                    <host><![CDATA[10.179.170.80]]></host>
-                    <username><![CDATA[root]]></username>
-                    <password><![CDATA[RoojaProdl6Jp47SdV]]></password>
-                    <dbname><![CDATA[rooja1]]></dbname>
+                    <host><![CDATA[localhost]]></host>
+                    <username><![CDATA[rooja]]></username>
+                    <password><![CDATA[CLQNB12dsjbe]]></password>
+                    <dbname><![CDATA[rooja]]></dbname>
                     <active>1</active>
                 </connection>
             </default_setup>
