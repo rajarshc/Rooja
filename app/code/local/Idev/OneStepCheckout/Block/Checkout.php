@@ -877,11 +877,8 @@ class Idev_OneStepCheckout_Block_Checkout extends Mage_Checkout_Block_Onepage_Ab
 
 
         try {
-<<<<<<< HEAD
 			//commenting below line - suggessted by One Step Support team for 0 order issue in live
-=======
 			//Comment - suggessted by One Step support team for 0 order issue in live
->>>>>>> parent of 017d388... One Step Chekout Support team comments
             //$this->getOnepage()->getQuote()->setTotalsCollectedFlag(false)->collectTotals();
             $order = $this->getOnepage()->saveOrder();
         } catch(Exception $e)   {
