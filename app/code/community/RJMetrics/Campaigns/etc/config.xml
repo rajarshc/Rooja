@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * RJMetrics Campaigns
+ *
+ * NOTICE OF LICENSE
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * @category   RJMetrics
+ * @package    RJMetrics_Campaigns
+ * @copyright  Copyright (c) 2013 RJMetrics Inc. (http://www.rjmetrics.com)
+ * @license    http://www.sumoheavy.com/LICENSE.txt
+ * @author     RJ Metrics <support@rjmetrics.com>
+ */
+
+/**
+ * Module config.xml file
+ *
+ * @category    RJMetrics
+ * @package     RJMetrics_Campaigns
+ * @author      RJ Metrics <support@rjmetrics.com>
+ */
+-->
+<config>
+    <modules>
+        <RJMetrics_Campaigns>
+            <version>1.0.0.0</version>
+        </RJMetrics_Campaigns>
+    </modules>
+    <global>
+        <models>
+            <rjmetrics_campaigns>
+                <class>RJMetrics_Campaigns_Model</class>
+                <resourceModel>rjmetrics_campaigns_resource</resourceModel>
+            </rjmetrics_campaigns>
+            <rjmetrics_campaigns_resource>
+                <class>RJMetrics_Campaigns_Model_Resource</class>
+                <deprecatedNode>rjmetrics_campaigns_mysql4</deprecatedNode>
+            </rjmetrics_campaigns_resource>
+        </models>
+        <resources>
+            <rjmetrics_campaigns_setup>
+                <setup>
+                    <module>RJMetrics_Campaigns</module>
+                    <class>RJMetrics_Campaigns_Model_Resource_Setup</class>
+                </setup>
+            </rjmetrics_campaigns_setup>
+            <connection>
+                <use>core_setup</use>
+            </connection>
+            <rjmetrics_campaigns_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </rjmetrics_campaigns_write>
+            <rjmetrics_campaigns_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </rjmetrics_campaigns_read>
+        </resources>
+        <blocks>
+            <rjmetrics_campaigns>
+                <class>RJMetrics_Campaigns_Block</class>
+            </rjmetrics_campaigns>
+        </blocks>
+        <helpers>
+            <admin>
+                <class>RJMetrics_Campaigns_Helper</class>
+            </admin>
+        </helpers>
+    </global>
+    <frontend>
+        <events>
+            <controller_action_predispatch>
+                <observers>
+                    <rjmetrics_campaigns>
+                        <type>singleton</type>
+                        <class>rjmetrics_campaigns/observer</class>
+                        <method>controllerActionPredispatch</method>
+                    </rjmetrics_campaigns>
+                </observers>
+            </controller_action_predispatch>
+            <sales_order_save_before>
+                <observers>
+                    <rjmetrics_campaigns>
+                        <type>singleton</type>
+                        <class>rjmetrics_campaigns/observer</class>
+                        <method>salesOrderSaveBefore</method>
+                    </rjmetrics_campaigns>
+                </observers>
+            </sales_order_save_before>
+        </events>
+    </frontend>
+</config>
