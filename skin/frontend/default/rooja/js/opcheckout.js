@@ -87,6 +87,8 @@ Checkout.prototype = {
 
     gotoSection: function(section)
     {
+	_kmq.push(['record', 'Reached Checkout Step '+section]);
+
         section = $('opc-'+section);
         section.addClassName('allow');
         this.accordion.openSection(section);
