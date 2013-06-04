@@ -12,6 +12,7 @@ design * @package base_default * @copyright Copyright (c) 2010 Magento Inc. (htt
 3.0) */ /** * @var Mage_Page_Block_Html_Header $this */ ?> <?php ?>
 
 
+
  <script type="text/javascript">
     var _kmq = _kmq || [];
     var _kmk = _kmk || '7f1af07d4746e34caa6679fe0c879c2f6cabe6c5';
@@ -29,6 +30,7 @@ design * @package base_default * @copyright Copyright (c) 2010 Magento Inc. (htt
 
 
 <script type="text/javascript">
+
 (function ($) {
 	
 	$(document).ready(function() {
@@ -160,9 +162,10 @@ function removewrapper(parameter){
 		jQuery('#rooja_login_wrapper').hide();
 	else
 		jQuery('#rooja_signup_wrapper').hide();
-	
+	_gaq.push(['_trackEvent','cross','closebox','crossbutton info','true']);
+	/*return false;*/
 }
- 
+
  /*Ajax Login Function */
 function loginAjax() {
 	var valid = new Validation('login-form');
@@ -187,6 +190,7 @@ function loginAjax() {
 			    if (response.success){
 			        jQuery('#step1').hide();
 			        jQuery('#step2').show();
+				Mage.Cookies.set('member', 'Yes');
 			        setTimeout("window.location= '<?php echo $this->helper('core/url')->getCurrentUrl(); ?>'",1000);
 			    }else{
 			        if ((typeof response.message) == 'string') {
@@ -295,6 +299,7 @@ function registerAjax() {
 			       jQuery('#joinStep1').hide();
 			       jQuery('#joinStep2').hide();
 			       jQuery('#joinStep3').show();
+				Mage.Cookies.set('member', 'Yes');
 				   setTimeout("window.location= '<?php echo $this->helper('core/url')->getCurrentUrl(); ?>'",1000);
 			    }else{
 				if ((typeof response.message) == 'string') {
@@ -325,11 +330,13 @@ function registerAjax() {
     var contactForm = new VarienForm('contactForm', true);
 //]]>
 
-
 </script>
 
+
+
+
 <div id="rooja_login_wrapper" style="display: none;">
-    <div id="rooja_login_block" onmouseover = "displayclose(true);" onmouseout = "removeclose(true);">
+	<div id="rooja_login_block" onmouseover = "displayclose(true);" onmouseout = "removeclose(true);">
         <div id="step1" class="rooja_login_bg">
 <!-- <a style = "font-family: Times New Roman ; position: absolute; right:5px ; top :15px; color : black; font-size: 25px" href="#" onclick = "clearError();jQuery('#rooja_login_wrapper').hide();">X</a> -->
 <a style = "position: absolute; right:0px ; top :0px" href="#" onclick = "clearError();removewrapper(true);"><img id = "closebutton" style = "display:none" src="<?php echo $this->getSkinUrl('images/icons/close.png');?>" alt="CLOSE" width = "20" height = "20"></a>
@@ -382,6 +389,9 @@ function registerAjax() {
                 <div class="rooja_login_redirect">
                     <img src="<?php echo $this->getSkinUrl(); ?>/images/ajax-loader_2.gif" /><br /><br />
                     Redirecting to Homepage</div>
+
+
+
          </div>
          
          <div id="forgetStep" class="rooja_login_bg" style="display: none">
@@ -501,6 +511,7 @@ function registerAjax() {
                     <img src="<?php echo $this->getSkinUrl(); ?>/images/ajax-loader_2.gif" /><br />
                     <br />
                     Redirecting to Homepage</div>
+
             </div>
         </form>
         <div class="rooja_signup_bottom_tags">

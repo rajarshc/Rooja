@@ -777,7 +777,8 @@ p.saleEnding{color:#cc6600;margin-bottom:10px;}
 .needAssistance,.needAssistance2{background-color:#cc6600;color:#fff;padding:5px;margin:10px 0;font-size:1.2em;height:20px;display:block;line-height:20px;}
 .needAssistance.noMargin, .needAssistance2.noMargin{margin:0;}
 .needAssistance img, .needAssistance2 img{vertical-align:middle;}
-.backToTop{text-decoration:underline;color:#858585;font-size:1.2em;padding-left:18px;background:url(../images/icons/back-to-top.png) no-repeat top left;height:20px;line-height:20px;display:block;}
+/*.backToTop{text-decoration:underline;color:#858585;font-size:1.2em;padding-left:18px;background:url(../images/icons/back-to-top.png) no-repeat top left;height:20px;line-height:20px;display:block;}*/
+.backToTop{position:sticky; left:50px; top:30px;}
 
 /* ~~~~~ FORM STYLES ~~~~~ */
 input{border:none;outline:none;}
