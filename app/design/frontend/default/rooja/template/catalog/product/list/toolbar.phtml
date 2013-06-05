@@ -36,29 +36,29 @@
     <div class="pager">
         <p class="amount">
             <?php if($this->getLastPageNum()>1): ?>
-                <?php/* echo $this->__('Items %s to %s of %s total', $this->getFirstNum(), $this->getLastNum(), $this->getTotalNum()) */?>
+                <?php echo $this->__('Items %s to %s of %s total', $this->getFirstNum(), $this->getLastNum(), $this->getTotalNum()) ?>
             <?php else: ?>
-                <strong><?php /*echo $this->__('%s Item(s)', $this->getTotalNum()) */?></strong>
+                <strong><?php echo $this->__('%s Item(s)', $this->getTotalNum()) ?></strong>
             <?php endif; ?>
         </p>
 
-        <!--<div class="limiter">
-            <label><?php /*echo $this->__('Show')*/ ?></label>
+        <div class="limiter">
+            <label><?php echo $this->__('Show') ?></label>
             <select onchange="setLocation(this.value)">
             <?php foreach ($this->getAvailableLimit() as  $_key=>$_limit): ?>
                 <option value="<?php echo $this->getLimitUrl($_key) ?>"<?php if($this->isLimitCurrent($_key)): ?> selected="selected"<?php endif ?>>
                     <?php echo $_limit ?>
                 </option>
             <?php endforeach; ?>
-            </select> <?php /*echo $this->__('per page')*/ ?>
-        </div>-->
+            </select> <?php echo $this->__('per page') ?>
+        </div>
 
         <?php echo $this->getPagerHtml() ?>
 
     </div>
 
     <?php if( $this->isExpanded() ): ?>
-    <!--<div class="sorter">
+    <div class="sorter">
         <?php if( $this->isEnabledViewSwitcher() ): ?>
         <p class="view-mode">
             <?php $_modes = $this->getModes(); ?>
@@ -90,7 +90,7 @@
                 <a href="<?php echo $this->getOrderUrl(null, 'desc') ?>" title="<?php echo $this->__('Set Descending Direction') ?>"><img src="<?php echo $this->getSkinUrl('images/i_asc_arrow.gif') ?>" alt="<?php echo $this->__('Set Descending Direction') ?>" class="v-middle" /></a>
             <?php endif; ?>
         </div>
-    </div>-->
+    </div>
     <?php endif; ?>
 </div>
 <?php endif ?>

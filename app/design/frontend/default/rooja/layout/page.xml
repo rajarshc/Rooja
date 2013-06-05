@@ -87,8 +87,8 @@ Default layout, loads most of the pages
 				<action method="addJs"><script>jquery/jquery.fancybox.js</script></action>
 				<action method="addJs"><script>jquery/Placeholders.min.js</script></action>
 				<action method="addCss"><stylesheet>css/jquery.fancybox.css</stylesheet></action>
-				<action method="addJs"><script>jquery.js</script></action>
-           		       <action method="addJs"><script>scrolling.js</script></action>
+				<!--<action method="addJs"><script>jquery.js</script></action>-->
+           		       <!--<action method="addJs"><script>scrolling.js</script></action>-->
 
 
                 <block type="page/js_cookie" name="js_cookies" template="page/js/cookie.phtml"/>
