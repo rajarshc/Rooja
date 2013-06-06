@@ -1,4 +1,10 @@
-
+<script type="text/javascript">
+jQuery(document).ready(function(){
+        jQuery('img.lazy').jail({
+                effect       : "fadeIn"
+        });
+});
+</script>
 
 <?php
 
@@ -142,7 +148,7 @@ echo '<span class="numLeft">'.$stock_count.'</span>';
 
 			
 
-			<a href="<?php echo $_product->getProductUrl() ?>"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image'); ?>" width="230" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" /></a>
+			<a href="<?php echo $_product->getProductUrl() ?>"><img class="lazy" data-src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image'); ?>" src="<?php echo $this->getSkinUrl();?>images/loader.gif" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" /></a>      
 
 			<article class="productCore<?php if(!$_product->isSaleable()){ echo ' soldOut'; } ?>">
 
@@ -209,13 +215,10 @@ echo $likes = $xml->link_stat->like_count;
 	jQuery(document).ready(function(){
 
 		prodHover();
-		if(Mage.Cookies.get('scroll') != null)
-			window.scrollTo(0, scroll);
+
 	 });
 
-	jQuery(document).click(function() {
-		savescroll();
-	});
+	
 
 	function prodHover(){
 
@@ -230,13 +233,8 @@ echo $likes = $xml->link_stat->like_count;
 		    jQuery(this).find('.productName').fadeOut(500);
 
 		  });
-	}
 
-	function savescroll()
-	{
-		var offset = window.pageYOffset;
-		Mage.Cookies.set('scroll',offset);
-	}
+	}	
 
 </script>
 
