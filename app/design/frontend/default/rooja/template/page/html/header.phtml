@@ -162,8 +162,7 @@ function removewrapper(parameter){
 		jQuery('#rooja_login_wrapper').hide();
 	else
 		jQuery('#rooja_signup_wrapper').hide();
-	_gaq.push(['_trackEvent','cross','closebox','crossbutton info','true']);
-	/*return false;*/
+	_gaq.push(['_trackEvent','cross','click','closebox']);
 }
 
  /*Ajax Login Function */
@@ -336,7 +335,7 @@ function registerAjax() {
 	<div id="rooja_login_block" onmouseover = "displayclose(true);" onmouseout = "removeclose(true);">
         <div id="step1" class="rooja_login_bg">
 <!-- <a style = "font-family: Times New Roman ; position: absolute; right:5px ; top :15px; color : black; font-size: 25px" href="#" onclick = "clearError();jQuery('#rooja_login_wrapper').hide();">X</a> -->
-<a style = "position: absolute; right:0px ; top :0px" href="#" onclick = "clearError();removewrapper(true);"><img id = "closebutton" style = "display:none" src="<?php echo $this->getSkinUrl('images/icons/close.png');?>" alt="CLOSE" width = "20" height = "20"></a>
+<a style = "position: absolute; right:0px ; top :0px" href="javascript:;" onclick = "clearError();removewrapper(true);"><img id = "closebutton" style = "display:none" src="<?php echo $this->getSkinUrl('images/icons/close.png');?>" alt="CLOSE" width = "20" height = "20"></a>
             <div class="rooja_login_left_logo">
             </div>
             <div class="rooja_login_left_text">
@@ -362,12 +361,12 @@ function registerAjax() {
                         <br />
                     <button>Login</button><br />
                     <div id="forgetPass">
-                        Forgot your password? <a href="#" onclick="clearError();jQuery('#step1').hide();jQuery('#step2').hide();jQuery('#forgetStep').show();">Click here</a>
+                        Forgot your password? <a href="javascript:;" onclick="clearError();jQuery('#step1').hide();jQuery('#step2').hide();jQuery('#forgetStep').show();">Click here</a>
                     </div>
                 </div>
             </form>
             <div class="rooja_login_left_joinnow">
-                <span>Not a member?</span> <a href="#" onclick="clearError();jQuery('#rooja_login_wrapper').hide();jQuery('#rooja_signup_wrapper').show();jQuery('#joinStep1').show();jQuery('#joinStep2').hide();jQuery('#joinStep3').hide();">
+                <span>Not a member?</span> <a href="javascript:;" onclick="clearError();jQuery('#rooja_login_wrapper').hide();jQuery('#rooja_signup_wrapper').show();jQuery('#joinStep1').show();jQuery('#joinStep2').hide();jQuery('#joinStep3').hide();">
                     Click here to join Rooja</a>
             </div>
         </div>
@@ -413,7 +412,7 @@ function registerAjax() {
                </form>
                
                <div class="rooja_login_left_joinnow">
-                    <span>Already a member?</span> <a href="#" onclick="clearError();jQuery('#forgetStep').hide();jQuery('#step1').show();">
+                    <span>Already a member?</span> <a href="javascript:;" onclick="clearError();jQuery('#forgetStep').hide();jQuery('#step1').show();">
                         Click here to login</a>
                 </div>
          </div>
@@ -427,7 +426,7 @@ function registerAjax() {
 <div id="rooja_signup_wrapper" style="display: none;">
     <div id="rooja_signup_block" onmouseover = "displayclose(false);" onmouseout = "removeclose(false);">
 <!-- <a style = "font-family: Times New Roman ; position: absolute; right:5px ; top :10px; color : black; font-size: 25px" href="#" onclick = "clearError();jQuery('#rooja_signup_wrapper').hide();">X</a> -->
-<a style = "position: absolute; right:0px ; top :0px" href="#" onclick = "clearError();removewrapper(false);"><img id = "closebutton1" style = "display:none" src="<?php echo $this->getSkinUrl('images/icons/close.png');?>" alt="CLOSE" width = "20" height = "20"></a>
+<a style = "position: absolute; right:0px ; top :0px" href="javascript:;" onclick = "clearError();removewrapper(false);"><img id = "closebutton1" style = "display:none" src="<?php echo $this->getSkinUrl('images/icons/close.png');?>" alt="CLOSE" width = "20" height = "20"></a>
         <form id="regis-form" name="regis-form" onsubmit="return registerAjax();">
             <div id="joinStep1" class="rooja_login_bg">
                 <div class="rooja_login_left_logo">
@@ -453,7 +452,7 @@ function registerAjax() {
                         Join Now >></button>
                 </div>
                 <div class="rooja_login_left_joinnow">
-                    <span>Already a member?</span> <a href="#" onclick="clearError();jQuery('#rooja_signup_wrapper').hide();jQuery('#forgetStep').hide();jQuery('#rooja_login_wrapper').show();">
+                    <span>Already a member?</span> <a href="javascript:;" onclick="clearError();jQuery('#rooja_signup_wrapper').hide();jQuery('#forgetStep').hide();jQuery('#rooja_login_wrapper').show();">
                         Click here to login</a>
                 </div>
             </div>
@@ -490,7 +489,7 @@ function registerAjax() {
                     <button>START SHOPPING</button>
                 </div>
                 <div class="rooja_login_left_joinnow">
-                    <span>Already a member?</span> <a href="#" onclick="clearError();jQuery('#rooja_signup_wrapper').hide();jQuery('#forgetStep').hide();jQuery('#rooja_login_wrapper').show();">
+                    <span>Already a member?</span> <a href="javascript:;" onclick="clearError();jQuery('#rooja_signup_wrapper').hide();jQuery('#forgetStep').hide();jQuery('#rooja_login_wrapper').show();">
                         Click here to login</a>
                 </div>
             </div>
@@ -561,7 +560,7 @@ else {$customer = "Guest";}
 
 			<li class="ignore-item"><a href="/rewardsref/customer/index/">Invite Friends and Earn Free Shipping</a></li>
 
-			<li class="welcome-top"><a href="#" title="">Welcome <?php if($session->isLoggedIn()) { echo substr($customer->getFirstname(), 0, 12);} else { echo $customer; } ?></a>
+			<li class="welcome-top"><a href="javascript:;" title="">Welcome <?php if($session->isLoggedIn()) { echo substr($customer->getFirstname(), 0, 12);} else { echo $customer; } ?></a>
 
                 <?php if($session->isLoggedIn()) { ?>
 				<ul>
@@ -574,7 +573,7 @@ else {$customer = "Guest";}
 				<?php } else { ?>
 				    <ul>
 
-					    <li><a href="#" title="" onclick="jQuery('#rooja_login_wrapper').show();jQuery('#rooja_signup_wrapper').hide();">Login</a></li>
+					    <li><a href="javascript:;" title="" onclick="jQuery('#rooja_login_wrapper').show();jQuery('#rooja_signup_wrapper').hide();">Login</a></li>
 
 				    </ul>
 				<?php } ?>
