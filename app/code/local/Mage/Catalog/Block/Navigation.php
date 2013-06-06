@@ -510,10 +510,15 @@ class Mage_Catalog_Block_Navigation extends Mage_Core_Block_Template
 			if($_category->hasChildren()){
 				
 				if($_category->getId() !=5){
-					echo '<li><a href="'.$_category->getURL().'">' . $_category->getName() . '</a>';
+					//enable the parent category URL
+					//echo '<li><a href="'.$_category->getURL().'">' . $_category->getName() . '</a>';
+					//disable the parent category URL
+					echo '<li><a href="#">' . $_category->getName() . '</a>';
 				}else{
-					echo '<li class="last"><a href="'.$_category->getURL().'">' . $_category->getName() . '</a>';
-				}
+					//enable parent category link
+					//echo '<li class="last"><a href="'.$_category->getURL().'">' . $_category->getName() . '</a>';
+					// disable parent category link
+					echo '<li class="last"><a href="#">' . $_category->getName() . '</a>';				}
 				echo '<div><ul>';
 				//$_category->getId(); // category id
 				
