@@ -1,118 +1,242 @@
-
-<?php
-/**
- * Magento
- *
- * NOTICE OF LICENSE
- *
- * This source file is subject to the Academic Free License (AFL 3.0)
- * that is bundled with this package in the file LICENSE_AFL.txt.
- * It is also available through the world-wide-web at this URL:
- * http://opensource.org/licenses/afl-3.0.php
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@magentocommerce.com so we can send you a copy immediately.
- *
- * DISCLAIMER
- *
- * Do not edit or add to this file if you wish to upgrade Magento to newer
- * versions in the future. If you wish to customize Magento for your
- * needs please refer to http://www.magentocommerce.com for more information.
- *
- * @category    design
- * @package     base_default
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
- * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
- */
-?>
-<?php
-/**
- * Product list template
- *
- * @see Mage_Catalog_Block_Product_List
- */
-?>
-<?php
-    $_productCollection=$this->addAttribute('rl_price')->getLoadedProductCollection();
-    $_helper = $this->helper('catalog/output');
-	$boutique = 0;
-	$parentCat = Mage::getBlockSingleton('catalog/navigation')->getCurrentCategory()->parent_id;
-	if($parentCat==5){$boutique = 1;}
-?> 
-<?php if(!$_productCollection->count()): ?>
-<section id="saleProducts" class="col3 fl">
-
-<p class="note-msg"><?php echo $this->__('There are no products matching the selection.') ?></p>
-</section>
-<?php else: ?>
-<section id="saleProducts" class="col3 fl<?php if($boutique==1){echo ' boutiqueSale';}?>">
-    <?php $i=1; foreach ($_productCollection as $_product): ?>
-	<?php $fbprice = $_helper->productAttribute($_product, $_product->getRl_price(), 'rl_price');
-	 	$thePrice = $_product->getPrice();
-	?>
-	<?php //echo $fbprice; ?>
-	<?php //var_export($_product); ?>
-		<article class="product col1 fl <?php if ($i % 3 == 0){ echo 'noMargin'; } ?>">
-			<?php if($_product->getTypeId() == "configurable"):
-			$total = 0;
-			$ids = $_product->getTypeInstance()->getUsedProductIds();
-			foreach ($ids as $id) :
-			    $simpleproduct = Mage::getModel('catalog/product')->load($id); ?>             
-			<?php $total = $total + (int)Mage::getModel('cataloginventory/stock_item')->loadByProduct($simpleproduct)->getQty(); ?>
-			<?php endforeach; ?>
-			<?php if ($total <= 2 && $total > 0) {
-				echo '<span class="numLeft">'.$total.'</span>';
-			} ?>
-			<?php endif; ?>
-			
-		<?php $stock_count = (int) Mage::getModel('cataloginventory/stock_item')->loadByProduct($_product)->getQty();
-if ($stock_count <= 2 && $stock_count > 0) {
-echo '<span class="numLeft">'.$stock_count.'</span>';
-} ?>
-			
-			<a href="<?php echo $_product->getProductUrl() ?>"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image'); ?>" width="230" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" /></a>
-			<article class="productCore<?php if(!$_product->isSaleable()){ echo ' soldOut'; } ?>">
-				<?php /*if($boutique==0){ ?><span class="numLikes">
-				
-				<?php $source_url = $_product->getProductUrl();
-				$source_url = urlencode($source_url);
-				$source_url = str_replace("%3F___SID%3DU", "", $source_url);
-$url = "http://api.facebook.com/restserver.php?method=links.getStats&urls=".$source_url;
-$xml = file_get_contents($url);
-$xml = simplexml_load_string($xml);
-echo $likes = $xml->link_stat->like_count;
-?>
-				
-				</span><?php }*/ ?>
-				<p class="price"><span class="livePrice">
-				<?php if (!$fbprice == null) { ?>
-					<?php echo 'Rs. ' . number_format($fbprice, 2); } elseif(!$_product->getSpecialprice()==null) { ?>
-					<?php echo 'Rs. ' . number_format($_product->getSpecialprice(), 2); }else{ echo'Rs. ' . number_format($thePrice, 2); } ?>
-				
-				</span><span> 
-				<?php if(!$_product->isSaleable()){ echo 'Sold Out'; } elseif(!$_product->getSpecialprice()==null) { echo 'Rs. ' . number_format($thePrice, 2); } ?></span></p>
-				<h2 class="productName"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h2>
-			</article>
-		</article>
-		<?php $i++; ?>
-        <?php endforeach ?>
-        <div class="toolbar-bottom">
-            <?php echo $this->getToolbarHtml() ?>
-        </div>
-</section>
-
-<script type="text/javascript">
-	jQuery(document).ready(function(){
-		prodHover();
-	 });
-	
-	function prodHover(){
-	    jQuery(".product").hover(function () {
-		    jQuery(this).find('.productName').fadeIn(500);
-		  }, 
-		  function () {
-		    jQuery(this).find('.productName').fadeOut(500);
-		  });
-	}	
-</script>
-<?php endif; ?>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+        jQuery('img.lazy').jail({
+                effect       : "fadeIn"
+        });
+});
+</script>
+
+<?php
+
+/**
+
+ * Magento
+
+ *
+
+ * NOTICE OF LICENSE
+
+ *
+
+ * This source file is subject to the Academic Free License (AFL 3.0)
+
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+
+ * It is also available through the world-wide-web at this URL:
+
+ * http://opensource.org/licenses/afl-3.0.php
+
+ * If you did not receive a copy of the license and are unable to
+
+ * obtain it through the world-wide-web, please send an email
+
+ * to license@magentocommerce.com so we can send you a copy immediately.
+
+ *
+
+ * DISCLAIMER
+
+ *
+
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+
+ * versions in the future. If you wish to customize Magento for your
+
+ * needs please refer to http://www.magentocommerce.com for more information.
+
+ *
+
+ * @category    design
+
+ * @package     base_default
+
+ * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+
+ */
+
+?>
+
+<?php
+
+/**
+
+ * Product list template
+
+ *
+
+ * @see Mage_Catalog_Block_Product_List
+
+ */
+
+?>
+
+<?php
+
+    $_productCollection=$this->addAttribute('rl_price')->getLoadedProductCollection();
+
+    $_helper = $this->helper('catalog/output');
+
+	$boutique = 0;
+
+	$parentCat = Mage::getBlockSingleton('catalog/navigation')->getCurrentCategory()->parent_id;
+
+	if($parentCat==5){$boutique = 1;}
+
+?> 
+
+<?php if(!$_productCollection->count()): ?>
+
+<section id="saleProducts" class="col3 fl">
+
+
+
+<p class="note-msg"><?php echo $this->__('There are no products matching the selection.') ?></p>
+
+</section>
+
+<?php else: ?>
+
+<section id="saleProducts" class="col3 fl<?php if($boutique==1){echo ' boutiqueSale';}?>">
+
+    <?php $i=1; foreach ($_productCollection as $_product): ?>
+
+	<?php $fbprice = $_helper->productAttribute($_product, $_product->getRl_price(), 'rl_price');
+
+	 	$thePrice = $_product->getPrice();
+
+	?>
+
+	<?php //echo $fbprice; ?>
+
+	<?php //var_export($_product); ?>
+
+		<article class="product col1 fl <?php if ($i % 3 == 0){ echo 'noMargin'; } ?>">
+
+			<?php if($_product->getTypeId() == "configurable"):
+
+			$total = 0;
+
+			$ids = $_product->getTypeInstance()->getUsedProductIds();
+
+			foreach ($ids as $id) :
+
+			    $simpleproduct = Mage::getModel('catalog/product')->load($id); ?>             
+
+			<?php $total = $total + (int)Mage::getModel('cataloginventory/stock_item')->loadByProduct($simpleproduct)->getQty(); ?>
+
+			<?php endforeach; ?>
+
+			<?php if ($total <= 2 && $total > 0) {
+
+				echo '<span class="numLeft">'.$total.'</span>';
+
+			} ?>
+
+			<?php endif; ?>
+
+			
+
+		<?php $stock_count = (int) Mage::getModel('cataloginventory/stock_item')->loadByProduct($_product)->getQty();
+
+if ($stock_count <= 2 && $stock_count > 0) {
+
+echo '<span class="numLeft">'.$stock_count.'</span>';
+
+} ?>
+
+			
+
+			<a href="<?php echo $_product->getProductUrl() ?>"><img class="lazy" data-src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image'); ?>" src="<?php echo $this->getSkinUrl();?>images/loader.gif" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" /></a>      
+
+			<article class="productCore<?php if(!$_product->isSaleable()){ echo ' soldOut'; } ?>">
+
+				<?php /*if($boutique==0){ ?><span class="numLikes">
+
+				
+
+				<?php $source_url = $_product->getProductUrl();
+
+				$source_url = urlencode($source_url);
+
+				$source_url = str_replace("%3F___SID%3DU", "", $source_url);
+
+$url = "http://api.facebook.com/restserver.php?method=links.getStats&urls=".$source_url;
+
+$xml = file_get_contents($url);
+
+$xml = simplexml_load_string($xml);
+
+echo $likes = $xml->link_stat->like_count;
+
+?>
+
+				
+
+				</span><?php }*/ ?>
+
+				<p class="price"><span class="livePrice">
+
+				<?php if (!$fbprice == null) { ?>
+
+					<?php echo 'Rs. ' . number_format($fbprice, 2); } elseif(!$_product->getSpecialprice()==null) { ?>
+
+					<?php echo 'Rs. ' . number_format($_product->getSpecialprice(), 2); }else{ echo'Rs. ' . number_format($thePrice, 2); } ?>
+
+				
+
+				</span><span> 
+
+				<?php if(!$_product->isSaleable()){ echo 'Sold Out'; } elseif(!$_product->getSpecialprice()==null) { echo 'Rs. ' . number_format($thePrice, 2); } ?></span></p>
+
+				<h2 class="productName"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h2>
+
+			</article>
+
+		</article>
+
+		<?php $i++; ?>
+
+        <?php endforeach ?>
+
+        <div class="toolbar-bottom">
+
+            <?php echo $this->getToolbarHtml() ?>
+
+        </div>
+
+</section>
+
+
+
+<script type="text/javascript">
+
+	jQuery(document).ready(function(){
+
+		prodHover();
+
+	 });
+
+	
+
+	function prodHover(){
+
+	    jQuery(".product").hover(function () {
+
+		    jQuery(this).find('.productName').fadeIn(500);
+
+		  }, 
+
+		  function () {
+
+		    jQuery(this).find('.productName').fadeOut(500);
+
+		  });
+
+	}	
+
+</script>
+
+<?php endif; ?>
+
