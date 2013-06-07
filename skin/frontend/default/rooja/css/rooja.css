@@ -778,7 +778,7 @@ p.saleEnding{color:#cc6600;margin-bottom:10px;}
 .needAssistance.noMargin, .needAssistance2.noMargin{margin:0;}
 .needAssistance img, .needAssistance2 img{vertical-align:middle;}
 /*.backToTop{text-decoration:underline;color:#858585;font-size:1.2em;padding-left:18px;background:url(../images/icons/back-to-top.png) no-repeat top left;height:20px;line-height:20px;display:block;}*/
-.backToTop{position:fixed; top:310px; right:50px; opacity:1.0; }
+.backToTop{position:fixed; top:310px; right:50px; opacity:1.0; z-index:10; }
 
 /* ~~~~~ FORM STYLES ~~~~~ */
 input{border:none;outline:none;}
