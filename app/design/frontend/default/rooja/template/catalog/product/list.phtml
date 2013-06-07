@@ -218,7 +218,9 @@ echo $likes = $xml->link_stat->like_count;
 
 	 });
 
-	
+	jQuery(document).click(function() {
+		savescroll();
+	});
 
 	function prodHover(){
 
@@ -234,6 +236,12 @@ echo $likes = $xml->link_stat->like_count;
 
 		  });
 
+	}
+
+	function savescroll()
+	{
+		var offset = window.pageYOffset;
+		Mage.Cookies.set('scroll',offset);
 	}	
 
 </script>
