@@ -215,12 +215,13 @@ echo $likes = $xml->link_stat->like_count;
 	jQuery(document).ready(function(){
 
 		prodHover();
-
+		if(Mage.Cookies.get('scroll') != null)
+			window.scrollTo(0, scroll);
 	 });
 
 	jQuery(document).click(function() {
 		savescroll();
-	});
+	});	
 
 	function prodHover(){
 
@@ -242,7 +243,7 @@ echo $likes = $xml->link_stat->like_count;
 	{
 		var offset = window.pageYOffset;
 		Mage.Cookies.set('scroll',offset);
-	}	
+	}
 
 </script>
 
