@@ -72,6 +72,7 @@ jQuery(document).ready(function(){
 
 ?>
 
+
 <?php
 
     $_productCollection=$this->addAttribute('rl_price')->getLoadedProductCollection();
@@ -85,6 +86,7 @@ jQuery(document).ready(function(){
 	if($parentCat==5){$boutique = 1;}
 
 ?> 
+
 
 <?php if(!$_productCollection->count()): ?>
 
@@ -149,7 +151,6 @@ echo '<span class="numLeft">'.$stock_count.'</span>';
 			
 
 			<a href="<?php echo $_product->getProductUrl() ?>"><img class="lazy" data-src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image'); ?>" src="<?php echo $this->getSkinUrl();?>images/loader.gif" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" /></a>      
-
 			<article class="productCore<?php if(!$_product->isSaleable()){ echo ' soldOut'; } ?>">
 
 				<?php /*if($boutique==0){ ?><span class="numLikes">
@@ -175,8 +176,9 @@ echo $likes = $xml->link_stat->like_count;
 				
 
 				</span><?php }*/ ?>
-
-				<p class="price"><span class="livePrice">
+			<div style="display:none;position:absolute;top:-285px;left:60px" class="fb-like" data-href="<?php echo $_product->getProductUrl() ?>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
+     		
+			<p class="price"><span class="livePrice">		
 
 				<?php if (!$fbprice == null) { ?>
 
@@ -208,14 +210,27 @@ echo $likes = $xml->link_stat->like_count;
 
 </section>
 
-
+<!--PIN IT BUTTON-->
+<script type="text/javascript">
+(function(d){
+  var f = d.getElementsByTagName('SCRIPT')[0], p = d.createElement('SCRIPT');
+  p.type = 'text/javascript';
+  p.setAttribute('data-pin-hover', true);
+  p.async = false;
+  p.src = '//assets.pinterest.com/js/pinit.js';
+  f.parentNode.insertBefore(p, f);
+}(document));
+</script>
 
 <script type="text/javascript">
 
 	jQuery(document).ready(function(){
 
 		prodHover();
+
 		if(Mage.Cookies.get('scroll') != null)
+		var scroll = Mage.Cookies.get('scroll')
+		if(scroll != null)
 			window.scrollTo(0, scroll);
 	 });
 
@@ -228,12 +243,14 @@ echo $likes = $xml->link_stat->like_count;
 	    jQuery(".product").hover(function () {
 
 		    jQuery(this).find('.productName').fadeIn(500);
+		    jQuery(this).find('.fb-like').show();
 
 		  }, 
 
 		  function () {
 
 		    jQuery(this).find('.productName').fadeOut(500);
+		    jQuery(this).find('.fb-like').hide();
 
 		  });
 
