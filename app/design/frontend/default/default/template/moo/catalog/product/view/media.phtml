@@ -51,7 +51,7 @@ if (count($galleryImages) > 0) {
             $mainImagePath = $this->getGalleryUrl($_image);
         }
         $gallery .= '<li>'
-                 .  '<a href="' . $this->helper('catalog/image')->init($this->getProduct(), 'image', $_image->getFile()) . '" '
+                 .  '<a  href="' . $this->helper('catalog/image')->init($this->getProduct(), 'image', $_image->getFile()) . '" '
                  .  'rel="popupWin:\'' . $this->getGalleryUrl($_image) . '\', useZoom: \'cloudZoom\', smallImage: \'' . $this->getCloudImage($this->getProduct(), $_image) .  '\'" class="cloud-zoom-gallery" title="' . $this->htmlEscape($_image->getLabel()) . '">'
                  .  '<img src="' . $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image->getFile())->resize(56,84) . '" width="56" alt="' . $this->htmlEscape($_image->getLabel()) . '" />'
                  .  '</a></li>';

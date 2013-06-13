@@ -180,14 +180,15 @@ if (!$categoryIds == null){
 					<fb:like layout="button_count" width="60" style="margin:3px 4px 0;float:left" title="Rooja: <?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?>"></fb:like>
 					
 					
+					
 					<?php
 					$source_url = $this->helper('core/url')->getCurrentUrl();
 $url = "http://api.facebook.com/restserver.php?method=links.getStats&urls=".urlencode($source_url);
 $xml = file_get_contents($url);
 $xml = simplexml_load_string($xml);
 echo '<span>' .  '</span>';
-?> people like this</p>
-					
+?> people like this</p>	
+
 					<?php if($boutique==0){ ?>
 					<figure id="likeDetails" class="sideAd">
 						<p>Want to see the price drop? Like this item!</p>
@@ -195,9 +196,7 @@ echo '<span>' .  '</span>';
 					<?php } ?>
 				</section>
 			
-			
-					
-			<?php if ((($expired == 1) && (!$categoryIds == null)) || $boutique==1 ) { ?>
+					<?php if ((($expired == 1) && (!$categoryIds == null)) || $boutique==1 ) { ?>
 					<section id="productOptions">
 							<?php if(!$_product->getSpecialprice()==null){ ?>
 							<p class="startingPrice">Original Price: <strike>Rs. <?php echo number_format($_product->getPrice(), 2) ?></strike></p><?php } ?>
@@ -297,6 +296,7 @@ echo '<span>' .  '</span>';
 					<a href="<?php print $_next_prod->getUrlPath()?>" class="fr" id="nextProduct"><p>Next</p> <div class="contain"><img src="/media/catalog/product/<?php echo $next_image; ?>"></div></a>
 				<?php endif; ?>
 			</section>
+				
 					
 					<?php endif; ?>
 					<?php if($_product->getTypeId() == "simple"):?>
@@ -358,9 +358,22 @@ echo '<span>' .  '</span>';
 			</section>
 		</section>
 		<br class="clear">
+			
 	</div>
 </section>
     </form>
+			<section style="position:relative;left:1125px;top:-647px">
+			<!--START PIN BUTTON-->
+			<?php
+  				  $_pinlink['url'] = $_product->getProductUrl();                      
+  				  $_pinlink['media'] = $this->helper('catalog/image')->init($_product, 'image')->__toString() ;
+   				 $_pinlink['description'] = $_helper->productAttribute($_product, $_product->getName(), 'name') . " - " . strip_tags($_product->getDescription());                                                                                   
+			?>
+			<a href="http://pinterest.com/pin/create/button/?<?php echo http_build_query($_pinlink) ?>" class="pin-it-button" count-layout="top"></a>                    
+			<script type="text/javascript" src="//assets.pinterest.com/js/pinit.js"></script>
+			<!--END PIN BUTTON-->
+			</section>
+
     <script type="text/javascript">
     //<![CDATA[
         var productAddToCartForm = new VarienForm('product_addtocart_form');
