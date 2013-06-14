@@ -236,7 +236,11 @@ echo $likes = $xml->link_stat->like_count;
 
 	jQuery(document).click(function() {
 		savescroll();
-	});	
+	});
+
+	jQuery(window).unload(function() {
+		Mage.Cookies.delete('scroll');
+	});
 
 	function prodHover(){
 
