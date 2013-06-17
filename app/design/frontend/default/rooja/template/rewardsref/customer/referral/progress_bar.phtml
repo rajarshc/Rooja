@@ -20,7 +20,7 @@
 		$awayFrom1 = 1 - $referrerCount;
 		//echo $numSignedUp;
 	?>
-	<h3 style="margin-left:50px" class="fr" id="howClose"><?php if($referrerCount > 0){ echo "Congratulations. You just earned Rs. 500. Use coupon code <span>ROFSVIPOJA</span> at checkout."; }else{ ?>Invite <?php echo $awayFrom1 ?> more friend to get Free Rs. 500.<?php } ?><br>Bonus: Rs. 500 credit when your friend makes first Rs. 500 purchase within 30 days of joining.</h3>
+	<h3 style="margin-left:50px" class="fr" id="howClose"><?php if($referrerCount > 0){ echo "Congratulations. You just earned Rs. 500."; }else{ ?>Invite <?php echo $awayFrom1 ?> more friend to get Free Rs. 500.<?php } ?><br>Bonus: Rs. 500 credit when your friend makes first Rs. 500 purchase within 30 days of joining.</h3>
 	<span id="referralBar" class="clear"><span id="numReferrals" style="width:<?php echo $referrerPercent; ?>%;"></span></span>
   
 <?php endif ?>
