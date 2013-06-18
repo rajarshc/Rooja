@@ -1261,10 +1261,24 @@ function UpdateShipMethod() {
 
 	if(j('#p_method_Avenues_standard').is(':checked')) {
 					
-		j('#s_method_shippingrates_Freeshipping').attr("checked","checked");
-		j('#s_method_shippingrates_Flatrate').removeAttr('checked');
+		//j('#s_method_shippingrates_Freeshipping').attr("checked","checked");
+		//j('#s_method_shippingrates_Flatrate').removeAttr('checked');
 		
-		j('label[for="shipping_shippingrates_Freeshipping"]').show();
+		//j('label[for="shipping_shippingrates_Freeshipping"]').show();
+		if(subtotal > 2000) {
+			j('#s_method_shippingrates_Freeshipping').attr("checked","checked");
+			j('#s_method_shippingrates_Flatrate').removeAttr('checked');
+			
+			j('label[for="shipping_shippingrates_Freeshipping"]').show();
+		
+
+		} else {		
+			j('#s_method_shippingrates_Flatrate').attr("checked","checked");
+			j('#s_method_shippingrates_Freeshipping').removeAttr('checked');
+			
+			j('label[for="shipping_shippingrates_Flatrate"]').show();
+	
+		}
 		
 		
 	} 
