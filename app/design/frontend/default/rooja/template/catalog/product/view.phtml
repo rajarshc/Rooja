@@ -187,13 +187,27 @@ $url = "http://api.facebook.com/restserver.php?method=links.getStats&urls=".urle
 $xml = file_get_contents($url);
 $xml = simplexml_load_string($xml);
 echo '<span>' .  '</span>';
-?> people like this</p>	
+?> people like this</p>
+			
+			<section style="position:absolute;margin-left:180px;margin-top:-38px">
+			<!--START PIN BUTTON-->
+			<?php
+  				  $_pinlink['url'] = $_product->getProductUrl();                      
+  				  $_pinlink['media'] = $this->helper('catalog/image')->init($_product, 'image')->__toString() ;
+   				 $_pinlink['description'] = $_helper->productAttribute($_product, $_product->getName(), 'name') . " - " . strip_tags($_product->getDescription());                                                                                   
+			?>
+			<a href="http://pinterest.com/pin/create/button/?<?php echo http_build_query($_pinlink) ?>" class="pin-it-button" count-layout="top"></a>                    
+			<script type="text/javascript" src="//assets.pinterest.com/js/pinit.js"></script>
+			<!--END PIN BUTTON-->
+			</section>
+						
 
 					<?php if($boutique==0){ ?>
 					<figure id="likeDetails" class="sideAd">
 						<p>Want to see the price drop? Like this item!</p>
 					</figure>
 					<?php } ?>
+				
 				</section>
 			
 					<?php if ((($expired == 1) && (!$categoryIds == null)) || $boutique==1 ) { ?>
@@ -362,17 +376,6 @@ echo '<span>' .  '</span>';
 	</div>
 </section>
     </form>
-			<section style="position:relative;left:1125px;top:-647px">
-			<!--START PIN BUTTON-->
-			<?php
-  				  $_pinlink['url'] = $_product->getProductUrl();                      
-  				  $_pinlink['media'] = $this->helper('catalog/image')->init($_product, 'image')->__toString() ;
-   				 $_pinlink['description'] = $_helper->productAttribute($_product, $_product->getName(), 'name') . " - " . strip_tags($_product->getDescription());                                                                                   
-			?>
-			<a href="http://pinterest.com/pin/create/button/?<?php echo http_build_query($_pinlink) ?>" class="pin-it-button" count-layout="top"></a>                    
-			<script type="text/javascript" src="//assets.pinterest.com/js/pinit.js"></script>
-			<!--END PIN BUTTON-->
-			</section>
 
     <script type="text/javascript">
     //<![CDATA[
