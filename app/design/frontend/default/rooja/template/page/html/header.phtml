@@ -12,6 +12,7 @@ design * @package base_default * @copyright Copyright (c) 2010 Magento Inc. (htt
 3.0) */ /** * @var Mage_Page_Block_Html_Header $this */ ?> <?php ?>
 
 
+
  <script type="text/javascript">
     var _kmq = _kmq || [];
     var _kmk = _kmk || '7f1af07d4746e34caa6679fe0c879c2f6cabe6c5';
@@ -29,6 +30,7 @@ design * @package base_default * @copyright Copyright (c) 2010 Magento Inc. (htt
 
 
 <script type="text/javascript">
+
 (function ($) {
 	
 	$(document).ready(function() {
@@ -109,14 +111,15 @@ design * @package base_default * @copyright Copyright (c) 2010 Magento Inc. (htt
 	if (Mage.Cookies.get('Visited') == "Yes")
 	{
 		<?php if(!Mage::getSingleton('customer/session')->isLoggedIn()) { ?>
-            setTimeout(showLogin,000);
+            if (Mage.Cookies.get('Closed') != "Yes")
+				setTimeout(showLogin,10000);
         <?php } ?>
 	}else
 	{
 		Mage.Cookies.set('Visited', 'Yes');
 		<?php if(!Mage::getSingleton('customer/session')->isLoggedIn()) { ?>
-			<?php if(!$closed) ?>
-            	setTimeout(showJoin,000);
+			if (Mage.Cookies.get('Closed') != "Yes")
+            	setTimeout(showJoin,10000);
         <?php } ?>
 	}
 	
@@ -153,10 +156,15 @@ function removeclose(parameter){
 		jQuery("#closebutton1").hide();
 }
 
-function donotshowwrapper(){
-	$closed=true;
+function removewrapper(parameter){
+	Mage.Cookies.set('Closed', 'Yes');
+	if (parameter)
+		jQuery('#rooja_login_wrapper').hide();
+	else
+		jQuery('#rooja_signup_wrapper').hide();
+	_gaq.push(['_trackEvent','cross','click']);
 }
- 
+
  /*Ajax Login Function */
 function loginAjax() {
 	var valid = new Validation('login-form');
@@ -181,6 +189,7 @@ function loginAjax() {
 			    if (response.success){
 			        jQuery('#step1').hide();
 			        jQuery('#step2').show();
+				Mage.Cookies.set('member', 'Yes');
 			        setTimeout("window.location= '<?php echo $this->helper('core/url')->getCurrentUrl(); ?>'",1000);
 			    }else{
 			        if ((typeof response.message) == 'string') {
@@ -289,6 +298,7 @@ function registerAjax() {
 			       jQuery('#joinStep1').hide();
 			       jQuery('#joinStep2').hide();
 			       jQuery('#joinStep3').show();
+				Mage.Cookies.set('member', 'Yes');
 				   setTimeout("window.location= '<?php echo $this->helper('core/url')->getCurrentUrl(); ?>'",1000);
 			    }else{
 				if ((typeof response.message) == 'string') {
@@ -319,18 +329,17 @@ function registerAjax() {
     var contactForm = new VarienForm('contactForm', true);
 //]]>
 
-
 </script>
 
 <div id="rooja_login_wrapper" style="display: none;">
-    <div id="rooja_login_block" onmouseover = "displayclose(true);" onmouseout = "removeclose(true);">men
+	<div id="rooja_login_block" onmouseover = "displayclose(true);" onmouseout = "removeclose(true);">
         <div id="step1" class="rooja_login_bg">
 <!-- <a style = "font-family: Times New Roman ; position: absolute; right:5px ; top :15px; color : black; font-size: 25px" href="#" onclick = "clearError();jQuery('#rooja_login_wrapper').hide();">X</a> -->
-<a style = "position: absolute; right:0px ; top :6px" href="#" onclick = "clearError();jQuery('#rooja_login_wrapper').hide();donotshowwrapper();"><img id = "closebutton" style = "display:none" src="<?php echo $this->getSkinUrl('images/icons/close.png');?>" alt="CLOSE" width = "20" height = "20"></a>
+<a style = "position: absolute; right:0px ; top :0px" href="javascript:;" onclick = "clearError();removewrapper(true);"><img id = "closebutton" style = "display:none" src="<?php echo $this->getSkinUrl('images/icons/close.png');?>" alt="CLOSE" width = "20" height = "20"></a>
             <div class="rooja_login_left_logo">
             </div>
             <div class="rooja_login_left_text">
-                DISCOVER UNIQUE FASHION & PERSONAL PRODUCTS</div>
+                UNDISCOVERED FASHION & LIFESTYLE FROM ALL ACROSS THE GLOBE</div>
             <!--rooja_login_left_text-->
             <div class="rooja_login_right_memberlogin">
                 WELCOME TO ROOJA!</div>
@@ -352,12 +361,12 @@ function registerAjax() {
                         <br />
                     <button>Login</button><br />
                     <div id="forgetPass">
-                        Forgot your password? <a href="#" onclick="clearError();jQuery('#step1').hide();jQuery('#step2').hide();jQuery('#forgetStep').show();">Click here</a>
+                        Forgot your password? <a href="javascript:;" onclick="clearError();jQuery('#step1').hide();jQuery('#step2').hide();jQuery('#forgetStep').show();">Click here</a>
                     </div>
                 </div>
             </form>
             <div class="rooja_login_left_joinnow">
-                <span>Not a member?</span> <a href="#" onclick="clearError();jQuery('#rooja_login_wrapper').hide();jQuery('#rooja_signup_wrapper').show();jQuery('#joinStep1').show();jQuery('#joinStep2').hide();jQuery('#joinStep3').hide();">
+                <span>Not a member?</span> <a href="javascript:;" onclick="clearError();jQuery('#rooja_login_wrapper').hide();jQuery('#rooja_signup_wrapper').show();jQuery('#joinStep1').show();jQuery('#joinStep2').hide();jQuery('#joinStep3').hide();">
                     Click here to join Rooja</a>
             </div>
         </div>
@@ -366,7 +375,7 @@ function registerAjax() {
                 <div class="rooja_login_left_logo">
                 </div>
                 <div class="rooja_login_left_text">
-                    DISCOVER UNIQUE FASHION & PERSONAL PRODUCTS</div>
+                    UNDISCOVERED FASHION & LIFESTYLE FROM ALL ACROSS THE GLOBE</div>
                 <!--rooja_login_left_text-->
                 <div class="rooja_login_thanks">
                     HELLO!</div>
@@ -376,13 +385,16 @@ function registerAjax() {
                 <div class="rooja_login_redirect">
                     <img src="<?php echo $this->getSkinUrl(); ?>/images/ajax-loader_2.gif" /><br /><br />
                     Redirecting to Homepage</div>
+
+
+
          </div>
          
          <div id="forgetStep" class="rooja_login_bg" style="display: none">
                 <div class="rooja_login_left_logo">
                 </div>
                 <div class="rooja_login_left_text">
-                    DISCOVER UNIQUE FASHION & PERSONAL PRODUCTS</div>
+                    UNDISCOVERED FASHION & LIFESTYLE FROM ALL ACROSS THE GLOBE</div>
                 <!--rooja_login_left_text-->
                 <div class="rooja_forget_pass">
                     RETRIEVE YOUR PASSWORD HERE</div>
@@ -400,7 +412,7 @@ function registerAjax() {
                </form>
                
                <div class="rooja_login_left_joinnow">
-                    <span>Already a member?</span> <a href="#" onclick="clearError();jQuery('#forgetStep').hide();jQuery('#step1').show();">
+                    <span>Already a member?</span> <a href="javascript:;" onclick="clearError();jQuery('#forgetStep').hide();jQuery('#step1').show();">
                         Click here to login</a>
                 </div>
          </div>
@@ -414,13 +426,13 @@ function registerAjax() {
 <div id="rooja_signup_wrapper" style="display: none;">
     <div id="rooja_signup_block" onmouseover = "displayclose(false);" onmouseout = "removeclose(false);">
 <!-- <a style = "font-family: Times New Roman ; position: absolute; right:5px ; top :10px; color : black; font-size: 25px" href="#" onclick = "clearError();jQuery('#rooja_signup_wrapper').hide();">X</a> -->
-<a style = "position: absolute; right:0px ; top :0px" href="#" onclick = "clearError();jQuery('#rooja_signup_wrapper').hide();donotshowwrapper();"><img id = "closebutton1" style = "display:none" src="<?php echo $this->getSkinUrl('images/icons/close.png');?>" alt="CLOSE" width = "20" height = "20"></a>
+<a style = "position: absolute; right:0px ; top :0px" href="javascript:;" onclick = "clearError();removewrapper(false);"><img id = "closebutton1" style = "display:none" src="<?php echo $this->getSkinUrl('images/icons/close.png');?>" alt="CLOSE" width = "20" height = "20"></a>
         <form id="regis-form" name="regis-form" onsubmit="return registerAjax();">
             <div id="joinStep1" class="rooja_login_bg">
                 <div class="rooja_login_left_logo">
                 </div>
                 <div class="rooja_login_left_text">
-                    DISCOVER UNIQUE FASHION & PERSONAL PRODUCTS</div>
+                    UNDISCOVERED FASHION & LIFESTYLE FROM ALL ACROSS THE GLOBE</div>
                 <!--rooja_login_left_text-->
                 <div class="rooja_signup_right_memberlogin">
                     JOIN NOW</div>
@@ -440,7 +452,7 @@ function registerAjax() {
                         Join Now >></button>
                 </div>
                 <div class="rooja_login_left_joinnow">
-                    <span>Already a member?</span> <a href="#" onclick="clearError();jQuery('#rooja_signup_wrapper').hide();jQuery('#forgetStep').hide();jQuery('#rooja_login_wrapper').show();">
+                    <span>Already a member?</span> <a href="javascript:;" onclick="clearError();jQuery('#rooja_signup_wrapper').hide();jQuery('#forgetStep').hide();jQuery('#rooja_login_wrapper').show();">
                         Click here to login</a>
                 </div>
             </div>
@@ -448,7 +460,7 @@ function registerAjax() {
                 <div class="rooja_login_left_logo">
                 </div>
                 <div class="rooja_login_left_text">
-                    DISCOVER UNIQUE FASHION & PERSONAL PRODUCTS</div>
+                    UNDISCOVERED FASHION & LIFESTYLE FROM ALL ACROSS THE GLOBE</div>
                 <!--rooja_login_left_text-->
                 <div class="rooja_signup_right_memberlogin">
                     Just a few more details</div>
@@ -477,7 +489,7 @@ function registerAjax() {
                     <button>START SHOPPING</button>
                 </div>
                 <div class="rooja_login_left_joinnow">
-                    <span>Already a member?</span> <a href="#" onclick="clearError();jQuery('#rooja_signup_wrapper').hide();jQuery('#forgetStep').hide();jQuery('#rooja_login_wrapper').show();">
+                    <span>Already a member?</span> <a href="javascript:;" onclick="clearError();jQuery('#rooja_signup_wrapper').hide();jQuery('#forgetStep').hide();jQuery('#rooja_login_wrapper').show();">
                         Click here to login</a>
                 </div>
             </div>
@@ -485,7 +497,7 @@ function registerAjax() {
                 <div class="rooja_login_left_logo">
                 </div>
                 <div class="rooja_login_left_text">
-                    DISCOVER UNIQUE FASHION & PERSONAL PRODUCTS</div>
+                    UNDISCOVERED FASHION & LIFESTYLE FROM ALL ACROSS THE GLOBE</div>
                 <!--rooja_login_left_text-->
                 <div class="rooja_login_thanks">
                     THANKS FOR JOINING!</div>
@@ -495,6 +507,7 @@ function registerAjax() {
                     <img src="<?php echo $this->getSkinUrl(); ?>/images/ajax-loader_2.gif" /><br />
                     <br />
                     Redirecting to Homepage</div>
+
             </div>
         </form>
         <div class="rooja_signup_bottom_tags">
@@ -545,9 +558,9 @@ else {$customer = "Guest";}
 
 		<ul id="myAccount">
 
-			<li class="ignore-item"><a href="/rewardsref/customer/index/">Invite Friends and Earn Free Shipping</a></li>
+			<li class="ignore-item"><a href="/rewardsref/customer/index/">Invite Friends and Earn Rs. 500</a></li>
 
-			<li class="welcome-top"><a href="#" title="">Welcome <?php if($session->isLoggedIn()) { echo substr($customer->getFirstname(), 0, 12);} else { echo $customer; } ?></a>
+			<li class="welcome-top"><a href="javascript:;" title="">Welcome <?php if($session->isLoggedIn()) { echo substr($customer->getFirstname(), 0, 12);} else { echo $customer; } ?></a>
 
                 <?php if($session->isLoggedIn()) { ?>
 				<ul>
@@ -560,7 +573,7 @@ else {$customer = "Guest";}
 				<?php } else { ?>
 				    <ul>
 
-					    <li><a href="#" title="" onclick="jQuery('#rooja_login_wrapper').show();jQuery('#rooja_signup_wrapper').hide();">Login</a></li>
+					    <li><a href="javascript:;" title="" onclick="jQuery('#rooja_login_wrapper').show();jQuery('#rooja_signup_wrapper').hide();">Login</a></li>
 
 				    </ul>
 				<?php } ?>

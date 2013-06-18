@@ -26,10 +26,28 @@
 ?>
 
 <script>
+function actiononaddtocart()
+{
+	if(Mage.Cookies.get('member') == "Yes")
+		showLogin();
+	else
+		showJoin();
+}
+
 function checkForInt(evt) 
 {
 var charCode = ( evt.which ) ? evt.which : event.keyCode;
 return ( charCode >= 48 && charCode <= 57 );
+}
+</script>
+
+<script type="text/javascript">
+function actiononaddtocart()
+{
+	if(Mage.Cookies.get('member') == "Yes")
+		showLogin();
+	else
+		showJoin();
 }
 </script>
 
@@ -67,7 +85,7 @@ return ( charCode >= 48 && charCode <= 57 );
 				
 				    <button class="tr" id="addToBagBtn" onclick="productAddToCartForm.submit()"><span><?php echo $this->__('Add to Cart') ?></span></button>
 				<?php } else { ?>
-				    <span class="tr" id="addToBagBtn" onclick="showLogin()"><span><?php echo $this->__('Add to Cart') ?></span></span>
+				    <span class="tr" id="addToBagBtn" onclick="actiononaddtocart()"><span><?php echo $this->__('Add to Cart') ?></span></span>
 				<?php } ?>
 				    <?php /* Magento needs this as a button not a link
 					<a href="" class="tr" id="addToBagBtn" onclick="productAddToCartForm.submit(this)"></a>

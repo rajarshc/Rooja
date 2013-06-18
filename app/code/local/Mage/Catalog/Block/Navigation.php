@@ -23,7 +23,7 @@
  * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-
+ 
 
 /**
  * Catalog navigation
@@ -283,7 +283,8 @@ class Mage_Catalog_Block_Navigation extends Mage_Core_Block_Template
 		$htmlLi .= '>';
 		$html[] = $htmlLi;
 		
-		$html[] = '<a href="'.$this->getCategoryUrl($category).'"'.$linkClass.'>';
+		//$html[] = '<a href="'.$this->getCategoryUrl($category).'"'.$linkClass.'>';
+		$html[] = '<a href="#"'.$linkClass.'>';
 		$html[] = '<span>' . $this->escapeHtml($category->getName()) . '</span>';
 		$html[] = '</a>';
 		
@@ -510,10 +511,15 @@ class Mage_Catalog_Block_Navigation extends Mage_Core_Block_Template
 			if($_category->hasChildren()){
 				
 				if($_category->getId() !=5){
-					echo '<li><a href="'.$_category->getURL().'">' . $_category->getName() . '</a>';
+					//enable the parent category URL
+					//echo '<li><a href="'.$_category->getURL().'">' . $_category->getName() . '</a>';
+					//disable the parent category URL
+					echo '<li><a href="#">' . $_category->getName() . '</a>';
 				}else{
-					echo '<li class="last"><a href="'.$_category->getURL().'">' . $_category->getName() . '</a>';
-				}
+					//enable parent category link
+					//echo '<li class="last"><a href="'.$_category->getURL().'">' . $_category->getName() . '</a>';
+					// disable parent category link
+					echo '<li class="last"><a href="#">' . $_category->getName() . '</a>';				}
 				echo '<div><ul>';
 				//$_category->getId(); // category id
 				

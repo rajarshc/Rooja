@@ -50,6 +50,25 @@
 
 ?>
 
+
+<script type="text/javascript">
+
+
+	jQuery(window).scroll(function(){
+            if (jQuery(this).scrollTop() > 100) {
+                jQuery('.backToTop').fadeIn();
+            } else {
+                jQuery('.backToTop').fadeOut();
+            }
+        }); 
+	jQuery(document).ready(function(){
+        jQuery('.backToTop').click(function(){
+            jQuery("html, body").animate({ scrollTop: 0 }, 600);
+            return false;
+        });
+});
+</script>
+
 <?php
 
 /**
@@ -109,8 +128,6 @@ $expired = 1;
 
 
 ?>
-
-
 
 
 
@@ -192,7 +209,7 @@ $expired = 1;
 
 		<figure id="inviteFriends" class="sideAd-orange">
 
-			<p>Invite 10 friends to Rooja and get free shipping for 2 months</p>
+			<p>Invite a friend to Rooja and get Rs. 500</p>
 
 		</figure>
 
@@ -202,14 +219,12 @@ $expired = 1;
 
 	</section>
 
-	
-
-
 
     <?php echo $this->getProductListHtml() ?>
 
-	<a href="#" class="backToTop fr">Back to Top</a>
 
+
+	<a href="javascript:;" class="backToTop fr"><img id="back to top" src="<?php echo $this->getSkinUrl();?>images/backtotop.gif" width=40px/></a>
 	<br class="clear">
 
 	</div>

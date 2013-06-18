@@ -221,19 +221,29 @@ class Zend_Db_Statement_Pdo extends Zend_Db_Statement implements IteratorAggrega
      * @return bool
      * @throws Zend_Db_Statement_Exception
      */
-    public function _execute(array $params = null)
-    {
-        try {
-            if ($params !== null) {
-                return $this->_stmt->execute($params);
-            } else {
-                return $this->_stmt->execute();
-            }
-        } catch (PDOException $e) {
-            #require_once 'Zend/Db/Statement/Exception.php';
-            throw new Zend_Db_Statement_Exception($e->getMessage(), (int) $e->getCode(), $e);
-        }
-    }
+	public function _execute(array $params = null)
+	{
+		$max_tries = 3;
+		$tries = 0;
+		do {
+			$retry = false;
+			try {
+				if ($params !== null) {
+					return $this->_stmt->execute($params);
+				} else {
+					return $this->_stmt->execute();
+				}
+			} catch (PDOException $e) {
+				if ($tries < $max_tries && $e->getMessage()=='SQLSTATE[40001]: Serialization failure: 1213 Deadlock found when trying to get lock; try restarting transaction') {
+					$retry = true;
+					sleep(1);
+				} else {
+					throw new Zend_Db_Statement_Exception($e->getMessage(), (int) $e->getCode(), $e);
+				}
+				$tries++;
+			}
+		} while ($retry);
+	}
 
     /**
      * Fetches a row from the result set.
