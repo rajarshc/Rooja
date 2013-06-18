@@ -74,29 +74,75 @@ class Mage_Catalog_Block_Product_List extends Mage_Catalog_Block_Product_Abstrac
 
 	{
 
-		/*$this->addData(array('cache_lifetime' => 9999999999,
+		$this->addData(array('cache_lifetime' => 9999999999,
 
 					'cache_tags'        => $this->getCacheTags(),
 
-					'cache_key'        => $this->getCacheKey()));*/
+					'cache_key'        => $this->getCacheKey()));
 
 	}
 
-	public function getCacheTags()
-
-	{
-
-		return array(Mage_Catalog_Model_Product::CACHE_TAG);
-
-	}
 
 	public function getCacheKey()
+    {
+        if (!$this->_isCacheActive()) {
+            parent::getCacheKey();
+        }
+        $_taxRateRequest = Mage::getModel('tax/calculation')->getRateRequest();
+        $_customer = Mage::getSingleton('customer/session')->getCustomer();
+        $this->_category = Mage::getSingleton('catalog/layer')->getCurrentCategory();
+        $_page = $this->getPage();
 
-	{
+        $toolbar = new Mage_Catalog_Block_Product_List_Toolbar();
+        $cacheKey = 'ProductView_'.
+            /* Create different caches for different categories */
+            $this->_category->getId().'_'.
+            /* ... orders */
+            $toolbar->getCurrentOrder().'_'.
+            /* ... direction */
+            $toolbar->getCurrentDirection().'_'.
+            /* ... mode */
+            $toolbar->getCurrentMode().'_'.
+            /* ... page */
+            $toolbar->getCurrentPage().'_'.
+            /* ... items per page */
+            $toolbar->getLimit().'_'.
+            /* ... stores */
+            Mage::App()->getStore()->getCode().'_'.
+            /* ... currency */
+            Mage::App()->getStore()->getCurrentCurrencyCode().'_'.
+            /* ... customer groups */
+            $_customer->getGroupId().'_'.
+            $_taxRateRequest->getCountryId()."_".
+            $_taxRateRequest->getRegionId()."_".
+            $_taxRateRequest->getPostcode()."_".
+            $_taxRateRequest->getCustomerClassId()."_".
+            /* ... tags */
+            Mage::registry('current_tag').'_'.
+            '';
+        /* ... layern navigation + search */
+        foreach (Mage::app()->getRequest()->getParams() as $key=>$value) {
+            $cacheKey .= $key.'-'.$value.'_';
+        }
+        return $cacheKey;
+    }
 
-		return $this->getRequest()->getRequestUri();
 
-	}
+    public function getCacheTags()
+    {
+        if (!$this->_isCacheActive()) {
+            return parent::getCacheTags();
+        }
+        $cacheTags = array(
+            Mage_Catalog_Model_Category::CACHE_TAG,
+            Mage_Catalog_Model_Category::CACHE_TAG.'_'.$this->_category->getId()
+        );
+        foreach ($this->_getProductCollection() as $_product) {
+            $cacheTags[] = Mage_Catalog_Model_Product::CACHE_TAG."_".$_product->getId();
+        }
+        return $cacheTags;
+
+    }
 
 	
 
