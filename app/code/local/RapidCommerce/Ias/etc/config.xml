@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <RapidCommerce_Ias>
+            <version>1.0.0</version>
+        </RapidCommerce_Ias>
+    </modules>
+    <frontend>
+        <layout>
+            <updates>
+                <rapidcommerce_ias>
+                    <file>rapidcommerce-ias.xml</file>
+                </rapidcommerce_ias>
+            </updates>
+        </layout>
+     </frontend>
+</config>
+

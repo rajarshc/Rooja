@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config>
+   <sections>
+        <catalog>
+            <groups>
+                <frontend>
+                    <fields>
+                        <useajaxscroll translate="label">
+                            <label>Use jQuery Infinite Ajax Scroll</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </useajaxscroll>
+		              </fields>
+                </frontend>
+            </groups>
+        </catalog>
+    </sections>
+</config>
