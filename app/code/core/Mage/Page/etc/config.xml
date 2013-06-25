@@ -49,21 +49,6 @@
                     <template>page/empty.phtml</template>
                     <layout_handle>page_empty</layout_handle>
                 </empty>
-		  <onboard module="page" translate="label">
-                    <label>OnBoard</label>
-                    <template>page/onboard.phtml</template>
-                    <layout_handle>page_onboard</layout_handle>
-                </onboard>
-		  <response module="page" translate="label">
-                    <label>Response</label>
-                    <template>checkout/response.phtml</template>
-                    <layout_handle>page_response</layout_handle>
-                </response>
-				<connect module="page" translate="label">
-                    <label>Connect</label>
-                    <template>checkout/connect_customer_to_a_flow.phtml</template>
-                    <layout_handle>page_connect</layout_handle>
-                </connect>
                 <one_column module="page" translate="label">
                     <label>1 column</label>
                     <template>page/1column.phtml</template>

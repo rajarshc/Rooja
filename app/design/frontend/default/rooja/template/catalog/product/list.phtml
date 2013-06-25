@@ -2,7 +2,7 @@
 jQuery(document).ready(function(){
         jQuery('img.lazy').jail({
                 effect       : "fadeIn"
-        });
+       });
 });
 </script>
 
@@ -150,7 +150,7 @@ echo '<span class="numLeft">'.$stock_count.'</span>';
 
 			
 
-			<a href="<?php echo $_product->getProductUrl() ?>"><img class="lazy" data-src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image'); ?>" src="<?php echo $this->getSkinUrl();?>images/loader.gif" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" /></a>      
+			<a href="<?php echo $_product->getProductUrl() ?>"><img class="lazy" data-src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image'); ?>" src="<?php echo $this->getSkinUrl();?>images/loader.gif"  alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" /><div style="display:none;position:absolute;top:10px;left:60px" class="fb-like" data-href="<?php echo $_product->getProductUrl() ?>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div></a>      
 			<article class="productCore<?php if(!$_product->isSaleable()){ echo ' soldOut'; } ?>">
 
 				<?php /*if($boutique==0){ ?><span class="numLikes">
@@ -176,7 +176,7 @@ echo $likes = $xml->link_stat->like_count;
 				
 
 				</span><?php }*/ ?>
-			<div style="display:none;position:absolute;top:-285px;left:60px" class="fb-like" data-href="<?php echo $_product->getProductUrl() ?>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
+			
      		
 			<p class="price"><span class="livePrice">		
 
@@ -267,6 +267,7 @@ echo $likes = $xml->link_stat->like_count;
 	}
 
 </script>
+
 
 <?php endif; ?>
 

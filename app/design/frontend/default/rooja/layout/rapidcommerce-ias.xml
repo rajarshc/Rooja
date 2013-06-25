@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+
+<layout version="0.1.0">
+
+	<catalog_category_default translate="label">
+
+		<reference name="head">
+
+			<action method="addJs"><script>ias/jquery.ias.min.js</script></action>
+
+			<action method="addItem">
+
+				<type>skin_css</type>
+
+				<name>css/ajaxscroll/ias.css</name>
+
+			</action>
+
+		</reference>
+
+		<reference name="content">
+
+			<block type="core/template" name="ias_js" template="ajaxscroll/ias.phtml" after="-" />
+
+		</reference>
+
+	 </catalog_category_default>
+
+	 <catalog_category_layered translate="label">
+
+	 	<reference name="head">
+
+			<action method="addJs"><script>ias/jquery.ias.min.js</script></action>
+
+			<action method="addItem">
+
+				<type>skin_css</type>
+
+				<name>css/ajaxscroll/ias.css</name>
+
+			</action>
+
+		</reference>
+
+	 	<reference name="content">
+
+			<block type="core/template" name="ias_js" template="ajaxscroll/ias.phtml" after="-" />
+
+		</reference>
+
+	 </catalog_category_layered>
+
+	 <catalogsearch_advanced_result translate="label">
+
+	 	<reference name="head">
+
+			<action method="addJs"><script>ias/jquery.ias.min.js</script></action>
+
+			<action method="addItem">
+
+				<type>skin_css</type>
+
+				<name>css/ajaxscroll/ias.css</name>
+
+			</action>
+
+		</reference>
+
+	 	<reference name="content">
+
+			<block type="core/template" name="ias_js" template="ajaxscroll/ias.phtml" after="-" />
+
+		</reference>
+
+	 </catalogsearch_advanced_result>
+
+	 <catalogsearch_result_index translate="label">
+
+	 	<reference name="head">
+
+			<action method="addJs"><script>ias/jquery.ias.min.js</script></action>
+
+			<action method="addItem">
+
+				<type>skin_css</type>
+
+				<name>css/ajaxscroll/ias.css</name>
+
+			</action>
+
+		</reference>
+
+	 	<reference name="content">
+
+			<block type="core/template" name="ias_js" template="ajaxscroll/ias.phtml" after="-" />
+
+		</reference>
+
+	 </catalogsearch_result_index>
+
+	 <tag_product_list translate="label">
+
+	 	<reference name="head">
+
+			<action method="addJs"><script>ias/jquery.ias.min.js</script></action>
+
+			<action method="addItem">
+
+				<type>skin_css</type>
+
+				<name>css/ajaxscroll/ias.css</name>
+
+			</action>
+
+		</reference>
+
+	 	<reference name="content">
+
+			<block type="core/template" name="ias_js" template="ajaxscroll/ias.phtml" after="-" />
+
+		</reference>
+
+	 </tag_product_list>
+
+</layout>
+
