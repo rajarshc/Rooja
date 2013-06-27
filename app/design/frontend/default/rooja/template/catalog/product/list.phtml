@@ -252,14 +252,21 @@ echo $likes = $xml->link_stat->like_count;
 	//	Mage.Cookies.delete('scroll');
 	//});
 
+	//var like_count = 0;
+
 	function prodHover(){
 
 	    jQuery(".product").hover(function () {
 
 		    jQuery(this).find('.productName').fadeIn(500);
-		    //jQuery('.product').append('<div id="like" style="position:absolute;top:10px;left:60px" class="fb-like" data-href="<?php echo $_product->getProductUrl() ?>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>');
-		    //FB.XFBML.parse(jquery(this).document.getElementById('like'));
-		    jQuery(this).find('.fb-like').show();
+	/*	    if(like_count<1){
+		    	jQuery('.product').append('<div id="like" style="position:absolute;top:10px;left:60px" class="fb-like" data-href="<?php echo $_product->getProductUrl() ?>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>');
+		    	FB.XFBML.parse(document.getElementById('like'));
+		    	like_count++;
+		    }
+		    else
+	*/	    	jQuery(this).find('.fb-like').show();
+		    
 		  }, 
 
 		  function () {
