@@ -35,7 +35,7 @@ html, body {height: 100%;}
 
 #mainFooter {position: relative;
 	margin-top: -218px; /* negative value of footer height */
-	height: 218px;
+	height: 250px;
 	clear:both;} 
 
 /*Opera Fix*/
@@ -439,10 +439,12 @@ td .product-name { width: 130px;}
 #mainFooter h4{text-transform:uppercase;font-size:1.4em;margin-bottom:20px;}
 #mainFooter ul li{font-size:1.2em;line-height:1.67em;}
 #mainFooter ul#socialLinks, #mainFooter ul#socialLinks a, #copyrightInfo, #copyrightInfo a{color:#c7b299;}
+#socialLinks li {float:left;}
+#socialLinks {position:absolute;left:40%;bottom:15%;}}
 #mainFooter ul#socialLinks a:hover{text-decoration:none;color:#fff;}
 #mainFooter ul#socialLinks img{vertical-align:middle;margin:5px 8px 5px 0px;}
 #twitter_update_list{padding:12px;background:url(../images/bgs/twitter-diag.png) repeat;margin-bottom:8px;}
-#copyrightInfo {margin-top:10px;}
+#copyrightInfo {margin-top:10px;margin-bottom:0;position:absolute;bottom:0%;left:40%;}
 #copyrightInfo a{text-decoration:none;}
 
 /* ~~~~~ PAGE ~~~~~ */

@@ -38,7 +38,7 @@
 	(function() {
 	 var e = document.createElement('script'); e.async = true;
 	 e.src = document.location.protocol +
-	   '//connect.facebook.net/en_US/all.js';
+	   '//connect.facebook.net/en_US/all.js#xfbml=1';
 	 document.getElementById('fb-root').appendChild(e);
 	}());
 </script>
@@ -93,8 +93,10 @@ if (!$categoryIds == null){
 		<a href="#mainFooter" class="needAssistance fr noMargin" title="Need Assistance? Talk to a live rep"><img src="<?php echo $this->getSkinUrl('images/icons/question-mark.png'); ?>" alt="Question mark icon"> Need Assistance</a>
 <div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
 		<?php if (!$categoryIds == null){ ?>
-			<?php if ($expired == 1) { ?>
+			<?php if ($expired == 1 && $enddate!=null) { ?>
 				<h2 id="saleDetails"><?php echo $currentcategory->getName(); ?> ends <?php echo date('F jS \a\t g:ia', $enddate); ?></h2>
+			<?php }else if ($enddate==null) { ?>
+				<h2 id="saleDetails"><?php echo $currentcategory->getName(); ?></h2>
 			<?php } else { ?>
 				<?php if($boutique==0){ ?>
 					<h2 id="saleDetails">This sale has expired!</h2>
@@ -210,7 +212,7 @@ echo '<span>' .  '</span>';
 				
 				</section>
 			
-					<?php if ((($expired == 1) && (!$categoryIds == null)) || $boutique==1 ) { ?>
+					<?php if ((($expired == 1) && (!$categoryIds == null)) || $boutique==1 || $enddate == null ) { ?>
 					<section id="productOptions">
 							<?php if(!$_product->getSpecialprice()==null){ ?>
 							<p class="startingPrice">Original Price: <strike>Rs. <?php echo number_format($_product->getPrice(), 2) ?></strike></p><?php } ?>
@@ -240,7 +242,7 @@ echo '<span>' .  '</span>';
 
 
 
-			<?php if ($expired != 1 && $boutique==0) {?>
+			<?php if ($expired != 1 && $boutique==0 && $enddate!=null) {?>
 
 						<section id="purchaseProduct" class="col1 fl noMargin">
 									<p id="expired">Expired</p>
