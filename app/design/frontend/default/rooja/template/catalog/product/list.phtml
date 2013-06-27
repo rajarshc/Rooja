@@ -238,27 +238,28 @@ echo $likes = $xml->link_stat->like_count;
 
 		prodHover();
 
-		if(Mage.Cookies.get('scroll') != null)
-		var scroll = Mage.Cookies.get('scroll')
-		if(scroll != null)
-			window.scrollTo(0, scroll);
+		//if(Mage.Cookies.get('scroll') != null)
+		//var scroll = Mage.Cookies.get('scroll')
+		//if(scroll != null)
+		//	window.scrollTo(0, scroll);
 	 });
 
-	jQuery(document).click(function() {
-		savescroll();
-	});
+	//jQuery(document).click(function() {
+	//	savescroll();
+	//});
 
-	jQuery(window).unload(function() {
-		Mage.Cookies.delete('scroll');
-	});
+	//jQuery(window).unload(function() {
+	//	Mage.Cookies.delete('scroll');
+	//});
 
 	function prodHover(){
 
 	    jQuery(".product").hover(function () {
 
 		    jQuery(this).find('.productName').fadeIn(500);
+		    //jQuery('.product').append('<div id="like" style="position:absolute;top:10px;left:60px" class="fb-like" data-href="<?php echo $_product->getProductUrl() ?>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>');
+		    //FB.XFBML.parse(jquery(this).document.getElementById('like'));
 		    jQuery(this).find('.fb-like').show();
-
 		  }, 
 
 		  function () {
@@ -270,11 +271,11 @@ echo $likes = $xml->link_stat->like_count;
 
 	}
 
-	function savescroll()
-	{
-		var offset = window.pageYOffset;
-		Mage.Cookies.set('scroll',offset);
-	}
+	//function savescroll()
+	//{
+	//	var offset = window.pageYOffset;
+	//	Mage.Cookies.set('scroll',offset);
+	//}
 
 </script>
 
