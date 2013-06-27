@@ -150,7 +150,8 @@ echo '<span class="numLeft">'.$stock_count.'</span>';
 
 			
 
-			<a href="<?php echo $_product->getProductUrl() ?>"><img class="lazy" data-src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image'); ?>" src="<?php echo $this->getSkinUrl();?>images/loader.gif"  alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" /><div style="display:none;position:absolute;top:10px;left:60px" class="fb-like" data-href="<?php echo $_product->getProductUrl() ?>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div></a>      
+			<a href="<?php echo $_product->getProductUrl() ?>"><img class="lazy" data-src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image'); ?>" src="<?php echo $this->getSkinUrl();?>images/loader.gif"  alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
+			<!--<div style="display:none;position:absolute;top:10px;left:60px" class="fb-like" data-href="<?php echo $_product->getProductUrl() ?>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>--></a>      
 			<article class="productCore<?php if(!$_product->isSaleable()){ echo ' soldOut'; } ?>">
 
 				<?php /*if($boutique==0){ ?><span class="numLikes">
@@ -218,6 +219,15 @@ echo $likes = $xml->link_stat->like_count;
   p.setAttribute('data-pin-hover', true);
   p.async = false;
   p.src = '//assets.pinterest.com/js/pinit.js';
+  f.parentNode.insertBefore(p, f);
+}(document));
+
+(function(d){
+  var f = d.getElementsByTagName('SCRIPT')[0], p = d.createElement('SCRIPT');
+  p.type = 'text/javascript';
+  p.setAttribute('data-pin-hover', true);
+  p.async = false;
+  p.src = '//connect.facebook.net/en_GB/all.js';
   f.parentNode.insertBefore(p, f);
 }(document));
 </script>
