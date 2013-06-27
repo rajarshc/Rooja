@@ -62,14 +62,15 @@ jQuery.ias({
 
 	loader: '<div style="display:block;clear:both;height:30px;width:100%;"><img src="<?php echo($this->getSkinUrl('images/Loading_rooja.gif'));  ?>" width="30" /><br><br>Hang on! Loading more products...</div>',
 
-	onRenderComplete : function(items) { 
-
+	onRenderComplete : function(items) {  
+	//FB.XFBML.parse();
+ 	
 	      jQuery(".product").hover(function () {
 
 		    jQuery(this).find('.productName').fadeIn(500);
 			jQuery(this).find('.fb-like').show();
-
-		  }, 
+		  	
+		}, 
 
 		  function () {
 
@@ -86,15 +87,8 @@ jQuery.ias({
 	}
 
 });
+</script>
 
-</script>
-<script>
-jQuery(document).ajaxComplete(function(){
-    try{
-        FB.XFBML.parse(); 
-    }catch(ex){}
-});
-</script>
 
 <?php endif; ?>
 
