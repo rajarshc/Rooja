@@ -287,7 +287,7 @@ class Mage_Catalog_Block_Product_Homepage extends Mage_Catalog_Block_Product_Abs
 
 						{
 
-							if (($enddate > $today && $enddate < $fivedays && $startdate < $today) || ($enddate > $today && $enddate > $fivedays && $startdate < $today)|| ($enddate == null && $startdate !=null)) 
+							if (($enddate > $today && $enddate < $fivedays && $startdate < $today) || ($enddate > $today && $enddate > $fivedays && $startdate < $today)|| ($enddate == null && $startdate != null)) 
 
 							{  
 
@@ -315,7 +315,7 @@ class Mage_Catalog_Block_Product_Homepage extends Mage_Catalog_Block_Product_Abs
 									if($enddate != null)
 									$first_catogory[$first_index] = $first_catogory[$first_index].'>'.$c->getName().'</h2><p>Sale ends in '.$this->timeBetweenNowAndDeadline($enddate).'</p></article>'; 
 									else
-									$first_catogory[$first_index] = $first_catogory[$first_index].'>'.$c->getName().'</h2><p style="text-align:center">Featured</p></article>'; 
+									$first_catogory[$first_index] = $first_catogory[$first_index].'>'.$c->getName().'</h2><p style="text-align:center"><em>Featured</em></p></article>'; 
 
 									
 
@@ -349,7 +349,7 @@ class Mage_Catalog_Block_Product_Homepage extends Mage_Catalog_Block_Product_Abs
 									if($enddate != null)
 									$another_catogory[$second_index] = $another_catogory[$second_index].'>'.$c->getName().'</h2><p>Sale ends in '.$this->timeBetweenNowAndDeadline($enddate).'</p></article>';
 									else
-									$another_catogory[$second_index] = $another_catogory[$second_index].'>'.$c->getName().'</h2><p style="text-align:center">Featured</p></article>';
+									$another_catogory[$second_index] = $another_catogory[$second_index].'>'.$c->getName().'</h2><p style="text-align:center"><em>Featured</em></p></article>';
 
 									
 
