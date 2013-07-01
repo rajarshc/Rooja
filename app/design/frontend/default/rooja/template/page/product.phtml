@@ -36,20 +36,11 @@
 <?php echo $this->getChildHtml('head') ?>
 </head>
 <?php /* AM EDIT - Redirect to Login Page */ ?>
-<?php //if(Mage::getSingleton('customer/session')->isLoggedIn() && (Mage::getSingleton('customer/session')->getCustomerGroupId() == 4)){ ?>
-<?php //header("Status: 301"); //header('Location: '.$this->getUrl('unapproved')) ; //exit; } ?> 
+
 <?php if(isset($_SERVER['HTTP_USER_AGENT'])){
     $agent = $_SERVER['HTTP_USER_AGENT'];
 }
 ?>
-<?php Mage::getSingleton('customer/session')->setBeforeAuthUrl($current_url);  //save requested URL for later redirection
-//if(!Mage::getSingleton('customer/session')->isLoggedIn() && ($agent !="facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)")) {  // if not logged in
-    //header("Status: 301");
-   // header('Location: '.$this->getUrl('customer/account/login')) ;  // send to the login page
-   //$base_url = Mage::getBaseUrl();
-	//header('Location: '.$base_url); 
-    //exit; 
-//} ?>
 <body<?php echo $this->getBodyClass()?' class="'.$this->getBodyClass().'"':'' ?>>
 <?php echo $this->getChildHtml('after_body_start') ?>
 <!-- <div class="wrapper"> -->
