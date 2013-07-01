@@ -572,7 +572,7 @@ class Mage_Catalog_Block_Navigation extends Mage_Core_Block_Template
 
 							if ($enddate == null && $startdate != null) {
 								if ($j == 1) {
-									echo '<br>x<br>';
+									echo '<br><br>';
 									echo '<li class="navSectTitle">Featured</li>';
 									echo '<li><a href="'. $c->getURL() .'">' . $c->getName() . '</a></li>';
 								} else {
