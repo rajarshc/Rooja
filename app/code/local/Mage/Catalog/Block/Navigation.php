@@ -547,9 +547,9 @@ class Mage_Catalog_Block_Navigation extends Mage_Core_Block_Template
 					{    
 						if (!$c->getSale_start_date() == null) {
 							$startdate = strtotime(date('y-m-d', strtotime($c->getSale_start_date())) . ' ' . $c->getSale_start_time() . ':00');
-							$enddate = strtotime(date('y-m-d', strtotime($c->getSale_end_date())) . ' ' . $c->getSale_end_time() . ':00');
-							
-							if ($this->timeBetweenNowAndDeadline($enddate) != 0 && $enddate > $twodays && $startdate < $today) {
+							$enddate = strtotime(date('y-m-d', strtotime($c->getSale_end_date())) . ' ' . $c->getSale_end_time() . ':00'); 
+					
+							if (($this->timeBetweenNowAndDeadline($enddate) != 0 && $enddate > $twodays && $startdate < $today)) {
 								if ($i == 1) {
 									echo '<li class="navSectTitle">New Sales</li>';
 									echo '<li><a href="'. $c->getURL() .'">' . $c->getName() . '</a></li>';
@@ -559,9 +559,32 @@ class Mage_Catalog_Block_Navigation extends Mage_Core_Block_Template
 								$i++;
 							}
 						}
-						
 					}
-					$i=1;
+
+					foreach($subCategoriesSorted as $c)
+					{    
+						if (!$c->getSale_start_date() == null) {
+							$startdate = strtotime(date('y-m-d', strtotime($c->getSale_start_date())) . ' ' . $c->getSale_start_time() . ':00');
+							if((!$c->getSale_end_date() == null) && (!$c->getSale_end_time() == null))
+							$enddate = strtotime(date('y-m-d', strtotime($c->getSale_end_date())) . ' ' . $c->getSale_end_time() . ':00'); 
+							else
+							$enddate = null;
+
+							if ($enddate == null && $startdate != null) {
+								if ($j == 1) {
+									echo '<hr><br>';
+									echo '<li class="navSectTitle">Featured</li>';
+									echo '<li><a href="'. $c->getURL() .'">' . $c->getName() . '</a></li>';
+								} else {
+									echo '<li><a href="'. $c->getURL() .'">' . $c->getName() . '</a></li>';
+								}
+								$j++;
+							}
+						}
+					}
+
+
+					$i=1;$j=1;
 					
 					echo '</ul><ul>';
 					//foreach($_category->getChildren() as $subcategory){
