@@ -138,14 +138,16 @@ else
 				</td>
 				<td width="300px">
 				<?php if ($this->helper('tax')->displayCartPriceExclTax() || $this->helper('tax')->displayCartBothPrices()): ?>
-			        <?php if ($this->helper('tax')->displayCartBothPrices()): ?>
-			            <?php echo $this->__('Excl. Tax'); ?>:
-			        <?php endif; ?>
-			        <?php if (Mage::helper('weee')->typeOfDisplay($_item, array(0, 1, 4), 'sales')): ?>
-			            <?php echo $this->helper('checkout')->formatPrice($_item->getCalculationPrice()+$_item->getWeeeTaxAppliedAmount()+$_item->getWeeeTaxDisposition()); ?>
-			        <?php else: ?>
-			            <?php echo $this->helper('checkout')->formatPrice($_item->getCalculationPrice()*($_item->getQty())) ?>
-			        <?php endif; ?>				
+					<?php if ($this->helper('tax')->displayCartBothPrices()): ?>
+					    <?php echo $this->__('Excl. Tax'); ?>:
+					<?php endif; ?>
+
+					<?php if (Mage::helper('weee')->typeOfDisplay($_item, array(0, 1, 4), 'sales')): ?>
+					    <?php echo $this->helper('checkout')->formatPrice($_item->getCalculationPrice()+$_item->getWeeeTaxAppliedAmount()+$_item->getWeeeTaxDisposition()); ?>
+					<?php else: ?>
+					    <?php echo $this->helper('checkout')->formatPrice($_item->getCalculationPrice()*($_item->getQty())) ?>
+					<?php endif; ?>
+				<?php endif; ?>	
 			</td>
 			<td>
 				   <a href="<?php echo $this->getDeleteUrl() ?>" title="<?php echo $this->__('Remove This Item') ?>" onclick="return confirm('<?php echo $this->__('Are you sure you would like to remove this item from the shopping cart?') ?>');" class="remove-item">Remove</a>
@@ -177,7 +179,7 @@ else
                 <span class="nobr"><?php echo Mage::helper('weee')->__('Total'); ?>:<br /> <?php echo $this->helper('checkout')->formatPrice($_item->getCalculationPrice()+$_item->getWeeeTaxAppliedAmount()+$_item->getWeeeTaxDisposition()); ?></span>
             <?php endif; ?>
         <?php endif; ?>
-    <?php endif; ?>
+
 
 
 
