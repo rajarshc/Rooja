@@ -95,105 +95,17 @@ color:#00FFFF;
 }
 
 #how-we-work{
-position:relative;
-margin : auto;
-top:10%;
-width:726px;
-height:25px;
-}
-
-#curated-icon{
-margin-left: 15%;
-margin-top: 70px;
-width: 400px;
-height: 300px;
-}
-
-#curated-icon .image{
-
-}
-
-#curated-icon .headline	{
-margin-left: 15px;
-margin-top: 10px;
-font-size:20px;
-color:white;
-font-family:Segoe UI Light;
-}
-
-#curated-icon .text{
-margin-left:-90px;
-margin-top:20px;
-font-size:16px;
-color:white;
-font-style:italic;
-font-family:ltc-bodoni-175-1;
-text-align:center;
-}
-
-#clock-sales{
-margin: -320px auto;
-width: 400px;
-height: 300px;
-}
-
-#clock-sales .image{
 position: relative;
-left: 135px;
-top: 30px;
-}
-
-#clock-sales .headline{
-position: relative;
-left: 110px;
-top: 40px;
-font-size: 20px;
-color: white;
-font-family: Segoe UI Light;
-}
-
-#clock-sales .text{
-position: relative;
-top: 55px;
-font-size: 16px;
-color: white;
-font-style: italic;
-font-family: ltc-bodoni-175-1;
-text-align: center;
-}
-
-#global-delivery{
-margin-top: 20px;	
-margin-left: 65%;
-width: 400px;
-height: 175px;
-}
-
-#global-delivery .image{
-}
-
-#global-delivery .headline{
-margin-top:12px;
-margin-left:15px;
-font-size:20px;
-color:white;
-font-family:Segoe UI Light;
-}
-
-#global-delivery .text{
-margin-left:-130px;
-margin-top:20px;
-font-size:16px;
-color:white;
-font-style:italic;
-font-family:ltc-bodoni-175-1;
-text-align:center;
+margin : 0 auto;
+top : 60px;
+width: 912px;
+height: 302px;
 }
 
 #sounds-good{
 position:relative;
-top:30%;
-left:65%;
+margin: 0 auto;
+top : 80px;
 width:255px;
 height:41px;
 }
