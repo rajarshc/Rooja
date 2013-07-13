@@ -49,6 +49,11 @@
                     <template>page/empty.phtml</template>
                     <layout_handle>page_empty</layout_handle>
                 </empty>
+		  <search module="page" translate="label">
+                    <label>Search</label>
+                    <template>search/search.php</template>
+                    <layout_handle>page_search</layout_handle>
+                </search>
                 <one_column module="page" translate="label">
                     <label>1 column</label>
                     <template>page/1column.phtml</template>

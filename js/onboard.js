@@ -1,9 +1,3 @@
-function close_wrapper(){
-	jQuery('#wrappers').slideToggle(1000);
-	document.getElementById('on-board').setAttribute("style","height:0px;");
-	Mage.Cookies.set('closeonboard', 'Yes');
-}
-
 function change_wrapper1(){
 	jQuery('#quick-tour-wrapper').fadeOut(400);
 	setTimeout(function(){jQuery('#how-we-work-wrapper').fadeIn(400);},400);
@@ -55,6 +49,7 @@ function assign(){
 		if(Mage.Cookies.get('closeonboard') != "Yes"){
 			jQuery('#wrappers').slideToggle(1000);
 			document.getElementById('on-board').setAttribute("style","height:700px;");
+			change_image();
 		}
 		jQuery('#close-button').show();
 		setTimeout(function(){jQuery('#quick-tour-wrapper').fadeIn(400);},1000);	

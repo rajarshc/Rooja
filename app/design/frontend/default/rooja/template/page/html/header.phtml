@@ -29,8 +29,8 @@ design * @package base_default * @copyright Copyright (c) 2010 Magento Inc. (htt
 			// Silently dismiss ssshhhhhhhhhh!!!
 		}*/
 	
-//	var hash = window.location.hash.substring(1);
-      if (Mage.Cookies.get('member')!='Yes') {
+	//var hash = window.location.hash.substring(1);
+      if (document.location.href.indexOf('#welcome') > -1) {
 	  assign();
 	  }
 	  else{
@@ -322,6 +322,28 @@ function registerAjax() {
 //<![CDATA[
     var contactForm = new VarienForm('contactForm', true);
 //]]>
+
+var where = 0;
+
+function close_wrapper(){
+	jQuery('#wrappers').slideToggle(1000);
+	document.getElementById('on-board').setAttribute("style","height:0px;");
+	Mage.Cookies.set('closeonboard', 'Yes');
+	change_image();
+}
+
+
+function change_image(){
+	if(where==1){
+		where=0;
+		document.getElementById("close-image").src= "<?php echo $this->getSkinUrl('images/onboarding/open_button.png') ?>";
+	}
+	else{
+		where=1;
+		document.getElementById("close-image").src= "<?php echo $this->getSkinUrl('images/onboarding/close_button.png') ?>";
+	}
+}
+
 
 function registerAjax1() {	
 		  var request = new Ajax.Request(
@@ -651,8 +673,9 @@ function registerAjax1() {
 		</div>
 </div>
 </div>
+
 		<div id="close-button">
-		<a class="link" href="javascript:;" onclick="close_wrapper();"><img id="close-image" src="<?php echo $this->getSkinUrl('images/onboarding/close_button.png') ?>" ></img></a>
+		<a class="link" href="javascript:;" onclick="close_wrapper();"><img id="close-image" src="<?php echo $this->getSkinUrl('images/onboarding/open_button.png') ?>" ></img></a>
 		</div>
 </div>		
 
