@@ -9,9 +9,11 @@
 			<action method="addJs">
 				<script>tbt/rewardssocial/facebook/like/reward.js</script>
 			</action>
+      <!--
 			<action method="addCss">
 				<stylesheet>css/rewardssocial/facebook/like.css</stylesheet>
 			</action>
+      -->
 		</reference>
 	</default>
 
