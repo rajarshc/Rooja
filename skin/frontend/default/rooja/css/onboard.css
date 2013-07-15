@@ -1,0 +1,345 @@
+#on-board{
+position:fixed;
+z-index:30;
+width:100%;
+height:0px;
+}
+
+#wrappers{
+display:none;
+width:100%;
+height:550px;
+background: rgba(42, 19, 48, .95);
+}
+
+#quick-tour-wrapper{
+display:none;
+width:100%;
+height:550px;
+}
+
+#how-we-work-wrapper{
+display:none;
+width:100%;
+height:550px;
+}
+
+#form-wrapper{
+display:none;
+width:100%;
+height:550px;
+}
+
+#lets-shop-wrapper{
+display:none;
+width:100%;
+height:550px;
+}
+
+#quick-tour-logo{
+position:relative;
+margin : auto;
+top:8%;
+width:140px;
+height:67px;
+}
+
+#quick-tour-headline{
+position:relative;
+top:15%;
+left:20%;
+text-align:center;
+width:60%;
+height:100px;
+}
+
+#quick-tour-headline .first-line{
+font-size:36px;
+font-family:Segoe UI Light;
+color:white;
+}
+
+#quick-tour-headline .second-line{
+position:relative;
+font-size:36px;
+font-family:Segoe UI Light;
+color:white;
+top:-10%;
+}
+
+#quick-tour-button{
+position:relative;
+margin: 0 auto;
+top: 35%;
+width:291px;
+height:51px;
+}
+
+#quick-but-link{
+cursor:pointer;
+}
+
+#quick-tour-incentive{
+position:relative;
+top:40%;
+margin: 0 auto;
+text-align: center;
+width:600px;
+height:50px;
+}
+
+#quick-tour-incentive .headline{
+font-size:18px;
+font-family:Segoe UI Light;
+color:#00FFFF;
+}
+
+#how-we-work{
+position: relative;
+margin : 0 auto;
+top : 60px;
+width: 912px;
+height: 302px;
+}
+
+#sounds-good{
+position:relative;
+margin: 0 auto;
+top : 90px;
+width:255px;
+height:41px;
+}
+
+#sounds-good.link{
+cursor:pointer;
+}
+
+#form-headline{
+position:relative;
+top:8%;
+margin: auto;
+text-align:center;
+width:700px;
+height:50px;
+}
+
+#form-headline .text{
+font-size:36px;
+font-family:Segoe UI Light;
+color:white;
+}
+
+#name-text-field{
+margin: 80px auto;
+width:400px;
+height:50px;
+}
+
+#name-text-field .text{
+font-style:bold;
+font-family:Georgia;
+color:#eca70d;
+font-size:22px;
+width:150px;
+}
+
+
+#name-text-field .first-field{
+position:relative;
+top: -50px;
+left: 125px;
+color:gray;
+letter-spacing:1px;
+padding:5px;
+font-family:Georgia;
+border-color: #dbdbdb;
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;
+width:140px;
+height:30px;
+}
+
+#name-text-field .second-field{
+position:relative;
+top: -50px;
+left: 135px;
+color:gray;
+letter-spacing:1px;
+padding:5px;
+font-family:Georgia;
+border-color: #dbdbdb;
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;
+width:140px;
+height:30px;
+}
+
+
+#email-text-field{
+margin: -50px auto;
+width:400px;
+height:50px;
+}
+
+#email-text-field .text{
+font-style:bold;
+font-family:Georgia;
+color:#eca70d;
+font-size:22px;
+}
+
+
+#email-text-field .field{
+position:relative;
+top: -50px;
+left: 125px;
+color:gray;
+letter-spacing:1px;
+padding:5px;
+font-family:Georgia;
+border-color: #dbdbdb;
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;
+width:300px;
+height:30px;
+}
+
+#password-text-field{
+margin: 60px auto;
+width:500px;
+height:50px;
+}
+
+#password-text-field .text{
+font-style:bold;
+font-family:Georgia;
+color:#eca70d;
+font-size:22px;
+}
+
+#password-text-field .field{
+position:relative;
+left: 175px;
+color:gray;
+letter-spacing:1px;
+padding:5px;
+font-family:Georgia;
+border-color: #dbdbdb;
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;
+width:300px;
+height:30px;
+}
+
+#intro .message{
+position:relative;
+text-align:center;
+color:white;
+font-size:14px;
+}
+
+#submit-guy{
+position: relative;
+margin: auto;
+left: -150px;
+width:221px;
+height:51px;
+}
+
+#submit-guy .button{
+cursor:pointer;
+background: 0;
+outline: 0;
+}
+
+#submit-girl{
+position: relative;
+margin: auto;
+left : 125px;
+top: -51px;
+width:221px;
+height:51px;
+}
+
+#submit-girl .button{
+cursor:pointer;
+background: 0;
+outline: 0;
+}
+
+#final-headline{
+position:relative;
+top:50px;
+margin: 0 auto;
+width:400px;
+height:50px;
+}
+
+#final-headline .text{
+font-size:36px;
+font-family:De Vinne;
+color:white;
+text-align:center;
+}
+
+#coupon-headline{
+position: relative;
+margin: 0 auto;
+top: 150px;
+left: 25px;
+width: 450px;
+height: 50px;
+}
+
+#coupon-headline .text{
+font-size:20px;
+font-family:Segoe UI Light;
+color:#00FFFF;
+}
+
+#coupon-box{
+position: relative;
+margin: 0 auto;
+top: 130px;
+width: 200px;
+height: 50px;
+text-align: center;
+}
+
+#coupon-box .headline{
+width:150px;
+padding:15px;
+border:2px solid white;
+margin:5px;
+font-size:18px;
+color:white;
+left:-10px;
+}
+
+#lets-shop-button{
+position: relative;
+top: 200px;
+margin: 0 auto;
+width: 291px;
+height: 51px;
+}
+
+#lets-shop-button .link{
+cursor:pointer;
+}
+
+#close-button{
+position:relative;
+top:-30px;
+margin: auto;
+width:62px;
+height:62px;
+}
+
+#close-button .link{
+cursor:pointer;
+}

@@ -29,6 +29,15 @@ design * @package base_default * @copyright Copyright (c) 2010 Magento Inc. (htt
 			// Silently dismiss ssshhhhhhhhhh!!!
 		}*/
 	
+	//var hash = window.location.hash.substring(1);
+      if (document.location.href.indexOf('#welcome') > -1) {
+	  assign();
+	  }
+	  else{
+	  $('#close-button').hide();
+	  }
+	 //assign();
+
 		setTimeout(function() {
 			// Chrome does not fire a change event when autofilling forms
 			// To prevent weird overlap with defaultValue and Chrome autofill,
@@ -92,18 +101,19 @@ design * @package base_default * @copyright Copyright (c) 2010 Magento Inc. (htt
 	    }, 4000);
 	    
 	}
+	var waiting_time = 80000000;
 	if (Mage.Cookies.get('Visited') == "Yes")
 	{
 		<?php if(!Mage::getSingleton('customer/session')->isLoggedIn()) { ?>
             if (Mage.Cookies.get('Closed') != "Yes")
-				setTimeout(showLogin,10000);
+				setTimeout(showLogin,waiting_time);
         <?php } ?>
 	}else
 	{
 		Mage.Cookies.set('Visited', 'Yes');
 		<?php if(!Mage::getSingleton('customer/session')->isLoggedIn()) { ?>
 			if (Mage.Cookies.get('Closed') != "Yes")
-            	setTimeout(showJoin,10000);
+            	setTimeout(showJoin,waiting_time);
         <?php } ?>
 	}
 	
@@ -313,6 +323,72 @@ function registerAjax() {
     var contactForm = new VarienForm('contactForm', true);
 //]]>
 
+var where = 0;
+
+function close_wrapper(){
+	jQuery('#wrappers').slideToggle(1000);
+	document.getElementById('on-board').setAttribute("style","height:0px;");
+	Mage.Cookies.set('closeonboard', 'Yes');
+	change_image();
+}
+
+
+function change_image(){
+	if(where==1){
+		where=0;
+		document.getElementById("close-image").src= "<?php echo $this->getSkinUrl('images/onboarding/open_button.png') ?>";
+	}
+	else{
+		where=1;
+		document.getElementById("close-image").src= "<?php echo $this->getSkinUrl('images/onboarding/close_button.png') ?>";
+	}
+}
+
+
+function registerAjax1() {	
+		  var request = new Ajax.Request(
+		 "<?php echo Mage::getBaseUrl(); ?>" + "customer/account/ajaxCreate",
+		{
+			method:'post',
+			onComplete: function(){
+			},
+			onSuccess: function(transport){
+			   if (transport && transport.responseText){
+			 try{
+				response = eval('(' + transport.responseText + ')');
+			  }
+			  catch (e) {
+				response = {};
+			  }
+			}
+			
+			if (response.success){
+				   change_name();
+				  Mage.Cookies.set('member', 'Yes');
+				   change_wrapper3();
+			    }
+				else{
+				if ((typeof response.message) == 'string')
+				    jQuery('.message').html('<span>' + response.message + '</span>');
+		            jQuery(".message").show();
+				}
+				return false;
+			},
+			onFailure: function(){
+			  jQuery('.message').html('<span>Failed</span>');
+		      jQuery(".message").show();
+			},
+			parameters: Form.serialize('intro'),
+			 onLoading: function(){
+		        jQuery('.message').html('<img src="<?php echo $this->getSkinUrl(); ?>/images/ajax-loader.gif" />');
+                jQuery(".message").show(); 
+		    }
+
+		}
+		  );
+	  return false;
+}
+
 </script>
 
 <div id="rooja_login_wrapper" style="display: none;">
@@ -500,6 +576,110 @@ function registerAjax() {
         </div>
     </div>
 </div>
+
+<div id="on-board">
+<div id="wrappers">
+<div id="quick-tour-wrapper">
+		<div id="quick-tour-logo">
+		<img src="<?php echo $this->getSkinUrl('images/onboarding/Rooja_logo_white.png') ?>" ></img>
+		</div>
+		
+		<div id="quick-tour-headline">
+		<p class="first-line">Undiscovered products from around the world</p>
+		<p class="second-line">straight to your door-step in India</p>
+		</div>
+		
+		<div id="quick-tour-button">
+		<a class="link" href="javascript:;" onclick="change_wrapper1();"><img src="<?php echo $this->getSkinUrl('images/onboarding/quick_tour_button.gif') ?>" ></img></a>
+		</div>
+		
+		<div id="quick-tour-incentive">
+		<p class="headline">&nbsp&nbspGet a welcome offer of <em style="font-style:normal;color:#eca70d">15% OFF</em>,<br>on your first purchase at the end of the tour :)</p>
+		</div>
+</div>
+
+<div id="how-we-work-wrapper">
+		<div id="quick-tour-logo">
+		<img src="<?php echo $this->getSkinUrl('images/onboarding/Rooja_logo_white.png') ?>" ></img>
+		</div>
+		
+		<div id="how-we-work">
+		<img src="<?php echo $this->getSkinUrl('images/onboarding/How_we_work_image.png') ?>" ></img>
+		</div>
+		
+		<div id="sounds-good">
+		<a class="link" href="javascript:;" onclick="change_wrapper2();"><img src="<?php echo $this->getSkinUrl('images/onboarding/sounds_good_button.gif') ?>" ></img></a>
+		</div>
+</div>
+
+<div id="form-wrapper">
+		<div id="quick-tour-logo">
+		<img src="<?php echo $this->getSkinUrl('images/onboarding/Rooja_logo_white.png') ?>" ></img>
+		</div>
+		
+		<div id="form-headline">
+		<p class="text">Tell us about yourself :)</p>
+		</div>
+		
+	<form id="intro" name="intro" onsubmit="return registerAjax1();" method="post"> 
+		<div id="name-text-field">
+		<p class="text">My name is</p>
+		<input class="first-field" type="text" placeholder="First Name" id="firstname" name="firstname" onfocus="inputFocus(this)" onblur="inputBlur(this)" autofocus required></input>
+		<input class="second-field" type="text" placeholder="Last Name" id="lastname" name="lastname" onfocus="inputFocus(this)" onblur="inputBlur(this)" required></input>
+		</div>
+		
+		<div id="email-text-field">
+		<p class="text" >My email is</p>
+		<input class="field" type="text"  placeholder="me@example.com" name="email" id="email_address" onfocus="inputFocus(this)" onblur="inputBlur(this)" required></input>
+		</div>
+		
+		<div id="password-text-field">
+		<p class="text">Choose a password to login to Rooja in the future:</p><br>
+		<input class="field" type="password" placeholder="password" name="password" id="password" onfocus="inputFocus(this)" onblur="inputBlur(this)" required></input>
+		</div>
+		
+		<input type="hidden" id="confirmation" name="confirmation" value="null">
+		<input type="hidden" id="gender" name="gender" value="">
+					<div class="message"></div>
+		<div id="submit-guy">
+		<input class="button" type="image" onclick="document.forms['intro'].gender.value=1;confirm_pass();" src="<?php echo $this->getSkinUrl('images/onboarding/submit_guy.gif') ?>" name="submit-guy" value="submit"> 
+		</div>
+		
+		<div id="submit-girl">
+		<input class="button" type="image" onclick="document.forms['intro'].gender.value=2;confirm_pass();" src="<?php echo $this->getSkinUrl('images/onboarding/submit_girl.gif') ?>" name="submit-girl" value="submit"> 
+		</div>
+	</form>
+</div>
+
+<div id="lets-shop-wrapper">
+		<div id="quick-tour-logo">
+		<img src="<?php echo $this->getSkinUrl('images/onboarding/Rooja_logo_white.png') ?>" ></img>
+		</div>
+		
+		<div id="final-headline">
+		<p class="text">Nice to meet you, <em id="welcome-guest" style="font-style:normal" ></em>!</p>
+		</div>
+		
+		<div id="coupon-headline">
+		<p class="text">Here is the <em style="font-style:normal;color:yellow;font-family:Rupee Foradian">15% Off</em> coupon we promised you :)</p>
+		</div>
+		
+		<div id="coupon-box">
+		<h1 class="headline">SUMMERTIME15</h1>
+		</div>
+		
+		<div id="lets-shop-button">
+		<a class="link" href="javascript:;" onclick="close_wrapper();setTimeout(function(){location.reload();},1000);"><img src="<?php echo $this->getSkinUrl('images/onboarding/lets_go_shopping.gif') ?>" ></img></a>
+		</div>
+</div>
+</div>
+
+		<div id="close-button">
+		<a class="link" href="javascript:;" onclick="close_wrapper();"><img id="close-image" src="<?php echo $this->getSkinUrl('images/onboarding/open_button.png') ?>" ></img></a>
+		</div>
+</div>		
+
+
 <div id="wrap">
     <header id="mainHeader">
 
