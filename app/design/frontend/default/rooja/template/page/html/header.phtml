@@ -29,8 +29,8 @@ design * @package base_default * @copyright Copyright (c) 2010 Magento Inc. (htt
 			// Silently dismiss ssshhhhhhhhhh!!!
 		}*/
 	
-//	var hash = window.location.hash.substring(1);
-      if (Mage.Cookies.get('member')!='Yes') {
+	//var hash = window.location.hash.substring(1);
+      if (document.location.href.indexOf('#welcome') > -1) {
 	  assign();
 	  }
 	  else{
@@ -101,18 +101,19 @@ design * @package base_default * @copyright Copyright (c) 2010 Magento Inc. (htt
 	    }, 4000);
 	    
 	}
+	var waiting_time = 80000000;
 	if (Mage.Cookies.get('Visited') == "Yes")
 	{
 		<?php if(!Mage::getSingleton('customer/session')->isLoggedIn()) { ?>
             if (Mage.Cookies.get('Closed') != "Yes")
-				setTimeout(showLogin,10000);
+				setTimeout(showLogin,waiting_time);
         <?php } ?>
 	}else
 	{
 		Mage.Cookies.set('Visited', 'Yes');
 		<?php if(!Mage::getSingleton('customer/session')->isLoggedIn()) { ?>
 			if (Mage.Cookies.get('Closed') != "Yes")
-            	setTimeout(showJoin,10000);
+            	setTimeout(showJoin,waiting_time);
         <?php } ?>
 	}
 	
@@ -321,6 +322,28 @@ function registerAjax() {
 //<![CDATA[
     var contactForm = new VarienForm('contactForm', true);
 //]]>
+
+var where = 0;
+
+function close_wrapper(){
+	jQuery('#wrappers').slideToggle(1000);
+	document.getElementById('on-board').setAttribute("style","height:0px;");
+	Mage.Cookies.set('closeonboard', 'Yes');
+	change_image();
+}
+
+
+function change_image(){
+	if(where==1){
+		where=0;
+		document.getElementById("close-image").src= "<?php echo $this->getSkinUrl('images/onboarding/open_button.png') ?>";
+	}
+	else{
+		where=1;
+		document.getElementById("close-image").src= "<?php echo $this->getSkinUrl('images/onboarding/close_button.png') ?>";
+	}
+}
+
 
 function registerAjax1() {	
 		  var request = new Ajax.Request(
@@ -581,25 +604,7 @@ function registerAjax1() {
 		</div>
 		
 		<div id="how-we-work">
-		<img src="<?php echo $this->getSkinUrl('images/onboarding/how_we_work.png') ?>" ></img>
-		</div>
-		
-		<div id="curated-icon">
-		<img class="image" src="<?php echo $this->getSkinUrl('images/onboarding/curated_icon.png') ?>" ></img>
-		<h1 class="headline">HIGHLY CURATED COLLECTIONS</h1>
-		<p class="text">Our buyers in India and abroad are working<br>around the clock to provide you the latest<br> and the best collections to you in India.<br> Make sure to check your emails everyday<br> so you don't miss any of the awesome stuff!</p>
-		</div>
-		
-		<div id="clock-sales">
-		<img class="image" src="<?php echo $this->getSkinUrl('images/onboarding/clock_sales.png') ?>" ></img>
-		<h1 class="headline">TIME LIMITED SALES</h1>
-		<p class="text">All sales usually only last 3-7 days<br>This makes sure the site is always fresh<br>and the products are lowest cost possible.<br> Since we don't stock, we pass on the savings<br>to our customers :)</p>
-		</div>
-		
-		<div id="global-delivery">
-		<img class="image" src="<?php echo $this->getSkinUrl('images/onboarding/global_delivery.png') ?>" ></img>
-		<h1 class="headline">DELIVERED TO YOUR HOME</h1>
-		<p class="text">After the sale ends, we import our products,<br>pack and ship them straight to your door-step.<br>The delivery usually takes 14-21 days after your<br> order. You also have the option to pay on delivery!</p>
+		<img src="<?php echo $this->getSkinUrl('images/onboarding/How_we_work_image.png') ?>" ></img>
 		</div>
 		
 		<div id="sounds-good">
@@ -668,8 +673,9 @@ function registerAjax1() {
 		</div>
 </div>
 </div>
+
 		<div id="close-button">
-		<a class="link" href="javascript:;" onclick="close_wrapper();"><img id="close-image" src="<?php echo $this->getSkinUrl('images/onboarding/close_button.png') ?>" ></img></a>
+		<a class="link" href="javascript:;" onclick="close_wrapper();"><img id="close-image" src="<?php echo $this->getSkinUrl('images/onboarding/open_button.png') ?>" ></img></a>
 		</div>
 </div>		
 
