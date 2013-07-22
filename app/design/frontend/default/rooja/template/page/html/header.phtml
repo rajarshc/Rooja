@@ -29,14 +29,11 @@ design * @package base_default * @copyright Copyright (c) 2010 Magento Inc. (htt
 			// Silently dismiss ssshhhhhhhhhh!!!
 		}*/
 	
-	//var hash = window.location.hash.substring(1);
-      if (document.location.href.indexOf('#welcome') > -1) {
+	var hash = window.location.hash.substring(1);
+       if( (hash == 'welcome') && (Mage.Cookies.get('member')!='Yes') ) {
 	  assign();
 	  }
-	  else{
-	  $('#close-button').hide();
-	  }
-	 //assign();
+ //assign();
 
 		setTimeout(function() {
 			// Chrome does not fire a change event when autofilling forms
@@ -722,7 +719,7 @@ else {$customer = "Guest";}
 
 		<ul id="myAccount">
 
-			<li class="ignore-item"><a href="/rewardsref/customer/index/">Invite Friends and Earn Rs. 500</a></li>
+			<li style="background-color:#CC6600" class="ignore-item"><a href="/rewardsref/customer/index/">Invite Friends and Earn Rs. 500</a></li>
 
 			<li class="welcome-top"><a href="javascript:;" title="">Welcome <?php if($session->isLoggedIn()) { echo substr($customer->getFirstname(), 0, 12);} else { echo $customer; } ?></a>
 

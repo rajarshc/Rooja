@@ -333,6 +333,7 @@ cursor:pointer;
 }
 
 #close-button{
+display:none;
 position:relative;
 top:-30px;
 margin: auto;
