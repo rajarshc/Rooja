@@ -115,7 +115,10 @@ jQuery(document).ready(function(){
 	<?php //var_export($_product); ?>
 
 		<article class="product col1 fl <?php if ($i % 3 == 0){ echo 'noMargin'; } ?>">
-
+			
+			<div style="position:absolute;z-index:50;left:60px;top:10px;" class="fbBox">
+			<fb:like href="<?php echo $_product->getProductUrl() ?>" send="false" layout="button_count" width="100" show_faces="false"></fb:like>
+			</div>
 			<?php if($_product->getTypeId() == "configurable"):
 
 			$total = 0;
@@ -176,9 +179,7 @@ echo $likes = $xml->link_stat->like_count;
 				
 
 				</span><?php }*/ ?>
-			
-			<!--<div style="display:none;position:absolute;top:-285px;left:60px" class="fb-like" data-href="<?php echo $_product->getProductUrl() ?>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
-			-->
+
 			<p class="price"><span class="livePrice">		
 
 				<?php if (!$fbprice == null) { ?>
@@ -246,15 +247,16 @@ echo $likes = $xml->link_stat->like_count;
 
 	    jQuery(".product").hover(function () {
 			jQuery(this).find('.productName').fadeIn(500);
-		//	jQuery(this).find('.fb-like').show();		
+			if (!jQuery(this).children('.fbBox').hasClass('loaded')){
+				jQuery(this).children('.fbBox').addClass('loaded');
+				FB.XFBML.parse($(this));
+			}
+			jQuery(this).children('.fbBox').css('visibility','visible');		
 		   },
-
-		function () {
-
+	   function () {
+		    jQuery(this).children('.fbBox').css('visibility','hidden');
 		    jQuery(this).find('.productName').fadeOut(500);
-		//    jQuery(this).find('.fb-like').hide();
-
-		  });
+		 });
 
 	}
 
@@ -263,6 +265,7 @@ echo $likes = $xml->link_stat->like_count;
 	//	var offset = window.pageYOffset;
 	//	Mage.Cookies.set('scroll',offset);
 	//}
+
 
 </script>
 

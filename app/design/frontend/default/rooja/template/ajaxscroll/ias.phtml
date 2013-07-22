@@ -63,17 +63,19 @@ jQuery.ias({
 	loader: '<div style="display:block;clear:both;height:30px;width:100%;"><img src="<?php echo($this->getSkinUrl('images/Loading_rooja.gif'));  ?>" width="30" /><br><br>Hang on! Loading more products...</div>',
 
 	onRenderComplete : function(items) {  
-	// FB.XFBML.parse(); 
-	      	jQuery(".product").hover(function () {
+		
+		jQuery(".product").hover(function () {
 		    jQuery(this).find('.productName').fadeIn(500);
-	//	    jQuery(this).find('.fb-like').show();	  	
+		    if (!jQuery(this).children('.fbBox').hasClass('loaded')){
+			jQuery(this).children('.fbBox').addClass('loaded');
+			FB.XFBML.parse($(this));
+		    }
+		    jQuery(this).children('.fbBox').css('visibility','visible');
 		}, 
 
 		function () {
-
+		    jQuery(this).children('.fbBox').hide('visibility','hidden');
 		    jQuery(this).find('.productName').fadeOut(500);
-	//	    jQuery(this).find('.fb-like').hide();
-
 		  });
 
 
