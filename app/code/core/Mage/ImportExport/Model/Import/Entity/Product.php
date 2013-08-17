@@ -356,7 +356,8 @@ class Mage_ImportExport_Model_Import_Entity_Product extends Mage_ImportExport_Mo
             if ($pathSize > 2) {
                 $path = array();
                 for ($i = 2; $i < $pathSize; $i++) {
-                    $path[] = $collection->getItemById($structure[$i])->getName();
+		    if ($structure[$i])
+                      $path[] = $collection->getItemById($structure[$i])->getName();
                 }
                 $this->_categories[implode('/', $path)] = $category->getId();
             }
