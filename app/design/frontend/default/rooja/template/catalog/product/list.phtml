@@ -116,9 +116,9 @@ jQuery(document).ready(function(){
 
 		<article class="product col1 fl <?php if ($i % 3 == 0){ echo 'noMargin'; } ?>">
 			
-			<div style="position:absolute;z-index:50;left:60px;top:10px;" class="fbBox">
+			<!--<div style="position:absolute;z-index:50;left:60px;top:10px;" class="fbBox">
 			<fb:like href="<?php echo $_product->getProductUrl() ?>" send="false" layout="button_count" width="100" show_faces="false"></fb:like>
-			</div>
+			</div>-->
 			<?php if($_product->getTypeId() == "configurable"):
 
 			$total = 0;
