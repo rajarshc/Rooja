@@ -36,7 +36,6 @@ class Social_Login_FacebookController extends Mage_Core_Controller_Front_Action
 	/*
 	Collection loading for Activation code filter
 	*/
-	
     public function indexAction()
     {
 		$facebookUrl = Mage::getBaseDir("media") . DS . "facebook" . DS;
@@ -71,38 +70,49 @@ class Social_Login_FacebookController extends Mage_Core_Controller_Front_Action
 			
 			//get user access_token
 			$tokenUrl = 'https://graph.facebook.com/oauth/access_token?client_id='.$appId.'&redirect_uri='.urlencode($callbackUrl).'&client_secret='.$appSecret.'&code='.$code;
-			
-		    $accessToken = file_get_contents($tokenUrl); 
-			
-		
-		    $fqlQuery = 'https://graph.facebook.com/me?'.$accessToken;
-		    $fqlqueryResult = file_get_contents($fqlQuery);
+			//changed by ankur for resolving facebook login bug
+	               // $accessToken = file_get_contents($tokenUrl); 
+
+                            $ch = curl_init();
+                            curl_setopt($ch, CURLOPT_URL, $tokenUrl);
+                            curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+                            curl_setopt($curl, CURLOPT_HEADER, false);
+
+                            $accessToken = curl_exec($ch);
+                            $fqlQuery = 'https://graph.facebook.com/me?'.$accessToken;
+                            $ch = curl_init();
+                            curl_setopt($ch, CURLOPT_URL, $fqlQuery);
+                            curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+                            curl_setopt($curl, CURLOPT_HEADER, false);
+                            $fqlqueryResult = curl_exec($ch);	
+
+
+                      
+                            //    $fqlQuery = 'https://graph.facebook.com/me?'.$accessToken;
+                            //   $fqlqueryResult = file_get_contents($fqlQuery);
+                            //code end by ankur
 		    $me = json_decode($fqlqueryResult, true);  
-			
 		if(!is_null($me)) 
-		{  
+		{ 
 		   // get the customer session
-           $session = Mage::getSingleton('customer/session');
+                    $session = Mage::getSingleton('customer/session');
 				
 		   // Check the socail id in custom table
 		   $data = Mage::getModel('login/login')->getCollection();
 		   $data = $data->addFieldToFilter('social_id', $me['id']);
-			
   		   $getCount = count($data);
-		
+		    
 		   $getData = $data->getData();
 		   
 		   $filterData = $getData[0];
 		   	 
 		   $customer_data = Mage::getModel('customer/customer')->load($filterData['customer_id']);  
 		   $customerCheck = count($customer_data->getData());
-		   
-		  if($getCount) 
-		  {  
+		   if($getCount) 
+		   {
 			  $session->loginById($filterData['customer_id']);
-	      }
-		  else
-		  {   
+	           }
+		  else{
 		  		// get the store infromation and etc 
 				$storeId   = Mage::app()->getStore()->getStoreId();
 				$websiteId = Mage::getModel('core/store')->load(Mage::app()->getStore()->getStoreId())->getWebsiteId();
@@ -118,25 +128,23 @@ class Social_Login_FacebookController extends Mage_Core_Controller_Front_Action
 					$getCustomerData = $customerData[0];
 				
      			$entityId = $getCustomerData['entity_id'];
-
-                if($entityId) 
-				{  
-					$data = Mage::getModel('login/login');
+                         if($entityId)
+			 {
+					//Mage::log('entity-'.$entityId.'id-'.$me['id'].'email-'.$me['email']);die; 
+					$data = Mage::getModel('login/login')->setId(null);
 					$data->setCustomerId($entityId);
 					$data->setSocialId($me['id']);
-					$data->setFbEmail($me['email']);										
-			        $data->save();
-					
-                    $session->loginById($entityId);
-                } 
-				else 
-				{ 
-                    $this->_registerCustomer($me, $session);
-                }
+					$data->setFbEmail($me['email']);
+			       		$data->save();
+                    			$session->loginById($entityId);
+                	 } 
+			else 
+			{ 
+                    		$this->_registerCustomer($me, $session);
+                	}
 			  
 		  }
 		//   $this->_loginPostRedirect($session);
-		
 		$this->_redirectSuccess(Mage::getUrl('home', array('_secure'=>true)));
 		return;
 		 
