@@ -14,10 +14,10 @@ class Fix_FixBlockCacheInvalidated_Model_Rule extends Mage_CatalogRule_Model_Rul
 		//Notice this little line
 		Mage::app()->getCacheInstance()->cleanType('block_html');
 		Mage::log("cleared");
-		$indexProcess = Mage::getSingleton('index/indexer')->getProcessByCode('catalog_product_price');
+		/*$indexProcess = Mage::getSingleton('index/indexer')->getProcessByCode('catalog_product_price');
 		if ($indexProcess) {
 			$indexProcess->reindexAll();
-		}
+		}*/
 	}
 }
 ?>

@@ -103,6 +103,9 @@ class Mage_ImportExport_Adminhtml_ImportController extends Mage_Adminhtml_Contro
             $importModel = Mage::getModel('importexport/import');
 
             try {
+                $processes = Mage::getSingleton('index/indexer')->getProcessesCollection();
+                $processes->walk('setMode', array(Mage_Index_Model_Process::MODE_MANUAL));
+                $processes->walk('save');
                 $importModel->importSource();
                 $importModel->invalidateIndex();
                 $resultBlock->addAction('show', 'import_validation_container')
