@@ -309,7 +309,12 @@ var request = new Ajax.Request("<?php echo Mage::getBaseUrl(); ?>" + "customer /
 	}
 	return false;
 	}
-jQuery('.bxslider').bxSlider();
+jQuery('.bxslider').bxSlider(
+	autoControls:true
+);
+jQuery('.testiSlider').bxSlider(
+	autoControls:true
+);
 		</script>
 		</body>
 </html>
