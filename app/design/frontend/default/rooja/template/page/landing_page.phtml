@@ -1,0 +1,315 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+/**
+ * Template for Mage_Page_Block_Html
+ */
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns:fb="http://www.facebook.com/2008/fbml" xmlns:og="http://opengraphprotocol.org/schema/" xmlns="http://www.w3.org/1999/xhtml"  xml:lang="<?php echo $this->getLang() ?>" lang="<?php echo $this->getLang() ?>" dir="ltr">
+	<head>
+		<?php echo $this->getChildHtml('head') ?>
+	</head>
+	<body<?php echo $this->getBodyClass()?' class="'.$this->
+		getBodyClass().'"':'' ?>>
+		<?php echo $this->getChildHtml('after_body_start') ?>
+		<?php echo $this->getChildHtml('global_notices') ?>
+		<div class="Landing nw col1-layout">
+			<div class="headerNw">
+				<div class="wrapper">
+					<a href="http://rooja.com" title="Rooja.com" class="Logo"><img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA)."landing_page/logo_purp.png"?>" width="139" height="67" alt="Rooja"></a>
+					<div class="Call">
+						<div class="sprite ico-call"></div>
+						<div class="nmbr">
+							+91-8080622277
+							<br/>
+							<small>Mon-Sat (9:30am-7pm)</small>
+						</div>
+					</div>
+					<div class="offers">
+						<ul>
+							<li>
+								<div class="sprite ico-freeship"></div>
+								FREE SHIPPING anywhere in india
+							</li>
+							<li>
+								<div class="sprite ico-cod"></div>
+								CASH ON DELIVERY
+							</li>
+							<li>
+								<div class="sprite ico-freereturns"></div>
+								FREE RETURNS
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<?php echo $this->getChildHtml('global_messages') ?>
+			<?php echo $this->getChildHtml('content') ?>
+			<div class="footerNw">
+				<div class="wrapper">
+					<div class="Clearfix">
+						<div class="promotionText">
+							<div class="blockTime">
+								<div class="sprite ico-timelimit"></div>
+								<h3>TIME LIMITED SALES</h3>
+								<div class="content">
+									<p>
+										Sales are exclusive for members and
+										limited in time and quantity.
+									</p>
+									<p>
+										Make sure to check you email everyday
+										so you don't miss a sale!
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="promotionText">
+							<div class="sprite ico-home-delivery"></div>
+							<h3>DELIVERED TO YOUR HOME IN INDIA</h3>
+							<div class="content">
+								<p>
+									After the sale ends, we import the products,
+									pack and ship them straight to your door-step.
+								</p>
+								<p>
+									You also have the option to pay on delivery!
+								</p>
+							</div>
+						</div>
+						<div class="promotionText blockJoin">
+							<button class="joinRooja">
+								<div class="sprite joinnw">
+									&nbsp;
+								</div>
+							</button>
+							<a href="http://rooja.com/" title="Rooja" class="joinLink">Still not convinced? Take a sneak-peak</a>
+						</div>
+					</div>
+					<div class="Clearfix">
+						<div class="paymentMethd">
+							<h4>Payment Methods</h4><img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA)."landing_page/payment_options.png"?>" width="365" height="29" alt="Payment Methods">
+						</div>
+					</div>
+				</div>
+				<div class="foot">
+					<div class="wrapper">
+						<div class="sprite rooja-small"></div>
+						<div class="social">
+							<a href="#" title="Follow us on twitter"><span class="sprite ico-tw"></span>Follow us on twitter</a>
+							<a href="#" title="Join us on Facebook"><span class="sprite ico-fb"></span>Join us on Facebook</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="bgDull"></div>
+			<div id="registerForm" class="popups">
+				<div class="sprite popClose"></div>
+				<h2>become a member</h2>
+				<div class="rooja_signup_right_fb_create">
+					<a href="http://rooja.com/login/facebook/index/" class="sprite"></a>
+				</div>
+				<div class="bdrOption">
+					<div class="or">
+						OR
+					</div>
+				</div>
+				<div class="rooja_singup_error_msg"></div>
+				<form name="form-validate" id="form-validate" onsubmit="return registerAjax()">
+					<div class="fieldset">
+						<input type="hidden" value="" name="success_url">
+						<input type="hidden" value="" name="error_url">
+						<div class="messages"></div>
+						<ul class="form-list">
+							<li class="fields">
+								<div class="rooja_signup_text_create">
+									<div class="customer-name">
+										<div class="field name-firstname">
+											<label class="required" for="firstname">First Name</label>
+											<div class="input-box">
+												<input type="text" title="Enter your name"  onclick="thide(this)" onblur="tshow(this)" class="input-text required-entry" value="Enter your name" name="firstname" id="firstname">
+											</div>
+										</div>
+										<div class="field name-lastname">
+											<label class="required" for="lastname">Last Name</label>
+											<div class="input-box">
+												<input type="text" title="Enter your last name"  onclick="thide(this)" onblur="tshow(this)" class="input-text required-entry" value="Enter your last name" name="lastname" id="lastname">
+											</div>
+										</div>
+
+									</div>
+								</div>
+							</li>
+
+							<li>
+								<label for="email_address" class="required">EMAIL</label>
+								<div class="rooja_signup_email_create">
+									<input type="text" title="Email Address"  onclick="thide(this)" onblur="tshow(this)" class="input-text validate-email required-entry" value="Email Address" id="email_address" name="email">
+								</div>
+							</li>
+
+						</ul>
+					</div>
+					<div class="fieldset">
+						<ul class="form-list">
+							<li class="fields">
+								<div class="rooja_signup_text_create">
+									<div class="field">
+										<label for="password" class="required">Password</label>
+										<div class="input-box rooja_signup_text_password_create">
+											<input type="password" title="Password"  onclick="thide(this)" onblur="tshow(this)" class="input-text required-entry validate-password" value="Password" id="password" name="password">
+										</div>
+									</div>
+									<div class="field">
+										<label for="confirmation" class="required">Confirm Password</label>
+										<div class="input-box rooja_signup_text_password_create">
+											<input type="password" title="Password"  onclick="thide(this)" onblur="tshow(this)" class="input-text required-entry validate-cpassword" id="confirmation" value="Password" name="confirmation">
+										</div>
+									</div>
+								</div>
+							</li>
+							<li class="fields">
+								<div class="rooja_signup_text_create">
+									<div class="field phone_number">
+										<label for="" class="required">Mobile Optional</label>
+										<div class="input-box">
+											<input type="text" title="Mobile"  onclick="thide(this)" onblur="tshow(this)" class="input-text required-entry" value="Mobile" name="mobile" id="mobile">
+										</div>
+									</div>
+									<div class="field gender">
+										<label for="gender">Gender</label>
+										<div class="input-box">
+											<div class="formattedSelect">
+												<select name="gender" id="gender" title="Select your gender" value="Select your gender">
+													<option value="1">Male</option>
+													<option value="2">Female</option>
+												</select>
+												<div class="sprite selectArrow"></div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</li>
+							<li style="display: none;" class="control">
+								<div class="input-box">
+									<input type="checkbox" class="checkbox" id="is_subscribed" checked="checked" value="1" title="Sign Up for Newsletter" name="is_subscribed">
+								</div>
+								<label for="is_subscribed">Sign Up for Newsletter</label>
+							</li>
+						</ul>
+					</div>
+					<div id="rooja_signup_left_joinnow_create">
+						<input type="submit" name="submitBtn" value="Submit">
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<script>
+			jQuery(document).bind('ready', function() {
+
+jQuery('.joinRooja, .beMember').click(function(){
+jQuery('.bgDull, .popups').css('display', 'block');
+});
+jQuery('.popClose').click(function(){
+jQuery('.bgDull, .popups').css('display', 'none');
+});
+ 
+});
+function thide(ref)
+{
+if(jQuery(ref).attr("value")==jQuery(ref).attr("title"))
+{
+jQuery(ref).attr("value","");
+jQuery(ref).attr("style","font-style:normal; color:#000!important; font-family:'Constantia'; font-size:11pt;");
+
+}
+}
+function tshow(ref)
+{
+if(jQuery(ref).attr("value")=="")
+{
+jQuery(ref).attr("value",jQuery(ref).attr("title"));
+jQuery(ref).attr("style","font-style:italic; color:#a29f9f!important; font-family:Constantia; font-size:11pt;");
+}
+}
+function registerAjax() {
+var valid = new Validation('form-validate');
+if(valid.validate()){
+var request = new Ajax.Request("<?php echo Mage::getBaseUrl(); ?>" + "customer / account / ajaxCreate",
+	{
+	method:'post',
+	onComplete: function(){
+
+	},
+	onSuccess: function(transport){
+
+	if (transport && transport.responseText){
+	try{
+	response = eval('(' + transport.responseText + ')');
+	}
+	catch (e) {
+	response = {};
+	}
+	}
+
+	if (response.success){
+
+	Mage.Cookies.set('member', 'Yes');
+	setTimeout("window.location= '<?php echo Mage::getBaseUrl(); ?>'",1000);
+	}else{
+	if ((typeof response.message) == 'string') {
+	jQuery('.messages').html('<span>' + response.message + '</span>');
+	jQuery(".messages").show();
+	}
+	return false;
+	}
+	},
+	onFailure: function(){
+	jQuery('.messages').html('<span>Failed</span>');
+	jQuery(".messages").show();
+	},
+	parameters: Form.serialize('form-validate'),
+	onLoading: function(){
+	jQuery('.messages').html('<img src="<?php echo $this -> getSkinUrl(); ?>/images/ajax - loader - arrows.gif" />');
+	jQuery(".messages").show();
+	}
+	}
+	);
+	}else{
+
+	return false;
+	}
+	return false;
+	}
+jQuery('.bxslider').bxSlider();
+		</script>
+		</body>
+</html>

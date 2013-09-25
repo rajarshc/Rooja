@@ -471,17 +471,17 @@ input:-webkit-autofill
     font-style: normal;
 
 }
+
 @font-face {
 	font-family: 'Constantia';
     src: url('fonts/constantia.eot');
-    src: url('fonts/constantia.eot') format('embedded-opentype'),
+    src: url('fonts/constantia.eot?#iefix') format('embedded-opentype'),
          url('fonts/constantia.woff') format('woff'),
          url('fonts/constantia.ttf') format('truetype'),
-         url('fonts/constantia.svg') format('svg');
+         url('fonts/constantia.svg#Constantia') format('svg');
     font-weight: normal;
     font-style: normal;
 }
-
 .rooja_login_bg
 {
 	background:#fff;

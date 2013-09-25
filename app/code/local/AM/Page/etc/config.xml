@@ -49,6 +49,11 @@
                     <template>page/product.phtml</template>
                     <layout_handle>product</layout_handle>
                 </product>
+                <landing_page module="page" translate="label">
+                    <label>Landing Page</label>
+                    <template>page/landing_page.phtml</template>
+                    <layout_handle>landing_page</layout_handle>
+                </landing_page>
             </layouts>
         </page>
     </global>
