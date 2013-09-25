@@ -186,8 +186,8 @@ if (!$categoryIds == null){
 					<?php
 					$source_url = $this->helper('core/url')->getCurrentUrl();
 $url = "http://api.facebook.com/restserver.php?method=links.getStats&urls=".urlencode($source_url);
-$xml = file_get_contents($url);
-$xml = simplexml_load_string($xml);
+//$xml = file_get_contents($url);
+//$xml = simplexml_load_string($xml);
 echo '<span>' .  '</span>';
 ?> people like this</p>
 			
