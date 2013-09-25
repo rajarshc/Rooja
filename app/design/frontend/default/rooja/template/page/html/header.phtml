@@ -400,7 +400,9 @@ function registerAjax1() {
             <!--rooja_login_left_text-->
             <div class="rooja_login_right_memberlogin">
                 WELCOME TO ROOJA!</div>
-            <a href="<?php echo $this->getUrl('login/facebook/index/') ?>" class="rooja_login_right_fb">
+			<!-- Login with facebook - used Inchoo extension by Ankur -->	
+            <a rel="facebook-connect" href="#"  class="rooja_login_right_fb"></a>
+           <!-- <a href="<?php echo $this->getUrl('login/facebook/index/') ?>" class="rooja_login_right_fb">-->
             </a>
             <div class="rooja_login_or_img">
             </div>
