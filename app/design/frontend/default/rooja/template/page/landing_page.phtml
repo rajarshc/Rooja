@@ -122,8 +122,8 @@
 					<div class="wrapper">
 						<div class="sprite rooja-small"></div>
 						<div class="social">
-							<a href="#" title="Follow us on twitter"><span class="sprite ico-tw"></span>Follow us on twitter</a>
-							<a href="#" title="Join us on Facebook"><span class="sprite ico-fb"></span>Join us on Facebook</a>
+							<a href="https://twitter.com/roojafashion" title="Follow us on twitter"><span class="sprite ico-tw"></span>Follow us on twitter</a>
+							<a href="https://www.facebook.com/roojafashion" title="Join us on Facebook"><span class="sprite ico-fb"></span>Join us on Facebook</a>
 						</div>
 					</div>
 				</div>
@@ -198,7 +198,7 @@
 							<li class="fields">
 								<div class="rooja_signup_text_create">
 									<div class="field phone_number">
-										<label for="" class="required">Mobile Optional</label>
+										<label for="" class="required">Mobile (Optional)</label>
 										<div class="input-box">
 											<input type="text" title="Mobile"  onclick="thide(this)" onblur="tshow(this)" class="input-text required-entry" value="Mobile" name="mobile" id="mobile">
 										</div>
@@ -310,10 +310,10 @@ var request = new Ajax.Request("<?php echo Mage::getBaseUrl(); ?>" + "customer /
 	return false;
 	}
 jQuery('.bxslider').bxSlider(
-	autoControls:true
+       {auto:true,autoDelay:5000,autoHover:true}
 );
-jQuery('.testiSlider').bxSlider(
-	autoControls:true
+jQuery('.testiSlider').bxSlider({auto:true,autoDelay:10000,pager:false,controls:false,autoHover:true}
+       
 );
 		</script>
 		</body>
