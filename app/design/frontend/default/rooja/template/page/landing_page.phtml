@@ -263,7 +263,7 @@ jQuery(ref).attr("style","font-style:italic; color:#a29f9f!important; font-famil
 function registerAjax() {
 var valid = new Validation('form-validate');
 if(valid.validate()){
-var request = new Ajax.Request("<?php echo Mage::getBaseUrl(); ?>" + "customer / account / ajaxCreate",
+var request = new Ajax.Request("<?php echo Mage::getBaseUrl(); ?>" + "customer/account/ajaxCreate",
 	{
 	method:'post',
 	onComplete: function(){
