@@ -104,12 +104,12 @@
 							</div>
 						</div>
 						<div class="promotionText blockJoin">
-							<button class="joinRooja" >
+							<button class="joinRooja" onclick="_gaq.push('trackSignupPopupBottomLandingPage', 'Links', 'Clicks', 'LandingPageBecomeAMember','',true)">
 								<div class="sprite joinnw">
 									&nbsp;
 								</div>
 							</button>
-							<a href="http://rooja.com/" title="Rooja" class="joinLink" >Still not convinced? Take a sneak-peak</a>
+							<a href="http://rooja.com/" title="Rooja" class="joinLink" onclick="_gaq.push('trackNewVistorNotConvinced', 'Links', 'CLicks', 'LandingPageNewMember','', true)">Still not convinced? Take a sneak-peak</a>
 						</div>
 					</div>
 					<div class="Clearfix">
@@ -134,7 +134,7 @@
 				<div class="sprite popClose"></div>
 				<h2>become a member</h2>
 				<div class="rooja_signup_right_fb_create">
-					<a href="#" rel="facebook-connect" class="sprite"></a>
+					<a href="#" rel="facebook-connect" class="sprite" onclick="_gaq.push(['_trackSocial', 'facebook', 'register']);" ></a>
 				</div>
 				<div class="bdrOption">
 					<div class="or">
@@ -284,6 +284,7 @@ function tshow(ref)
 	}
 }
 function registerAjax() {
+	
 var valid = new Validation('form-validate');
 if(valid.validate()){
 var request = new Ajax.Request("<?php echo Mage::getBaseUrl(); ?>" + "customer/account/ajaxCreate",
@@ -304,7 +305,7 @@ var request = new Ajax.Request("<?php echo Mage::getBaseUrl(); ?>" + "customer/a
 	}
 
 	if (response.success){
-
+	_gaq.push( '_trackSigupButtonClick', 'Links', 'Clicks', 'LandingPageBecomeAMember','',true);
 	Mage.Cookies.set('member', 'Yes');
 	setTimeout("window.location= '<?php echo Mage::getBaseUrl(); ?>'",1000);
 	}else{
