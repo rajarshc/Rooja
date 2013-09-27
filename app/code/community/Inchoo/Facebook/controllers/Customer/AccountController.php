@@ -62,7 +62,15 @@ class Inchoo_Facebook_Customer_AccountController extends Mage_Core_Controller_Fr
 			$this->_getCustomerSession()->addSuccess(
 				$this->__('Your Facebook account has been successfully connected. Now you can fast login using Facebook Connect anytime.')
 			);
-			$this->_redirect('customer/account');
+			$referer=$_SERVER['HTTP_REFERER']; 
+			if(strpos($referer,'signup_men.html')!==FALSE || strpos($referer,'signup_women.html')!==FALSE)
+			{
+				$this->_redirectSuccess(Mage::getUrl('home', array('_secure'=>true)));
+			}
+			else {
+				$this->_redirect('customer/account');
+			}
+			
 			return;
         }
         
@@ -75,7 +83,15 @@ class Inchoo_Facebook_Customer_AccountController extends Mage_Core_Controller_Fr
 			}
 			//
 			$this->_getCustomerSession()->setCustomerAsLoggedIn($uidCustomer);
-			$this->_redirectReferer();
+			$referer=$_SERVER['HTTP_REFERER']; 
+			if(strpos($referer,'signup_men.html')!==FALSE || strpos($referer,'signup_women.html')!==FALSE)
+			{
+				$this->_redirectSuccess(Mage::getUrl('home', array('_secure'=>true)));
+			}
+			else {
+				$this->_redirectReferer();
+			}
+			
 			return;        	
         }
         
@@ -123,8 +139,26 @@ class Inchoo_Facebook_Customer_AccountController extends Mage_Core_Controller_Fr
 			$this->_getCustomerSession()->addSuccess(
 				$this->__('Your Facebook account has been successfully connected. Now you can fast login using Facebook Connect anytime.')
 			);
-			$this->_redirect('customer/account');
+			
+			if(strpos($referer,'signup_men.html')!==FALSE || strpos($referer,'signup_women.html')!==FALSE)
+			{
+				$this->_redirectSuccess(Mage::getUrl('home', array('_secure'=>true)));
+			}
+			else {
+				$this->_redirectReferer();
+			}
     		return;
+		}
+		else{
+			$this->_registerCustomer($standardInfo,$customer);
+			if(strpos($referer,'signup_men.html')!==FALSE || strpos($referer,'signup_women.html')!==FALSE)
+			{
+				$this->_redirectSuccess(Mage::getUrl('home', array('_secure'=>true)));
+			}
+			else {
+				$this->_redirectReferer();
+			}
+			return;
 		}
 		
 		//registration needed
@@ -211,6 +245,54 @@ class Inchoo_Facebook_Customer_AccountController extends Mage_Core_Controller_Fr
 		$this->_getCustomerSession()->addError($this->__('Rooja Fashion is currently invite only. You can get on the list by clicking on the Get Invited Tab!'));
 		$this->_redirect('customer/account/login');
     }
+	
+	private function _registerCustomer($standardInfo,$customer)
+	{
+		$randomPassword = $customer->generatePassword(8);
+		
+		$customer	->setId(null)
+					->setSkipConfirmationIfEmail($standardInfo['email'])
+					->setFirstname($standardInfo['first_name'])
+					->setLastname($standardInfo['last_name'])
+					->setEmail($standardInfo['email'])
+					->setPassword($randomPassword)
+					->setConfirmation($randomPassword)
+					->setFacebookUid($this->_getSession()->getUid());
+					
+		if(isset($standardInfo['gender']) && $gender=Mage::getResourceSingleton('customer/customer')->getAttribute('gender')){
+			$genderOptions = $gender->getSource()->getAllOptions();
+			foreach($genderOptions as $option){
+				if($option['label']==ucfirst($standardInfo['gender'])){
+					 $customer->setGender($option['value']);
+					 break;
+				}
+			}
+		}
+		
+		if(isset($standardInfo['birthday']) && count(explode('/',$standardInfo['birthday']))==3){
+			
+       		$dob = $standardInfo['birthday'];
+			
+       		if(method_exists($this,'_filterDates')){
+       			$filtered = $this->_filterDates(array('dob'=>$dob), array('dob'));
+       			$dob = current($filtered);
+       		}
+
+			$customer->setDob($dob);
+		}
+		
+		$errors = array();
+		$validationCustomer = $customer->validate();
+		if (is_array($validationCustomer)) {
+				$errors = array_merge($validationCustomer, $errors);
+		}
+		$validationResult = count($errors) == 0;
+		if (true === $validationResult) {
+			$customer->save();
+			$this->_getCustomerSession()->setCustomerAsLoggedIn($customer);
+		}
+		
+	}
 	
 	private function _getCustomerSession()
 	{
