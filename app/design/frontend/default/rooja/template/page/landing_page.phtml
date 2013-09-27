@@ -284,7 +284,7 @@ function tshow(ref)
 	}
 }
 function registerAjax() {
-	
+_gaq.push( '_trackSigupButtonClick', 'Links', 'Clicks', 'LandingPageBecomeAMember','',true);	
 var valid = new Validation('form-validate');
 if(valid.validate()){
 var request = new Ajax.Request("<?php echo Mage::getBaseUrl(); ?>" + "customer/account/ajaxCreate",
@@ -305,7 +305,7 @@ var request = new Ajax.Request("<?php echo Mage::getBaseUrl(); ?>" + "customer/a
 	}
 
 	if (response.success){
-	_gaq.push( '_trackSigupButtonClick', 'Links', 'Clicks', 'LandingPageBecomeAMember','',true);
+	_gaq.push( '_trackSigupSuccess', 'Links', 'Clicks', 'LandingPageBecomeAMember','',true);
 	Mage.Cookies.set('member', 'Yes');
 	setTimeout("window.location= '<?php echo Mage::getBaseUrl(); ?>'",1000);
 	}else{
