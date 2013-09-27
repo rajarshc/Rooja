@@ -104,12 +104,12 @@
 							</div>
 						</div>
 						<div class="promotionText blockJoin">
-							<button class="joinRooja">
+							<button class="joinRooja" >
 								<div class="sprite joinnw">
 									&nbsp;
 								</div>
 							</button>
-							<a href="http://rooja.com/" title="Rooja" class="joinLink">Still not convinced? Take a sneak-peak</a>
+							<a href="http://rooja.com/" title="Rooja" class="joinLink" >Still not convinced? Take a sneak-peak</a>
 						</div>
 					</div>
 					<div class="Clearfix">
@@ -154,13 +154,13 @@
 										<div class="field name-firstname">
 											<label class="required" for="firstname">First Name</label>
 											<div class="input-box">
-												<input type="text" title="Enter your name"  onclick="thide(this)" onblur="tshow(this)" class="input-text required-entry" value="Enter your name" name="firstname" id="firstname">
+												<input type="text" title="Enter your name"  onfocus="thide(this)" onblur="tshow(this)" class="input-text required-entry" value="Enter your name" name="firstname" id="firstname">
 											</div>
 										</div>
 										<div class="field name-lastname">
 											<label class="required" for="lastname">Last Name</label>
 											<div class="input-box">
-												<input type="text" title="Enter your last name"  onclick="thide(this)" onblur="tshow(this)" class="input-text required-entry" value="Enter your last name" name="lastname" id="lastname">
+												<input type="text" title="Enter your last name"  onfocus="thide(this)" onblur="tshow(this)" class="input-text required-entry" value="Enter your last name" name="lastname" id="lastname">
 											</div>
 										</div>
 
@@ -171,7 +171,7 @@
 							<li>
 								<label for="email_address" class="required">EMAIL</label>
 								<div class="rooja_signup_email_create">
-									<input type="text" title="Email Address"  onclick="thide(this)" onblur="tshow(this)" class="input-text validate-email required-entry" value="Email Address" id="email_address" name="email">
+									<input type="text" title="Email Address"  onfocus="thide(this)" onblur="tshow(this)" class="input-text validate-email required-entry" value="Email Address" id="email_address" name="email">
 								</div>
 							</li>
 
@@ -184,13 +184,13 @@
 									<div class="field">
 										<label for="password" class="required">Password</label>
 										<div class="input-box rooja_signup_text_password_create">
-											<input type="password" title="Password"  onclick="thide(this)" onblur="tshow(this)" class="input-text required-entry validate-password" value="Password" id="password" name="password">
+											<input type="password" title="Password" onfocus="thide(this)"  onblur="tshow(this)" class="input-text required-entry validate-password" value="Password" id="password" name="password">
 										</div>
 									</div>
 									<div class="field">
 										<label for="confirmation" class="required">Confirm Password</label>
 										<div class="input-box rooja_signup_text_password_create">
-											<input type="password" title="Password"  onclick="thide(this)" onblur="tshow(this)" class="input-text required-entry validate-cpassword" id="confirmation" value="Password" name="confirmation">
+											<input type="password" title="Password"  onfocus="thide(this)" onblur="tshow(this)" class="input-text required-entry validate-cpassword" id="confirmation" value="Password" name="confirmation">
 										</div>
 									</div>
 								</div>
@@ -200,17 +200,22 @@
 									<div class="field phone_number">
 										<label for="" class="required">Mobile (Optional)</label>
 										<div class="input-box">
-											<input type="text" title="Mobile"  onclick="thide(this)" onblur="tshow(this)" class="input-text required-entry" value="Mobile" name="mobile" id="mobile">
+											<input type="text" title="Mobile"  onfocus="thide(this)" onblur="tshow(this)" class="input-text required-entry" value="Mobile" name="mobile" id="mobile">
 										</div>
 									</div>
 									<div class="field gender">
 										<label for="gender">Gender</label>
 										<div class="input-box">
 											<div class="formattedSelect">
-												<select name="gender" id="gender" title="Select your gender" value="Select your gender">
+												<select name="gender" id="gender" title="Select your gender" value="Select your gender" style="display:none">
 													<option value="1">Male</option>
 													<option value="2">Female</option>
 												</select>
+													<input type="text" title="Select your gender"  onfocus="thide(this);showHideDropDown()" onblur="tshow(this)" class="input-text required-entry" value="Select your gender" id="gender_div">
+													<ul class="SelectList">
+														<li id="1">Male</li>
+														<li id="2">Female</li>
+													</ul>
 												<div class="sprite selectArrow"></div>
 											</div>
 										</div>
@@ -243,22 +248,40 @@ jQuery('.bgDull, .popups').css('display', 'none');
 });
  
 });
+jQuery('.SelectList li').click(function(){
+	val=jQuery(this).html();
+	jQuery('#gender_div').val(val);
+	id=jQuery(this).attr('id');
+	jQuery('option:selected', 'select[id="gender"]').removeAttr('selected');
+	jQuery('#gender').find('option[value="'+id+'"]').attr("selected",true);
+	jQuery('.SelectList').removeClass('selectedList');
+	jQuery('#gender_div').attr("style","font-style:normal; color:#000!important;");
+	
+});
+function showHideDropDown()
+{
+	if(jQuery('.SelectList').hasClass('selectedList'))
+		  jQuery('.SelectList').removeClass('selectedList');
+		else
+		  jQuery('.SelectList').addClass('selectedList'); 
+}
 function thide(ref)
 {
-if(jQuery(ref).attr("value")==jQuery(ref).attr("title"))
-{
-jQuery(ref).attr("value","");
-jQuery(ref).attr("style","font-style:normal; color:#000!important; font-family:'Constantia'; font-size:11pt;");
-
-}
+	if(jQuery(ref).attr("value")==jQuery(ref).attr("title"))
+	{
+		jQuery(ref).attr("value","");
+		jQuery(ref).attr("style","font-style:normal; color:#000!important;");
+				
+	}
+	
 }
 function tshow(ref)
 {
-if(jQuery(ref).attr("value")=="")
-{
-jQuery(ref).attr("value",jQuery(ref).attr("title"));
-jQuery(ref).attr("style","font-style:italic; color:#a29f9f!important; font-family:Constantia; font-size:11pt;");
-}
+	if(jQuery(ref).attr("value")=="")
+	{
+		jQuery(ref).attr("value",jQuery(ref).attr("title"));
+		jQuery(ref).attr("style","font-style:italic; color:#a29f9f!important;");
+	}
 }
 function registerAjax() {
 var valid = new Validation('form-validate');
