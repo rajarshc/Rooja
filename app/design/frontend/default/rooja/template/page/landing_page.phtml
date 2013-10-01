@@ -218,7 +218,7 @@
 												</select>
 													<input type="text" title="Select your gender"  onfocus="thide(this);showDropDown();" onclick="showDropDown()" onblur="tshow(this);hideDropDown()" class="input-text required-entry" readonly="readonly" value="Select your gender" id="gender_div">
 													<div style="display: none;" id="advice-gender_div" class="validation-advice"></div>
-													<ul class="SelectList">
+													<ul class="SelectList" style="z-index:9999">
 														<li id="1">Male</li>
 														<li id="2">Female</li>
 													</ul>
@@ -254,9 +254,9 @@ jQuery('.bgDull, .popups').css('display', 'none');
 });
  
 });
+
 jQuery('.SelectList li').click(function(){
 	jQuery('#gender_div').focus();
-	
 	val=jQuery(this).html();
 	jQuery('#gender_div').val(val);
 	id=jQuery(this).attr('id');
@@ -268,6 +268,7 @@ jQuery('.SelectList li').click(function(){
 });
 function showDropDown()
 {
+	//jQuery('.formattedSelect ul').css('height','0px');
 	jQuery('.SelectList').addClass('selectedList');
 }
 function hideDropDown()
