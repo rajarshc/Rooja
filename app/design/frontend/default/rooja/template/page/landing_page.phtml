@@ -104,12 +104,12 @@
 							</div>
 						</div>
 						<div class="promotionText blockJoin">
-							<button class="joinRooja" onclick="_gaq.push('trackSignupPopupBottomLandingPage', 'Links', 'Clicks', 'LandingPageBecomeAMember','',true)">
+							<button class="joinRooja" onclick="_gaq.push(['_trackEvent','Buttons', 'Click', 'JoinRoojaLandingPage'])">
 								<div class="sprite joinnw">
 									&nbsp;
 								</div>
 							</button>
-							<a href="http://rooja.com/" title="Rooja" class="joinLink" onclick="_gaq.push('trackNewVistorNotConvinced', 'Links', 'CLicks', 'LandingPageNewMember','', true)">Still not convinced? Take a sneak-peak</a>
+							<a href="http://rooja.com/" title="Rooja" class="joinLink" onclick="_gaq.push(['_trackEvent','Link', 'Click', 'NotConvinced'])">Still not convinced? Take a sneak-peak</a>
 						</div>
 					</div>
 					<div class="Clearfix">
@@ -132,9 +132,9 @@
 			<div class="bgDull"></div>
 			<div id="registerForm" class="popups">
 				<div class="sprite popClose"></div>
-				<h2>become a member</h2>
+				<h2>Sign up for a free, exclusive membership</h2>
 				<div class="rooja_signup_right_fb_create">
-					<a href="#" rel="facebook-connect" class="sprite" onclick="_gaq.push(['_trackSocial', 'facebook', 'register']);" ></a>
+					<a href="#" rel="facebook-connect" class="sprite" onclick="_gaq.push(['_trackEvent','Link', 'Click', 'JoinWithFacebook'])" ></a>
 				</div>
 				<div class="bdrOption">
 					<div class="or">
@@ -155,12 +155,14 @@
 											<label class="required" for="firstname">First Name</label>
 											<div class="input-box">
 												<input type="text" title="Enter your name"  onfocus="thide(this)" onblur="tshow(this)" class="input-text required-entry" value="Enter your name" name="firstname" id="firstname">
+												<div style="display: none;" id="advice-firstname" class="validation-advice"></div>
 											</div>
 										</div>
 										<div class="field name-lastname">
 											<label class="required" for="lastname">Last Name</label>
 											<div class="input-box">
 												<input type="text" title="Enter your last name"  onfocus="thide(this)" onblur="tshow(this)" class="input-text required-entry" value="Enter your last name" name="lastname" id="lastname">
+												<div style="display: none;" id="advice-lastname" class="validation-advice"></div>
 											</div>
 										</div>
 
@@ -172,6 +174,7 @@
 								<label for="email_address" class="required">EMAIL</label>
 								<div class="rooja_signup_email_create">
 									<input type="text" title="Email Address"  onfocus="thide(this)" onblur="tshow(this)" class="input-text validate-email required-entry" value="Email Address" id="email_address" name="email">
+									<div style="display: none;" id="advice-email_address" class="validation-advice"></div>
 								</div>
 							</li>
 
@@ -185,12 +188,14 @@
 										<label for="password" class="required">Password</label>
 										<div class="input-box rooja_signup_text_password_create">
 											<input type="password" title="Password" onfocus="thide(this)"  onblur="tshow(this)" class="input-text required-entry validate-password" value="Password" id="password" name="password">
+											<div style="display: none;" id="advice-password" class="validation-advice"></div>
 										</div>
 									</div>
 									<div class="field">
 										<label for="confirmation" class="required">Confirm Password</label>
 										<div class="input-box rooja_signup_text_password_create">
 											<input type="password" title="Password"  onfocus="thide(this)" onblur="tshow(this)" class="input-text required-entry validate-cpassword" id="confirmation" value="Password" name="confirmation">
+											<div style="display: none;" id="advice-confirmation" class="validation-advice"></div>
 										</div>
 									</div>
 								</div>
@@ -204,14 +209,15 @@
 										</div>
 									</div>
 									<div class="field gender">
-										<label for="gender">Gender</label>
+										<label for="gender_div" class="required">Gender</label>
 										<div class="input-box">
 											<div class="formattedSelect">
 												<select name="gender" id="gender" title="Select your gender" value="Select your gender" style="display:none">
 													<option value="1">Male</option>
 													<option value="2">Female</option>
 												</select>
-													<input type="text" title="Select your gender"  onfocus="thide(this);showHideDropDown()" onblur="tshow(this)" class="input-text required-entry" value="Select your gender" id="gender_div">
+													<input type="text" title="Select your gender"  onfocus="thide(this);showDropDown();" onclick="showDropDown()" onblur="tshow(this);hideDropDown()" class="input-text required-entry" readonly="readonly" value="Select your gender" id="gender_div">
+													<div style="display: none;" id="advice-gender_div" class="validation-advice"></div>
 													<ul class="SelectList">
 														<li id="1">Male</li>
 														<li id="2">Female</li>
@@ -231,7 +237,7 @@
 						</ul>
 					</div>
 					<div id="rooja_signup_left_joinnow_create">
-						<input type="submit" name="submitBtn" value="Submit">
+						<input type="submit" name="submitBtn" value="Shop Now!">
 					</div>
 				</form>
 			</div>
@@ -249,6 +255,8 @@ jQuery('.bgDull, .popups').css('display', 'none');
  
 });
 jQuery('.SelectList li').click(function(){
+	jQuery('#gender_div').focus();
+	
 	val=jQuery(this).html();
 	jQuery('#gender_div').val(val);
 	id=jQuery(this).attr('id');
@@ -258,12 +266,13 @@ jQuery('.SelectList li').click(function(){
 	jQuery('#gender_div').attr("style","font-style:normal; color:#000!important;");
 	
 });
-function showHideDropDown()
+function showDropDown()
 {
-	if(jQuery('.SelectList').hasClass('selectedList'))
-		  jQuery('.SelectList').removeClass('selectedList');
-		else
-		  jQuery('.SelectList').addClass('selectedList'); 
+	jQuery('.SelectList').addClass('selectedList');
+}
+function hideDropDown()
+{
+	jQuery('.SelectList').removeClass('selectedList');
 }
 function thide(ref)
 {
@@ -284,9 +293,88 @@ function tshow(ref)
 	}
 }
 function registerAjax() {
-_gaq.push( '_trackSigupButtonClick', 'Links', 'Clicks', 'LandingPageBecomeAMember','',true);	
-var valid = new Validation('form-validate');
-if(valid.validate()){
+_gaq.push(['_trackEvent','Buttons', 'Click', 'ShopNowLandingSignup']);
+var fname=jQuery('#firstname').val();
+var lname=jQuery('#lastname').val();
+var gender=jQuery('#gender_div').val();
+var email=jQuery('#email_address').val();
+var password=jQuery('#password').val();
+var confirm=jQuery('#confirmation').val();
+var reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+var failed=0;
+jQuery('#advice-confirmation').hide();
+jQuery('#advice-firstname').hide();
+jQuery('#advice-lastname').hide();
+jQuery('#advice-gender_div').hide();
+jQuery('#advice-email_address').hide();
+jQuery('#advice-confirmation').hide();
+jQuery('#advice-password').hide();
+
+jQuery('#firstname').removeClass('validation-failed');
+jQuery('#lastname').removeClass('validation-failed');
+jQuery('.formattedSelect').removeClass('validation-failed');
+jQuery('#email_address').removeClass('validation-failed');
+jQuery('#password').removeClass('validation-failed');
+jQuery('#confirmation').removeClass('validation-failed');
+if(fname=='Enter your name')
+{
+ jQuery('#firstname').addClass('validation-failed');
+ jQuery('#advice-firstname').html('This field is required');
+ jQuery('#advice-firstname').show();
+ failed=1;
+}
+if(lname=='Enter your last name')
+{
+ jQuery('#lastname').addClass('validation-failed');
+ jQuery('#advice-lastname').html('This field is required');
+ jQuery('#advice-lastname').show();
+ failed=1;
+}
+if(gender=='Select your gender')
+{
+ jQuery('.formattedSelect').addClass('validation-failed');
+ jQuery('#advice-gender_div').html('This field is required');
+ jQuery('#advice-gender_div').show();
+ failed=1;
+}
+if(email=='Email Address')
+{
+ jQuery('#email_address').addClass('validation-failed');
+ jQuery('#advice-email_address').html('This field is required');
+ jQuery('#advice-email_address').show();
+ failed=1;
+}
+else if(!reg.test(email))
+{
+	jQuery('#email_address').addClass('validation-failed');
+ jQuery('#advice-email_address').html('Invalid email address');
+ jQuery('#advice-email_address').show();
+ failed=1;
+}
+if(password=='Password')
+{
+ jQuery('#password').addClass('validation-failed');
+ jQuery('#advice-password').html('This field is required');
+ jQuery('#advice-password').show();
+ failed=1;
+}
+else if(password.length<6)
+{
+ jQuery('#password').addClass('validation-failed');
+ jQuery('#advice-password').html('Please enter 6 or more characters');
+ jQuery('#advice-password').show();
+ failed=1;
+}
+if(password!=confirm)
+{
+ jQuery('#confirmation').addClass('validation-failed');
+ jQuery('#advice-confirmation').html('Password Does not match');
+ jQuery('#advice-confirmation').show();
+ failed=1;
+}	
+//var valid = new Validation('form-validate');
+if(failed==0){
+	
 var request = new Ajax.Request("<?php echo Mage::getBaseUrl(); ?>" + "customer/account/ajaxCreate",
 	{
 	method:'post',
@@ -305,7 +393,7 @@ var request = new Ajax.Request("<?php echo Mage::getBaseUrl(); ?>" + "customer/a
 	}
 
 	if (response.success){
-	_gaq.push( '_trackSigupSuccess', 'Links', 'Clicks', 'LandingPageBecomeAMember','',true);
+		_gaq.push(['_trackEvent','Buttons', 'Click', 'ShopNowLandingSignupSuccess']);
 	Mage.Cookies.set('member', 'Yes');
 	setTimeout("window.location= '<?php echo Mage::getBaseUrl(); ?>'",1000);
 	}else{
@@ -322,7 +410,7 @@ var request = new Ajax.Request("<?php echo Mage::getBaseUrl(); ?>" + "customer/a
 	},
 	parameters: Form.serialize('form-validate'),
 	onLoading: function(){
-	jQuery('.messages').html('<img src="<?php echo $this -> getSkinUrl(); ?>/images/ajax - loader - arrows.gif" />');
+	jQuery('.messages').html('<img src="<?php echo $this -> getSkinUrl(); ?>images/ajax-loader-arrows.gif" />');
 	jQuery(".messages").show();
 	}
 	}

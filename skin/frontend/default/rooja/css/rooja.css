@@ -1069,12 +1069,13 @@ a.lCommon:hover{ color:#000; text-decoration:none;}
 .paymentMethd{ float:right; text-align:center; margin-bottom:4px;}
 .paymentMethd h4{ margin:57px 0 5px; font-family:quattrocento, segoeui; font-size:12.56px; padding:0;}
 button.joinRooja{ width:276px; height:86px; margin:103px auto 25px; font-size:12px; }
-.blockTime{ width:223px!important; margin:0 auto;}
+.blockTime{ width:223px!important; margin:23px auto 0;}
 a.joinLink{ text-decoration:underline; font-family:gotham_book, segoeui;}
 a.joinLink:hover{ text-decoration:none;}
 .footerNw .foot{ background-color:#000; height:38px; padding:4px 0;}
 .footerNw .social{ margin:7px 0; float:right; white-space:nowrap;}
 .footerNw .social a{ margin-right:25px; font-family:quattrocento; font-size:12px;}
+a.lCommon{ color:#000; text-decoration:underline; font-family:arial, verdana;}
 /*Popup*/
 .bgDull{ position: fixed; top:0; left:0; width:100%; height:100%; background-color:#000; opacity:.4; filter:alpha(opacity=40); z-index: 9950; display:none;}
 .popups {
@@ -1107,7 +1108,7 @@ a.joinLink:hover{ text-decoration:none;}
 .popups form .form-list .field{ width:245px;}
 .popups .field:first-child{ margin-right:5px!important;}
 .popups form .rooja_signup_email_create input[type="text"]{ width:465px;}
-.formattedSelect{ height:24px; width:235px; margin-bottom:10px; background-color:#e9e9e9; box-shadow:none; padding:5px 0px; position:relative;}
+.formattedSelect{ height:24px; width:235px; margin-bottom:10px; background-color:#e9e9e9 !important; box-shadow:none; padding:5px 0px; position:relative;}
 .formattedSelect select, .formattedSelect select:focus, .formattedSelect select:hover{ display:none}
 .formattedSelect input[type="text"]{ border:none!important; outline:none!important; background-color:transparent!important; margin-left:-1px!important; *margin-left:1px!important; padding:0 10px!important; box-shadow:none!important;}
 .formattedSelect ul{height:0; position:absolute; top:35px; border:1px solid #97C4C6; left:-1px; right:0; width:100%; opacity:0; filter:alpha(opacity=0); -moz-transition: all .2s ease; -o-transition: all .2s ease; -webkit-transition: all .2s ease; -ms-transition: all .2s ease; overflow:hidden}
@@ -1116,7 +1117,8 @@ a.joinLink:hover{ text-decoration:none;}
 .formattedSelect ul li:first-child{border-top:none;}
 .formattedSelect ul li:hover{background-color:#cbcbcb; color:#666666; }
 .formattedSelect .selectArrow{ position:absolute; top:0; right:0; *right:-1px; *border-right:1px solid #97C4C6; pointer-events:none; height:34px; width:31px; background-position:-171px -68px; z-index:9999;}
-.popups form #rooja_signup_left_joinnow_create input[type="submit"]{ margin:14px 0 4px!important; cursor:pointer;}
+.popups form #rooja_signup_left_joinnow_create input[type="submit"]{ cursor: pointer;font-family: open_sans_light !important;font-size: 24px;height: auto;line-height: 70px;margin: 14px 0 4px !important;padding: 9px 45px !important;width: auto;}
+.popups form #rooja_signup_left_joinnow_create{text-align:center}
 #rooja_signup_left_joinnow_create input[type="submit"]:hover{ background-color:#ad5600;}
 
 /*Similar to All*/
