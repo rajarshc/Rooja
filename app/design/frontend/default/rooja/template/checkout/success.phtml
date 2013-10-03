@@ -38,3 +38,30 @@ b._i.push([a,e,d])};b.__SV=1.2}})(document,window.mixpanel||[]);
 mixpanel.init("f0d20a4dd829381053e74b75f8fd373f");
 mixpanel.track("Checkout success")
 </script>
+
+<script type="text/javascript">
+
+    var basket = {
+        products: [
+          <?php echo $pro ?> 
+        ],
+        transaction : '<?php echo $orderid ?>',
+        amount: <?php echo $total ?>,
+        currency: 'INR'
+    };
+
+</script>
+
+<script type="text/javascript">
+    (function(){
+        var s   = document.createElement('script');
+        var x   = document.getElementsByTagName('script')[0];
+        s.type  = 'text/javascript';
+        s.async = true;
+        s.src   = ('https:'==document.location.protocol?'https://':'http://')
+                + 'ap-sonar.sociomantic.com/js/2010-07-01/adpan/rooja-in';
+        x.parentNode.insertBefore( s, x );
+    })();
+</script>
+
+<!--23-8-2013 EOC by GC-->
