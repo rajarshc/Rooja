@@ -268,7 +268,25 @@ echo $likes = $xml->link_stat->like_count;
 
 
 </script>
-
-
 <?php endif; ?>
+<!--/////22-8-2013 SOC by GC-->
+<script type="text/javascript">
 
+    var product = {
+        category : [ '<?php echo $parent_cat ?>', '<?php echo $cat_name ?>' ]
+    };
+
+</script>
+
+<script type="text/javascript">
+    (function(){
+        var s   = document.createElement('script');
+        var x   = document.getElementsByTagName('script')[0];
+        s.type  = 'text/javascript';
+        s.async = true;
+        s.src   = ('https:'==document.location.protocol?'https://':'http://')
+                + 'ap-sonar.sociomantic.com/js/2010-07-01/adpan/rooja-in';
+        x.parentNode.insertBefore( s, x );
+    })();
+</script>
+<!--/////22-8-2013 EOC by GC-->
