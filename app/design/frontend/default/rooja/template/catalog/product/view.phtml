@@ -57,6 +57,31 @@ jQuery(function() {
 <?php $_product = $this->getProduct(); ?>
 <?php $fbprice = $_helper->productAttribute($_product, $_product->getRl_price(), 'rl_price'); ?>
 <?php $fbinc = $_helper->productAttribute($_product, $_product->getRl_inc(), 'rl_inc'); ?>
+
+<!--/////22-8-2013 SOC by GC-->
+<?php  $pid=$_product->getId();  ?> 
+<?php  $pname=addslashes($_product->getName());  ?> 
+<?php  $pcat=addslashes(Mage::getModel('catalog/layer')->getCurrentCategory()->getName()); ?>
+
+<?php  $prentcat=addslashes(Mage::getModel('catalog/layer')->getCurrentCategory()->getParentCategory()->getName());  ?> 
+<?php  $pbrand=addslashes($_product->getManufacturer());  ?> 
+<?php  $pdesc=trim(addslashes($_product->getShortDescription()));  ?> 
+<?php  $price=sprintf('%0.2f', $_product->getPrice());  ?>
+<?php  $spclprice=sprintf('%0.2f',$_product->getFinalPrice());  ?>
+<?php  $purl=$_product->getProductUrl();  ?> 
+<?php  $imgurl=$_product->getImageUrl();  ?>
+<!--/////22-8-2013 EOC by GC-->
+
+<!--/////4-9-2013 SOC by GC-->
+<?php
+	$flag=0;
+	if($pid==58680 || $pid==58681 || $pid==58682 || $pid==58683){
+	
+	$flag=1;	
+			
+	}
+?>
+<!--/////4-9-2013 EOC by GC-->
 <script type="text/javascript">
     var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
 </script>
