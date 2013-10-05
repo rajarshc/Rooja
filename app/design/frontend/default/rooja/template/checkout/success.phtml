@@ -38,6 +38,25 @@ b._i.push([a,e,d])};b.__SV=1.2}})(document,window.mixpanel||[]);
 mixpanel.init("f0d20a4dd829381053e74b75f8fd373f");
 mixpanel.track("Checkout success")
 </script>
+<!--23-8-2013 SOC by GC-->
+<?php
+  $order = Mage::getModel('sales/order')->loadByIncrementId($this->getOrderId());  ///getting cart items
+  $total = sprintf('%0.2f',$order->getGrandTotal());
+  $orderid=$this->getOrderId();
+  $items = $order->getItemsCollection();
+  foreach($items as $item){
+    $product = $item->getProduct();
+    $sku=$item->getSku();
+    $_Pdetails =Mage::getModel('catalog/product')->loadByAttribute('sku',$sku);
+    $p_id=$_Pdetails->getId();
+    
+    $price=sprintf('%0.2f',$_Pdetails->getFinalPrice());
+    
+    $pro.="{ identifier: '".$p_id."', amount: ".$price.", currency: 'INR', quantity:".$item->getQtyToShip()."  },";
+    
+  }
+  $pro=chop($pro , ",");
+?>
 
 <script type="text/javascript">
 
