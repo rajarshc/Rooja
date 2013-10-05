@@ -72,6 +72,10 @@ jQuery(document).ready(function(){
 
 ?>
 
+<!--/////22-8-2013 SOC by GC-->
+<?php  $cat_name=addslashes(Mage::getModel('catalog/layer')->getCurrentCategory()->getName()); ?>
+<?php  $parent_cat = addslashes(Mage::getModel('catalog/layer')->getCurrentCategory()->getParentCategory()->getName()); ?>
+<!--/////22-8-2013 EOC by GC-->
 
 <?php
 
