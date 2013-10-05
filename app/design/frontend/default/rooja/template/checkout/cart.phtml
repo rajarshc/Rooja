@@ -101,9 +101,28 @@
                     <?php endif; ?>
                 </thead>
                 <tbody>
+		<!--/////22-8-2013 SOC by GC-->
+		<?php $pro=""; ?> 
+		    
                 <?php foreach($this->getItems() as $_item): ?>
+		<?php //echo $_item->getPriceInclTax(); ?>
+		    
+		    <?php
+		    $sku=$_item->getSku();
+		    $_Pdetails =Mage::getModel('catalog/product')->loadByAttribute('sku',$sku);
+    		    $p_id=$_Pdetails->getId();
+		    $price=sprintf('%0.2f',$_item->getProduct()->getFinalPrice());
+		    
+    		    $pro.="{ identifier: '".$p_id."', amount: ".$price.", currency: 'INR', quantity:".$_item->getQty()."  },";
+    		    
+		    ?>
+    		    <!--/////22-8-2013 EOC by GC-->
                     <?php echo $this->getItemHtml($_item) ?>
                 <?php endforeach ?>
+		
+		<?php $pro=chop($pro , ","); ?>
+		
+		
                 </tbody>
             </table>
             <script type="text/javascript">decorateTable('shopping-cart-table')</script>
