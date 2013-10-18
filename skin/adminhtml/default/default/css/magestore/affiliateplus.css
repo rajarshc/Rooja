@@ -1,0 +1,24 @@
+
+#affiliate_general_terms, #affiliate_general_present_text, #affiliate_general_faq_text{
+	width:600px;
+	height:400px;
+}
+
+#transaction-table table td {
+	padding-top:8px;
+}
+
+.element-success{
+    color:#3D6611 !important;
+    font-weight:bold;
+    font-size:16px;
+    padding-left: 35px;
+    background: url(../../images/success_msg_icon.gif) no-repeat 10px 10px !important;
+}
+.element-failed{
+    font-weight:bold;
+    font-size:16px;
+    padding-left: 35px;
+    background: #EFF5EA url(../../images/error_msg_icon.gif) no-repeat 10px 10px !important;
+}
+#loading-mask {z-index: 5000;}

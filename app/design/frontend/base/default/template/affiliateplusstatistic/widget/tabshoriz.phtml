@@ -1,0 +1,125 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     default_default
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<div class="page-title">
+	<h2><?php echo $this->__('Reports')?></h2>
+</div>
+<?php if(!empty($tabs)): ?>
+    <div id="tabs">
+        <?php foreach ($tabs as $_tab): ?>
+        <div id="<?php echo $this->getTabId($_tab); ?>" class="my_tab">
+            <div id="<?php echo $this->getTabId($_tab) ?>_content" class="tabContents"><?php echo $this->getTabContent($_tab) ?></div>
+        </div>
+        <?php endforeach;?>
+        <?php echo $this->getChildHtml('totals') ?>
+    </div>
+<?php endif;?>
+<?php echo $this->getChildHtml('filters') ?>
+<script type="text/javascript">
+    var MyTabs= new mt('tabs','div.my_tab');
+    //MyTabs.removeTabTitles('h5.tab_title');
+    var i=1;
+    <?php if(!empty($tabs)): ?>
+        <?php $firsttab = reset($tabs);?> 
+        <?php foreach ($tabs as $_tab): ?>
+            MyTabs.addTab('<?php echo $this->getTabId($_tab); ?>','<?php echo $this->getTabTitle($_tab) ?>');
+            i++;
+        <?php endforeach;?>
+        MyTabs.makeActive('<?php echo $this->getTabId($firsttab); ?>');
+    <?php endif;?>
+    
+</script>
+<div id="loading-mask" style="left: -2px; top: 0px;display:none ">
+    <p class="loader" id="loading_mask_loader">
+        <img src="<?php echo $this->getSkinUrl();?>/images/ajax-loader-tr.gif" alt="Loading...">
+        <br><?php  echo $this->__('Please wait...'); ?>
+    </p>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+function changeDiagramsPeriod(periodObj) {
+    $('loading-mask').style.display = 'block';
+    periodParam = periodObj.value ? 'period/' + periodObj.value + '/' : '';
+<?php foreach ($this->getTabsIds() as $tabId): ?>
+    ajaxBlockParam = 'block/frontend_diagrams_<?php echo $tabId ?>/';
+    ajaxBlockUrl = '<?php echo Mage::getUrl('*/*/ajaxBlock') ?>' + ajaxBlockParam + periodParam;
+    new Ajax.Request(ajaxBlockUrl, {
+        parameters: {isAjax: 'true'},
+        onSuccess: function(transport) {
+            
+            tabContentElementId = '<?php echo $this->getId() ?>_<?php echo $tabId ?>_content';
+            try {
+                if (transport.responseText.isJSON()) {
+                    var response = transport.responseText.evalJSON()
+                    if (response.error) {
+                        alert(response.message);
+                    }
+                    if(response.ajaxExpired && response.ajaxRedirect) {
+                        setLocation(response.ajaxRedirect);
+                    }
+                } else {
+                    $(tabContentElementId).update(transport.responseText);
+                }
+            }
+            catch (e) {
+                $(tabContentElementId).update(transport.responseText);
+            }
+            $('loading-mask').style.display = 'none';
+        }
+    });
+<?php endforeach; ?>
+    ajaxBlockUrl = '<?php echo Mage::getUrl('*/*/ajaxBlock', array('block' => 'frontend_diagrams_totals', 'period' => '')) ?>' + periodParam;
+    new Ajax.Request(ajaxBlockUrl, {
+        parameters: {isAjax: 'true'},
+        onSuccess: function(transport) {
+            
+            tabContentElementId = 'dashboard_diagram_totals';
+            try {
+                if (transport.responseText.isJSON()) {
+                    var response = transport.responseText.evalJSON()
+                    if (response.error) {
+                        alert(response.message);
+                    }
+                    if(response.ajaxExpired && response.ajaxRedirect) {
+                        setLocation(response.ajaxRedirect);
+                    }
+                } else {
+                    $(tabContentElementId).replace(transport.responseText);
+                }
+            }
+            catch (e) {
+                $(tabContentElementId).replace(transport.responseText);
+            }
+        }
+    });
+}
+
+function toggleCal(id) {
+    $('dashboard_'+id+'_cal_div').toggle();
+    $('dashboard_'+id+'_range_div').toggle();
+}
+//]]>
+</script>

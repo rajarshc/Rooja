@@ -1,0 +1,20 @@
+<?php
+$actionId = $this->getActionId();
+$hashCode = $this->getHashCode();
+if ($actionId) {
+    ?>
+    <script type="text/javascript">
+        //<![CDATA[
+        var isInIFrame = (window.location != window.parent.location);
+        if(isInIFrame!=true){
+            useIframe();
+        }
+        function useIframe(){
+            var url='<?php echo $this->getUrl('affiliateplus/actiontransaction/creatTransaction', array('action_id' => $actionId, 'hash_code' => $hashCode)); ?>';
+            var request = new Ajax.Request(url);
+        }
+        //]]>
+    </script>
+    <?php
+}
+?>

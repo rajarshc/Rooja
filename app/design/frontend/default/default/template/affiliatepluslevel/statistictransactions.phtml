@@ -1,0 +1,44 @@
+<?php
+/**
+ * Statistic transactions template
+ */
+?>
+<?php $infoStandardCommission = $this->getInfoStandardCommission()?>
+<?php $infoTierCommission = $this->getInfoTierCommission()?>
+<div class="box-account box-info">
+    <div class="statistic-transactions block-content" style="padding-left: 0px;">
+    	<div class="right" style="margin-right: 310px;">
+			<p>
+				<strong>
+					<?php echo $this->__('Total Earnings: ') ?>
+					<?php echo $this->getFormatedCurreny($infoStandardCommission['commissions'] + $infoTierCommission['commissions']) ?>
+				</strong>
+			</p>
+            <p>
+                <?php echo $this->__('Standard Earnings: ') ?>
+                <?php echo $infoStandardCommission['total_commission'] ?>
+            </p>
+            <p>
+                <?php echo $this->__('Tier Earnings: ') ?>
+                <?php echo $infoTierCommission['total_commission'] ?>
+            </p>
+        </div>
+        <div class="">
+			<p>
+				<strong>
+					<?php echo $this->__('Total Transactions: ') ?>
+					<?php echo $infoStandardCommission['number_commission'] + $infoTierCommission['number_commission'] ?>
+				</strong>
+			</p>
+            <p>
+                <?php echo $this->__('Standard Transactions: ') ?>
+                <?php echo $infoStandardCommission['number_commission'] ?>
+            </p>
+            <p>
+                <?php echo $this->__('Tier Transactions: ') ?>
+                <?php echo $infoTierCommission['number_commission'] ?>
+            </p>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>

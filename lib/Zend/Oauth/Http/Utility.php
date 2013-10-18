@@ -16,14 +16,14 @@
  * @package    Zend_Oauth
  * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Utility.php 22662 2010-07-24 17:37:36Z mabe $
+ * @version    $Id: Utility.php 20217 2010-01-12 16:01:57Z matthew $
  */
 
 /** Zend_Oauth */
-#require_once 'Zend/Oauth.php';
+require_once 'Zend/Oauth.php';
 
 /** Zend_Oauth_Http */
-#require_once 'Zend/Oauth/Http.php';
+require_once 'Zend/Oauth/Http.php';
 
 /**
  * @category   Zend
@@ -52,15 +52,11 @@ class Zend_Oauth_Http_Utility
             'oauth_nonce'            => $this->generateNonce(),
             'oauth_signature_method' => $config->getSignatureMethod(),
             'oauth_timestamp'        => $this->generateTimestamp(),
+            'oauth_token'            => $config->getToken()->getToken(),
             'oauth_version'          => $config->getVersion(),
         );
-        
-        if ($config->getToken()->getToken() != null) {
-            $params['oauth_token'] = $config->getToken()->getToken();
-        }
 
-
-        if ($serviceProviderParams !== null) {
+        if (!is_null($serviceProviderParams)) {
             $params = array_merge($params, $serviceProviderParams);
         }
 
@@ -154,7 +150,7 @@ class Zend_Oauth_Http_Utility
             $className = 'Zend_Oauth_Signature_' . ucfirst(strtolower($signatureMethod));
         }
 
-        #require_once str_replace('_', '/', $className) . '.php';
+        require_once str_replace('_', '/', $className) . '.php';
         $signatureObject = new $className($consumerSecret, $tokenSecret, $hashAlgo);
         return $signatureObject->sign($params, $method, $url);
     }

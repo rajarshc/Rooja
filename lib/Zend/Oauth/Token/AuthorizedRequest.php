@@ -16,11 +16,11 @@
  * @package    Zend_Oauth
  * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: AuthorizedRequest.php 22662 2010-07-24 17:37:36Z mabe $
+ * @version    $Id: AuthorizedRequest.php 20217 2010-01-12 16:01:57Z matthew $
  */
 
 /** Zend_Oauth_Token */
-#require_once 'Zend/Oauth/Token.php';
+require_once 'Zend/Oauth/Token.php';
 
 /**
  * @category   Zend
@@ -44,14 +44,14 @@ class Zend_Oauth_Token_AuthorizedRequest extends Zend_Oauth_Token
      */
     public function __construct(array $data = null, Zend_Oauth_Http_Utility $utility = null)
     {
-        if ($data !== null) {
+        if (!is_null($data)) {
             $this->_data = $data;
             $params = $this->_parseData();
             if (count($params) > 0) {
                 $this->setParams($params);
             }
         }
-        if ($utility !== null) {
+        if (!is_null($utility)) {
             $this->_httpUtility = $utility;
         } else {
             $this->_httpUtility = new Zend_Oauth_Http_Utility;

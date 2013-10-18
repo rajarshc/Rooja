@@ -1,0 +1,159 @@
+<?php
+/**
+ * Payments confirm template
+ */
+?>
+<?php $payment = $this->getPayment();?>
+<?php $statusOption = $this->getStatusArray() ?>
+
+<div class="page-title">
+	<h3><?php echo $this->__('Review your request and send'); ?></h3>
+</div>
+<div class="box-info box-account">
+	<div class="box-head">
+		<h2><?php echo $this->__('Withdrawal Information') ?></h2>
+	</div>
+	<ul class="form-list">
+		<li class="fields">
+			<div class="field">
+				<strong><?php echo $this->__('Requested Date') ?></strong>
+			</div>
+			<div class="field">
+				<?php echo $this->formatDate($payment->getRequestTime(),'medium',false) ?>
+			</div>
+		</li>
+    <?php if ($payment->getData('tax_amount')): ?>
+        <li class="fields">
+			<div class="field">
+				<strong><?php echo $this->__('Amount') ?></strong>
+			</div>
+			<div class="field">
+				<?php echo Mage::helper('core')->currency($payment->getAmountInclTax()) ?>
+			</div>
+		</li>
+        <li class="fields">
+			<div class="field">
+				<strong><?php echo $this->__('Tax') ?></strong>
+			</div>
+			<div class="field">
+				<?php echo Mage::helper('core')->currency($payment->getTaxAmount()) ?>
+			</div>
+		</li>
+        <li class="fields">
+			<div class="field">
+				<strong><?php echo $this->__('Amount (Excl. Tax)') ?></strong>
+			</div>
+			<div class="field">
+				<?php echo Mage::helper('core')->currency($payment->getAmount()) ?>
+			</div>
+		</li>
+    <?php else: ?>
+		<li class="fields">
+			<div class="field">
+				<strong><?php echo $this->__('Amount') ?></strong>
+			</div>
+			<div class="field">
+				<?php echo Mage::helper('core')->currency($payment->getAmount()) ?>
+			</div>
+		</li>
+    <?php endif ?>
+		<!--li class="fields">
+			<div class="field">
+				<strong><?php echo $this->__('Fee') ?></strong>
+			</div>
+			<div class="field">
+				<?php if ($payment->getStatus() == 1): ?>
+					<?php echo $this->__('N/A') ?>
+				<?php elseif($payment->getIsPayerFee()): ?>
+					<?php echo Mage::helper('core')->currency(0) ?>
+				<?php else: ?>
+					<?php echo Mage::helper('core')->currency($payment->getFee()) ?>
+				<?php endif ?>
+			</div>
+		</li-->
+		<li class="fields">
+			<div class="field">
+				<strong><?php echo $this->__('Payment Method') ?></strong>
+			</div>
+			<div class="field">
+				<?php echo $payment->getPaymentMethodHtml() ?>
+			</div>
+		</li>
+		<?php echo $this->getChildHtml('payment_method_info') ?>
+	</ul>
+</div>
+<form id="confirm-form" action="<?php echo $this->getUrl('affiliateplus/index/requestPayment');?>" method="POST">
+    <?php
+    $data = $payment->getData();
+    $files = $_FILES;//Zend_Debug::dump($files);
+    foreach ($data as $key => $value) {
+        if($key != 'payment' && $key != 'address_html' && $key != 'bankaccount_html'){
+            if($key == 'bank'){
+                foreach($value as $k=>$v){
+        ?>
+            <input type="hidden" name="bank[<?php echo $k;?>]" value="<?php echo $v;?>"/>
+        <?php
+                }
+            }elseif($key == 'account'){
+                foreach($value as $k=>$v){
+                    if($k == 'street'){
+                        foreach($v as $p=>$s){
+        ?>
+            <input type="hidden" name="account[street][<?php echo $p;?>]" value="<?php echo $s;?>"/>
+        <?php 
+                        }
+                    }else{
+        ?>
+            <input type="hidden" name="account[<?php echo $k;?>]" value="<?php echo $v;?>"/>
+        <?php
+                    }
+                }
+            }else{
+        ?>
+            <input type="hidden" name="<?php echo $key;?>" value="<?php echo $value;?>"/>
+        <?php
+            }
+        }
+    }
+    ?>
+</form>
+<div class="buttons-set">
+    <button style="float:left" type="button" class="form-button button" onclick="editRequest()">
+        <span class="affiliateplus-action-gray"><?php echo $this->__('Back to Edit')?></span>
+    </button>
+   
+    <button type="button" class="form-button button" onclick="requestPayment()">
+        <span><?php echo $this->__('Send Request')?></span>
+    </button>
+    
+    <!--button type="button" class="form-button button" onclick="editRequest()">
+        <span class="affiliateplus-action-gray"><?php echo $this->__('Edit')?></span>
+    </button-->
+    
+     
+    
+</div>
+<script type="text/javascript">
+    
+    function requestPayment(){
+        var form = $('confirm-form');
+        if(form)
+            form.submit();
+    }
+    
+    function cancelRequest(){
+        var url = '<?php echo $this->getUrl('affiliateplus/index/index');?>';
+        window.location.href = url;
+    }
+    
+    function editRequest(){
+        var url = '<?php echo $this->getUrl('affiliateplus/index/paymentForm');?>';
+        var form = $('confirm-form');
+        if(form){
+            form.action = url;
+            form.submit();
+        }
+            
+        //window.location.href = url;
+    }
+</script>

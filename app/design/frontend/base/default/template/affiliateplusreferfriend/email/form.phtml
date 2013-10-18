@@ -1,0 +1,52 @@
+<?php
+/**
+ * Refer product for friend email form
+ * 
+ * @see Magestore_AffiliateplusReferFriend_Block_Email_Form
+ */
+?>
+<form id="affiliateplus-email-form" method="post" action="">
+    <div class="page-title" style="text-align: left;">
+        <h2><?php echo $this->__('Email to friends') ?></h2>
+    </div>
+    <ul class="form-list" style="text-align: left;">
+        <li>
+            <label><?php echo $this->__('From') ?>:</label>&nbsp;
+            <a href="mailto:<?php echo $this->getAccountEmail() ?>"><?php echo $this->getAccountEmail() ?></a>
+        </li>
+        <li>
+            <label for="affiliate-email-address"><?php echo $this->__("Enter your friends' emails separated by comma") ?>:</label>
+            <div class="input-box">
+                <input type="text" class="input-text required-entry" id="affiliate-email-address" name="emails" style="width: 318px;" value="<?php echo $this->getEmailFormData()->getEmails() ?>"/>
+            </div>
+        </li>
+        <li>
+            <span>
+                <?php echo $this->__("Or retrieve contacts from") ?>
+                <a href="#" onclick="affRetrieveContacts('gmail'); return false;" title="<?php echo $this->__('get contacts from gmail') ?>"><?php echo $this->__('Gmail') ?></a>,
+                <a href="#" onclick="affRetrieveContacts('yahoo'); return false;" title="<?php echo $this->__('get contacts from yahoo') ?>"><?php echo $this->__('Yahoo') ?></a>
+            </span>
+        </li>
+        <li>
+            <label for="affiliate-email-subject"><?php echo $this->__("Subject") ?>:</label>
+            <div class="input-box">
+                <input type="text" class="input-text required-entry" id="affiliate-email-subject" name="email_subject" style="width: 318px;" value="<?php echo $this->getEmailFormData()->getEmailSubject() ? $this->getEmailFormData()->getEmailSubject() : $this->getDefaultEmailSubject() ?>"/>
+            </div>
+        </li>
+        <li>
+            <label for="affiliate-email-content"><?php echo $this->__("Your message (use suggested or write your own)") ?>:</label>
+            <div class="input-box">
+                <textarea id="affiliate-email-content" name="email_content" class="required-entry" style="width: 318px;height: 165px;"><?php echo $this->getEmailFormData()->getEmailContent() ? $this->getEmailFormData()->getEmailContent() : $this->getDefaultEmailContent() ?></textarea>
+            </div>
+        </li>
+    </ul>
+    <div class="buttons-set">
+        <button id="affiliate-btn-send-email" class="button" title="<?php echo $this->__('Send Email') ?>" type="button" onclick="affSendEmail()">
+            <span><span><?php echo $this->__('Send Email') ?></span></span>
+        </button>
+        <span id="affiliate-please-wait-send-email" class="opc-please-wait" style="display: none;">
+            <img src="<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif') ?>" class="v-middle" alt=""/>
+            <?php echo $this->__('Sending Email') ?>
+        </span>
+    </div>
+</form>

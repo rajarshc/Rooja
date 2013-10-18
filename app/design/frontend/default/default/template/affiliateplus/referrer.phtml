@@ -1,0 +1,41 @@
+<?php
+/**
+ * Referers history template
+ */
+?>
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+
+<div class="page-title">
+	<h2><?php echo $this->__('Traffic Summary') ?></h2>
+</div>
+<table id="traffics-report" class="data-table">
+    <thead>
+        <tr>
+            <th></th>
+            <th><?php echo $this->__('Today')?></th>
+            <th><?php echo $this->__('This week')?></th>
+            <th><?php echo $this->__('This month')?></th>
+            <th><?php echo $this->__('This year')?></th>
+            <th><?php echo $this->__('All time')?></th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach($this->getTraffics() as $traffic):?>
+        <tr>
+            <td><?php echo $traffic['title'];?></td>
+            <td><?php echo $traffic['today'];?></td>
+            <td><?php echo $traffic['week'];?></td>
+            <td><?php echo $traffic['month'];?></td>
+            <td><?php echo $traffic['year'];?></td>
+            <td><?php echo $traffic['all'];?></td>
+        </tr>
+        <?php endforeach;?>
+    </tbody>
+</table>
+<br/>
+<br/>
+<div class="page-title">
+	<h2><?php echo $this->__('Traffic Source') ?></h2>
+</div>
+
+<?php echo $this->getGridHtml() ?>

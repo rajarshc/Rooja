@@ -1,0 +1,95 @@
+<?php
+/**
+ * Show Sales Commission in Homepage template
+ */
+?>
+<?php if ($this->enableToShow()): ?>
+<?php $monthlyCommission = $this->getMonthlyCommission() ?>
+<?php $yearlyCommission = $this->getYearlyCommission() ?>
+<br/><br/>
+<table class="data-table" id="list-monthly-commission">
+	<col width="35%"/>
+	<col width="35%"/>
+	<thead>
+		<tr>
+			<th colspan="3" height="40">
+				<?php echo $this->__('ADDITIONAL SALES COMMISSION') ?>
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+				<strong><?php echo $this->__('') ?></strong>
+			</td>
+			<td>
+				<strong><?php echo ($this->getSalesType() == 'sales') ? $this->__('Total Sales') : $this->__('Total Orders') ?></strong>
+			</td>
+			<td>
+				<strong><?php echo $this->__('Additional commission received') ?></strong>
+				<?php if ($this->getCommissionType() != 'fixed'): ?>
+					 <?php echo $this->__('(base on your commission)') ?>
+				<?php endif ?>
+			</td>
+		</tr>
+		<?php if ($levels = count($monthlyCommission)): ?>
+			<?php $isShow = 1 ?>
+			<?php for ($i = 0; $i < $levels; $i ++): ?>
+				<?php $commission = $monthlyCommission[$i] ?>
+				<?php $cmNext = isset($monthlyCommission[$i+1]) ? $monthlyCommission[$i+1] : 0 ?>
+				<tr>
+				<?php if ($isShow == 1): ?>
+					<td rowspan="<?php echo $levels ?>">
+						<strong><?php echo $this->__('Monthly additional commission') ?></strong>
+					</td>
+					<?php $isShow = 2 ?>
+				<?php endif ?>
+					<td>
+						<?php echo $this->formatSales($commission['sales']) ?>
+						<?php if ($cmNext): ?>
+							- <?php echo $this->formatSales($cmNext['sales'],true) ?>
+						<?php else: ?>
+							+
+						<?php endif ?>
+					</td>
+					<td>
+						<?php echo $this->formatCommission($commission['commission']) ?>
+					</td>
+				</tr>
+			<?php endfor ?>
+		<?php endif ?>
+		<?php if ($levels = count($yearlyCommission)): ?>
+			<?php if (isset($isShow)): ?>
+				<tr>
+					<td colspan="3" height="5">&nbsp;</td>
+				</tr>
+			<?php endif ?>
+			<?php $isShow = 1 ?>
+			<?php for ($i = 0; $i < $levels; $i ++): ?>
+				<?php $commission = $yearlyCommission[$i] ?>
+				<?php $cmNext = isset($yearlyCommission[$i+1]) ? $yearlyCommission[$i+1] : 0 ?>
+				<tr>
+				<?php if ($isShow == 1): ?>
+					<td rowspan="<?php echo $levels ?>">
+						<strong><?php echo $this->__('Yearly additional commission') ?></strong>
+					</td>
+					<?php $isShow = 2 ?>
+				<?php endif ?>
+					<td>
+						<?php echo $this->formatSales($commission['sales']) ?>
+						<?php if ($cmNext): ?>
+							- <?php echo $this->formatSales($cmNext['sales'],true) ?>
+						<?php else: ?>
+							+
+						<?php endif ?>
+					</td>
+					<td>
+						<?php echo $this->formatCommission($commission['commission']) ?>
+					</td>
+				</tr>
+			<?php endfor ?>
+		<?php endif ?>
+	</tbody>
+</table>
+<div class="clear">&nbsp;</div>
+<?php endif ?>

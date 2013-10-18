@@ -1,0 +1,98 @@
+<?php
+/**
+ * Grid template
+ */
+$report_type = $this->getRequest()->getParam('report_type');
+$group_by = $this->getRequest()->getParam('group_by');
+$period = $this->getRequest()->getParam('period');
+
+?>
+<div id="csv-download">
+    <div class="page-title">
+        <h2><?php echo $this->__('Sales Report'); ?></h2>
+    </div>
+    <div class="grid-export" style="float:right">
+        <img src="<?php echo $this->getSkinUrl('images/icon_export.gif');?>" />
+        <select style="width:8em;" id="export-type">
+            <option value="1"><?php echo $this->__('CSV');?></option>
+            <option value="2"><?php echo $this->__('Excel XML');?></option>
+        </select>
+        <button type="button" title="Show Report" style="position: relative" onclick="exportFile('<?php echo $report_type;?>','<?php echo $group_by;?>','<?php echo $period;?>')" class="button">
+            <span style="position: relative"><span><?php echo $this->__('Export');?></span></span>
+        </button>
+    </div>
+    <!--a style="float:right" href="<?php echo $this->getUrl('affiliateplusstatistic/statistic/exportSalesCsv',array('report_type'=>$report_type,'group_by'=>$group_by,'period'=>$period));?>"><?php echo $this->__('Download CSV') ?></a-->
+</div>
+<?php $collection = $this->getCollection() ?>
+<?php $columns = $this->getColumns() ?>
+<?php if ($collection->getSize()): ?>
+ <?php $rowspan = $this->getRowspans();?>
+<table class="data-table" id="<?php echo $this->getNameInLayout() ?>">
+	<colgroup>
+	<?php foreach ($columns as $id => $column): ?>
+		<col class="<?php echo $id ?>" style="<?php if ($column['align']): ?>align:<?php echo $column['align'] ?>;<?php endif ?><?php if ($column['width']): ?>width:<?php echo $column['width'] ?><?php endif ?>" />
+	<?php endforeach ?>
+	</colgroup>
+	<thead>
+		<tr>
+		<?php foreach ($columns as $id => $column): ?>
+			<th><?php echo $column['header'] ?></th>
+		<?php endforeach ?>
+		</tr>
+	</thead>
+     <tfoot>
+        <tr class="totals">
+        <?php foreach ($columns as $id=>$_column): ?>
+            <?php $total = $_column['total'] ? $_column['total']:'';?>
+            <?php if($total && $_column['type']=='baseprice') $total = Mage::app()->getStore()->formatPrice($total);?>
+            <th class=""><?php echo ($_column['total_label']) ? $_column['total_label']:$total;?></th>
+        <?php endforeach; ?>
+        </tr>
+    </tfoot>
+	<tbody>
+	<?php foreach ($collection as $row): ?>
+        <?php if(isset($rowspan[$row->getId()])) $span = $rowspan[$row->getId()]; else $span="" ?>
+		<?php if ($row->getIsContinueNextRow()) continue; ?>
+		<tr>
+		<?php foreach ($columns as $id => $column): ?>
+            
+            <?php if(($this->isGroupBy($id)) && $span == '') {echo "";}else{?>
+			<td rowspan="<?php if($this->isGroupBy($id) && $span) echo $span;?>">
+            
+			<?php if (isset($column['render']) && $column['render']): ?>
+                
+				<?php echo $this->fetchRender($column['render'],$row) ?>
+			<?php else: ?>
+				<?php $type = isset($column['type']) ? $column['type'] : '' ?>
+				<?php switch ($type): case 'action': ?>
+					<?php $action = $column['action'] ?>
+					<a href="<?php echo $this->getUrl($action['url'],array( $action['name'] => $row->getData($action['field']) )) ?>" title="<?php echo $action['label'] ?>"><?php echo $action['label'] ?></a>
+				<?php break; case 'options': ?>
+					<?php echo $column['options'][$row->getData($column['index'])] ?>
+				<?php break; case 'date': ?>
+					<?php echo $this->formatDate($row->getData($column['index']), $column['format'], false) ?>
+				<?php break; case 'datetime': ?>
+					<?php echo $this->formatDate($row->getData($column['index']), $column['format'], true) ?>
+				<?php break; case 'price': ?>
+					<?php echo Mage::app()->getStore()->formatPrice($row->getData($column['index'])) ?>
+				<?php break; case 'baseprice': ?>
+					<?php echo Mage::helper('core')->currency($row->getData($column['index']))//Mage::app()->getStore()->getBaseCurrency()->format($row->getData($column['index'])) ?>
+				<?php break; default: ?>
+					<?php echo $row->getData($column['index']) ?>
+				<?php endswitch ?>
+			<?php endif ?>
+            <?php }?>
+			</td>
+            <?php //}?>
+		<?php endforeach ?>
+		</tr>
+	<?php endforeach ?>
+	</tbody>
+</table>
+<?php else: ?>
+<div>
+	<p class="note-msg">
+		<?php echo $this->__('There are no items matching this selection.') ?>
+	</p>
+</div>
+<?php endif ?>

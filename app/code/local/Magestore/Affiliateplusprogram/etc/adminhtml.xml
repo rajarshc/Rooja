@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<config>
+    <menu>
+		<affiliateplus>
+			<children>
+				<program module="affiliateplusprogram" translate="title">
+					<title>Manage Programs</title>
+					<sort_order>0</sort_order>
+					<action>affiliateplusprogramadmin/adminhtml_program/index</action>
+				</program>
+			</children>
+		</affiliateplus>
+	</menu>
+	<acl>
+		<resources>
+			<all>
+				<title>Allow Everything</title>
+			</all>
+			<admin>
+				<children>
+					<affiliateplus>
+						<children>
+							<program module="affiliateplusprogram" translate="title">
+								<title>Manage Programs</title>
+								<sort_order>0</sort_order>
+								<action>affiliateplusprogramadmin/adminhtml_program/index</action>
+							</program>
+						</children>
+					</affiliateplus>
+				</children>
+			</admin>
+		</resources>
+	</acl>
+</config>

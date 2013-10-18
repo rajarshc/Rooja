@@ -1,0 +1,15 @@
+<!--@subject {{var subject}}@-->
+<!--@vars
+{"store url=\"\"":"Store Url",
+"skin url=\"images/logo_email.gif\" _area='frontend'":"Email Logo Image",
+"var store.getFrontendName()":"Store Name",
+"htmlescape var=$content":"Email Content",
+"store url=\"customer/account/\"":"Customer Account Url"}
+@-->
+<!--@styles
+body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; }
+@-->
+
+<div style="font:15px/1.35em Verdana, Arial, Helvetica, sans-serif;">
+	<pre>{{htmlescape var=$content}}</pre>
+</div>

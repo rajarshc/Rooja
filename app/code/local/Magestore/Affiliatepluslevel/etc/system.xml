@@ -1,0 +1,119 @@
+<?xml version="1.0"?>
+<config>
+	<sections>
+        <affiliateplus>
+            <groups>
+                <commission>
+                    <fields>
+                        <multilevel_separator translate="label">
+                            <label>Tier Commission</label>
+                            <frontend_type>label</frontend_type>
+                            <frontend_model>affiliateplus/adminhtml_field_separator</frontend_model>
+                            <sort_order>580</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>10px</comment>
+                        </multilevel_separator>
+                        <max_level translate="label">
+							<label>Number of Tiers</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>590</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</max_level>
+						<tier_commission translate="label">
+							<label><![CDATA[Tier Commission Value & Type]]></label>
+							<frontend_model>affiliatepluslevel/adminhtml_system_config_form_field_tier</frontend_model>
+							<backend_model>adminhtml/system_config_backend_serialized_array</backend_model>
+							<sort_order>600</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</tier_commission>
+                        <use_sec_tier translate="label comment">
+                            <label>Use different commission from 2nd order of a Customer</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>610</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Select "No" to apply above commission for all orders</comment>
+                        </use_sec_tier>
+                        <sec_tier_commission translate="label">
+                            <label><![CDATA[Tier Commission Value & Type (from 2nd order)]]></label>
+							<frontend_model>affiliatepluslevel/adminhtml_system_config_form_field_sectier</frontend_model>
+							<backend_model>adminhtml/system_config_backend_serialized_array</backend_model>
+							<sort_order>620</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+                            <depends><use_sec_tier>1</use_sec_tier></depends>
+                        </sec_tier_commission>
+                    </fields>
+                </commission>
+                <email>
+                    <fields>
+                        <multilevel_separator translate="label">
+                            <label>Tier Commission Email</label>
+                            <frontend_type>label</frontend_type>
+                            <frontend_model>affiliateplus/adminhtml_field_separator</frontend_model>
+                            <sort_order>215</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>10px</comment>
+                        </multilevel_separator>
+                        <multilevel_is_sent_email_account_new_transaction translate="label">
+                            <label>Send email to tier affiliate when a transaction is created</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>220</sort_order>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </multilevel_is_sent_email_account_new_transaction>
+						<multilevel_new_transaction_account_email_template translate="label">
+                            <label>Email template sent to tier affiliate when a transaction is created</label>
+                            <frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_email_template</source_model>
+							<sort_order>225</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </multilevel_new_transaction_account_email_template>
+						<multilevel_is_sent_email_account_updated_transaction translate="label">
+                            <label>Send email to tier affiliate when a transaction is changed (canceled, completed or reduced commission)</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>230</sort_order>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </multilevel_is_sent_email_account_updated_transaction>
+						<multilevel_updated_transaction_account_email_template translate="label">
+                            <label>Email template sent to tier affiliate when a transaction is changed (canceled or completed)</label>
+                            <frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_email_template</source_model>
+							<sort_order>240</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </multilevel_updated_transaction_account_email_template>
+                        <multilevel_reduce_commission_account_email_template translate="label">
+                            <label>Email template sent to tier affiliate when commission is reduced</label>
+                            <frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_email_template</source_model>
+							<sort_order>245</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </multilevel_reduce_commission_account_email_template>
+                    </fields>
+                </email>
+            </groups>
+        </affiliateplus>
+    </sections>
+</config>

@@ -1,0 +1,187 @@
+<?php
+/**
+ * Banner view template
+ */
+?>
+
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+
+<?php $bannerCollection = $this->getBannerCollection() ?>
+<?php $typesLabel = $this->getTypesLabel() ?>
+<?php $account = $this->getAccount() ?>
+<?php $store_id = Mage::app()->getStore()->getId();?>
+
+<div class="page-title">
+	<h2><?php echo $this->__('Affiliate Link') ?></h2>
+</div>
+<div class="affiliate-get-link fieldset">
+	<h2 class="legend"><?php echo $this->__('Make your personal link') ?></h2>
+	<ul class="form-list">
+		<li class="affiliate-page-link wide">
+			<p><?php echo $this->__('Please fill one of the links from our store such as: product url, category url or another pages into the text box below:')?></p>
+			<input type="text" class="input-text" id="affiliate-page-link" name="affiliate-page-link" onkeyup="keyupChangeAffiliateLink(this, event)" />
+            <button type="button" class="button" title="<?php echo $this->__('Get Affiliate Link') ?>" onclick="changeAffiliateLink($('affiliate-page-link'));">
+                <span>
+                    <span><?php echo $this->__('Get Link') ?></span>
+                </span>
+            </button>
+		</li>
+		<li class="wide">
+			<p><?php echo $this->__('Receive your affiliate link') ?>:</p>
+            <!--
+			<input type="text" title="<?php echo $this->__('Affiliate Link') ?>" onclick="this.select();" class="input-text" id="affiliate-link" name="affiliate-link" readonly value="<?php echo $this->getAffiliateUrl()  ?>" />
+            -->
+			<a id="affiliate-link" href="<?php echo $this->getAffiliateUrl()  ?>" title="<?php echo $this->__('Affiliate Link') ?>"><?php echo $this->getAffiliateUrl()  ?></a>
+		</li>
+	</ul>
+</div>
+<?php
+    // prepare short URL
+    $shortUrl = parse_url($this->getBaseUrl());
+    $shortUrl = str_replace('www.', '', $shortUrl['host']);
+    $replaceUrl = explode('/', $this->getBaseUrl());
+    $replaceUrl = $replaceUrl[0] .'//'. $replaceUrl[2];
+?>
+<script type="text/javascript">
+function keyupChangeAffiliateLink(src, event) {
+    if (event.keyCode == 13) {
+        changeAffiliateLink(src);
+    }
+}
+function changeAffiliateLink(src){
+	var linkConfig = {
+		storeCode: '<?php echo $this->getStoreCode() ?>',
+		acc: '<?php echo $account->getIdentifyCode() ?>',
+		baseUrl: '<?php echo $this->getBaseUrl() ?>',
+        shortUrl: '<?php echo $shortUrl ?>',
+        replaceUrl: '<?php echo $replaceUrl ?>'
+	};
+	var customLink = ''+src.value;
+    customLink.replace(' ','');
+    if (customLink.indexOf(linkConfig.shortUrl) != -1
+        && customLink.indexOf(linkConfig.baseUrl) == -1
+    ) {
+        customLink = customLink.substring(customLink.indexOf(linkConfig.shortUrl));
+        customLink = customLink.substring(linkConfig.shortUrl.length);
+        customLink = linkConfig.replaceUrl + customLink;
+    }
+	var queryParams = {};
+	if (customLink.search('[?]')!=-1)
+		queryParams = customLink.toQueryParams();
+	if (linkConfig.storeCode && queryParams['___store'] == undefined)
+		queryParams['___store'] = linkConfig.storeCode;
+	queryParams['acc'] = linkConfig.acc;
+	var affLink = customLink;
+	if (customLink.search('[?]')!=-1)
+		affLink = customLink.split('?')[0];
+	else if (customLink.search('[#]'))
+		affLink = customLink.split('#')[0];
+	affLink += '?' + Object.toQueryString(queryParams);
+	if (affLink.search('http://')==-1 && affLink.search('https://')==-1) {
+		affLink = linkConfig.baseUrl + affLink;
+	}
+	if (customLink.search('[#]')!=-1)
+		affLink += '#' + customLink.split('#')[1];
+	var el = $('affiliate-link');
+	el.href = affLink;
+	el.innerHTML = affLink;
+	//el.value = affLink;
+}
+</script>
+<p>&nbsp;</p>
+
+<div class="page-title">
+	<h2><?php echo $this->__('Banners') ?></h2>
+</div>
+
+<div class="banner-filter">
+	<strong><?php echo $this->__('Filter:') ?></strong>
+	<?php foreach ($this->getFilters() as $filter): ?>
+		<span>
+			<?php if ($filter['current']): ?>
+				<?php echo $filter['label'] ?>
+			<?php else: ?>
+				<a href="<?php echo $filter['url'] ?>" title="<?php echo $filter['label'] ?>"><?php echo $filter['label'] ?></a>
+			<?php endif ?>
+		</span>
+	<?php endforeach ?>
+</div>
+<br />
+
+<?php if ($bannerCollection->getSize()): ?>
+<script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>
+<script src="//platform.twitter.com/widgets.js" type="text/javascript"></script>
+<ul id="banner-view-list">
+	<?php foreach ($bannerCollection as $banner): ?>
+	<li class="banner-view-item">
+		<?php if ($banner->getTypeId() == '1')://Image ?>
+			<div class="banner-image-title">
+				<strong><?php echo $this->__('Title: %s',$banner->getTitle()) ?><br />
+				<?php echo $this->__('Type: Image') ?><br />
+				<?php echo $this->__('Size: %sx%s',$banner->getWidth(),$banner->getHeight()) ?><br />
+                <?php echo $this->__('Clicks (unique/ raw): %d/ %d', $banner->getUniClick(), $banner->getRawClick()) ?><br/>
+                <?php echo $this->__('Impressions (unique/ raw): %d/ %d', $banner->getUniView(), $banner->getRawView()) ?><br/>
+				<?php echo $this->__('Link: ') ?><a href="<?php echo $this->getBannerUrl($banner) ?>"><?php echo Mage::helper('core/string')->truncate($this->getBannerUrl($banner),100) ?></a></strong>
+			</div>
+			<div class="banner-image">
+				<?php $bannerHtml = '<a href="'.$this->getBannerUrl($banner).'" target="_blank"><img src="'.$this->getImageUrl(array('id'=>$banner->getId(),'account_id'=>$account->getId(),'store_id'=>$store_id)).'" title="'.$banner->getTitle().'" width="'.$banner->getWidth().'" height="'.$banner->getHeight().'" /></a>' ?>
+				<?php echo $bannerHtml ?>
+			</div>
+			<br />
+		<?php elseif ($banner->getTypeId() == '2')://Flash ?>
+			<div class="banner-flash-title">
+				<strong><?php echo $this->__('Title: %s',$banner->getTitle()) ?><br />
+				<?php echo $this->__('Type: Flash') ?><br />
+				<?php echo $this->__('Size: %sx%s',$banner->getWidth(),$banner->getHeight()) ?><br />
+                <?php echo $this->__('Clicks (unique/ raw): %d/ %d', $banner->getUniClick(), $banner->getRawClick()) ?><br/>
+                <?php echo $this->__('Impressions (unique/ raw): %d/ %d', $banner->getUniView(), $banner->getRawView()) ?><br/>
+				<?php echo $this->__('Link: ') ?><a href="<?php echo $this->getBannerUrl($banner) ?>"><?php echo Mage::helper('core/string')->truncate($this->getBannerUrl($banner),100) ?></a></strong>
+			</div>
+			<div class="banner-flash">
+				<?php $bannerHtml = '<a href="'.$this->getBannerUrl($banner).'" target="_blank"><embed src="'.$this->getImageUrl(array('id'=>$banner->getId(),'account_id'=>$account->getId(),'store_id'=>$store_id)).'" title="'.$banner->getTitle().'" width="'.$banner->getWidth().'" height="'.$banner->getHeight().'" type="application/x-shockwave-flash" wmode="transparent" quality="high" pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash" /></a>' ?>
+				<?php echo $bannerHtml ?>
+			</div>
+			<br />
+		<?php elseif ($banner->getTypeId() == '3')://Text ?>
+			<div class="banner-text-title">
+				<strong><?php echo $this->__('Title: %s',$banner->getTitle()) ?><br />
+				<?php echo $this->__('Type: Text') ?><br />
+                <?php echo $this->__('Clicks (unique/ raw): %d/ %d', $banner->getUniClick(), $banner->getRawClick()) ?><br/>
+                <?php echo $this->__('Impressions (unique/ raw): %d/ %d', $banner->getUniView(), $banner->getRawView()) ?><br/>
+				<?php echo $this->__('Link: ') ?><a href="<?php echo $this->getBannerUrl($banner) ?>"><?php echo Mage::helper('core/string')->truncate($this->getBannerUrl($banner),100) ?></a></strong>
+			</div>
+			<div class="banner-text">
+				<?php $bannerHtml = '<a href="'.$this->getBannerUrl($banner).'" target="_blank" title="'.$banner->getTitle().'">'.$banner->getTitle().'</a>' ?>
+                <?php $bannerHtml.='<script type="text/javascript" src="'.$this->getImageUrl(array('id'=>$banner->getId(),'account_id'=>$account->getId(),'store_id'=>$store_id)).'"></script>' ?>
+				<strong><?php echo $this->__('Preview: ') ?></strong><?php echo $bannerHtml ?>
+                
+				<br />
+			</div>
+		<?php endif ?>
+		<div class="banner-share">
+			<p>
+				<?php echo $this->__('Copy/ paste this source code into your website/ forum.') ?>
+				<span class="share share_facebook"><a name="fb_share" share_url="<?php echo $this->htmlEscape($this->getBannerUrl($banner)) ?>"><?php echo $this->__('Share') ?></a></span>
+				<span class="share share_twitter"><a data-url="<?php echo $this->htmlEscape($this->getBannerUrl($banner)) ?>" class="twitter-share-button" data-count="horizontal" data-via="magestore"><?php echo $this->__('Tweet') ?></a></span>
+				<span class="share share_google"><g:plusone size="medium" href="<?php echo $this->htmlEscape($this->getBannerUrl($banner)) ?>"></g:plusone></span>
+			</p>
+			<p><textarea readonly="true" onclick="this.select();" class="banner-share-url" rows="4" style="width:100%"><?php echo $this->htmlEscape($bannerHtml) ?></textarea></p>
+		</div>
+	</li>
+	<?php endforeach ?>
+</ul>
+<script type="text/javascript">
+	decorateList('banner-view-list');
+	(function() {
+		var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+		po.src = 'https://apis.google.com/js/plusone.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+	})();
+</script>
+<?php else : ?>
+<div>
+	<p class="note-msg">
+		<?php echo $this->__('There are no banners matching the selection.') ?>
+	</p>
+</div>
+<?php endif ?>

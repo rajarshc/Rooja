@@ -1,0 +1,120 @@
+/* Affiliateplus stylesheet */
+.affiliate_message { margin: 10px 0px 0px 0px; }
+
+/* Banner-Links */
+#banner-view-list li.banner-view-item{ border-top: 2px solid #CCCCCC; margin-bottom: 45px; }
+#banner-view-list li.banner-view-item span.share{ float: right; }
+
+/* Referer */
+#referer_grid thead th a { color: #0A263C; }
+#referer_grid thead th a:hover{ color: #0A263C; }
+
+/* Miniform request money */
+.affiliateplus_form_request { overflow: hidden; margin-bottom: 10px; }
+.affiliateplus_form_request #request_amount{color:#686868}
+
+/* Tiers */
+#tiers_grid thead th a { color: #0A263C; }
+#tiers_grid thead th a:hover{ color: #0A263C; }
+
+/* Payment Method */
+li.payment_method_form { margin-left: 21px;*float: left;*width: 100%; }
+#affiliateplus_payment_request_form .form-list .wide{*float:left;*width: 100%}
+#affiliateplus_payment_request_form .fieldset{*float:left;*width: 90%}
+#affiliateplus_payment_request_form input.radio { float:left; margin: 3px 5px 0px 0px; }
+#affiliateplus_payment_request_form .field .verified{background: url(../../images/i_msg-success.gif) no-repeat}
+#affiliateplus_payment_request_form .field .verified a{padding-left: 20px;color:#446423 !important;text-decoration: none;font-weight: bold; cursor: default;}
+#affiliateplus_payment_request_form .field .not-verified{background: url(../../images/i_msg-error.gif) no-repeat}
+#affiliateplus_payment_request_form .field .not-verified a{padding-left: 20px;text-decoration: none;font-weight: bold; cursor: default;}
+.affiliateplus-action-gray{background: #ACABAB !important;border: 1px solid #ACABAB !important;}
+
+/*  Contact Group */
+#group-table tr { cursor:pointer;}
+#group-table tr:hover{ background-color:#FCF5DD}
+
+/* Commissions */
+ul.affiliate-commission-tab{
+	height: 27px;
+	font-weight: bold;
+	margin-top: 10px;
+}
+ul.affiliate-commission-tab li.affiliate-tab-item{
+	float: left;
+	height: 20px;
+	border: 1px solid #E2E2E2;
+	border-bottom: 0px;
+	margin: 1px 2px;
+	padding: 3px 6px;
+	background-color: #E2E2E2;
+}
+ul.affiliate-commission-tab li.active-tab{
+	font-size: 1.1em;
+	background-color: #FFF;
+	color: #DE5400;
+}
+ul.affiliate-commission-tab li a{
+	text-decoration: none;
+	color: #999;
+}
+/* End commissions */
+
+/* Search Grid Style */
+.data-table .affiliateplus-grid-title th{
+    background-image: none;
+    border-bottom: 1px solid #C2D3E0;
+}
+
+.data-table .affiliateplus-grid-search th{
+    vertical-align: top;
+}
+.data-table .affiliateplus-grid-search .affiliateplus-grid-search-item{
+    padding-bottom: 2px;
+}
+.data-table .affiliateplus-grid-search .affiliateplus-grid-search-item .search-text{
+    width: 97%;
+}
+
+.data-table .affiliateplus-grid-search .affiliateplus-grid-search-item .range-container{
+    float: left;
+    padding-bottom: 2px;
+}
+.data-table .affiliateplus-grid-search .affiliateplus-grid-search-item .data-range{
+    min-width: 121px;
+    min-height: 18px;
+    margin-bottom: 3px;
+}
+.data-table .affiliateplus-grid-search .affiliateplus-grid-search-item .data-range .label{
+    display: block;
+    width: 36px;
+    float: left;
+}
+.data-table .affiliateplus-grid-search .affiliateplus-grid-search-item .data-range img{
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+}
+.data-table .affiliateplus-grid-search .affiliateplus-grid-search-item .data-range input.range-text{
+    float: right;
+    width: 50px;
+    padding: 1px;
+}
+
+.data-table .affiliateplus-grid-search .affiliateplus-grid-search-item select{
+    width: 100%;
+}
+
+.data-table .affiliateplus-grid-search .affiliateplus-grid-search-item .range-container .from-price,
+.data-table .affiliateplus-grid-search .affiliateplus-grid-search-item .range-container .to-price{
+    min-width: 100px;
+}
+
+.affiliateplus-search-button {
+    padding-bottom: 5px;
+    text-align: right;
+}
+/* End Search */
+
+/*bonus*/
+#affiliateplus_payment_request_form .authentication-comment{margin: 0;padding: 0 0 0 13px;font-size: 11px;}
+
+/* End */

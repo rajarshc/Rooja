@@ -1,0 +1,31 @@
+<?php
+/**
+ * Sales bar
+ */
+?>
+<?php if (sizeof($this->getTotals()) > 0): ?>
+<div class="entry-edit">
+	<div class="entry-edit-head"><h4><?php echo $this->getEntryEditHead() ?></h4></div>
+	<fieldset class="np">
+		<div class="grid np affiliateplus-statistic-grid">
+			<table id="affiliateplus-statistic-general-table-<?php echo $this->getTableId() ?>" cellspacing="0" style="border:0px;">
+				<colgroup>
+					<col width="50%" />
+					<col width="50%" />
+				</colgroup>
+				<tbody>
+					<?php foreach ($this->getTotals() as $_total): ?>
+					<tr>
+						<td class="a-left"><span class="affiliateplus-statistic-general-label"><?php echo $_total['label'] ?></span></td>
+						<td class="a-center"><span class="affiliateplus-statistic-general-value"><?php echo $_total['value'] ?></span></td>
+					</tr>
+					<?php endforeach ?>
+				</tbody>
+			</table>
+		</div>
+	</fieldset>
+</div>
+<script type="text/javascript">
+decorateTable('affiliateplus-statistic-general-table-<?php echo $this->getTableId() ?>');
+</script>
+<?php endif ?>

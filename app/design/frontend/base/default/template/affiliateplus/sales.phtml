@@ -1,0 +1,35 @@
+<?php
+/**
+ * Sales transaction history template
+ */
+?>
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+
+<div class="page-title">
+	<h2><?php echo $this->__('Commissions') ?></h2>
+</div>
+
+<?php echo $this->getChildHtml('payment_miniform') ?>
+
+<?php echo $this->getChildHtml('sales_statistic') ?>
+
+<?php if ($commissionTabs = $this->getCommissionTabs()): ?>
+<ul class="affiliate-commission-tab">
+	<?php foreach ($commissionTabs as $name => $tab): ?>
+		<?php if ($name == $this->getActiveTab()): ?>
+		<li class="affiliate-tab-item active-tab">
+			<span><?php echo $tab['label'] ?></span>
+		</li>
+		<?php else: ?>
+		<li class="affiliate-tab-item">
+			<a href="<?php echo $tab['link'] ?>" title="<?php echo $tab['label'] ?>">
+				<span><?php echo $tab['label'] ?></span>
+			</a>
+		</li>
+		<?php endif ?>
+	<?php endforeach ?>
+</ul>
+<div style="border-top: 1px solid #E2E2E2;">&nbsp;</div>
+<?php endif ?>
+
+<?php echo $this->getTransactionHtml() ?>

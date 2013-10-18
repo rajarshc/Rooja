@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<config>
+    <menu>
+		<affiliateplus>
+			<children>
+				<statistic module="affiliateplusstatistic" translate="title">
+					<title>Reports</title>
+					<sort_order>35</sort_order>
+					<action>affiliateplusstatistic/index/index</action>
+					<children>
+						<chart translate="title">
+							<title>Dashboard</title>
+							<sort_order>10</sort_order>
+							<action>affiliateplusstatistic/index/index</action>
+						</chart>
+						<sales translate="title">
+							<title>Sales Report</title>
+							<sort_order>20</sort_order>
+							<action>affiliateplusstatistic/report/sales</action>
+						</sales>
+						<clicks translate="title">
+							<title>Clicks Report</title>
+							<sort_order>30</sort_order>
+							<action>affiliateplusstatistic/report/clicks</action>
+						</clicks>
+						<impressions translate="title">
+							<title>Impressions Report</title>
+							<sort_order>40</sort_order>
+							<action>affiliateplusstatistic/report/impressions</action>
+						</impressions>
+                        <bestsellers translate="title">
+                            <title>Bestseller Products Report</title>
+                            <sort_order>50</sort_order>
+                            <action>affiliateplusstatistic/report/bestsellers</action>
+                        </bestsellers>
+                        <affiliates translate="title">
+                            <title>Affiliate Accounts Report</title>
+                            <sort_order>60</sort_order>
+                            <action>affiliateplusstatistic/report/affiliates</action>
+                        </affiliates>
+					</children>
+				</statistic>
+			</children>
+		</affiliateplus>
+	</menu>
+	<acl>
+		<resources>
+			<all>
+				<title>Allow Everything</title>
+			</all>
+			<admin>
+				<children>
+					<affiliateplus>
+						<children>
+							<statistic module="affiliateplusstatistic" translate="title">
+								<title>Statistics</title>
+								<sort_order>45</sort_order>
+								<children>
+									<chart translate="title">
+										<title>Statistic Chart</title>
+										<sort_order>10</sort_order>
+									</chart>
+									<sales translate="title">
+										<title>Sales Report</title>
+										<sort_order>20</sort_order>
+									</sales>
+									<clicks translate="title">
+										<title>Click Report</title>
+										<sort_order>30</sort_order>
+									</clicks>
+									<impressions translate="title">
+										<title>Impressions Report</title>
+										<sort_order>40</sort_order>
+									</impressions>
+                                    <bestsellers translate="title">
+                                        <title>Bestseller Products Report</title>
+										<sort_order>50</sort_order>
+                                    </bestsellers>
+                                    <affiliates translate="title">
+                                        <title>Affiliate Accounts Report</title>
+                                        <sort_order>60</sort_order>
+                                    </affiliates>
+								</children>
+							</statistic>
+						</children>
+					</affiliateplus>
+				</children>
+			</admin>
+		</resources>
+	</acl>
+</config>

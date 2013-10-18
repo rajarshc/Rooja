@@ -16,14 +16,14 @@
  * @package    Zend_Oauth
  * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: SignatureAbstract.php 22662 2010-07-24 17:37:36Z mabe $
+ * @version    $Id: SignatureAbstract.php 20217 2010-01-12 16:01:57Z matthew $
  */
 
 /** Zend_Oauth_Http_Utility */
-#require_once 'Zend/Oauth/Http/Utility.php';
+require_once 'Zend/Oauth/Http/Utility.php';
 
 /** Zend_Uri_Http */
-#require_once 'Zend/Uri/Http.php';
+require_once 'Zend/Uri/Http.php';
 
 /**
  * @category   Zend
@@ -115,7 +115,7 @@ abstract class Zend_Oauth_Signature_SignatureAbstract
     protected function _assembleKey()
     {
         $parts = array($this->_consumerSecret);
-        if ($this->_tokenSecret !== null) {
+        if (!is_null($this->_tokenSecret)) {
             $parts[] = $this->_tokenSecret;
         }
         foreach ($parts as $key => $secret) {

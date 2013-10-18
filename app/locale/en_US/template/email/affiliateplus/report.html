@@ -1,0 +1,43 @@
+<!--@subject {{var store.getFrontendName()}}: Affiliate Statistic Report@-->
+<!--@vars
+{"store url=\"\"":"Store Url",
+"skin url=\"images/logo_email.gif\" _area='frontend'":"Email Logo Image",
+"htmlescape var=$transaction.getReferralName()":"Referral Name",
+"var store.getFrontendName()":"Store Name",
+"store url=\"customer/account/\"":"Customer Account Url"}
+@-->
+<!--@styles
+body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; }
+@-->
+
+<div style="font:11px/1.35em Verdana, Arial, Helvetica, sans-serif;">
+<table cellspacing="0" cellpadding="0" border="0" width="98%" style="margin-top:10px; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; margin-bottom:10px;">
+<tr>
+    <td align="center" valign="top">
+        <!-- [ header starts here] -->
+        <table cellspacing="0" cellpadding="0" border="0" width="650">
+            <tr>
+                <td valign="top"><a href="{{store url=""}}"><img src="{{skin url="images/logo_email.gif" _area='frontend'}}" alt="{{var store.getFrontendName()}}"  style="margin-bottom:10px;" border="0"/></a></td>
+            </tr>
+        </table>
+        <!-- [ middle starts here] -->
+        <table cellspacing="0" cellpadding="0" border="0" width="650">
+            <tr>
+                <td valign="top">
+                    <p>
+                    	<strong>Hello {{htmlescape var=$account.getName()}}</strong>,<br/>
+                    	Below is your affiliate statistic from {{var from}} to {{var to}}:
+					</p>
+					{{layout handle="affiliateplus_email_report" account=$account statistic=$statistic store=$store}}
+					<p>
+						To view more details, please <a href="{{store url="affiliateplus/account/login"}}">login</a> your account.<br />
+						To unsubscribe this email, please go to Account Information then uncheck Receive Notification Email.
+					</p>
+					<p>Thank you again,<br/><strong>{{var store.getFrontendName()}}</strong></p>
+                </td>
+            </tr>
+        </table>
+    </td>
+</tr>
+</table>
+</div>

@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<config>
+    <menu>
+		<affiliateplus module="affiliateplus" translate="title">
+			<title>Affiliate Plus</title>
+			<sort_order>71</sort_order>
+			<children>
+				<account module="affiliateplus" translate="title">
+					<title>Manage Accounts</title>
+					<sort_order>0</sort_order>
+					<action>affiliateplusadmin/adminhtml_account</action>
+				</account>
+				<banner module="affiliateplus" translate="title">
+					<title>Manage Banners</title>
+					<sort_order>10</sort_order>
+					<action>affiliateplusadmin/adminhtml_banner</action>
+				</banner>
+				<transaction module="affiliateplus" translate="title">
+					<title>Manage Transactions</title>
+					<sort_order>20</sort_order>
+					<action>affiliateplusadmin/adminhtml_transaction</action>
+				</transaction>
+				<payment module="affiliateplus" translate="title">
+					<title>Manage Withdrawals</title>
+					<sort_order>30</sort_order>
+					<action>affiliateplusadmin/adminhtml_payment</action>
+				</payment>
+				<setting module="affiliateplus" translate="title">
+					<title>Settings</title>
+					<sort_order>400</sort_order>
+					<action>adminhtml/system_config/edit/section/affiliateplus</action>
+				</setting>
+			</children>
+		</affiliateplus>
+	</menu>
+	<acl>
+		<resources>
+			<all>
+				<title>Allow Everything</title>
+			</all>
+			<admin>
+				<children>
+					<system>
+						<children>
+							<config>
+								<children>
+									<affiliateplus translate="title">
+										<title>Affiliate Plus</title>
+										<sort_order>50</sort_order>
+									</affiliateplus>									
+								</children>
+							</config>
+						</children>
+					</system>
+					<affiliateplus module="affiliateplus" translate="title">
+						<title>Affiliate Plus</title>
+						<sort_order>71</sort_order>               
+						<children>
+							<account module="affiliateplus" translate="title">
+								<title>Manage Accounts</title>
+								<sort_order>0</sort_order>
+								<action>affiliateplusadmin/adminhtml_account</action>
+							</account>	
+							<banner module="affiliateplus" translate="title">
+								<title>Manage Banners</title>
+								<sort_order>10</sort_order>
+								<action>affiliateplusadmin/adminhtml_banner</action>
+							</banner>		
+							<transaction module="affiliateplus" translate="title">
+								<title>Manage Transactions</title>
+								<sort_order>20</sort_order>
+								<action>affiliateplusadmin/adminhtml_transaction</action>
+							</transaction>
+							<payment module="affiliateplus" translate="title">
+								<title>Manage Withdrawals</title>
+								<sort_order>30</sort_order>
+								<action>affiliateplusadmin/adminhtml_payment</action>
+							</payment>
+							<setting module="affiliateplus" translate="title">
+								<title>Settings</title>
+								<sort_order>40</sort_order>
+								<action>adminhtml/system_config/edit/section/affiliateplus</action>
+							</setting>
+						</children>
+					</affiliateplus>
+				</children>
+			</admin>
+		</resources>
+	</acl>
+</config>

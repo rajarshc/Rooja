@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <affiliateplusprogramadmin_adminhtml_program_index>
+        <reference name="content">
+        	<block type="adminhtml/store_switcher" name="store_switcher" as="store_switcher">
+				<action method="setUseConfirm"><params>0</params></action>
+			</block>
+            <block type="affiliateplusprogram/adminhtml_program" name="affiliateplusprogram" />
+        </reference>
+    </affiliateplusprogramadmin_adminhtml_program_index>
+    
+    <affiliateplusprogramadmin_adminhtml_program_edit>
+    	<reference name="left">
+			<block type="adminhtml/store_switcher" name="store_switcher" before="-" />
+		</reference>
+    </affiliateplusprogramadmin_adminhtml_program_edit>
+    
+    <affiliateplusprogramadmin_adminhtml_program_transaction>
+    	<block type="core/text_list" name="root">
+    		<block type="affiliateplusprogram/adminhtml_program_edit_tab_transaction" name="program.edit.tab.transaction"/>
+    		<block type="adminhtml/widget_grid_serializer" name="related_grid_serializer">
+				<action method="initSerializerBlock">
+					<grid_block_name>program.edit.tab.transaction</grid_block_name>
+					<data_callback>getSelectedRelatedtransaction</data_callback>
+					<hidden_input_name>program_transaction</hidden_input_name>
+					<reload_param_name>oprogram</reload_param_name>
+				</action>
+				<action method="addColumnInputName">
+					<input_name>position</input_name>
+				</action>
+            </block>
+    	</block>
+    </affiliateplusprogramadmin_adminhtml_program_transaction>
+    <affiliateplusprogramadmin_adminhtml_program_transactiongrid>
+    	<block type="core/text_list" name="root">
+    		<block type="affiliateplusprogram/adminhtml_program_edit_tab_transaction" name="program.edit.tab.transaction"/>
+    	</block>
+    </affiliateplusprogramadmin_adminhtml_program_transactiongrid>
+    
+    <affiliateplusprogramadmin_adminhtml_program_account>
+    	<block type="core/text_list" name="root">
+    		<block type="affiliateplusprogram/adminhtml_program_edit_tab_account" name="program.edit.tab.account"/>
+    		<block type="adminhtml/widget_grid_serializer" name="related_grid_serializer">
+				<action method="initSerializerBlock">
+					<grid_block_name>program.edit.tab.account</grid_block_name>
+					<data_callback>getSelectedRelatedAccounts</data_callback>
+					<hidden_input_name>program_account</hidden_input_name>
+					<reload_param_name>oaccount</reload_param_name>
+				</action>
+				<action method="addColumnInputName">
+					<input_name>position</input_name>
+				</action>
+            </block>
+    	</block>
+    </affiliateplusprogramadmin_adminhtml_program_account>
+    <affiliateplusprogramadmin_adminhtml_program_accountgrid>
+    	<block type="core/text_list" name="root">
+    		<block type="affiliateplusprogram/adminhtml_program_edit_tab_account" name="program.edit.tab.account"/>
+    	</block>
+    </affiliateplusprogramadmin_adminhtml_program_accountgrid>
+    
+    <affiliateplusprogramadmin_adminhtml_program_product>
+    	<block type="core/text_list" name="root">
+    		<block type="affiliateplusprogram/adminhtml_program_edit_tab_product" name="program.edit.tab.product"/>
+    		<block type="adminhtml/widget_grid_serializer" name="related_grid_serializer">
+				<action method="initSerializerBlock">
+					<grid_block_name>program.edit.tab.product</grid_block_name>
+					<data_callback>getSelectedRelatedProducts</data_callback>
+					<hidden_input_name>program_product</hidden_input_name>
+					<reload_param_name>oproduct</reload_param_name>
+				</action>
+				<action method="addColumnInputName">
+					<input_name>position</input_name>
+				</action>
+            </block>
+    	</block>
+    </affiliateplusprogramadmin_adminhtml_program_product>
+    <affiliateplusprogramadmin_adminhtml_program_productgrid>
+    	<block type="core/text_list" name="root">
+    		<block type="affiliateplusprogram/adminhtml_program_edit_tab_product" name="program.edit.tab.product"/>
+    	</block>
+    </affiliateplusprogramadmin_adminhtml_program_productgrid>
+    
+    <affiliateplusprogramadmin_adminhtml_program_program>
+    	<block type="core/text_list" name="root">
+    		<block type="affiliateplusprogram/adminhtml_program_edit_tab_program" name="account.edit.tab.program"/>
+    		<block type="adminhtml/widget_grid_serializer" name="related_grid_serializer">
+				<action method="initSerializerBlock">
+					<grid_block_name>account.edit.tab.program</grid_block_name>
+					<data_callback>getSelectedRelatedPrograms</data_callback>
+					<hidden_input_name>account_program</hidden_input_name>
+					<reload_param_name>oprogram</reload_param_name>
+				</action>
+				<action method="addColumnInputName">
+					<input_name>position</input_name>
+				</action>
+            </block>
+    	</block>
+    </affiliateplusprogramadmin_adminhtml_program_program>
+    <affiliateplusprogramadmin_adminhtml_program_programgrid>
+    	<block type="core/text_list" name="root">
+    		<block type="affiliateplusprogram/adminhtml_program_edit_tab_program" name="account.edit.tab.program"/>
+    	</block>
+    </affiliateplusprogramadmin_adminhtml_program_programgrid>
+    
+</layout>

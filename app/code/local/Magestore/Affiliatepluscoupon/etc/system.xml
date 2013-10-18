@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<config>
+	<sections>
+		<affiliateplus>
+			<groups>
+				<coupon translate="label">
+					<label>Coupon Configuration</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>5</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>0</show_in_store>
+					<fields>
+						<enable translate="label">
+							<label>Enable using Coupon</label>
+							<frontend_type>select</frontend_type>
+							<sort_order>10</sort_order>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment></comment>
+						</enable>
+						<pattern>
+							<label>Coupon Code Pattern</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+							<comment><![CDATA[Used to generate coupon code for Affiliates. Eg:<br/><strong>[A.8] : 8 alpha chars<br/>[N.4] : 4 numerics<br/>[AN.6] : 6 alphanumeric<br/>AFFILIATE-[A.4]-[AN.6] : AFFILIATE-ADFA-12NF0O</strong>]]></comment>
+						</pattern>
+						<parallel>
+							<label>Use affiliate and sale coupon simultaneously</label>
+							<frontend_type>select</frontend_type>
+							<sort_order>30</sort_order>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment><![CDATA[Select if you want customers to use both affiliate coupon and sale rule coupon at once.<br />Select "No" if you want either affiliate coupon or sale coupon is applied.]]></comment>
+						</parallel>
+					</fields>
+				</coupon>
+			</groups>
+		</affiliateplus>
+	</sections>
+</config>

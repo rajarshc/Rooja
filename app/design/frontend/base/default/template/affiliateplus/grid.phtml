@@ -1,0 +1,224 @@
+<?php
+/**
+ * Grid template
+ */
+?>
+<?php if ($this->getData('add_calendar_js_to_grid')): ?>
+<script type="text/javascript" src="<?php echo Mage::getBaseUrl('js') ?>calendar/calendar.js"></script>
+<script type="text/javascript" src="<?php echo Mage::getBaseUrl('js') ?>calendar/calendar-setup.js"></script>
+<?php echo $this->getLayout()->createBlock('core/html_calendar')->setTemplate('page/js/calendar.phtml')->toHtml() ?>
+<link rel="stylesheet" type="text/css" href="<?php echo Mage::getBaseUrl('js') ?>calendar/calendar-win2k-1.css"  />
+<?php endif ?>
+
+<?php $collection = $this->getCollection() ?>
+<?php $columns = $this->getColumns() ?>
+
+<?php if ($this->getData('add_searchable_row')): ?>
+<div class="affiliateplus-search-button">
+    <button class="form-button button" type="button" onclick="setLocation('<?php echo $this->getFilterUrl() ?>');">
+        <span>
+            <span><?php echo $this->__('Reset Filter') ?></span>
+        </span>
+    </button>
+    <button class="form-button button" type="button" onclick="searchGrid<?php echo $this->getNameInLayout() ?>();">
+        <span>
+            <span><?php echo $this->__('Search') ?></span>
+        </span>
+    </button>
+</div>
+<script type="text/javascript">
+    function searchGrid<?php echo $this->getNameInLayout() ?>(){
+        var inputEl = $$('#<?php echo $this->getNameInLayout() ?> thead input');
+        $$('#<?php echo $this->getNameInLayout() ?> thead select').each(function(el){
+            inputEl.push(el);
+        });
+        var filter = Form.serializeElements(inputEl);
+        filter = aff_base64_encode(filter);
+        var url = '<?php echo $this->getFilterUrl() ?>';
+        if (url.search('[?]') == -1) {
+            url += '?filter=' + filter;
+        } else {
+            url += '&filter=' + filter;
+        }
+        setLocation(url);
+    }
+    function inputPressEnter<?php echo $this->getNameInLayout() ?>(event){
+        if (event.which == 13) {
+            searchGrid<?php echo $this->getNameInLayout() ?>();
+        } else if (event.keyCode == 13) {
+            searchGrid<?php echo $this->getNameInLayout() ?>();
+        }
+    }
+    Event.observe(window, 'load', function(){
+        $$('#<?php echo $this->getNameInLayout() ?> thead input').each(function(el){
+            Event.observe(el, 'keypress', inputPressEnter<?php echo $this->getNameInLayout() ?>);
+        });
+        $$('#<?php echo $this->getNameInLayout() ?> thead select').each(function(el){
+            Event.observe(el, 'keypress', inputPressEnter<?php echo $this->getNameInLayout() ?>);
+        });
+    });
+    function aff_utf8_encode(string) {
+        string = string.replace(/\r\n/g,"\n");
+        var result = "";
+        for (var i = 0; i < string.length; i++) {
+            var c = string.charCodeAt(i);
+            if (c < 128) {
+                result += String.fromCharCode(c);
+            } else if((c > 127) && (c < 2048)) {
+                result += String.fromCharCode((c >> 6) | 192,(c & 63) | 128);
+            } else {
+                result += String.fromCharCode((c >> 12) | 224, ((c >> 6) & 63) | 128, (c & 63) | 128);
+            }
+        }
+        return result;
+    }
+    function aff_base64_encode(string) {
+        var result = '';
+        var keyMap = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_,";
+        var c1, c2, c3;
+        string = aff_utf8_encode(string);
+        for (var i = 0; i < string.length; i++) {
+            c1 = string.charCodeAt(i++);
+            c2 = string.charCodeAt(i++);
+            result += keyMap.charAt(c1>>2);
+            result += keyMap.charAt(((c1 & 3) << 4) | (c2 >> 4));
+            if (isNaN(c2)) {
+                result += ',,';
+                continue;
+            }
+            c3 = string.charCodeAt(i);
+            result += keyMap.charAt(((c2 & 15) << 2) | (c3 >> 6));
+            if (isNaN(c3)) {
+                result += ',';
+                continue;
+            }
+            result += keyMap.charAt(c3 & 63);
+        }
+        return result;
+    }
+</script>
+<?php endif ?>
+
+<?php echo $this->getPagerHtml() ?>
+<table class="data-table" id="<?php echo $this->getNameInLayout() ?>">
+	<colgroup>
+	<?php foreach ($columns as $id => $column): ?>
+		<col class="<?php echo $id ?>" style="<?php if (isset($column['align'])): ?>align:<?php echo $column['align'] ?>;<?php endif ?><?php if (isset($column['width'])): ?>width:<?php echo $column['width'] ?><?php endif ?>" />
+	<?php endforeach ?>
+	</colgroup>
+	<thead>
+		<tr <?php if ($this->getData('add_searchable_row')): ?>class="affiliateplus-grid-title"<?php endif ?>>
+		<?php foreach ($columns as $id => $column): ?>
+			<th><?php echo $column['header'] ?></th>
+		<?php endforeach ?>
+		</tr>
+    <?php if ($this->getData('add_searchable_row')): ?>
+        <tr class="affiliateplus-grid-search">
+        <?php foreach ($columns as $id => $column): ?>
+			<th>
+            <?php if (isset($column['searchable'])): ?>
+                <div class="affiliateplus-grid-search-item"<?php if (isset($column['width']) && $column['width']): ?> style="width:<?php echo $column['width'] ?>;"<?php endif ?>>
+                <?php $type = isset($column['type']) ? $column['type'] : '' ?>
+                <?php if ($type == 'date' || $type == 'datetime'): ?>
+                    <div class="range-container">
+                        <div class="data-range from-date">
+                            <span class="label"><?php echo $this->__('From') ?>:</span>
+                            <input type="text" name="<?php echo $id ?>-from" id="<?php echo $this->getNameInLayout() . '-' . $id ?>-from" class="search-item input-text range-text" value="<?php echo $this->getFilterValue($id, '-from') ?>" />
+                            <img src="<?php echo Mage::getBaseUrl('skin')?>/adminhtml/default/default/images/grid-cal.gif" alt="<?php echo $this->__('dateinput') ?>" class="v-middle" id="calendar-<?php echo $id ?>-from" />
+                        </div>
+                        <div class="data-range to-date">
+                            <span class="label"><?php echo $this->__('To') ?>:</span>
+                            <input type="text" name="<?php echo $id ?>-to" id="<?php echo $this->getNameInLayout() . '-' . $id ?>-to" class="search-item input-text range-text" value="<?php echo $this->getFilterValue($id, '-to') ?>" />
+                            <img src="<?php echo Mage::getBaseUrl('skin')?>/adminhtml/default/default/images/grid-cal.gif" alt="<?php echo $this->__('dateinput') ?>" class="v-middle" id="calendar-<?php echo $id ?>-to" />
+                        </div>
+                        <script type="text/javascript">
+                        Calendar.setup({
+                            inputField: "<?php echo $this->getNameInLayout() . '-' . $id ?>-from",
+                            ifFormat: "%m/%e/%y",
+                            showsTime: false,
+                            button: "calendar-<?php echo $id ?>-from",
+                            align: "Bl",
+                            singleClick : true
+                        });
+                        Calendar.setup({
+                            inputField: "<?php echo $this->getNameInLayout() . '-' . $id ?>-to",
+                            ifFormat: "%m/%e/%y",
+                            showsTime: false,
+                            button: "calendar-<?php echo $id ?>-to",
+                            align: "Bl",
+                            singleClick : true
+                        });
+                        </script>
+                    </div>
+                <?php elseif ($type == 'options'): ?>
+                    <select name="<?php echo $id ?>" id="<?php echo $this->getNameInLayout() . '-' . $id ?>" class="search-item input-select">
+                        <option value=""></option>
+                    <?php foreach ($column['options'] as $value => $label): ?>
+                        <option value="<?php echo $value ?>"<?php if ($value == $this->getFilterValue($id)): ?> selected="selected"<?php endif ?>><?php echo $label ?></option>
+                    <?php endforeach ?>
+                    </select>
+                <?php elseif ($type == 'price' || $type == 'baseprice'): ?>
+                    <div class="range-container">
+                        <div class="data-range from-price">
+                            <span class="label"><?php echo $this->__('From') ?>:</span>
+                            <input type="text" name="<?php echo $id ?>-from" id="<?php echo $this->getNameInLayout() . '-' . $id ?>-from" class="search-item input-text range-text" value="<?php echo $this->getFilterValue($id, '-from') ?>" />
+                        </div>
+                        <div class="data-range to-price">
+                            <span class="label"><?php echo $this->__('To') ?>:</span>
+                            <input type="text" name="<?php echo $id ?>-to" id="<?php echo $this->getNameInLayout() . '-' . $id ?>-to" class="search-item input-text range-text" value="<?php echo $this->getFilterValue($id, '-to') ?>" />
+                        </div>
+                    </div>
+                <?php else: ?>
+                    <input type="text" name="<?php echo $id ?>" id="<?php echo $this->getNameInLayout() . '-' . $id ?>" class="search-item input-text search-text" value="<?php echo $this->getFilterValue($id) ?>" />
+                <?php endif ?>
+                </div>
+            <?php endif ?>
+            </th>
+		<?php endforeach ?>
+        </tr>
+    <?php endif ?>
+	</thead>
+	<tbody>
+<?php if ($collection->count()): ?>
+	<?php foreach ($collection as $row): ?>
+		<?php if ($row->getIsContinueNextRow()) continue; ?>
+		<tr>
+		<?php foreach ($columns as $id => $column): ?>
+			<td>
+			<?php if (isset($column['render']) && $column['render']): ?>
+				<?php echo $this->fetchRender($column['render'],$row) ?>
+			<?php else: ?>
+				<?php $type = isset($column['type']) ? $column['type'] : '' ?>
+				<?php switch ($type): case 'action': ?>
+					<?php $action = $column['action'] ?>
+					<a href="<?php echo $this->getUrl($action['url'],array( $action['name'] => $row->getData($action['field']) )) ?>" title="<?php echo $action['label'] ?>"><?php echo $action['label'] ?></a>
+				<?php break; case 'options': ?>
+					<?php echo $column['options'][$row->getData($column['index'])] ?>
+				<?php break; case 'date': ?>
+					<?php echo $this->formatDate($row->getData($column['index']), $column['format'], false) ?>
+				<?php break; case 'datetime': ?>
+					<?php echo $this->formatDate($row->getData($column['index']), $column['format'], true) ?>
+				<?php break; case 'price': ?>
+					<?php echo Mage::app()->getStore()->formatPrice($row->getData($column['index'])) ?>
+				<?php break; case 'baseprice': ?>
+					<?php echo Mage::helper('core')->currency($row->getData($column['index'])) ?>
+				<?php break; default: ?>
+					<?php echo $row->getData($column['index']) ?>
+				<?php endswitch ?>
+			<?php endif ?>
+			</td>
+		<?php endforeach ?>
+		</tr>
+	<?php endforeach ?>
+<?php else: ?>
+        <tr>
+            <td colspan="<?php echo count($columns) ?>">
+                <div>
+                    <?php echo $this->__('There are no items matching this selection.') ?>
+                </div>
+            </td>
+        </tr>
+<?php endif ?>
+	</tbody>
+</table>
+<?php echo $this->getPagerHtml() ?>

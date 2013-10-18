@@ -1,0 +1,62 @@
+<?php
+/**
+ * Popup contact list template
+ */
+?>
+<?php $contacts = $this->getContacts() ?>
+
+<div id="affiliateplus-contact-list">
+	<ul class="form-list">
+		<li class="email-list">
+			<label for="contacts_list"><?php echo $this->__('Select contacts to send email') ?></label>
+			<div class="input-box">
+				<select id="contacts_list" name="contacts" multiple size="15">
+				<?php foreach ($contacts as $contact): ?>
+					<?php $email = $this->getEmailValue($contact) ?>
+					<option value="<?php echo $email ?>">
+						<?php echo htmlspecialchars($email) ?>
+					</option>
+				<?php endforeach ?>
+				</select>
+			</div>
+		</li>
+	</ul>
+	<div class="buttons-set">
+		<button class="button" title="<?php echo $this->__('Select Contacts') ?>" type="button" onclick="selectContacts()">
+			<span><span><?php echo $this->__('Select Contacts') ?></span></span>
+		</button>
+	</div>
+<script type="text/javascript">
+	function selectContacts(){
+		var targetEl = false;
+		try {
+			targetEl = window.opener.$('affiliate-email-address');
+		} catch (e){
+			targetEl = false;
+		}
+		if (!targetEl){
+			window.close();
+			return false;
+		}
+		if (targetEl.value)
+			var existedEmail = targetEl.value.split(',');
+		else
+			var existedEmail = [];
+		
+		$$('#contacts_list option').each(function(op){
+			if (op.selected == true && inArray(op.value,existedEmail) == false){
+				existedEmail.push(op.value);
+		}});
+		try {
+			targetEl.value = existedEmail.join(',');
+		} catch (e){}
+		window.close();
+	}
+	function inArray(need,haystack){
+		for (var i=0; i<haystack.length; i++)
+			if (need == haystack[i])
+				return true;
+		return false;
+	}
+</script>
+</div>

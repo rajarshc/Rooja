@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <affiliateplusstatistic_index_index>
+    	<reference name="head">
+    		<action method="addCss"><styleSheet>css/magestore/affiliateplusstatistic.css</styleSheet></action>
+    	</reference>
+        <reference name="content">
+            <block type="affiliateplusstatistic/statistic" name="affiliateplusstatistic">
+            	<block type="adminhtml/store_switcher" name="store_switcher" as="store_switcher" template="store/switcher.phtml">
+            		<action method="setUseConfirm"><value>0</value></action>
+            	</block>
+            </block>
+        </reference>
+    </affiliateplusstatistic_index_index>
+    
+    <affiliateplusstatistic_report_sales>
+    	<reference name="content">
+    		<block type="affiliateplusstatistic/report_sales" template="report/grid/container.phtml" name="affiliateplusstatistic.sales.report.grid.container">
+	    		<block type="adminhtml/store_switcher" template="report/store/switcher/enhanced.phtml" name="store.switcher">
+	    			<action method="setStoreVarName"><var_name>store_ids</var_name></action>
+	    		</block>
+	    		<block type="affiliateplusstatistic/report_filter_form" name="grid.filter.form">
+	    			<action method="setFieldVisibility">
+	    				<field>report_type</field>
+	    				<visibility>0</visibility>
+	    			</action>
+	    		</block>
+    		</block>
+    	</reference>
+    </affiliateplusstatistic_report_sales>
+    
+    <affiliateplusstatistic_report_clicks>
+    	<reference name="content">
+    		<block type="affiliateplusstatistic/report_clicks" template="report/grid/container.phtml" name="affiliateplusstatistic.clicks.report.grid.container">
+	    		<block type="adminhtml/store_switcher" template="report/store/switcher/enhanced.phtml" name="store.switcher">
+	    			<action method="setStoreVarName"><var_name>store_ids</var_name></action>
+	    		</block>
+	    		<block type="affiliateplusstatistic/report_clicks_form" name="grid.filter.form">
+	    			<action method="setFieldVisibility">
+	    				<field>report_type</field>
+	    				<visibility>0</visibility>
+	    			</action>
+	    		</block>
+    		</block>
+    	</reference>
+    </affiliateplusstatistic_report_clicks>
+    
+    <affiliateplusstatistic_report_impressions>
+    	<reference name="content">
+    		<block type="affiliateplusstatistic/report_impressions" template="report/grid/container.phtml" name="affiliateplusstatistic.impressions.report.grid.container">
+	    		<block type="adminhtml/store_switcher" template="report/store/switcher/enhanced.phtml" name="store.switcher">
+	    			<action method="setStoreVarName"><var_name>store_ids</var_name></action>
+	    		</block>
+	    		<block type="affiliateplusstatistic/report_impressions_form" name="grid.filter.form">
+	    			<action method="setFieldVisibility">
+	    				<field>report_type</field>
+	    				<visibility>0</visibility>
+	    			</action>
+	    		</block>
+    		</block>
+    	</reference>
+    </affiliateplusstatistic_report_impressions>
+    
+    <affiliateplusstatistic_report_bestsellers>
+    	<reference name="content">
+    		<block type="affiliateplusstatistic/report_bestsellers" template="report/grid/container.phtml" name="affiliateplusstatistic.bestsellers.report.grid.container">
+	    		<block type="adminhtml/store_switcher" template="report/store/switcher/enhanced.phtml" name="store.switcher">
+	    			<action method="setStoreVarName"><var_name>store_ids</var_name></action>
+	    		</block>
+	    		<block type="affiliateplusstatistic/report_bestsellers_form" name="grid.filter.form">
+	    			<action method="setFieldVisibility">
+	    				<field>report_type</field>
+	    				<visibility>0</visibility>
+	    			</action>
+	    		</block>
+    		</block>
+    	</reference>
+    </affiliateplusstatistic_report_bestsellers>
+    
+    <affiliateplusstatistic_report_affiliates>
+    	<reference name="content">
+    		<block type="affiliateplusstatistic/report_affiliates" template="report/grid/container.phtml" name="affiliateplusstatistic.affiliates.report.grid.container">
+	    		<block type="adminhtml/store_switcher" template="report/store/switcher/enhanced.phtml" name="store.switcher">
+	    			<action method="setStoreVarName"><var_name>store_ids</var_name></action>
+	    		</block>
+	    		<block type="affiliateplusstatistic/report_affiliates_form" name="grid.filter.form">
+	    			<action method="setFieldVisibility">
+	    				<field>report_type</field>
+	    				<visibility>0</visibility>
+	    			</action>
+	    		</block>
+    		</block>
+    	</reference>
+    </affiliateplusstatistic_report_affiliates>
+</layout>

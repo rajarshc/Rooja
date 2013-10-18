@@ -16,11 +16,11 @@
  * @package    Zend_Oauth
  * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Token.php 22662 2010-07-24 17:37:36Z mabe $
+ * @version    $Id: Token.php 20232 2010-01-12 17:56:33Z matthew $
  */
 
 /** Zend_Oauth_Http_Utility */
-#require_once 'Zend/Oauth/Http/Utility.php';
+require_once 'Zend/Oauth/Http/Utility.php';
 
 /**
  * @category   Zend
@@ -68,14 +68,14 @@ abstract class Zend_Oauth_Token
         Zend_Http_Response $response = null,
         Zend_Oauth_Http_Utility $utility = null
     ) {
-        if ($response !== null) {
+        if (!is_null($response)) {
             $this->_response = $response;
             $params = $this->_parseParameters($response);
             if (count($params) > 0) {
                 $this->setParams($params);
             }
         }
-        if ($utility !== null) {
+        if (!is_null($utility)) {
             $this->_httpUtility = $utility;
         } else {
             $this->_httpUtility = new Zend_Oauth_Http_Utility;
@@ -278,7 +278,7 @@ abstract class Zend_Oauth_Token
      */
     public function __wakeup() 
     {
-        if ($this->_httpUtility === null) {
+        if (is_null($this->_httpUtility)) {
             $this->_httpUtility = new Zend_Oauth_Http_Utility;
         }
     }

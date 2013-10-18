@@ -1,0 +1,51 @@
+<?php
+/**
+ * Tier Commissions template
+ */
+?>
+<?php $_htmlId = $this->getHtmlId() ? $this->getHtmlId() : '_' . uniqid() ?>
+<?php $_name = $this->getElement()->getName() ?>
+<?php $_maxLevel = $this->getMaxLevel() ?>
+<?php $_helper = Mage::helper('affiliatepluslevel/tier') ?>
+<?php $_arrayRows = $this->getArrayRows() ?>
+
+<div class="grid" id="<?php echo $_htmlId ?>">
+	<table cellpadding="0" cellspacing="0" class="border">
+		<tbody>
+			<tr class="headings" id="headings<?php echo $_htmlId ?>">
+				<th><div style="width: 75px;"><?php echo $this->__('Level') ?></div></th>
+				<th><?php echo $this->__('Value/Type') ?></th>
+			</tr>
+			<tr id="<?php echo $_htmlId ?>1">
+				<td><?php echo $this->__('Tier Level %d',1) ?></td>
+				<td>
+					<div style="width: 345px;">
+						<div style="width: 57px; margin-left: 3px;float: left;"><strong><?php echo $this->getDefaultCommission() ?></strong></div>
+						<div style="float: left;"><?php echo $_helper->getTypeLabel($this->getDefaultCommissionType()) ?></div>
+					</div>
+				</td>
+			</tr>
+		<?php $_defaultRows = new Varien_Object() ?>
+		<?php for($_i = 2; $_i <= $_maxLevel; $_i++): ?>
+			<?php $_rowData = isset($_arrayRows[$_i]) ? $_arrayRows[$_i] : $_defaultRows ?>
+			<tr id="<?php echo $_htmlId . $_i ?>">
+				<td><?php echo $this->__('Tier Level %d',$_i) ?></td>
+				<td>
+					<div style="width: 345px;">
+						<input type="text" name="<?php echo $_name ?>[<?php echo $_i ?>][value]" class="input-text" value="<?php echo $_rowData->getValue() ?>" style="width: 49px;" />
+						<select name="<?php echo $_name ?>[<?php echo $_i ?>][type]" class="select">
+							<?php echo $_helper->getOptionTypeHtml($_i,$_rowData->getType()) ?>
+						</select>
+					</div>
+				</td>
+			</tr>
+		<?php endfor ?>
+		</tbody>
+	</table>
+</div>
+
+<?php if ($this->getElement()->getDisabled()): ?>
+<script type="text/javascript">
+toggleValueElements({checked:true},$('<?php echo $_htmlId ?>').parentNode);
+</script>
+<?php endif ?>

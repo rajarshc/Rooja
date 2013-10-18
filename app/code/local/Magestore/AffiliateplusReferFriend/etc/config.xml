@@ -1,0 +1,145 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magestore
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the Magestore.com license that is
+ * available through the world-wide-web at this URL:
+ * http://www.magestore.com/license-agreement.html
+ * 
+ * DISCLAIMER
+ * 
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ * 
+ * @category    Magestore
+ * @package     Magestore_AffiliateplusReferFriend
+ * @copyright   Copyright (c) 2012 Magestore (http://www.magestore.com/)
+ * @license     http://www.magestore.com/license-agreement.html
+ */
+-->
+<config>
+    <modules>
+        <Magestore_AffiliateplusReferFriend>
+            <version>0.1.0</version>
+        </Magestore_AffiliateplusReferFriend>
+    </modules>
+    <frontend>
+        <routers>
+            <affiliateplus>
+                <args>
+                    <modules>
+                        <Magestore_AffiliateplusReferFriend before="Magestore_Affiliateplus">Magestore_AffiliateplusReferFriend</Magestore_AffiliateplusReferFriend>
+                    </modules>
+                </args>
+            </affiliateplus>
+        </routers>
+        <layout>
+            <updates>
+                <affiliateplusreferfriend>
+                    <file>affiliateplusreferfriend.xml</file>
+                </affiliateplusreferfriend>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <Magestore_AffiliateplusReferFriend>
+                    <files>
+                        <default>Magestore_AffiliateplusReferFriend.csv</default>
+                    </files>
+                </Magestore_AffiliateplusReferFriend>
+            </modules>
+        </translate>
+    </frontend>
+    <global>
+        <models>
+            <affiliateplusreferfriend>
+                <class>Magestore_AffiliateplusReferFriend_Model</class>
+                <resourceModel>affiliateplusreferfriend_mysql4</resourceModel>
+            </affiliateplusreferfriend>
+            <affiliateplusreferfriend_mysql4>
+                <class>Magestore_AffiliateplusReferFriend_Model_Mysql4</class>
+            </affiliateplusreferfriend_mysql4>
+        </models>
+        <resources>
+            <affiliateplusreferfriend_setup>
+                <setup>
+                    <module>Magestore_AffiliateplusReferFriend</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </affiliateplusreferfriend_setup>
+            <affiliateplusreferfriend_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </affiliateplusreferfriend_write>
+            <affiliateplusreferfriend_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </affiliateplusreferfriend_read>
+        </resources>
+        <blocks>
+            <affiliateplusreferfriend>
+                <class>Magestore_AffiliateplusReferFriend_Block</class>
+            </affiliateplusreferfriend>
+            <catalog>
+                <rewrite>
+                    <product_list>Magestore_AffiliateplusReferFriend_Block_Product_List</product_list>
+                </rewrite>
+            </catalog>
+        </blocks>
+        <helpers>
+            <affiliateplusreferfriend>
+                <class>Magestore_AffiliateplusReferFriend_Helper</class>
+            </affiliateplusreferfriend>
+        </helpers>
+        <!-- <events>
+            <controller_action_predispatch>
+                <observers>
+                    <affiliateplusreferfriend_observers>
+                        <class>affiliateplusreferfriend/observer</class>
+                        <method>controllerActionPredispatch</method>
+                    </affiliateplusreferfriend_observers>
+                </observers>
+            </controller_action_predispatch>
+        </events> -->
+    </global>
+    <default>
+        <affiliateplus>
+            <refer>
+                <enable>1</enable>
+                <url_prefix><![CDATA[user/]]></url_prefix>
+                <refer_description><![CDATA[<strong>Share your affiliate link and earn more commission from your friends.</strong><br/><br/>
+<strong>Here's how it works:</strong>
+<ul style="margin-left: 15px;list-style-type: disc;">
+<li>Customize your personal url friendlier</li>
+<li>Share your customized link with your friends</li>
+<li>Earn money from your friend purchases</li>
+<li>See traffics come from social networks and emails</li>
+</ul>]]></refer_description>
+                <sharing_description><![CDATA[<div class="block-title">
+<strong>Sharing is so easy</strong>
+</div>
+<p class="box-content">
+You can share your affiliate url to your friends quickly by using our online marketing tool, such as: Email, Facebook, Twitter, G+. Find them below:
+</p>
+]]></sharing_description>
+                <email_subject><![CDATA[Good service and product]]></email_subject>
+                <email_content><![CDATA[Dear {{friend_name}},
+I've been shopping at {{store_name}} and feel really happy. They provide good customer service and reasonable prices.
+If you click on my link below, you can even receive a special discount! Check it out:
+{{personal_url}}
+
+Thank you,
+{{account_name}}]]></email_content>
+                <sharing_message><![CDATA[I've been shopping at {{store_name}} and feel really happy. They provide good customer service and reasonable prices. If you click on my link, you can even receive a special discount! Check it out: {{personal_url}}]]></sharing_message>
+                <twitter_message><![CDATA[I've been shopping at {{store_name}} and feel really happy. Check it out: {{personal_url}}]]></twitter_message>
+            </refer>
+        </affiliateplus>
+    </default>
+</config>

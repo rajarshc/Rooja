@@ -1,0 +1,100 @@
+<?php
+/**
+ * Sales transaction history template
+ */
+?>
+<link rel="stylesheet" type="text/css" href="<?php echo Mage::getBaseUrl('js') ?>calendar/calendar-win2k-1.css"  />
+
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+
+<div class="page-title">
+	<h2><?php echo $this->__('Standard Commissions') ?></h2>
+</div>
+
+<?php echo $this->getChildHtml('payment_miniform') ?>
+<?php echo $this->getChildHtml('statistictransactions') ?>
+
+
+<?php if ($this->getCollection()->getSize()): ?>
+	<script type="text/javascript" src="<?php echo Mage::getBaseUrl('js') ?>calendar/calendar.js"></script>
+	<script type="text/javascript" src="<?php echo Mage::getBaseUrl('js') ?>calendar/calendar-setup.js"></script>
+	<?php echo $this->getLayout()->createBlock('core/html_calendar')->setTemplate('page/js/calendar.phtml')->toHtml() ?>
+	<form id="affiliateplus-transactions-search" method="get">
+		<div style="clear: both;">&nbsp;</div>
+		<div class="affiliateplus-form-search">
+			<div class="input-box left">
+				<div class="label row left" style="min-width: 70px;">
+					<label for="from-date"><?php echo $this->__('From Date') ?></label>
+				</div>
+				<div class="row left">
+					<input type="text" class="input-text" id="from-date" name="from-date" value="<?php echo $this->getRequest()->getParam('from-date') ?>" readonly style="margin-left: 10px;" />
+					<img src="<?php echo Mage::getBaseUrl('skin')?>/adminhtml/default/default/images/grid-cal.gif" alt="dateinput" class="v-middle" id="calendar-fromdate" title="dateinput"  />
+				</div>
+				<div style="clear: both;height: 5px;"></div>
+				<div class="label row left" style="min-width: 70px;">
+					<label for="to-date"><?php echo $this->__('To Date') ?></label>
+				</div>
+				<div class="row left">
+					<input type="text" class="input-text" id="to-date" name="to-date" value="<?php echo $this->getRequest()->getParam('to-date') ?>" readonly style="margin-left: 10px;" />
+					<img src="<?php echo Mage::getBaseUrl('skin')?>/adminhtml/default/default/images/grid-cal.gif" alt="dateinput" class="v-middle" id="calendar-todate" title="dateinput"  />
+				</div>
+				<div style="clear: both;height: 5px;"></div>
+				<div class="label row left" style="min-width: 70px;">
+					<label for="status"><?php echo $this->__('Status') ?></label>
+				</div>
+				<div class="row left">
+					<?php $status = $this->getRequest()->getParam('status') ?>
+					<select name="status" id="commission-status" style="margin-left: 10px; width: 135px;">
+						<option value></option>
+						<option value="1" <?php if ($status == 1): ?>selected<?php endif ?>><?php echo $this->__('Completed') ?></option>
+						<option value="2" <?php if ($status == 2): ?>selected<?php endif ?>><?php echo $this->__('Pending') ?></option>
+						<option value="3" <?php if ($status == 3): ?>selected<?php endif ?>><?php echo $this->__('Canceled') ?></option>
+					</select>
+				</div>
+			</div>
+			<div class="button-set">
+				<button class="form-button button" type="submit" style="margin-left:20px; min-width: 70px;">
+					<span>
+						<span><?php echo $this->__('Search') ?></span>
+					</span>
+				</button>
+				<br /><div style="height: 5px;"></div>
+				<button class="form-button button" type="button" onclick="setLocation('<?php echo $this->getUrl('*/*/*') ?>')" style="margin-left:20px; min-width: 70px;">
+					<span>
+						<span><?php echo $this->__('Reset') ?></span>
+					</span>
+				</button>
+			</div>
+		</div>
+		<div style="clear: both;">&nbsp;</div>
+	</form>
+
+	<?php echo $this->getPagerHtml() ?>
+	<?php echo $this->getGridHtml() ?>
+	<?php echo $this->getPagerHtml() ?>
+<?php else: ?>
+<div>
+	<p class="note-msg">
+		<?php echo $this->__('There are no commission matching this selection.') ?>
+	</p>
+</div>
+<?php endif ?>
+
+<script type="text/javascript">
+ Calendar.setup({
+	inputField: "from-date",
+	ifFormat: "%m-%d-%Y",
+	showsTime: false,
+	button: "calendar-fromdate",
+	align: "Bl",
+	singleClick : true
+ });
+Calendar.setup({
+	inputField: "to-date",
+	ifFormat: "%m-%d-%Y",
+	showsTime: false,
+	button: "calendar-todate",
+	align: "Bl",
+	singleClick : true
+ });
+</script>

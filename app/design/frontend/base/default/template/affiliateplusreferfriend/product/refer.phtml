@@ -1,0 +1,102 @@
+<?php
+/**
+ * Refer product for friend
+ * 
+ * @see Magestore_AffiliateplusReferFriend_Block_Product_Refer
+ */
+?>
+<?php $_product = $this->getProduct() ?>
+<?php $_affiliateUrl = $this->getAffiliateUrl($_product) ?>
+
+<?php if ($this->getGenerateJavascript()): ?>
+<script type="text/javascript">
+    function affEmailToFriend(url) {
+        var contentUrl = '<?php echo $this->getUrl('affiliateplus/refer/emailbox') ?>';
+        if (contentUrl.indexOf('?') == -1) {
+            contentUrl += '?url=';
+        } else {
+            contentUrl += '&url=';
+        }
+        contentUrl += encodeURIComponent(url);
+        TINY.box.show(contentUrl, 1, 327, 0, 1);
+    }
+    function affRetrieveContacts(mailSv) {
+        var mailCfg = <?php echo $this->getJsonEmail() ?>;
+        var popUrl = mailCfg[mailSv];
+        if (popUrl) popWin(popUrl,mailSv,getPopupPosition(500,360)+',resizable=yes,scrollbars=yes');
+    }
+    function affSendEmail() {
+        var affEmailForm = new VarienForm('affiliateplus-email-form', true);
+        if (!affEmailForm.validator.validate()) {
+            return false;
+        }
+        $('affiliate-btn-send-email').hide();
+        $('affiliate-please-wait-send-email').show();
+        var sendUrl = '<?php echo $this->getUrl('affiliateplus/refer/sendemail') ?>';
+        var params  = affEmailForm.form.serialize();
+        new Ajax.Request(sendUrl, {
+            method: 'post',
+            postBody: params,
+            parameters: params,
+            onException: function (xhr, e){
+                window.location.reload();
+            },
+            onComplete: function(xhr){
+                var response = xhr.responseText.evalJSON();
+                if (response.redirect) {
+                    window.location.href = response.redirect;
+                } else if (response.success) {
+                    alert(response.message);
+                    TINY.box.hide();
+                } else if (response.error) {
+                    alert(response.message);
+                    $('affiliate-btn-send-email').show();
+                    $('affiliate-please-wait-send-email').hide();
+                }
+            }
+        });
+    }
+    function affShareOnFacebook(url) {
+        var shareUrl = 'https://www.facebook.com/sharer/sharer.php?u=';
+        shareUrl += encodeURIComponent(url);
+        popWin(shareUrl,'facebook',getPopupPosition(570,360)+',resizable=yes,scrollbars=yes');
+    }
+    function affShareOnTwitter(url) {
+        var shareUrl = 'https://twitter.com/intent/tweet?original_referer=';
+        shareUrl += encodeURIComponent(window.location.href) + '&text=&url=';
+        shareUrl += encodeURIComponent(url);
+        popWin(shareUrl,'twitter',getPopupPosition(480,320)+',resizable=yes,scrollbars=yes');
+    }
+    function affShareGooglePlus(url) {
+        var shareUrl = 'https://plus.google.com/share?url=';
+        shareUrl += encodeURIComponent(url);
+        popWin(shareUrl,'google',getPopupPosition(500,360)+',resizable=yes,scrollbars=yes');
+    }
+    function getPopupPosition(width,height){
+        var screenX     = typeof window.screenX != 'undefined' ? window.screenX : window.screenLeft;
+        var	screenY     = typeof window.screenY != 'undefined' ? window.screenY : window.screenTop;
+        var	outerWidth  = typeof window.outerWidth != 'undefined' ? window.outerWidth : document.body.clientWidth;
+        var	outerHeight = typeof window.outerHeight != 'undefined' ? window.outerHeight : (document.body.clientHeight - 22);
+        var left = parseInt(screenX + ((outerWidth - width) / 2), 10);
+        var top  = parseInt(screenY + ((outerHeight - height) / 2.5), 10);
+        return 'width='+width+',height='+height+',left='+left+',top='+top;
+    }
+</script>
+<?php endif ?>
+
+<div class="affiliateplus-share-product-list">
+    <ul class="affiliateplus-refer">
+        <li>
+            <span class="logo email-logo" onclick="affEmailToFriend('<?php echo $_affiliateUrl . '&src=email' ?>')" title="<?php echo $this->__('Email to a Friend') ?>"></span>
+        </li>
+        <li>
+            <span class="logo facebook-logo" onclick="affShareOnFacebook('<?php echo $_affiliateUrl ?>')" title="<?php echo $this->__('Share on Facebook') ?>"></span>
+        </li>
+        <li>
+            <span class="logo twitter-logo" onclick="affShareOnTwitter('<?php echo $_affiliateUrl ?>')" title="<?php echo $this->__('Share on Twitter') ?>"></span>
+        </li>
+        <li>
+            <span class="logo google-logo" onclick="affShareGooglePlus('<?php echo $_affiliateUrl ?>')" title="<?php echo $this->__('Share on Google Plus') ?>"></span>
+        </li>
+    </ul>
+</div>

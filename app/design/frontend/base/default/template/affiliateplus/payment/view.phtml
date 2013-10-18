@@ -1,0 +1,159 @@
+<?php
+/**
+ * Payments view miniform request template
+ */
+?>
+<?php $payment = $this->getPayment(); ?>
+<?php $statusOption = $this->getStatusArray() ?>
+<?php $isStoreCredit = (bool)($payment->getData('payment_method') == 'credit') ?>
+
+<div class="page-title">
+    <h3><?php echo $isStoreCredit ? $this->__('Transaction detail') : $this->__('Withdrawal detail'); ?></h3>
+</div>
+<div class="box-info box-account">
+    <div class="box-head">
+        <h2><?php echo $isStoreCredit ? $this->__('Transaction Information') : $this->__('Withdrawal Information') ?></h2>
+    </div>
+    <ul class="form-list">
+        <li class="fields">
+            <div class="field">
+                <strong><?php echo $this->__('Status') ?></strong>
+            </div>
+            <div class="field">
+                <?php echo $statusOption[$payment->getStatus()] ?>
+            </div>
+        </li>
+        <li class="fields">
+            <div class="field">
+                <strong><?php echo $this->__('Requested Date') ?></strong>
+            </div>
+            <div class="field">
+                <?php echo $this->formatDate($payment->getRequestTime(), 'medium', false) ?>
+            </div>
+        </li>
+    <?php if ($payment->getData('tax_amount')): ?>
+        <li class="fields">
+			<div class="field">
+				<strong><?php echo $this->__('Amount') ?></strong>
+			</div>
+			<div class="field">
+				<?php echo Mage::helper('core')->currency($payment->getAmountInclTax()) ?>
+			</div>
+		</li>
+        <li class="fields">
+			<div class="field">
+				<strong><?php echo $this->__('Tax') ?></strong>
+			</div>
+			<div class="field">
+				<?php echo Mage::helper('core')->currency($payment->getTaxAmount()) ?>
+			</div>
+		</li>
+        <li class="fields">
+			<div class="field">
+				<strong><?php echo $this->__('Amount (Excl. Tax)') ?></strong>
+			</div>
+			<div class="field">
+				<?php echo Mage::helper('core')->currency($payment->getAmount()) ?>
+			</div>
+		</li>
+    <?php else: ?>
+        <li class="fields">
+            <div class="field">
+                <strong><?php echo $this->__('Amount') ?></strong>
+            </div>
+            <div class="field">
+                <?php echo Mage::helper('core')->currency($payment->getAmount()) ?>
+            </div>
+        </li>
+    <?php endif ?>
+    <?php if (!$isStoreCredit): ?>
+        <li class="fields">
+            <div class="field">
+                <strong><?php echo $this->__('Fee') ?></strong>
+            </div>
+            <div class="field">
+                <?php if ($payment->getStatus() == 1): ?>
+                    <?php echo $this->__('N/A') ?>
+                <?php elseif ($payment->getIsPayerFee()): ?>
+                    <?php echo Mage::helper('core')->currency(0) ?>
+                <?php else: ?>
+                    <?php echo Mage::helper('core')->currency($payment->getFee()) ?>
+                <?php endif ?>
+            </div>
+        </li>
+    <?php endif ?>
+        <li class="fields">
+            <div class="field">
+                <strong><?php echo $this->__('Payment') ?></strong>
+            </div>
+            <div class="field">
+                <?php echo $payment->getPaymentMethodHtml() ?>
+            </div>
+        </li>
+        <?php echo $this->getChildHtml('payment_method_info') ?>
+    <?php if (!$isStoreCredit): ?>
+        <li class="fields">
+            <div class="field">
+                <strong><?php echo $this->__('History') ?></strong>
+            </div>
+            <div class="field">
+                <a href="javascript:viewFullHistory()" title="<?php echo $this->__('View History') ?>">
+                    <?php echo $this->__('View History') ?>
+                </a>
+            </div>
+        </li>
+    <?php endif ?>
+    </ul>
+</div>
+<?php if (!$isStoreCredit): ?>
+<div id="affiliateplus_payment_history_block" style="display: none;">
+<div style="text-align: left; margin: 10px;">
+    <div class="page-title">
+        <h3><?php echo $this->__('Withdrawal history') ?></h3>
+    </div>
+    <ul class="note-list">
+    <?php foreach ($this->getFullHistory() as $_item): ?>
+        <li>
+            <strong><?php echo $this->helper('core')->formatDate($_item->getCreatedTime(), 'medium') ?></strong>
+            <?php echo $this->helper('core')->formatTime($_item->getCreatedTime(), 'medium') ?><span class="separator">|</span><strong><?php echo $_item->getStatusLabel() ?></strong>
+            <?php if ($_item->getDescription()): ?>
+                <span class="separator">|</span><?php echo $_item->getDescription() ?>
+            <?php endif; ?>
+        </li>
+    <?php endforeach; ?>
+    </ul>
+</div>
+</div>
+<script type="text/javascript">
+    function viewFullHistory() {
+        TINY.box.show($('affiliateplus_payment_history_block').innerHTML);
+    }
+</script>
+<?php endif ?>
+<div class="buttons-set">
+    <!--a class="left" href="javascript:window.location.href ='<?php echo $this->getUrl('affiliates/index/payments'); ?>'"-->
+        <button type="button" style="float:left" class="form-button button" onclick="javascript:history.go(-1)">
+            <span><?php echo $this->__('Back') ?></span>
+        </button>
+    <!--/a-->
+    <?php if ($payment->getStatus() < 3) { ?>
+        <div>
+            <button type="button" class="form-button button" onclick="cancelPayment()">
+                <span><?php echo $this->__('Cancel Withdrawal') ?></span>
+            </button>
+        </div>
+    <?php } ?>
+</div>
+<?php
+$confirmText = Mage::helper('adminhtml')->__('Are you sure?');
+$cancelurl = $this->getUrl('affiliateplus/index/cancelPayment', array('id' => $payment->getId()));
+?>
+<script type="text/javascript">
+    //<![CDATA[
+    function cancelPayment(){
+        if (confirm('<?php echo $confirmText ?>')){
+            setLocation('<?php echo $cancelurl ?>');
+        }
+    }
+    //]]>
+</script>

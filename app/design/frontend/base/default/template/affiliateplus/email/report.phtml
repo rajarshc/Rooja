@@ -1,0 +1,51 @@
+<?php
+/**
+ * report email statistic for affiliate account
+ * 
+ * @see Magestore_Affiliateplus_Block_Email_Report
+ */
+?>
+<?php $account = $this->getAccount() ?>
+<?php $statistic = $this->getStatistic() ?>
+<?php $total = $this->prepareStatistic($statistic->getData()) ?>
+<?php $store = $this->getStore() ?>
+<?php $currency = $store->getBaseCurrency() ?>
+<p>
+	<strong><?php echo $this->__('Current Balance') ?>: <?php echo $currency->format($account->getBalance()) ?></strong><br />
+	--------------------------------------------------<br /><br />
+	
+	<strong><?php echo $this->__('Sales Statistic') ?></strong><br />
+	--------------------------------------------------<br />
+	<table cellspacing="0" cellpadding="3" border="0" style="font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; text-align: center;">
+		<tr>
+			<td></td>
+			<td><?php echo $this->__('Sales') ?></td>
+			<td><?php echo $this->__('Transactions') ?></td>
+			<td><?php echo $this->__('Commission') ?></td>
+		</tr>
+		<?php $optionLabels = $this->getOptionLabels() ?>
+	<?php foreach ($statistic->getData() as $type => $data): ?>
+		<?php if (!isset($optionLabels[$type])) continue ?>
+		<tr>
+			<td><?php echo $optionLabels[$type] ?></td>
+			<td><?php echo $currency->format($data['sales']) ?></td>
+			<td><?php echo $data['transactions'] ?></td>
+			<td><?php echo $currency->format($data['commissions']) ?></td>
+		</tr>
+	<?php endforeach ?>
+		<tr>
+			<td><?php echo $this->__('Total') ?></td>
+			<td><?php echo $currency->format($total['sales']) ?></td>
+			<td><?php echo $total['transaction'] ?></td>
+			<td><?php echo $currency->format($total['commission']) ?></td>
+		</tr>
+	</table><br />
+	--------------------------------------------------<br /><br />
+	
+	<?php $click = $statistic->getClick() ?>
+	<strong><?php echo $this->__('Traffic statistic') ?></strong><br />
+	--------------------------------------------------<br />
+	<?php echo $this->__('Clicks') ?> ....................... <?php echo (isset($click['clicks']) && $click['clicks']) ? $click['clicks'] : '0' ?><br />
+	<?php echo $this->__('Unique Click') ?> .............. <?php echo (isset($click['unique']) && $click['unique']) ? $click['unique'] : '0' ?><br />
+	--------------------------------------------------<br />
+</p>

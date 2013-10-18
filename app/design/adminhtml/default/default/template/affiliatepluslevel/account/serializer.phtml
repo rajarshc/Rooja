@@ -1,0 +1,36 @@
+<?php $_id = 'toptierid_' . md5(microtime())  ?>
+
+<input type="hidden" name="<?php echo $this->getInputElementName() ?>" id="<?php echo $_id ?>" value="<?php echo $this->getGridBlock()->getSelectedAccount() ?>" />
+<div id="map-toptier-info" style="display:none;" >
+	<input type="hidden" id="map_toptier_name" value="">
+    <input type="hidden" id="map_toptier_level" value="">
+</div>
+<?php $_gridJsObject = $this->getGridBlock()->getJsObjectName() ?>
+<script type="text/javascript">
+
+var mapToptier = new MapToptier('<?php echo $this->getUrl('affiliateplusleveladmin/adminhtml_account/changeToptier',array('_secure'=>true)) ?>')
+
+function toptierObjectRowClick(grid, event){
+	var trElement = Event.findElement(event, 'tr');
+	var isInput   = Event.element(event).tagName == 'INPUT';
+	if(trElement){
+		var checkbox = Element.getElementsBySelector(trElement, 'input');
+		if(checkbox[0]){
+            if (checkbox[0].checked && !isInput) {
+                $('<?php echo $_id ?>').value = '';
+                checkbox[0].checked = false;
+                mapToptier.changeToptier('');
+                <?php echo $_gridJsObject ?>.reloadParams = {map_toptier_id: 0};
+            } else {
+                $('<?php echo $_id ?>').value = checkbox[0].value;
+                checkbox[0].checked = true;
+                mapToptier.changeToptier(checkbox[0].value);
+                <?php echo $_gridJsObject ?>.reloadParams = {map_toptier_id: checkbox[0].value};
+            }
+		}
+	}
+}
+
+<?php echo $_gridJsObject ?>.rowClickCallback =	toptierObjectRowClick;
+
+</script>
