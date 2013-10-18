@@ -75,10 +75,8 @@ jQuery(function() {
 <!--/////4-9-2013 SOC by GC-->
 <?php
 	$flag=0;
-	if($pid==58680 || $pid==58681 || $pid==58682 || $pid==58683){
-	
-	$flag=1;	
-			
+	if($_product->getSociomanticTracker()){
+		$flag=1;			
 	}
 ?>
 <!--/////4-9-2013 EOC by GC-->
