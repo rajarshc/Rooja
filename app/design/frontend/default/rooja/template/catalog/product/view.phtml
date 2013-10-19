@@ -75,7 +75,7 @@ jQuery(function() {
 <!--/////4-9-2013 SOC by GC-->
 <?php
 	$flag=0;
-	if($_product->getSociomanticTracker()){
+	if(!$_product->getSociomanticTracker()){
 		$flag=1;			
 	}
 ?>
