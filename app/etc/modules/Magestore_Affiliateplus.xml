@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Magestore_Affiliateplus>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Magestore_Affiliateplus>
+    </modules>
+</config> 

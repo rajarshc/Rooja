@@ -1,0 +1,174 @@
+/* Refer a Friend */
+#affiliateplus-sidebar {
+	width: 345px;
+}
+
+#affiliateplus-sidebar .allow .step-title {
+	cursor: pointer;
+	border-bottom: 1px solid #BBAFA0;
+}
+
+#affiliateplus-sidebar .allow .step-title:hover{
+	background: #F9F3E3;
+}
+
+#affiliateplus-sidebar .allow .step-title:hover .number{
+	background: #F18200;
+	border-color: #F19900;
+	color: #FFF;
+}
+
+#affiliateplus-sidebar .allow .step-title:hover h2{
+	color: #F18200;
+}
+	
+#affiliateplus-sidebar .step, #affiliateplus-sidebar p.box-content{
+	padding: 8px;
+}
+
+#affiliateplus-sidebar .form-list textarea{
+	width: 318px;
+	height: 100px;
+}
+
+#affiliateplus-sidebar .step-title span.logo{
+	width: 16px;
+	height: 16px;
+	margin-right: 4px;
+	border: none;
+}
+
+/* Personal */
+#affiliateplus-sidebar #input-personal-url{
+	width: 219px;
+	float: right;
+}
+#affiliateplus-sidebar #input-personal-url #personal_url{
+	width: 215px;
+}
+#affiliateplus-sidebar #personal_affiliate_url{
+	width: 327px;
+	text-align: center;
+}
+
+/* Email */
+#affiliateplus-sidebar .step-title span.email-logo{
+	background: url('images/email-grayscale.png') no-repeat;
+}
+#affiliateplus-sidebar .active .step-title span.email-logo, #affiliate-opc-email .step-title:hover span.logo{
+	background: url('images/email-color.png') no-repeat;
+}
+#affiliateplus-contact-list .form-list .input-box, #affiliateplus-contact-list .form-list .input-box select{
+	width: 100%;
+}
+#affiliateplus-contact-list .buttons-set{
+	padding-top: 7px;
+	border-top: 0px;
+	margin-top: 0px;
+}
+
+/* Google */
+#affiliateplus-sidebar .step-title span.google-logo{
+	background: url('images/gplus-grayscale.png') no-repeat;
+}
+#affiliateplus-sidebar .active .step-title span.google-logo, #affiliate-opc-google .step-title:hover span.logo{
+	background: url('images/gplus-color.png') no-repeat;
+}
+
+/* Facebook */
+#affiliateplus-sidebar .step-title span.facebook-logo{
+	background: url('images/facebook-grayscale.png') no-repeat;
+}
+#affiliateplus-sidebar .active .step-title span.facebook-logo, #affiliate-opc-facebook .step-title:hover span.logo{
+	background: url('images/facebook-color.png') no-repeat;
+}
+
+/* Tweeter */
+#affiliateplus-sidebar .step-title span.twitter-logo{
+	background: url('images/tweet.png') no-repeat 0px -17px;
+}
+#affiliateplus-sidebar .active .step-title span.twitter-logo, #affiliate-opc-twitter .step-title:hover span.logo{
+	background: url('images/tweet.png') no-repeat 0px 3px;
+}
+
+#affiliateplus-sidebar .tweeter span.span{
+	-webkit-border-radius: 3px;
+	border: #CCC solid 1px;
+	padding: 2px;
+	-moz-border-radius: 3px; border-radius: 3px;
+	background-image: -moz-linear-gradient(top, white, #DEDEDE);
+	background-image: -webkit-gradient(linear, left top, left bottom, from(white), to(#DEDEDE));
+	background-image: -ms-linear-gradient(top, white, #DEDEDE);
+	background-image: linear-gradient(top, white, #DEDEDE);
+	background-image: -o-linear-gradient(top, white, #DEDEDE);
+}
+#affiliateplus-sidebar button.tweeter span.span span{
+	background: url('images/tweet.png') no-repeat -26px 3px;
+	padding: 0px 3px 0px 24px;
+	color: #1E7EC8;
+	margin-left: 2px;
+}
+
+
+#affiliateplus-sidebar .buttons-set{
+	padding-top: 7px;
+	border-top: 0px;
+	margin-top: 0px;
+}
+
+#affiliateplus-sidebar .affiliateplus-opc li{
+	margin-bottom: 8px;
+}
+
+/* Share on Product Detail Page */
+.affiliateplus-share-product .affiliateplus-share-img {
+    position: relative;
+    float: left;
+    top: -16px;
+}
+.affiliateplus-share-product .share_twitter iframe{
+    width: 88px !important;
+}
+.affiliateplus-share-product .share_facebook .fb_button{
+    background: url("images/fb_share_button.png") no-repeat;
+    border: none;
+    height: 20px;
+    width: 70px;
+    cursor: pointer;
+    position: relative;
+    bottom: 1px;
+    color: #FFF;
+    font-size: 12px;
+    padding-top: 2px;
+    padding-left: 16px;
+}
+.affiliateplus-share-product .affiliateplus-sharing {
+    float: right;
+}
+.affiliateplus-share-product .share {
+    float: right;
+    margin-top: 5px;
+}
+
+/* Share on Product List Page */
+.affiliateplus-share-product-list{
+    overflow: hidden;
+    margin: 3px 0px;
+}
+.affiliateplus-share-product-list .logo{
+    width: 16px; height: 16px;
+    margin-right: 8px; border: none;
+    cursor: pointer;
+}
+.affiliateplus-share-product-list .email-logo{
+	background: url('images/email-color.png') no-repeat;
+}
+.affiliateplus-share-product-list .facebook-logo{
+    background: url('images/facebook-color.png') no-repeat;
+}
+.affiliateplus-share-product-list .twitter-logo{
+    background: url('images/tweet.png') no-repeat 0px 3px;
+}
+.affiliateplus-share-product-list .google-logo{
+    background: url('images/gplus-color.png') no-repeat;
+}

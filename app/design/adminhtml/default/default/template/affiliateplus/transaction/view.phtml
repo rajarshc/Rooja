@@ -1,0 +1,77 @@
+<?php $transaction = $this->getTransaction(); ?>
+
+<div class="columns">
+	<div id="page:left" class="side-col">
+		<h3><?php echo $this->__('Transaction Information'); ?></h3>
+		<ul id="transaction_detail" class="tabs">
+			<li>	
+				<a href="" class="tab-item-link active" title="<?php echo $this->__('Transaction Detail'); ?>">
+					<span>
+						<?php echo $this->__('Transaction Detail'); ?>
+					</span>
+				</a>
+			</li>
+		</ul>
+	</div>
+	<div id="content" class="main-col">
+		<div class="main-col-inner">
+			<div id="messages"></div>
+			<div class="content-header" style="visibility:visible;">
+				<h3 class="icon-head head-customer"><?php echo $this->__('Transaction Detail:'); ?></h3>
+			</div>
+			<div class="entry-edit">
+				<div id="transaction-table">
+					<div class="entry-edit">
+						<div class="entry-edit-head">
+							<h4 class="icon-head head-transaction-view"><?php echo $this->__('Transaction Information'); ?></h4>
+						</div>
+						<fieldset>
+							<table class="transaction-table" cellspacing="0" cellpadding="0">
+								
+								<col width="130;"/>
+								<col width="200;"/>
+								<col width="130;"/>
+								<col width="200;"/>
+
+								<tr>
+									<td ><label><strong><?php echo $this->__('Store View'); ?></strong></label></td>
+									<td ><?php echo $this->helper('affiliateplus')->getStore($transaction->getStoreId())->getName() ?></td>
+									<td ><label><strong><?php echo $this->__('Commission'); ?></strong></label></td>
+									<td ><?php echo $this->helper('core')->currency($transaction->getCommission()); ?></td>
+								</tr>
+								<tr>
+									<td ><label><strong><?php echo $this->__('Affiliate Account'); ?></strong></label></td>
+									<td ><a href="<?php echo $this->getUrl('*/adminhtml_account/edit', array('id' => $transaction->getAccountId())); ?>"><?php echo $transaction->getAccountName(); ?></a></td>
+									<td ><label><strong><?php echo $this->__('Discount'); ?></strong></label></td>
+									<td ><?php echo $this->helper('core')->currency($transaction->getDiscount()); ?></td>
+								</tr>
+								<tr>
+									<td ><label><strong><?php echo $this->__('Customer Email'); ?></strong></label></td>
+									<td >
+										<?php if($transaction->getCustomerId()) : ?>
+											<a href="<?php echo $this->getUrl('adminhtml/customer/edit/', array('_current'=>true, 'id' => $transaction->getCustomerId())); ?>">
+										<?php endif; ?>
+										<?php echo $transaction->getCustomerEmail(); ?>
+										<?php if($transaction->getCustomerId()) : ?>
+											</a>
+										<?php endif; ?>
+									</td>
+									<td ><label><strong><?php echo $this->__('Order Number'); ?></strong></label></td>
+									<td ><a href="<?php echo $this->getUrl('adminhtml/sales_order/view/', array('_current'=>true,'order_id' => $transaction->getOrderId())); ?>"><?php echo $transaction->getOrderNumber(); ?></a></td>
+								</tr>
+								<tr>
+									<td ><label><strong><?php echo $this->__('Total Amount'); ?></strong></label></td>
+									<td ><?php echo $this->helper('core')->currency($transaction->getTotalAmount()); ?></td>
+									<td ><label><strong><?php echo $this->__('Product(s)'); ?></strong></label></td>
+									<?php $html = $this->helper('affiliateplus')->getProductHtmls($row->getOrderItemIds()); ?>
+                                    <td ><?php echo $html?></td>
+								</tr>
+
+							</table>
+						</fieldset>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

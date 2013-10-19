@@ -1,0 +1,12 @@
+/* Affiliateplus Coupon stylesheet */
+
+#affiliate-coupon-codes li {padding: 25px 10px 30px 10px;}
+#affiliate-coupon-codes li.even {background: #F8F7F5;}
+
+#affiliate-coupon-codes li.odd:hover {background: #EEEDED;}
+#affiliate-coupon-codes li.even:hover {background: #EEEDED;}
+
+#affiliate-coupon-codes td {padding: 1px;}
+
+#affiliate-coupon-codes .tweeter {float: right;position: relative;top: -21px;}
+#affiliate-coupon-codes .tweeter span.span{-webkit-border-radius: 3px; border: #CCC solid 1px; padding: 2px; -moz-border-radius: 3px; border-radius: 3px; background-image: -moz-linear-gradient(top, white, #DEDEDE); background-image: -webkit-gradient(linear, left top, left bottom, from(white), to(#DEDEDE)); background-image: -ms-linear-gradient(top, white, #DEDEDE); background-image: linear-gradient(top, white, #DEDEDE); background-image: -o-linear-gradient(top, white, #DEDEDE);}

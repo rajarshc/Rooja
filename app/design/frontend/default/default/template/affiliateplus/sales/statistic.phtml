@@ -1,0 +1,39 @@
+<?php
+/**
+ * Statistic transactions template
+ */
+?>
+<?php $totalStatistic = $this->getTotalStatistic() ?>
+<div class="box-account box-info">
+    <div class="statistic-transactions block-content" style="padding-left: 0px;">
+    	<div class="right" style="margin-right: 300px;">
+			<p>
+				<strong>
+					<?php echo $this->__('Total Earnings: ') ?>
+					<?php echo $this->getFormatedCurreny($totalStatistic['commissions']) ?>
+				</strong>
+			</p>
+			<?php foreach($this->getStatisticInfo() as $staticInfo): ?>
+			<p>
+				<?php echo $staticInfo['earning'] ?>:
+				<?php echo $this->getFormatedCurreny($staticInfo['commissions']) ?>
+			</p>
+			<?php endforeach ?>
+        </div>
+        <div class="">
+			<p>
+				<strong>
+					<?php echo $this->__('Total Transactions: ') ?>
+					<?php echo $totalStatistic['number_commission'] ?>
+				</strong>
+			</p>
+			<?php foreach($this->getStatisticInfo() as $staticInfo): ?>
+			<p>
+				<?php echo $staticInfo['transactions'] ?>:
+				<?php echo $staticInfo['number_commission'] ?>
+			</p>
+			<?php endforeach ?>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>

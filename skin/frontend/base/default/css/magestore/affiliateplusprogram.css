@@ -1,0 +1,10 @@
+/* Affiliateplus Program Plugin stylesheet */
+
+.affiliate-clear { min-height: 18px; clear: both; }
+
+.affiliateplusprogram_total_commission { color: #ff0000; }
+
+.affiliateplus-form-search .input-box .label { font-weight: bold; }
+.affiliateplus-form-search .input-box .left input { margin-left: 10px; }
+
+.affiliateplus-anchor {color: #1e7ec8; text-decoration: underline; cursor: pointer;}

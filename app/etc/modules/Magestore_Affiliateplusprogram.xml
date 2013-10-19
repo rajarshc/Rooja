@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Magestore_Affiliateplusprogram>
+            <active>true</active>
+            <codePool>local</codePool>
+            <aliasName>Affiliate Plus Multiple Program</aliasName>
+            <depends>
+            	<Magestore_Affiliateplus />
+            </depends>
+        </Magestore_Affiliateplusprogram>
+    </modules>
+</config>

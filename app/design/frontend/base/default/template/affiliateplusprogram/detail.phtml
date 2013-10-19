@@ -1,0 +1,52 @@
+<?php
+/**
+ * Sales transaction history template
+ */
+?>
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+
+<div class="page-title" style="border-bottom: none;">
+	<h2 style="border-bottom: 1px solid #CCC;"><?php echo $this->__('Program: "%s"',$this->getProgram()->getName()) ?></h2>
+</div>
+
+<div class="fieldset">
+    <p>
+        <?php echo $this->getProgram()->getDescription() ?>
+    </p>
+<?php if ($this->getProgram()->getValidFrom() || $this->getProgram()->getValidTo()): ?>
+    <p>
+        <span><?php echo $this->__('Notice') ?>:</span>
+        <?php echo $this->__('This program only available') ?>
+        <?php if ($this->getProgram()->getValidFrom()): ?>
+            <?php echo $this->__('from %s',$this->formatDate($this->getProgram()->getValidFrom(),'medium',false)) ?>
+        <?php endif ?>
+        <?php if ($this->getProgram()->getValidTo()): ?>
+            <?php echo $this->__('to %s',$this->formatDate($this->getProgram()->getValidTo(),'medium',false)) ?>
+        <?php endif ?>
+    </p>
+<?php endif ?>
+</div>
+<?php // echo $this->getGridHtml() ?>
+
+<div class="buttons-set">
+	<p class="back-link">
+		<a href="<?php echo $this->getUrl('affiliateplusprogram/index/index') ?>">
+			<button type="button" class="form-button button">
+				<span><?php echo $this->__('Back')?></span>
+			</button>
+		</a>
+	</p>
+<?php if ($this->isJoined()): ?>
+	<button class="button" type="button" onclick='setLocation("<?php echo $this->getUrl('affiliateplusprogram/index/out',array('id' => $this->getProgram()->getId())) ?>")'>
+		<span>
+			<span><?php echo $this->__('Opt Out') ?></span>
+		</span>
+	</button>
+<?php else: ?>
+	<button class="button" type="button" onclick='setLocation("<?php echo $this->getUrl('affiliateplusprogram/index/join',array('id' => $this->getProgram()->getId())) ?>")'>
+		<span>
+			<?php echo $this->__('Join Program') ?>
+		</span>
+	</button>
+<?php endif ?>
+</div>

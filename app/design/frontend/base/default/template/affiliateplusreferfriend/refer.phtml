@@ -1,0 +1,318 @@
+<?php
+/**
+ * Referers history template
+ */
+?>
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+
+
+<div id="affiliateplus-sidebar" class="col-right sidebar">
+    <div class="block block-list">
+        <?php echo $this->getSharingDescription() ?>
+    </div>
+    <div class="block block-list">
+        <div class="block-title">
+            <strong><?php echo $this->__('Personal URL') ?></strong>
+        </div>
+        <div class="block-content">
+            <form id="affiliate-personal-url-form" method="post" action="<?php echo $this->getUrl('*/*/personal') ?>">
+                <div id="affiliate-opc-personal-url" class="step a-item">
+                    <ul class="form-list">
+                        <li><label><?php echo $this->__('Your personal affiliate url') ?></label></li>
+                        <li class="control">
+                            <input type="checkbox"<?php if ($this->getCustomUrl()): ?> checked="true"<?php endif ?> id="use-personal-url" value="1" class="required-entry" onclick="changePersonalUrl(this);" />
+                            <label for="use-personal-url"><?php echo $this->__('Custom Url') ?></label>
+                            <div class="input-box" id="input-personal-url"<?php if (!$this->getCustomUrl()): ?> style="display:none;"<?php endif ?>>
+                                <input type="text" id="personal_url" name="personal_url" onchange="changeCustomUrl();" onkeyup="changeCustomUrl();" value="<?php echo $this->getCustomUrl() ?>" class="input-text required-entry"/>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="buttons-set" id="button-save-personal-url"<?php if (!$this->getCustomUrl()): ?> style="display:none;"<?php endif ?>>
+                        <button class="button" title="<?php echo $this->__('Save') ?>" type="submit">
+                            <span><span><?php echo $this->__('Save') ?></span></span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <div class="actions">
+                <a id="personal_affiliate_url" title="<?php echo $this->__('Your personal affiliate url') ?>"></a>
+            </div>
+            <script type="text/javascript">
+                var personalUrlForm = new VarienForm('affiliate-personal-url-form',true);
+                function changePersonalUrl(el){
+                    if (el.checked){
+                        $('input-personal-url').show();
+                        $('button-save-personal-url').show();
+                        changeCustomUrl();
+                    } else {
+                        $('input-personal-url').hide();
+                        $('button-save-personal-url').hide();
+                        var personalUrl = '<?php echo $this->getPersonalUrl() ?>';
+                        var urlEl = $('personal_affiliate_url');
+                        if (urlEl.href != personalUrl){
+                            urlEl.href = personalUrl;
+                            urlEl.innerHTML = prepareShowPersonalUrl(personalUrl,54);
+                        }
+                    }
+                }
+                var process=1;
+                function changeCustomUrl(){
+                    if(process){
+                        process=0;
+                        var customUrlInput = $('personal_url').value;
+                        var url='<?php echo $this->getUrl('affiliateplus/refer/refineCustomUrl') ?>'+'?custom_url='+customUrlInput;
+                        var request = new Ajax.Request(url,{
+                            onComplete: function(response){
+                                var  customUrl=JSON.parse(response.responseText);
+                                var personalUrl = '';
+                                if (customUrl == ''){
+                                    personalUrl = '<?php echo $this->getPersonalUrl() ?>';
+                                } else {
+                                    var prefixUrl = '<?php echo $this->getPrefixUrl() ?>';
+                                    personalUrl  = prefixUrl + customUrl;
+                                    var urlInStore = '<?php echo $this->getSuffixUrl() ?>';
+                                    if (urlInStore.search('[?]') != -1)
+                                        personalUrl += '?' + urlInStore.split('?')[1];
+                                }
+                                var urlEl = $('personal_affiliate_url');
+                                if (urlEl.href != personalUrl){
+                                    urlEl.href = personalUrl;
+                                    urlEl.innerHTML = prepareShowPersonalUrl(personalUrl,54);
+                                }
+                            }
+                        }
+                    );
+                        process=1;
+                    }   
+                }
+                function prepareShowPersonalUrl(pUrl,len){
+                    var newPUrl = ''; var i;
+                    for (i=0;i<pUrl.length-len;i+=len)
+                    newPUrl += pUrl.substr(i,len) + ' ';
+                    newPUrl += pUrl.substr(i);
+                    return newPUrl;
+                }
+                changePersonalUrl($('use-personal-url'));
+            </script>
+        </div>
+    </div>
+    <ol class="opc affiliateplus-opc">
+        <li id="affiliate-opc-email" class="section allow<?php if ($this->isActiveTab('email')): ?> active<?php endif ?>">
+            <div class="step-title" onclick="toggleAffiliateRighbox('affiliate-opc-email-content')">
+                <span class="logo email-logo"></span>
+                <h2><?php echo $this->__('Email') ?></h2>
+            </div>
+            <div id="affiliate-opc-email-content" class="step a-item"<?php if (!$this->isActiveTab('email')): ?> style="display:none;"<?php endif ?>>
+                <form id="affiliate-email-form" method="post" action="<?php echo $this->getUrl('*/*/email') ?>">
+                    <ul class="form-list">
+                        <li>
+                            <label><?php echo $this->__('From') ?>:</label>&nbsp;
+                            <a href="mailto:<?php echo $this->getAccountEmail() ?>"><?php echo $this->getAccountEmail() ?></a>
+                        </li>
+                        <li>
+                            <label for="affiliate-email-address"><?php echo $this->__("Enter your friends' emails separated by comma") ?>:</label>
+                            <div class="input-box">
+                                <input type="text" class="input-text required-entry" id="affiliate-email-address" name="emails" style="width: 318px;" value="<?php echo $this->getEmailFormData()->getEmails() ?>"/>
+                            </div>
+                        </li>
+                        <li>
+                            <span>
+                                <?php echo $this->__("Or retrieve contacts from") ?>
+                                <a href="#" onclick="retrieveContacts('gmail'); return false;" title="<?php echo $this->__('get contacts from gmail') ?>"><?php echo $this->__('Gmail') ?></a>,
+                                <a href="#" onclick="retrieveContacts('yahoo'); return false;" title="<?php echo $this->__('get contacts from yahoo') ?>"><?php echo $this->__('Yahoo') ?></a>
+                            </span>
+                        </li>
+                        <li>
+                            <label for="affiliate-email-subject"><?php echo $this->__("Subject") ?>:</label>
+                            <div class="input-box">
+                                <input type="text" class="input-text required-entry" id="affiliate-email-subject" name="email_subject" style="width: 318px;" value="<?php echo $this->getEmailFormData()->getEmailSubject() ? $this->getEmailFormData()->getEmailSubject() : $this->getDefaultEmailSubject() ?>"/>
+                            </div>
+                        </li>
+                        <li>
+                            <label for="affiliate-email-content"><?php echo $this->__("Your message (use suggested or write your own)") ?>:</label>
+                            <div class="input-box">
+                                <textarea id="affiliate-email-content" name="email_content" class="required-entry" style="height: 165px;"><?php echo $this->getEmailFormData()->getEmailContent() ? $this->getEmailFormData()->getEmailContent() : $this->getDefaultEmailContent() ?></textarea>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="buttons-set">
+                        <button class="button" title="<?php echo $this->__('Send Email') ?>" type="submit">
+                            <span><span><?php echo $this->__('Send Email') ?></span></span>
+                        </button>
+                    </div>
+                </form>
+                <p></p>
+                <script type="text/javascript">
+                    new VarienForm('affiliate-email-form',true);
+                    function retrieveContacts(mailSv){
+                        var mailCfg = <?php echo $this->getJsonEmail() ?>;
+                        var popUrl = mailCfg[mailSv];
+                        if (popUrl) popWin(popUrl,mailSv,getPopupPosition(500,360)+',resizable=yes,scrollbars=yes');
+                    }
+                </script>
+            </div>
+        </li>
+        <li id="affiliate-opc-facebook" class="section allow<?php if ($this->isActiveTab('facebook')): ?> active<?php endif ?>">
+            <div class="step-title" onclick="toggleAffiliateRighbox('affiliate-opc-facebook-content')">
+                <span class="logo facebook-logo"></span>
+                <h2><?php echo $this->__('Facebook') ?></h2>
+            </div>
+            <div id="affiliate-opc-facebook-content" class="step a-item"<?php if (!$this->isActiveTab('facebook')): ?> style="display:none;"<?php endif ?>>
+                <ul class="message" id="affiliate-facebook-msg" style="display:none;">
+                    <li class="success-msg">
+                        <ul><li><?php echo $this->__('This message has been posted successfully!') ?></li></ul>
+                    </li>
+                </ul>
+                <form id="affiliate-facebook-form" method="post">
+                    <ul class="form-list">
+                        <li>
+                            <label for="affiliate-facebook-content"><?php echo $this->__("Post on Facebook") ?>:</label>
+                            <div class="input-box">
+                                <textarea id="affiliate-facebook-content" class="required-entry"><?php echo $this->getDefaultSharingContent() ?></textarea>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="buttons-set">
+                        <button type="button" class="button" title="<?php echo $this->__('Post on Facebook') ?>" onclick="postOnFacebook();">
+                            <span><span><?php echo $this->__('Post on Facebook') ?></span></span>
+                        </button>
+                    </div>
+                </form>
+                <p></p>
+                <script type="text/javascript">
+                    var facebookForm = new VarienForm('affiliate-facebook-form',true);
+                    function postOnFacebook(){
+                        if (facebookForm.validator.validate()){
+                            popWin('<?php echo $this->getFbLoginUrl() ?>','facebook',getPopupPosition(500,270)+',resizable=yes,scrollbars=yes');
+                        }
+                    }
+                </script>
+            </div>
+        </li>
+        <li id="affiliate-opc-twitter" class="section allow<?php if ($this->isActiveTab('twitter')): ?> active<?php endif ?>">
+            <div class="step-title" onclick="toggleAffiliateRighbox('affiliate-opc-twitter-content')">
+                <span class="logo twitter-logo"></span>
+                <h2><?php echo $this->__('Twitter') ?></h2>
+            </div>
+            <div id="affiliate-opc-twitter-content" class="step a-item"<?php if (!$this->isActiveTab('twitter')): ?> style="display:none;"<?php endif ?>>
+                <ul class="form-list">
+                    <li>
+                        <label for="affiliate-twitter-content"><?php echo $this->__("Your message (use suggested or write your own)") ?>:</label>
+                        <div class="input-box">
+                            <textarea id="affiliate-twitter-content" class="required-entry"><?php echo $this->getDefaultTwitterContent() ?></textarea>
+                        </div>
+                    </li>
+                </ul>
+                <div class="buttons-set">
+                    <button class="button tweeter" title="<?php echo $this->__('Tweet') ?>" onclick="affiliateTweet();">
+                        <span class="span" style="background-color: #eee;">
+                            <span>
+                                <?php echo $this->__('Tweet') ?>
+                            </span>
+                        </span>
+                    </button>
+                </div>
+                <p></p>
+                <script type="text/javascript">
+                    function affiliateTweet(){
+                        var tweetUrl = 'https://twitter.com/intent/tweet?original_referer=<?php echo urlencode($this->getPersonalUrl()) ?>source=tweetbutton&text=';
+                        tweetUrl += encodeURIComponent($('affiliate-twitter-content').value);
+                        popWin(tweetUrl,'tweet',getPopupPosition(480,320)+',resizable=yes,scrollbars=yes');
+                    }
+                </script>
+            </div>
+        </li>
+        <li id="affiliate-opc-google" class="section allow<?php if ($this->isActiveTab('google')): ?> active<?php endif ?>">
+            <div class="step-title" onclick="toggleGooglePlus()">
+                <span class="logo google-logo"></span>
+                <h2><?php echo $this->__('Google+') ?></h2>
+            </div>
+            <div id="affiliate-opc-google-content" class="step a-item"<?php if (!$this->isActiveTab('twitter')): ?> style="display:none;"<?php endif ?>>
+                <div class="google-plus-share">
+                    <g:plus action="share" height="24" href="<?php echo $this->getPersonalUrl() ?>"></g:plus>
+                </div>
+                <p></p>
+                <script type="text/javascript">
+<?php if ($this->isActiveTab('google')): ?>
+                        (function() {
+                            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                            po.src = 'https://apis.google.com/js/plusone.js';
+                            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+                        })();
+                        var loadGooglePlus = false;
+<?php else: ?>
+                        var loadGooglePlus = true;
+<?php endif ?>
+                </script>
+            </div>
+        </li>
+    </ol>
+</div>
+<script type="text/javascript">
+    function toggleGooglePlus(){
+        toggleAffiliateRighbox('affiliate-opc-google-content');
+        if (loadGooglePlus){
+            (function() {
+                var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                po.src = 'https://apis.google.com/js/plusone.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+            })();
+            loadGooglePlus = false;
+        }
+    }
+    var affiliateCurrentEId = '';
+    function toggleAffiliateRighbox(eId){
+        if (eId != affiliateCurrentEId){
+            if (affiliateCurrentEId != ''){
+                $(affiliateCurrentEId).hide();
+                $($(affiliateCurrentEId).parentNode.id).removeClassName('active');
+            }
+            affiliateCurrentEId = eId;
+        }
+        $(eId).toggle();
+        $($(eId).parentNode.id).toggleClassName('active');
+    }
+	
+    function getPopupPosition(width,height){
+        var  screenX    = typeof window.screenX != 'undefined' ? window.screenX : window.screenLeft;
+        var	 screenY    = typeof window.screenY != 'undefined' ? window.screenY : window.screenTop;
+        var	 outerWidth = typeof window.outerWidth != 'undefined' ? window.outerWidth : document.body.clientWidth;
+        var	 outerHeight = typeof window.outerHeight != 'undefined' ? window.outerHeight : (document.body.clientHeight - 22);
+        var left = parseInt(screenX + ((outerWidth - width) / 2), 10);
+        var top = parseInt(screenY + ((outerHeight - height) / 2.5), 10);
+        return 'width='+width+',height='+height+',left='+left+',top='+top;
+    }
+</script>
+
+<div class="page-title" style="width: 47%;">
+    <h2><?php echo $this->__('Refer Friends and Earn Money') ?></h2>
+</div>
+
+<div style="margin-bottom: 18px;">
+    <?php echo $this->getReferDescription() ?>
+</div>
+
+<div class="page-title" style="width: 47%;"></div>
+
+<?php $trafficSources = $this->getTrafficSources() ?>
+<div class="fieldset" style="width: 37%;">
+    <h2 class="legend"><?php echo $this->__('Traffic sources') ?></h2>
+    <table>
+        <tr>
+            <td style="width:120px;"><?php echo $this->__('Email') ?>:</td>
+            <td><?php echo $trafficSources['email'] ?></td>
+        </tr>
+        <tr>
+            <td><?php echo $this->__('Facebook') ?>:</td>
+            <td><?php echo $trafficSources['facebook'] ?></td>
+        </tr>
+        <tr>
+            <td><?php echo $this->__('Twitter') ?>:</td>
+            <td><?php echo $trafficSources['twitter'] ?></td>
+        </tr>
+        <tr>
+            <td><?php echo $this->__('Google+') ?>:</td>
+            <td><?php echo $trafficSources['google'] ?></td>
+        </tr>
+    </table>
+</div>

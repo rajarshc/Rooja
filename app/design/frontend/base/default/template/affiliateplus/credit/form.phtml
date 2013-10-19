@@ -1,0 +1,38 @@
+<?php
+/**
+ * Payment Form Template
+ */
+?>
+
+<?php $_code = 'affiliateplus' ?>
+
+<dl id="<?php echo $_code ?>_container">
+    <dt class="<?php echo $_code ?>_credit">
+        <input type="checkbox" name="payment[<?php echo $_code ?>_credit]" id="<?php echo $_code ?>_credit" onclick="changeUseAffiliateCredit(this);"<?php if ($this->getUseAffiliateCredit()): ?> checked="checked"<?php endif ?> />
+        <label for="<?php echo $_code ?>_credit" style="font-weight: bold; color: #666;"><?php echo $this->__('Check out with affiliate account balance (%s)', $this->getFormatedBalance()) ?></label>
+        <p id="<?php echo $_code ?>_credit_ajaxload" style="display:none; font-weight: normal; font-style: italic;">
+            <img src="<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif') ?>" alt="<?php echo $this->__('Loading...') ?>" title="<?php echo $this->__('Loading...') ?>" class="v-middle" />
+            <?php echo $this->__('Loading...') ?>
+        </p>
+        <input type="hidden" id="affiliate_cache_url" value="<?php echo $this->getUrl('affiliateplus/checkout/creditPost') ?>" />
+    </dt>
+    <dd class="<?php echo $_code ?>_credit"<?php if (!$this->getUseAffiliateCredit()): ?> style="display: none;"<?php endif ?>>
+        <ul class="form-list" id="payment_form_<?php echo $_code ?>_credit">
+            <li class="affiliateplus-discount-code">
+                <strong>
+                    <?php echo $this->__('You are spending') ?>
+                    <span>
+                        <span class="using_credit" style="cursor: pointer;" title="<?php echo $this->__('Edit') ?>" onclick="showAffiliateCreditInput(this);">
+                            <a href="#" onclick="return false;"><?php echo $this->getUsingAmount() ?></a>
+                            <img src="<?php echo $this->getSkinUrl('images/btn_edit.gif') ?>" alt="<?php echo $this->__('Edit') ?>" class="ajax-loader v-middle" />
+                        </span>
+                        <span class="credit_input" style="display: none;">
+                            <input class="input-text" type="text" value="<?php echo $this->getAffiliateCredit() ?>" title="<?php echo $this->__('Affiliate Credit') ?>" style="width: 68px;" onkeyup="enterUpdateAffiliateCreditInput(this, event);" onkeypress="return isNotEnterKeyPressed(event);" />
+                            <img src="<?php echo $this->getSkinUrl('images/i_msg-success.gif') ?>" alt="<?php echo $this->__('Apply') ?>" title="<?php echo $this->__('Apply') ?>" class="v-middle" onclick="updateAffiliateCreditInput(this);" style="cursor: pointer;" />
+                        </span>
+                    </span>
+                </strong>
+            </li>
+        </ul>
+    </dd>
+</dl>

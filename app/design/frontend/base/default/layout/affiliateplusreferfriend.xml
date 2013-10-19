@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magestore
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the Magestore.com license that is
+ * available through the world-wide-web at this URL:
+ * http://www.magestore.com/license-agreement.html
+ * 
+ * DISCLAIMER
+ * 
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ * 
+ * @category    Magestore
+ * @package     Magestore_AffiliateplusReferFriend
+ * @copyright   Copyright (c) 2012 Magestore (http://www.magestore.com/)
+ * @license     http://www.magestore.com/license-agreement.html
+ */
+-->
+<layout version="0.1.0">
+    <default>
+        <reference name="head">
+            <action method="addCss">
+                <styleSheet>css/magestore/affiliateplusreferfriend.css</styleSheet>
+            </action>
+            <action method="addJs">
+                <script>tinybox/tinybox.js</script>
+            </action>
+            <action method="addCss">
+                <styleSheet>css/tinybox/style.css</styleSheet>
+            </action>
+        </reference>
+    </default>
+    
+    <affiliateplus_default>
+        <reference name="account_navigator">
+            <action method="addLink" translate="label" module="affiliateplus">
+                <name>refers</name>
+                <path>affiliateplus/refer/index</path>
+                <label><![CDATA[Refer Friends]]>
+                </label>
+                <disabled helper="affiliateplusreferfriend/disableReferFriend" />
+                <order>47</order>
+            </action>
+        </reference>
+    </affiliateplus_default>
+    
+    <affiliateplus_refer_index>
+        <update handle="affiliateplus_default" />
+        <reference name="content">
+            <block type="affiliateplusreferfriend/refer" name="affiliateplus_refer" template="affiliateplusreferfriend/refer.phtml" />
+        </reference>
+    </affiliateplus_refer_index>
+    <affiliateplus_refer_yahoo>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="affiliateplusreferfriend/refer_yahoo" name="affiliateplus_refer_yahoo" template="affiliateplusreferfriend/contacts.phtml" />
+        </reference>
+    </affiliateplus_refer_yahoo>
+    <affiliateplus_refer_gmail>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="affiliateplusreferfriend/refer_gmail" name="affiliateplus_refer_gmail" template="affiliateplusreferfriend/contacts.phtml" />
+        </reference>
+    </affiliateplus_refer_gmail>
+    <affiliateplus_refer_hotmail>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="affiliateplusreferfriend/refer_hotmail" name="affiliateplus_refer_hotmail" template="affiliateplusreferfriend/contacts.phtml" />
+        </reference>
+    </affiliateplus_refer_hotmail>
+    
+    <catalog_product_view>
+        <reference name="product.info">
+            <block type="core/text_list" name="product.info.other" as="other">
+                <block type="affiliateplusreferfriend/product" name="affiliateplus_refer" template="affiliateplusreferfriend/product.phtml" />
+            </block>
+        </reference>
+    </catalog_product_view>
+    
+</layout>

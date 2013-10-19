@@ -1,0 +1,811 @@
+<?xml version="1.0"?>
+<config>
+    <tabs>
+        <magestore translate="label">
+            <label>Magestore Extension</label>
+            <sort_order>400</sort_order>
+        </magestore>
+    </tabs>
+
+    <sections>
+        <affiliateplus translate="label" module="affiliateplus">
+            <class>separator-top</class>
+            <label>Affiliate Plus</label>
+            <tab>magestore</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>300</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <general translate="label">
+                    <label>General Configuration</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <show_affiliate_link_on_frontend translate="label">
+                            <label>Show affiliate link on frontend</label>
+                            <frontend_type>select</frontend_type>  
+                            <source_model>adminhtml/system_config_source_yesno</source_model>                 
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment></comment>
+                        </show_affiliate_link_on_frontend>
+                        
+                        <welcome_page translate="label comment">
+                            <label>Welcome page using CMS</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_cms_page</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Create CMS page and manage there</comment>
+                        </welcome_page>
+                        
+                        <material_enable translate="label">
+                            <label>Show Material page</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>30</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </material_enable>
+                        <material_page translate="label comment">
+                            <label>Material page using CMS</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_cms_page</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <material_enable>1</material_enable> 
+                            </depends>
+                            <comment>Create CMS page and manage there</comment>
+                        </material_page>
+						
+                        <expired_time translate="label comment">
+                            <label>Cookie Expiry (days)</label>
+                            <frontend_type>text</frontend_type>                   
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Expired time cookie have been saved in client browser</comment>
+                        </expired_time>
+                    </fields>
+                </general>
+                
+                <account>
+                    <label>Account Configuration</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>2</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <sign_up_separator translate="label">
+                            <label>Sign up Affiliate</label>
+                            <frontend_type>label</frontend_type>
+                            <frontend_model>affiliateplus/adminhtml_field_separator</frontend_model>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment></comment>
+                        </sign_up_separator>
+                        <register_description translate="label">
+                            <label>Signup description</label>
+                            <frontend_type>textarea</frontend_type>                   
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment></comment>
+                        </register_description>
+                        <required_address translate="label">
+                            <label>Require address when signing up</label>
+                            <frontend_type>select</frontend_type>  
+                            <source_model>adminhtml/system_config_source_yesno</source_model>                 
+                            <sort_order>12</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment></comment>
+                        </required_address>
+                        <required_paypal translate="label">
+                            <label>Require Paypal email when signing up</label>
+                            <frontend_type>select</frontend_type>  
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>13</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment></comment>
+                        </required_paypal>
+                        <need_approved translate="label">
+                            <label>Need admin's approval</label>
+                            <frontend_type>select</frontend_type>  
+                            <source_model>adminhtml/system_config_source_yesno</source_model>                 
+                            <sort_order>14</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment></comment>
+                        </need_approved>
+                        <notification_after_signing_up translate="label">
+                            <label>Notification after signing up</label>
+                            <frontend_type>textarea</frontend_type>                   
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment></comment>
+                        </notification_after_signing_up>
+                        
+                        <balance_separator translate="label">
+                            <label>Account Balance</label>
+                            <frontend_type>label</frontend_type>
+                            <frontend_model>affiliateplus/adminhtml_field_separator</frontend_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment></comment>
+                        </balance_separator>
+                        <balance translate="label">
+                            <label>Account Balance Scope</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>30</sort_order>
+                            <source_model>affiliateplus/system_config_source_scope</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </balance>
+                    </fields>
+                </account>
+                
+                <commission>
+                    <label>Commission Configuration</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>3</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <calculate_separator translate="label">
+                            <label>Pay per Sales/ Profit Commission</label>
+                            <frontend_type>label</frontend_type>
+                            <frontend_model>affiliateplus/adminhtml_field_separator</frontend_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment></comment>
+                        </calculate_separator>
+                        <affiliate_type translate="label">
+                            <label>Pay commission</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>affiliateplus/system_config_source_type</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment></comment>
+                        </affiliate_type>
+                        <commission_type translate="label">
+                            <label>Commission type</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>affiliateplus/system_config_source_fixedpercentage</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment></comment>
+                        </commission_type>
+                        <commission translate="label">
+                            <label>Commission Value</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment></comment>
+                        </commission>
+                        
+                        <use_secondary translate="label comment">
+                            <label>Use different commission from 2nd order of a Customer</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>35</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Select "No" to apply above commission for all orders</comment>
+                        </use_secondary>
+                        <secondary_type translate="label">
+                            <label>Commission Type (from 2nd order)</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>affiliateplus/system_config_source_fixedpercentage</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><use_secondary>1</use_secondary></depends>
+                            <comment></comment>
+                        </secondary_type>
+                        <secondary_commission translate="label">
+                            <label>Commission Value (from 2nd order)</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>45</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><use_secondary>1</use_secondary></depends>
+                            <comment></comment>
+                        </secondary_commission>
+                        
+                        <process_separator translate="label">
+                            <label>Process Commission</label>
+                            <frontend_type>label</frontend_type>
+                            <frontend_model>affiliateplus/adminhtml_field_separator</frontend_model>
+                            <sort_order>420</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>10px</comment>
+                        </process_separator>
+                        <updatebalance_orderstatus translate="label">
+                            <label>Add commission to account balance when order status is</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>430</sort_order>
+                            <source_model>adminhtml/system_config_source_order_status</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </updatebalance_orderstatus>
+                        <holding_period translate="label comment">
+                            <label>Holding period</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>435</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>days. 0 or empty is not hold commission.</comment>
+                        </holding_period>
+                        <decrease_commission_creditmemo translate="label">
+                            <label>Subtract commission from account balance when creditmemo is created</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>440</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </decrease_commission_creditmemo>
+                        <cancel_transaction_orderstatus translate="label">
+                            <label>Subtract commission from account balance when order status is</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <sort_order>450</sort_order>
+                            <source_model>adminhtml/system_config_source_order_status</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </cancel_transaction_orderstatus>
+                        
+                        <lifetime_separator translate="label">
+                            <label>Lifetime Sales Commission</label>
+                            <frontend_type>label</frontend_type>
+                            <frontend_model>affiliateplus/adminhtml_field_separator</frontend_model>
+                            <sort_order>400</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment></comment>
+                        </lifetime_separator>
+                        <life_time_sales translate="label comment">
+                            <label>Lifetime Sales Commission</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>410</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Customer first buys through affiliate A's link, though later clicks affiliate B's link and buys, this transaction will still be counted for affiliate A]]></comment>
+                        </life_time_sales>
+                    </fields>
+                </commission>
+                
+                <discount>
+                    <label>Discount Configuration</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>4</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <allow_discount translate="label">
+                            <label>When there's Shopping cart Discount, apply</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>affiliateplus/system_config_source_discount</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment></comment>
+                        </allow_discount>
+                        
+                        <discount_type translate="label">
+                            <label>Discount Type</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>affiliateplus/system_config_source_discounttype</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment></comment>
+                        </discount_type>
+						
+                        <discount translate="label">
+                            <label>Discount Value</label>
+                            <frontend_type>text</frontend_type>                   
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment></comment>
+                        </discount>
+                        
+                        <use_secondary translate="label comment">
+                            <label>Use different discount from 2nd order of a Customer</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>35</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Select "No" to apply above discount for all orders</comment>
+                        </use_secondary>
+                        <secondary_type translate="label">
+                            <label>Discount Type (from 2nd order)</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>affiliateplus/system_config_source_discounttype</source_model>
+                            <sort_order>37</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><use_secondary>1</use_secondary></depends>
+                            <comment></comment>
+                        </secondary_type>
+                        <secondary_discount translate="label">
+                            <label>Discount Value (from 2nd order)</label>
+                            <frontend_type>text</frontend_type>                   
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><use_secondary>1</use_secondary></depends>
+                            <comment></comment>
+                        </secondary_discount>
+                        
+                        <type_discount translate="label">
+                            <label>Discount on</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>affiliateplus/system_config_source_cartproduct</source_model>              
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment></comment>
+                        </type_discount>
+                    </fields>
+                </discount>
+				
+                <payment translate="label">
+                    <label>Withdrawals Configuration</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <store_credit translate="label">
+                            <label>Use commission as store credit</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>112</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Allow affiliates to use commission to check out at your store]]></comment>
+                        </store_credit>
+                        <withdrawals translate="label">
+                            <label>Allow requesting withdrawals</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>117</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment></comment>
+                        </withdrawals>
+                        
+                        <payment_release translate="label">
+                            <label>Payout requirement</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>120</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </payment_release>
+                        
+                        <tax_class translate="label comment">
+                            <label>Tax Class for Withdrawal</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_shipping_taxclass</source_model>
+                            <sort_order>125</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment></comment>
+                        </tax_class>
+                        
+                        <!-- <tax_calc translate="label">
+                            <label>Tax Calculation</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>130</sort_order>
+                            <source_model>affiliateplus/system_config_source_feetax</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment></comment>
+                        </tax_calc> -->
+						
+<!--                        <payment_method>
+                            <label>Paypal Withdrawal method</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>affiliateplus/system_config_source_paymentmethod</source_model>
+                            <sort_order>130</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </payment_method>-->
+						
+                        <who_pay_fees translate="label">
+                            <label>Who pays transaction fee</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>affiliateplus/system_config_source_whopayfees</source_model>
+                            <sort_order>140</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </who_pay_fees>
+						
+                        <cancel_days translate="label">
+                            <label>Allow affiliates to cancel withdrawal request within</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>150</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>days. 0 or empty is unlimited.</comment>
+                        </cancel_days>
+                        
+                        <reduce_balance translate="label">
+                            <label>Subtract account balance immediately when a request withdrawal is created</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>135</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </reduce_balance>
+                        
+                    </fields>
+                </payment>
+				
+                <email translate="label">
+                    <label>Email Configuration</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>30</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <sign_up_separator translate="label">
+                            <label>Sign up Affiliate email</label>
+                            <frontend_type>label</frontend_type>
+                            <frontend_model>affiliateplus/adminhtml_field_separator</frontend_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment></comment>
+                        </sign_up_separator>
+                        <is_sent_email_new_account translate="label">
+                            <label>Send email to new affiliate</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>20</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </is_sent_email_new_account>
+                        <new_account_email_template translate="label">
+                            <label>Email template sent to new registered affiliate</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </new_account_email_template>
+                        <approved_account_email_template translate="label">
+                            <label>Email template sent to new approved affiliate</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </approved_account_email_template>
+                        <is_sent_to_sales_new_account>
+                            <label>Send email to admin when a new affiliate registers</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>50</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </is_sent_to_sales_new_account>
+                        <new_account_sales_email_template>
+                            <label>Email template sent to admin when a new affiliate registers</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </new_account_sales_email_template>
+                        
+                        <transactions_separator translate="label">
+                            <label>Process Transactions Email</label>
+                            <frontend_type>label</frontend_type>
+                            <frontend_model>affiliateplus/adminhtml_field_separator</frontend_model>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>10px</comment>
+                        </transactions_separator>
+                        <is_sent_email_account_new_transaction translate="label">
+                            <label>Send email to affiliate when a transaction is created</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>80</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </is_sent_email_account_new_transaction>
+                        <new_transaction_account_email_template translate="label">
+                            <label>Email template sent to affiliate when a transaction is created</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </new_transaction_account_email_template>
+                        <is_sent_email_sales_new_transaction translate="label">
+                            <label>Send email to admin when a transaction is created</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>100</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </is_sent_email_sales_new_transaction>
+                        <new_transaction_sales_email_template translate="label">
+                            <label>Email template sent to admin when a transaction is created</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <sort_order>110</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </new_transaction_sales_email_template>
+                        <is_sent_email_account_updated_transaction translate="label">
+                            <label>Send email to affiliate when a transaction is changed (canceled, completed or reduced commission)</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>120</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </is_sent_email_account_updated_transaction>
+                        <updated_transaction_account_email_template translate="label">
+                            <label>Email template sent to affiliate account when a transaction is changed (canceled or completed)</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <sort_order>130</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </updated_transaction_account_email_template>
+                        <reduce_commission_account_email_template translate="label">
+                            <label>Email template sent to affiliate account when commission of a transaction is reduced</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <sort_order>140</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </reduce_commission_account_email_template>
+                        
+                        <payment_separator translate="label">
+                            <label>Withdrawal Email</label>
+                            <frontend_type>label</frontend_type>
+                            <frontend_model>affiliateplus/adminhtml_field_separator</frontend_model>
+                            <sort_order>150</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>10px</comment>
+                        </payment_separator>
+                        <is_sent_email_sales_request_payment translate="label">
+                            <label>Send email to admin when an affiliate requests withdrawal</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>160</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </is_sent_email_sales_request_payment>
+                        <request_payment_email_template translate="label">
+                            <label>Email template sent to admin when an affiliate requests withdrawal</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <sort_order>170</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </request_payment_email_template>
+                        <process_payment_email_template translate="label">
+                            <label>Email template sent to affiliate when withdrawal is processed</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <sort_order>180</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </process_payment_email_template>
+                        <verify_payment_email>
+                            <label>Email template of Payment verification</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>190</sort_order>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </verify_payment_email>
+                    </fields>
+                </email>
+                <action translate="label">
+                    <label>Click/View Fraud Detection Configuration</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>50</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>     
+                        <use_magento_link translate="label">
+                            <label>Use standard magento image link to track banner</label>
+                            <frontend_type>select</frontend_type>  
+                            <source_model>adminhtml/system_config_source_yesno</source_model>       
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>If "No", system will be faster</comment>
+                        </use_magento_link>
+                        <resetclickby translate="label">
+                            <label>IP Reset Time (days)</label>
+                            <frontend_type>text</frontend_type>                   
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>After this time, a new click/view from each IP will be counted as an unique click/view.</comment>
+                        </resetclickby>
+                        <!--detect_ip_address>
+                            <label>Detect by Ip address</label>
+                            <frontend_type>select</frontend_type>  
+                            <source_model>adminhtml/system_config_source_yesno</source_model>       
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment></comment>
+                        </detect_ip_address-->
+                        <detect_iframe>
+                            <label>Detect By Iframe</label>
+                            <frontend_type>select</frontend_type>  
+                            <source_model>adminhtml/system_config_source_yesno</source_model>       
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment></comment>
+                        </detect_iframe>
+                        <detect_cookie>
+                            <label>Detect By Cookie</label>
+                            <frontend_type>select</frontend_type>  
+                            <source_model>adminhtml/system_config_source_yesno</source_model>       
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment></comment>
+                        </detect_cookie>
+                        <detect_software>
+                            <label>Detect By Software</label>
+                            <frontend_type>select</frontend_type>  
+                            <source_model>adminhtml/system_config_source_yesno</source_model>       
+                            <sort_order>25</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment></comment>
+                        </detect_software>
+                        <detect_proxy>
+                            <label>Detect Proxy By Header</label>
+                            <frontend_type>select</frontend_type>  
+                            <source_model>adminhtml/system_config_source_yesno</source_model>       
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment></comment>
+                        </detect_proxy>
+                        <detect_proxy_header>
+                            <label>Select Header Variables For Proxy Detection</label>
+                            <frontend_type>multiselect</frontend_type>  
+                            <source_model>affiliateplus/system_config_source_headerdetectproxy</source_model>       
+                            <sort_order>35</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment></comment>
+                        </detect_proxy_header>
+                        <detect_proxy_hostbyaddr>
+                            <label>Detect Proxy By gethostbyaddr Function</label>
+                            <frontend_type>select</frontend_type>  
+                            <source_model>adminhtml/system_config_source_yesno</source_model>       
+                            <sort_order>37</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment></comment>
+                        </detect_proxy_hostbyaddr>
+                        <detect_proxy_bankip>
+                            <label>Detect Proxy By IP Bank</label>
+                            <frontend_type>textarea</frontend_type>         
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment></comment>
+                        </detect_proxy_bankip>
+                        
+                    </fields>
+                </action>
+            </groups>
+        </affiliateplus>  
+    </sections>
+</config>

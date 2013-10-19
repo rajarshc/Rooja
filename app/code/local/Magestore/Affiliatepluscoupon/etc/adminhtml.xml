@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<config>
+    <menu>
+		<affiliateplus module="affiliateplus">
+			<children>
+				<transaction module="affiliateplus">
+					<children>
+						<all module="affiliatepluscoupon">
+							<title>All Transactions</title>
+							<sort_order>1</sort_order>
+							<action>affiliateplusadmin/adminhtml_transaction</action>
+						</all>
+						<coupon module="affiliatepluscoupon">
+							<title>Transactions from Coupon</title>
+							<sort_order>2</sort_order>
+							<action>affiliatepluscouponadmin/adminhtml_transaction</action>
+						</coupon>
+						<link module="affiliatepluscoupon">
+							<title>Transactions from Link</title>
+							<sort_order>3</sort_order>
+							<action>affiliatepluscouponadmin/adminhtml_link</action>
+						</link>
+					</children>
+				</transaction>
+			</children>
+		</affiliateplus>
+	</menu>
+	<acl>
+		<resources>
+			<all>
+				<title>Allow Everything</title>
+			</all>
+			<admin>
+				<children>
+					<affiliateplus module="affiliateplus">               
+						<children>
+							<transaction module="affiliateplus">
+								<children>
+									<all module="affiliatepluscoupon">
+										<title>All Transactions</title>
+										<sort_order>1</sort_order>
+									</all>
+									<coupon module="affiliatepluscoupon">
+										<title>Transactions from Coupon</title>
+										<sort_order>2</sort_order>
+									</coupon>
+									<link module="affiliatepluscoupon">
+										<title>Transactions from Link</title>
+										<sort_order>3</sort_order>
+									</link>
+								</children>
+							</transaction>
+						</children>
+					</affiliateplus>
+				</children>
+			</admin>
+		</resources>
+	</acl>
+</config>

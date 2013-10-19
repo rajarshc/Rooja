@@ -1,0 +1,20 @@
+<?php
+/**
+ * Sales transaction history template
+ */
+?>
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+
+<div class="page-title">
+	<h2><?php echo $this->__('My Programs') ?></h2>
+</div>
+
+<?php echo $this->getGridHtml() ?>
+
+<div class="buttons-set">
+	<button class="button" type="button" onclick='setLocation("<?php echo $this->getAllProgramUrl() ?>")'>
+		<span>
+			<?php echo $this->__('Other Programs') ?>
+		</span>
+	</button>
+</div>

@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <affiliateplusadmin_adminhtml_account_new>
+        <reference name="head">
+			<action method="addJs"><script>magestore/affiliatepluslevel.js</script></action>
+		</reference>
+    </affiliateplusadmin_adminhtml_account_new>
+	<affiliateplusadmin_adminhtml_account_edit>
+		<reference name="head">
+			<action method="addJs"><script>magestore/affiliatepluslevel.js</script></action>
+		</reference>
+	</affiliateplusadmin_adminhtml_account_edit>
+	
+	<affiliateplusleveladmin_adminhtml_account_toptier>
+		<block type="core/text_list" name="root">
+            <block type="adminhtml/template" template="affiliatepluslevel/header.phtml" name="tiny.header" />
+            <block type="affiliatepluslevel/adminhtml_account_edit_tab_toptier" name="account.edit.tab.toptier"/>
+            <block type="affiliatepluslevel/adminhtml_account_serializer" name="related_grid_serializer">
+				<action method="initSerializerBlock">
+					<grid_block_name>account.edit.tab.toptier</grid_block_name>
+					<hidden_input_name>map_toptier_id</hidden_input_name>
+				</action>
+            </block>
+        </block>	
+	</affiliateplusleveladmin_adminhtml_account_toptier>
+	
+	<affiliateplusleveladmin_adminhtml_account_toptiergrid>
+	    <block type="core/text_list" name="root">
+	        <block type="affiliatepluslevel/adminhtml_account_edit_tab_toptier" name="account.edit.tab.toptier"/>
+			
+	    </block>
+	</affiliateplusleveladmin_adminhtml_account_toptiergrid>
+	
+	<affiliateplusleveladmin_adminhtml_account_tier>
+		<block type="core/text_list" name="root">
+			<block type="affiliatepluslevel/adminhtml_account_edit_tab_tier" name="account.edit.tab.tier"/>
+		</block>
+	</affiliateplusleveladmin_adminhtml_account_tier>
+	
+	<affiliateplusleveladmin_adminhtml_account_tiergrid>
+		<block type="core/text_list" name="root">
+	        <block type="affiliatepluslevel/adminhtml_account_edit_tab_tier" name="account.edit.tab.tier"/>
+	    </block>
+	</affiliateplusleveladmin_adminhtml_account_tiergrid>
+	
+	<affiliateplusleveladmin_adminhtml_transaction_tier>
+		<block type="core/text_list" name="root">
+			<block type="affiliatepluslevel/adminhtml_transaction_edit_tab_tier" name="transaction.edit.tab.tier"/>
+		</block>
+	</affiliateplusleveladmin_adminhtml_transaction_tier>
+	
+	<affiliateplusleveladmin_adminhtml_transaction_tiergrid>
+		<block type="core/text_list" name="root">
+	        <block type="affiliatepluslevel/adminhtml_transaction_edit_tab_tier" name="transaction.edit.tab.tier"/>
+	    </block>
+	</affiliateplusleveladmin_adminhtml_transaction_tiergrid>
+</layout>

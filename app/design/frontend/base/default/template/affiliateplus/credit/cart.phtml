@@ -1,0 +1,56 @@
+<?php
+/**
+ * Shopping Cart Page
+ */
+?>
+
+<?php $_code = 'affiliateplus' ?>
+<form id="discount-affiliateplus-form" action="<?php echo $this->getUrl('affiliateplus/checkout/creditPost') ?>" method="post">
+    <div class="discount">
+        <h2><?php echo $this->__('Affiliate Store Credit') ?></h2>
+        <div class="discount-form">
+            <dl id="<?php echo $_code ?>_container">
+                <dt class="<?php echo $_code ?>_credit">
+                    <input type="checkbox" name="<?php echo $_code ?>_credit" id="<?php echo $_code ?>_credit"<?php if ($this->getUseAffiliateCredit()): ?> checked="checked"<?php endif ?> value="1" onclick="showAffiliateCreditInput(this)" />
+                    <label for="<?php echo $_code ?>_credit" style="font-weight: bold; color: #666;"><?php echo $this->__('Check out with affiliate account balance (%s)', $this->getFormatedBalance()) ?></label>
+                </dt>
+                <dd id="<?php echo $_code ?>_credit_input" class="<?php echo $_code ?>_credit"<?php if (!$this->getUseAffiliateCredit()): ?> style="display: none;"<?php endif ?>>
+                    <div>
+                        <label>
+                            <?php echo $this->__('Use money on your affiliate balance') ?>
+                        </label>
+                        <div class="input-box">
+                            <input class="input-text" type="text" value="<?php echo $this->getAffiliateCredit() ?>" title="<?php echo $this->__('Affiliate Store Credit') ?>" name="credit_amount" />
+                        </div>
+                    </div>
+                    <br />
+                </dd>
+                <dt></dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <div class="input-box">
+                                <button type="submit" class="button">
+                                    <span><span><?php echo $this->__('Apply') ?></span></span>
+                                </button>
+                            </div>
+                        </li>
+                        <p></p>
+                    </ul>
+                </dd>
+            </dl>
+        </div>
+    </div>
+</form>
+<script type="text/javascript">
+//<![CDATA[
+    function showAffiliateCreditInput(el) {
+        if (el.checked) {
+            $('<?php echo $_code ?>_credit_input').show();
+        } else {
+            $('<?php echo $_code ?>_credit_input').hide();
+        }
+    }
+    var affiliateplusForm = new VarienForm('discount-affiliateplus-form');
+//]]>
+</script>

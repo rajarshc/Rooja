@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Magestore_Affiliateplusstatistic>
+            <active>true</active>
+            <codePool>local</codePool>
+            <aliasName>Affiliate Plus Report</aliasName>
+            <depends>
+            	<Magestore_Affiliateplus />
+            </depends>
+        </Magestore_Affiliateplusstatistic>
+    </modules>
+</config>

@@ -1,0 +1,131 @@
+<?php
+/**
+ * Refer product for friend
+ * 
+ * @see Magestore_AffiliateplusReferFriend_Block_Product
+ */
+?>
+<?php if ($this->isEnableShareFriend()): ?>
+    <?php $_product = $this->getProduct() ?>
+<div id="affiliateplus_share_icons">
+    <?php echo $this->getShareIconsHtml($_product) ?>
+</div>
+<script type="text/javascript">
+    var affiliateplusReferFriendTarget = false;
+    $$('a').each(function(el){
+        if (el.href && el.href.search('/sendfriend/product/send') != -1) {
+            affiliateplusReferFriendTarget = el;
+        }
+    });
+    if (affiliateplusReferFriendTarget) {
+        var affiliateplusReferFriendParent = $(affiliateplusReferFriendTarget.parentNode);
+        affiliateplusReferFriendParent.removeChild(affiliateplusReferFriendTarget);
+        affiliateplusReferFriendParent.appendChild($('affiliateplus_share_icons'));
+    }
+</script>
+<?php endif; ?>
+
+<?php if (0 && $this->isEnableShareFriend()): // comment for old code ?>
+<div class="short-description affiliateplus-share-product">
+    <?php $_product = $this->getProduct() ?>
+    <?php $_affiliateUrl = $this->getAffiliateUrl($_product) ?>
+    <script type="text/javascript">
+        $$('a').each(function(el){
+            if (el.href && el.href.search('/sendfriend/product/send') != -1) {
+                el.onclick = affUpdateEmailRefer;
+            }
+        });
+        function affUpdateEmailRefer() {
+            affEmailToFriend('<?php echo $this->getAffiliateUrl($_product) . '&src=email' ?>');
+            return false;
+        }
+        function affEmailToFriend(url) {
+            var contentUrl = '<?php echo $this->getUrl('affiliateplus/refer/emailbox') ?>';
+            if (contentUrl.indexOf('?') == -1) {
+                contentUrl += '?url=';
+            } else {
+                contentUrl += '&url=';
+            }
+            contentUrl += encodeURIComponent(url);
+            TINY.box.show(contentUrl, 1, 327, 0, 1);
+        }
+        function affRetrieveContacts(mailSv) {
+            var mailCfg = <?php echo $this->getJsonEmail() ?>;
+            var popUrl = mailCfg[mailSv];
+            if (popUrl) popWin(popUrl,mailSv,getPopupPosition(500,360)+',resizable=yes,scrollbars=yes');
+        }
+        function affSendEmail() {
+            var affEmailForm = new VarienForm('affiliateplus-email-form', true);
+            if (!affEmailForm.validator.validate()) {
+                return false;
+            }
+            $('affiliate-btn-send-email').hide();
+            $('affiliate-please-wait-send-email').show();
+            var sendUrl = '<?php echo $this->getUrl('affiliateplus/refer/sendemail') ?>';
+            var params  = affEmailForm.form.serialize();
+            new Ajax.Request(sendUrl, {
+                method: 'post',
+                postBody: params,
+                parameters: params,
+                onException: function (xhr, e){
+                    window.location.reload();
+                },
+                onComplete: function(xhr){
+                    var response = xhr.responseText.evalJSON();
+                    if (response.redirect) {
+                        window.location.href = response.redirect;
+                    } else if (response.success) {
+                        alert(response.message);
+                        TINY.box.hide();
+                    } else if (response.error) {
+                        alert(response.message);
+                        $('affiliate-btn-send-email').show();
+                        $('affiliate-please-wait-send-email').hide();
+                    }
+                }
+            });
+        }
+        function shareOnFacebook(url) {
+            var shareUrl = 'https://www.facebook.com/sharer/sharer.php?u=';
+            shareUrl += encodeURIComponent(url);
+            popWin(shareUrl,'facebook',getPopupPosition(570,360)+',resizable=yes,scrollbars=yes');
+        }
+        function getPopupPosition(width,height){
+            var screenX     = typeof window.screenX != 'undefined' ? window.screenX : window.screenLeft;
+            var	screenY     = typeof window.screenY != 'undefined' ? window.screenY : window.screenTop;
+            var	outerWidth  = typeof window.outerWidth != 'undefined' ? window.outerWidth : document.body.clientWidth;
+            var	outerHeight = typeof window.outerHeight != 'undefined' ? window.outerHeight : (document.body.clientHeight - 22);
+            var left = parseInt(screenX + ((outerWidth - width) / 2), 10);
+            var top  = parseInt(screenY + ((outerHeight - height) / 2.5), 10);
+            return 'width='+width+',height='+height+',left='+left+',top='+top;
+        }
+    </script>
+    <script src="//platform.twitter.com/widgets.js" type="text/javascript"></script>
+    <div class="affiliateplus-share">
+        <div class="affiliateplus-share-img">
+            <img src="<?php echo $this->getSkinUrl('css/magestore/images/money.png') ?>" />
+        </div>
+        <div class="affiliateplus-sharing">
+            <div class="affiliateplus-share-email"></div>
+            <div>
+                <span class="share share_facebook">
+                    <button class="fb_button" onclick="shareOnFacebook('<?php echo $_affiliateUrl ?>'); return false;"><?php echo $this->__('Share') ?></button>
+                </span>
+                <span class="share share_twitter">
+                    <a data-url="<?php echo $_affiliateUrl ?>" class="twitter-share-button" data-count="horizontal"><?php echo $this->__('Tweet') ?></a>
+                </span>
+                <span class="share share_google">
+                    <g:plus action="share" annotation="bubble" href="<?php echo $_affiliateUrl ?>"></g:plus>
+                </span>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        (function() {
+            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+            po.src = 'https://apis.google.com/js/plusone.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+    </script>
+</div>
+<?php endif; ?>

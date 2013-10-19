@@ -1,0 +1,169 @@
+<?php 
+	/**
+	 * affiliatepluscoupon template
+	 * @see Magestore_Affiliatepluscoupon_Block_Affiliatepluscoupon
+	 */
+?>
+<?php $account = $this->getAccount() ?>
+<?php $listPrograms = $this->getListProgram() ?>
+
+<?php if (count($listPrograms)): ?>
+<ul class="message">
+	<li class="success-msg">
+		<?php echo $this->__('Share with your friends the coupon code below.') ?>
+		<?php echo $this->__('You will receive commission when your friends purchase using this coupon.') ?>
+	</li>
+</ul>
+<br />
+<div class="page-title">
+	<h2><?php echo $this->__('Coupon Code') ?></h2>
+</div>
+<ul id="affiliate-coupon-codes">
+	<?php foreach ($listPrograms as $program): ?>
+	<li>
+		<div style="border-bottom: 1px dotted #CCC; min-height: 20px;">
+			<div style="font-size: 13px;">
+				<?php $discount = $program->getDiscount() ? $program->getDiscount() : 0 ?>
+				<?php if($program->getDiscountType() != 'percentage'): ?>
+					<?php $discountText = Mage::helper('core')->currency($discount,true,false) ?>
+				<?php else: ?>
+					<?php $discountText = rtrim(rtrim(sprintf("%.2f",$discount),'0'),'.').'%' ?>
+				<?php endif	?>
+				<strong>
+					<?php echo $discountText ?>
+				</strong>
+				<strong style="text-transform: uppercase;">
+					<?php echo $this->__('discount') ?>
+				<?php if ($program->getId() && $program->getValidFrom()): ?>
+					<?php echo $this->__('from') ?>
+					<?php echo $this->formatDate($program->getValidFrom(),'short',false) ?>
+				<?php endif ?>
+				<?php if ($program->getId() && $program->getValidTo()): ?>
+					<?php echo $this->__('to') ?>
+					<?php echo $this->formatDate($program->getValidTo(),'short',false) ?>
+				<?php endif ?>					
+				</strong>
+			</div>
+			<div class="tweeter">
+				<a href="" onclick="popWin('https://twitter.com/share?original_referer=<?php echo urlencode($this->getBaseUrl()) ?>&source=tweetbutton&text=<?php echo urlencode($this->__('Get %s discount by Coupon Code: ',$discountText).$program->getCouponCode().chr(10).$this->__('at')) ?>','tweeter','top:100,left:100,width=640,height=480,resizable=yes,scrollbars=yes'); return false;" style="text-decoration: none;">
+					<span class="span">
+						<span style="background: url('<?php echo Mage::getBaseUrl('media') ?>affiliateplus/default/b2_btn_icon.gif') no-repeat; padding: 0px 3px 0px 18px;">
+							<?php echo $this->__('Tweet') ?>
+						</span>
+					</span>
+				</a>
+			</div>
+		</div>
+		<div style="margin-top: 5px;">
+			<table>
+				<tr>
+					<td><?php echo $this->__('Coupon Code') ?>:&nbsp;</td>
+					<td><strong><?php echo $program->getCouponCode() ?></strong></td>
+				</tr>
+				<tr>
+					<td><?php echo $this->__('Program') ?>:&nbsp;</td>
+					<td>
+						<strong>
+						<?php if ($program->getId()): ?>
+							<a href="<?php echo $this->getUrl('affiliateplusprogram/index/detail',array('id' => $program->getId())) ?>" title="<?php echo $this->__('View Program Detail') ?>"><?php echo $program->getName() ?></a>
+						<?php else: ?>
+							<?php echo $program->getName() ?>
+						<?php endif ?>
+						</strong>
+					</td>
+				</tr>
+				<tr>
+					<td><?php echo $this->__('Commission Type') ?>:&nbsp;</td>
+					<td>
+						<?php
+                            $commission = $program->getCommission();
+                            $secCommission = $program->getSecondaryCommission();
+                            
+                            if ($program->getCommissionType() == 'fixed') {
+                                $commissionText = Mage::helper('core')->currency($commission);
+                            } else {
+                                $commissionText = rtrim(rtrim(sprintf("%.2f",$commission),'0'),'.').'%';
+                            }
+                            if ($program->getSecCommissionType() == 'fixed') {
+                                $secText = Mage::helper('core')->currency($secCommission);
+                            } else {
+                                $secText = rtrim(rtrim(sprintf("%.2f",$secCommission),'0'),'.').'%';
+                            }
+                            
+                            $typeIsProfit = Mage::helper('affiliateplus')->affiliateTypeIsProfit();
+                            if ($program->getAffiliateType()) {
+                                $typeIsProfit = (bool)($program->getAffiliateType() == 'profit');
+                            }
+                        ?>
+                        <?php if($typeIsProfit): ?>
+                            <?php $profitText = $this->__('Pay-per-Profit') ?>
+                        <?php else: ?>
+                            <?php $profitText = $this->__('Pay-per-Sale') ?>
+                        <?php endif ?>
+
+                        <?php if (!$this->hasSecondaryCommission($program)): ?>
+                            <?php echo $this->__('%s %s for each sale you deliver', $commissionText, $profitText) ?>
+                        <?php else: ?>
+                            <?php echo $this->__('%s %s for the first order of a customer, %s for next orders', $commissionText, $profitText, $secText) ?>
+                        <?php endif ?>
+					</td>
+				</tr>
+            <?php if ($this->hasSecondaryDiscount($program)): ?>
+                <tr>
+                    <td><?php echo $this->__('Discount Type') ?>:&nbsp;</td>
+                    <td>
+                        <?php
+                            $discount = $program->getDiscount();
+                            $secDiscount = $program->getSecondaryDiscount();
+                            if ($program->getDiscountType() == 'fixed') {
+                                $discountText = Mage::helper('core')->currency($discount);
+                                $discountText .= ' ' . $this->__('discount on each purchased item');
+                            } else if ($program->getDiscountType() == 'percentage') {
+                                $discountText = rtrim(rtrim(sprintf("%.2f",$discount),'0'),'.').'%';
+                                $discountText .= ' ' . $this->__('discount on each purchased item');
+                            } else if ($this->hasSecondaryDiscount($program)) {
+                                $discountText = Mage::helper('core')->currency($discount);
+                                $discountText .= ' ' . $this->__('discount');
+                            } else {
+                                $discountText = Mage::helper('core')->currency($discount);
+                                $discountText .= ' ' . $this->__('discount on each order');
+                            }
+
+                            if ($program->getSecDiscountType() == 'fixed') {
+                                $secText = Mage::helper('core')->currency($secDiscount);
+                                $secText .= ' ' . $this->__('on each purchased item');
+                            } else if ($program->getSecDiscountType() == 'percentage') {
+                                $secText = rtrim(rtrim(sprintf("%.2f",$secDiscount),'0'),'.').'%';
+                                $secText .= ' ' . $this->__('on each purchased item');
+                            } else {
+                                $secText = Mage::helper('core')->currency($secDiscount);
+                                $secText .= ' ';
+                            }
+                        ?>
+                        <?php if (!$this->hasSecondaryDiscount($program)): ?>
+                            <?php echo $discountText ?>
+                        <?php else: ?>
+                            <?php echo $this->__('%s on the first order, %s of next orders', $discountText, $secText) ?>
+                        <?php endif ?>
+                    </td>
+                </tr>
+            <?php endif ?>
+			</table>
+		</div>
+	</li>
+	<?php endforeach ?>
+</ul>
+<script type="text/javascript">decorateList('affiliate-coupon-codes');</script>
+<?php else: ?>
+<div class="page-title">
+	<h2><?php echo $this->__('Coupon Code') ?></h2>
+</div>
+<ul class="message">
+	<li class="notice-msg">
+		<?php echo $this->__('You have no affiliate coupon code.') ?>
+		<?php if ($this->isMultiProgram()): ?>
+			<?php echo $this->__('Please join to a program to get coupon code.') ?>
+		<?php endif ?>
+	</li>
+</ul>
+<?php endif ?>

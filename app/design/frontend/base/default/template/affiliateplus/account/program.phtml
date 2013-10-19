@@ -1,0 +1,248 @@
+<?php
+/**
+ * View Program form
+ */
+?>
+<?php $listPrograms = $this->getListProgram() ?>
+<?php if (count($listPrograms)): ?>
+<br/><br/>
+<table class="data-table" id="list-program-table">
+	<col width="1"/>
+	<col width="1"/>
+	<thead>
+		<tr>
+			<th colspan="4" height="40">
+			<?php if (count($listPrograms) == 1): ?>
+				<?php echo $this->__('OUR PROGRAM') ?>
+			<?php else: ?>
+				<?php echo $this->__('OUR PROGRAMS') ?>
+			<?php endif ?>
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<?php $i=0 ?>
+		<?php foreach($listPrograms as $program): ?>
+		<?php if($i>0): ?>
+			<tr><td colspan="4" height="5">&nbsp;</td></tr>
+		<?php endif; ?>
+        <?php if ($program->getCustomStyle() == '1'): ?>
+        <?php if ($program->getBlock()): ?>
+            <?php echo $this->getLayout()->createBlock($program->getBlock())->toHtml();?>
+		<!--tr>
+			<td><strong><?php echo $program->getName() ?></strong></td>
+			<td><strong><?php echo $this->__('Commission Type') ?></strong></td>
+			<td colspan="2">
+				<?php echo $program->getCommissionText() ?>
+			</td>
+		</tr-->
+        <?php endif;?>
+		<?php continue ?>
+        <?php endif;?>
+		<?php if ($program->getCode() == 'payperlead'): ?>
+		<tr>
+			<td><strong><?php echo $program->getName() ?></strong></td>
+			<td><strong><?php echo $this->__('Commission Type') ?></strong></td>
+			<td colspan="2">
+				<?php echo $program->getCommissionText() ?>
+			</td>
+		</tr>
+		<?php continue ?>
+		<?php endif ?>
+		<tr>
+			<?php $rowspan = 3; ?>
+			<?php if ($program->getLevelCount()) $rowspan += $program->getLevelCount()+1;?>
+            <?php if ($program->getSecLevelCount()) $rowspan += $program->getSecLevelCount()+1; ?>
+			<?php if ($program->getValidFrom()) $rowspan++; ?>
+			<?php if ($program->getValidTo()) $rowspan++; ?>
+			<td rowspan="<?php echo $rowspan ?>" width="25%"><strong><?php echo $program->getName(); ?></strong></td>
+			<td width="25%">
+				<?php $commission = $program->getCommission() ?>
+                <?php $secCommission = $program->getSecondaryCommission() ?>
+				<strong><?php echo $this->__('Commission Type') ?></strong>
+			</td>
+			<td width="50%" colspan="2">
+				<?php // Prepare Commission Text
+                    if ($program->getCommissionType() == 'fixed') {
+                        $commissionText = Mage::helper('core')->currency($commission);
+                    } else {
+                        $commissionText = rtrim(rtrim(sprintf("%.2f",$commission),'0'),'.').'%';
+                    }
+                    if ($program->getSecCommissionType() == 'fixed') {
+                        $secText = Mage::helper('core')->currency($secCommission);
+                    } else {
+                        $secText = rtrim(rtrim(sprintf("%.2f",$secCommission),'0'),'.').'%';
+                    }
+                    
+                    $typeIsProfit = Mage::helper('affiliateplus')->affiliateTypeIsProfit();
+                    if ($program->getAffiliateType()) {
+                        $typeIsProfit = (bool)($program->getAffiliateType() == 'profit');
+                    }
+                ?>
+                <?php if($typeIsProfit): ?>
+                    <?php $profitText = $this->__('Pay-per-Profit') ?>
+                <?php else: ?>
+                    <?php $profitText = $this->__('Pay-per-Sale') ?>
+                <?php endif ?>
+                
+                <?php if (!$this->hasSecondaryCommission($program)): ?>
+                    <?php echo $this->__('%s %s for each sale you deliver', $commissionText, $profitText) ?>
+                <?php else: ?>
+                    <?php echo $this->__('%s %s for the first order of a customer, %s for next orders', $commissionText, $profitText, $secText) ?>
+                <?php endif ?>
+                
+                <!--Add by blanka 17/10/2012-->
+                <?php 
+                    $addText='';
+                    $obj = new Varien_Object(array('text'=>$addText));
+                    Mage::dispatchEvent('affiliateplus_show_program_on_welcome',array(
+                        'text_object'	=>  $obj,
+                        'program'       =>  $program,
+                    )); 
+                    $addText = $obj->getText();
+                    if($addText)
+                        echo $addText;
+                ?>
+                <!--End edit by blanka-->
+			</td>
+		</tr>
+	<?php if ($program->getLevelCount()): ?>
+		<tr>
+			<td rowspan="<?php echo $program->getLevelCount()+1 ?>">
+				<strong><?php echo $this->__('Tier Commission') ?></strong>
+            <?php if ($program->getSecLevelCount()): ?>
+                <br />
+                (<?php echo $this->__('for the first order of a customer') ?>)
+            <?php endif ?>
+			</td>
+			<td>
+				<strong><?php echo $this->__('Level %d',1) ?></strong>
+			</td>
+			<td>
+                <?php
+                    if (!$program->getSecLevelCount() && $this->hasSecondaryCommission($program)) {
+                        echo $this->__('%s for the first order of a customer', $commissionText);
+                        echo '<br/>';
+                        echo $this->__('%s for next orders', $secText);
+                    } else {
+                        if($program->getCommissionType() == 'fixed') {
+                            echo $this->__('%s per sale', $commissionText);
+                        } else {
+                            echo $this->__('%s of sales amount', $commissionText);
+                        }
+                    }
+                ?>
+			</td>
+		</tr>
+		<?php foreach($program->getTierCommission() as $tierCommission): ?>
+		<tr>
+			<td>
+				<strong><?php echo $tierCommission['level'] ?></strong>
+			</td>
+			<td><?php echo $tierCommission['commission'] ?></td>
+		</tr>
+		<?php endforeach ?>
+	<?php endif ?>
+    <?php // secondary commission ?>
+	<?php if ($program->getSecLevelCount()): ?>
+		<tr>
+			<td rowspan="<?php echo $program->getSecLevelCount()+1 ?>">
+				<strong><?php echo $this->__('Tier Commission') ?></strong>
+                <br />
+                (<?php echo $this->__('for next orders') ?>)
+			</td>
+			<td>
+				<strong><?php echo $this->__('Level %d',1) ?></strong>
+			</td>
+			<td>
+                <?php if ($this->hasSecondaryCommission($program)) $commissionText = $secText; ?>
+				<?php if($program->getSecCommissionType() == 'fixed'): ?>
+					<?php echo $this->__('%s per sale',$commissionText) ?>
+				<?php else: ?>
+					<?php echo $this->__('%s of sales amount',$commissionText) ?>
+				<?php endif ?>
+			</td>
+		</tr>
+		<?php foreach($program->getSecTierCommission() as $tierCommission): ?>
+		<tr>
+			<td>
+				<strong><?php echo $tierCommission['level'] ?></strong>
+			</td>
+			<td><?php echo $tierCommission['commission'] ?></td>
+		</tr>
+		<?php endforeach ?>
+	<?php endif ?>
+		<tr>
+			<td>	
+				<strong><?php echo $this->__('Payout Requirements') ?></strong>
+			</td>
+			<td colspan="2">
+				<?php echo $this->__('%s - Minimum balance required for payout.',Mage::helper('core')->currency($this->getMinPaymentRelease())) ?>
+			</td>
+		</tr>		 
+		<tr>
+			<td>	
+				<strong><?php echo $this->__('Discount policy') ?></strong>
+			</td>
+			<td colspan="2">
+				<?php
+                    $discount = $program->getDiscount();
+                    $secDiscount = $program->getSecondaryDiscount();
+                    if ($program->getDiscountType() == 'fixed') {
+                        $discountText = Mage::helper('core')->currency($discount);
+                        $discountText .= ' ' . $this->__('discount on each purchased item');
+                    } else if ($program->getDiscountType() == 'percentage') {
+                        $discountText = rtrim(rtrim(sprintf("%.2f",$discount),'0'),'.').'%';
+                        $discountText .= ' ' . $this->__('discount on each purchased item');
+                    } else if ($this->hasSecondaryDiscount($program)) {
+                        $discountText = Mage::helper('core')->currency($discount);
+                        $discountText .= ' ' . $this->__('discount');
+                    } else {
+                        $discountText = Mage::helper('core')->currency($discount);
+                        $discountText .= ' ' . $this->__('discount on each order');
+                    }
+                    
+                    if ($program->getSecDiscountType() == 'fixed') {
+                        $secText = Mage::helper('core')->currency($secDiscount);
+                        $secText .= ' ' . $this->__('on each purchased item');
+                    } else if ($program->getSecDiscountType() == 'percentage') {
+                        $secText = rtrim(rtrim(sprintf("%.2f",$secDiscount),'0'),'.').'%';
+                        $secText .= ' ' . $this->__('on each purchased item');
+                    } else {
+                        $secText = Mage::helper('core')->currency($secDiscount);
+                        $secText .= ' ';
+                    }
+                ?>
+                <?php if (!$this->hasSecondaryDiscount($program)): ?>
+                    <?php echo $discountText ?>
+                <?php else: ?>
+                    <?php echo $this->__('%s on the first order, %s of next orders', $discountText, $secText) ?>
+                <?php endif ?>
+			</td>
+		</tr>
+		<?php if ($program->getValidFrom()): ?>
+		<tr>
+			<td>
+				<strong><?php echo $this->__('From Date') ?></strong>
+			</td>
+			<td colspan="2">
+				<?php echo $this->formatDate($program->getValidFrom(),'medium',false) ?>
+			</td>
+		</tr>
+		<?php endif ?>
+		<?php if ($program->getValidTo()): ?>
+		<tr>
+			<td>
+				<strong><?php echo $this->__('To Date') ?></strong>
+			</td>
+			<td colspan="2">
+				<?php echo $this->formatDate($program->getValidTo(),'medium',false) ?>
+			</td>
+		</tr>
+		<?php endif ?>
+		<?php $i++ ?>
+	<?php endforeach ?>
+	</tbody>
+</table>
+<div class="clear">&nbsp;</div>
+<?php endif ?>

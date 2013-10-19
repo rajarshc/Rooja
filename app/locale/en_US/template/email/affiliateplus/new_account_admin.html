@@ -1,0 +1,49 @@
+<!--@subject {{var store.getFrontendName()}}: New Affiliate Account @-->
+<!--@vars
+{"store url=\"\"":"Store Url",
+"skin url=\"images/logo_email.gif\" _area='frontend'":"Email Logo Image",
+"store url=\"customer/account/\"":"Customer Account Url"}
+@-->
+
+<!--@styles
+body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; }
+@-->
+
+<div style="font:11px/1.35em Verdana, Arial, Helvetica, sans-serif;">
+    <table cellspacing="0" cellpadding="0" border="0" width="98%" style="margin-top:10px; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; margin-bottom:10px;">
+        <tr>
+            <td align="center" valign="top">
+                <!-- [ header starts here] -->
+                <table cellspacing="0" cellpadding="0" border="0" width="650">
+                    <tr>
+                        <td valign="top">
+                            <a href="{{store url=""}}"><img src="{{skin url="images/logo_email.gif" _area='frontend'}}" alt="{{var store.getFrontendName()}}"  style="margin-bottom:10px;" border="0"/></a></td>
+                    </tr>
+                </table>
+
+                <!-- [ middle starts here] -->
+                <table cellspacing="0" cellpadding="0" border="0" width="650">
+                    <tr>
+                        <td valign="top">
+                            <p><strong>Hello Admin</strong>,<br/>
+                            There is a new affiliate account which has been registered in your system.
+                            Please login to your admin panel at <a href="{{store url="adminhtml/index/"}}" style="color:#1E7EC8;">logging into admin page</a>
+                        {{if account.isApproved()}}
+                            to recheck this account.
+                        {{else}}
+                            to approve this account.
+                        {{/if}}
+                            <p style="border:1px solid #BEBCB7; padding:13px 18px; background:#F8F7F5; ">
+                                Affiliate Account Information<br/>
+                                Account Name: {{var account.getName()}}<br/>
+                                E-mail: {{var account.getEmail()}}<br/>
+                                Paypal email: {{var account.getPaypalEmail()}}
+							</p>
+							<p>Thank you,<br/><strong>{{var store.getFrontendName()}}</strong></p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>

@@ -1,0 +1,50 @@
+<?php
+/**
+ * Sales transaction history template
+ */
+?>
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+
+<div class="page-title">
+	<h2><?php echo $this->__('Other Programs') ?></h2>
+</div>
+
+<form action="<?php echo $this->getUrl('affiliateplusprogram/index/joinall') ?>" method="post" id="affiliateplus_program_form">
+    <?php echo $this->getGridHtml() ?>
+
+	<div class="buttons-set">
+		<p class="back-link">
+			<a href="<?php echo $this->getUrl('*/*/index') ?>">
+				<button type="button" class="form-button button">
+					<span><?php echo $this->__('Back')?></span>
+				</button>
+			</a>
+		</p>
+		<?php if (count($this->getCollection())): ?>
+			<button class="button" type="button" onclick='submitProgramForm();'>
+				<span>
+					<?php echo $this->__('Join All Selected Programs') ?>
+				</span>
+			</button>
+		<?php endif ?>
+	</div>
+</form>
+<script type="text/javascript">
+	var affiliateplusProgramForm = new VarienForm('affiliateplus_program_form',true);
+	function selectProgram(el){
+		if (el.checked)
+			$$('input[name="program_ids[]"]').each(function(e){e.checked = true});
+		else
+			$$('input[name="program_ids[]"]').each(function(e){e.checked = false});
+	}
+	function submitProgramForm(){
+		var canSubmit = false;
+		$$('input[name="program_ids[]"]').each(function(e){
+			if (e.checked) canSubmit = true;
+		});
+		if (canSubmit)
+			affiliateplusProgramForm.submit();
+		else
+			alert('<?php echo $this->__('Please select a program to join.') ?>');
+	}
+</script>

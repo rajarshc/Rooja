@@ -1,0 +1,15 @@
+<?php
+/**
+ * Graph template
+ */
+?>
+<div style="margin:10px;">
+    <?php
+    $_containerStyle = "width:{$this->getWidth()}px;height:{$this->getHeight()}px; margin:0 auto;";
+    ?>
+    <?php if($this->isHasData()): ?>
+    <p style="<?php echo $_containerStyle?>"><img src="<?php echo $this->getChartUrl() ?>" alt="chart" title="chart" /></p>
+    <?php else: ?>
+    <p class="a-center" style="<?php echo $_containerStyle?>"><?php echo $this->__('No Data Found') ?></p>
+    <?php endif; ?>
+</div>

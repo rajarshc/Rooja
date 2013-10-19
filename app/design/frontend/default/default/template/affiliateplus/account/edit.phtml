@@ -1,0 +1,249 @@
+<?php
+/**
+ * Edit Affiliate template
+ */
+?>
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<?php $accountData = $this->getFormData('account') ?>
+
+<div class="my-account">
+	<div class="page-title">
+		<h2><?php echo $this->__('Account Settings'); ?></h2>
+	</div>
+	
+	<form id="signup_affiliate_account_form" method="post" action="<?php echo $this->getUrl('affiliateplus/account/editPost') ?>">
+		<div class="fieldset">
+			<h2 class="legend"><?php echo $this->__('Account Information') ?></h2>
+			<ul class="form-list">
+				<li class="fields">
+					<div class="customer-name">
+						<div class="field name-firstname">
+							<label class="required" for="firstname"><em>*</em><?php echo $this->__('First Name') ?></label>
+							<div class="input-box">
+								<input type="text" class="input-text required-entry" title="First Name" name="firstname" id="firstname" value="<?php echo $this->getFormData('firstname')?>">
+							</div>
+						</div>
+						<div class="field name-lastname">
+							<label class="required" for="lastname"><em>*</em><?php echo $this->__('Last Name') ?></label>
+							<div class="input-box">
+								<input type="text" class="input-text required-entry" title="Last Name"  name="lastname" id="lastname" value="<?php echo $this->getFormData('lastname')?>">
+							</div>
+						</div>
+					</div>
+				</li>
+			<?php $_dob = $this->getLayout()->createBlock('customer/widget_dob') ?>
+			<?php if ($_dob->isEnabled()): ?>
+				<li><?php echo $_dob->setDate($this->getFormData('dob'))->toHtml() ?></li>
+			<?php endif ?>
+			<?php $_taxvat = $this->getLayout()->createBlock('customer/widget_taxvat') ?>
+			<?php if ($_taxvat->isEnabled()): ?>
+				<li><?php echo $_taxvat->setTaxvat($this->getFormData('taxvat'))->toHtml() ?></li>
+			<?php endif ?>
+			<?php $_gender = $this->getLayout()->createBlock('customer/widget_gender') ?>
+			<?php if ($_gender->isEnabled()): ?>
+				<li><?php echo $_gender->setGender($this->getFormData('gender'))->toHtml() ?></li>
+			<?php endif ?>
+			<?php if ($this->customerHasAddresses()): ?>
+				<li class="wide">
+					<label for="customer-address-select"><?php echo $this->__('Select an address from your address book or enter a new address.') ?></label>
+					<div class="input-box">
+						<?php echo $this->getAddressesHtmlSelect('account') ?>
+					</div>
+				</li>
+			<?php endif; ?>
+				<li id="account-new-address-form" <?php if ($this->customerHasAddresses()): ?> style="display:none;"<?php endif; ?>>
+					<fieldset>
+						<input type="hidden" name="account[address_id]" value="<?php echo $this->getAddress()->getId() ?>" id="account:address_id" />
+						<ul>
+							<li class="wide">
+								<label for="account:street1" class="required"><em>*</em><?php echo $this->__('Address') ?></label>
+								<div class="input-box">
+									<input type="text" title="<?php echo $this->__('Street Address') ?>" name="account[street][]" id="account:street1" value="<?php echo $this->htmlEscape($this->getAddress()->getStreet(1)) ?>" class="input-text required-entry" />
+								</div>
+							</li>
+					<?php for ($_i=2, $_n=$this->helper('customer/address')->getStreetLines(); $_i<=$_n; $_i++): ?>
+							<li class="wide">
+								<div class="input-box">
+									<input type="text" title="<?php echo $this->__('Street Address %s', $_i) ?>" name="account[street][]" id="account:street<?php echo $_i?>" value="<?php echo $this->htmlEscape($this->getAddress()->getStreet($_i)) ?>" class="input-text" />
+								</div>
+							</li>
+					<?php endfor ?>
+							<li class="fields">
+								<div class="field">
+									<label for="account:city" class="required"><em>*</em><?php echo $this->__('City') ?></label>
+									<div class="input-box">
+										<input type="text" title="<?php echo $this->__('City') ?>" name="account[city]" value="<?php echo $this->htmlEscape($this->getAddress()->getCity()) ?>" class="input-text required-entry" id="customer:city" />
+									</div>
+								</div>
+								<div class="field">
+									<label for="account:region_id" class="required"><em>*</em><?php echo $this->__('State/Province') ?></label>
+									<div class="input-box">
+										<select id="account:region_id" name="account[region_id]" title="<?php echo $this->__('State/Province') ?>" class="validate-select" style="display:none;">
+											<option value=""><?php echo $this->__('Please select region, state or province') ?></option>
+										</select>
+										<script type="text/javascript">
+										//<![CDATA[
+											$('account:region_id').setAttribute('defaultValue',  "<?php echo $this->getAddress()->getRegionId() ?>");
+										//]]>
+										</script>
+										<input type="text" id="account:region" name="account[region]" value="<?php echo $this->htmlEscape($this->getAddress()->getRegion()) ?>"  title="<?php echo $this->__('State/Province') ?>" class="input-text" style="display:none;" />
+									</div>
+								</div>
+							</li>
+							<li class="fields">
+								<div class="field">
+									<label for="account:postcode" class="required"><em>*</em><?php echo $this->__('Zip/Postal Code') ?></label>
+									<div class="input-box">
+										<input type="text" title="<?php echo $this->__('Zip/Postal Code') ?>" name="account[postcode]" id="account:postcode" value="<?php echo $this->htmlEscape($this->getAddress()->getPostcode()) ?>" class="input-text validate-zip-international required-entry" />
+									</div>
+								</div>
+								<div class="field">
+									<label for="account:country_id" class="required"><em>*</em><?php echo $this->__('Country') ?></label>
+									<div class="input-box">
+										<?php echo $this->getCountryHtmlSelect('account') ?>
+									</div>
+								</div>
+							</li>
+							<li lang="fields">
+								<div class="field">
+									<label for="account:telephone" class="required"><em>*</em><?php echo $this->__('Telephone') ?></label>
+									<div class="input-box">
+										<input type="text" name="account[telephone]" value="<?php echo $this->htmlEscape($this->getAddress()->getTelephone()) ?>" title="<?php echo $this->__('Telephone') ?>" class="input-text required-entry" id="account:telephone" />
+									</div>
+								</div>
+								<div class="field">
+									<label for="account:fax"><?php echo $this->__('Fax') ?></label>
+									<div class="input-box">
+										<input type="text" name="account[fax]" value="<?php echo $this->htmlEscape($this->getAddress()->getFax()) ?>" title="<?php echo $this->__('Fax') ?>" class="input-text" id="account:fax" />
+									</div>
+								</div>
+							</li>
+						</ul>
+					</fieldset>
+				</li>
+		
+				<li class="fields">
+				<?php if ($this->getFormData('account_name')): ?>
+					<div class="field account-name">
+						<label for="account_name"><?php echo $this->__('Name'); ?></label>
+						<div class="input-box">
+							<strong>
+								<span><?php echo $this->getFormData('account_name') ?></span>
+							</strong>
+							<input id="account_name" type="hidden" title="<?php echo $this->__('Name'); ?>" name="account_name"  value="<?php echo $this->getFormData('account_name')?>"/>
+						</div>
+						<div id="affiliate_message_hidden" class="affiliate_message"></div>
+					</div>
+				<?php endif ?>
+					<div class="field paypal-email">
+					<?php if ($this->requiredPaypal()): ?>
+						<label class="required" for="paypal_email"><em>*</em><?php echo $this->__('Paypal Email'); ?></label>
+						<div class="input-box">
+							<input id="paypal_email" class="input-text required-entry validate-email" type="text" title="<?php echo $this->__('Paypal Email'); ?>" name="paypal_email" value="<?php echo $this->getFormData('paypal_email')?>"/>
+						</div>
+					<?php else: ?>
+						<label for="paypal_email"><?php echo $this->__('Paypal Email'); ?></label>
+						<div class="input-box">
+							<input id="paypal_email" class="input-text validate-email" type="text" title="<?php echo $this->__('Paypal Email'); ?>" name="paypal_email" value="<?php echo $this->getFormData('paypal_email')?>"/>
+						</div>
+					<?php endif ?>
+					</div>
+				</li>
+				<li class="control">
+					<div class="field">
+						<input type="checkbox" name="change_password" id="change_password" value="1" onclick="setPasswordForm(this.checked)" title="<?php echo $this->__('Change Password') ?>"<?php if($this->getFormData('change_password')): ?> checked="checked"<?php endif; ?> class="checkbox" /><label for="change_password"><?php echo $this->__('Change Password') ?></label>
+					</div>
+					<div class="field">
+						<input type="checkbox" name="notification" id="notification" value="1" <?php if ($this->getFormData('notification')): ?>checked="checked"<?php endif ?> />
+						<label for="notification"><?php echo $this->__('Receive email notification') ?></label>
+					</div>
+				</li>
+			</ul>
+		</div>
+		
+		<div class="fieldset" style="display:none;">
+			<h2 class="legend"><?php echo $this->__('Change Password') ?></h2>
+			<ul class="form-list">
+				<li>
+					<label for="current_password" class="required"><em>*</em><?php echo $this->__('Current Password') ?></label>
+					<div class="input-box">
+						<input type="password" title="<?php echo $this->__('Current Password') ?>" class="input-text" name="current_password" id="current_password" />
+					</div>
+				</li>
+				<li class="fields">
+					<div class="field">
+						<label for="password" class="required"><em>*</em><?php echo $this->__('New Password') ?></label>
+						<div class="input-box">
+							<input type="password" title="<?php echo $this->__('New Password') ?>" class="input-text validate-password" name="password" id="password" />
+						</div>
+					</div>
+					<div class="field">
+						<label for="confirmation" class="required"><em>*</em><?php echo $this->__('Confirm New Password') ?></label>
+						<div class="input-box">
+							<input type="password" title="<?php echo $this->__('Confirm New Password') ?>" class="input-text validate-cpassword" name="confirmation" id="confirmation" />
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		
+		<div class="buttons-set">
+			<p class="required">* <?php echo $this->__('Required Fields'); ?></p>
+			<button class="button" title="Save" type="submit">
+				<span>
+					<span>
+						<?php echo $this->__('Save'); ?>
+					</span>
+				</span>
+			</button>
+			<?php if (0): ?>
+			<p class="back-link">
+				<a href="javascript:history.go(-1)">
+					<button type="button" class="form-button button" onclick="javascript:history.go(-1)">
+						<span><?php echo $this->__('Back')?></span>
+					</button>
+				</a>
+			</p>
+			<?php endif ?>
+		</div>
+		
+	</form>
+</div>
+<div class="clear"></div>	
+<script type="text/javascript">
+//<![CDATA[
+	if ($('account-address-select')){
+		$('account-address-select').value = "<?php echo $accountData['address_id'] ?>";
+		lsRequestTrialNewAddress($('account-address-select').value);
+	}
+	var signupAffiliateAccountForm = new VarienForm('signup_affiliate_account_form',true);
+	
+	var regionUpdate = new RegionUpdater('account:country_id', 'account:region', 'account:region_id', <?php echo $this->helper('directory')->getRegionJson() ?>, undefined, 'postcode');
+	
+	function lsRequestTrialNewAddress(addressId){
+		if(addressId == ""){
+			$('account-new-address-form').show();
+		}else{	
+			$('account-new-address-form').hide();
+		}
+	}
+	
+	function setPasswordForm(arg){
+        if(arg){
+            $('current_password').up(3).show();
+            $('current_password').addClassName('required-entry');
+            $('password').addClassName('required-entry');
+            $('confirmation').addClassName('required-entry');
+
+        }else{
+            $('current_password').up(3).hide();
+            $('current_password').removeClassName('required-entry');
+            $('password').removeClassName('required-entry');
+            $('confirmation').removeClassName('required-entry');
+        }
+    }
+    <?php if($this->getFormData('change_password')): ?>
+        setPasswordForm(true);
+    <?php endif; ?>
+//]]>
+</script>

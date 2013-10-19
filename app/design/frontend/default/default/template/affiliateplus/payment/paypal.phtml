@@ -1,0 +1,59 @@
+<?php
+/**
+ * Paypal Payment Method Form template
+ */
+?>
+<?php $acount = $this->getAcount() ?>
+<?php $isVerified = $this->isVerified($acount->getId(),$acount->getPaypalEmail());?>
+<?php $require = Mage::helper('affiliateplus/payment')->isRequireAuthentication('paypal');?>
+<ul>
+	<li class="fields">
+		<div class="field">
+			<label for="paypal_email" class="required"><em>*</em><?php echo $this->__('Email') ?></label>
+			<div class="input-box">
+                <input type="text" class="input-text required-entry validate-email" id="paypal_email" onchange="hideVerifyLink()" name="paypal_email" title="<?php echo $this->__('Paypal Email') ?>" value="<?php echo $acount->getPaypalEmail() ?>" />
+				<small><?php echo $this->__('This field will be updated to your profile!') ?></small>
+			</div>
+		</div>
+        <?php if($require):?>
+        <?php if($isVerified): ?>
+        <div class="field" id="verified-div">
+            <label for="paypal_email" class="required"><?php echo $this->__('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;') ?></label>
+			<div class="input-box verified" >
+                <a href="javascript:void()"><?php echo $this->__('Verified');?></a>
+				<!--small><?php echo $this->__('This field will be updated to your profile!') ?></small-->
+			</div>
+		</div>
+        <?php else: ?>
+        <div class="field" id="notverified-div">
+            <label for="paypal_email" class="required"><?php echo $this->__('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;') ?></label>
+			<div class="input-box not-verified" >
+                <a href="javascript:void()"><?php echo $this->__('Not verified');?></a>
+				<!--small><?php echo $this->__('This field will be updated to your profile!') ?></small-->
+			</div>
+		</div>
+        <?php endif;?>
+        <?php endif;?>
+	</li>
+</ul>
+<script type="text/javascript">
+    function showVerifyForm(){
+        var email = $('paypal_email').value;
+        if(!email){
+            alert('Please fill paypal email!');
+            return;
+        }
+        var url='<?php echo $this->getUrl('affiliateplus/index/verifyPayment');?>'+'?method=paypal&email='+email;
+        TINY.box.show(url, 1, 500, 300, 1);
+    }
+    function hideVerifyLink(){
+        var verifiedDiv = $('verified-div');
+        var notverifiedDiv = $('notverified-div');
+        if(verifiedDiv){
+            verifiedDiv.style.display = 'none';
+        }
+        if(notverifiedDiv){
+            notverifiedDiv.style.display = 'none';
+        }
+    }
+</script>

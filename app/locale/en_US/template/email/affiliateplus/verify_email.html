@@ -1,0 +1,57 @@
+<!--@subject {{var store.getFrontendName()}}: Welcome to Affiliate system @-->
+<!--@vars
+{"store url=\"\"":"Store Url",
+"skin url=\"images/logo_email.gif\" _area='frontend'":"Email Logo Image",
+"htmlescape var=$referral.getReferralName()":"Customer Name",
+"store url=\"customer/account/\"":"Customer Account Url",
+"var referral.getEmail()":"Customer Email",
+"htmlescape var=$referral.getPassword()":"Customer Password"}
+@-->
+
+<!--@styles
+body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; }
+@-->
+
+<div style="font:11px/1.35em Verdana, Arial, Helvetica, sans-serif;">
+    <table cellspacing="0" cellpadding="0" border="0" width="98%" style="margin-top:10px; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; margin-bottom:10px;">
+        <tr>
+            <td align="center" valign="top">
+                <!-- [ header starts here] -->
+                <table cellspacing="0" cellpadding="0" border="0" width="650">
+                    <tr>
+                        <td valign="top">
+                            <a href="{{store url=""}}"><img src="{{skin url="images/logo_email.gif" _area='frontend'}}" alt="{{var store.getFrontendName()}}"  style="margin-bottom:10px;" border="0"/></a></td>
+                    </tr>
+                </table>
+
+                <!-- [ middle starts here] -->
+                <table cellspacing="0" cellpadding="0" border="0" width="650">
+                    <tr>
+                        <td valign="top">
+                            <p><strong>Dear {{htmlescape var=$name()}}</strong>
+                            
+                            <br/>
+                            Authentication Code: <b>{{htmlescape var=$code}}</b>
+                            <br/>
+                            <p>
+                                Please enter this code into the verification form.
+                            </p>
+                            <p>
+                                Or click on this link: <a href={{htmlescape var=$link}} >{{htmlescape var=$link}}</a>
+                            </p>
+                            <p>
+                                to verify your account.
+                            </p>
+                            <p>
+								If you have any questions about your account or any other matter, please feel free to contact us at <a href="mailto:{{config path='trans_email/ident_support/email'}}" style="color:#1E7EC8;">{{config path='trans_email/ident_support/email'}}</a> 
+								or call us at <span class="nobr">{{config path='general/store_information/phone'}}</span> Monday - Friday, 8am - 5pm PST.
+							</p>
+                            <br/>
+							<p>Thank you again,<br/><strong>{{var store.getFrontendName()}}</strong></p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>

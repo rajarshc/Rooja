@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Magestore_Affiliatepluslevel>
+            <active>true</active>
+            <codePool>local</codePool>
+            <aliasName>Affiliate Plus Tier Commission</aliasName>
+			<depends>
+                <Magestore_Affiliateplus />
+            </depends>
+        </Magestore_Affiliatepluslevel>
+    </modules>
+</config> 

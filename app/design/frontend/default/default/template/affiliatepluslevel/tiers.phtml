@@ -1,0 +1,22 @@
+<?php
+/**
+ * Sales transaction history template
+ */
+?>
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+
+<div class="page-title">
+	<h2><?php echo $this->__('Tier Affiliates') ?></h2>
+</div>
+
+<?php if ($this->getCollection()->getSize()): ?>
+	<?php echo $this->getPagerHtml() ?>
+	<?php echo $this->getGridHtml() ?>
+	<?php echo $this->getPagerHtml() ?>
+<?php else: ?>
+<div>
+	<p class="note-msg">
+		<?php echo $this->__('There are no tier affiliates matching this selection.') ?>
+	</p>
+</div>
+<?php endif ?>

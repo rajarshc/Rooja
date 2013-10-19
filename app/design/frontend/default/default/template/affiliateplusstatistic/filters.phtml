@@ -1,0 +1,301 @@
+<?php
+/**
+ * Magestore
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the Magestore.com license that is
+ * available through the world-wide-web at this URL:
+ * http://www.magestore.com/license-agreement.html
+ * 
+ * DISCLAIMER
+ * 
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ * 
+ * @category    Magestore
+ * @package     Magestore_AffiliateplusCostPerMille
+ * @copyright   Copyright (c) 2012 Magestore (http://www.magestore.com/)
+ * @license     http://www.magestore.com/license-agreement.html
+ */
+/**
+ * Affiliatepluscostpermille template
+ * 
+ * @see Magestore_AffiliateplusCostPerMille_Block_Affiliatepluscostpermille
+ */
+?>
+<script type="text/javascript">var Translator = new Translate([]);</script> 
+<script type="text/javascript">
+//<![CDATA[
+enUS = {"m":{"wide":["January","February","March","April","May","June","July","August","September","October","November","December"],"abbr":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]}}; // en_US locale reference
+Calendar._DN = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]; // full day names
+Calendar._SDN = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]; // short day names
+Calendar._FD = 0; // First day of the week. "0" means display Sunday first, "1" means display Monday first, etc.
+Calendar._MN = ["January","February","March","April","May","June","July","August","September","October","November","December"]; // full month names
+Calendar._SMN = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]; // short month names
+Calendar._am = "AM"; // am/pm
+Calendar._pm = "PM";
+ 
+// tooltips
+Calendar._TT = {};
+Calendar._TT["INFO"] = "About the calendar";
+ 
+Calendar._TT["ABOUT"] =
+"DHTML Date/Time Selector\n" +
+"(c) dynarch.com 2002-2005 / Author: Mihai Bazon\n" +
+"For latest version visit: http://www.dynarch.com/projects/calendar/\n" +
+"Distributed under GNU LGPL. See http://gnu.org/licenses/lgpl.html for details." +
+"\n\n" +
+"Date selection:\n" +
+"- Use the \xab, \xbb buttons to select year\n" +
+"- Use the " + String.fromCharCode(0x2039) + ", " + String.fromCharCode(0x203a) + " buttons to select month\n" +
+"- Hold mouse button on any of the above buttons for faster selection.";
+Calendar._TT["ABOUT_TIME"] = "\n\n" +
+"Time selection:\n" +
+"- Click on any of the time parts to increase it\n" +
+"- or Shift-click to decrease it\n" +
+"- or click and drag for faster selection.";
+ 
+Calendar._TT["PREV_YEAR"] = "Prev. year (hold for menu)";
+Calendar._TT["PREV_MONTH"] = "Prev. month (hold for menu)";
+Calendar._TT["GO_TODAY"] = "Go Today";
+Calendar._TT["NEXT_MONTH"] = "Next month (hold for menu)";
+Calendar._TT["NEXT_YEAR"] = "Next year (hold for menu)";
+Calendar._TT["SEL_DATE"] = "Select date";
+Calendar._TT["DRAG_TO_MOVE"] = "Drag to move";
+Calendar._TT["PART_TODAY"] = ' (' + "Today" + ')';
+ 
+// the following is to inform that "%s" is to be the first day of week
+Calendar._TT["DAY_FIRST"] = "Display %s first";
+ 
+// This may be locale-dependent. It specifies the week-end days, as an array
+// of comma-separated numbers. The numbers are from 0 to 6: 0 means Sunday, 1
+// means Monday, etc.
+Calendar._TT["WEEKEND"] = "0,6";
+ 
+Calendar._TT["CLOSE"] = "Close";
+Calendar._TT["TODAY"] = "Today";
+Calendar._TT["TIME_PART"] = "(Shift-)Click or drag to change value";
+ 
+// date formats
+Calendar._TT["DEF_DATE_FORMAT"] = "%b %e, %Y";
+Calendar._TT["TT_DATE_FORMAT"] = "%B %e, %Y";
+ 
+Calendar._TT["WK"] = "Week";
+Calendar._TT["TIME"] = "Time:";
+ 
+CalendarDateObject._LOCAL_TIMZEONE_OFFSET_SECONDS = -28800;
+
+//]]>
+</script>
+<div id="affiliateplusstatistic-filter">
+<div class="fieldset" id="report-filter" style="position: relative">
+    <input name="form_key" type="hidden" value="3u3twBgQa7rVCNHN">
+    <h2 class="legend"><?php echo $this->__('Create a Report');?></h2>
+    <ul class="form-list">
+        <li class="fields">
+                <div class="field">
+                    <div class="filter-label">
+                        <label for="report_type" class="required"><?php echo $this->__('Type');?></label>
+                    </div>
+                    <div class="input-box">
+                        <select name="report_type" id="report_type" onchange="changeGroupBy(this)">
+                            <option value="1"><?php echo $this->__('Sales Report');?></option>
+                            <option value="2"><?php echo $this->__('Clicks Report');?></option>
+                            <option value="3"><?php echo $this->__('Impressions Report');?></option>
+                        </select>
+                    </div>
+                </div>
+             <div class="field">
+                <div class="filter-label">
+                    <label for="date_from" class=""><?php echo $this->__('From');?></label>
+                </div>
+                <div class="input-box">
+                    <input type="text" name="date_from" id="date_from" />
+                    <img title="Select date" id="date_picker_from" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN) . 'adminhtml/default/default/images/grid-cal.gif'; ?>"  class="v-middle"/>
+                    <script type="text/javascript">
+                        Calendar.setup({
+                            inputField: "date_from",
+                            ifFormat: "%m-%d-%Y",
+                            showsTime: false,
+                            button: "date_picker_from",
+                            //align: "bl",
+                            singleClick : true
+                        });
+                    </script>
+                </div>
+            </div>
+                
+        </li>
+        <li class="fields">
+            <div class="field">
+                <div class="filter-label">
+                    <label for="group_by" class="required"><?php echo $this->__('Group By');?></label>
+                </div>
+                <div class="input-box">
+                    <select name="group_by" id="group_by">
+                        <option value="1"><?php echo $this->__('Period');?></option>
+                    </select>
+                </div>
+            </div>
+            <div class="field">
+                <div class="filter-label">
+                    <label for="date_from" class=""><?php echo $this->__('To');?></label>
+                </div>
+                <div class="input-box">
+                    <input type="text" name="date_to" id="date_to" />
+                    <img title="Select date" id="date_picker_to" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN) . 'adminhtml/default/default/images/grid-cal.gif'; ?>"  class="v-middle"/>
+                    <script type="text/javascript">
+                        Calendar.setup({
+                            inputField: "date_to",
+                            ifFormat: "%m-%d-%Y",
+                            showsTime: false,
+                            button: "date_picker_to",
+                            //align: "bl",
+                            singleClick : true
+                        });
+                    </script>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="field">
+                <div class="filter-label">
+                    <label for="period" class=""><?php echo $this->__('Period');?></label>
+                </div>
+                <div class="input-box">
+                    <select name="period" id="period">
+                        <option value="day"><?php echo $this->__('Day');?></option>
+                        <option value="month"><?php echo $this->__('Month');?></option>
+                        <option value="year"><?php echo $this->__('Year');?></option>
+                    </select>
+                </div>
+            </div>
+        </li>
+        <li id="status-transaction">
+            <div class="field">
+                <div class="filter-label">
+                    <label for="status" class="status"><?php echo $this->__('Transaction Status');?></label>
+                </div>
+                <div class="input-box">
+                    <select name="status" id="status" onchange="selectStatus(this)">
+                        <option value="1">Any</option>
+                        <option value="2">Specified</option>
+                        <!--option value="2">Pending</option>
+                        <option value="1">Complete</option>
+                        <option value="3">Cancel</option-->
+                    </select>
+                </div>
+            </div>
+        </li>
+        <li id="status_select" style="display:none">
+            <div class="field">
+                <div class="filter-label">
+                    <label for="status" class="status"><?php echo $this->__('');?></label>
+                </div>
+                <div class="input-box">
+                    <select id="sales_report_order_statuses" name="order_statuses[]" size="10" class=" select multiselect" multiple="multiple">
+                        <option value="1"><?php echo $this->__('Completed') ?></option>
+                        <option value="2"><?php echo $this->__('Pending') ?></option>
+                        <option value="3"><?php echo $this->__('Canceled') ?></option>
+                    </select>
+                </div>
+            </div>
+        </li>
+        </ul>
+        <div class="buttons-set" >
+            <button type="button" title="Show Report" style="position: relative" onclick="showReport()" class="button"><span style="position: relative"><span><?php echo "Show Report";?></span></span></button>
+        </div>
+    </div>
+    
+</div>
+<br/>
+<div id="report_show">
+    
+    
+</div>
+<div id="loading-mask" style="left: -2px; top: 0px;display:none ">
+    <p class="loader" id="loading_mask_loader">
+        <img src="<?php echo $this->getSkinUrl('images/ajax-loader-tr.gif');?>" alt="Loading...">
+        <br><?php  echo $this->__('Please wait...'); ?>
+    </p>
+</div>
+<script type="text/javascript">
+    function selectStatus(el){
+        if(el.value == 2){
+            $('status_select').style.display = 'block';
+        }else{
+            $('status_select').style.display = 'none';
+        }
+    }
+    function changeGroupBy(el){
+        var v = el.value;
+        var des = $('group_by');
+        if(des){
+            formatSelect(des);
+            if(v == 1){
+                var opt1 = new Option('Period','1');
+                des.options.add(opt1);
+                $('status-transaction').style.display='block';
+                if($('status').value == 2) $('status_select').style.display='block';
+            }else{
+                var opt1 = new Option('Period','1');
+                var opt2 = new Option('Banner','2');
+                var opt3 = new Option('Traffic Source','3');
+                des.options.add(opt1);
+                des.options.add(opt2);
+                des.options.add(opt3);
+                $('status-transaction').style.display='none';
+                $('status_select').style.display = 'none';
+            }
+        }
+    }
+    function formatSelect(el){
+        el.innerHTML = '';
+    }
+    function showReport(){
+        $('loading-mask').style.display = 'block';
+        var report_type = $('report_type').value;
+        var group_by = $('group_by').value;
+        var period = $('period').value;
+        var date_from = $('date_from').value;
+        var date_to = $('date_to').value;
+        var select_status = $('status').value;
+        var status='';
+        var j=0;
+        if(select_status == 2){
+            var opts = $('sales_report_order_statuses').options;
+            for(var i=0;i<opts.length;i++){
+                if(opts[i].selected){
+                    status += opts[i].value+'-';
+                }
+            }
+        }
+        if(status.length)
+            status = status.substr(0,status.length-1);
+        var url = '<?php echo $this->getUrl('affiliateplusstatistic/statistic/report');?>'+'?report_type='+report_type+'&group_by='+group_by+'&period='+period;
+        if(date_from)
+            url+='&date_from='+date_from;
+        if(date_to)
+            url+='&date_to='+date_to;
+        if(status.length)
+            url += '&status='+status;
+        var request = new Ajax.Request(url,
+            {
+                onComplete: '',
+                onSuccess: function(response){
+                    $('loading-mask').style.display = 'none';
+                    var text = response.responseText;
+                    $('report_show').innerHTML = text;
+                }
+            }
+        );
+    }
+    function exportFile(report_type,group_by,period){
+        var type = $('export-type').value;
+        if(type == 1)
+            window.location.href = '<?php echo $this->getUrl('affiliateplusstatistic/statistic/exportSalesCsv');?>report_type/'+report_type+'/group_by/'+group_by+'/period/'+period;
+        else
+            window.location.href = '<?php echo $this->getUrl('affiliateplusstatistic/statistic/exportXml');?>report_type/'+report_type+'/group_by/'+group_by+'/period/'+period;
+    }
+</script>

@@ -1,0 +1,26 @@
+<?php
+/**
+ * Affiliate's navigation template
+ */
+?>
+<div style="margin-top:5px;">
+	<a rel="nofollow" target="_blank" href="http://www.magestore.com/affiliateplus/">
+		<img src="<?php echo Mage::getBaseUrl('skin') ?>frontend/default/default/css/magestore/trademark.png">
+	</a>
+</div>	
+<br/>
+<div class="affiliateplus-account-bottom">
+	<?php if(Mage::helper('affiliateplus/account')->customerNotLogin()): ?>
+		<button onclick="location.href='<?php echo $this->getUrl('affiliateplus/account/login') ?>'" class="form-button button" style="margin: 0px 40px 0px 10px;">
+			<img src="<?php  echo Mage::getBaseUrl('media')?>affiliateplus/default/affiliate_login.gif">
+		</button>
+	<?php endif ?>
+	<?php if(Mage::helper('affiliateplus/account')->accountNotRegistered()): ?>
+		<button onclick="location.href='<?php echo $this->getUrl('affiliateplus/account/register') ?>'" class="form-button button" style="margin-right: 40px;">
+			<img src="<?php echo Mage::getBaseUrl('media')?>affiliateplus/default/affiliate_signup.gif">
+		</button>
+	<?php endif ?>
+	<button onclick="location.href='<?php echo $this->getUrl('contacts') ?>'" class="form-button button">
+		<img src="<?php echo Mage::getBaseUrl('media')?>affiliateplus/default/affiliate_contact.gif">
+	</button>
+</div>

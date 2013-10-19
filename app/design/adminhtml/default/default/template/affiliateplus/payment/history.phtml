@@ -1,0 +1,18 @@
+<?php
+/**
+ * Payment history
+ */
+?>
+<div id="affiliateplus_payment_history_block">
+    <ul class="note-list">
+    <?php foreach ($this->getFullHistory() as $_item): ?>
+        <li>
+            <strong><?php echo $this->helper('core')->formatDate($_item->getCreatedTime(), 'medium') ?></strong>
+            <?php echo $this->helper('core')->formatTime($_item->getCreatedTime(), 'medium') ?><span class="separator">|</span><strong><?php echo $_item->getStatusLabel() ?></strong>
+            <?php if ($_item->getDescription()): ?>
+                <br/><?php echo $_item->getDescription() ?>
+            <?php endif; ?>
+        </li>
+    <?php endforeach; ?>
+    </ul>
+</div>

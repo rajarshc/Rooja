@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <affiliateplus_default>
+    	<reference name="account_navigator">
+    		<action method="addLink" translate="label" module="affiliateplusstatistic">
+   				<name>report</name>
+                <path>affiliateplusstatistic/statistic/index</path>
+                <label><![CDATA[Reports]]></label>
+                <disabled helper="affiliateplusstatistic/disableMenu" />
+                <order>185</order>
+   			</action>
+    	</reference>
+	</affiliateplus_default>
+    <affiliateplusstatistic_statistic_index>
+        <reference name="head">
+    		<action method="addCss"><styleSheet>css/magestore/affiliateplusstatistic.css</styleSheet></action>
+            <action method="addJs"><script>magestore/affiliateplusstatistic/mytabz.js</script></action>
+            <action method="addJs"><script>calendar/calendar.js</script></action>
+            <action method="addJs"><script>calendar/calendar-setup.js</script></action>
+            <action method="addItem"><type>js_css</type><name>calendar/calendar-win2k-1.css</name><params/><!--<if/><condition>can_load_calendar_js</condition>--></action>
+    	</reference>
+        <update handle="affiliateplus_default" />
+		<reference name="content">
+			<block type="affiliateplusstatistic/frontend_diagrams" name="affiliateplusstatistic_reports" >
+                <block type="affiliateplusstatistic/frontend_filters" name="affiliateplusstatistic_filters" >
+                    <block type="affiliateplusstatistic/frontend_report_grid" name="affiliateplusstatistic_report_grid" />
+                </block>
+            </block>
+		</reference>
+    </affiliateplusstatistic_statistic_index>
+</layout>

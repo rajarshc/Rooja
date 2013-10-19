@@ -1,0 +1,247 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magestore
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the Magestore.com license that is
+ * available through the world-wide-web at this URL:
+ * http://www.magestore.com/license-agreement.html
+ * 
+ * DISCLAIMER
+ * 
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ * 
+ * @category    Magestore
+ * @package     Magestore_AffiliateplusReferFriend
+ * @copyright   Copyright (c) 2012 Magestore (http://www.magestore.com/)
+ * @license     http://www.magestore.com/license-agreement.html
+ */
+-->
+<config>
+    <sections>
+        <affiliateplus>
+            <groups>
+                <email>
+                    <fields>
+                        <referfriend_separator translate="label">
+                            <label>Refer Friends Email</label>
+                            <frontend_type>label</frontend_type>
+                            <frontend_model>affiliateplus/adminhtml_field_separator</frontend_model>
+                            <sort_order>200</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>10px</comment>
+                        </referfriend_separator>
+                        <refer_template>
+                            <label>Refer friends email template</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>210</sort_order>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </refer_template>
+                    </fields>
+                </email>
+                <refer>
+                    <label>Refer Friends Configuration</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>100</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <show_separator translate="label">
+                            <label>Show refer friends link</label>
+                            <frontend_type>label</frontend_type>
+                            <frontend_model>affiliateplus/adminhtml_field_separator</frontend_model>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment></comment>
+                        </show_separator>
+                        <refer_enable_product_list translate="label">
+                            <label>Show on product listing page</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>3</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment></comment>
+                        </refer_enable_product_list>
+                        <refer_enable_product_detail translate="label">
+                            <label>Show on product detail page</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>5</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment></comment>
+                        </refer_enable_product_detail>
+                        <enable translate="label">
+                            <label>Show on My account/ Affiliate Menu</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>7</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment></comment>
+                        </enable>
+                        
+                        <page_separator translate="label">
+                            <label>Refer friends Page</label>
+                            <frontend_type>label</frontend_type>
+                            <frontend_model>affiliateplus/adminhtml_field_separator</frontend_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>10px</comment>
+                        </page_separator>
+                        <url_prefix translate="label">
+                            <label>Personal Url Prefix</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment></comment>
+                        </url_prefix>
+                        <refer_description translate="label">
+                            <label>Refer Friend Description</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Shown on Refer Friend Page</comment>
+                        </refer_description>
+                        <sharing_description translate="label">
+                            <label>Sharing Description</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Shown on header of Sharing box</comment>
+                        </sharing_description>
+                        <email_subject translate="label">
+                            <label>Default Invite Email Subject</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>25</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Used for sending invite email</comment>
+                        </email_subject>
+                        <email_content translate="label">
+                            <label>Default Invite Email Content</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Used for sending invite email</comment>
+                        </email_content>
+                        <social_separator translate="label">
+                            <label>Social Configuration</label>
+                            <frontend_type>label</frontend_type>
+                            <frontend_model>affiliateplus/adminhtml_field_separator</frontend_model>
+                            <sort_order>36</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment></comment>
+                        </social_separator>
+                        <yahoo_app_id translate="label">
+                            <label>Yahoo Application ID</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </yahoo_app_id>
+                        <yahoo_consumer_key translate="label">
+                            <label>Yahoo Consumer Key</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>45</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </yahoo_consumer_key>
+                        <yahoo_consumer_secret translate="label">
+                            <label>Yahoo Consumer Secret</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[<a href="https://developer.apps.yahoo.com/dashboard/createKey.html" target="_bank">Register to Yahoo</a>]]>
+                            </comment>
+                        </yahoo_consumer_secret>
+                        <google_consumer_key translate="label">
+                            <label>Google Consumer Key</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>55</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </google_consumer_key>
+                        <google_consumer_secret translate="label">
+                            <label>Google Consumer Secret</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[<a href="https://www.google.com/accounts/ManageDomains" target="_bank">Register to Google</a>]]>
+                            </comment>
+                        </google_consumer_secret>
+                        <sharing_message translate="label">
+                            <label>Default Facebook Shared Message</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>140</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </sharing_message>
+                        <fbapp_id translate="label">
+                            <label>Facebook Application ID</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>150</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </fbapp_id>
+                        <fbapp_secret translate="label">
+                            <label>Facebook Application Secret</label>
+                            <frontend_type>text</frontend_type>			  
+                            <sort_order>160</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment></comment>
+                            <comment><![CDATA[<a href="http://developers.facebook.com/setup/" target="_bank">Register to Facebook</a>]]></comment>
+                        </fbapp_secret>
+                        <twitter_message translate="label">
+                            <label>Default Twitter Shared Message</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>170</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </twitter_message>
+                    </fields>
+                </refer>
+            </groups>
+        </affiliateplus>
+    </sections>
+</config>

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<Magestore_Affiliatepluscoupon>
+			<active>true</active>
+			<codePool>local</codePool>
+            <aliasName>Affiliate Plus Coupon</aliasName>
+            <depends>
+            	<Magestore_Affiliateplus />
+            </depends>
+		</Magestore_Affiliatepluscoupon>
+	</modules>
+</config>

@@ -1,0 +1,21 @@
+<?php
+/**
+ * Payments history template
+ */
+?>
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+
+<div class="page-title">
+	<h2>
+    <?php if (Mage::helper('affiliateplus/account')->disableWithdrawal()): ?>
+        <?php echo $this->__('Store Credits History') ?>
+    <?php else: ?>
+        <?php echo $this->__('Withdrawals History') ?>
+    <?php endif ?>
+    </h2>
+</div>
+
+<?php echo $this->getChildHtml('payment_miniform') ?>
+
+<div class="clear">&nbsp;</div>
+<?php echo $this->getGridHtml() ?>

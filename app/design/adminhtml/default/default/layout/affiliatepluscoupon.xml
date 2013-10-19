@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+	<affiliatepluscouponadmin_adminhtml_account_coupons>
+		<block type="core/text_list" name="root">
+			<block type="affiliatepluscoupon/adminhtml_account_edit_tab_coupon" name="account.tabs.coupon" />
+			<block type="adminhtml/widget_grid_serializer" name="related_grid_serializer">
+				<action method="initSerializerBlock">
+					<grid_block_name>account.tabs.coupon</grid_block_name>
+					<data_callback>getSelectedRelatedCoupons</data_callback>
+					<hidden_input_name>account_coupon</hidden_input_name>
+					<reload_param_name>ocoupon</reload_param_name>
+				</action>
+				<action method="addColumnInputName">
+					<input_name>coupon_code</input_name>
+				</action>
+            </block>
+		</block>
+	</affiliatepluscouponadmin_adminhtml_account_coupons>
+	<affiliatepluscouponadmin_adminhtml_account_couponsgrid>
+		<block type="core/text_list" name="root">
+			<block type="affiliatepluscoupon/adminhtml_account_edit_tab_coupon" name="account.tabs.coupon" />
+		</block>
+	</affiliatepluscouponadmin_adminhtml_account_couponsgrid>
+	
+	<affiliatepluscouponadmin_adminhtml_transaction_index>
+		<reference name="content">
+			<block type="affiliatepluscoupon/adminhtml_transaction" name="transaction" />
+		</reference>
+	</affiliatepluscouponadmin_adminhtml_transaction_index>
+	
+	<affiliatepluscouponadmin_adminhtml_link_index>
+		<reference name="content">
+			<block type="affiliatepluscoupon/adminhtml_link" name="transaction" />
+		</reference>
+	</affiliatepluscouponadmin_adminhtml_link_index>
+</layout>

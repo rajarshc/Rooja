@@ -1,0 +1,30 @@
+<?php
+/**
+ * grid table
+ */
+?>
+<?php if (sizeof($this->getTotals()) > 0): ?>
+<div class="grid np affiliateplus-statistic-grid">
+	<table id="affiliateplus-statistic-general-table-<?php echo $this->getTableId() ?>" cellspacing="0" style="border:0px;">
+		<colgroup>
+			<col width="50%" />
+			<col width="50%" />
+		</colgroup>
+		<tbody>
+			<?php foreach ($this->getTotals() as $_total): ?>
+			<tr>
+				<td class="a-left"><span class="affiliateplus-statistic-general-label"><?php echo $_total['label'] ?></span></td>
+				<td class="a-center"><span class="affiliateplus-statistic-general-value"><?php echo $_total['value'] ?></span></td>
+			</tr>
+			<?php endforeach ?>
+		</tbody>
+	</table>
+</div>
+<script type="text/javascript">
+decorateTable('affiliateplus-statistic-general-table-<?php echo $this->getTableId() ?>');
+</script>
+<?php else: ?>
+<div style="margin:10px;">
+	<p class="a-center"><?php echo $this->__('No Data Found') ?></p>
+</div>
+<?php endif ?>
