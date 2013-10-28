@@ -18,7 +18,7 @@
 	  </navigation>
 	</models>
 	<resources>
-	  <categoryattribute1380519902_setup>
+	  <categoryattribute1381475812_setup>
 		<setup>
 		  <module>Aurigait_Navigation</module>
 		  <class>Mage_Catalog_Model_Resource_Eav_Mysql4_Setup</class>
@@ -26,17 +26,17 @@
 		<connection>
 		  <use>core_setup</use>
 		</connection>
-	  </categoryattribute1380519902_setup>
-	  <categoryattribute1380519902_write>
+	  </categoryattribute1381475812_setup>
+	  <categoryattribute1381475812_write>
 		<connection>
 		  <use>core_write</use>
 		</connection>
-	  </categoryattribute1380519902_write>
-	  <categoryattribute1380519902_read>
+	  </categoryattribute1381475812_write>
+	  <categoryattribute1381475812_read>
 		<connection>
 		  <use>core_read</use>
 		</connection>
-	  </categoryattribute1380519902_read>
+	  </categoryattribute1381475812_read>
 	</resources>
   </global>
  <!-- <crontab>
