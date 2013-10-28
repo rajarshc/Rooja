@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <Aurigait_Navigation>
+      <version>0.1.0</version>
+    </Aurigait_Navigation>
+  </modules>
+  <global>
+    <helpers>
+      <navigation>
+        <class>Aurigait_Navigation_Helper</class>
+      </navigation>
+    </helpers>
+	<models>
+	  <navigation>
+		<class>Aurigait_Navigation_Model</class>
+		<resourceModel>navigation_mysql4</resourceModel>
+	  </navigation>
+	</models>
+	<resources>
+	  <categoryattribute1381475812_setup>
+		<setup>
+		  <module>Aurigait_Navigation</module>
+		  <class>Mage_Catalog_Model_Resource_Eav_Mysql4_Setup</class>
+		</setup>
+		<connection>
+		  <use>core_setup</use>
+		</connection>
+	  </categoryattribute1381475812_setup>
+	  <categoryattribute1381475812_write>
+		<connection>
+		  <use>core_write</use>
+		</connection>
+	  </categoryattribute1381475812_write>
+	  <categoryattribute1381475812_read>
+		<connection>
+		  <use>core_read</use>
+		</connection>
+	  </categoryattribute1381475812_read>
+	</resources>
+  </global>
+ <!-- <crontab>
+        <jobs>
+            <Aurigait_Navigation_Categoryattrbiute>
+                <schedule>
+                    <cron_expr>*/2 * * * *</cron_expr>
+                </schedule>
+                <run>
+                    <model>navigation/observer::updateCategoryAttribute</model>
+                </run>
+            </Aurigait_Navigation_Categoryattrbiute>
+            <Aurigait_Navigation_Productdisable>
+                <schedule>
+                    <cron_expr>*/2 * * * *</cron_expr>
+                </schedule>
+                <run>
+                    <model>navigation/observer::disableProducts</model>
+                </run>
+            </Aurigait_Navigation_Productdisable>
+            <Aurigait_Navigation_Hottestproduct>
+                <schedule>
+                    <cron_expr>*/2 * * * *</cron_expr>
+                </schedule>
+                <run>
+                    <model>navigation/observer::hottestProduct</model>
+                </run>
+            </Aurigait_Navigation_Hottestproduct>
+        </jobs>
+ </crontab>-->
+</config> 
