@@ -1,0 +1,43 @@
+<?php
+$tweets=$this->getTweets(); 
+ ?>
+ <!-- nks code starts -->
+  
+    	<script>
+    		$(document).ready(function()
+							{
+  								$('.bxslider').bxSlider();
+							}
+						 );
+    	</script>
+      <style>
+      
+.bx-wrapper ul li { height: 50px; }
+#tweet_li{
+	margin-top:-10px;
+	text-align:center;
+	padding: 5px;
+	margin-left:10%;
+	width:80% !important;
+	
+}      
+      </style>
+   	  <ul class="bxslider">
+       	 
+       	  <?php 
+			foreach ($tweets as $tweet)
+			{
+			   echo "<li>";
+               echo "<div align='center' id='tweet_li' style=''>";
+ 						echo $tweet->text;
+ 						echo "@".$tweet->user->screen_name;
+ 						echo $tweet->created_at;
+ 					
+				echo "<div>";
+				echo "</li>";
+			 }
+            ?>
+	  </ul>
+      
+       
+    <!-- end: nks code -->

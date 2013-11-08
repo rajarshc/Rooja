@@ -1,0 +1,142 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Aurigait_Banner>
+            <version>0.1.0</version>
+        </Aurigait_Banner>
+    </modules>
+    <frontend>
+        <routers>
+            <banner>
+                <use>standard</use>
+                <args>
+                    <module>Aurigait_Banner</module>
+                    <frontName>banner</frontName>
+                </args>
+            </banner>
+        </routers>
+        <layout>
+            <updates>
+                <banner>
+                    <file>banner.xml</file>
+                </banner>
+            </updates>
+        </layout>
+    </frontend>
+    <admin>
+        <routers>
+            <banner>
+                <use>admin</use>
+                <args>
+                    <module>Aurigait_Banner</module>
+                    <frontName>banner</frontName>
+                </args>
+            </banner>
+        </routers>
+    </admin>
+    <adminhtml>
+        <menu>
+            <bannermgmt module="banner">
+                <title>Manage Banner</title>
+		<sort_order>500</sort_order>
+                <children>
+		  <option module="banner">
+		    <title>Manage Middle Banners</title>
+			<sort_order>1</sort_order>
+			<action>banner/adminhtml_bannermiddle</action>
+		  </option>
+		  <option1 module="banner">
+			<title>Header Banner</title>
+			<sort_order>6</sort_order>
+			<action>banner/adminhtml_bannermultiple</action>
+		  </option1>
+		  <bannerblock module="banner">
+		    <title>Manage Footer Bannerblock</title>
+			<sort_order>2</sort_order>
+			<action>banner/adminhtml_bannerblock</action>
+		  </bannerblock>
+		  <footerbanner module="banner">
+		    <title>Manage Footer Banner</title>
+			<sort_order>2</sort_order>
+			<action>banner/adminhtml_bannerfooter</action>
+		  </footerbanner>
+		</children>
+                
+            </bannermgmt>
+        </menu>
+        <acl>
+            <resources>
+                <all>
+                    <title>Allow Everything</title>
+                </all>
+                <admin>
+                    <children>
+                        <banner>
+                            <title>Banner Module</title>
+                            <sort_order>200</sort_order>
+                        </banner>
+                    </children>
+                </admin>
+            </resources>   
+        </acl>
+        <layout>
+            <updates>
+                <banner>
+                    <file>banner.xml</file>
+                </banner>
+            </updates>
+        </layout>
+    </adminhtml>   
+    <global>
+        <models>
+            <banner>
+                <class>Aurigait_Banner_Model</class>
+                <resourceModel>banner_mysql4</resourceModel>
+            </banner>
+            <banner_mysql4>
+                <class>Aurigait_Banner_Model_Mysql4</class>
+                <entities>
+                    <banner>
+                        <table>banner</table>
+                    </banner>
+		    <bannerblock>
+			<table>banner_blocks</table>
+	           </bannerblock>
+                </entities>
+			
+            </banner_mysql4>
+        </models>
+        <resources>
+            <banner_setup>
+                <setup>
+                    <module>Aurigait_Banner</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </banner_setup>
+            <banner_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+ 
+ 
+            </banner_write>
+            <banner_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </banner_read>
+        </resources>
+        <blocks>
+            <banner>
+                <class>Aurigait_Banner_Block</class>
+            </banner>
+        </blocks>
+        <helpers>
+            <banner>
+                <class>Aurigait_Banner_Helper</class>
+            </banner>
+        </helpers>
+    </global>
+</config>
