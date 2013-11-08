@@ -1,0 +1,24 @@
+<div class="Jewelers-Ads">bannersingle.phtml working now222...
+  <?php $left_banners=$this->getSingleBanners('left');
+  $right_banners=$this->getSingleBanners('right');
+ if(!empty($left_banners) && !empty($right_banners)){
+  $key1=array_rand($left_banners,1);
+  $key2=array_rand($right_banners,2);
+ 
+  ?>  
+    <div class='Jewelers-Ads-left' style="float:left;width:52%">
+        <a href='<?php echo $left_banners[$key1]['../link'] ;?>'>
+        <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'footer_banner/'.$left_banners[$key1]['img'] ?>" width="540" height="350"/>
+        </a>
+    </div>
+    <div class='Jewelers-Ads-right' style="float:right; width:47%">
+        <a href='<?php echo $right_banners[$key2[0]]['../link'] ;?>'>
+        <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'footer_banner/'.$right_banners[$key2[0]]['img'] ?>" width="480" height="171"/>
+        </a>
+        <a href='<?php echo $right_banners[$key2[1]]['../link'] ;?>' style='margin-top:9px'>
+        <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'footer_banner/'.$right_banners[$key2[1]]['img'] ?>" width="480" height="171"/>
+        </a>
+    </div>
+    <div style="clear:both"></div>  
+ <?php }?>
+</div>

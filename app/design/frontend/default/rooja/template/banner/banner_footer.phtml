@@ -1,0 +1,50 @@
+<?php 
+$banners=$this->getBanners();
+$i=0;
+foreach($banners as $banner)
+{
+	$banner_data[$banner['gender'].$banner['block_position']]['block_title']=$banner['block_title'];
+	$banner_data[$banner['gender'].$banner['block_position']]['block_view_more_text']=$banner['view_more_text'];
+	$banner_data[$banner['gender'].$banner['block_position']]['block_view_more_url']=$banner['view_more_url'];
+	if($banner['position']=='left')
+	{
+		$banner_data[$banner['gender'].$banner['block_position']]['left_image']=array('banner_image'=>$banner['bannerimage'],
+		  'image_text'=>$banner['image_text'],
+		  'image_link'=>$banner['link']);
+		  
+	}
+	else {
+		$banner_data[$banner['gender'].$banner['block_position']]['right_image'][]=array('banner_image'=>$banner['bannerimage'],
+		  'image_text'=>$banner['image_text'],
+		  'image_link'=>$banner['link']);
+	}
+																						 
+}
+
+?>
+<?php $i=1;foreach($banner_data as $banner):?>
+<?php if($i<=4):?>	
+<div class="bottomBlockSection">
+	<h3 class="sectionTitle"><?php echo $banner['block_title'];?></h3>
+	<div class="sectionImages clearfix">
+			<div class="sectionLeft">
+				<a href="<?php echo $banner['left_image']['image_link'];?>">
+					<img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'footer_banner/'.$banner['left_image']['banner_image']?>"/>
+					<span class="image_name"><span class="dullBg"></span><?php echo $banner['left_image']['image_text'];?></span>
+				</a>
+			</div>
+		  <?php foreach($banner['right_image'] as $rightimage):?>
+		  	<div class="sectionRight">
+		  		<a href="<?php echo $rightimage['image_link'];?>">
+					<img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'footer_banner/'.$rightimage['banner_image']?>"/>
+					<span class="image_name"><span class="dullBg"></span><?php echo $rightimage['image_text'];?></span>
+				</a>
+		  	</div>
+		  <?php endforeach;?>
+	</div>
+	<div class="textRight">
+		<a href="<?php echo $banner['block_view_more_url']?>"  class="btnTrans"><?php echo $banner['block_view_more_text'] ?></a>
+	</div>
+</div>
+<?php $i++;endif;?>
+<?php endforeach;?>

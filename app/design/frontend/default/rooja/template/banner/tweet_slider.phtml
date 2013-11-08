@@ -1,0 +1,42 @@
+<?php
+$tweets=$this->getTweetes(); 
+ ?>
+ <!-- nks code starts -->
+<div class="tweetSliderWrapper">
+<div class="mainSprite twtIcon"></div>
+<button class="btnPurp2">FOLLOW US</button>
+    	
+   	  <ul class="tweetSlider">
+       	 
+       	  <?php 
+			foreach ($tweets as $tweet)
+			{
+				$tweet_date=$tweet->created_at;
+				
+				$current_date=date('y-m-d h:i:s');
+				$time=(strtotime($current_date)-strtotime($tweet_date))/3600;
+				if($time<1)
+				{
+					$time=$time*60 ." Minute Ago";
+				}
+				else {
+					$time=round($time)." Hour Ago";
+				}
+			   echo "<li class='tweet_li'>";
+ 						echo $tweet->text;
+ 						echo "<span class='screenName'>@".$tweet->user->screen_name."</span>";
+ 						echo "<span class='timeLapse'>$time</span>";
+				echo "</li>";
+				
+			}
+            ?>
+	  </ul>
+    </div> 
+<script>
+    		jQuery(document).ready(function()
+							{
+  								jQuery('.tweetSlider').bxSlider();
+							}
+						 );
+    	</script>      
+    <!-- end: nks code -->

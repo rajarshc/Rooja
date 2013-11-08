@@ -1,0 +1,37 @@
+<?php $banners=$this->getBanners();?>
+<?php 
+$j=1;
+$k=1;
+foreach($banners as $banner){
+	if($banner['position']=='top' && $j<=2){
+        $banner_data['top'][]=$banner;
+		$j++;
+    }
+	elseif($k<=4 && $banner['position']=='bottom')
+    {
+        $banner_data['bottom'][]=$banner;
+		$k++;
+    }
+}
+
+$i=1;
+?>
+    <ul>
+       	<?php foreach($banner_data['top'] as $banner):?>
+        <li class="index<?php echo $i?>">
+                <a href="<?php echo $banner['link']?>" title="<?php echo $banner['image_text']?>"> 
+                    <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'middle_banner/image/'.$banner['bannerimage'];?>" alt="<?php echo $banner['image_text']?>"/> 
+                    <span><?php echo $banner['image_text']?></span>
+                </a>
+        </li>
+        <?php $i++;endforeach;?>
+        <?php foreach($banner_data['bottom'] as $banner):?>
+        <li class="index<?php echo $i?>">
+                <a href="<?php echo $banner['link']?>" title="<?php echo $banner['image_text']?>"> 
+                    <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'middle_banner/image/'.$banner['bannerimage'];?>" alt="<?php echo $banner['image_text']?>"/> 
+                    <span><?php echo $banner['image_text']?></span>
+                </a>
+        </li>
+        <?php $i++;endforeach;?>
+    </ul>
+
