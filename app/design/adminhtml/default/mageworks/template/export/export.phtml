@@ -1,0 +1,27 @@
+<?php
+/**
+ * export template
+ *
+ * @see Santhosh_Export_Block_Adminhtml_Export
+ */
+?>
+<div class="content-header">
+	<table cellspacing="0">
+		<tbody>
+			<tr>
+				<td style="width: 50%;"><h3 class="icon-head head-upcoming"><?php echo $this->__('Export Profiles'); ?></h3></td>
+				<td class="a-right">&nbsp;</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<div class="export">
+	<ol class="export">
+		<li>
+			<span><?php echo $this->__('Category'); ?></span>
+			<ol>
+				<li><a href="<?php echo $this->getExportUrl('category', 'categories'); ?>" target="_blank"><?php echo $this->__('Categories'); ?></a></li>
+			</ol>
+		</li>
+	</ol>
+</div>

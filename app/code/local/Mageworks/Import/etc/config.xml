@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Mageworks_Import>
+            <version>0.0.1</version>
+        </Mageworks_Import>
+	</modules>
+
+	<global>
+		<helpers>
+			<mageworks_import>
+				<class>Mageworks_Import_Helper</class>
+			</mageworks_import>
+        </helpers>
+
+		<blocks>
+			<mageworks_import>
+				<class>Mageworks_Import_Block</class>
+			</mageworks_import>
+		</blocks>
+	</global>
+
+	<admin>
+		<routers>
+			<adminhtml>
+				<args>
+					<modules>
+						<mageworks_import after="Mage_Adminhtml">Mageworks_Import_Adminhtml</mageworks_import>
+					</modules>
+				</args>
+			</adminhtml>
+		</routers>
+	</admin>
+
+	<adminhtml>
+		<layout>
+			<updates>
+				<mageworks_import>
+					<file>import.xml</file>
+				</mageworks_import>
+			</updates>
+		</layout>
+
+		<translate>
+			<modules>
+				<Mageworks_Import>
+					<files>
+						<default>Mageworks_Import.csv</default>
+					</files>
+				</Mageworks_Import>
+			</modules>
+		</translate>
+	</adminhtml>
+
+	<stores>
+		<admin>
+			<design>
+				<package>
+					<name>default</name>
+				</package>
+				<theme>
+					<default>mageworks</default>
+				</theme>
+			</design>
+		</admin>
+	</stores>
+</config>
