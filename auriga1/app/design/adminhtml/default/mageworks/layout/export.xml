@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<layout>
+	<adminhtml_export_index>
+		<reference name="head">
+			<action method="addItem"><type>skin_css</type><name>mageworks/export.css</name></action>
+        </reference>
+		<reference name="content">
+			<block type="mageworks_export/adminhtml_export" name="export_profiles" template="export/export.phtml" />
+        </reference>
+	</adminhtml_export_index>
+</layout>

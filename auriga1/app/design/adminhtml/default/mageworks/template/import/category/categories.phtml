@@ -1,0 +1,36 @@
+<?php
+/**
+ * category import template
+ *
+ * @see Santhosh_Import_Block_Adminhtml_Category_Import
+ */
+?>
+<div class="content-header">
+	<table cellspacing="0">
+		<tbody>
+			<tr>
+				<td style="width: 50%;">
+					<h3 class="icon-head head-upcoming"><?php echo $this->__('Category Import Information'); ?></h3>
+				</td>
+				<td class="a-right">&nbsp;</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<div class="import">
+	<ol>
+		<li><?php echo $this->__('Please provide the correct name of the category list csv file to import in the filename above.'); ?></li>
+		<li><?php echo $this->__('Export the the categories from export profile to get the format of importing.'); ?></li>
+		<li><?php echo $this->__('Keep the first row and add the below contents only if they are to be modified or are new ones.'); ?></li>
+		<li><?php echo $this->__('Use text delimiter as double quotes (") and separator as comma (,).'); ?></li>
+		<li><?php echo $this->__('Try to import file batch by batch (e.g. 1000 records at a time) according to the server speed, else the import will stop in between.'); ?></li>
+		<li>
+			<?php echo $this->__('The category import attributes are:'); ?>
+			<ol>
+				<?php foreach($this->getAttributes() as $attribute) { ?>
+				<li><?php echo $attribute['label'] . ' ('.$attribute['field'].') '; ?></li>
+				<?php } ?>
+			</ol>
+		</li>
+	</ol>
+</div>

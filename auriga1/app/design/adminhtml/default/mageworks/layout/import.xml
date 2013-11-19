@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<layout>
+	<adminhtml_import_index>
+		<reference name="head">
+			<action method="addItem"><type>skin_css</type><name>mageworks/import.css</name></action>
+        </reference>
+		<reference name="content">
+			<block type="mageworks_import/adminhtml_import" name="import_profiles" template="import/import.phtml" />
+        </reference>
+	</adminhtml_import_index>
+	<adminhtml_import_category>
+		<reference name="head">
+			<action method="addItem"><type>skin_css</type><name>mageworks/import.css</name></action>
+		</reference>
+		<reference name="content">
+			<block type="mageworks_import/adminhtml_category_import" name="import_category_profiles" template="import/category.phtml" />
+		</reference>
+	</adminhtml_import_category>
+</layout>

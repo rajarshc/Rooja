@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Mageworks_Core>
+            <version>0.0.1</version>
+        </Mageworks_Core>
+	</modules>
+
+	<global>
+		<helpers>
+			<mageworks_core>
+				<class>Mageworks_Core_Helper</class>
+			</mageworks_core>
+		</helpers>
+
+		<models>
+			<mageworks_core>
+				<class>Mageworks_Core_Model</class>
+				<resourceModel>mageworks_core_mysql4</resourceModel>
+			</mageworks_core>
+			<mageworks_core_mysql4>
+				<class>Mageworks_Core_Model_Mysql4</class>
+			</mageworks_core_mysql4>
+        </models>
+	</global>
+</config>

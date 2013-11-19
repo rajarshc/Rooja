@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<config>
+	<menu>
+		<mageworks_core translate="title" module="mageworks_core">
+			<title>Mageworks</title>
+			<sort_order>71</sort_order>
+		</mageworks_core>
+	</menu>
+
+	<acl>
+		<resources>
+			<admin>
+				<children>
+					<mageworks_core translate="title" module="mageworks_core">
+						<title>Mageworks</title>
+					</mageworks_core>
+				</children>
+			</admin>
+		</resources>
+	</acl>
+</config>

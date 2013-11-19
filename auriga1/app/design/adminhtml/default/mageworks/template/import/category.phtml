@@ -1,0 +1,53 @@
+<?php
+/**
+ * category import template
+ *
+ * @see Santhosh_Import_Block_Adminhtml_Category_Import
+ */
+?>
+<?php $type = $this->getRequest()->getParam('type'); ?>
+<div class="content-header">
+	<table cellspacing="0">
+		<tbody>
+			<tr>
+				<td style="width: 50%;"><h3 class="icon-head head-upcoming"><?php echo $this->getTitle($type); ?></h3></td>
+				<td class="a-right">&nbsp;</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<div class="entry-edit">
+	<form action="" method="post" id="import-form" name="import-form">
+		<fieldset id="my-fieldset">
+			<table cellspacing="0" class="form-list">
+				<tr>
+					<td class="label">
+						<?php echo $this->__('Import file path')?>
+					</td>
+					<td class="input-ele">
+						<span><?php echo $this->getFilePath(); ?></span>
+					</td>
+				</tr>
+				<tr>
+					<td class="label">
+						<?php echo $this->__('Filename')?> <span class="required">*</span>
+					</td>
+					<td class="input-ele">
+						<input class="input-text required-entry" name="filename" value="<?php echo $this->getFileName($type) ?>" />
+					</td>
+					<td class="button">
+						<button type="submit" class="button"><?php echo $this->__('Submit'); ?></button>
+					</td>
+				</tr>
+			</table>
+		</fieldset>
+		<input type="hidden" value="<?php echo Mage::getSingleton('core/session')->getFormKey(); ?>" name="form_key">
+	</form>
+</div>
+<script type="text/javascript">
+	//<![CDATA[
+	var dataForm = new varienForm('import-form', true);
+	//]]>
+</script>
+
+<?php echo $this->showExportInfo($type); ?>
