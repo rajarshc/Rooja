@@ -266,7 +266,11 @@ function sendcart(url, type, qty_to_insert){
                         $$('.block-cart').each(function (el){
                             el.replace(mini_cart_txt);
                         });
-
+                        /*added by ankur for updating the mini cart */
+                        jQuery('.cartCount').css('display','block');
+                        jQuery('.cartCount').html($('j2t-temp-div').down('.mini_cart_count').innerHTML);
+                        jQuery('.cartContent').html($('j2t-temp-div').down('.custom_mini_cart').innerHTML);
+						/* code end*/
                         if (j2t_custom_mini_cart != ''){
                             $$('.'+j2t_custom_mini_cart).each(function (el){
                                 el.replace(mini_cart_txt);
@@ -426,7 +430,7 @@ function cartdelete(url){
 
             if (j2t_custom_cart != ''){
                 $$('.'+j2t_custom_cart).each(function (el){
-                    el.replace(full_cart_content);
+                 //   el.replace(full_cart_content);
                 });
             }
 
@@ -445,7 +449,14 @@ function cartdelete(url){
                 el.replace(cart_side);
                 //new Effect.Opacity(el, { from: 0, to: 1, duration: 1.5 });
             });
-
+			/*added by ankur for updating the mini cart */
+                        jQuery('.cartCount').html($('j2t-temp-div').down('.mini_cart_count').innerHTML);
+                        jQuery('.cartContent').html($('j2t-temp-div').down('.custom_mini_cart').innerHTML);
+                        if(parseInt($('j2t-temp-div').down('.mini_cart_count').innerHTML)==0)
+                        {
+                        	jQuery('.cartCount').css('display','none');
+                        }
+						/* code end*/
             if (j2t_custom_mini_cart != ''){
                 $$('.'+j2t_custom_mini_cart).each(function (el){
                     el.replace(mini_cart_txt);
@@ -645,3 +656,6 @@ document.observe("dom:loaded", function() {
     }
     
 });
+jQuery(document).delegate(".closer","click",function(){
+	jQuery('#sidebarCart').slideUp("slow");
+})
