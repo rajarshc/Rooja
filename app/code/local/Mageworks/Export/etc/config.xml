@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Mageworks_Export>
+            <version>0.0.1</version>
+        </Mageworks_Export>
+	</modules>
+
+	<global>
+		<helpers>
+			<mageworks_export>
+				<class>Mageworks_Export_Helper</class>
+			</mageworks_export>
+        </helpers>
+
+		<blocks>
+			<mageworks_export>
+				<class>Mageworks_Export_Block</class>
+			</mageworks_export>
+		</blocks>
+	</global>
+
+	<admin>
+		<routers>
+			<adminhtml>
+				<args>
+					<modules>
+						<mageworks_export after="Mage_Adminhtml">Mageworks_Export_Adminhtml</mageworks_export>
+					</modules>
+				</args>
+			</adminhtml>
+		</routers>
+	</admin>
+
+	<adminhtml>
+		<layout>
+			<updates>
+				<mageworks_export>
+					<file>export.xml</file>
+				</mageworks_export>
+			</updates>
+		</layout>
+
+		<translate>
+			<modules>
+				<Mageworks_Export>
+					<files>
+						<default>Mageworks_Export.csv</default>
+					</files>
+				</Mageworks_Export>
+			</modules>
+		</translate>
+	</adminhtml>
+
+	<stores>
+		<admin>
+			<design>
+				<package>
+					<name>default</name>
+				</package>
+				<theme>
+					<default>mageworks</default>
+				</theme>
+			</design>
+		</admin>
+	</stores>
+</config>

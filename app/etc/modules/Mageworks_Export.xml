@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Mageworks_Export>
+            <active>true</active>
+            <codePool>local</codePool>
+		</Mageworks_Export>
+    </modules>
+</config>
