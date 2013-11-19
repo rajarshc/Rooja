@@ -29,6 +29,15 @@ class Mageworks_Core_Helper_Category extends Mage_Core_Helper_Abstract
 		$data[] = array ('field' => 'default_sort_by', 'label' => 'Default Sort By', 'function' => 'getProductSortBy');
 		$data[] = array ('field' => 'page_layout', 'label' => 'Page Layout', 'function' => 'getPageLayout');
 		$data[] = array ('field' => 'custom_layout_update', 'label' => 'Custom Layout Update');
+		$data[] = array ('field' => 'image', 'label' => 'Image');
+                $data[] = array ('field' => 'thumbnail', 'label' => 'Thumbnail');
+                $data[] = array ('field' => 'sale_start_date', 'label' => 'Sale Start Date');
+                $data[] = array ('field' => 'sale_start_time', 'label' => 'Sale Start Time');
+                $data[] = array ('field' => 'sale_end_date', 'label' => 'Sale End Date');
+                $data[] = array ('field' => 'sale_end_time', 'label' => 'Sale End Time');
+                $data[] = array ('field' => 'category_gender', 'label' => 'Gender');
+                $data[] = array ('field' => 'onelinedescription', 'label' => 'One Line DEscription');
+
 		return $data;
 	}
 }
