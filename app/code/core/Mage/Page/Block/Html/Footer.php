@@ -38,10 +38,10 @@ class Mage_Page_Block_Html_Footer extends Mage_Core_Block_Template
 
     protected function _construct()
     {
-        $this->addData(array(
+       /* $this->addData(array(
             'cache_lifetime'=> false,
             'cache_tags'    => array(Mage_Core_Model_Store::CACHE_TAG, Mage_Cms_Model_Block::CACHE_TAG)
-        ));
+        ));*/
     }
 
     /**
