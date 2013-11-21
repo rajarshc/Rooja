@@ -44,6 +44,7 @@
                 <title>Advanced Search</title>
             </action>
         </reference>
+	<remove name="right"/>
     </default>
 
     <catalogsearch_result_index translate="label">

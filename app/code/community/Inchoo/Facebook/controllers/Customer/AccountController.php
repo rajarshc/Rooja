@@ -23,7 +23,10 @@ class Inchoo_Facebook_Customer_AccountController extends Mage_Core_Controller_Fr
 
 	public function connectAction()
     {
-    	
+    	$refering=$this->getRequest()->getParam('refer');
+	if($refering)
+	   $refering=Mage::helper('core')->urlDecode($refering);
+
     	if(!$this->_getSession()->validate()) {
     		$this->_getCustomerSession()->addError($this->__('Facebook connection failed.'));
     		$this->_redirect('customer/account');
@@ -63,12 +66,35 @@ class Inchoo_Facebook_Customer_AccountController extends Mage_Core_Controller_Fr
 				$this->__('Your Facebook account has been successfully connected. Now you can fast login using Facebook Connect anytime.')
 			);
 			$referer=$_SERVER['HTTP_REFERER']; 
+			
+			$data=Mage::getModel("customer/customer")->load($currentCustomer->getId())->getGender();
+			if($data==1)
+			{
+				$_SESSION['selected_gender']='men';
+			}
+			elseif($data==2) {
+				$_SESSION['selected_gender']='women';
+			}
+			
 			if(strpos($referer,'signup_men.html')!==FALSE || strpos($referer,'signup_women.html')!==FALSE)
 			{
-				$this->_redirectSuccess(Mage::getUrl('home', array('_secure'=>true)));
+				if($refering!='')
+				{
+					$this->_redirectSuccess($refering);
+					
+				}
+				else{
+					$this->_redirectSuccess(Mage::getUrl('home', array('_secure'=>true)));
+				}
 			}
 			else {
-				$this->_redirect('customer/account');
+				if($refering!='')
+				{
+					$this->_redirectSuccess($refering);
+					
+				}
+				else{
+				$this->_redirect('customer/account');}
 			}
 			
 			return;
@@ -84,12 +110,36 @@ class Inchoo_Facebook_Customer_AccountController extends Mage_Core_Controller_Fr
 			//
 			$this->_getCustomerSession()->setCustomerAsLoggedIn($uidCustomer);
 			$referer=$_SERVER['HTTP_REFERER']; 
+			$data=Mage::getModel("customer/customer")->load($uidCustomer->getId())->getGender();
+			if($data==1)
+			{
+				$_SESSION['selected_gender']='men';
+			}
+			elseif($data==2) {
+				$_SESSION['selected_gender']='women';
+			}
+			
 			if(strpos($referer,'signup_men.html')!==FALSE || strpos($referer,'signup_women.html')!==FALSE)
 			{
+				if($refering!='')
+				{
+					$this->_redirectSuccess($refering);
+					
+				}
+				else{
 				$this->_redirectSuccess(Mage::getUrl('home', array('_secure'=>true)));
+				}
 			}
 			else {
+				if($refering!='')
+				{
+					$this->_redirectSuccess($refering);
+					
+				}
+				else{
 				$this->_redirectReferer();
+				}
+				
 			}
 			
 			return;        	
@@ -139,13 +189,33 @@ class Inchoo_Facebook_Customer_AccountController extends Mage_Core_Controller_Fr
 			$this->_getCustomerSession()->addSuccess(
 				$this->__('Your Facebook account has been successfully connected. Now you can fast login using Facebook Connect anytime.')
 			);
-			
+			$data=Mage::getModel("customer/customer")->load($customer->getId())->getGender();
+			if($data==1)
+			{
+				$_SESSION['selected_gender']='men';
+			}
+			elseif($data==2) {
+				$_SESSION['selected_gender']='women';
+			}
 			if(strpos($referer,'signup_men.html')!==FALSE || strpos($referer,'signup_women.html')!==FALSE)
 			{
+				if($refering!='')
+				{
+					$this->_redirectSuccess($refering);
+					
+				}
+				else{
 				$this->_redirectSuccess(Mage::getUrl('home', array('_secure'=>true)));
+				}
 			}
 			else {
-				$this->_redirectReferer();
+				if($refering!='')
+				{
+					$this->_redirectSuccess($refering);
+					
+				}
+				else{
+				$this->_redirectReferer();}
 			}
     		return;
 		}
@@ -153,10 +223,23 @@ class Inchoo_Facebook_Customer_AccountController extends Mage_Core_Controller_Fr
 			$this->_registerCustomer($standardInfo,$customer);
 			if(strpos($referer,'signup_men.html')!==FALSE || strpos($referer,'signup_women.html')!==FALSE)
 			{
+				if($refering!='')
+				{
+					$this->_redirectSuccess($refering);
+					
+				}
+				else{
 				$this->_redirectSuccess(Mage::getUrl('home', array('_secure'=>true)));
+				}
 			}
 			else {
-				$this->_redirectReferer();
+				if($refering!='')
+				{
+					$this->_redirectSuccess($refering);
+					
+				}
+				else{
+				$this->_redirectReferer();}
 			}
 			return;
 		}
@@ -257,8 +340,7 @@ class Inchoo_Facebook_Customer_AccountController extends Mage_Core_Controller_Fr
 					->setEmail($standardInfo['email'])
 					->setPassword($randomPassword)
 					->setConfirmation($randomPassword)
-					->setFacebookUid($this->_getSession()->getUid());
-					
+					->setFacebookUid($this->_getSession()->getUid());	
 		if(isset($standardInfo['gender']) && $gender=Mage::getResourceSingleton('customer/customer')->getAttribute('gender')){
 			$genderOptions = $gender->getSource()->getAllOptions();
 			foreach($genderOptions as $option){
@@ -268,7 +350,13 @@ class Inchoo_Facebook_Customer_AccountController extends Mage_Core_Controller_Fr
 				}
 			}
 		}
-		
+		if($customer->getGender()==1)
+			{
+				$_SESSION['selected_gender']='men';
+			}
+			elseif($customer->getGender()==2) {
+				$_SESSION['selected_gender']='women';
+			}
 		if(isset($standardInfo['birthday']) && count(explode('/',$standardInfo['birthday']))==3){
 			
        		$dob = $standardInfo['birthday'];

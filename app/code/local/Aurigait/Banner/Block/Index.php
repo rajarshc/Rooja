@@ -2,12 +2,12 @@
 require_once "app/code/local/Aurigait/Homepage/twitteroauth/twitteroauth.php";
 class Aurigait_Banner_Block_Index extends Mage_Core_Block_Template
 {
-	protected $twitteruser = "roojafashion";
+	protected $twitteruser = "twitter@rooja.in";
 	protected $notweets = 15;
-	protected $consumerkey = "OGsU2FCQgKtm9w7FLiFtg";
-	protected $consumersecret = "uXUdpCHYECqoX0HmwMrKxohtH0Hy8gKSqtUymr3Mg";
-	protected $accesstoken = "119309269-45J4jyHNk1nzXwSlPj3R7Tk7znFWOOINL5Dw4dVu";
-	protected $accesstokensecret = "rwJEgS2QdOjr7NaXDnNLachFmnkPblAQcoU0LL0w";
+	protected $consumerkey = "rQvrzKwSP6wZcZzXTCpWcA";
+	protected $consumersecret = "oWwQaVdeFubiKQwiAlHtpQFu9iDuAqNz72sjxb14";
+	protected $accesstoken = "247176343-cisgL2KQN6uvdImuI2j6kk9rO0a5QVXx3KzdECdC";
+	protected $accesstokensecret = "gOZ0GRIgpCpY14l4ZihQ7t8VbScWZroybZ4MskKEB9HkF";
 	
 	public function getTweetes()
 	{
@@ -17,7 +17,7 @@ class Aurigait_Banner_Block_Index extends Mage_Core_Block_Template
 		$accesstokensecret=$this->accesstokensecret;
 		
 		$connection = $this->getConnectionWithAccessToken($consumerkey, $consumersecret, $accesstoken, $accesstokensecret);
-		$tweets=$connection->get("https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=".$twitteruser."&count=".$notweets);
+		$tweets=$connection->get("https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=".$twitteruser."&count=".$notweets."&exclude_replies=true");
 		return $tweets;
 	}
 	function getConnectionWithAccessToken($cons_key,$cons_secret,$oauth_token,$oauth_token_secret) {

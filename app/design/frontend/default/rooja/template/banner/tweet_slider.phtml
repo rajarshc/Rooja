@@ -11,21 +11,15 @@ $tweets=$this->getTweetes();
        	  <?php 
 			foreach ($tweets as $tweet)
 			{
-				$tweet_date=$tweet->created_at;
-				
-				$current_date=date('y-m-d h:i:s');
-				$time=(strtotime($current_date)-strtotime($tweet_date))/3600;
-				if($time<1)
+				foreach($tweet->entities->urls as $urls)
 				{
-					$time=$time*60 ." Minute Ago";
+					$text=str_replace($urls->url, "<a href='".$urls->url."'>".$urls->display_url."</a>", $tweet->text);
 				}
-				else {
-					$time=round($time)." Hour Ago";
-				}
+				$tweet_date=$tweet->created_at;
 			   echo "<li class='tweet_li'>";
- 						echo $tweet->text;
+ 						echo $text;
  						echo "<span class='screenName'>@".$tweet->user->screen_name."</span>";
- 						echo "<span class='timeLapse'>$time</span>";
+ 						echo "<span class='timeLapse'>".date('d M',strtotime($tweet_date))."</span>";
 				echo "</li>";
 				
 			}

@@ -31,7 +31,21 @@
                     <action method="addItemRender"><type>simple</type><block>checkout/cart_item_renderer</block><template>checkout/cart/sidebar/default.phtml</template></action>
                     <action method="addItemRender"><type>grouped</type><block>checkout/cart_item_renderer_grouped</block><template>checkout/cart/sidebar/default.phtml</template></action>
                     <action method="addItemRender"><type>configurable</type><block>checkout/cart_item_renderer_configurable</block><template>checkout/cart/sidebar/default.phtml</template></action>
-                </block>                
+                </block>  
+                <!--added by ankur for mini cart -->
+                <block type="checkout/cart_sidebar" name="cart_sidebar" template="checkout/cart/mini.phtml" before="-">
+                            
+	                <action method="addItemRender"><type>simple</type><block>checkout/cart_item_renderer</block><template>checkout/cart/header/default.phtml</template></action>
+	                <action method="addItemRender"><type>grouped</type><block>checkout/cart_item_renderer_grouped</block><template>checkout/cart/header/default.phtml</template></action>
+	                <action method="addItemRender"><type>configurable</type><block>checkout/cart_item_renderer_configurable</block><template>checkout/cart/header/default.phtml</template></action>
+	                <block type="core/text_list" name="cart_sidebar.extra_actions" as="extra_actions" translate="label" module="checkout">
+	                    <label>Shopping Cart Sidebar Extra Actions</label>
+	                </block>
+					<block type="cms/block" name="block_mini_cart_above_products">
+	                	<action method="setBlockId"><block_id>block_mini_cart_above_products</block_id></action>
+	            	</block>
+            	</block>
+                <!-- code end -->              
             </block>
         </reference> 
         
@@ -58,7 +72,20 @@
                     <action method="addItemRender"><type>grouped</type><block>checkout/cart_item_renderer_grouped</block><template>checkout/cart/sidebar/default.phtml</template></action>
                     <action method="addItemRender"><type>configurable</type><block>checkout/cart_item_renderer_configurable</block><template>checkout/cart/sidebar/default.phtml</template></action>
                 </block>
-                
+                <!--added by ankur for mini cart -->
+                <block type="checkout/cart_sidebar" name="cart_sidebar" template="checkout/cart/mini.phtml" before="-">
+                            
+	                <action method="addItemRender"><type>simple</type><block>checkout/cart_item_renderer</block><template>checkout/cart/header/default.phtml</template></action>
+	                <action method="addItemRender"><type>grouped</type><block>checkout/cart_item_renderer_grouped</block><template>checkout/cart/header/default.phtml</template></action>
+	                <action method="addItemRender"><type>configurable</type><block>checkout/cart_item_renderer_configurable</block><template>checkout/cart/header/default.phtml</template></action>
+	                <block type="core/text_list" name="cart_sidebar.extra_actions" as="extra_actions" translate="label" module="checkout">
+	                    <label>Shopping Cart Sidebar Extra Actions</label>
+	                </block>
+					<block type="cms/block" name="block_mini_cart_above_products">
+	                	<action method="setBlockId"><block_id>block_mini_cart_above_products</block_id></action>
+	            	</block>
+            	</block>
+                <!-- code end -->
                 <block type="checkout/cart" name="cart_content_ajax">
                     <action method="setCartTemplate"><value>checkout/cart.phtml</value></action>
                     <action method="setEmptyTemplate"><value>checkout/cart/noItems.phtml</value></action>

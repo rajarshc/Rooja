@@ -1,0 +1,43 @@
+<?php $products=$this->getProducts();?>
+<div class="galleryWrapper">
+<ul class="bxslider gallery">
+<?php  foreach($products as $product):?>
+	   <li>
+	   	<a href="<?php echo $product->getProductUrl();?>" title="<?php echo $product->getName(); ?>" class="prodImg"><img src="<?php echo $this->helper('catalog/image')->init($product, 'small_image'); ?>" title="<?php echo $product->getName(); ?>"/></a>
+	   	<!--<div class="brandTitle">QUIRKBOX</div>-->
+		<div class="brandName"><a href="<?php echo $product->getProductUrl();?>" title="<?php echo $product->getName();?>"><?php echo $product->getName();?></a></div>
+	   	<?php if($product->getSpecialPrice()):?>
+	   		<span class="finalPrice"><span class="webRupee">`</span><?php echo (int)$product->getSpecialPrice()?></span>
+	   		<span class="price oldPrice"><span class="webRupee">`</span><?php echo (int)$product->getPrice()?></span>
+	   	<?php else:?>
+	   		<span class="finalPrice"><span class="webRupee">`</span><?php echo (int)$product->getPrice()?></span>
+	   	<?php endif;?>
+	   </li>
+<?php endforeach;?>
+</ul>
+</div>
+<script>
+  if(parseInt(window.innerWidth)>=768){
+	  jQuery('.bxslider').bxSlider({
+  minSlides: 5,
+  maxSlides: 5,
+  slideWidth: 173,
+  slideMargin:15});
+  }
+  else if(parseInt(window.innerWidth)<768 && parseInt(window.innerWidth)>=640)
+  {
+	  jQuery('.bxslider').bxSlider({
+  		minSlides: 3,
+  		maxSlides: 3,
+  slideWidth: 166.667,
+  slideMargin:15});
+  }
+  else
+  {
+	  jQuery('.bxslider').bxSlider({
+  		minSlides: 1,
+  		maxSlides: 1,
+  slideWidth: 180,
+  slideMargin:15});
+  }
+</script>

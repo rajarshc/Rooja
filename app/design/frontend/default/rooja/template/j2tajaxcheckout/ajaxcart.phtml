@@ -71,3 +71,9 @@ echo $this->j2tAddCartLink();
 <div class="j2t_full_cart_content" id="j2t_full_cart_content">
     <?php echo $this->getChildHtml('cart_content_ajax');?>
 </div>
+<div class="mini_cart_count">
+	<?php echo Mage::getSingleton('checkout/cart')->getSummaryQty();?>
+</div>
+<div class="custom_mini_cart">
+	<?php echo $this->getChildHtml('cart_sidebar');?>
+</div>
