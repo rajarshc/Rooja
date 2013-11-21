@@ -45,7 +45,7 @@
     <?php else: ?>
         <span class="product-image"><img src="<?php echo $this->getProductThumbnail()->resize(56,84)->setWatermarkSize('30x10'); ?>" width="56" height="84" alt="<?php echo $this->htmlEscape($this->getProductName()) ?>" /></span>
     <?php endif; ?>
-    <div class="product-details">
+    <div class="product-details" style="position:relative">
         <p class="product-name"><?php if ($this->hasProductUrl()): ?><a href="<?php echo $this->getProductUrl() ?>"><?php endif; ?><?php echo $this->htmlEscape($this->getProductName()) ?>
 		
 		<?php if ($_options = $this->getOptionList()):?>
@@ -155,7 +155,7 @@ else
 			</tr>
 		</table>
 		
-   
+   <div class="priceRow">
         <?php if (Mage::helper('weee')->getApplied($_item)): ?>
             <br />
             <?php if (Mage::helper('weee')->typeOfDisplay($_item, 1, 'sales')): ?>
@@ -217,6 +217,6 @@ else
             <?php endif; ?>
         <?php endif; ?>
     <?php endif; ?>
-        
+        </div>
     </div>
 </li>

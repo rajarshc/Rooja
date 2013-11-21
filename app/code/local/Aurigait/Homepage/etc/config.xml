@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Aurigait_Homepage>
+            <version>0.1.0</version>
+        </Aurigait_Homepage>
+    </modules>
+    <global>
+    	<blocks>
+            <homepage>
+                <class>Aurigait_Homepage_Block</class>
+            </homepage>
+        </blocks>
+    </global>

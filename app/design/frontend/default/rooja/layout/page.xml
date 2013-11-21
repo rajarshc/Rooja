@@ -33,7 +33,7 @@ Default layout, loads most of the pages
     <default translate="label" module="page">
         <label>All Pages</label>
         <block type="page/html" name="root" output="toHtml" template="page/1column.phtml">
-
+			
             <block type="page/html_head" name="lockdownhead" as="lockdownhead">
                 <action method="addJs"><script>prototype/prototype.js</script></action>
                 <action method="addJs" ifconfig="dev/js/deprecation"><script>prototype/deprecation.js</script></action>
@@ -51,6 +51,7 @@ Default layout, loads most of the pages
 				<action method="addJs"><script>jquery/jquery.innerfade.js</script></action>
 				<action method="addJs"><script>jquery/jquery.fancybox.js</script></action>
 				<action method="addJs"><script>onboard.js</script></action>
+			
 
 		 <!-- <action method="addJs"><script>jquery/jquery.fancybox-1.3.4.pack.js</script></action>-->
 								
@@ -59,6 +60,7 @@ Default layout, loads most of the pages
                 <action method="addCss"><stylesheet>css/reset.css</stylesheet></action>
 				<action method="addCss"><stylesheet>css/jquery.fancybox-1.3.4.css</stylesheet></action>
                 <action method="addCss"><stylesheet>css/login.css</stylesheet></action>
+                
 								<!-- <action method="addCss"><stylesheet>css/jquery.fancybox-1.3.4.css</stylesheet></action> -->
                 <action method="addItem"><type>skin_css</type><name>css/styles-ie.css</name><params/><if>lt IE 8</if></action>
 		 <action method="addCss"><stylesheet>css/onboard.css</stylesheet></action>
@@ -92,6 +94,7 @@ Default layout, loads most of the pages
                  <!-- <action method="addJs"><script>jquery.js</script></action> -->
                  <action method="addJs"><script>scrolling.js</script></action>
 		<action method="addJs"><script>onboard.js</script></action>
+		<action method="addJs"><script>jquery.bxslider.min.js</script></action>
 
                 <block type="page/js_cookie" name="js_cookies" template="page/js/cookie.phtml"/>
 
@@ -99,6 +102,7 @@ Default layout, loads most of the pages
                 <action method="addCss"><stylesheet>css/reset.css</stylesheet></action>
                 <action method="addCss"><stylesheet>css/login.css</stylesheet></action>
                 <action method="addCss"><stylesheet>css/rooja.css</stylesheet></action>
+                <action method="addItem"><type>skin_css</type><name>css/jquery.bxslider.css</name></action>
 	  	  <action method="addCss"><stylesheet>css/onboard.css</stylesheet></action>
 
                 <action method="addItem"><type>skin_css</type><name>css/styles-ie.css</name><params/><if>lte IE 8</if></action>
@@ -123,6 +127,20 @@ Default layout, loads most of the pages
                     <label>Page Header</label>
                     <action method="setElementClass"><value>top-container</value></action>
                 </block>
+                <!--added by ankur for mini cart -->
+                <block type="checkout/cart_sidebar" name="cart_sidebar" template="checkout/cart/mini.phtml" before="-">
+                            
+	                <action method="addItemRender"><type>simple</type><block>checkout/cart_item_renderer</block><template>checkout/cart/header/default.phtml</template></action>
+	                <action method="addItemRender"><type>grouped</type><block>checkout/cart_item_renderer_grouped</block><template>checkout/cart/header/default.phtml</template></action>
+	                <action method="addItemRender"><type>configurable</type><block>checkout/cart_item_renderer_configurable</block><template>checkout/cart/header/default.phtml</template></action>
+	                <block type="core/text_list" name="cart_sidebar.extra_actions" as="extra_actions" translate="label" module="checkout">
+	                    <label>Shopping Cart Sidebar Extra Actions</label>
+	                </block>
+					<block type="cms/block" name="block_mini_cart_above_products">
+	                	<action method="setBlockId"><block_id>block_mini_cart_above_products</block_id></action>
+	            	</block>
+            	</block>
+                <!-- code end -->
             </block>
 
             <block type="page/html_breadcrumbs" name="breadcrumbs" as="breadcrumbs"/>
@@ -159,6 +177,7 @@ Default layout, loads most of the pages
         </block>
 
         <block type="core/profiler" output="toHtml" name="core_profiler"/>
+        
     </default>
 
     <print translate="label" module="page">

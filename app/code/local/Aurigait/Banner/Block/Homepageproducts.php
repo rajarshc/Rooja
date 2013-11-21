@@ -35,7 +35,7 @@ class Aurigait_Banner_Block_Homepageproducts extends Mage_Core_Block_Template{
 		else{
 			$collection = $category->getProductCollection()->setOrder('gender','desc');
 		}
-		//
+		$collection = $category->getProductCollection();
 		//$collection = $category->getProductCollection()->addAttributeToSort('position');
 		Mage::getModel('catalog/layer')->prepareProductCollection($collection);
 		

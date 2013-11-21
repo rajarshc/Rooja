@@ -26,10 +26,10 @@
             <action method="addCss">
                 <stylesheet>css/cloud-zoom.css</stylesheet>
             </action>
-            <action method="addItem">
+            <!--<action method="addItem">
                 <type>skin_js</type>
                 <name>js/jquery.js</name>
-            </action>
+         </action>-->
             <action method="addItem">
                 <type>skin_js</type>
                 <name>js/cloud-zoom.1.0.2.min.js</name>
@@ -49,10 +49,10 @@
             <action method="addCss">
                 <stylesheet>css/cloud-zoom.css</stylesheet>
             </action>
-            <action method="addItem">
+            <!--<action method="addItem">
                 <type>skin_js</type>
                 <name>js/jquery.js</name>
-            </action>
+         </action>-->
             <action method="addItem">
                 <type>skin_js</type>
                 <name>js/cloud-zoom.1.0.2.min.js</name>

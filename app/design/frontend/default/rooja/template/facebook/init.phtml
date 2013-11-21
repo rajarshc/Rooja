@@ -23,10 +23,21 @@ window.fbAsyncInit = function() {
 document.observe('click', function(e){
 	var target = e.findElement('a[rel^=facebook-connect]') || e.findElement('button[rel^=facebook-connect]');
 	if (target && target.readAttribute('rel')=='facebook-connect') {
+		if(target.readAttribute('ref'))
+		var refurl=target.readAttribute('ref');
+		else
+		var refurl='';
+		
+		var url;
+				if(refurl!='')
+				 url='<?php echo $this->getConnectUrl().'refer/'.Mage::helper('core')->urlEncode(Mage::getBaseUrl().'rewardsref/customer/index'); ?>';
+				else
+				 url= '<?php echo $this->getConnectUrl() ?>';
 		e.stop();
 		try{
 			FB.login(function(response){
-				if(response.status=='connected') setLocation('<?php echo $this->getConnectUrl() ?>');
+				
+				if(response.status=='connected') setLocation(url);
 			}, {perms:<?php echo $this->getRequiredPermissions() ?>});
 		}catch(error){}
 	}

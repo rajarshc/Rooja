@@ -39,7 +39,7 @@
 	  </categoryattribute1381475812_read>
 	</resources>
   </global>
- <!-- <crontab>
+- <crontab>
         <jobs>
             <Aurigait_Navigation_Categoryattrbiute>
                 <schedule>
@@ -66,5 +66,5 @@
                 </run>
             </Aurigait_Navigation_Hottestproduct>
         </jobs>
- </crontab>-->
+ </crontab>
 </config> 

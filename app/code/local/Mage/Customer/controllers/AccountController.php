@@ -146,6 +146,13 @@ class Mage_Customer_AccountController extends Mage_Core_Controller_Front_Action
 					}
 					
 					$data = $session->getCustomer()->getData();
+					if($data['gender']==1)
+					{
+						$_SESSION['selected_gender']='men';
+					}
+					elseif($data['gender']==2) {
+						$_SESSION['selected_gender']='women';
+					}
 					
 				} catch (Mage_Core_Exception $e) {
 					switch ($e->getCode()) {
@@ -192,6 +199,13 @@ class Mage_Customer_AccountController extends Mage_Core_Controller_Front_Action
 						$this->_welcomeCustomer($session->getCustomer(), true);
 					}
 					$data = $session->getCustomer()->getData();
+					if($data['gender']==1)
+					{
+						$_SESSION['selected_gender']='men';
+					}
+					elseif($data['gender']==2) {
+						$_SESSION['selected_gender']='women';
+					}
 					$result['success'] = true;
 					$result['redirecturl'] = Mage::getUrl('customer/account/edit');
 					
@@ -275,7 +289,9 @@ class Mage_Customer_AccountController extends Mage_Core_Controller_Front_Action
 	{
 		$this->_getSession()->logout()
 			->setBeforeAuthUrl(Mage::getUrl());
-		
+		/*  changed by ankur*/
+		   unset($_SESSION['selected_gender']);
+		/*  code end*/
 		$this->_redirect('home');
 	}
 	
@@ -503,9 +519,15 @@ class Mage_Customer_AccountController extends Mage_Core_Controller_Front_Action
 				$result = array();
 				if (true === $validationResult) {
 					$customer->save();
-					
 					if ($customer->isConfirmationRequired()) {
 						$customer->sendNewAccountEmail('confirmation', $session->getBeforeAuthUrl());
+						if($this->getRequest()->getParam('gender')==1)
+						{
+							$_SESSION['selected_gender']='men';
+						}
+						elseif($this->getRequest()->getParam('gender')==2) {
+							$_SESSION['selected_gender']='women';
+						}
 						$result['success'] = true;
 						$result['message'] = $this->__('Account confirmation is required. Please, check your email for the confirmation link. To resend the confirmation email please <a href="%s">click here</a>.', Mage::helper('customer')->getEmailConfirmationUrl($customer->getEmail()));
 					} else {
@@ -513,6 +535,13 @@ class Mage_Customer_AccountController extends Mage_Core_Controller_Front_Action
 						$url = $this->_welcomeCustomer($customer);
 						//$this->_redirectSuccess($url);
 						//return;
+						if($this->getRequest()->getParam('gender')==1)
+						{
+							$_SESSION['selected_gender']='men';
+						}
+						elseif($this->getRequest()->getParam('gender')==2) {
+							$_SESSION['selected_gender']='women';
+						}
 						$result['success'] = true;
 						$result['message'] = $this->__('You are successfully registered');
 					}
