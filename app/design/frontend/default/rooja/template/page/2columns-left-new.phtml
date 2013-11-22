@@ -49,7 +49,7 @@ if(!Mage::getSingleton('customer/session')->isLoggedIn()) {  // if not logged in
 <?php echo $this->getChildHtml('after_body_start') ?>
 
     <?php echo $this->getChildHtml('global_notices') ?>
-        <?php echo $this->getChildHtml('header') ?>
+        <?php echo $this->getChildHtml('header',false) ?>
 <section class="staticContent">
 <div class="container">		
 	<section class="col1 fl"><?php echo $this->getChildHtml('left') ?></section>
