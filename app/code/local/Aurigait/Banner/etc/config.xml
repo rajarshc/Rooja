@@ -71,10 +71,28 @@
                 </all>
                 <admin>
                     <children>
-                        <banner>
+                        <bannermgmt>
                             <title>Banner Module</title>
                             <sort_order>200</sort_order>
-                        </banner>
+                            <children>
+                            	<option>
+                            		<title>Manage Middle Banners</title>
+                            		<sort_order>1</sort_order>
+                            	</option>
+                            	<option1>
+                            		<title>Header Banner</title>
+                            		<sort_order>2</sort_order>
+                            	</option1>
+                            	<bannerblock>
+                            		<title>Manage Footer Bannerblock</title>
+									<sort_order>2</sort_order>
+                            	</bannerblock>
+                            	<footerbanner>
+                            		<title>Manage Footer Banner</title>
+									<sort_order>2</sort_order>
+                            	</footerbanner>
+                            </children>
+                        </bannermgmt>
                     </children>
                 </admin>
             </resources>   
