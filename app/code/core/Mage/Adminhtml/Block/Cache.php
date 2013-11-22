@@ -35,6 +35,11 @@ class Mage_Adminhtml_Block_Cache extends Mage_Adminhtml_Block_Widget_Grid_Contai
         $this->_headerText = Mage::helper('core')->__('Cache Storage Management');
         parent::__construct();
         $this->_removeButton('add');
+		$this->_addButton('flush_navigation', array(
+            'label'     => Mage::helper('core')->__('Flush Navigation Cache'),
+            'onclick'   => 'setLocation(\'' . $this->getFlushNavigationUrl() .'\')',
+            'class'     => 'delete',
+        ));
         $this->_addButton('flush_magento', array(
             'label'     => Mage::helper('core')->__('Flush Magento Cache'),
             'onclick'   => 'setLocation(\'' . $this->getFlushSystemUrl() .'\')',
@@ -56,7 +61,12 @@ class Mage_Adminhtml_Block_Cache extends Mage_Adminhtml_Block_Widget_Grid_Contai
     {
         return $this->getUrl('*/*/flushAll');
     }
-
+	
+	public function getFlushNavigationUrl()
+	{
+		return $this->getUrl('*/*/flushNavigation');
+	}
+	
     /**
      * Get url for clean cache storage
      */
