@@ -52,7 +52,7 @@ if(!Mage::getSingleton('customer/session')->isLoggedIn() && ($agent !="facebooke
 <body<?php echo $this->getBodyClass()?' class="'.$this->getBodyClass().'"':'' ?>>
 <?php echo $this->getChildHtml('after_body_start') ?>
 <?php echo $this->getChildHtml('global_notices') ?>
-    <?php echo $this->getChildHtml('header') ?>
+    <?php echo $this->getChildHtml('header',false) ?>
 <section>
 <div class="container">		
       	<section id="pageContent" class="col3 fl">
